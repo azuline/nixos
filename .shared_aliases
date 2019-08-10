@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+alias ls='exa --group-directories-first'
+alias l='exa -lg --group-directories-first'
+alias la='exa -lag --group-directories-first'
+
+alias grep='grep --color=auto'
+
+alias gname='git config user.name; git config user.email'
+alias gupd='git add .; git commit -m update'
+
+## User Scripts
+alias img='feh --cycle-once -.z --geometry -.'
+alias rscp='rsync -ah --progress'
+
+alias iscrot='bubblegum upload "$(ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
+alias iu='bubblegum upload'
+
+# Git
+alias gitlines='git ls-files | xargs -d "\n" wc -l'
+alias gst='git status'
+alias gb='git branch'
+alias gl='git log'
+
+fsub () {
+	find . -type f -print0 | xargs -0 sed -i "s/$1/$2/g"
+}

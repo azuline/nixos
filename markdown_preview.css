@@ -1,0 +1,53 @@
+body {
+  background-color: #1b1d24;
+}
+
+#page-header {
+  background-color: #1e2128;
+  border-color: #1e2128;
+  color: #eee;
+}
+
+.markdown-body {
+  background-color: #22252c;
+  color: #eee;
+  border-color: #1e2128;
+}
+
+.markdown-body code {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.markdown-body a {
+  color: #3498db;
+}
+
+.markdown-body pre {
+  background-color: #000;
+}
+
+
+.katex-display {
+  text-align: left !important;
+}
+
+.markdown-body table {
+  display: inline;
+  width: auto;
+  min-width: 0;
+}
+
+.markdown-body table tr {
+  background-color: #1e2128;
+}
+
+.markdown-body table tr,
+.markdown-body table td,
+.markdown-body table th {
+  border: 1px solid #3c404d;
+}
+
+.markdown-body table thead tr,
+.markdown-body table tr:nth-child(2n) {
+  background-color: #1b1d24;
+}
