@@ -59,11 +59,13 @@ au BufRead,BufNewFile Makefile,makefile,*.c set noexpandtab
 
 " Linting
 let g:ale_linters={
-\ 'python': ['flake8']
+\ 'python': ['flake8'],
+\ 'rust': ['cargo'],
 \ }
 
 let g:ale_fixers={
 \ 'python': ['isort'],
+\ 'rust': ['rustfmt'],
 \ 'markdown': ['prettier'],
 \ 'css': ['prettier'],
 \ 'javascript': ['prettier'],
