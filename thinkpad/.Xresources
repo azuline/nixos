@@ -33,7 +33,7 @@ rofi.eh: 1
 rofi.hide-scrollbar: true
 rofi.terminal: urxvt
 
-URxvt*font: xft:monospace:size=12
+URxvt*font: xft:monospace:size=14
 URxvt*scrollBar: false
 ! Copy paste
 URxvt*iso14755: false

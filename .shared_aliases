@@ -13,7 +13,7 @@ alias gupd='git add .; git commit -m update'
 alias img='feh --cycle-once -.z --geometry -.'
 alias rscp='rsync -ah --progress'
 
-alias iscrot='bubblegum upload "$(ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
+alias iscrot='bubblegum upload "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
 alias iu='bubblegum upload'
 
 # Git
