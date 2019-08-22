@@ -138,4 +138,5 @@ exec ~/.fehbg
 exec polybar-start
 exec --no-startup-id compton -cCi --respect-prop-shadow --backend glx --paint-on-overlay --vsync opengl-swc
 exec nm-applet
+exec blueman-applet
 exec --no-startup-id light-locker
