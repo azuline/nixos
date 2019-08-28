@@ -55,7 +55,7 @@ au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex
     \ set softtabstop=2 |
     \ set shiftwidth=2
 
-au BufRead,BufNewFile Makefile,makefile,*.c set noexpandtab
+au BufRead,BufNewFile Makefile,makefile,*.c,*.php set noexpandtab
 
 " Linting
 let g:ale_linters={
@@ -80,6 +80,12 @@ let g:black_linelength = 79
 let g:black_skip_string_normalization = 1
 
 autocmd BufWritePre *.py execute ':Black'
+
+" Java
+let java_highlight_java_lang_ids = 1
+let java_highlight_functions = 'style'
+let java_highlight_debug = 1
+let java_minlines = 25
 
 " Completion
 autocmd FileType python let b:vcm_tab_complete = 'python'

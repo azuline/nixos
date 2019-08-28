@@ -9,6 +9,7 @@ PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 HISTSIZE=10000
 HISTFILESIZE=20000
 shopt -s checkwinsize
+shopt -s globstar
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
