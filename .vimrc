@@ -15,6 +15,7 @@ Plugin 'iamcco/markdown-preview.nvim'
 Plugin 'nvie/vim-flake8'
 Plugin 'psf/black'
 Plugin 'lervag/vimtex'
+Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'rust-lang/rust.vim'
 Plugin 'Vimjas/vim-python-pep8-indent'
@@ -94,7 +95,9 @@ autocmd FileType python let b:vcm_tab_complete = 'python'
 let g:mkdp_browser='firefox-esr'
 let g:mkdp_highlight_css='/etc/dotfiles/markdown_preview.css'
 let g:mkdp_port='7237'
-map <C-m> :MarkdownPreview<CR>
+
+" Latex
+let g:livepreview_previewer = 'zathura'
 
 " Reopen file to last read line
 if has("autocmd")
