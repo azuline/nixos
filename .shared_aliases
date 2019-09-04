@@ -30,7 +30,7 @@ fsub () {
 }
 
 fcmsc () {
-    find . -type f -print0 | xargs -0 dos2unix
-    find . -type f -print0 | xargs -0 sed -i "s/\t/    /g"
-    find . -type f -print0 | xargs -0 sed -i "s/\s+$//g"
+    find . -name "*.java" -type f -print0 | xargs -0 dos2unix
+    find . -name "*.java" -type f -print0 | xargs -0 sed -i "s/\t/    /g"
+    find . -name "*.java" -type f -print0 | xargs -0 sed -i "s/\s+$//g"
 }
