@@ -24,8 +24,11 @@ source $HOME/.shared_aliases
 source $HOME/.aliases
 
 export EDITOR=vim
-export PATH=$PATH:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/.node_modules/bin:$HOME/.cargo/bin
 export PS1="\[\e[96m\]\u\[\e[m\]@\[\e[96m\]\h\[\e[m\] \[\e[93m\]\w\[\e[m\] \[\e[92m\]\`parse_git_branch\`\[\e[m\] "
+
 export npm_config_prefix=~/.node_modules
+export GEM_HOME="$HOME/.gems"
+
+export PATH=$PATH:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/.node_modules/bin:$HOME/.cargo/bin:$HOME/.gems/bin
 
 source $HOME/.bash_override

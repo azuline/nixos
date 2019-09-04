@@ -51,7 +51,7 @@ au BufRead,BufNewFile *
 au BufRead,BufNewFile *.md,*.py,*.txt,*.rst
     \ set textwidth=79
 
-au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex
+au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
