@@ -4,6 +4,8 @@ alias ls='exa --group-directories-first'
 alias l='exa -lg --group-directories-first'
 alias la='exa -lag --group-directories-first'
 
+alias rm='trash'
+
 alias grep='grep --color=auto'
 
 alias gname='git config user.name; git config user.email'
