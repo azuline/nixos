@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'w0rp/ale'
+Plugin 'itchyny/lightline.vim'
 Plugin 'ajh17/VimCompletesMe'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-commentary'
@@ -99,6 +100,20 @@ let g:mkdp_port='7237'
 " Latex
 let g:livepreview_previewer = 'zathura'
 
+" Lightline
+set laststatus=2
+set noshowmode
+let g:lightline = {
+\ 'colorscheme': 'seoul256',
+\ 'active': {
+\   'right': [ [ 'lineinfo' ], [ 'percent', 'wordcount' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+\ },
+\ 'component_function': {
+\   'wordcount': 'WordCount',
+\ },
+\ }
+
+
 " Reopen file to last read line
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -110,4 +125,32 @@ autocmd GUIEnter * set visualbell t_vb=
 
 set backspace=indent,eol,start  " more powerful backspacing
 
-" runtime override.vim
+function! WordCount()
+    let currentmode = mode()
+    if !exists("g:lastmode_wc")
+        let g:lastmode_wc = currentmode
+    endif
+    " if we modify file, open a new buffer, be in visual ever, or switch modes
+    " since last run, we recompute.
+    if &modified || !exists("b:wordcount") || currentmode =~? '\c.*v' || currentmode != g:lastmode_wc
+        let g:lastmode_wc = currentmode
+        let l:old_position = getpos('.')
+        let l:old_status = v:statusmsg
+        execute "silent normal g\<c-g>"
+        if v:statusmsg == "--No lines in buffer--"
+            let b:wordcount = 0
+        else
+            let s:split_wc = split(v:statusmsg)
+            if index(s:split_wc, "Selected") < 0
+                let b:wordcount = str2nr(s:split_wc[11])
+            else
+                let b:wordcount = str2nr(s:split_wc[5])
+            endif
+            let v:statusmsg = l:old_status
+        endif
+        call setpos('.', l:old_position)
+        return b:wordcount
+    else
+        return b:wordcount
+    endif
+endfunction
