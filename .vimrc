@@ -49,7 +49,7 @@ au BufRead,BufNewFile *
     \ set shiftwidth=4 |
     \ set fileformat=unix
 
-au BufRead,BufNewFile *.md,*.py,*.txt,*.rst
+au BufRead,BufNewFile *.md,*.py,*.txt,*.rst,*.tex
     \ set textwidth=79
 
 au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs
