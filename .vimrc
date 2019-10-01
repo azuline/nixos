@@ -18,6 +18,7 @@ Plugin 'psf/black'
 Plugin 'lervag/vimtex'
 Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'elixir-editors/vim-elixir'
+" Plugin 'slashmili/alchemist.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'Vimjas/vim-python-pep8-indent'
 
@@ -52,7 +53,7 @@ au BufRead,BufNewFile *
 au BufRead,BufNewFile *.md,*.py,*.txt,*.rst,*.tex
     \ set textwidth=79
 
-au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs
+au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
@@ -63,6 +64,7 @@ au BufRead,BufNewFile Makefile,makefile,*.c,*.php set noexpandtab
 let g:ale_linters={
 \ 'python': ['flake8'],
 \ 'rust': ['cargo'],
+\ 'elixir': ['mix'],
 \ }
 
 let g:ale_fixers={
@@ -70,8 +72,10 @@ let g:ale_fixers={
 \ 'rust': ['rustfmt'],
 \ 'markdown': ['prettier'],
 \ 'css': ['prettier'],
+\ 'scss': ['prettier'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
+\ 'elixir': ['mix_format'],
 \ }
 
 let g:ale_fix_on_save = 1
