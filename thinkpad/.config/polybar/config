@@ -1,5 +1,5 @@
 [colors]
-background = ${xrdb:color0}
+background = #2d2f34
 foreground = ${xrdb:color3:#1a191d}
 active = #c05a33
 inactive = #843e23
@@ -16,7 +16,7 @@ radius = 0
 fixed-center = true
 override-redirect = false
 
-background =
+background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 6
@@ -42,7 +42,7 @@ tray-padding = 3
 tray-detached = false
 tray-offset-x = 0%
 tray-offset-y = 0%
-tray-background = ${xrdb:color0}
+tray-background = #2d2f34
 
 [module/i3]
 type = internal/i3
@@ -59,7 +59,8 @@ label-mode-background = ${colors.background}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.foreground}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor

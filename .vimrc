@@ -103,6 +103,7 @@ let g:mkdp_port='7237'
 
 " Latex
 let g:livepreview_previewer = 'zathura'
+let g:livepreview_cursorhold_recompile = 0
 
 " Lightline
 set laststatus=2
