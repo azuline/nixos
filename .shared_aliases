@@ -4,7 +4,7 @@ alias ls='exa --group-directories-first'
 alias l='exa -lg --group-directories-first'
 alias la='exa -lag --group-directories-first'
 
-alias rm='trash'
+# alias rm='trash'
 
 alias grep='grep --color=auto'
 
@@ -24,15 +24,6 @@ alias gst='git status'
 alias gb='git branch'
 alias gl='git log'
 
-# SCHOOL JAVA
-alias cmscj='javac **/*.java -d bin'
-
 fsub () {
 	find . -type f -print0 | xargs -0 sed -i "s/$1/$2/g"
-}
-
-fcmsc () {
-    find . -name "*.java" -type f -print0 | xargs -0 dos2unix
-    find . -name "*.java" -type f -print0 | xargs -0 sed -i "s/\t/    /g"
-    find . -name "*.java" -type f -print0 | xargs -0 sed -i "s/\s+$//g"
 }
