@@ -40,7 +40,6 @@ let g:mkdp_highlight_css='~/.vim/markdown_preview.css'
 let g:mkdp_port='7237'
 
 " Latex
-let g:livepreview_previewer = 'evince'
 let g:livepreview_cursorhold_recompile = 0
 
 " Lightline

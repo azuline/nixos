@@ -2,7 +2,9 @@
 
 ### Floating windows
 
-for_window [app_id="wpa_gui"] floating enable
+for_window [title="^launcher$"] floating enable
+for_window [title="^pass$"] floating enable
+for_window [app_id="^wpa_gui$"] floating enable
 
 ### Idle inhibit windows
 
@@ -189,38 +191,14 @@ bindsym $mod+r mode "resize"
 ### Application Launcher
 
 bindsym $mod+d exec urxvt -title launcher -e bash -c "compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec"
-for_window [title="^launcher$"] floating enable
+
+### Password Copier
+
+bindsym $mod+p exec urxvt -title pass -e bash -c "~/.config/sway/pass.sh"
 
 ### Screen Locker
 
-set $lock swaylock \
-    -f \
-    -i /etc/wallpaper.jpg \
-    -s fill \
-    --indicator-radius 140 \
-    --indicator-thickness 25 \
-    --ring-color ffffff \
-    --ring-clear-color d790ba \
-    --ring-caps-lock-color d790ba \
-    --ring-ver-color d790ba \
-    --ring-wrong-color d790ba \
-    --inside-color 00000000 \
-    --inside-clear-color e8dce350 \
-    --inside-caps-lock-color ff000050 \
-    --inside-ver-color d790ba50 \
-    --inside-wrong-color 4d1b4b50 \
-    --key-hl-color d790ba \
-    --separator-color d790ba \
-    --line-color 00000000 \
-    --line-clear-color 00000000 \
-    --line-caps-lock-color 00000000 \
-    --line-ver-color 00000000 \
-    --line-wrong-color 00000000 \
-    --text-color ffffff \
-    --text-clear-color ffffff \
-    --text-caps-lock-color ffffff \
-    --text-ver-color ffffff \
-    --text-wrong-color ffffff
+set $lock swaylock --config ~/.config/sway/lock
 
 # Manual lock
 bindsym $mod+Escape exec $lock
