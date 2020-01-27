@@ -1,0 +1,36 @@
+[submodule ".vim/pack/plum/start/ale"]
+	path = .vim/pack/plum/start/ale
+	url = git@github.com:dense-analysis/ale.git
+[submodule ".vim/pack/plum/start/lightline"]
+	path = .vim/pack/plum/start/lightline
+	url = git@github.com:itchyny/lightline.vim.git
+[submodule ".vim/pack/plum/start/VimCompletesMe"]
+	path = .vim/pack/plum/start/VimCompletesMe
+	url = git@github.com:ajh17/VimCompletesMe
+[submodule ".vim/pack/plum/start/vim-commentary"]
+	path = .vim/pack/plum/start/vim-commentary
+	url = git@github.com:tpope/vim-commentary
+[submodule ".vim/pack/plum/start/quick-scope"]
+	path = .vim/pack/plum/start/quick-scope
+	url = git@github.com:unblevable/quick-scope
+[submodule ".vim/pack/plum/start/black"]
+	path = .vim/pack/plum/start/black
+	url = git@github.com:psf/black
+[submodule ".vim/pack/plum/start/vimtex"]
+	path = .vim/pack/plum/start/vimtex
+	url = git@github.com:lervag/vimtex
+[submodule ".vim/pack/plum/start/vim-latex-live-preview"]
+	path = .vim/pack/plum/start/vim-latex-live-preview
+	url = git@github.com:xuhdev/vim-latex-live-preview
+[submodule ".vim/pack/plum/start/vim-elixir"]
+	path = .vim/pack/plum/start/vim-elixir
+	url = git@github.com:elixir-editors/vim-elixir
+[submodule ".vim/pack/plum/start/rust.vim"]
+	path = .vim/pack/plum/start/rust.vim
+	url = git@github.com:rust-lang/rust.vim
+[submodule ".vim/pack/plum/start/vim-python-pep8-indent"]
+	path = .vim/pack/plum/start/vim-python-pep8-indent
+	url = git@github.com:Vimjas/vim-python-pep8-indent
+[submodule ".vim/pack/plum/start/markdown-preview.nvim"]
+	path = .vim/pack/plum/start/markdown-preview.nvim
+	url = git@github.com:iamcco/markdown-preview.nvim

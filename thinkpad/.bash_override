@@ -1,1 +1,0 @@
-export PS1="\[\e[31m\]\u\[\e[m\]@\[\e[31m\]\h\[\e[m\] \[\e[33m\]\w\[\e[m\] \[\e[32m\]\`parse_git_branch\`\[\e[m\] "

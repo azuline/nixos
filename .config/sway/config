@@ -1,0 +1,278 @@
+# Read `man 5 sway` for a complete reference.
+
+### Floating windows
+
+for_window [app_id="wpa_gui"] floating enable
+
+### Idle inhibit windows
+
+# for_window [app_id="firefox"] inhibit_idle fullscreen
+
+### Colors - Nocturnal Winter (iTerm2 Color Scheme)
+
+# Background/Foreground/Cursor
+set $color_fg    #e6e5e5
+set $color_bg    #0d0d17
+set $color_bg_tr #00000000
+# Black
+set $color0      #4d4d4d
+set $color8      #808080
+# Red
+set $color1      #f12d52
+set $color9      #f16d86
+# Green
+set $color2      #09cd7e
+set $color10     #0ae78d
+# Yellow
+set $color3      #f5f17a
+set $color11     #fffc67
+# Blue
+set $color4      #3182e0
+set $color12     #6096ff
+# Magenta
+set $color5      #ff2b6d
+set $color13     #ff78a2
+# Cyan
+set $color6      #09c87a
+set $color14     #0ae78d
+# White
+set $color7      #fcfcfc
+set $color15     #ffffff
+
+### Aesthetics
+
+# Font
+font pango: fira mono 14
+
+# Wallpaper
+output * bg /etc/wallpaper.jpg fill
+
+# Window colors
+# class                 border    backgr    text      indicator  child_border
+client.focused          $color_fg $color_fg $color_fg $color_fg  $color_fg
+client.focused_inactive $color_bg $color_bg $color_fg $color_bg  $color_bg
+client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
+client.urgent           $color1   $color1   $color_fg $color1    $color1
+
+# Window borders
+default_border              pixel   3
+default_floating_border     pixel   3
+
+# Gaps
+gaps inner 24
+gaps outer 4
+
+### Settings
+
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term urxvt
+
+### Inputs
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+### Keybinds
+
+# Open terminal
+bindsym $mod+Return exec $term
+
+# Kill window
+bindsym $mod+q kill
+
+# Drag windows
+floating_modifier $mod normal
+
+# Reload sway
+bindsym $mod+Shift+c reload
+
+# Exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
+
+# Change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move windows
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Change workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move windows in between workspaces
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Change split focus
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Change layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Fullscreen window
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# Scratchpad: Sway has a "scratchpad", which is a bag of holding for windows.
+# Move window to scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show scratchpad windows
+bindsym $mod+minus scratchpad show
+
+### Resizing containers
+
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+### Application Launcher
+
+bindsym $mod+d exec urxvt -title launcher -e bash -c "compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec"
+for_window [title="^launcher$"] floating enable
+
+### Screen Locker
+
+set $lock swaylock \
+    -f \
+    -i /etc/wallpaper.jpg \
+    -s fill \
+    --indicator-radius 140 \
+    --indicator-thickness 25 \
+    --ring-color ffffff \
+    --ring-clear-color d790ba \
+    --ring-caps-lock-color d790ba \
+    --ring-ver-color d790ba \
+    --ring-wrong-color d790ba \
+    --inside-color 00000000 \
+    --inside-clear-color e8dce350 \
+    --inside-caps-lock-color ff000050 \
+    --inside-ver-color d790ba50 \
+    --inside-wrong-color 4d1b4b50 \
+    --key-hl-color d790ba \
+    --separator-color d790ba \
+    --line-color 00000000 \
+    --line-clear-color 00000000 \
+    --line-caps-lock-color 00000000 \
+    --line-ver-color 00000000 \
+    --line-wrong-color 00000000 \
+    --text-color ffffff \
+    --text-clear-color ffffff \
+    --text-caps-lock-color ffffff \
+    --text-ver-color ffffff \
+    --text-wrong-color ffffff
+
+# Manual lock
+bindsym $mod+Escape exec $lock
+
+# Auto lock
+exec swayidle -w \
+         timeout 300 $lock \
+         timeout 600 "swaymsg "output * dpms off"" \
+              resume "swaymsg "output * dpms on"" \
+         lock $lock
+### Bar
+
+bar {
+    position top
+    font pango: Fira Sans 14
+
+    status_command while ~/.config/sway/bar.sh; do sleep 1; done
+
+    colors {
+        statusline $color_fg
+        background $color_bg_tr
+        focused_workspace $color7 $color7 $color0
+        inactive_workspace $color_bg_tr $color_bg_tr $color7
+        urgent_workspace $color1 $color1 $color_fg
+    }
+}
+
+### GTK
+
+exec_always {
+    dbus-launch gsettings set org.gnome.desktop.interface gtk-theme-name Nocturnal-Winter
+    dbus-launch gsettings set org.gnome.desktop.interface gtk-icon-theme-name Adwaita
+    dbus-launch gsettings set org.gnome.desktop.interface gtk-cursor-theme-name Adwaita
+    dbus-launch gsettings set org.gnome.desktop.interface gtk-font-name Fira Sans 14
+}
+
+### Keyboard mappings
+
+# Swap left alt and left meta
+input 1:1:AT_Translated_Set_2_keyboard {
+    xkb_options altwin:swap_lalt_lwin
+}
+
+# Screenshots
+bindsym --release Print exec grim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Shift+Print exec grim -g "$(slurp)" ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+
+# Sound
+bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
+bindsym XF86AudioMute exec amixer sset Master toggle
+
+# Brightness
+bindsym XF86MonBrightnessDown exec brightness-down.sh
+bindsym XF86MonBrightnessUp exec brightness-up.sh
