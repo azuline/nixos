@@ -194,21 +194,19 @@ bindsym $mod+d exec urxvt -title launcher -e bash -c "compgen -c | grep -v fzf |
 
 ### Password Copier
 
-bindsym $mod+p exec urxvt -title pass -e bash -c "~/.config/sway/pass.sh"
+bindsym $mod+p exec urxvt -title pass -e bash -ic "~/.config/sway/pass.sh; exit"
 
 ### Screen Locker
 
-set $lock swaylock --config ~/.config/sway/lock
-
 # Manual lock
-bindsym $mod+Escape exec $lock
+bindsym $mod+Escape exec swaylock
 
 # Auto lock
 exec swayidle -w \
-         timeout 300 $lock \
+         timeout 300 swaylock \
          timeout 600 "swaymsg "output * dpms off"" \
               resume "swaymsg "output * dpms on"" \
-         lock $lock
+         lock swaylock
 ### Bar
 
 bar {

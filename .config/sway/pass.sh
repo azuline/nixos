@@ -1,12 +1,13 @@
 #!/bin/bash
 
-file=$(tree -Ffi $HOME/.password-store | grep '.gpg' | sed 's/.gpg$//g' | sed 's/^..//' | fzf --layout=reverse)
+file=$(find $HOME/.password-store -type f -name '*.gpg' -printf '%P\n' | sed 's/.gpg$//' | fzf --layout=reverse)
 
 if [ -z "$file" ]; then
-    exit 0
+    exit 1
 fi
 
 data="$(pass $file)"
-choice=$(echo "password: $data" | fzf --layout=reverse)
 
-echo $choice | awk -F': ' '{print $2}' | wl-copy
+echo "password: ${data}" | fzf --layout=reverse | awk -F': ' '{$1="";print substr($0,2)}' | wl-copy
+
+exit 0

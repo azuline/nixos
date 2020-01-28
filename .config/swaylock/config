@@ -1,6 +1,6 @@
 daemonize
+scaling=fill
 image=/etc/wallpaper.jpg
-scaling
 indicator-radius=140
 indicator-thickness=25
 ring-color=ffffff
