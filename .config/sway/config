@@ -73,7 +73,7 @@ set $down j
 set $up k
 set $right l
 
-set $term urxvt
+set $term gnome-terminal
 
 ### Inputs
 #
@@ -190,11 +190,11 @@ bindsym $mod+r mode "resize"
 
 ### Application Launcher
 
-bindsym $mod+d exec urxvt -title launcher -e bash -c "compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec"
+bindsym $mod+d exec gnome-terminal -t launcher -e 'bash -c "compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec"'
 
 ### Password Copier
 
-bindsym $mod+p exec urxvt -title pass -e bash -ic "~/.config/sway/pass.sh; exit"
+bindsym $mod+p exec gnome-terminal -t pass -e 'bash -ic "~/.config/sway/pass.sh; exit"'
 
 ### Screen Locker
 
@@ -204,16 +204,16 @@ bindsym $mod+Escape exec swaylock
 # Auto lock
 exec swayidle -w \
          timeout 300 swaylock \
-         timeout 600 "swaymsg "output * dpms off"" \
-              resume "swaymsg "output * dpms on"" \
-         lock swaylock
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep swaylock
 ### Bar
 
 bar {
     position top
     font pango: Fira Sans 14
 
-    status_command while ~/.config/sway/bar.sh; do sleep 1; done
+    status_command while ~/.config/sway/bar.sh; do sleep 3; done
 
     colors {
         statusline $color_fg
@@ -224,13 +224,17 @@ bar {
     }
 }
 
+### Notifications
+
+exec mako
+
 ### GTK
 
 exec_always {
-    dbus-launch gsettings set org.gnome.desktop.interface gtk-theme-name Nocturnal-Winter
-    dbus-launch gsettings set org.gnome.desktop.interface gtk-icon-theme-name Adwaita
-    dbus-launch gsettings set org.gnome.desktop.interface gtk-cursor-theme-name Adwaita
-    dbus-launch gsettings set org.gnome.desktop.interface gtk-font-name Fira Sans 14
+    gsettings set org.gnome.desktop.interface gtk-theme Nocturnal-Winter
+    gsettings set org.gnome.desktop.interface icon-theme Adwaita
+    gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+    gsettings set org.gnome.desktop.interface font-name Fira Sans 14
 }
 
 ### Keyboard mappings
@@ -241,8 +245,8 @@ input 1:1:AT_Translated_Set_2_keyboard {
 }
 
 # Screenshots
-bindsym --release Print exec grim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
-bindsym --release Shift+Print exec grim -g "$(slurp)" ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Print exec grim -g "$(slurp)" ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Shift+Print exec grim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
 
 # Sound
 bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+

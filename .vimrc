@@ -14,6 +14,7 @@ let g:ale_fixers={
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
 \ 'elixir': ['mix_format'],
+\ 'ruby': ['rubocop'],
 \ }
 
 let g:ale_fix_on_save = 1
@@ -23,7 +24,7 @@ let g:ale_completion_enabled = 1
 let python_highlight_all = 1
 let g:black_linelength = 79
 let g:black_skip_string_normalization = 1
-autocmd BufWritePre *.py execute ':Black'
+" autocmd BufWritePre *.py execute ':Black'
 
 " Java highlighting
 let java_highlight_java_lang_ids = 1
