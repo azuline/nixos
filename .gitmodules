@@ -13,12 +13,6 @@
 [submodule ".vim/pack/plum/start/quick-scope"]
 	path = .vim/pack/plum/start/quick-scope
 	url = git@github.com:unblevable/quick-scope
-[submodule ".vim/pack/plum/start/black"]
-	path = .vim/pack/plum/start/black
-	url = git@github.com:psf/black
-[submodule ".vim/pack/plum/start/vimtex"]
-	path = .vim/pack/plum/start/vimtex
-	url = git@github.com:lervag/vimtex
 [submodule ".vim/pack/plum/start/vim-latex-live-preview"]
 	path = .vim/pack/plum/start/vim-latex-live-preview
 	url = git@github.com:xuhdev/vim-latex-live-preview
@@ -34,3 +28,15 @@
 [submodule ".vim/pack/plum/start/markdown-preview.nvim"]
 	path = .vim/pack/plum/start/markdown-preview.nvim
 	url = git@github.com:iamcco/markdown-preview.nvim
+[submodule ".vim/pack/plum/start/lightline-ale"]
+	path = .vim/pack/plum/start/lightline-ale
+	url = git@github.com:maximbaz/lightline-ale.git
+[submodule ".vim/pack/plum/start/fzf.vim"]
+	path = .vim/pack/plum/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule ".vim/pack/plum/start/fzf"]
+	path = .vim/pack/plum/start/fzf
+	url = https://github.com/junegunn/fzf
+[submodule ".vim/pack/plum/start/vim-fugitive"]
+	path = .vim/pack/plum/start/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git

@@ -1,6 +1,4 @@
 set nocompatible
-filetype off
-
 filetype plugin indent on
 syntax on
 
@@ -15,9 +13,17 @@ set whichwrap=b,s,<,>,[,]
 set nu
 set autoindent
 
-" Trailing space highlighting
-highlight BadWhitespace ctermbg=red guibg=red
-au BufRead,BufNewFile * match BadWhitespace /\s\+$/
+" Turn off error bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+" More powerful backspacing
+set backspace=indent,eol,start
+
+" Set leader keys
+nnoremap <Space> <nop>
+let mapleader = " "
+let maplocalleader = "\\"
 
 " Indentation
 au BufRead,BufNewFile *
@@ -38,16 +44,12 @@ au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs
 
 au BufRead,BufNewFile Makefile,makefile,*.c,*.php set noexpandtab
 
-" Completion
-autocmd FileType python let b:vcm_tab_complete = 'python'
+" Trailing space highlighting
+highlight BadWhitespace ctermbg=red guibg=red
+au BufRead,BufNewFile * match BadWhitespace /\s\+$/
 
 " Reopen file to last read line
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
-
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-
-set backspace=indent,eol,start  " more powerful backspacing

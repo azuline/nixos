@@ -1,12 +1,43 @@
+" Key mappings
+
+nnoremap <Leader>n :noh<CR>
+
+nnoremap <Leader>. :GitFiles<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>F :Files<Space>
+nnoremap <Leader>g :Rg<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>l :BLines<CR>
+nnoremap <Leader>L :Lines<CR>
+nnoremap <Leader>r :History<CR>
+nnoremap <Leader>c :Commands<CR>
+nnoremap <Leader>t :BTags<CR>
+nnoremap <Leader>T :Tags<CR>
+
+nnoremap <Leader>s :split<CR><C-W>j
+nnoremap <Leader>v :vsplit<CR><C-W>l
+
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+nnoremap _ :resize -5<CR>
+nnoremap + :resize +5<CR>
+nnoremap < :vertical resize -5<CR>
+nnoremap > :vertical resize +5<CR>
+
 " Linting
 let g:ale_linters={
 \ 'python': ['flake8'],
 \ 'rust': ['cargo'],
 \ 'elixir': ['mix'],
+\ 'tex': ['lacheck'],
 \ }
 
 let g:ale_fixers={
-\ 'python': ['isort'],
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'python': ['black', 'isort'],
 \ 'rust': ['rustfmt'],
 \ 'markdown': ['prettier'],
 \ 'css': ['prettier'],
@@ -17,42 +48,58 @@ let g:ale_fixers={
 \ 'ruby': ['rubocop'],
 \ }
 
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-
-" Python-specific linting
-let python_highlight_all = 1
-let g:black_linelength = 79
-let g:black_skip_string_normalization = 1
-" autocmd BufWritePre *.py execute ':Black'
+let g:ale_fix_on_save=1
+let g:ale_completion_enabled=1
+let g:ale_lint_on_text_changed='never'
+let g:ale_lint_on_insert_leave=0
 
 " Java highlighting
-let java_highlight_java_lang_ids = 1
-let java_highlight_functions = 'style'
-let java_highlight_debug = 1
-let java_minlines = 25
+let java_highlight_java_lang_ids=1
+let java_highlight_functions='style'
+let java_highlight_debug=1
+let java_minlines=25
 
-" Python autocompletion
-autocmd FileType python let b:vcm_tab_complete = 'python'
-
-" MarkdownPreview
+" Markdown Preview
 let g:mkdp_browser='firefox'
 let g:mkdp_highlight_css='~/.vim/markdown_preview.css'
 let g:mkdp_port='7237'
 
-" Latex
-let g:livepreview_cursorhold_recompile = 0
+" Latex Live Preview
+let g:livepreview_cursorhold_recompile=0
 
 " Lightline
 set laststatus=2
 set noshowmode
-let g:lightline = {
-\ 'active': {
-\   'right': [ [ 'lineinfo' ], [ 'percent', 'wordcount' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-\ },
-\ 'component_function': {
+
+let g:lightline = {}
+
+let g:lightline.component_expand={
+\ 'linter_checking': 'lightline#ale#checking',
+\ 'linter_infos': 'lightline#ale#infos',
+\ 'linter_warnings': 'lightline#ale#warnings',
+\ 'linter_errors': 'lightline#ale#errors',
+\ 'linter_ok': 'lightline#ale#ok',
+\ }
+
+let g:lightline.component_type={
+\ 'linter_checking': 'right',
+\ 'linter_infos': 'right',
+\ 'linter_warnings': 'warning',
+\ 'linter_errors': 'error',
+\ 'linter_ok': 'right',
+\ }
+
+let g:lightline.component_function={
 \   'wordcount': 'WordCount',
-\ },
+\ }
+
+let g:lightline.active={
+\ 'right': [
+\   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
+\   [ 'lineinfo' ],
+\   [ 'percent', 'wordcount' ],
+\   [ 'fileformat', 'fileencoding', 'filetype' ]
+\ ],
 \ }
 
 function! WordCount()
