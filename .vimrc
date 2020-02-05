@@ -22,6 +22,10 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
+nnoremap - :bp<CR>
+nnoremap = :bn<CR>
+nnoremap <Backspace> :bd<CR>
+
 nnoremap _ :resize -5<CR>
 nnoremap + :resize +5<CR>
 nnoremap < :vertical resize -5<CR>
