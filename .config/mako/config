@@ -1,0 +1,10 @@
+max-visible=8
+font=fira mono 15
+background-color=#0d0d17
+text-color=#e6e5e5
+width=500
+height=120
+padding=12
+border-size=6
+border-color=#ff78a2
+default-timeout=12000
