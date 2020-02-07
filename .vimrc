@@ -1,5 +1,6 @@
 " Key mappings
 
+nnoremap <Leader>e :e<Space>
 nnoremap <Leader>n :noh<CR>
 
 nnoremap <Leader>. :GitFiles<CR>
@@ -26,16 +27,20 @@ nnoremap - :bp<CR>
 nnoremap = :bn<CR>
 nnoremap <Backspace> :bd<CR>
 
-nnoremap _ :resize -5<CR>
-nnoremap + :resize +5<CR>
-nnoremap < :vertical resize -5<CR>
-nnoremap > :vertical resize +5<CR>
+nnoremap <Leader>r- :resize -5<CR>
+nnoremap <Leader>r= :resize +5<CR>
+nnoremap <Leader>r, :vertical resize -5<CR>
+nnoremap <Leader>r. :vertical resize +5<CR>
+
+" Swap files
+:set directory=$HOME/.vim/swap/
 
 " Linting
 let g:ale_linters={
 \ 'python': ['flake8'],
 \ 'rust': ['cargo'],
 \ 'elixir': ['mix'],
+\ 'c': ['clangtidy'],
 \ 'tex': ['lacheck'],
 \ }
 
@@ -43,12 +48,13 @@ let g:ale_fixers={
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'python': ['black', 'isort'],
 \ 'rust': ['rustfmt'],
+\ 'elixir': ['mix_format'],
+\ 'c': ['clang-format'],
 \ 'markdown': ['prettier'],
 \ 'css': ['prettier'],
 \ 'scss': ['prettier'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
-\ 'elixir': ['mix_format'],
 \ 'ruby': ['rubocop'],
 \ }
 
@@ -56,6 +62,9 @@ let g:ale_fix_on_save=1
 let g:ale_completion_enabled=1
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
+
+let g:ale_python_black_options='--skip-string-normalization -t py36 -l 79'
+let g:ale_rust_cargo_use_clippy=1
 
 " Java highlighting
 let java_highlight_java_lang_ids=1

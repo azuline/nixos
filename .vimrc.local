@@ -34,7 +34,7 @@ au BufRead,BufNewFile *
     \ set shiftwidth=4 |
     \ set fileformat=unix
 
-au BufRead,BufNewFile *.md,*.py,*.txt,*.rst,*.tex
+au BufRead,BufNewFile *.md,*.py,*.txt,*.rst,*.tex,*.c
     \ set textwidth=79
 
 au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb
@@ -42,7 +42,7 @@ au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs
     \ set softtabstop=2 |
     \ set shiftwidth=2
 
-au BufRead,BufNewFile Makefile,makefile,*.c,*.php set noexpandtab
+au BufRead,BufNewFile Makefile,makefile,*.php set noexpandtab
 
 " Trailing space highlighting
 highlight BadWhitespace ctermbg=red guibg=red
