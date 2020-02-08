@@ -1,0 +1,22 @@
+Layout/CaseIndentation:
+  IndentOneStep: true
+Layout/LineLength:
+  Max: 79
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: False
+Metrics/BlockNesting:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 120
+Metrics/PerceivedComplexity:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Style/RegexpLiteral:
+  EnforcedStyle: percent_r

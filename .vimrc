@@ -1,3 +1,22 @@
+" Load packages
+packadd ale
+packadd fzf
+packadd fzf.vim
+packadd lightline
+packadd lightline-ale
+packadd markdown-preview.nvim
+packadd quick-scope
+packadd rust.vim
+packadd vim-commentary
+" packadd VimCompletesMe
+packadd vim-elixir
+packadd vim-fugitive
+packadd vim-latex-live-preview
+packadd vim-python-pep8-indent
+
+" Colorscheme
+colorscheme ron
+
 " Key mappings
 
 nnoremap <Leader>e :e<Space>
@@ -66,7 +85,7 @@ let g:ale_lint_on_insert_leave=0
 let g:ale_python_black_options='--skip-string-normalization -t py36 -l 79'
 let g:ale_rust_cargo_use_clippy=1
 
-" Java highlighting
+" Highlighting
 let java_highlight_java_lang_ids=1
 let java_highlight_functions='style'
 let java_highlight_debug=1

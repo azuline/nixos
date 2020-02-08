@@ -6,6 +6,8 @@ for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [app_id="^wpa_gui$"] floating enable
 
+for_window [title="^Nextcloud$"] floating disable
+
 ### Idle inhibit windows
 
 # for_window [app_id="firefox"] inhibit_idle fullscreen

@@ -1,42 +1,51 @@
 [submodule ".vim/pack/plum/start/ale"]
-	path = .vim/pack/plum/start/ale
+	path = .vim/pack/plum/opt/ale
 	url = git@github.com:dense-analysis/ale.git
 [submodule ".vim/pack/plum/start/lightline"]
-	path = .vim/pack/plum/start/lightline
+	path = .vim/pack/plum/opt/lightline
 	url = git@github.com:itchyny/lightline.vim.git
 [submodule ".vim/pack/plum/start/VimCompletesMe"]
-	path = .vim/pack/plum/start/VimCompletesMe
+	path = .vim/pack/plum/opt/VimCompletesMe
 	url = git@github.com:ajh17/VimCompletesMe
 [submodule ".vim/pack/plum/start/vim-commentary"]
-	path = .vim/pack/plum/start/vim-commentary
+	path = .vim/pack/plum/opt/vim-commentary
 	url = git@github.com:tpope/vim-commentary
 [submodule ".vim/pack/plum/start/quick-scope"]
-	path = .vim/pack/plum/start/quick-scope
+	path = .vim/pack/plum/opt/quick-scope
 	url = git@github.com:unblevable/quick-scope
 [submodule ".vim/pack/plum/start/vim-latex-live-preview"]
-	path = .vim/pack/plum/start/vim-latex-live-preview
+	path = .vim/pack/plum/opt/vim-latex-live-preview
 	url = git@github.com:xuhdev/vim-latex-live-preview
 [submodule ".vim/pack/plum/start/vim-elixir"]
-	path = .vim/pack/plum/start/vim-elixir
+	path = .vim/pack/plum/opt/vim-elixir
 	url = git@github.com:elixir-editors/vim-elixir
 [submodule ".vim/pack/plum/start/rust.vim"]
-	path = .vim/pack/plum/start/rust.vim
+	path = .vim/pack/plum/opt/rust.vim
 	url = git@github.com:rust-lang/rust.vim
 [submodule ".vim/pack/plum/start/vim-python-pep8-indent"]
-	path = .vim/pack/plum/start/vim-python-pep8-indent
+	path = .vim/pack/plum/opt/vim-python-pep8-indent
 	url = git@github.com:Vimjas/vim-python-pep8-indent
 [submodule ".vim/pack/plum/start/markdown-preview.nvim"]
-	path = .vim/pack/plum/start/markdown-preview.nvim
+	path = .vim/pack/plum/opt/markdown-preview.nvim
 	url = git@github.com:iamcco/markdown-preview.nvim
 [submodule ".vim/pack/plum/start/lightline-ale"]
-	path = .vim/pack/plum/start/lightline-ale
+	path = .vim/pack/plum/opt/lightline-ale
 	url = git@github.com:maximbaz/lightline-ale.git
 [submodule ".vim/pack/plum/start/fzf.vim"]
-	path = .vim/pack/plum/start/fzf.vim
+	path = .vim/pack/plum/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
 [submodule ".vim/pack/plum/start/fzf"]
-	path = .vim/pack/plum/start/fzf
+	path = .vim/pack/plum/opt/fzf
 	url = https://github.com/junegunn/fzf
 [submodule ".vim/pack/plum/start/vim-fugitive"]
-	path = .vim/pack/plum/start/vim-fugitive
+	path = .vim/pack/plum/opt/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
+[submodule ".vim/colors/monokai"]
+	path = .vim/colors/monokai
+	url = git@github.com:sickill/vim-monokai.git
+[submodule ".vim/pack/plum/opt/vim-afterglow"]
+	path = .vim/colors/vim-afterglow
+	url = git@github.com:danilo-augusto/vim-afterglow.git
+[submodule ".vim/pack/plum/opt/vim-operator-highlight"]
+	path = .vim/pack/plum/opt/vim-operator-highlight
+	url = git@github.com:Valloric/vim-operator-highlight.git
