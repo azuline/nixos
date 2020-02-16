@@ -3,7 +3,7 @@ packadd ale
 packadd fzf
 packadd fzf.vim
 packadd lightline
-packadd lightline-ale
+" packadd lightline-ale
 packadd markdown-preview.nvim
 packadd quick-scope
 packadd rust.vim
@@ -30,6 +30,7 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>l :BLines<CR>
 nnoremap <Leader>L :Lines<CR>
 nnoremap <Leader>r :History<CR>
+nnoremap <Leader>h :History:<CR>
 nnoremap <Leader>c :Commands<CR>
 nnoremap <Leader>t :BTags<CR>
 nnoremap <Leader>T :Tags<CR>
@@ -44,7 +45,7 @@ nnoremap <C-L> <C-W>l
 
 nnoremap - :bp<CR>
 nnoremap = :bn<CR>
-nnoremap <Backspace> :bd<CR>
+nnoremap <Leader><Backspace> :bd<CR>
 
 nnoremap <Leader>r- :resize -5<CR>
 nnoremap <Leader>r= :resize +5<CR>
@@ -57,8 +58,8 @@ nnoremap <Leader>r. :vertical resize +5<CR>
 " Linting
 let g:ale_linters={
 \ 'python': ['flake8'],
+\ 'elixir': ['credo', 'mix'],
 \ 'rust': ['cargo'],
-\ 'elixir': ['mix'],
 \ 'c': ['clangtidy'],
 \ 'tex': ['lacheck'],
 \ }
@@ -75,6 +76,7 @@ let g:ale_fixers={
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
 \ 'ruby': ['rubocop'],
+\ 'ocaml': ['ocamlformat'],
 \ }
 
 let g:ale_fix_on_save=1
@@ -82,7 +84,7 @@ let g:ale_completion_enabled=1
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
 
-let g:ale_python_black_options='--skip-string-normalization -t py36 -l 79'
+let g:ale_python_black_options='--skip-string-normalization'
 let g:ale_rust_cargo_use_clippy=1
 
 " Highlighting
@@ -92,7 +94,7 @@ let java_highlight_debug=1
 let java_minlines=25
 
 " Markdown Preview
-let g:mkdp_browser='firefox'
+let g:mkdp_browser='firefox-bin'
 let g:mkdp_highlight_css='~/.vim/markdown_preview.css'
 let g:mkdp_port='7237'
 
@@ -103,23 +105,23 @@ let g:livepreview_cursorhold_recompile=0
 set laststatus=2
 set noshowmode
 
-let g:lightline = {}
+let g:lightline={}
 
-let g:lightline.component_expand={
-\ 'linter_checking': 'lightline#ale#checking',
-\ 'linter_infos': 'lightline#ale#infos',
-\ 'linter_warnings': 'lightline#ale#warnings',
-\ 'linter_errors': 'lightline#ale#errors',
-\ 'linter_ok': 'lightline#ale#ok',
-\ }
+" let g:lightline.component_expand={
+" \ 'linter_checking': 'lightline#ale#checking',
+" \ 'linter_infos': 'lightline#ale#infos',
+" \ 'linter_warnings': 'lightline#ale#warnings',
+" \ 'linter_errors': 'lightline#ale#errors',
+" \ 'linter_ok': 'lightline#ale#ok',
+" \ }
 
-let g:lightline.component_type={
-\ 'linter_checking': 'right',
-\ 'linter_infos': 'right',
-\ 'linter_warnings': 'warning',
-\ 'linter_errors': 'error',
-\ 'linter_ok': 'right',
-\ }
+" let g:lightline.component_type={
+" \ 'linter_checking': 'right',
+" \ 'linter_infos': 'right',
+" \ 'linter_warnings': 'warning',
+" \ 'linter_errors': 'error',
+" \ 'linter_ok': 'right',
+" \ }
 
 let g:lightline.component_function={
 \   'wordcount': 'WordCount',
@@ -127,12 +129,12 @@ let g:lightline.component_function={
 
 let g:lightline.active={
 \ 'right': [
-\   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
 \   [ 'lineinfo' ],
 \   [ 'percent', 'wordcount' ],
 \   [ 'fileformat', 'fileencoding', 'filetype' ]
 \ ],
 \ }
+" \   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
 
 function! WordCount()
     let currentmode = mode()

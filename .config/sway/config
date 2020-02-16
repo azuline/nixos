@@ -5,6 +5,7 @@
 for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [app_id="^wpa_gui$"] floating enable
+for_window [app_id="^pavucontrol$"] floating enable
 
 for_window [title="^Nextcloud$"] floating disable
 
@@ -205,8 +206,8 @@ bindsym $mod+Escape exec swaylock
 
 # Auto lock
 exec swayidle -w \
-         timeout 300 swaylock \
-         timeout 600 'swaymsg "output * dpms off"' \
+         timeout 3000 swaylock \
+         timeout 6000 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep swaylock
 ### Bar
@@ -215,7 +216,7 @@ bar {
     position top
     font pango: Fira Sans 14
 
-    status_command while ~/.config/sway/bar.sh; do sleep 3; done
+    status_command while ~/.config/sway/bar.sh; do sleep 2; done
 
     colors {
         statusline $color_fg

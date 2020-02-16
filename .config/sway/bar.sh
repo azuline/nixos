@@ -30,9 +30,28 @@ if [ $audio_muted = "yes" ]; then
 	audio="  muted"
 else
     audio_volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }')
-    audio="  $audio_volume"
+    audio="  $audio_volume"
 fi
+
+# Brightness
 
 brightness="  $(($(cat /sys/class/backlight/intel_backlight/brightness) * 100 / $(cat /sys/class/backlight/intel_backlight/max_brightness)))%"
 
-echo "$loadavg  $brightness  $audio  $network  $battery  |  $datetime  "
+# Wireguard
+
+wireguard="  $(wg show interfaces | sed 's/ / • /')"
+
+# Bluetooth
+
+IFS='\n'
+bluetooth=" "
+for dev in $(bluetoothctl paired-devices); do
+    bt_mac=$(echo $dev | awk 'NF=2{print $NF}')
+    bt_name=$(echo $dev | awk 'NF=3{print $NF}')
+    bt_connected=$(bluetoothctl info "$bt_mac" | grep "Connected: yes")
+    if [[ -n "$bt_connected" ]]; then
+        bluetooth="${bluetooth} ${bt_name}"
+    fi
+done
+
+echo "$bluetooth  $wireguard  $loadavg  $brightness  $audio  $network  $battery  |  $datetime  "

@@ -12,8 +12,6 @@ fields=$(echo "$data" | tail -n+2)
 
 choice=$(printf "password: ********\n${fields}\n" | fzf --layout=reverse)
 
-echo $choice
-
 if [[ "$choice" = "password: ********" ]]; then
     echo $password | wl-copy -n
 else
