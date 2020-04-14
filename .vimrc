@@ -10,12 +10,16 @@ packadd rust.vim
 packadd vim-commentary
 " packadd VimCompletesMe
 packadd vim-elixir
+packadd vim-elm-syntax
 packadd vim-fugitive
 packadd vim-latex-live-preview
 packadd vim-python-pep8-indent
 
 " Colorscheme
 colorscheme ron
+
+" Spell file
+set spellfile=~/.vim/spell/en.utf-8.add
 
 " Key mappings
 
@@ -58,33 +62,38 @@ nnoremap <Leader>r. :vertical resize +5<CR>
 " Linting
 let g:ale_linters={
 \ 'python': ['flake8'],
-\ 'elixir': ['credo', 'mix'],
+\ 'elixir': ['credo'],
 \ 'rust': ['cargo'],
 \ 'c': ['clangtidy'],
 \ 'tex': ['lacheck'],
 \ }
 
 let g:ale_fixers={
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ '*': [],
 \ 'python': ['black', 'isort'],
 \ 'rust': ['rustfmt'],
-\ 'elixir': ['mix_format'],
 \ 'c': ['clang-format'],
+\ 'elixir': ['mix_format'],
 \ 'markdown': ['prettier'],
 \ 'css': ['prettier'],
 \ 'scss': ['prettier'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
 \ 'ruby': ['rubocop'],
-\ 'ocaml': ['ocamlformat'],
+\ 'ocaml': ['ocamlformat', 'ocp-indent'],
 \ }
+
+" Because ALE is not adding this to every file type.
+for lang in keys(g:ale_fixers)
+    let g:ale_fixers[lang] = g:ale_fixers[lang] + ['remove_trailing_lines', 'trim_whitespace']
+endfor
 
 let g:ale_fix_on_save=1
 let g:ale_completion_enabled=1
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
 
-let g:ale_python_black_options='--skip-string-normalization'
+" let g:ale_python_black_options='--skip-string-normalization'
 let g:ale_rust_cargo_use_clippy=1
 
 " Highlighting

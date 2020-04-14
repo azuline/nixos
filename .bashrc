@@ -31,6 +31,8 @@ alias la='ls -la'
 
 alias grep='grep --color=auto'
 
+alias info='info --vi-keys'  # Emacs and cheese not allowed.
+
 alias gname='git config user.name; git config user.email'
 alias gupd='git add .; git commit -m update'
 
@@ -45,10 +47,6 @@ alias iscrot='bubblegum upload "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr
 alias iu='bubblegum upload'
 
 [ -f /opt/.fzf.bash ] && source /opt/.fzf.bash
-
-fsub() {
-	find . -type f -print0 | xargs -0 sed -i "s/$1/$2/g"
-}
 
 parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`

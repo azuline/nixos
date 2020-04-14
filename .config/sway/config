@@ -19,6 +19,8 @@ for_window [title="^Nextcloud$"] floating disable
 set $color_fg    #e6e5e5
 set $color_bg    #0d0d17
 set $color_bg_tr #00000000
+# Border
+set $color_br	 #513527
 # Black
 set $color0      #4d4d4d
 set $color8      #808080
@@ -49,12 +51,13 @@ set $color15     #ffffff
 # Font
 font pango: fira mono 14
 
-# Wallpaper
+# Display/Wallpaper
+output * scale 1
 output * bg /etc/wallpaper.jpg fill
 
 # Window colors
 # class                 border    backgr    text      indicator  child_border
-client.focused          $color_fg $color_fg $color_fg $color_fg  $color_fg
+client.focused          $color_br $color_br $color_fg $color_fg  $color_fg
 client.focused_inactive $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.urgent           $color1   $color1   $color_fg $color1    $color1
@@ -199,6 +202,10 @@ bindsym $mod+d exec gnome-terminal -t launcher -e 'bash -c "compgen -c | grep -v
 
 bindsym $mod+p exec gnome-terminal -t pass -e 'bash -ic "~/.config/sway/pass.sh; exit"'
 
+### Paper/Book Launcher
+
+bindsym $mod+Shift+p exec gnome-terminal -t pass -e 'bash -ic "~/.config/sway/yy.sh; exit"'
+
 ### Screen Locker
 
 # Manual lock
@@ -259,3 +266,5 @@ bindsym XF86AudioMute exec amixer sset Master toggle
 # Brightness
 bindsym XF86MonBrightnessDown exec brightness-down.sh
 bindsym XF86MonBrightnessUp exec brightness-up.sh
+
+# TODO: Bluetooth key bindsym?

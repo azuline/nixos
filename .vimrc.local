@@ -26,27 +26,33 @@ let mapleader = " "
 let maplocalleader = "\\"
 
 " Indentation
-au BufRead,BufNewFile *
-    \ set expandtab |
+au BufEnter *
     \ set autoindent |
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
     \ set fileformat=unix
 
-au BufRead,BufNewFile *.md,*.py,*.txt,*.rst,*.tex,*.c
-    \ set textwidth=79
+au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
+	\ set textwidth=79
 
-au BufRead,BufNewFile *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml
+au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
 
-au BufRead,BufNewFile Makefile,makefile,*.php set noexpandtab
+au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml
+    \ set expandtab
+
+au BufEnter Makefile,makefile,*.php
+	\ set noexpandtab
+
+au BufEnter *.md,*.rst,*.tex,*.txt
+	\ set spell
 
 " Trailing space highlighting
 highlight BadWhitespace ctermbg=red guibg=red
-au BufRead,BufNewFile * match BadWhitespace /\s\+$/
+au BufEnter * match BadWhitespace /\s\+$/
 
 " Reopen file to last read line
 if has("autocmd")

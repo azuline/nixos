@@ -49,3 +49,6 @@
 [submodule ".vim/pack/plum/opt/vim-operator-highlight"]
 	path = .vim/pack/plum/opt/vim-operator-highlight
 	url = git@github.com:Valloric/vim-operator-highlight.git
+[submodule ".vim/pack/plum/opt/vim-elm-syntax"]
+	path = .vim/pack/plum/opt/vim-elm-syntax
+	url = https://github.com/andys8/vim-elm-syntax

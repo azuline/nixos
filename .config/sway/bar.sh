@@ -39,19 +39,23 @@ brightness="  $(($(cat /sys/class/backlight/intel_backlight/brightness) * 100
 
 # Wireguard
 
-wireguard="  $(wg show interfaces | sed 's/ / • /')"
+wireguard="  $(wg show interfaces | sed 's/ / • /g')"
 
 # Bluetooth
 
-IFS='\n'
-bluetooth=" "
-for dev in $(bluetoothctl paired-devices); do
-    bt_mac=$(echo $dev | awk 'NF=2{print $NF}')
-    bt_name=$(echo $dev | awk 'NF=3{print $NF}')
-    bt_connected=$(bluetoothctl info "$bt_mac" | grep "Connected: yes")
-    if [[ -n "$bt_connected" ]]; then
-        bluetooth="${bluetooth} ${bt_name}"
-    fi
-done
+if [[ -n $(bluetoothctl show | grep "Powered: yes") ]]; then
+    IFS='\n'
+    bluetooth=" "
+    for dev in $(bluetoothctl paired-devices); do
+        bt_mac=$(echo $dev | awk '{print $2}')
+        bt_name=$(echo $dev | awk '{print $3}')
+        bt_connected=$(bluetoothctl info "$bt_mac" | grep "Connected: yes")
+        if [[ -n "$bt_connected" ]]; then
+            bluetooth="${bluetooth} ${bt_name}"
+        fi
+    done
+else
+    bluetooth=""
+fi
 
 echo "$bluetooth  $wireguard  $loadavg  $brightness  $audio  $network  $battery  |  $datetime  "
