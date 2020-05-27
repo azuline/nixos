@@ -1,3 +1,5 @@
+source /etc/vim/vimrc.local
+
 " Load packages
 packadd ale
 packadd fzf
@@ -89,7 +91,6 @@ for lang in keys(g:ale_fixers)
 endfor
 
 let g:ale_fix_on_save=1
-let g:ale_completion_enabled=1
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
 
@@ -103,7 +104,7 @@ let java_highlight_debug=1
 let java_minlines=25
 
 " Markdown Preview
-let g:mkdp_browser='firefox-bin'
+let g:mkdp_browser='firefox'
 let g:mkdp_highlight_css='~/.vim/markdown_preview.css'
 let g:mkdp_port='7237'
 
