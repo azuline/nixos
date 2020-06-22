@@ -41,7 +41,7 @@ au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.
     \ set softtabstop=2 |
     \ set shiftwidth=2
 
-au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml
+au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.s
     \ set expandtab
 
 au BufEnter Makefile,makefile,*.php

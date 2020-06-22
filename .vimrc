@@ -44,6 +44,8 @@ nnoremap <Leader>T :Tags<CR>
 nnoremap <Leader>s :split<CR><C-W>j
 nnoremap <Leader>v :vsplit<CR><C-W>l
 
+nnoremap <Leader>p :%w !wl-copy<CR>
+
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
