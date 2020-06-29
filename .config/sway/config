@@ -20,7 +20,7 @@ set $color_fg    #e6e5e5
 set $color_bg    #0d0d17
 set $color_bg_tr #00000000
 # Border
-set $color_br	 #513527
+set $color_br    #513527
 # Black
 set $color0      #4d4d4d
 set $color8      #808080
@@ -49,7 +49,7 @@ set $color15     #ffffff
 ### Aesthetics
 
 # Font
-font pango: fira mono 14
+font pango: fira mono 15
 
 # Display/Wallpaper
 output * scale 1
@@ -79,7 +79,7 @@ set $down j
 set $up k
 set $right l
 
-set $term gnome-terminal
+set $term alacritty
 
 ### Inputs
 #
@@ -196,15 +196,15 @@ bindsym $mod+r mode "resize"
 
 ### Application Launcher
 
-bindsym $mod+d exec gnome-terminal -t launcher -e 'bash -c "compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec"'
+bindsym $mod+d exec alacritty -t launcher -e bash -ic "compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec"
 
 ### Password Copier
 
-bindsym $mod+p exec gnome-terminal -t pass -e 'bash -ic "~/.config/sway/pass.sh; exit"'
+bindsym $mod+p exec alacritty -t pass -e bash -ic "~/.config/sway/pass.sh; exit"
 
 ### Paper/Book Launcher
 
-bindsym $mod+Shift+p exec gnome-terminal -t pass -e 'bash -ic "~/.config/sway/yy.sh; exit"'
+bindsym $mod+Shift+p exec alacritty -t pass -e bash -ic "~/.config/sway/yy.sh; exit"
 
 ### Screen Locker
 
@@ -220,18 +220,7 @@ exec swayidle -w \
 ### Bar
 
 bar {
-    position top
-    font pango: Fira Sans 14
-
-    status_command while ~/.config/sway/bar.sh; do sleep 2; done
-
-    colors {
-        statusline $color_fg
-        background $color_bg_tr
-        focused_workspace $color7 $color7 $color0
-        inactive_workspace $color_bg_tr $color_bg_tr $color7
-        urgent_workspace $color1 $color1 $color_fg
-    }
+     swaybar_command waybar
 }
 
 ### Notifications
@@ -244,7 +233,7 @@ exec_always {
     gsettings set org.gnome.desktop.interface gtk-theme Nocturnal-Winter
     gsettings set org.gnome.desktop.interface icon-theme Adwaita
     gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-    gsettings set org.gnome.desktop.interface font-name Fira Sans 14
+    gsettings set org.gnome.desktop.interface font-name Fira Sans 15
 }
 
 ### Keyboard mappings

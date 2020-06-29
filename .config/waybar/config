@@ -1,0 +1,68 @@
+{
+    "layer": "top", // Waybar at top layer
+    "height": 40, // Waybar height (to be removed for auto height)
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["tray", "custom/vpn", "network", "cpu", "backlight", "battery", "pulseaudio", "clock#date", "clock"],
+    "tray": {
+        "icon-size": 30,
+        "spacing": 10
+    },
+    "clock#date": {
+	"interval": 60,
+	"format": " {:%a, %b %m}",
+	"tooltip": false
+    },
+    "clock": {
+	"interval": 5,
+        "format": " {:%H:%M:%S}",
+        "tooltip": false
+    },
+    "cpu": {
+	"interval": 5,
+        "format": " {load}%",
+        "tooltip": false
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", ""]
+    },
+    "battery": {
+	"bat": "BAT0",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "interface": "wlp*", // (Optional) To force the use of this interface
+        "format-wifi": " {essid}",
+        "format-ethernet": " N/A",
+        "format-linked": " {ifname}",
+        "format-disconnected": " N/A",
+        "format-alt": "{ifname} {essid} ({signalStrength}%)"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-alt-click": "click-right",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 10,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "tooltip": false
+    },
+	"custom/vpn": {
+		"exec": "~/.config/waybar/vpn.sh",
+		"interval": 15,
+		"format": " {}"
+	}
+}

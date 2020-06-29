@@ -1,0 +1,59 @@
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   "Fira Sans";
+    font-size:     18px;
+    box-shadow:    none;
+    text-shadow:   none;
+    transition-duration: 0s;
+}
+
+window#waybar {
+    color: rgb(230, 229, 229);
+    background-color: rgba(13, 13, 23, 0.4);
+}
+
+#workspaces button {
+    padding: 0;
+    background-color: rgba(13, 13, 23, 0.7);
+}
+
+#workspaces button.focused {
+    background-color: rgba(173, 54, 33, 0.7);
+}
+
+#workspaces button.urgent {
+    color: #f16d86;
+}
+
+#tray,
+#clock,
+#mode,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#temperature,
+#custom-layout,
+#backlight {
+    margin: 0px 6px 0px 10px;
+/*    min-width: 30px;*/
+}
+
+#clock {
+    margin: 0px 6px 0px 10px;
+}
+
+#battery.warning {
+   color: rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color: rgba(217, 216, 216, 1);
+}

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# OUTDATED BAR SCRIPT. USING WAYBAR NOW.
+
 # Date/Time
 
 datetime="$(date +"%Y-%m-%d %l:%M:%S %p")"
