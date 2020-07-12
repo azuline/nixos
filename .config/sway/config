@@ -252,8 +252,4 @@ bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
 bindsym XF86AudioMute exec amixer sset Master toggle
 
-# Brightness
-bindsym XF86MonBrightnessDown exec brightness-down.sh
-bindsym XF86MonBrightnessUp exec brightness-up.sh
-
 # TODO: Bluetooth key bindsym?

@@ -1,4 +1,4 @@
-source /etc/vim/vimrc.local
+source /usr/share/vim/vimrc
 
 " Load packages
 packadd ale
@@ -74,7 +74,7 @@ let g:ale_linters={
 
 let g:ale_fixers={
 \ '*': [],
-\ 'python': ['black', 'isort'],
+\ 'python': ['isort'],
 \ 'rust': ['rustfmt'],
 \ 'c': ['clang-format'],
 \ 'elixir': ['mix_format'],
