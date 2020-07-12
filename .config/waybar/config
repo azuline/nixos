@@ -10,7 +10,7 @@
     },
     "clock#date": {
 	"interval": 60,
-	"format": " {:%a, %b %m}",
+	"format": " {:%a, %b %d}",
 	"tooltip": false
     },
     "clock": {
