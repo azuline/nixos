@@ -52,3 +52,6 @@
 [submodule ".vim/pack/plum/opt/vim-elm-syntax"]
 	path = .vim/pack/plum/opt/vim-elm-syntax
 	url = https://github.com/andys8/vim-elm-syntax
+[submodule ".vim/pack/plum/opt/vim-racket"]
+	path = .vim/pack/plum/opt/vim-racket
+	url = git@github.com:wlangstroth/vim-racket.git

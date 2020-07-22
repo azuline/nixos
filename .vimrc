@@ -16,6 +16,7 @@ packadd vim-elm-syntax
 packadd vim-fugitive
 packadd vim-latex-live-preview
 packadd vim-python-pep8-indent
+packadd vim-racket
 
 " Colorscheme
 colorscheme ron

@@ -25,6 +25,9 @@ nnoremap <Space> <nop>
 let mapleader = " "
 let maplocalleader = "\\"
 
+" Racket
+au BufReadPost *rkt.*rktl set filetype=scheme
+
 " Indentation
 au BufEnter *
     \ set autoindent |

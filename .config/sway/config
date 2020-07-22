@@ -95,6 +95,10 @@ set $term alacritty
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input "2:10:TPPS/2_Elan_Trackpoint" {
+	pointer_accel 1
+}
+
 ### Keybinds
 
 # Open terminal
