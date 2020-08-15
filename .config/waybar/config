@@ -1,8 +1,8 @@
 {
     "layer": "top", // Waybar at top layer
     "height": 40, // Waybar height (to be removed for auto height)
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "modules-center": [],
     "modules-right": ["tray", "custom/vpn", "network", "cpu", "backlight", "battery", "pulseaudio", "clock#date", "clock"],
     "tray": {
         "icon-size": 30,

@@ -4,6 +4,7 @@
 
 for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
+for_window [title="^yy$"] floating enable
 for_window [app_id="^wpa_gui$"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
 
@@ -208,7 +209,8 @@ bindsym $mod+p exec alacritty -t pass -e bash -ic "~/.config/sway/pass.sh; exit"
 
 ### Paper/Book Launcher
 
-bindsym $mod+Shift+p exec alacritty -t pass -e bash -ic "~/.config/sway/yy.sh; exit"
+bindsym $mod+y exec alacritty -t yy -e bash -ic "~/.config/sway/yy.sh; exit"
+bindsym $mod+shift+y exec alacritty -t yy -e bash -ic "~/.config/sway/shiftyy.sh; exit"
 
 ### Screen Locker
 

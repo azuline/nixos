@@ -55,3 +55,9 @@
 [submodule ".vim/pack/plum/opt/vim-racket"]
 	path = .vim/pack/plum/opt/vim-racket
 	url = git@github.com:wlangstroth/vim-racket.git
+[submodule ".vim/pack/plum/opt/vim-jsx-pretty"]
+	path = .vim/pack/plum/opt/vim-jsx-pretty
+	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
+[submodule ".vim/pack/plum/opt/vim-js"]
+	path = .vim/pack/plum/opt/vim-js
+	url = git@github.com:yuezk/vim-js.git

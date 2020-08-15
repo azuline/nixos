@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-KNOW_DIR=$HOME/know
+KNOW_DIR=$HOME/notes/academics
 
-books="$(find $KNOW_DIR/books -type f -name '*.pdf' -printf 'books/%P\n')"
-papers="$(find $KNOW_DIR/papers -type f -name '*.pdf' -printf 'papers/%P\n')"
-webpages="$(find $KNOW_DIR/webpages -type f -name '*.html' -printf 'webpages/%P\n')"
+files="$(find $KNOW_DIR -type f \( -name '*.pdf' -o -name '*.html' \) -printf '%P\n')"
 
-selected=$(printf "${books}\n${papers}\n${webpages}\n" | fzf --layout=reverse)
+selected=$(printf "$files" | fzf --layout=reverse)
 
 if [[ -z "$selected" ]]; then
 	exit 1

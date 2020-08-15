@@ -17,6 +17,8 @@ packadd vim-fugitive
 packadd vim-latex-live-preview
 packadd vim-python-pep8-indent
 packadd vim-racket
+packadd vim-jsx-pretty
+packadd vim-js
 
 " Colorscheme
 colorscheme ron
@@ -71,11 +73,15 @@ let g:ale_linters={
 \ 'rust': ['cargo'],
 \ 'c': ['clangtidy'],
 \ 'tex': ['lacheck'],
+\ 'haskell': ['hlint'],
+\ 'javascript': ['flow', 'eslint'],
+\ 'javascriptreact': ['flow', 'eslint'],
+\ 'scss': [],
 \ }
 
 let g:ale_fixers={
 \ '*': [],
-\ 'python': ['isort'],
+\ 'python': ['isort', 'black'],
 \ 'rust': ['rustfmt'],
 \ 'c': ['clang-format'],
 \ 'elixir': ['mix_format'],
@@ -83,9 +89,11 @@ let g:ale_fixers={
 \ 'css': ['prettier'],
 \ 'scss': ['prettier'],
 \ 'javascript': ['prettier'],
+\ 'javascriptreact': ['prettier'],
 \ 'json': ['prettier'],
 \ 'ruby': ['rubocop'],
 \ 'ocaml': ['ocamlformat', 'ocp-indent'],
+\ 'haskell': ['stylish-haskell'],
 \ }
 
 " Because ALE is not adding this to every file type.

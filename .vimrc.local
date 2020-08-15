@@ -36,15 +36,15 @@ au BufEnter *
     \ set shiftwidth=4 |
     \ set fileformat=unix
 
-au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
+au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c,*.hs
 	\ set textwidth=79
 
-au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml
+au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
 
-au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.s
+au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.s,*.hs,*.jsx
     \ set expandtab
 
 au BufEnter Makefile,makefile,*.php
