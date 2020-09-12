@@ -28,9 +28,6 @@ set spellfile=~/.vim/spell/en.utf-8.add
 
 " Key mappings
 
-nnoremap <Leader>e :e<Space>
-nnoremap <Leader>n :noh<CR>
-
 nnoremap <Leader>. :GitFiles<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>F :Files<Space>
@@ -43,25 +40,6 @@ nnoremap <Leader>h :History:<CR>
 nnoremap <Leader>c :Commands<CR>
 nnoremap <Leader>t :BTags<CR>
 nnoremap <Leader>T :Tags<CR>
-
-nnoremap <Leader>s :split<CR><C-W>j
-nnoremap <Leader>v :vsplit<CR><C-W>l
-
-nnoremap <Leader>p :%w !wl-copy<CR>
-
-nnoremap <C-H> <C-W>h
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-
-nnoremap - :bp<CR>
-nnoremap = :bn<CR>
-nnoremap <Leader><Backspace> :bd<CR>
-
-nnoremap <Leader>r- :resize -5<CR>
-nnoremap <Leader>r= :resize +5<CR>
-nnoremap <Leader>r, :vertical resize -5<CR>
-nnoremap <Leader>r. :vertical resize +5<CR>
 
 " Swap files
 :set directory=$HOME/.vim/swap/
@@ -128,61 +106,27 @@ set noshowmode
 
 let g:lightline={}
 
-" let g:lightline.component_expand={
-" \ 'linter_checking': 'lightline#ale#checking',
-" \ 'linter_infos': 'lightline#ale#infos',
-" \ 'linter_warnings': 'lightline#ale#warnings',
-" \ 'linter_errors': 'lightline#ale#errors',
-" \ 'linter_ok': 'lightline#ale#ok',
-" \ }
+let g:lightline.component_expand={
+\ 'linter_checking': 'lightline#ale#checking',
+\ 'linter_infos': 'lightline#ale#infos',
+\ 'linter_warnings': 'lightline#ale#warnings',
+\ 'linter_errors': 'lightline#ale#errors',
+\ 'linter_ok': 'lightline#ale#ok',
+\ }
 
-" let g:lightline.component_type={
-" \ 'linter_checking': 'right',
-" \ 'linter_infos': 'right',
-" \ 'linter_warnings': 'warning',
-" \ 'linter_errors': 'error',
-" \ 'linter_ok': 'right',
-" \ }
-
-let g:lightline.component_function={
-\   'wordcount': 'WordCount',
+let g:lightline.component_type={
+\ 'linter_checking': 'right',
+\ 'linter_infos': 'right',
+\ 'linter_warnings': 'warning',
+\ 'linter_errors': 'error',
+\ 'linter_ok': 'right',
 \ }
 
 let g:lightline.active={
 \ 'right': [
 \   [ 'lineinfo' ],
-\   [ 'percent', 'wordcount' ],
+\   [ 'percent' ],
+\   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
 \   [ 'fileformat', 'fileencoding', 'filetype' ]
 \ ],
 \ }
-" \   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
-
-function! WordCount()
-    let currentmode = mode()
-    if !exists("g:lastmode_wc")
-        let g:lastmode_wc = currentmode
-    endif
-    " if we modify file, open a new buffer, be in visual ever, or switch modes
-    " since last run, we recompute.
-    if &modified || !exists("b:wordcount") || currentmode =~? '\c.*v' || currentmode != g:lastmode_wc
-        let g:lastmode_wc = currentmode
-        let l:old_position = getpos('.')
-        let l:old_status = v:statusmsg
-        execute "silent normal g\<c-g>"
-        if v:statusmsg == "--No lines in buffer--"
-            let b:wordcount = 0
-        else
-            let s:split_wc = split(v:statusmsg)
-            if index(s:split_wc, "Selected") < 0
-                let b:wordcount = str2nr(s:split_wc[11])
-            else
-                let b:wordcount = str2nr(s:split_wc[5])
-            endif
-            let v:statusmsg = l:old_status
-        endif
-        call setpos('.', l:old_position)
-        return b:wordcount
-    else
-        return b:wordcount
-    endif
-endfunction
