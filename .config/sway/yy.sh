@@ -4,7 +4,7 @@ KNOW_DIR=$HOME/notes/academics
 
 files="$(find $KNOW_DIR -type f \( -name '*.pdf' -o -name '*.html' \) -printf '%P\n')"
 
-selected=$(printf "$files" | fzf --layout=reverse)
+selected=$(printf "%s" "$files" | fzf --layout=reverse)
 
 if [[ -z "$selected" ]]; then
 	exit 1
