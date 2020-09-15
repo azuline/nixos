@@ -2,31 +2,6 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
-nnoremap <Leader>e :e<Space>
-nnoremap <Leader>n :noh<CR>
-
-nnoremap <Leader>s :split<CR><C-W>j
-nnoremap <Leader>v :vsplit<CR><C-W>l
-
-nnoremap <Leader>p :%w !wl-copy<CR>
-
-nnoremap <C-H> <C-W>h
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-
-nnoremap - :bp<CR>
-nnoremap = :bn<CR>
-nnoremap <Leader><Backspace> :bd<CR>
-
-nnoremap <Leader>r- :resize -5<CR>
-nnoremap <Leader>r= :resize +5<CR>
-nnoremap <Leader>r, :vertical resize -5<CR>
-nnoremap <Leader>r. :vertical resize +5<CR>
-
-imap <Tab> <C-p>
-imap <S-Tab> <C-n>
-
 set background=dark
 set hlsearch
 
@@ -87,3 +62,29 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+
+" Key mappings.
+nnoremap <Leader>e :e<Space>
+nnoremap <Leader>n :noh<CR>
+
+nnoremap <Leader>s :split<CR><C-W>j
+nnoremap <Leader>v :vsplit<CR><C-W>l
+
+nnoremap <Leader>p :%w !wl-copy<CR>
+
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+nnoremap - :bp<CR>
+nnoremap = :bn<CR>
+nnoremap <Leader><Backspace> :bd<CR>
+
+nnoremap <Leader>r- :resize -5<CR>
+nnoremap <Leader>r= :resize +5<CR>
+nnoremap <Leader>r, :vertical resize -5<CR>
+nnoremap <Leader>r. :vertical resize +5<CR>
+
+imap <Tab> <C-p>
+imap <S-Tab> <C-n>
