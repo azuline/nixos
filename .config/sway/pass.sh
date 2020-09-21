@@ -10,7 +10,7 @@ data="$(pass $file)"
 password=$(echo "$data" | head -n1)
 fields=$(echo "$data" | tail -n+2)
 
-choice=$(printf "%s" "password: ********\n${fields}\n" | fzf --layout=reverse)
+choice=$(printf "password: ********\n${fields}\n" | fzf --layout=reverse)
 
 if [[ "$choice" = "password: ********" ]]; then
     echo $password | wl-copy -n
