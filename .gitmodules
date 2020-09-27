@@ -4,9 +4,6 @@
 [submodule ".vim/pack/plum/start/lightline"]
 	path = .vim/pack/plum/opt/lightline
 	url = git@github.com:itchyny/lightline.vim.git
-[submodule ".vim/pack/plum/start/VimCompletesMe"]
-	path = .vim/pack/plum/opt/VimCompletesMe
-	url = git@github.com:ajh17/VimCompletesMe
 [submodule ".vim/pack/plum/start/vim-commentary"]
 	path = .vim/pack/plum/opt/vim-commentary
 	url = git@github.com:tpope/vim-commentary

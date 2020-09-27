@@ -5,12 +5,11 @@ packadd ale
 packadd fzf
 packadd fzf.vim
 packadd lightline
-" packadd lightline-ale
+packadd lightline-ale
 packadd markdown-preview.nvim
 packadd quick-scope
 packadd rust.vim
 packadd vim-commentary
-" packadd VimCompletesMe
 packadd vim-elixir
 packadd vim-elm-syntax
 packadd vim-fugitive

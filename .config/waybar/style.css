@@ -10,7 +10,7 @@
 
 window#waybar {
   color: rgb(230, 229, 229);
-  background-color: rgba(13, 13, 23, 0.4);
+  background-color: rgba(13, 13, 23, 0.3);
 }
 
 #workspaces button {
