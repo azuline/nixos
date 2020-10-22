@@ -58,3 +58,6 @@
 [submodule ".vim/pack/plum/opt/vim-js"]
 	path = .vim/pack/plum/opt/vim-js
 	url = git@github.com:yuezk/vim-js.git
+[submodule ".vim/pack/plum/opt/vim-graphql"]
+	path = .vim/pack/plum/opt/vim-graphql
+	url = git@github.com:jparise/vim-graphql.git

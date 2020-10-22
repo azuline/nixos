@@ -68,7 +68,7 @@ default_border              pixel   3
 default_floating_border     pixel   3
 
 # Gaps
-gaps inner 24
+gaps inner 12
 gaps outer 4
 
 ### Settings

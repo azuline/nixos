@@ -1,5 +1,3 @@
-source /usr/share/vim/vimrc
-
 " Load packages
 packadd ale
 packadd fzf
@@ -13,6 +11,7 @@ packadd vim-commentary
 packadd vim-elixir
 packadd vim-elm-syntax
 packadd vim-fugitive
+packadd vim-graphql
 packadd vim-latex-live-preview
 packadd vim-python-pep8-indent
 packadd vim-racket
@@ -125,7 +124,7 @@ let g:lightline.active={
 \ 'right': [
 \   [ 'lineinfo' ],
 \   [ 'percent' ],
-\   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
-\   [ 'fileformat', 'fileencoding', 'filetype' ]
+\   [ 'fileformat', 'fileencoding', 'filetype' ],
+\   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]
 \ ],
 \ }

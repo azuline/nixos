@@ -36,22 +36,34 @@ au BufEnter *
     \ set shiftwidth=4 |
     \ set fileformat=unix
 
-au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c,*.hs
+au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
 	\ set textwidth=79
+
+au BufEnter *.py,*.hs
+	\ set textwidth=89
 
 au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
 
-au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.s,*.hs,*.jsx
-    \ set expandtab
-
 au BufEnter Makefile,makefile,*.php
 	\ set noexpandtab
 
 au BufEnter *.md,*.rst,*.tex,*.txt
 	\ set spell
+
+au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.s,*.hs,*.jsx
+    \ set expandtab
+
+" TeX files soft wrap.
+
+au BufEnter *.tex
+	\ set wrap |
+	\ set linebreak |
+	\ set expandtab |
+	\ set textwidth=0 |
+	\ set wrapmargin=0
 
 " Trailing space highlighting
 highlight BadWhitespace ctermbg=red guibg=red
@@ -107,7 +119,6 @@ function! Smart_TabComplete()
     return "\<C-X>\<C-O>"                         " plugin matching
   endif
 endfunction
-
 
 inoremap <Tab> <C-r>=Smart_TabComplete()<CR>
 imap <S-Tab> <C-n>
