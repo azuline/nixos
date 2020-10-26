@@ -1,22 +1,58 @@
 " Load packages
+
+" I am leaving comments describing each one, for maintenance purposes.
+
+" Auto-linter/formatter integrations.
 packadd ale
+
+" Integration for fzf. A lot of FZF commands are bound to `<Leader>{key}` for
+" navigating around the filesystem and whatnot.
 packadd fzf
 packadd fzf.vim
-packadd lightline
+
+" Lightweight status bar.
+packadd lightline.vim
+" Displays ALE warnings in the status bar. Doesn't currently work, I am not
+" sure why. TODO: Either fix or remove.
 packadd lightline-ale
+
+" Previewing markdown files in browser.
+" - :MarkdownPreview | open current markdown file in browser.
 packadd markdown-preview.nvim
+
+" Highlights characters on the same line for `f/F` quick jumping.
 packadd quick-scope
-packadd rust.vim
+
+" Plugin to make commenting code out easier.
+" - gc | comments out lines
+" TODO Check out more features later.
 packadd vim-commentary
-packadd vim-elixir
-packadd vim-elm-syntax
+
+" Git wrapper.
+" Commands:
+" - :Gwrite | git add current file :-)
 packadd vim-fugitive
-packadd vim-graphql
+
+" Live preview latex files!
+" Commands:
+"   - :LLPStartPreview | open current latex file in evince.
 packadd vim-latex-live-preview
+
+" LSP integration.
+packadd vim-lsp
+packadd vim-lsp-settings
+packadd asyncomplete.vim
+packadd asyncomplete-lsp.vim
+
+" More convenient HTML/XML/whatever brackets.
+" Commands:
+" - <C-X><Space> | `foo^` => <foo>^</foo>
+packadd vim-ragtag
+packadd vim-surround
+
+" Language syntax highlighting.
+packadd vim-polyglot
 packadd vim-python-pep8-indent
-packadd vim-racket
-packadd vim-jsx-pretty
-packadd vim-js
 
 " Colorscheme
 colorscheme ron
@@ -26,6 +62,7 @@ set spellfile=~/.vim/spell/en.utf-8.add
 
 " Key mappings
 
+" FZF commands
 nnoremap <Leader>. :GitFiles<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>F :Files<Space>
@@ -50,8 +87,8 @@ let g:ale_linters={
 \ 'c': ['clangtidy'],
 \ 'tex': ['lacheck'],
 \ 'haskell': ['hlint'],
-\ 'javascript': ['flow', 'eslint'],
-\ 'javascriptreact': ['flow', 'eslint'],
+\ 'javascript': ['eslint'],
+\ 'javascriptreact': ['eslint'],
 \ 'scss': [],
 \ }
 
@@ -66,6 +103,8 @@ let g:ale_fixers={
 \ 'scss': ['prettier'],
 \ 'javascript': ['prettier'],
 \ 'javascriptreact': ['prettier'],
+\ 'typescript': ['prettier'],
+\ 'typescriptreact': ['prettier'],
 \ 'json': ['prettier'],
 \ 'ruby': ['rubocop'],
 \ 'ocaml': ['ocamlformat', 'ocp-indent'],
@@ -102,29 +141,48 @@ let g:livepreview_cursorhold_recompile=0
 set laststatus=2
 set noshowmode
 
-let g:lightline={}
-
-let g:lightline.component_expand={
-\ 'linter_checking': 'lightline#ale#checking',
-\ 'linter_infos': 'lightline#ale#infos',
-\ 'linter_warnings': 'lightline#ale#warnings',
-\ 'linter_errors': 'lightline#ale#errors',
-\ 'linter_ok': 'lightline#ale#ok',
+let g:lightline={
+\   'component_expand': {
+\     'linter_checking': 'lightline#ale#checking',
+\     'linter_infos': 'lightline#ale#infos',
+\     'linter_warnings': 'lightline#ale#warnings',
+\     'linter_errors': 'lightline#ale#errors',
+\     'linter_ok': 'lightline#ale#ok'
+\   },
+\   'component_type': {
+\     'linter_checking': 'right',
+\     'linter_infos': 'right',
+\     'linter_warnings': 'warning',
+\     'linter_errors': 'error',
+\     'linter_ok': 'right'
+\   },
+\   'active': {
+\     'right': [
+\       [ 'lineinfo' ],
+\       [ 'percent' ],
+\       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
+\       [ 'fileformat', 'fileencoding', 'filetype' ]
+\     ]
+\   }
 \ }
 
-let g:lightline.component_type={
-\ 'linter_checking': 'right',
-\ 'linter_infos': 'right',
-\ 'linter_warnings': 'warning',
-\ 'linter_errors': 'error',
-\ 'linter_ok': 'right',
+" LSP
+
+let g:lsp_settings = {
+\   'pyls-all': {
+\     'workspace_config': {
+\       'pyls': {
+\         'configurationSources': ['flake8']
+\       }
+\     }
+\   }
 \ }
 
-let g:lightline.active={
-\ 'right': [
-\   [ 'lineinfo' ],
-\   [ 'percent' ],
-\   [ 'fileformat', 'fileencoding', 'filetype' ],
-\   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]
-\ ],
-\ }
+" Replace c-tags <C-]> with LSP jump to definition
+nnoremap <C-]> :LspDefinition<CR>
+
+" Auto-completion
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"

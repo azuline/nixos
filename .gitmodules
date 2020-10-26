@@ -2,7 +2,7 @@
 	path = .vim/pack/plum/opt/ale
 	url = git@github.com:dense-analysis/ale.git
 [submodule ".vim/pack/plum/start/lightline"]
-	path = .vim/pack/plum/opt/lightline
+	path = .vim/pack/plum/opt/lightline.vim
 	url = git@github.com:itchyny/lightline.vim.git
 [submodule ".vim/pack/plum/start/vim-commentary"]
 	path = .vim/pack/plum/opt/vim-commentary
@@ -10,9 +10,6 @@
 [submodule ".vim/pack/plum/start/quick-scope"]
 	path = .vim/pack/plum/opt/quick-scope
 	url = git@github.com:unblevable/quick-scope
-[submodule ".vim/pack/plum/start/vim-latex-live-preview"]
-	path = .vim/pack/plum/opt/vim-latex-live-preview
-	url = git@github.com:xuhdev/vim-latex-live-preview
 [submodule ".vim/pack/plum/start/vim-elixir"]
 	path = .vim/pack/plum/opt/vim-elixir
 	url = git@github.com:elixir-editors/vim-elixir
@@ -61,3 +58,30 @@
 [submodule ".vim/pack/plum/opt/vim-graphql"]
 	path = .vim/pack/plum/opt/vim-graphql
 	url = git@github.com:jparise/vim-graphql.git
+[submodule ".vim/pack/plum/opt/typescript-vim"]
+	path = .vim/pack/plum/opt/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
+[submodule ".vim/pack/plum/opt/vim-surround"]
+	path = .vim/pack/plum/opt/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule ".vim/pack/plum/opt/vim-ragtag"]
+	path = .vim/pack/plum/opt/vim-ragtag
+	url = git@github.com:tpope/vim-ragtag.git
+[submodule ".vim/pack/plum/opt/vim-polyglot"]
+	path = .vim/pack/plum/opt/vim-polyglot
+	url = git@github.com:sheerun/vim-polyglot.git
+[submodule ".vim/pack/plum/opt/vim-latex-live-preview"]
+	path = .vim/pack/plum/opt/vim-latex-live-preview
+	url = git@github.com:azuline/vim-latex-live-preview.git
+[submodule ".vim/pack/plum/opt/vim-lsp"]
+	path = .vim/pack/plum/opt/vim-lsp
+	url = git@github.com:prabirshrestha/vim-lsp.git
+[submodule ".vim/pack/plum/opt/vim-lsp-settings"]
+	path = .vim/pack/plum/opt/vim-lsp-settings
+	url = git@github.com:mattn/vim-lsp-settings.git
+[submodule ".vim/pack/plum/opt/asyncomplete.vim"]
+	path = .vim/pack/plum/opt/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim
+[submodule ".vim/pack/plum/opt/asyncomplete-lsp.vim"]
+	path = .vim/pack/plum/opt/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim

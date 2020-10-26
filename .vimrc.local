@@ -25,16 +25,11 @@ nnoremap <Space> <nop>
 let mapleader = " "
 let maplocalleader = "\\"
 
-" Racket
-au BufReadPost *rkt.*rktl set filetype=scheme
-
-" Indentation
-au BufEnter *
-    \ set autoindent |
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set fileformat=unix
+set expandtab
+set autoindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
 	\ set textwidth=79
@@ -42,7 +37,7 @@ au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
 au BufEnter *.py,*.hs
 	\ set textwidth=89
 
-au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx
+au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
@@ -53,15 +48,10 @@ au BufEnter Makefile,makefile,*.php
 au BufEnter *.md,*.rst,*.tex,*.txt
 	\ set spell
 
-au BufEnter *.md,*.py,*.rst,*.tex,*.c,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.s,*.hs,*.jsx
-    \ set expandtab
-
 " TeX files soft wrap.
-
 au BufEnter *.tex
 	\ set wrap |
 	\ set linebreak |
-	\ set expandtab |
 	\ set textwidth=0 |
 	\ set wrapmargin=0
 
