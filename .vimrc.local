@@ -79,12 +79,12 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
-nnoremap - :bp<CR>
-nnoremap = :bn<CR>
+nnoremap - :bp<CR>0
+nnoremap = :bn<CR>0
 nnoremap <Leader><Backspace> :bd<CR>
 
 nnoremap <Leader>r- :resize -5<CR>
-nnoremap <Leader>r= :resize +5<CR>
+nnoremap <Leader>r= :resize =5<CR>
 nnoremap <Leader>r, :vertical resize -5<CR>
 nnoremap <Leader>r. :vertical resize +5<CR>
 

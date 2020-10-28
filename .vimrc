@@ -38,12 +38,6 @@ packadd vim-fugitive
 "   - :LLPStartPreview | open current latex file in evince.
 packadd vim-latex-live-preview
 
-" LSP integration.
-packadd vim-lsp
-packadd vim-lsp-settings
-packadd asyncomplete.vim
-packadd asyncomplete-lsp.vim
-
 " More convenient HTML/XML/whatever brackets.
 " Commands:
 " - <C-X><Space> | `foo^` => <foo>^</foo>
@@ -52,7 +46,6 @@ packadd vim-surround
 
 " Language syntax highlighting.
 packadd vim-polyglot
-packadd vim-python-pep8-indent
 
 " Colorscheme
 colorscheme ron
@@ -70,11 +63,11 @@ nnoremap <Leader>g :Rg<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>l :BLines<CR>
 nnoremap <Leader>L :Lines<CR>
-nnoremap <Leader>r :History<CR>
-nnoremap <Leader>h :History:<CR>
+nnoremap <Leader>R :History<CR>
+nnoremap <Leader>r :History:<CR>
 nnoremap <Leader>c :Commands<CR>
-nnoremap <Leader>t :BTags<CR>
-nnoremap <Leader>T :Tags<CR>
+" Fugitive
+nnoremap <Leader>w :Gwrite<CR>
 
 " Swap files
 :set directory=$HOME/.vim/swap/
@@ -165,24 +158,3 @@ let g:lightline={
 \     ]
 \   }
 \ }
-
-" LSP
-
-let g:lsp_settings = {
-\   'pyls-all': {
-\     'workspace_config': {
-\       'pyls': {
-\         'configurationSources': ['flake8']
-\       }
-\     }
-\   }
-\ }
-
-" Replace c-tags <C-]> with LSP jump to definition
-nnoremap <C-]> :LspDefinition<CR>
-
-" Auto-completion
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"

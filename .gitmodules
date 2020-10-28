@@ -16,9 +16,6 @@
 [submodule ".vim/pack/plum/start/rust.vim"]
 	path = .vim/pack/plum/opt/rust.vim
 	url = git@github.com:rust-lang/rust.vim
-[submodule ".vim/pack/plum/start/vim-python-pep8-indent"]
-	path = .vim/pack/plum/opt/vim-python-pep8-indent
-	url = git@github.com:Vimjas/vim-python-pep8-indent
 [submodule ".vim/pack/plum/start/markdown-preview.nvim"]
 	path = .vim/pack/plum/opt/markdown-preview.nvim
 	url = git@github.com:iamcco/markdown-preview.nvim
@@ -73,15 +70,3 @@
 [submodule ".vim/pack/plum/opt/vim-latex-live-preview"]
 	path = .vim/pack/plum/opt/vim-latex-live-preview
 	url = git@github.com:azuline/vim-latex-live-preview.git
-[submodule ".vim/pack/plum/opt/vim-lsp"]
-	path = .vim/pack/plum/opt/vim-lsp
-	url = git@github.com:prabirshrestha/vim-lsp.git
-[submodule ".vim/pack/plum/opt/vim-lsp-settings"]
-	path = .vim/pack/plum/opt/vim-lsp-settings
-	url = git@github.com:mattn/vim-lsp-settings.git
-[submodule ".vim/pack/plum/opt/asyncomplete.vim"]
-	path = .vim/pack/plum/opt/asyncomplete.vim
-	url = https://github.com/prabirshrestha/asyncomplete.vim
-[submodule ".vim/pack/plum/opt/asyncomplete-lsp.vim"]
-	path = .vim/pack/plum/opt/asyncomplete-lsp.vim
-	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
