@@ -63,9 +63,6 @@ packadd vim-surround
 " Language syntax highlighting.
 packadd vim-polyglot
 
-" Colorscheme
-colorscheme ron
-
 " Spell file
 set spellfile=~/.vim/spell/en.utf-8.add
 

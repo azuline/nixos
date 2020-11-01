@@ -19,8 +19,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  background-color: rgba(70, 214, 209, 0.7);
-  color: black;
+  background-color: rgb(175, 53, 54);
 }
 
 #workspaces button.urgent {
