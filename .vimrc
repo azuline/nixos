@@ -102,6 +102,7 @@ let g:ale_fixers={
 \ 'ruby': ['rubocop'],
 \ 'ocaml': ['ocamlformat', 'ocp-indent'],
 \ 'haskell': ['stylish-haskell'],
+\ 'html': ['prettier'],
 \ }
 
 " Because ALE is not adding this to every file type.

@@ -79,9 +79,12 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
+" We have this `0` after the commands because vim-polyglot sometimes echos
+" the line of the buffer we are switching to. This occurs for typescriptreact
+" filetypes and I haven't managed to figure out why. Very cool very cool.
 nnoremap - :bp<CR>0
 nnoremap = :bn<CR>0
-nnoremap <Leader><Backspace> :bd<CR>
+nnoremap <Leader><Backspace> :bd<CR>0
 
 nnoremap <Leader>r- :resize -5<CR>
 nnoremap <Leader>r= :resize =5<CR>
