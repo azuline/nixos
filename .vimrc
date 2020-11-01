@@ -20,17 +20,29 @@ packadd lightline-ale
 " - :MarkdownPreview | open current markdown file in browser.
 packadd markdown-preview.nvim
 
+" NERDTree - Tree explorer.
+" Mapped <Leader>t to open NerdTree
+" Commands:
+" - Open | o/i/s
+" - Close | x
+" - Create/move/delete | m
+packadd nerdtree
+
 " Highlights characters on the same line for `f/F` quick jumping.
 packadd quick-scope
 
 " Plugin to make commenting code out easier.
+" - gcc | comments out a line
 " - gc | comments out lines
-" TODO Check out more features later.
+" - gcap | comment out a paragraph :O
+" - You can also use it as a command, either with a range like
+"   :7,17Commentary, or as part of a :global invocation like with
+"   :g/pattern/Commentary. That's it.
 packadd vim-commentary
 
 " Git wrapper.
 " Commands:
-" - :Gwrite | git add current file :-)
+" - :Gwrite/<Leader>w | git add current file :-)
 packadd vim-fugitive
 
 " Live preview latex files!
@@ -40,8 +52,12 @@ packadd vim-latex-live-preview
 
 " More convenient HTML/XML/whatever brackets.
 " Commands:
-" - <C-X><Space> | `foo^` => <foo>^</foo>
+" - <C-X><CR> | `foo^` => <foo>^</foo>
 packadd vim-ragtag
+
+" Work with surrounding parentheses/brackets/quotes/whatever
+" Comands:
+" - csXY | replace surrounding X with Y
 packadd vim-surround
 
 " Language syntax highlighting.
@@ -58,16 +74,18 @@ set spellfile=~/.vim/spell/en.utf-8.add
 " FZF commands
 nnoremap <Leader>. :GitFiles<CR>
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>F :Files<Space>
 nnoremap <Leader>g :Rg<CR>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>l :BLines<CR>
-nnoremap <Leader>L :Lines<CR>
-nnoremap <Leader>R :History<CR>
-nnoremap <Leader>r :History:<CR>
+nnoremap <Leader>l :Lines<CR>
+nnoremap <Leader>r :History<CR>
 nnoremap <Leader>c :Commands<CR>
+nnoremap <Leader>C :History:<CR>
+nnoremap <Leader>h :BCommits<CR>
+nnoremap <Leader>H :Commits<CR>
 " Fugitive
 nnoremap <Leader>w :Gwrite<CR>
+" NERDTree
+nnoremap <Leader>t :NERDTreeToggleVCS<CR>
 
 " Swap files
 :set directory=$HOME/.vim/swap/
@@ -130,6 +148,14 @@ let g:mkdp_port='7237'
 
 " Latex Live Preview
 let g:livepreview_cursorhold_recompile=0
+
+" NERDTree
+" Close vim if only window open is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Ignore artifacts.
+let NERDTreeIgnore = ['build', 'node_modules', '__pycache__', '\.egg-info$', '\.pyc$', '\.o$']
+" Show hidden by default.
+let NERDTreeShowHidden=1
 
 " Lightline
 set laststatus=2

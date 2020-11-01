@@ -72,19 +72,16 @@ nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>s :split<CR><C-W>j
 nnoremap <Leader>v :vsplit<CR><C-W>l
 
-nnoremap <Leader>p :%w !wl-copy<CR>
+nnoremap <Leader>p :silent %w !wl-copy<CR>
 
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
-" We have this `0` after the commands because vim-polyglot sometimes echos
-" the line of the buffer we are switching to. This occurs for typescriptreact
-" filetypes and I haven't managed to figure out why. Very cool very cool.
-nnoremap - :bp<CR>0
-nnoremap = :bn<CR>0
-nnoremap <Leader><Backspace> :bd<CR>0
+nnoremap - :silent bprevious<CR>
+nnoremap = :silent bnext<CR>
+nnoremap <Leader><Backspace> :silent bdelete<CR>0
 
 nnoremap <Leader>r- :resize -5<CR>
 nnoremap <Leader>r= :resize =5<CR>
