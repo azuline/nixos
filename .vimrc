@@ -12,8 +12,7 @@ packadd fzf.vim
 
 " Lightweight status bar.
 packadd lightline.vim
-" Displays ALE warnings in the status bar. Doesn't currently work, I am not
-" sure why. TODO: Either fix or remove.
+" Displays ALE warnings in the status bar.
 packadd lightline-ale
 
 " Previewing markdown files in browser.
@@ -68,8 +67,11 @@ set spellfile=~/.vim/spell/en.utf-8.add
 
 " Key mappings
 
+" Builtin Vim stuff
+set pastetoggle=<F2>
+nnoremap <Leader>p <F2>
 " FZF commands
-nnoremap <Leader>. :GitFiles<CR>
+nnoremap <Leader>. :GitFiles --cached --others --exclude-standard<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>g :Rg<CR>
 nnoremap <Leader>b :Buffers<CR>
@@ -79,8 +81,6 @@ nnoremap <Leader>c :Commands<CR>
 nnoremap <Leader>C :History:<CR>
 nnoremap <Leader>h :BCommits<CR>
 nnoremap <Leader>H :Commits<CR>
-" Fugitive
-nnoremap <Leader>w :Gwrite<CR>
 " NERDTree
 nnoremap <Leader>t :NERDTreeToggleVCS<CR>
 
@@ -128,15 +128,11 @@ endfor
 let g:ale_fix_on_save=1
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 " let g:ale_python_black_options='--skip-string-normalization'
 let g:ale_rust_cargo_use_clippy=1
-
-" Highlighting
-let java_highlight_java_lang_ids=1
-let java_highlight_functions='style'
-let java_highlight_debug=1
-let java_minlines=25
 
 " Markdown Preview
 let g:mkdp_browser='firefox'
@@ -147,12 +143,12 @@ let g:mkdp_port='7237'
 let g:livepreview_cursorhold_recompile=0
 
 " NERDTree
-" Close vim if only window open is NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Ignore artifacts.
 let NERDTreeIgnore = ['build', 'node_modules', '__pycache__', '\.egg-info$', '\.pyc$', '\.o$']
 " Show hidden by default.
 let NERDTreeShowHidden=1
+" Close vim if only window open is NERDTree
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Lightline
 set laststatus=2

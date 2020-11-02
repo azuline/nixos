@@ -66,13 +66,12 @@ if has("autocmd")
 endif
 
 " Key mappings.
-nnoremap <Leader>e :e<Space>
 nnoremap <Leader>n :noh<CR>
 
 nnoremap <Leader>s :split<CR><C-W>j
 nnoremap <Leader>v :vsplit<CR><C-W>l
 
-nnoremap <Leader>p :silent %w !wl-copy<CR>
+nnoremap <Leader>w :silent %w !wl-copy<CR>
 
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
@@ -87,6 +86,9 @@ nnoremap <Leader>r- :resize -5<CR>
 nnoremap <Leader>r= :resize =5<CR>
 nnoremap <Leader>r, :vertical resize -5<CR>
 nnoremap <Leader>r. :vertical resize +5<CR>
+
+nnoremap <Leader>e- :cprevious<CR>
+nnoremap <Leader>e= :cnext<CR>
 
 " https://vim.fandom.com/wiki/Smart_mapping_for_tab_completion
 function! Smart_TabComplete()
@@ -112,3 +114,5 @@ endfunction
 
 inoremap <Tab> <C-r>=Smart_TabComplete()<CR>
 imap <S-Tab> <C-n>
+
+set omnifunc=syntaxcomplete#Complete
