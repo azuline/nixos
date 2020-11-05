@@ -83,6 +83,7 @@ nnoremap <Leader>h :BCommits<CR>
 nnoremap <Leader>H :Commits<CR>
 " NERDTree
 nnoremap <Leader>t :NERDTreeToggleVCS<CR>
+nnoremap <Leader>T :NERDTreeFind<CR>
 
 " Swap files
 :set directory=$HOME/.vim/swap/
@@ -128,8 +129,6 @@ endfor
 let g:ale_fix_on_save=1
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
 
 " let g:ale_python_black_options='--skip-string-normalization'
 let g:ale_rust_cargo_use_clippy=1

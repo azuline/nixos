@@ -89,6 +89,8 @@ nnoremap <Leader>r. :vertical resize +5<CR>
 
 nnoremap <Leader>e- :cprevious<CR>
 nnoremap <Leader>e= :cnext<CR>
+nnoremap <Leader>e, :lprevious<CR>
+nnoremap <Leader>e. :lnext<CR>
 
 " https://vim.fandom.com/wiki/Smart_mapping_for_tab_completion
 function! Smart_TabComplete()
