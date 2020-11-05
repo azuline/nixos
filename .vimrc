@@ -40,19 +40,12 @@ packadd quick-scope
 packadd vim-commentary
 
 " Git wrapper.
-" Commands:
-" - :Gwrite/<Leader>w | git add current file :-)
 packadd vim-fugitive
 
 " Live preview latex files!
 " Commands:
 "   - :LLPStartPreview | open current latex file in evince.
 packadd vim-latex-live-preview
-
-" More convenient HTML/XML/whatever brackets.
-" Commands:
-" - <C-X><CR> | `foo^` => <foo>^</foo>
-packadd vim-ragtag
 
 " Work with surrounding parentheses/brackets/quotes/whatever
 " Comands:

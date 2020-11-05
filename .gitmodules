@@ -10,12 +10,6 @@
 [submodule ".vim/pack/plum/start/quick-scope"]
 	path = .vim/pack/plum/opt/quick-scope
 	url = git@github.com:unblevable/quick-scope
-[submodule ".vim/pack/plum/start/vim-elixir"]
-	path = .vim/pack/plum/opt/vim-elixir
-	url = git@github.com:elixir-editors/vim-elixir
-[submodule ".vim/pack/plum/start/rust.vim"]
-	path = .vim/pack/plum/opt/rust.vim
-	url = git@github.com:rust-lang/rust.vim
 [submodule ".vim/pack/plum/start/markdown-preview.nvim"]
 	path = .vim/pack/plum/opt/markdown-preview.nvim
 	url = git@github.com:iamcco/markdown-preview.nvim
@@ -40,30 +34,9 @@
 [submodule ".vim/pack/plum/opt/vim-operator-highlight"]
 	path = .vim/pack/plum/opt/vim-operator-highlight
 	url = git@github.com:Valloric/vim-operator-highlight.git
-[submodule ".vim/pack/plum/opt/vim-elm-syntax"]
-	path = .vim/pack/plum/opt/vim-elm-syntax
-	url = https://github.com/andys8/vim-elm-syntax
-[submodule ".vim/pack/plum/opt/vim-racket"]
-	path = .vim/pack/plum/opt/vim-racket
-	url = git@github.com:wlangstroth/vim-racket.git
-[submodule ".vim/pack/plum/opt/vim-jsx-pretty"]
-	path = .vim/pack/plum/opt/vim-jsx-pretty
-	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
-[submodule ".vim/pack/plum/opt/vim-js"]
-	path = .vim/pack/plum/opt/vim-js
-	url = git@github.com:yuezk/vim-js.git
-[submodule ".vim/pack/plum/opt/vim-graphql"]
-	path = .vim/pack/plum/opt/vim-graphql
-	url = git@github.com:jparise/vim-graphql.git
-[submodule ".vim/pack/plum/opt/typescript-vim"]
-	path = .vim/pack/plum/opt/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim.git
 [submodule ".vim/pack/plum/opt/vim-surround"]
 	path = .vim/pack/plum/opt/vim-surround
 	url = git@github.com:tpope/vim-surround.git
-[submodule ".vim/pack/plum/opt/vim-ragtag"]
-	path = .vim/pack/plum/opt/vim-ragtag
-	url = git@github.com:tpope/vim-ragtag.git
 [submodule ".vim/pack/plum/opt/vim-polyglot"]
 	path = .vim/pack/plum/opt/vim-polyglot
 	url = git@github.com:sheerun/vim-polyglot.git
