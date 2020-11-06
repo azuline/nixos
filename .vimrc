@@ -5,13 +5,6 @@
 " Auto-linter/formatter integrations.
 packadd ale
 
-" Auto-pair brackets.
-" Commands: (These are re-binded commands, cursor is ^)
-" - input: (^){["foo"]} (press <C-w> at ^ in insert mode)
-"   output: ({["foo"]}|)
-"
-packadd auto-pairs
-
 " Integration for fzf. A lot of FZF commands are bound to `<Leader>{key}` for
 " navigating around the filesystem and whatnot.
 packadd fzf
@@ -85,9 +78,6 @@ nnoremap <Leader>H :Commits<CR>
 " NERDTree
 nnoremap <Leader>t :NERDTreeToggleVCS<CR>
 nnoremap <Leader>T :NERDTreeFind<CR>
-" Auto pairs
-""" Fast-wrap
-imap <C-w> <M-}>
 
 " Swap files
 :set directory=$HOME/.vim/swap/

@@ -46,6 +46,3 @@
 [submodule ".vim/pack/plum/opt/nerdtree"]
 	path = .vim/pack/plum/opt/nerdtree
 	url = https://github.com/preservim/nerdtree
-[submodule ".vim/pack/plum/opt/auto-pairs"]
-	path = .vim/pack/plum/opt/auto-pairs
-	url = https://github.com/jiangmiao/auto-pairs
