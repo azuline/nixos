@@ -26,8 +26,8 @@ export EDITOR=vim
 export PS1="\[\e[96m\]\u\[\e[m\]@\[\e[96m\]\h\[\e[m\] \[\e[93m\]\w\[\e[m\] \[\e[92m\]\`parse_git_branch\`\[\e[m\]"
 
 alias ls='ls --color=auto --group-directories-first'
-alias l='ls -l'
-alias la='ls -la'
+alias l='ls -lh'
+alias la='ls -lah'
 
 alias grep='grep --color=auto'
 

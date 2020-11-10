@@ -35,7 +35,7 @@ au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
 	\ set textwidth=79
 
 au BufEnter *.py,*.hs
-	\ set textwidth=89
+	\ set textwidth=88
 
 au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx
     \ set tabstop=2 |
