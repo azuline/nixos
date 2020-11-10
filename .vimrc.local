@@ -25,6 +25,10 @@ nnoremap <Space> <nop>
 let mapleader = " "
 let maplocalleader = "\\"
 
+" I keep hitting <F1> on my bigger keyboard instead of <Esc>...
+map <F1> <Esc>
+imap <F1> <Esc>
+
 set expandtab
 set autoindent
 set tabstop=4
