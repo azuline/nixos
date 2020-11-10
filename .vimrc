@@ -43,6 +43,9 @@ packadd vim-commentary
 " Git wrapper.
 packadd vim-fugitive
 
+" Git status left of the line numbers.
+packadd vim-gitgutter
+
 " Live preview latex files!
 " Commands:
 "   - :LLPStartPreview | open current latex file in evince.
@@ -124,8 +127,14 @@ let g:ale_fix_on_save=1
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
 
-" let g:ale_python_black_options='--skip-string-normalization'
 let g:ale_rust_cargo_use_clippy=1
+
+" Gitgutter
+highlight! link SignColumn LineNr
+let g:gitgutter_set_sign_backgrounds = 1
+highlight GitGutterAdd    ctermfg=2 ctermbg=NONE
+highlight GitGutterChange ctermfg=3 ctermbg=NONE
+highlight GitGutterDelete ctermfg=1 ctermbg=NONE
 
 " Markdown Preview
 let g:mkdp_browser='firefox'
