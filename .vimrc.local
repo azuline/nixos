@@ -2,6 +2,7 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
+" Graphical stuff.
 set background=dark
 set hlsearch
 
@@ -9,9 +10,16 @@ set hlsearch
 set number
 set relativenumber
 
+" Wrapping/indentation.
 set whichwrap=b,s,<,>,[,]
-set nu
 set autoindent
+
+" Enable mouse for NERDTree
+set mouse=a
+" Need to set this for Alacritty
+set ttymouse=sgr
+" Single click mouse in NERDTree.
+let NERDTreeMouseMode=3
 
 " Turn off error bells
 set noerrorbells visualbell t_vb=
@@ -28,6 +36,8 @@ let maplocalleader = "\\"
 " I keep hitting <F1> on my bigger keyboard instead of <Esc>...
 map <F1> <Esc>
 imap <F1> <Esc>
+
+" File indent settings.
 
 set expandtab
 set autoindent
