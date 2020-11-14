@@ -25,15 +25,6 @@
 [submodule ".vim/pack/plum/start/vim-fugitive"]
 	path = .vim/pack/plum/opt/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
-[submodule ".vim/colors/monokai"]
-	path = .vim/colors/monokai
-	url = git@github.com:sickill/vim-monokai.git
-[submodule ".vim/pack/plum/opt/vim-afterglow"]
-	path = .vim/colors/vim-afterglow
-	url = git@github.com:danilo-augusto/vim-afterglow.git
-[submodule ".vim/pack/plum/opt/vim-operator-highlight"]
-	path = .vim/pack/plum/opt/vim-operator-highlight
-	url = git@github.com:Valloric/vim-operator-highlight.git
 [submodule ".vim/pack/plum/opt/vim-surround"]
 	path = .vim/pack/plum/opt/vim-surround
 	url = git@github.com:tpope/vim-surround.git
