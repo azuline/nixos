@@ -8,7 +8,7 @@ for_window [title="^yy$"] floating enable
 for_window [app_id="^wpa_gui$"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
 
-for_window [app_id="^evince$"] opacity 0.95
+# for_window [app_id="^evince$"] opacity 0.95
 
 ### Idle inhibit windows
 
