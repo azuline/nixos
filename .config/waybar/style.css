@@ -9,17 +9,20 @@
 }
 
 window#waybar {
-  color: rgb(230, 229, 229);
-  background-color: rgba(13, 13, 23, 0.3);
+  /* color: rgb(230, 229, 229); */
+  color: #fff;
+  background-color: rgba(13, 13, 23, 0.4);
 }
 
 #workspaces button {
   padding: 0;
+  color: #fff;
   background-color: rgba(13, 13, 23, 0.7);
 }
 
 #workspaces button.focused {
-  background-color: rgb(175, 53, 54);
+  color: #000;
+  background-color: #d6c52d;
 }
 
 #workspaces button.urgent {

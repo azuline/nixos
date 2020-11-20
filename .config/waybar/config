@@ -1,6 +1,7 @@
 {
-    "layer": "top", // Waybar at top layer
-    "height": 40, // Waybar height (to be removed for auto height)
+    "layer": "top",
+    "position": "bottom",
+    "height": 40,
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": [],
     "modules-right": ["tray", "custom/vpn", "network", "backlight", "battery", "pulseaudio", "clock#date", "clock"],
@@ -9,17 +10,17 @@
         "spacing": 10
     },
     "clock#date": {
-	"interval": 60,
-	"format": " {:%a, %b %d}",
-	"tooltip": false
+        "interval": 60,
+        "format": " {:%a, %b %d}",
+        "tooltip": false
     },
     "clock": {
-	"interval": 5,
+        "interval": 5,
         "format": " {:%H:%M:%S}",
         "tooltip": false
     },
     "cpu": {
-	"interval": 5,
+        "interval": 5,
         "format": " {load}%",
         "tooltip": false
     },
@@ -29,14 +30,14 @@
         "format-icons": ["", ""]
     },
     "battery": {
-	"bat": "BAT0",
+        "bat": "BAT0",
 		"format": "{icon} {capacity}%",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "interface": "wlp*", // (Optional) To force the use of this interface
+        "interface": "wlp*",
         "format-wifi": " {essid}",
         "format-ethernet": " N/A",
         "format-linked": " {ifname}",

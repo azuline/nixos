@@ -1,21 +1,21 @@
-# Replace af3536 with theme color of choice.
+# Replace 781e1d with theme color of choice.
 daemonize
 scaling=fill
 image=/etc/wallpaper.jpg
 indicator-radius=140
 indicator-thickness=25
 ring-color=ffffff
-ring-clear-color=af3536
-ring-caps-lock-color=af3536
-ring-ver-color=af3536
-ring-wrong-color=af3536
+ring-clear-color=781e1d
+ring-caps-lock-color=781e1d
+ring-ver-color=781e1d
+ring-wrong-color=781e1d
 inside-color=00000000
 inside-clear-color=e8dce350
 inside-caps-lock-color=ff000050
-inside-ver-color=af353650
+inside-ver-color=781e1d50
 inside-wrong-color=4d1b4b50
-key-hl-color=af3536
-separator-color=af3536
+key-hl-color=781e1d
+separator-color=781e1d
 line-color=00000000
 line-clear-color=00000000
 line-caps-lock-color=00000000
