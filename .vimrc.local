@@ -18,8 +18,6 @@ set autoindent
 set mouse=a
 " Need to set this for Alacritty
 set ttymouse=sgr
-" Single click mouse in NERDTree.
-let NERDTreeMouseMode=3
 
 " Turn off error bells
 set noerrorbells visualbell t_vb=
@@ -27,6 +25,16 @@ autocmd GUIEnter * set visualbell t_vb=
 
 " More powerful backspacing
 set backspace=indent,eol,start
+
+" Bash & emacs-style completion for file selection
+set wildmode=longest,list
+set wildmenu
+
+" Auto-reload files modified outside of vim.
+set autoread
+
+" We don't want double spaces after punctuation since we are not a boomer.
+set nojoinspaces
 
 " Set leader keys
 nnoremap <Space> <nop>

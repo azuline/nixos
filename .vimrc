@@ -20,7 +20,7 @@ packadd lightline-ale
 packadd markdown-preview.nvim
 
 " NERDTree - Tree explorer.
-" Mapped <Leader>t to open NerdTree
+" Mapped <Leader>t to open NERDTree
 " Commands:
 " - Open | o/i/s
 " - Close | x
@@ -149,8 +149,8 @@ let g:livepreview_cursorhold_recompile=0
 let NERDTreeIgnore = ['build', 'node_modules', '__pycache__', '\.egg-info$', '\.pyc$', '\.o$']
 " Show hidden by default.
 let NERDTreeShowHidden=1
-" Close vim if only window open is NERDTree
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Single click mouse in NERDTree.
+let NERDTreeMouseMode=3
 
 " Lightline
 set laststatus=2
