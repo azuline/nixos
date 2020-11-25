@@ -95,6 +95,8 @@ let g:ale_linters={
 \ 'haskell': ['hlint'],
 \ 'javascript': ['eslint'],
 \ 'javascriptreact': ['eslint'],
+\ 'typescript': ['eslint', 'tsserver'],
+\ 'typescriptreact': ['eslint', 'tsserver'],
 \ 'scss': [],
 \ }
 
@@ -128,6 +130,9 @@ let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=0
 
 let g:ale_rust_cargo_use_clippy=1
+
+" ALE colors
+highlight ALEErrorSign ctermbg=3
 
 " Gitgutter
 highlight! link SignColumn LineNr
