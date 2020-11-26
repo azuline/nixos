@@ -40,3 +40,6 @@
 [submodule ".vim/pack/plum/opt/coc.nvim"]
 	path = .vim/pack/plum/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
+[submodule ".vim/pack/plum/opt/palenight.vim"]
+	path = .vim/pack/plum/opt/palenight.vim
+	url = https://github.com/drewtempelmeyer/palenight.vim

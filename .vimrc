@@ -25,6 +25,9 @@ packadd markdown-preview.nvim
 " - Create/move/delete | m
 packadd nerdtree
 
+" Palenight theme
+packadd palenight.vim
+
 " Highlights characters on the same line for `f/F` quick jumping.
 packadd quick-scope
 
@@ -88,10 +91,6 @@ nnoremap <Leader>T :NERDTreeFind<CR>
 
 " Gitgutter
 highlight! link SignColumn LineNr
-let g:gitgutter_set_sign_backgrounds = 1
-highlight GitGutterAdd    ctermfg=2 ctermbg=NONE
-highlight GitGutterChange ctermfg=3 ctermbg=NONE
-highlight GitGutterDelete ctermfg=1 ctermbg=NONE
 
 " Markdown Preview
 let g:mkdp_browser='firefox'
@@ -100,6 +99,16 @@ let g:mkdp_port='7237'
 
 " Latex Live Preview
 let g:livepreview_cursorhold_recompile=0
+
+" Palenight theme
+let g:palenight_color_overrides = {
+\   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
+\   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
+\ }
+
+set background=dark
+colorscheme palenight
+hi Normal guibg=NONE ctermbg=NONE
 
 " NERDTree
 " Ignore artifacts.
@@ -114,6 +123,7 @@ set laststatus=2
 set noshowmode
 
 let g:lightline={
+\   'colorscheme': 'palenight',
 \   'active': {
 \     'left': [
 \       ['mode', 'paste'],
