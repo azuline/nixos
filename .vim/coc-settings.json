@@ -1,4 +1,5 @@
 {
+  "diagnostic.displayByAle": true,
   "coc.preferences.rootPatterns": [
     ".git",
     "pyproject.toml",
@@ -13,16 +14,22 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "python",
     "json"
   ],
   "eslint.autoFixOnSave": true,
-  "python.autoComplete.addBrackets": true,
-  "python.formatting.provider": "black",
-  "python.formatting.blackPath": "~/.local/bin/black",
-  "python.linting.lintOnSave": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Path": "~/.local/bin/flake8",
-  "python.linting.mypyEnabled": true,
-  "python.linting.mypyPath": "~/.local/bin/mypy"
+  "python.linting.enabled": false,
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"]
+    }
+  }
 }

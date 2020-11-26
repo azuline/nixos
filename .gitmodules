@@ -43,3 +43,6 @@
 [submodule ".vim/pack/plum/opt/palenight.vim"]
 	path = .vim/pack/plum/opt/palenight.vim
 	url = https://github.com/drewtempelmeyer/palenight.vim
+[submodule ".vim/pack/plum/opt/ale"]
+	path = .vim/pack/plum/opt/ale
+	url = https://github.com/dense-analysis/ale

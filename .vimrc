@@ -2,6 +2,9 @@
 
 " I am leaving comments describing each one, for maintenance purposes.
 
+" ALE linter/fixer engine.
+packadd ale
+
 " Conquer of Completion
 packadd coc.nvim
 
@@ -143,6 +146,28 @@ let g:lightline={
 \ }
 call lightline#coc#register()
 
+" ALE
+
+let g:ale_linters_explicit=1
+let g:ale_disable_lsp=1
+" let g:ale_set_highlights=0
+let g:ale_fix_on_save=1
+let g:ale_rust_cargo_use_clippy=1
+
+let g:ale_linters={
+\   'haskell': ['hlint'],
+\   'python': ['flake8', 'mypy'],
+\ }
+
+let g:ale_fixers={
+\   'haskell': ['ormolu'],
+\   'python': ['black', 'isort'],
+\ }
+
+for lang in keys(g:ale_fixers)
+  let g:ale_fixers[lang] = g:ale_fixers[lang] + ['remove_trailing_lines', 'trim_whitespace']
+endfor
+
 " CoC
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -151,10 +176,6 @@ set updatetime=100
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -171,6 +192,3 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Sort Python imports on save.
-autocmd BufWritePre *.py :CocCommand python.sortImports
