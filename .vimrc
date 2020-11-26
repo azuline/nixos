@@ -86,6 +86,9 @@ nnoremap <Leader>H :Commits!<CR>
 nnoremap <Leader>t :NERDTreeToggleVCS<CR>
 nnoremap <Leader>T :NERDTreeFind<CR>
 
+" Jump to definition
+nmap <silent> <C-]> <Plug>(coc-definition)
+
 " Swap files
 :set directory=$HOME/.vim/swap/
 
@@ -166,6 +169,8 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Sort Python imports on save.
 autocmd BufWritePre *.py :CocCommand python.sortImports
