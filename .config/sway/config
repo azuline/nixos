@@ -21,7 +21,7 @@ set $color_fg    #e6e5e5
 set $color_bg    #0d0d17
 set $color_bg_tr #00000000
 # Border
-set $color_br    #513527
+set $color_br    #785f50
 # Black
 set $color0      #4d4d4d
 set $color8      #808080
