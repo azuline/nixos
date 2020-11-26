@@ -14,18 +14,13 @@ set relativenumber
 set whichwrap=b,s,<,>,[,]
 set autoindent
 
-" CoC options
+" Options to make CoC work well.
 set hidden
 set nobackup
 set nowritebackup
 
-" Give more space for displaying messages.
+" Extra space to display messages.
 set cmdheight=2
-
-" Enable mouse for NERDTree
-set mouse=a
-" Need to set this for Alacritty
-set ttymouse=sgr
 
 " Turn off error bells
 set noerrorbells visualbell t_vb=
@@ -43,9 +38,6 @@ set autoread
 
 " We don't want double spaces after punctuation since we are not a boomer.
 set nojoinspaces
-
-" Set color of the pop up menu
-highlight Pmenu ctermbg=white
 
 " Set leader keys
 nnoremap <Space> <nop>
@@ -65,28 +57,28 @@ set softtabstop=4
 set shiftwidth=4
 
 au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
-	\ set textwidth=79
+  \ set textwidth=79
 
 au BufEnter *.py,*.hs
-	\ set textwidth=88
+  \ set textwidth=88
 
 au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
+  \ set tabstop=2 |
+  \ set softtabstop=2 |
+  \ set shiftwidth=2
 
 au BufEnter Makefile,makefile,*.php
-	\ set noexpandtab
+  \ set noexpandtab
 
 au BufEnter *.md,*.rst,*.tex,*.txt
-	\ set spell
+  \ set spell
 
 " TeX files soft wrap.
 au BufEnter *.tex
-	\ set wrap |
-	\ set linebreak |
-	\ set textwidth=0 |
-	\ set wrapmargin=0
+  \ set wrap |
+  \ set linebreak |
+  \ set textwidth=0 |
+  \ set wrapmargin=0
 
 " Trailing space highlighting
 highlight BadWhitespace ctermbg=red
@@ -125,7 +117,7 @@ nnoremap <Leader>e= :cnext<CR>
 nnoremap <Leader>e, :lprevious<CR>
 nnoremap <Leader>e. :lnext<CR>
 
-" For alacritty
+" Fix colors in Alacritty
 if exists('+termguicolors')
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"

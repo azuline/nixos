@@ -15,6 +15,10 @@ packadd fzf.vim
 
 " Lightweight status bar.
 packadd lightline.vim
+" Displays ALE warnings in the status bar.
+packadd lightline-ale
+" CoC indicators in lightline.
+packadd vim-lightline-coc
 
 " Previewing markdown files in browser.
 " - :MarkdownPreview | open current markdown file in browser.
@@ -55,9 +59,6 @@ packadd vim-gitgutter
 "   - :LLPStartPreview | open current latex file in evince.
 packadd vim-latex-live-preview
 
-" CoC indicators in lightline.
-packadd vim-lightline-coc
-
 " Work with surrounding parentheses/brackets/quotes/whatever
 " Comands:
 " - csXY | replace surrounding X with Y
@@ -80,7 +81,6 @@ nnoremap <Leader>f :Files!<CR>
 nnoremap <Leader>g :Rg!<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>l :Lines!<CR>
-nnoremap <Leader>r :History!<CR>
 nnoremap <Leader>c :Commands!<CR>
 nnoremap <Leader>C :History:!<CR>
 nnoremap <Leader>h :BCommits!<CR>
@@ -120,28 +120,43 @@ set laststatus=2
 set noshowmode
 
 let g:lightline={
-\   'colorscheme': 'palenight',  
-\   'active': {
-\     'left': [
-\       ['mode', 'paste'],
-\       ['readonly', 'filename', 'modified', 'helloworld'],
-\       ['coc_status']
-\     ],
-\     'right': [
-\       ['lineinfo'],
-\       ['percent'],
-\       ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
-\       ['fileformat', 'fileencoding', 'filetype'],
-\     ]
-\   }
-\ }
+  \   'colorscheme': 'palenight',
+  \   'component_expand': {
+  \     'linter_checking': 'lightline#ale#checking',
+  \     'linter_infos': 'lightline#ale#infos',
+  \     'linter_warnings': 'lightline#ale#warnings',
+  \     'linter_errors': 'lightline#ale#errors',
+  \     'linter_ok': 'lightline#ale#ok'
+  \   },
+  \   'component_type': {
+  \     'linter_checking': 'right',
+  \     'linter_infos': 'right',
+  \     'linter_warnings': 'warning',
+  \     'linter_errors': 'error',
+  \     'linter_ok': 'right'
+  \   },
+  \   'active': {
+  \     'left': [
+  \       ['mode', 'paste'],
+  \       ['readonly', 'filename', 'modified', 'helloworld'],
+  \       ['coc_status']
+  \     ],
+  \     'right': [
+  \       ['lineinfo'],
+  \       ['percent'],
+  \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+  \       ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
+  \       ['fileformat', 'fileencoding', 'filetype'],
+  \     ]
+  \   }
+  \ }
 call lightline#coc#register()
 
 " Palenight theme
 let g:palenight_color_overrides = {
-\   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
-\   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
-\ }
+  \   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
+  \   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
+  \ }
 
 set background=dark
 colorscheme palenight
@@ -155,14 +170,14 @@ let g:ale_fix_on_save=1
 let g:ale_rust_cargo_use_clippy=1
 
 let g:ale_linters={
-\   'haskell': ['hlint'],
-\   'python': ['flake8', 'mypy'],
-\ }
+  \   'haskell': ['hlint'],
+  \   'python': ['flake8', 'mypy'],
+  \ }
 
 let g:ale_fixers={
-\   'haskell': ['ormolu'],
-\   'python': ['black', 'isort'],
-\ }
+  \   'haskell': ['ormolu'],
+  \   'python': ['black', 'isort'],
+  \ }
 
 for lang in keys(g:ale_fixers)
   let g:ale_fixers[lang] = g:ale_fixers[lang] + ['remove_trailing_lines', 'trim_whitespace']
@@ -181,9 +196,9 @@ set shortmess+=c
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -191,4 +206,17 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+let g:coc_snippet_next = '<tab>'
+
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" coc-snippets
+let g:coc_snippet_next = '<C-j>'
+let g:coc_snippet_prev = '<C-k>'
+inoremap <C-j> <Plug>(coc-snippets-expand-jump)

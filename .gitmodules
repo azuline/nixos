@@ -46,3 +46,6 @@
 [submodule ".vim/pack/plum/opt/ale"]
 	path = .vim/pack/plum/opt/ale
 	url = https://github.com/dense-analysis/ale
+[submodule ".vim/pack/plum/opt/lightline-ale"]
+	path = .vim/pack/plum/opt/lightline-ale
+	url = https://github.com/maximbaz/lightline-ale
