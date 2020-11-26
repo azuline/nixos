@@ -1,0 +1,28 @@
+{
+  "coc.preferences.rootPatterns": [
+    ".git",
+    "pyproject.toml",
+    "setup.py",
+    ".env",
+    "package.json"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "python",
+    "json"
+  ],
+  "eslint.autoFixOnSave": true,
+  "python.autoComplete.addBrackets": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/.local/bin/black",
+  "python.linting.lintOnSave": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Path": "~/.local/bin/flake8",
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyPath": "~/.local/bin/mypy"
+}

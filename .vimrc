@@ -2,8 +2,8 @@
 
 " I am leaving comments describing each one, for maintenance purposes.
 
-" Auto-linter/formatter integrations.
-packadd ale
+" Conquer of Completion
+packadd coc.nvim
 
 " Integration for fzf. A lot of FZF commands are bound to `<Leader>{key}` for
 " navigating around the filesystem and whatnot.
@@ -12,8 +12,6 @@ packadd fzf.vim
 
 " Lightweight status bar.
 packadd lightline.vim
-" Displays ALE warnings in the status bar.
-packadd lightline-ale
 
 " Previewing markdown files in browser.
 " - :MarkdownPreview | open current markdown file in browser.
@@ -51,6 +49,9 @@ packadd vim-gitgutter
 "   - :LLPStartPreview | open current latex file in evince.
 packadd vim-latex-live-preview
 
+" CoC indicators in lightline.
+packadd vim-lightline-coc
+
 " Work with surrounding parentheses/brackets/quotes/whatever
 " Comands:
 " - csXY | replace surrounding X with Y
@@ -85,55 +86,6 @@ nnoremap <Leader>T :NERDTreeFind<CR>
 " Swap files
 :set directory=$HOME/.vim/swap/
 
-" Linting
-let g:ale_linters={
-\ 'python': ['flake8'],
-\ 'elixir': ['credo'],
-\ 'rust': ['cargo'],
-\ 'c': ['clangtidy'],
-\ 'tex': ['lacheck'],
-\ 'haskell': ['hlint'],
-\ 'javascript': ['eslint'],
-\ 'javascriptreact': ['eslint'],
-\ 'typescript': ['eslint', 'tsserver'],
-\ 'typescriptreact': ['eslint', 'tsserver'],
-\ 'scss': [],
-\ }
-
-let g:ale_fixers={
-\ '*': [],
-\ 'python': ['isort', 'black'],
-\ 'rust': ['rustfmt'],
-\ 'c': ['clang-format'],
-\ 'elixir': ['mix_format'],
-\ 'markdown': ['prettier'],
-\ 'css': ['prettier'],
-\ 'scss': ['prettier'],
-\ 'javascript': ['prettier'],
-\ 'javascriptreact': ['prettier'],
-\ 'typescript': ['prettier'],
-\ 'typescriptreact': ['prettier'],
-\ 'json': ['prettier'],
-\ 'ruby': ['rubocop'],
-\ 'ocaml': ['ocamlformat', 'ocp-indent'],
-\ 'haskell': ['stylish-haskell'],
-\ 'html': ['prettier'],
-\ }
-
-" Because ALE is not adding this to every file type.
-for lang in keys(g:ale_fixers)
-    let g:ale_fixers[lang] = g:ale_fixers[lang] + ['remove_trailing_lines', 'trim_whitespace']
-endfor
-
-let g:ale_fix_on_save=1
-let g:ale_lint_on_text_changed='never'
-let g:ale_lint_on_insert_leave=0
-
-let g:ale_rust_cargo_use_clippy=1
-
-" ALE colors
-highlight ALEErrorSign ctermbg=3
-
 " Gitgutter
 highlight! link SignColumn LineNr
 let g:gitgutter_set_sign_backgrounds = 1
@@ -162,26 +114,48 @@ set laststatus=2
 set noshowmode
 
 let g:lightline={
-\   'component_expand': {
-\     'linter_checking': 'lightline#ale#checking',
-\     'linter_infos': 'lightline#ale#infos',
-\     'linter_warnings': 'lightline#ale#warnings',
-\     'linter_errors': 'lightline#ale#errors',
-\     'linter_ok': 'lightline#ale#ok'
-\   },
-\   'component_type': {
-\     'linter_checking': 'right',
-\     'linter_infos': 'right',
-\     'linter_warnings': 'warning',
-\     'linter_errors': 'error',
-\     'linter_ok': 'right'
-\   },
 \   'active': {
+\     'left': [
+\       ['mode', 'paste'],
+\       ['readonly', 'filename', 'modified', 'helloworld'],
+\       ['coc_status']
+\     ],
 \     'right': [
-\       [ 'lineinfo' ],
-\       [ 'percent' ],
-\       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
-\       [ 'fileformat', 'fileencoding', 'filetype' ]
+\       ['lineinfo'],
+\       ['percent'],
+\       ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
+\       ['fileformat', 'fileencoding', 'filetype'],
 \     ]
 \   }
 \ }
+call lightline#coc#register()
+
+" CoC
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=100
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Sort Python imports on save.
+autocmd BufWritePre *.py :CocCommand python.sortImports
