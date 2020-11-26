@@ -1,222 +1,121 @@
-" Load packages
+set nocompatible
+filetype plugin indent on
+syntax on
 
-" I am leaving comments describing each one, for maintenance purposes.
-
-" ALE linter/fixer engine.
-packadd ale
-
-" Conquer of Completion
-packadd coc.nvim
-
-" Integration for fzf. A lot of FZF commands are bound to `<Leader>{key}` for
-" navigating around the filesystem and whatnot.
-packadd fzf
-packadd fzf.vim
-
-" Lightweight status bar.
-packadd lightline.vim
-" Displays ALE warnings in the status bar.
-packadd lightline-ale
-" CoC indicators in lightline.
-packadd vim-lightline-coc
-
-" Previewing markdown files in browser.
-" - :MarkdownPreview | open current markdown file in browser.
-packadd markdown-preview.nvim
-
-" NERDTree - Tree explorer.
-" Mapped <Leader>t to open NERDTree
-" Commands:
-" - Open | o/i/s
-" - Close | x
-" - Create/move/delete | m
-packadd nerdtree
-
-" Palenight theme.
-packadd palenight.vim
-
-" Highlights characters on the same line for `f/F` quick jumping.
-packadd quick-scope
-
-" Plugin to make commenting code out easier.
-" Commands:
-" - gcc | comments out a line
-" - gc | comments out lines
-" - gcap | comment out a paragraph :O
-" - You can also use it as a command, either with a range like
-"   :7,17Commentary, or as part of a :global invocation like with
-"   :g/pattern/Commentary. That's it.
-packadd vim-commentary
-
-" Git wrapper.
-packadd vim-fugitive
-
-" Git status left of the line numbers.
-packadd vim-gitgutter
-
-" Live preview latex files!
-" Commands:
-"   - :LLPStartPreview | open current latex file in evince.
-packadd vim-latex-live-preview
-
-" Work with surrounding parentheses/brackets/quotes/whatever
-" Comands:
-" - csXY | replace surrounding X with Y
-packadd vim-surround
-
-" Language syntax highlighting.
-packadd vim-polyglot
-
-" Spell file
-set spellfile=~/.vim/spell/en.utf-8.add
-
-" Key mappings
-
-" Builtin Vim stuff
-set pastetoggle=<F2>
-nnoremap <Leader>p <F2>
-" FZF commands
-nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>
-nnoremap <Leader>f :Files!<CR>
-nnoremap <Leader>g :Rg!<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>l :Lines!<CR>
-nnoremap <Leader>c :Commands!<CR>
-nnoremap <Leader>C :History:!<CR>
-nnoremap <Leader>h :BCommits!<CR>
-nnoremap <Leader>H :Commits!<CR>
-" NERDTree
-nnoremap <Leader>t :NERDTreeToggleVCS<CR>
-nnoremap <Leader>T :NERDTreeFind<CR>
-
-" Jump to definition
-nmap <silent> <C-]> <Plug>(coc-definition)
-
-" Swap files
-:set directory=$HOME/.vim/swap/
-
-" Gitgutter
-highlight! link SignColumn LineNr
-
-" Markdown Preview
-let g:mkdp_browser='firefox'
-let g:mkdp_highlight_css='~/.vim/markdown_preview.css'
-let g:mkdp_port='7237'
-
-" Latex Live Preview
-let g:livepreview_cursorhold_recompile=0
-
-" NERDTree
-" Ignore artifacts.
-let NERDTreeIgnore = ['build', 'node_modules', '__pycache__', '\.egg-info$', '\.pyc$', '\.o$']
-" Show hidden by default.
-let NERDTreeShowHidden=1
-" Single click mouse in NERDTree.
-let NERDTreeMouseMode=3
-
-" Lightline
-" IMPORTANT: This section must be loaded before Palenight theme section.
-set laststatus=2
-set noshowmode
-
-let g:lightline={
-  \   'colorscheme': 'palenight',
-  \   'component_expand': {
-  \     'linter_checking': 'lightline#ale#checking',
-  \     'linter_infos': 'lightline#ale#infos',
-  \     'linter_warnings': 'lightline#ale#warnings',
-  \     'linter_errors': 'lightline#ale#errors',
-  \     'linter_ok': 'lightline#ale#ok'
-  \   },
-  \   'component_type': {
-  \     'linter_checking': 'right',
-  \     'linter_infos': 'right',
-  \     'linter_warnings': 'warning',
-  \     'linter_errors': 'error',
-  \     'linter_ok': 'right'
-  \   },
-  \   'active': {
-  \     'left': [
-  \       ['mode', 'paste'],
-  \       ['readonly', 'filename', 'modified', 'helloworld'],
-  \       ['coc_status']
-  \     ],
-  \     'right': [
-  \       ['lineinfo'],
-  \       ['percent'],
-  \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
-  \       ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
-  \       ['fileformat', 'fileencoding', 'filetype'],
-  \     ]
-  \   }
-  \ }
-call lightline#coc#register()
-
-" Palenight theme
-let g:palenight_color_overrides = {
-  \   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
-  \   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
-  \ }
-
+" Graphical stuff.
 set background=dark
-colorscheme palenight
-hi Normal guibg=NONE ctermbg=NONE
+set hlsearch
 
-" ALE
+" Line numbers
+set number
+set relativenumber
 
-let g:ale_linters_explicit=1
-let g:ale_disable_lsp=1
-let g:ale_fix_on_save=1
-let g:ale_rust_cargo_use_clippy=1
+" Wrapping/indentation.
+set whichwrap=b,s,<,>,[,]
+set autoindent
 
-let g:ale_linters={
-  \   'haskell': ['hlint'],
-  \   'python': ['flake8', 'mypy'],
-  \ }
+" Options to make CoC work well.
+set hidden
+set nobackup
+set nowritebackup
 
-let g:ale_fixers={
-  \   'haskell': ['ormolu'],
-  \   'python': ['black', 'isort'],
-  \ }
+" Extra space to display messages.
+set cmdheight=2
 
-for lang in keys(g:ale_fixers)
-  let g:ale_fixers[lang] = g:ale_fixers[lang] + ['remove_trailing_lines', 'trim_whitespace']
-endfor
+" Turn off error bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
-" CoC
+" More powerful backspacing
+set backspace=indent,eol,start
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=100
+" Bash & emacs-style completion for file selection
+set wildmode=longest,list
+set wildmenu
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+" Auto-reload files modified outside of vim.
+set autoread
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" We don't want double spaces after punctuation since we are not a boomer.
+set nojoinspaces
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" Set leader keys
+nnoremap <Space> <nop>
+let mapleader = " "
+let maplocalleader = "\\"
 
-let g:coc_snippet_next = '<tab>'
+" I keep hitting <F1> on my bigger keyboard instead of <Esc>...
+map <F1> <Esc>
+imap <F1> <Esc>
 
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" File indent settings.
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+set expandtab
+set autoindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
+  \ set textwidth=79
 
-" coc-snippets
-let g:coc_snippet_next = '<C-j>'
-let g:coc_snippet_prev = '<C-k>'
-inoremap <C-j> <Plug>(coc-snippets-expand-jump)
+au BufEnter *.py,*.hs
+  \ set textwidth=88
+
+au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim
+  \ set tabstop=2 |
+  \ set softtabstop=2 |
+  \ set shiftwidth=2
+
+au BufEnter Makefile,makefile,*.php
+  \ set noexpandtab
+
+au BufEnter *.md,*.rst,*.tex,*.txt
+  \ set spell
+
+" TeX files soft wrap.
+au BufEnter *.tex
+  \ set wrap |
+  \ set linebreak |
+  \ set textwidth=0 |
+  \ set wrapmargin=0
+
+" Trailing space highlighting
+highlight BadWhitespace ctermbg=red guibg=red
+au BufEnter * match BadWhitespace /\s\+$/
+
+" Reopen file to last read line
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+" Key mappings.
+nnoremap <Leader>n :noh<CR>
+
+nnoremap <Leader>s :split<CR><C-W>j
+nnoremap <Leader>v :vsplit<CR><C-W>l
+
+nnoremap <Leader>w :silent %w !wl-copy<CR>
+
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+nnoremap - :silent bprevious<CR>
+nnoremap = :silent bnext<CR>
+nnoremap <Leader><Backspace> :silent bdelete<CR>0
+
+nnoremap <Leader>r- :resize -5<CR>
+nnoremap <Leader>r= :resize =5<CR>
+nnoremap <Leader>r, :vertical resize -5<CR>
+nnoremap <Leader>r. :vertical resize +5<CR>
+
+nnoremap <Leader>e- :cprevious<CR>
+nnoremap <Leader>e= :cnext<CR>
+nnoremap <Leader>e, :lprevious<CR>
+nnoremap <Leader>e. :lnext<CR>
+
+" A Neovim matching parentheses highlighter.
+let loaded_matchparen = 1
