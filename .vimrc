@@ -28,7 +28,7 @@ packadd markdown-preview.nvim
 " - Create/move/delete | m
 packadd nerdtree
 
-" Palenight theme
+" Palenight theme.
 packadd palenight.vim
 
 " Highlights characters on the same line for `f/F` quick jumping.
@@ -106,16 +106,6 @@ let g:mkdp_port='7237'
 " Latex Live Preview
 let g:livepreview_cursorhold_recompile=0
 
-" Palenight theme
-let g:palenight_color_overrides = {
-\   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
-\   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
-\ }
-
-set background=dark
-colorscheme palenight
-hi Normal guibg=NONE ctermbg=NONE
-
 " NERDTree
 " Ignore artifacts.
 let NERDTreeIgnore = ['build', 'node_modules', '__pycache__', '\.egg-info$', '\.pyc$', '\.o$']
@@ -125,11 +115,12 @@ let NERDTreeShowHidden=1
 let NERDTreeMouseMode=3
 
 " Lightline
+" IMPORTANT: This section must be loaded before Palenight theme section.
 set laststatus=2
 set noshowmode
 
 let g:lightline={
-\   'colorscheme': 'palenight',
+\   'colorscheme': 'palenight',  
 \   'active': {
 \     'left': [
 \       ['mode', 'paste'],
@@ -146,11 +137,20 @@ let g:lightline={
 \ }
 call lightline#coc#register()
 
+" Palenight theme
+let g:palenight_color_overrides = {
+\   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
+\   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
+\ }
+
+set background=dark
+colorscheme palenight
+hi Normal guibg=NONE ctermbg=NONE
+
 " ALE
 
 let g:ale_linters_explicit=1
 let g:ale_disable_lsp=1
-" let g:ale_set_highlights=0
 let g:ale_fix_on_save=1
 let g:ale_rust_cargo_use_clippy=1
 
