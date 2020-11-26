@@ -60,4 +60,9 @@ colorscheme palenight
 hi Normal guibg=NONE ctermbg=NONE
 
 " Gitgutter
+" ---------
+
 highlight! link SignColumn LineNr
+
+" Always show sign column.
+set signcolumn=yes

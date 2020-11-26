@@ -62,6 +62,9 @@ au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
 au BufEnter *.py,*.hs
   \ set textwidth=88
 
+au BufEnter *.ts,*.tsx,*.js,*.jsx
+  \ set textwidth=100
+
 au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim
   \ set tabstop=2 |
   \ set softtabstop=2 |
@@ -105,7 +108,7 @@ nnoremap <C-L> <C-W>l
 
 nnoremap - :silent bprevious<CR>
 nnoremap = :silent bnext<CR>
-nnoremap <Leader><Backspace> :silent bdelete<CR>0
+nnoremap <Leader><Backspace> :silent bp<bar>sp<bar>bn<bar>bd<CR>
 
 nnoremap <Leader>r- :resize -5<CR>
 nnoremap <Leader>r= :resize =5<CR>

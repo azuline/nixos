@@ -13,8 +13,8 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>l :Lines!<CR>
 nnoremap <Leader>c :Commands!<CR>
 nnoremap <Leader>C :History:!<CR>
-nnoremap <Leader>h :BCommits!<CR>
-nnoremap <Leader>H :Commits!<CR>
+nnoremap <Leader>h :GV!<CR>
+nnoremap <Leader>H :GV<CR>
 
 " NERDTree
 nnoremap <Leader>t :NERDTreeToggleVCS<CR>

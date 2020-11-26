@@ -35,7 +35,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " coc-snippets
 let g:coc_snippet_next = '<C-j>'
 let g:coc_snippet_prev = '<C-k>'
-inoremap <C-j> <Plug>(coc-snippets-expand-jump)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Jump to definition
 nmap <silent> <C-]> <Plug>(coc-definition)

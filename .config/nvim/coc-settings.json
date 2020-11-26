@@ -16,6 +16,12 @@
     "typescriptreact",
     "json"
   ],
+  "snippets.extends": {
+    "cpp": ["c"],
+    "javascriptreact": ["javascript", "javascript-jsdoc"],
+    "typescript": ["javascript", "javascript-jsdoc"],
+    "typescriptreact": ["typescript", "javascript", "javascript-jsdoc"]
+  },
   "eslint.autoFixOnSave": true,
   "python.linting.enabled": false,
   "languageserver": {
