@@ -55,6 +55,7 @@ set autoindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set formatoptions+=t
 
 au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
   \ set textwidth=79

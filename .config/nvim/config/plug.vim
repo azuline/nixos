@@ -38,7 +38,7 @@ Plug 'tpope/vim-fugitive'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
 " Git Gutter
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Live Markdown Previewer.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Live LaTeX Previewer.
