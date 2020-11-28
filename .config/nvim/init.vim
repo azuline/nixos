@@ -1,5 +1,11 @@
 set spellfile=~/.config/nvim/spell/en.utf-8.add
-" set directory=(stdpath('data') . '/swap')
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=50
+
+" Keep signcolumn on for gutter plugins.
+set signcolumn=yes
 
 " Fix terminal colors in Alacritty.
 

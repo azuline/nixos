@@ -5,7 +5,8 @@
     "pyproject.toml",
     "setup.py",
     ".env",
-    "package.json"
+    "package.json",
+    "stack.yaml"
   ],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
@@ -23,6 +24,7 @@
     "typescriptreact": ["typescript", "javascript", "javascript-jsdoc"]
   },
   "eslint.autoFixOnSave": true,
+  "python.jediEnabled": false,
   "python.linting.enabled": false,
   "languageserver": {
     "haskell": {

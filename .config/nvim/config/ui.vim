@@ -4,7 +4,8 @@
 " We have:
 " - a statusline (lightline)
 " - a custom theme (palenight)
-" - a git gutter (gitgutter)
+" - a git gutter (signify)
+" - a filesystem explorer (nerdtree)
 
 " Lightline
 " ---------
@@ -59,10 +60,29 @@ set background=dark
 colorscheme palenight
 hi Normal guibg=NONE ctermbg=NONE
 
-" Gitgutter
-" ---------
+" Signify
+" -------
 
-highlight! link SignColumn LineNr
+highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE
 
-" Always show sign column.
-set signcolumn=yes
+" NERDTree
+" --------
+
+let NERDTreeIgnore = ['build', 'node_modules', '__pycache__', '\.egg-info$', '\.pyc$', '\.o$']
+let NERDTreeShowHidden=1
+
+" Hack to disable lightline in NERDTree.
+" https://vi.stackexchange.com/a/22414
+augroup filetype_nerdtree
+  au!
+  au FileType nerdtree call s:disable_lightline_on_nerdtree()
+  au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_nerdtree()
+augroup END
+
+fu s:disable_lightline_on_nerdtree() abort
+ let nerdtree_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'nerdtree') + 1
+ call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
+endfu
+
+" Close Vim if only NERDTree is left.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
