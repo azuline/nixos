@@ -28,5 +28,5 @@ let g:configs = [
 let g:nvim_root = expand('<sfile>:p:h')
 
 for s:cfg in g:configs
-  execute printf('source %s/config/%s', g:nvim_root, s:cfg)
+  execute printf('source %s/init/%s', g:nvim_root, s:cfg)
 endfor
