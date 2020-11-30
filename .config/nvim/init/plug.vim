@@ -1,6 +1,9 @@
 " Plugin Loader
 " =============
 
+" Per ALE docs, this needs to be set before we load plugins.
+let g:ale_disable_lsp=1
+
 call plug#begin(stdpath('data') . '/plugged')
 
 " Core Plugins
@@ -38,7 +41,7 @@ Plug 'tpope/vim-fugitive'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
 " Git Gutter
-Plug 'mhinz/vim-signify'
+" Plug 'mhinz/vim-signify'
 " Live Markdown Previewer.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Live LaTeX Previewer.

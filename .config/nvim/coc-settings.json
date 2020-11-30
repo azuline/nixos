@@ -24,8 +24,10 @@
     "typescriptreact": ["typescript", "javascript", "javascript-jsdoc"]
   },
   "eslint.autoFixOnSave": true,
-  "python.jediEnabled": false,
+  "python.formatting.provider": "none",
   "python.linting.enabled": false,
+  "python.analysis.typeCheckingMode": "off",
+  "pyright.disableOrganizeImports": true,
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
