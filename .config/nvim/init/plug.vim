@@ -38,10 +38,14 @@ Plug 'tpope/vim-commentary'
 Plug 'unblevable/quick-scope'
 " Git Client
 Plug 'tpope/vim-fugitive'
+" Surrounding brackets/tags/whatever.
+Plug 'tpope/vim-surround'
+" Auto-pair brackets. Vim-surround is what makes this bearable.
+Plug 'jiangmiao/auto-pairs'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
 " Git Gutter
-" Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 " Live Markdown Previewer.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Live LaTeX Previewer.
