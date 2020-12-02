@@ -19,3 +19,8 @@ nnoremap <Leader>H :GV<CR>
 " NERDTree
 nnoremap <Leader>t :NERDTreeToggleVCS<CR>
 nnoremap <Leader>T :NERDTreeFind<CR>
+
+" Terminal
+nnoremap <Leader><CR> :terminal<CR>
+tnoremap <Esc> <C-\><C-n>
+

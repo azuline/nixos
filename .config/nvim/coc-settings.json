@@ -15,7 +15,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "json"
+    "json",
+    "rust"
   ],
   "snippets.extends": {
     "cpp": ["c"],

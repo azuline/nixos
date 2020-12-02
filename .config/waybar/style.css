@@ -21,8 +21,8 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  color: #000;
-  background-color: #d6c52d;
+  color: #fff;
+  background-color: #3a7c35;
 }
 
 #workspaces button.urgent {
