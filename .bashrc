@@ -44,8 +44,10 @@ alias gr='cd "$(git rev-parse --show-toplevel)"'
 
 alias rscp='rsync -ah --progress'
 
-alias iscrot='bubblegum upload "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
+alias is='bubblegum upload "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
 alias iu='bubblegum upload'
+alias isv='bubblegum upload --host=vgy.me "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
+alias iuv='bubblegum upload --host=vgy.me'
 
 [ -f /opt/.fzf.bash ] && source /opt/.fzf.bash
 

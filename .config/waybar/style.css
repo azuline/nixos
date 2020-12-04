@@ -11,13 +11,13 @@
 window#waybar {
   /* color: rgb(230, 229, 229); */
   color: #fff;
-  background-color: rgba(13, 13, 23, 0.6);
+  background-color: rgba(13, 13, 23, 0.3);
 }
 
 #workspaces button {
   padding: 0;
   color: #fff;
-  background-color: rgba(13, 13, 23, 0.7);
+  background-color: rgba(13, 13, 23, 1);
 }
 
 #workspaces button.focused {
@@ -41,7 +41,7 @@ window#waybar {
 #temperature,
 #custom-layout,
 #backlight {
-  margin: 0px 6px 0px 10px;
+  margin: 0px 6px 0px 16px;
   /*    min-width: 30px;*/
 }
 
