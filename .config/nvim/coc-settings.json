@@ -29,6 +29,7 @@
   "python.linting.enabled": false,
   "python.analysis.typeCheckingMode": "off",
   "pyright.disableOrganizeImports": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
