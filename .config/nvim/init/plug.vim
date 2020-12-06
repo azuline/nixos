@@ -1,8 +1,13 @@
 " Plugin Loader
 " =============
 
-" Per ALE docs, this needs to be set before we load plugins.
+" Pre-plugin configs.
+" -------------------
+"  These need to be configured before we load plugins.
 let g:ale_disable_lsp=1
+
+" Polyglot misidentifying HTML as mason.
+" let g:polyglot_disabled = ['perl', 'html', 'handlebars']
 
 call plug#begin(stdpath('data') . '/plugged')
 

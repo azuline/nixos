@@ -66,7 +66,7 @@ au BufEnter *.py,*.hs
 au BufEnter *.ts,*.tsx,*.js,*.jsx
   \ set textwidth=100
 
-au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim
+au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim,*.hbs
   \ set tabstop=2 |
   \ set softtabstop=2 |
   \ set shiftwidth=2

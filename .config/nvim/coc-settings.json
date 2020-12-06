@@ -16,7 +16,16 @@
     "typescript",
     "typescriptreact",
     "json",
-    "rust"
+    "rust",
+    "html",
+    "html.handlebars"
+  ],
+  "html.filetypes": [
+    "html",
+    "html.handlebars",
+    "handlebars",
+    "htmldjango",
+    "blade"
   ],
   "snippets.extends": {
     "cpp": ["c"],
@@ -25,6 +34,8 @@
     "typescriptreact": ["typescript", "javascript", "javascript-jsdoc"]
   },
   "eslint.autoFixOnSave": true,
+  "html.autoClosingTags": true,
+  "html.format.indentHandlebars": true,
   "python.formatting.provider": "none",
   "python.linting.enabled": false,
   "python.analysis.typeCheckingMode": "off",
