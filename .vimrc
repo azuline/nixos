@@ -57,7 +57,7 @@ set softtabstop=4
 set shiftwidth=4
 set formatoptions+=t
 
-au BufEnter *.txt,*.md,*.py,*.rst,*.tex,*.c
+au BufEnter *.txt,*.py,*.rst,*.tex,*.c
   \ set textwidth=79
 
 au BufEnter *.py,*.hs
@@ -77,8 +77,8 @@ au BufEnter Makefile,makefile,*.php
 au BufEnter *.md,*.rst,*.tex,*.txt
   \ set spell
 
-" TeX files soft wrap.
-au BufEnter *.tex
+" TeX/Markdown files soft wrap.
+au BufEnter *.tex,*.md,*.markdown
   \ set wrap |
   \ set linebreak |
   \ set textwidth=0 |

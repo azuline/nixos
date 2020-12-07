@@ -28,12 +28,3 @@ nnoremap <Leader>T :NERDTreeFind<CR>
 nnoremap <Leader><CR> :terminal<CR>
 " Map Esc to terminal's Esc
 tnoremap <Esc> <C-\><C-n>
-
-" Auto-pairs
-" ----------
-" Fast Wrap
-imap <C-e> <M-e>
-" Toggle auto-pairs
-imap <C-p> <M-p>
-" Jump to next closed pair.
-imap <C-n> <M-n>

@@ -45,8 +45,6 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-fugitive'
 " Surrounding brackets/tags/whatever.
 Plug 'tpope/vim-surround'
-" Auto-pair brackets. Vim-surround is what makes this bearable.
-Plug 'jiangmiao/auto-pairs'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
 " Git Gutter
@@ -55,11 +53,34 @@ Plug 'mhinz/vim-signify'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Live LaTeX Previewer.
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" Vim for writing.
+Plug 'reedes/vim-pencil'
+" Fade inactive splits.
+Plug 'TaDaa/vimade'
 
 call plug#end()
 
 " Miscellaneous Plugin Configuration
 " ==================================
+
+" Pencil
+" ------
+" TODO: The auto-hide butchers LaTeX, revisit this later.
+
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+  autocmd FileType tex          call pencil#init()
+augroup END
+
+" Polyglot
+" --------
+
+" Polyglot has some issues with markdown files, these settings fix them.
+" https://github.com/plasticboy/vim-markdown/issues/126#issuecomment-640890790
+au filetype markdown set formatoptions+=ro
+au filetype markdown set comments=b:*,b:-,b:+,b:1.,n:>
 
 " FZF
 " ---
