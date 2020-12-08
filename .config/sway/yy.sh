@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-KNOW_DIR=$HOME/notes/academics
+KNOW_DIR=$HOME/texts
 
 files="$(find $KNOW_DIR -type f \( -name '*.pdf' -o -name '*.html' \) -printf '%P\n')"
 

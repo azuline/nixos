@@ -59,6 +59,8 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'TaDaa/vimade'
 " Dim in-active paragraphs.
 Plug 'junegunn/limelight.vim'
+" A personal wiki!
+Plug 'lervag/wiki.vim'
 
 " Replacements
 " ------------
@@ -113,3 +115,16 @@ let g:mkdp_port='7237'
 " ------------------
 
 let g:livepreview_cursorhold_recompile=0
+
+" Wiki
+" ----
+
+let g:wiki_root='~/notes'
+let g:wiki_filetypes=['md', 'markdown']
+let g:wiki_journal={
+\   'name': 'journal',
+\   'frequency': 'weekly',
+\   'date_format': {
+\     'weekly': '%Y-week%V',
+\   },
+\ }

@@ -93,7 +93,7 @@ nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>s :split<CR><C-W>j
 nnoremap <Leader>v :vsplit<CR><C-W>l
 
-nnoremap <Leader>w :silent %w !wl-copy<CR>
+nnoremap <Leader>o :silent %w !wl-copy<CR>
 
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
@@ -113,6 +113,3 @@ nnoremap <Leader>e- :cprevious<CR>
 nnoremap <Leader>e= :cnext<CR>
 nnoremap <Leader>e, :lprevious<CR>
 nnoremap <Leader>e. :lnext<CR>
-
-" A Neovim matching parentheses highlighter.
-let loaded_matchparen = 1
