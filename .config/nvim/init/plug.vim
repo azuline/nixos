@@ -5,8 +5,10 @@
 " -------------------
 "  These need to be configured before we load plugins.
 let g:ale_disable_lsp=1
+let g:polyglot_disabled=['markdown']
+let g:markdown_enable_conceal=1
 
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin(stdpath('data').'/plugged')
 
 " Core Plugins
 " ------------
@@ -57,6 +59,12 @@ Plug 'TaDaa/vimade'
 " Dim in-active paragraphs.
 Plug 'junegunn/limelight.vim'
 
+" Replacements
+" ------------
+
+" Replacement syntax highlighting plugin for Markdown. plasticboy's sucks.
+Plug 'gabrielelana/vim-markdown'
+
 call plug#end()
 
 " Miscellaneous Plugin Configuration
@@ -66,13 +74,16 @@ call plug#end()
 " ----
 
 " Configure Limelight colors.
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
+let g:limelight_conceal_ctermfg='gray'
+let g:limelight_conceal_ctermfg=240
+let g:limelight_conceal_guifg='DarkGray'
+let g:limelight_conceal_guifg='#777777'
 
 " Include extra surrounding paragraph.
-let g:limelight_paragraph_span = 1
+let g:limelight_paragraph_span=1
+
+au BufEnter *.md,*.mkd,*.markdown,*.tex,*.text
+  \ Limelight
 
 " LaTeX
 " -----
@@ -82,18 +93,10 @@ let g:vimtex_quickfix_mode=0
 set conceallevel=2
 let g:tex_conceal='abdmg'
 
-" Polyglot
-" --------
-
-" Polyglot has some issues with markdown files, these settings fix them.
-" https://github.com/plasticboy/vim-markdown/issues/126#issuecomment-640890790
-" au filetype markdown set formatoptions+=ro
-" au filetype markdown set comments=b:*,b:-,b:+,b:1.,n:>
-
 " FZF
 " ---
 
-let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
 
 " Markdown Preview
 " ----------------

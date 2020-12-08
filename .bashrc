@@ -38,7 +38,8 @@ alias gupd='git add .; git commit -m update'
 
 alias gitlines='git ls-files | xargs -d "\n" wc -l'
 alias gst='git status'
-alias gb='git branch'
+alias gd='git diff'
+alias gds='git diff --staged'
 alias gl='git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 
