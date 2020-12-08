@@ -15,6 +15,8 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+syntax match textCmdStyleBold '\\mathbf\>\s*' skipwhite skipnl nextgroup=texStyleBold conceal
+
 " Load split-configuration files from `config/`.
 
 let g:configs = [

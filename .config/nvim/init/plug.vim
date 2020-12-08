@@ -51,7 +51,8 @@ Plug 'mhinz/vim-signify'
 " Live Markdown Previewer.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " LaTeX!
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', {'tag': 'v1.6'}
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 " Live LaTeX Previewer.
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 " Fade inactive splits.
@@ -90,8 +91,11 @@ au BufEnter *.md,*.mkd,*.markdown,*.tex,*.text
 
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
+
+" For vim-conceal.
 set conceallevel=2
 let g:tex_conceal='abdmg'
+let g:tex_conceal_frac=1
 
 " FZF
 " ---
