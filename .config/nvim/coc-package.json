@@ -9,6 +9,7 @@
     "coc-rust-analyzer": ">=0.18.0",
     "coc-snippets": ">=2.2.9",
     "coc-tailwindcss": ">=0.7.0",
-    "coc-tsserver": ">=1.6.1"
+    "coc-tsserver": ">=1.6.1",
+    "coc-vimtex": ">=1.0.4"
   }
 }

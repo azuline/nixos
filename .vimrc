@@ -57,7 +57,7 @@ set softtabstop=4
 set shiftwidth=4
 set formatoptions+=t
 
-au BufEnter *.txt,*.py,*.rst,*.tex,*.c
+au BufEnter *.txt,*.py,*.rst,*.c,*.md,*.mkd,*.markdown,*.tex
   \ set textwidth=79
 
 au BufEnter *.py,*.hs
@@ -74,15 +74,8 @@ au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.
 au BufEnter Makefile,makefile,*.php
   \ set noexpandtab
 
-au BufEnter *.md,*.rst,*.tex,*.txt
+au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
   \ set spell
-
-" TeX/Markdown files soft wrap.
-au BufEnter *.tex,*.md,*.markdown
-  \ set wrap |
-  \ set linebreak |
-  \ set textwidth=0 |
-  \ set wrapmargin=0
 
 " Trailing space highlighting
 highlight BadWhitespace ctermbg=red guibg=red
