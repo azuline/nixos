@@ -18,6 +18,7 @@
     "json",
     "rust",
     "html",
+    "htmldjango",
     "html.handlebars"
   ],
   "html.filetypes": [

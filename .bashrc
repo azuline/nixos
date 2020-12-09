@@ -21,6 +21,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+function upload_image() {
+	response=$(curl -X POST -H "Content-Type:multipart/form-data" -H"Authorization:Token $SAFFRON_TOKEN" -F "upload=@$1" https://u.sunsetglow.net/upload)
+	image_url=$(echo $response | jq -r '.image_url')
+	echo
+	echo $image_url
+	echo $image_url | wl-copy
+}
+
 export GPG_TTY=$(tty)
 export EDITOR=vim
 export PS1="\[\e[96m\]\u\[\e[m\]@\[\e[96m\]\h\[\e[m\] \[\e[93m\]\w\[\e[m\] \[\e[92m\]\`parse_git_branch\`\[\e[m\]"
@@ -45,10 +53,10 @@ alias gr='cd "$(git rev-parse --show-toplevel)"'
 
 alias rscp='rsync -ah --progress'
 
-alias is='bubblegum upload "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
-alias iu='bubblegum upload'
-alias isv='bubblegum upload --host=vgy.me "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
-alias iuv='bubblegum upload --host=vgy.me'
+alias is='upload_image "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
+alias iu='upload_image'
+alias bs='bubblegum upload "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
+alias bu='bubblegum upload'
 
 [ -f /opt/.fzf.bash ] && source /opt/.fzf.bash
 

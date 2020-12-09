@@ -102,6 +102,7 @@ nnoremap <C-L> <C-W>l
 
 nnoremap - :silent bprevious<CR>
 nnoremap = :silent bnext<CR>
+nnoremap <Backspace> :silent b#<CR>
 nnoremap <Leader><Backspace> :silent bp<bar>sp<bar>bn<bar>bd<CR>
 
 nnoremap <Leader>r- :resize -5<CR>
