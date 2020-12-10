@@ -61,12 +61,9 @@ Plug 'TaDaa/vimade'
 Plug 'junegunn/limelight.vim'
 " A personal wiki!
 Plug 'lervag/wiki.vim'
-
-" Replacements
-" ------------
-
-" Replacement syntax highlighting plugin for Markdown. plasticboy's sucks.
-Plug 'gabrielelana/vim-markdown'
+" Bullet points (for Markdown), because the replacement Markdown plugins all
+" suck.
+Plug 'dkarter/bullets.vim'
 
 call plug#end()
 
@@ -78,9 +75,9 @@ call plug#end()
 
 " Configure Limelight colors.
 let g:limelight_conceal_ctermfg='gray'
-let g:limelight_conceal_ctermfg=240
-let g:limelight_conceal_guifg='DarkGray'
-let g:limelight_conceal_guifg='#777777'
+let g:limelight_conceal_ctermfg=246
+let g:limelight_conceal_guifg='Gray'
+let g:limelight_conceal_guifg='#949494'
 
 " Include extra surrounding paragraph.
 let g:limelight_paragraph_span=1
@@ -128,3 +125,13 @@ let g:wiki_journal={
 \     'weekly': '%Y-week%V',
 \   },
 \ }
+
+" Bullet points
+" -------------
+
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]

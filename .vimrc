@@ -77,6 +77,9 @@ au BufEnter Makefile,makefile,*.php
 au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
   \ set spell
 
+" Don't spell-check capitalization.
+set spellcapcheck=
+
 " Trailing space highlighting
 highlight BadWhitespace ctermbg=red guibg=red
 au BufEnter * match BadWhitespace /\s\+$/
