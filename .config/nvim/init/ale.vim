@@ -6,7 +6,7 @@ let g:ale_fix_on_save=1
 let g:ale_rust_cargo_use_clippy=1
 
 let g:ale_linters={
-  \   'haskell': ['hlint'],
+  \   'haskell': [],
   \   'python': ['flake8', 'mypy'],
   \ }
 

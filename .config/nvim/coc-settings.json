@@ -1,5 +1,5 @@
 {
-  "diagnostic.displayByAle": true,
+  "diagnostic.displayByAle": false,
   "coc.preferences.rootPatterns": [
     ".git",
     "pyproject.toml",
