@@ -21,7 +21,7 @@ set $color_fg    #e6e5e5
 set $color_bg    #0d0d17
 set $color_bg_tr #00000000
 # Border
-set $color_br    #785f50
+set $color_br    #3a7c35
 # Black
 set $color0      #4d4d4d
 set $color8      #808080
@@ -245,8 +245,9 @@ exec_always {
 ### Keyboard mappings
 
 # Swap left alt and left meta
+# Make caps lock another escape.
 input 1:1:AT_Translated_Set_2_keyboard {
-    xkb_options altwin:swap_lalt_lwin
+    xkb_options altwin:swap_lalt_lwin,caps:escape_shifted_capslock
 }
 
 # Screenshots

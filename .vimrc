@@ -108,10 +108,10 @@ nnoremap = :silent bnext<CR>
 nnoremap <Backspace> :silent b#<CR>
 nnoremap <Leader><Backspace> :silent bp<bar>sp<bar>bn<bar>bd<CR>
 
-nnoremap <Leader>r- :resize -5<CR>
-nnoremap <Leader>r= :resize +5<CR>
-nnoremap <Leader>r, :vertical resize -5<CR>
-nnoremap <Leader>r. :vertical resize +5<CR>
+nnoremap <Leader>r- :resize -10<CR>
+nnoremap <Leader>r= :resize +10<CR>
+nnoremap <Leader>r, :vertical resize -10<CR>
+nnoremap <Leader>r. :vertical resize +10<CR>
 
 nnoremap <Leader>e- :cprevious<CR>
 nnoremap <Leader>e= :cnext<CR>
