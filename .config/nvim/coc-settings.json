@@ -17,6 +17,7 @@
     "typescriptreact",
     "json",
     "rust",
+    "python",
     "html",
     "htmldjango",
     "html.handlebars"
@@ -37,11 +38,14 @@
   "eslint.autoFixOnSave": true,
   "html.autoClosingTags": true,
   "html.format.indentHandlebars": true,
-  "python.formatting.provider": "none",
-  "python.linting.enabled": false,
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
   "python.analysis.typeCheckingMode": "off",
   "pyright.disableOrganizeImports": true,
   "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.inlayHints.chainingHints": false,
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",

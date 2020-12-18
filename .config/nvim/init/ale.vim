@@ -1,19 +1,15 @@
 " ALE Lint & Autofix Engine
 " =========================
+" Currently not in use.
 
 let g:ale_linters_explicit=1
 let g:ale_fix_on_save=1
 let g:ale_rust_cargo_use_clippy=1
 
 let g:ale_linters={
-  \   'haskell': [],
-  \   'python': ['flake8', 'mypy'],
   \ }
 
 let g:ale_fixers={
-  \   '*': [],
-  \   'haskell': ['ormolu'],
-  \   'python': ['black', 'isort'],
   \ }
 
 for lang in keys(g:ale_fixers)

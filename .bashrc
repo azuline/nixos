@@ -53,6 +53,8 @@ alias gr='cd "$(git rev-parse --show-toplevel)"'
 
 alias rscp='rsync -ah --progress'
 
+alias w='cd ~/notes; vim index.md'
+
 alias is='upload_image "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
 alias iu='upload_image'
 alias bs='bubblegum upload "$(/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")"'
