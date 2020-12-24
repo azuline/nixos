@@ -17,35 +17,34 @@ for_window [app_id="^pavucontrol$"] floating enable
 ### Colors - Nocturnal Winter (iTerm2 Color Scheme)
 
 # Background/Foreground/Cursor
-set $color_fg    #e6e5e5
-set $color_bg    #0d0d17
-set $color_bg_tr #00000000
+set $color_fg    #eeffff
+set $color_bg    #090910
 # Border
-set $color_br    #3a7c35
+set $color_br    #939ede
 # Black
-set $color0      #4d4d4d
-set $color8      #808080
+set $color0      #090910
+set $color8      #292d3e
 # Red
-set $color1      #f12d52
-set $color9      #f16d86
+set $color1      #f77669
+set $color9      #ff5370
 # Green
-set $color2      #09cd7e
-set $color10     #0ae78d
+set $color2      #8bd649
+set $color10     #c3e88d
 # Yellow
-set $color3      #f5f17a
-set $color11     #fffc67
+set $color3      #ffcb6b
+set $color11     #f1e655
 # Blue
-set $color4      #3182e0
-set $color12     #6096ff
+set $color4      #7986e7
+set $color12     #8eace3
 # Magenta
-set $color5      #ff2b6d
-set $color13     #ff78a2
+set $color5      #c792ea
+set $color13     #939ede
 # Cyan
-set $color6      #09c87a
-set $color14     #0ae78d
+set $color6      #82b1ff
+set $color14     #89ddff
 # White
-set $color7      #fcfcfc
-set $color15     #ffffff
+set $color7      #d9f55d
+set $color15     #eeffff
 
 ### Aesthetics
 

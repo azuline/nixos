@@ -10,23 +10,23 @@
 
 window#waybar {
   /* color: rgb(230, 229, 229); */
-  color: #fff;
-  background-color: rgba(13, 13, 23, 0.3);
+  color: #eeffff;
+  background-color: rgba(9, 9, 16, 0.3);
 }
 
 #workspaces button {
   padding: 0;
-  color: #fff;
-  background-color: rgba(13, 13, 23, 1);
+  color: #eeffff;
+  background-color: rgba(9, 9, 16, 1);
 }
 
 #workspaces button.focused {
-  color: #fff;
-  background-color: #3a7c35;
+  color: #292d3e;
+  background-color: #939ede;
 }
 
 #workspaces button.urgent {
-  color: #f16d86;
+  color: #ff5376;
 }
 
 #tray,
@@ -54,13 +54,13 @@ window#waybar {
 }
 
 #battery.warning {
-  color: rgba(255, 210, 4, 1);
+  color: #fae655;
 }
 
 #battery.critical {
-  color: rgba(238, 46, 36, 1);
+  color: #ff5370;
 }
 
 #battery.charging {
-  color: rgba(217, 216, 216, 1);
+  color: #eeffff;
 }

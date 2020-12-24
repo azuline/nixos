@@ -173,33 +173,33 @@ font:
 # Colors (Nocturnal Winter)
 # From https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/alacritty/Nocturnal%20Winter.yml
 colors:
-  bright:
-    black: '#808080'
-    blue: '#6096ff'
-    cyan: '#0ae78d'
-    green: '#0ae78d'
-    magenta: '#ff78a2'
-    red: '#f16d86'
-    white: '#ffffff'
-    yellow: '#fffc67'
-  cursor:
-    cursor: '#e6e5e5'
-    text: '#ffffff'
   normal:
-    black: '#4d4d4d'
-    blue: '#3182e0'
-    cyan: '#09c87a'
-    green: '#09cd7e'
-    magenta: '#ff2b6d'
-    red: '#f12d52'
-    white: '#fcfcfc'
-    yellow: '#f5f17a'
+    black: '#090910'
+    blue: '#7986e7'
+    cyan: '#82b1ff'
+    green: '#8bd649'
+    magenta: '#c792ea'
+    red: '#f77669'
+    white: '#d9f5dd'
+    yellow: '#ffcb6b'
+  bright:
+    black: '#292d3e'
+    blue: '#8eace3'
+    cyan: '#89ddff'
+    green: '#c3e88d'
+    magenta: '#939ede'
+    red: '#ff5370'
+    white: '#eeffff'
+    yellow: '#f1e655'
+  cursor:
+    cursor: '#ffffff'
+    text: '#eeffff'
   primary:
-    background: '#0d0d17'
-    foreground: '#e6e5e5'
+    background: '#090910'
+    foreground: '#eeffff'
   selection:
-    background: '#adbdd0'
-    text: '#000000'
+    background: '#bfc7d5'
+    text: '#424242'
 
 # Visual Bell
 #
