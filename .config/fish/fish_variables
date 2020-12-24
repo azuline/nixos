@@ -8,7 +8,7 @@ SETUVAR fish_color_autosuggestion:888888
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:brcyan
 SETUVAR fish_color_comment:yellow
-SETUVAR fish_color_cwd:normal
+SETUVAR fish_color_cwd:yellow
 SETUVAR fish_color_cwd_root:red
 SETUVAR fish_color_end:magenta
 SETUVAR fish_color_error:red
@@ -28,7 +28,7 @@ SETUVAR fish_color_status:red
 SETUVAR fish_color_suffix:normal
 SETUVAR fish_color_user:brcyan
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_color_vcs:cyan
+SETUVAR fish_color_vcs:normal
 SETUVAR fish_greeting:
 SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_pager_color_completion:normal
