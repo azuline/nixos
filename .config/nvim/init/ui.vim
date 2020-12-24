@@ -6,6 +6,7 @@
 " - a custom theme (palenight)
 " - a git gutter (signify)
 " - a filesystem explorer (nerdtree)
+" - active text highlighter (limelight)
 
 " Lightline
 " ---------
@@ -22,20 +23,22 @@ let g:lightline={
   \     'linter_infos': 'lightline#ale#infos',
   \     'linter_warnings': 'lightline#ale#warnings',
   \     'linter_errors': 'lightline#ale#errors',
-  \     'linter_ok': 'lightline#ale#ok'
+  \     'linter_ok': 'lightline#ale#ok',
+  \     'buffers': 'lightline#bufferline#buffers',
   \   },
   \   'component_type': {
   \     'linter_checking': 'right',
   \     'linter_infos': 'right',
   \     'linter_warnings': 'warning',
   \     'linter_errors': 'error',
-  \     'linter_ok': 'right'
+  \     'linter_ok': 'right',
+  \     'buffers': 'tabsel',
   \   },
   \   'active': {
   \     'left': [
   \       ['mode', 'paste'],
   \       ['readonly', 'filename', 'modified', 'helloworld'],
-  \       ['coc_status']
+  \       ['coc_status'],
   \     ],
   \     'right': [
   \       ['lineinfo'],
@@ -43,10 +46,18 @@ let g:lightline={
   \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
   \       ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
   \       ['fileformat', 'fileencoding', 'filetype'],
-  \     ]
-  \   }
+  \     ],
+  \   },
+  \   'tabline': {
+  \     'left': [
+  \       ['buffers'],
+  \     ],
+  \   },
   \ }
 call lightline#coc#register()
+
+let g:lightline#bufferline#show_number=2
+let g:lightline#bufferline#min_buffer_count=2
 
 " Palenight Theme
 " ---------------
@@ -86,3 +97,18 @@ endfu
 
 " Close Vim if only NERDTree is left.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Limelight
+" ---------
+
+" Configure Limelight colors.
+let g:limelight_conceal_ctermfg='gray'
+let g:limelight_conceal_ctermfg=246
+let g:limelight_conceal_guifg='Gray'
+let g:limelight_conceal_guifg='#949494'
+
+" Include extra surrounding paragraph.
+let g:limelight_paragraph_span=1
+
+au BufEnter *.md,*.mkd,*.markdown,*.tex,*.text
+  \ Limelight

@@ -26,6 +26,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'josa42/vim-lightline-coc'
+Plug 'mengelbrecht/lightline-bufferline'
 " File System Explorer
 Plug 'preservim/nerdtree'
 " Palenight Theme
@@ -69,21 +70,6 @@ call plug#end()
 
 " Miscellaneous Plugin Configuration
 " ==================================
-
-" Limelight
-" ----
-
-" Configure Limelight colors.
-let g:limelight_conceal_ctermfg='gray'
-let g:limelight_conceal_ctermfg=246
-let g:limelight_conceal_guifg='Gray'
-let g:limelight_conceal_guifg='#949494'
-
-" Include extra surrounding paragraph.
-let g:limelight_paragraph_span=1
-
-au BufEnter *.md,*.mkd,*.markdown,*.tex,*.text
-  \ Limelight
 
 " LaTeX
 " -----

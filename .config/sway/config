@@ -57,7 +57,7 @@ output * bg /etc/wallpaper.jpg fill
 
 # Window colors
 # class                 border    backgr    text      indicator  child_border
-client.focused          $color_br $color_br $color_fg $color_br  $color_br
+client.focused          $color_br $color_br $color_bg $color_br  $color_br
 client.focused_inactive $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.urgent           $color1   $color1   $color_fg $color1    $color1
