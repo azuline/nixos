@@ -1,5 +1,5 @@
 function upload_image
-	set response (curl -X POST -H "Content-Type:multipart/form-data" -H"Authorization:Token $SAFFRON_TOKEN" -F "upload=@$1" https://u.sunsetglow.net/upload)
+	set response (curl -X POST -H "Content-Type:multipart/form-data" -H"Authorization:Token $SAFFRON_TOKEN" -F "upload=@$argv[1]" https://u.sunsetglow.net/upload)
 	set image_url (echo $response | jq -r '.image_url')
 	echo
 	echo $image_url

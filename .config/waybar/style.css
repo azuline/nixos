@@ -11,7 +11,7 @@
 window#waybar {
   /* color: rgb(230, 229, 229); */
   color: #eeffff;
-  background-color: rgba(9, 9, 16, 0.3);
+  background-color: rgba(9, 9, 16, 0);
 }
 
 #workspaces button {
@@ -22,7 +22,7 @@ window#waybar {
 
 #workspaces button.focused {
   color: #292d3e;
-  background-color: #939ede;
+  background-color: #c792ea;
 }
 
 #workspaces button.urgent {
