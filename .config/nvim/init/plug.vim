@@ -62,8 +62,8 @@ Plug 'TaDaa/vimade'
 Plug 'junegunn/limelight.vim'
 " A personal wiki!
 Plug 'lervag/wiki.vim'
-" Bullet points (for Markdown), because the replacement Markdown plugins all
-" suck.
+" Bullet points (for Markdown), because the replacement Markdown
+" plugins all suck.
 Plug 'dkarter/bullets.vim'
 
 call plug#end()

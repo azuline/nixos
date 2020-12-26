@@ -20,7 +20,7 @@ for_window [app_id="^pavucontrol$"] floating enable
 set $color_fg    #eeffff
 set $color_bg    #090910
 # Border
-set $color_br    #ffcb6b
+set $color_br    #696969
 # Black
 set $color0      #090910
 set $color8      #292d3e
@@ -49,7 +49,7 @@ set $color15     #eeffff
 ### Aesthetics
 
 # Font
-font pango: fira mono 15
+font pango: source sans pro 15
 
 # Display/Wallpaper
 output * scale 1
@@ -57,7 +57,7 @@ output * bg /etc/wallpaper.jpg fill
 
 # Window colors
 # class                 border    backgr    text      indicator  child_border
-client.focused          $color_br $color_br $color_bg $color_br  $color_br
+client.focused          $color_br $color_br $color_fg $color_br  $color_br
 client.focused_inactive $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.urgent           $color1   $color1   $color_fg $color1    $color1
@@ -238,7 +238,7 @@ exec_always {
     gsettings set org.gnome.desktop.interface gtk-theme Nocturnal-Winter
     gsettings set org.gnome.desktop.interface icon-theme Adwaita
     gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-    gsettings set org.gnome.desktop.interface font-name Fira Sans 15
+    gsettings set org.gnome.desktop.interface font-name Source Sans Pro 15
 }
 
 ### Keyboard mappings
