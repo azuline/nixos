@@ -26,3 +26,6 @@ alias is='upload_image (/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\
 alias iu='upload_image'
 alias bs='bubblegum upload (/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")'
 alias bu='bubblegum upload'
+
+alias tn='tmux new -s'
+alias ta='tmux attach -t'

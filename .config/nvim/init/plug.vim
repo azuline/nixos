@@ -76,6 +76,7 @@ call plug#end()
 
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
+let g:vimtex_view_general_viewer='evince'
 
 " For vim-conceal.
 set conceallevel=2
