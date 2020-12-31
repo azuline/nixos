@@ -23,6 +23,6 @@ set -g PATH "$PATH:$HOME/.yarn/bin"
 set -g PATH "$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 set -g PATH "$PATH:$HOME/.git-fuzzy/bin"
 
-[ -f "/home/azul/.ghcup/env" ] && source "/home/azul/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 # . $HOME/.nix-profile/etc/profile.d/nix.sh
