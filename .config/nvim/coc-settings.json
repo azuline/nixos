@@ -57,7 +57,7 @@
         "package.yaml",
         "hie.yaml"
       ],
-      "filetypes": ["haskell", "lhaskell"]
+      "filetypes": ["hs", "lhs", "haskell", "lhaskell"]
     }
   }
 }
