@@ -1,9 +1,11 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR QT_QPA_PLATFORMTHEME:qt5ct
 SETUVAR __fish_initialized:3100
 SETUVAR _fisher_fischerling_2F_plugin_2D_wd_files:/home/azul/\x2econfig/fish/functions/wd\x2efish\x1e/home/azul/\x2econfig/fish/completions/wd\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/azul/\x2econfig/fish/functions/fisher\x2efish\x1e/home/azul/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1efischerling/plugin\x2dwd
+SETUVAR _fisher_oh_2D_my_2D_fish_2F_plugin_2D_bang_2D_bang_files:/home/azul/\x2econfig/fish/functions/__history_previous_command\x2efish\x1e/home/azul/\x2econfig/fish/functions/__history_previous_command_arguments\x2efish\x1e/home/azul/\x2econfig/fish/functions/key_bindings\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1efischerling/plugin\x2dwd\x1eoh\x2dmy\x2dfish/plugin\x2dbang\x2dbang
 SETUVAR fish_color_autosuggestion:888888
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:brcyan
@@ -34,5 +36,5 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/opt/fzf/bin
 SETUVAR fish_prompt_pwd_dir_length:0
+SETUVAR fish_user_paths:/opt/fzf/bin\x1e/home/azul/\x2eyarn/bin

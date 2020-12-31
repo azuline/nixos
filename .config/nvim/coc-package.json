@@ -9,6 +9,7 @@
     "coc-pyright": ">=1.1.95",
     "coc-rust-analyzer": ">=0.21.0",
     "coc-snippets": ">=2.3.1",
+    "coc-sql": ">=0.4.0",
     "coc-tailwindcss": ">=0.7.0",
     "coc-tsserver": ">=1.6.5",
     "coc-vimtex": ">=1.0.4"
