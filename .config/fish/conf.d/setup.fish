@@ -3,6 +3,8 @@ set -g XMODIFIERS @im-bus
 set -g QT_IM_MODULE ibus
 ibus-daemon -drx
 
+set -gx GPG_TTY (tty)
+
 # opam configuration
 # test -r /home/azul/.opam/opam-init/init.sh && . /home/azul/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
