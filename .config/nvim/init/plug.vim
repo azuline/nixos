@@ -56,8 +56,6 @@ Plug 'lervag/vimtex', {'tag': 'v1.6'}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 " Live LaTeX Previewer.
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-" Fade inactive splits.
-Plug 'TaDaa/vimade'
 " Dim in-active paragraphs.
 Plug 'junegunn/limelight.vim'
 " A personal wiki!
