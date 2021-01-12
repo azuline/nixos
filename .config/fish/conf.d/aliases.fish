@@ -6,6 +6,8 @@ function upload_image
 	echo $image_url | wl-copy
 end
 
+alias vim='nvim'
+
 alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'  # Emacs and cheese not allowed.
@@ -29,3 +31,5 @@ alias bu='bubblegum upload'
 
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
+
+alias zc='zotcli'
