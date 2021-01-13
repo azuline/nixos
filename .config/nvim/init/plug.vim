@@ -16,7 +16,7 @@ call plug#begin(stdpath('data').'/plugged')
 " Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
 " Linter and Fixer
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy Finder
@@ -54,10 +54,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " LaTeX!
 Plug 'lervag/vimtex', {'tag': 'v1.6'}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
-" Live LaTeX Previewer.
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-" Dim in-active paragraphs.
-Plug 'junegunn/limelight.vim'
 " A personal wiki!
 Plug 'lervag/wiki.vim'
 " Bullet points (for Markdown), because the replacement Markdown

@@ -97,18 +97,3 @@ endfu
 
 " Close Vim if only NERDTree is left.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Limelight
-" ---------
-
-" Configure Limelight colors.
-let g:limelight_conceal_ctermfg='gray'
-let g:limelight_conceal_ctermfg=246
-let g:limelight_conceal_guifg='Gray'
-let g:limelight_conceal_guifg='#949494'
-
-" Include extra surrounding paragraph.
-let g:limelight_paragraph_span=1
-
-au BufEnter *.md,*.mkd,*.markdown,*.tex,*.text
-  \ Limelight
