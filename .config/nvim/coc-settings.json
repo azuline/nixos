@@ -20,7 +20,9 @@
     "python",
     "html",
     "htmldjango",
-    "html.handlebars"
+    "html.handlebars",
+    "cpp",
+    "c"
   ],
   "html.filetypes": [
     "html",
