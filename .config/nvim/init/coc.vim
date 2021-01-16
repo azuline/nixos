@@ -33,3 +33,6 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Jump to definition
 nmap <silent> <C-]> <Plug>(coc-definition)
+
+" Fix (incl. add missing) Golang imports on save.
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
