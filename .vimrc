@@ -87,8 +87,8 @@ au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
 set spellcapcheck=
 
 " Trailing space highlighting
-highlight BadWhitespace ctermbg=red guibg=red
-au BufEnter * match BadWhitespace /\s\+$/
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au BufEnter * match ExtraWhitespace /\s\+$/
 
 " Reopen file to last read line
 if has("autocmd")

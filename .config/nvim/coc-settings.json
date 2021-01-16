@@ -22,7 +22,8 @@
     "htmldjango",
     "html.handlebars",
     "cpp",
-    "c"
+    "c",
+    "go"
   ],
   "html.filetypes": [
     "html",
