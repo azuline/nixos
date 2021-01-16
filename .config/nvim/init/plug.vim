@@ -16,7 +16,7 @@ call plug#begin(stdpath('data').'/plugged')
 " Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
 " Linter and Fixer
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 " LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy Finder

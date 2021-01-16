@@ -3,6 +3,8 @@ set -g XMODIFIERS @im-bus
 set -g QT_IM_MODULE ibus
 ibus-daemon -drx
 
+set -g TERM xterm-256color
+
 set -gx GPG_TTY (tty)
 set -g EDITOR nvim
 

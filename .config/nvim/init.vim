@@ -22,8 +22,8 @@ let g:configs = [
   \   'keybinds.vim',
   \   'ui.vim',
   \   'coc.vim',
+  \   'ale.vim',
   \ ]
-" \   'ale.vim',
 
 let g:nvim_root = expand('<sfile>:p:h')
 
