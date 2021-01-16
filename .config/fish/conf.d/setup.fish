@@ -4,14 +4,15 @@ set -g QT_IM_MODULE ibus
 ibus-daemon -drx
 
 set -gx GPG_TTY (tty)
+set -g EDITOR nvim
 
 # opam configuration
 # test -r /home/azul/.opam/opam-init/init.sh && . /home/azul/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
-set -g npm_config_prefix $HOME/.node_modules
-set -g GEM_HOME $HOME/.gems
-set -g TEXMFHOME $HOME/.texmf
-source $HOME/.cargo/env
+set -g npm_config_prefix "$HOME/.node_modules"
+set -g GEM_HOME "$HOME/.gems"
+set -g TEXMFHOME "$HOME/.texmf"
+source "$HOME/.cargo/env"
 
 set -g PATH "$PATH:$HOME/.poetry/bin"
 set -g PATH "$PATH:$HOME/.local/bin"
