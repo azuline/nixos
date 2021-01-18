@@ -72,10 +72,10 @@ au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.
   \ set shiftwidth=2
 
 " For certain C++ codebases.
-au BufEnter *.cpp,*.h
-  \ set tabstop=2 |
-  \ set softtabstop=2 |
-  \ set shiftwidth=2
+" au BufEnter *.cpp,*.h
+"   \ set tabstop=2 |
+"   \ set softtabstop=2 |
+"   \ set shiftwidth=2
 
 au BufEnter Makefile,makefile,*.php
   \ set noexpandtab
