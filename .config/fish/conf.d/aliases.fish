@@ -1,11 +1,3 @@
-function upload_image
-	set response (curl -X POST -H "Content-Type:multipart/form-data" -H"Authorization:Token $SAFFRON_TOKEN" -F "upload=@$argv[1]" https://u.sunsetglow.net/upload)
-	set image_url (echo $response | jq -r '.image_url')
-	echo
-	echo $image_url
-	echo $image_url | wl-copy
-end
-
 alias vim='nvim'
 
 alias ls='ls --color=auto --group-directories-first'
@@ -24,10 +16,10 @@ alias rscp='rsync -ah --progress'
 
 alias w='cd ~/notes; vim index.md'
 
-alias is='upload_image (/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")'
-alias iu='upload_image'
-alias bs='bubblegum upload (/bin/ls -d1t ~/images/scrots/* | head -n1 | tr -d \"\\n\")'
-alias bu='bubblegum upload'
+alias is='bubblegum upload (/bin/ls -d1t ~/images/scrots/* | head -n1)'
+alias iu='bubblegum upload'
+alias ims='bubblegum upload --host=imgur.com (/bin/ls -d1t ~/images/scrots/* | head -n1)'
+alias imu='bubblegum upload --host=imgur.com'
 
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
