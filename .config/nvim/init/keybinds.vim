@@ -31,7 +31,6 @@ tnoremap <Esc> <C-\><C-n>
 
 " Wiki
 " ----
-nnoremap <Leader>j :WikiJournal<CR>
 nnoremap ]w :WikiLinkNext<CR>
 nnoremap [w :WikiLinkPrev<CR>
 

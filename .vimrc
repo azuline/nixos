@@ -42,6 +42,10 @@ set formatoptions+=r
 " We don't want double spaces after punctuation since we are not a boomer.
 set nojoinspaces
 
+" Ignore case on all-lowercase searches, check case otherwise.
+set ignorecase
+set smartcase
+
 " Set leader keys
 nnoremap <Space> <nop>
 let mapleader = " "

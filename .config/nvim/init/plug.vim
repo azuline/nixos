@@ -59,6 +59,7 @@ Plug 'lervag/wiki.vim'
 " Bullet points (for Markdown), because the replacement Markdown
 " plugins all suck.
 Plug 'dkarter/bullets.vim'
+Plug 'fatih/vim-go'
 
 call plug#end()
 
@@ -116,3 +117,20 @@ let g:bullets_enabled_file_types = [
     \ 'gitcommit',
     \ 'scratch'
     \]
+
+" vim-go
+" ------
+
+
+" Go syntax highlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
+" Auto formatting and importing
+let g:go_fmt_autosave = 0
+
+" Status line types/signatures
+let g:go_auto_type_info = 1

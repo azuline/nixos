@@ -31,3 +31,11 @@ set -g PATH "$PATH:$HOME/.git-fuzzy/bin"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 # . $HOME/.nix-profile/etc/profile.d/nix.sh
+
+# GO configuration.
+set -g GOENV_ROOT "$HOME/.goenv"
+set -g PATH "$GOENV_ROOT/bin:$PATH"
+source (goenv init - | psub)
+set -g PATH "$GOROOT/bin:$PATH"
+set -g PATH "$PATH:$GOPATH/bin"
+
