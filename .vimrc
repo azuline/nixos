@@ -36,6 +36,9 @@ set wildmenu
 " Auto-reload files modified outside of vim.
 set autoread
 
+" Automatic comment continuation.
+set formatoptions+=r
+
 " We don't want double spaces after punctuation since we are not a boomer.
 set nojoinspaces
 
