@@ -4,6 +4,7 @@ alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'  # Emacs and cheese not allowed.
 alias gname='git config user.name; git config user.email'
+
 alias gupd='git add .; git commit -m update'
 alias gitlines='git ls-files | xargs -d "\n" wc -l'
 alias gst='git status'
@@ -11,6 +12,8 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gl='git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 alias gr='cd (git rev-parse --show-toplevel)'
+alias gb="git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate"
+alias gp="git push -u origin HEAD"
 
 alias rscp='rsync -ah --progress'
 
@@ -25,3 +28,5 @@ alias tn='tmux new -s'
 alias ta='tmux attach -t'
 
 alias zc='zotcli'
+
+alias grt="grep -v 'no test'"

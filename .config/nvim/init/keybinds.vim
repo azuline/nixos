@@ -36,9 +36,9 @@ nnoremap [w :WikiLinkPrev<CR>
 
 " Spellcheck
 " ----------
-" Bind <C-l> to automatically correct the previous word in insert & normal mode.
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-nnoremap <C-l> i<c-g>u<Esc>[s1z=`]a<c-g>u<Esc>
+" Bind <C-w> to automatically correct the previous word in insert & normal mode.
+inoremap <C-w> <c-g>u<Esc>[s1z=`]a<c-g>u
+nnoremap <C-w> i<c-g>u<Esc>[s1z=`]a<c-g>u<Esc>
 
 " Lightline
 " ---------
