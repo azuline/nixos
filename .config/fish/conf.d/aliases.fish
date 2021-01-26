@@ -10,10 +10,12 @@ alias gitlines='git ls-files | xargs -d "\n" wc -l'
 alias gst='git status'
 alias gd='git diff'
 alias gds='git diff --staged'
+alias gp='git push'
+alias gpo='git push -u origin HEAD'
 alias gl='git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 alias gr='cd (git rev-parse --show-toplevel)'
 alias gb="git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate"
-alias gp="git push -u origin HEAD"
+alias gfb='git fuzzy branch'
 
 alias rscp='rsync -ah --progress'
 
