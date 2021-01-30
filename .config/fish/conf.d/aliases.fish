@@ -19,7 +19,7 @@ alias gfb='git fuzzy branch'
 alias gcm='git commit -m'
 alias ga='git add'
 alias gc='git checkout'
-alias gl='git pull'
+alias gpl='git pull'
 
 alias rscp='rsync -ah --progress'
 
@@ -32,6 +32,7 @@ alias imu='bubblegum upload --host=imgur.com'
 
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
+alias tl='tmux ls'
 
 alias zc='zotcli'
 

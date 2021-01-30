@@ -23,7 +23,8 @@
     "html.handlebars",
     "cpp",
     "c",
-    "go"
+    "go",
+    "elixir"
   ],
   "html.filetypes": [
     "html",
