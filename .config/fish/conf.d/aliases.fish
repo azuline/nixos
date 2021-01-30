@@ -16,6 +16,10 @@ alias gl='git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(b
 alias gr='cd (git rev-parse --show-toplevel)'
 alias gb="git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate"
 alias gfb='git fuzzy branch'
+alias gcm='git commit -m'
+alias ga='git add'
+alias gc='git checkout'
+alias gl='git pull'
 
 alias rscp='rsync -ah --progress'
 
