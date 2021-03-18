@@ -189,14 +189,12 @@ bindsym $mod+shift+y exec alacritty -t yy -e bash -ic "~/.config/i3/shiftyy.sh"
 ### Screen Locker
 
 # Manual lock
-bindsym $mod+Escape exec swaylock
+bindsym $mod+Escape exec i3lock -i ~/.background-lock.png
 
 # Auto lock
-exec swayidle -w \
-         timeout 3000 swaylock \
-         timeout 6000 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         before-sleep swaylock
+# - xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+#   screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/.background-lock.png
 
 ### Notifications
 
@@ -224,9 +222,13 @@ bar {
 
 ### Initial Setup
 
-exec --no-startup-id /usr/bin/setxkbmap -option altwin:swap_lalt_lwin -option caps:escape_shifted_capslock
-exec --no-startup-id picom &
-exec --no-startup-id pulseaudio --start
-exec --no-startup-id blueman-applet &
-exec --no-startup-id nm-applet &
+# Configuration
 exec --no-startup-id feh --bg-fill ~/.background-image
+exec --no-startup-id /usr/bin/setxkbmap -option altwin:swap_lalt_lwin -option caps:escape_shifted_capslock
+exec --no-startup-id xinput set-prop "Microsoft Microsoft® Classic IntelliMouse®" "Coordinate Transformation Matrix" 3 0 0 0 3 0 0 0 1
+
+# Services
+exec --no-startup-id picom
+exec --no-startup-id pulseaudio --start
+exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
