@@ -13,7 +13,7 @@ fi
 filepath="${KNOW_DIR}/${selected}"
 
 if [[ "$filepath" == *.pdf ]]; then
-	setsid evince "$filepath" &
+	i3-msg -t command exec evince "$filepath"
 elif [[ "$filepath" == *.html ]]; then
-	setsid firefox "$filepath" &
+	i3-msg -t command exec firefox "$filepath"
 fi
