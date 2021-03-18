@@ -6,6 +6,10 @@
 set pastetoggle=<F2>
 nnoremap <Leader>p <F2>
 
+" vim-go stuff
+" ------------
+nnoremap gt :GoTestFunc<CR>
+
 " FZF commands
 " ------------
 nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>

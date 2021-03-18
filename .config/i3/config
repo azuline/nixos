@@ -1,0 +1,232 @@
+### Floating windows
+
+for_window [title="^launcher$"] floating enable
+for_window [title="^pass$"] floating enable
+for_window [title="^yy$"] floating enable
+for_window [id="^wpa_gui$"] floating enable
+
+# for_window [app_id="^evince$"] opacity 0.95
+
+### Idle inhibit windows
+
+# for_window [id="firefox"] inhibit_idle fullscreen
+
+### Colors - Nocturnal Winter (iTerm2 Color Scheme)
+
+# Background/Foreground/Cursor
+set $color_fg    #eeffff
+set $color_bg    #090910
+# Border
+set $color_br    #89ddff
+# Black
+set $color0      #090910
+set $color8      #292d3e
+# Red
+set $color1      #f77669
+set $color9      #ff5370
+# Green
+set $color2      #8bd649
+set $color10     #c3e88d
+# Yellow
+set $color3      #ffcb6b
+set $color11     #f1e655
+# Blue
+set $color4      #7986e7
+set $color12     #8eace3
+# Magenta
+set $color5      #c792ea
+set $color13     #939ede
+# Cyan
+set $color6      #82b1ff
+set $color14     #89ddff
+# White
+set $color7      #d9f55d
+set $color15     #eeffff
+
+### Aesthetics
+
+# Font
+font pango: source sans pro 12
+
+# Window colors
+# class                 border    backgr    text      indicator  child_border
+client.focused          $color_br $color_br $color_bg $color_br  $color_br
+client.focused_inactive $color_bg $color_bg $color_fg $color_bg  $color_bg
+client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
+client.urgent           $color1   $color1   $color_fg $color1    $color1
+
+# Window borders
+default_border              pixel   3
+default_floating_border     pixel   3
+
+# Gaps
+gaps inner 12
+gaps outer 4
+
+### Settings
+
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term alacritty
+
+### Keybinds
+
+# Open terminal
+bindsym $mod+Return exec $term
+
+# Kill window
+bindsym $mod+q kill
+
+# Drag windows
+# floating_modifier $mod normal
+
+# Reload sway
+bindsym $mod+Shift+c reload
+
+# Exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
+
+# Change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move windows
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Change workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move windows in between workspaces
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Change split focus
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Change layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Fullscreen window
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# Scratchpad: Sway has a "scratchpad", which is a bag of holding for windows.
+# Move window to scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show scratchpad windows
+bindsym $mod+minus scratchpad show
+
+### Resizing containers
+
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 25px
+    bindsym $down resize grow height 25px
+    bindsym $up resize shrink height 25px
+    bindsym $right resize grow width 25px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+### Application Launcher
+
+bindsym $mod+d exec alacritty -t launcher -e bash -ic "~/.config/i3/launcher.sh"
+
+### Password Copier
+
+bindsym $mod+p exec alacritty -t pass -e bash -ic "~/.config/i3/pass.sh"
+
+### Paper/Book Launcher
+
+bindsym $mod+y exec alacritty -t yy -e bash -ic "~/.config/i3/yy.sh"
+bindsym $mod+shift+y exec alacritty -t yy -e bash -ic "~/.config/i3/shiftyy.sh"
+
+### Screen Locker
+
+# Manual lock
+bindsym $mod+Escape exec swaylock
+
+# Auto lock
+exec swayidle -w \
+         timeout 3000 swaylock \
+         timeout 6000 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep swaylock
+
+### Notifications
+
+exec mako
+
+### GTK
+
+exec gsettings set org.gnome.desktop.interface gtk-theme Arc-dark
+exec gsettings set org.gnome.desktop.interface icon-theme Arc
+exec gsettings set org.gnome.desktop.interface cursor-theme Arc
+exec gsettings set org.gnome.desktop.interface font-name Source Sans Pro 12
+
+# Screenshots
+bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Shift+Print exec scrot ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+
+# Sound
+bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
+bindsym XF86AudioMute exec amixer sset Master toggle
+
+bar {
+        status_command i3status
+}
+
+### Initial Setup
+
+exec --no-startup-id /usr/bin/setxkbmap -option altwin:swap_lalt_lwin -option caps:escape_shifted_capslock
+exec --no-startup-id picom &
+exec --no-startup-id pulseaudio --start
+exec --no-startup-id blueman-applet &
+exec --no-startup-id nm-applet &
+exec --no-startup-id feh --bg-fill ~/.background-image
