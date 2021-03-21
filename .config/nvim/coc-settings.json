@@ -33,12 +33,6 @@
     "htmldjango",
     "blade"
   ],
-  "snippets.extends": {
-    "cpp": ["c"],
-    "javascriptreact": ["javascript", "javascript-jsdoc"],
-    "typescript": ["javascript", "javascript-jsdoc"],
-    "typescriptreact": ["typescript", "javascript", "javascript-jsdoc"]
-  },
   "eslint.autoFixOnSave": true,
   "html.autoClosingTags": true,
   "html.format.indentHandlebars": true,
@@ -47,7 +41,6 @@
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
   "python.analysis.typeCheckingMode": "off",
-  "pyright.disableOrganizeImports": true,
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.inlayHints.chainingHints": false,
   "languageserver": {

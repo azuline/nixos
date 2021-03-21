@@ -6,10 +6,7 @@ ibus-daemon -drx
 set -g TERM xterm-256color
 
 set -gx GPG_TTY (tty)
-set -g EDITOR nvim
-
-# opam configuration
-# test -r /home/azul/.opam/opam-init/init.sh && . /home/azul/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+set -gx EDITOR vim
 
 set -g npm_config_prefix "$HOME/.node_modules"
 set -g GEM_HOME "$HOME/.gems"
@@ -30,15 +27,6 @@ set -g PATH "$PATH:/var/lib/flatpak/exports/bin"
 
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
-# goenv configuration.
-set -g GOENV_ROOT "$HOME/.goenv"
-set -g PATH "$GOENV_ROOT/bin:$PATH"
-source (goenv init - | psub)
-set -g PATH "$GOROOT/bin:$PATH"
-set -g PATH "$PATH:$GOPATH/bin"
-set -g GOENV_GOPATH_PREFIX "$HOME/.go"
-set -g GOPATH "$HOME/.go"
-
 # Git fuzzy
 set -x PATH "$HOME/.git-fuzzy/bin:$PATH"
 
@@ -52,3 +40,12 @@ set -gx PATH "$PATH:$PYENV_ROOT/bin"
 if command -v pyenv 1>/dev/null 2>&1
   pyenv init - | source
 end
+
+# goenv configuration.
+set -g GOENV_ROOT "$HOME/.goenv"
+set -g PATH "$GOENV_ROOT/bin:$PATH"
+source (goenv init - | psub)
+set -g GOENV_GOPATH_PREFIX "$HOME/.go"
+set -g GOPATH "$HOME/.go"
+set -g PATH "$GOROOT/bin:$PATH"
+set -g PATH "$PATH:$GOPATH/bin"

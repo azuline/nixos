@@ -17,7 +17,7 @@ for_window [id="^wpa_gui$"] floating enable
 set $color_fg    #eeffff
 set $color_bg    #090910
 # Border
-set $color_br    #89ddff
+set $color_br    #5ba9eb
 # Black
 set $color0      #090910
 set $color8      #292d3e
@@ -46,7 +46,7 @@ set $color15     #eeffff
 ### Aesthetics
 
 # Font
-font pango: source sans pro 12
+font pango: roboto 11
 
 # Window colors
 # class                 border    backgr    text      indicator  child_border
@@ -60,7 +60,7 @@ default_border              pixel   3
 default_floating_border     pixel   3
 
 # Gaps
-gaps inner 12
+gaps inner 16
 gaps outer 4
 
 ### Settings
@@ -81,6 +81,7 @@ bindsym $mod+Return exec $term
 
 # Kill window
 bindsym $mod+q kill
+bindsym --release $mod+Shift+q exec xkill
 
 # Drag windows
 # floating_modifier $mod normal
@@ -189,36 +190,21 @@ bindsym $mod+shift+y exec alacritty -t yy -e bash -ic "~/.config/i3/shiftyy.sh"
 ### Screen Locker
 
 # Manual lock
-bindsym $mod+Escape exec i3lock -i ~/.background-lock.png
+bindsym $mod+Escape exec ~/.config/i3/lock.sh
 
 # Auto lock
 # - xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 #   screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/.background-lock.png
-
-### Notifications
-
-exec mako
-
-### GTK
-
-exec gsettings set org.gnome.desktop.interface gtk-theme Arc-dark
-exec gsettings set org.gnome.desktop.interface icon-theme Arc
-exec gsettings set org.gnome.desktop.interface cursor-theme Arc
-exec gsettings set org.gnome.desktop.interface font-name Source Sans Pro 12
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh --nofork
 
 # Screenshots
 bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
 bindsym --release Shift+Print exec scrot ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
 
 # Sound
-bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
-bindsym XF86AudioMute exec amixer sset Master toggle
-
-bar {
-        status_command i3status
-}
+# bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
+# bindsym XF86AudioMute exec amixer sset Master toggle
 
 ### Initial Setup
 
@@ -232,3 +218,4 @@ exec --no-startup-id picom
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
+exec --no-startup-id polybar bottom
