@@ -67,11 +67,8 @@ set formatoptions+=t
 au BufEnter *.txt,*.py,*.rst,*.c,*.md,*.mkd,*.markdown,*.tex
   \ set textwidth=79
 
-au BufEnter *.py,*.hs
+au BufEnter *.py,*.hs,*.ts,*.tsx,*.js,*.jsx
   \ set textwidth=88
-
-au BufEnter *.ts,*.tsx,*.js,*.jsx
-  \ set textwidth=100
 
 au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim,*.hbs,*.rkt,*.hs
   \ set tabstop=2 |

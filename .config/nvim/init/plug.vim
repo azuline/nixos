@@ -59,6 +59,7 @@ Plug 'lervag/wiki.vim'
 " Bullet points (for Markdown), because the replacement Markdown
 " plugins all suck.
 Plug 'dkarter/bullets.vim'
+" Golang!!!
 Plug 'fatih/vim-go'
 
 call plug#end()

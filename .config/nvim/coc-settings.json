@@ -40,9 +40,10 @@
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
-  "python.analysis.typeCheckingMode": "off",
+  "pyright.organizeimports.provider": "isort",
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.inlayHints.chainingHints": false,
+  "tailwindCSS.headwind.runOnSave": false,
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
