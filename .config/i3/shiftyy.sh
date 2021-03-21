@@ -13,7 +13,7 @@ fi
 filepath="${BOOK_DIR}/${selected}"
 
 if [[ "$filepath" == *.pdf ]]; then
-	i3-msg -t command exec evince "$filepath"
+	i3-msg -t command exec "\"evince '${filepath}'\""
 elif [[ "$filepath" == *.epub ]] || [[ "$filepath" == *.azw3 ]]; then
-	i3-msg -t command exec foliate "$filepath"
+	i3-msg -t command exec "\"foliate '${filepath}'\""
 fi

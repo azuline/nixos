@@ -56,8 +56,10 @@ client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.urgent           $color1   $color1   $color_fg $color1    $color1
 
 # Window borders
-default_border              pixel   3
-default_floating_border     pixel   3
+default_border               pixel   3
+default_floating_border      pixel   3
+# Force borders for all windows.
+for_window [class=.*] border pixel   3
 
 # Gaps
 gaps inner 16

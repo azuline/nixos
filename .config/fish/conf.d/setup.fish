@@ -4,6 +4,7 @@ set -g QT_IM_MODULE ibus
 ibus-daemon -drx
 
 set -g TERM xterm-256color
+set -gx QT_QPA_PLATFORMTHEME qt5ct
 
 set -gx GPG_TTY (tty)
 set -gx EDITOR vim
@@ -29,10 +30,6 @@ set -g PATH "$PATH:/var/lib/flatpak/exports/bin"
 
 # Git fuzzy
 set -x PATH "$HOME/.git-fuzzy/bin:$PATH"
-
-# gotestsum
-alias gs='gotestsum -- -count=1 -race ./...'
-alias gsr='gs -run'
 
 # pyenv
 set -gx PYENV_ROOT "$HOME/.pyenv"

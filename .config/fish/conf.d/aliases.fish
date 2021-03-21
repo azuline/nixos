@@ -36,4 +36,6 @@ alias tl='tmux ls'
 
 alias zc='zotcli'
 
-alias grt="grep -v 'no test'"
+# gotestsum
+alias gs='gotestsum -- -count=1 -race ./...'
+alias gsr='gs -run'
