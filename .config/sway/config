@@ -20,7 +20,7 @@ for_window [app_id="^pavucontrol$"] floating enable
 set $color_fg    #eeffff
 set $color_bg    #090910
 # Border
-set $color_br    #696969
+set $color_br    #5ba9eb
 # Black
 set $color0      #090910
 set $color8      #292d3e
