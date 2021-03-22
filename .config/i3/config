@@ -189,16 +189,6 @@ bindsym $mod+p exec alacritty -t pass -e bash -ic "~/.config/i3/pass.sh"
 bindsym $mod+y exec alacritty -t yy -e bash -ic "~/.config/i3/yy.sh"
 bindsym $mod+shift+y exec alacritty -t yy -e bash -ic "~/.config/i3/shiftyy.sh"
 
-### Screen Locker
-
-# Manual lock
-bindsym $mod+Escape exec ~/.config/i3/lock.sh
-
-# Auto lock
-# - xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-#   screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh --nofork
-
 # Screenshots
 bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
 bindsym --release Shift+Print exec scrot ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
@@ -207,6 +197,15 @@ bindsym --release Shift+Print exec scrot ~/images/scrots/$(date +%Y-%m-%d_%H:%M:
 # bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
 # bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
 # bindsym XF86AudioMute exec amixer sset Master toggle
+
+### Screen Locker
+
+# Auto lock
+# xss-lock grabs a logind suspend inhibit lock and will lock the screen before suspend.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh --nofork
+
+# Manual lock
+bindsym $mod+Escape exec loginctl lock-session
 
 ### Initial Setup
 

@@ -21,13 +21,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-function upload_image() {
-	response=$(curl -X POST -H "Content-Type:multipart/form-data" -H"Authorization:Token $SAFFRON_TOKEN" -F "upload=@$1" https://u.sunsetglow.net/upload)
-	image_url=$(echo $response | jq -r '.image_url')
-	echo
-	echo $image_url
-	echo $image_url | wl-copy
-}
+# Prepend /usr/local/bin so everything there registers first. This lets us
+# override other binaries with custom scripts.
+export PATH="$HOME/.local/bin:$PATH"
 
 export GPG_TTY=$(tty)
 export EDITOR=vim
@@ -41,9 +37,7 @@ alias l='ls -lh'
 alias la='ls -lah'
 
 alias vim='nvim'
-
 alias grep='grep --color=auto'
-
 alias info='info --vi-keys'  # Emacs and cheese not allowed.
 
 alias gname='git config user.name; git config user.email'
@@ -59,14 +53,12 @@ alias gl='git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(b
 alias gr='cd (git rev-parse --show-toplevel)'
 alias gb="git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate"
 alias gfb='git fuzzy branch'
-alias gcm='git commit -m'
 alias ga='git add'
-alias gc='git checkout'
+alias gc='git commit'
+alias gco='git checkout'
 alias gpl='git pull'
-
-alias rscp='rsync -ah --progress'
-
-alias w='cd ~/notes; vim index.md'
+alias gr='git rebase'
+alias gm='git merge'
 
 alias is='bubblegum upload $(/bin/ls -d1t ~/images/scrots/* | head -n1)'
 alias iu='bubblegum upload'
@@ -77,15 +69,9 @@ alias tn='tmux new -s'
 alias ta='tmux attach -t'
 alias tl='tmux ls'
 
-alias zc='zotcli'
-
-alias grt="grep -v 'no test'"
-
 alias rscp='rsync -ah --progress'
-
 alias w='cd ~/notes; vim index.md'
-
-[ -f /opt/.fzf.bash ] && source /opt/.fzf.bash
+alias zc='zotcli'
 
 parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`

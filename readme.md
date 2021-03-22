@@ -1,11 +1,13 @@
 my configuration files
 
-computers:
+## computers
 
-- desktop - i3
-- laptop - sway
+- desktop - i3 (X11)
+- laptop - sway (Wayland)
 
-coc vim plugins:
+## vim
+
+### coc.nvim
 
 - coc-css
 - coc-elixir

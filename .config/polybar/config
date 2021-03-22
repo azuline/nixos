@@ -99,7 +99,7 @@ label-urgent-padding = 4
 type = internal/cpu
 interval = 2
 format-prefix = " "
-label = %percentage:2%%
+label = %percentage-sum:2%%
 
 [module/memory]
 type = internal/memory
