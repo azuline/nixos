@@ -1,12 +1,17 @@
 { config, pkgs, ... }:
 
+# Some packages are installed outside of Nix, just because I can't get them to work.
+# - rofi (starting evolution via nix rofi spawned glibc issues)
+# - evolution (i have a custom tray plugin and idk how to do it in nixos)
+# - calibre (in nixos i just got errors firing it up)
+
+# TODO:
+# - Add `--use-tray-icon` to signal's *.desktop (add a sed into installPHase)?
+
 let
-  stable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/20.09)
-    { config = config.nixpkgs.config; };
+  stable = import <stable> {};
 in
 {
-  nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
 
   home.username = "blissful";
@@ -24,27 +29,21 @@ in
   services.keybase.enable = true;
   services.kbfs.enable = true;
 
-  ## Packages
+  ### Packages
 
-  programs.bash.enable = true;
   programs.fish.enable = true;
 
   home.packages = with pkgs; [
     autossh
-    keybase-gui
-    spotify
-    slack
     jq
+    keybase-gui
+    polybarFull
+    signal-desktop
+    slack
+    spotify
     tdesktop
+    zoom
     zotero
     stable.discord
-    zoom
-    rofi
-    signal-desktop
   ];
-
-  ### Fixes
-  
-  # Fixes locale for rofi.
-  home.sessionVariables.LOCALES_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
 }

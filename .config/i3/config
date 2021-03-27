@@ -178,7 +178,8 @@ bindsym $mod+r mode "resize"
 
 ### Application Launcher
 
-bindsym $mod+d exec /home/blissful/.nix-profile/bin/rofi -show drun
+# Need to wrap rofi with bash for NixOS
+bindsym $mod+d exec bash -ic 'rofi -show drun'
 
 ### Password Copier
 
@@ -216,7 +217,6 @@ exec --no-startup-id xinput set-prop "Microsoft Microsoft® Classic IntelliMouse
 
 # Services
 exec --no-startup-id picom
-exec --no-startup-id pulseaudio --start
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id polybar bottom
