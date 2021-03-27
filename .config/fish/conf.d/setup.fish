@@ -49,3 +49,6 @@ set -g GOENV_GOPATH_PREFIX "$HOME/.go"
 set -g GOPATH "$HOME/.go"
 set -g PATH "$GOROOT/bin:$PATH"
 set -g PATH "$PATH:$GOPATH/bin"
+
+# nixos applications
+set -g XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"

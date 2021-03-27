@@ -178,7 +178,7 @@ bindsym $mod+r mode "resize"
 
 ### Application Launcher
 
-bindsym $mod+d exec alacritty -t launcher -e bash -ic "~/.config/i3/launcher.sh"
+bindsym $mod+d exec /home/blissful/.nix-profile/bin/rofi -show drun
 
 ### Password Copier
 

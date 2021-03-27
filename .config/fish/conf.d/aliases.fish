@@ -20,7 +20,7 @@ alias ga='git add'
 alias gc='git commit'
 alias gco='git checkout'
 alias gpl='git pull'
-alias gr='git rebase'
+alias gre='git rebase'
 alias gm='git merge'
 
 alias rscp='rsync -ah --progress'

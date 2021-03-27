@@ -172,7 +172,7 @@ font:
 
 colors:
   normal:
-    black: '#090910'
+    black: '#48487c'
     blue: '#7986e7'
     cyan: '#82b1ff'
     green: '#8bd649'
@@ -181,7 +181,7 @@ colors:
     white: '#d9f5dd'
     yellow: '#ffcb6b'
   bright:
-    black: '#292d3e'
+    black: '#697196'
     blue: '#8eace3'
     cyan: '#89ddff'
     green: '#c3e88d'
