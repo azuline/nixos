@@ -4,12 +4,19 @@
 # - rofi (starting evolution via nix rofi spawned glibc issues)
 # - evolution (i have a custom tray plugin and idk how to do it in nixos)
 # - calibre (in nixos i just got errors firing it up)
+# - alsa-utils (shared library error?)
 
 # TODO:
 # - Add `--use-tray-icon` to signal's *.desktop (add a sed into installPHase)?
 
 let
   stable = import <stable> {};
+  signalWithTray = pkgs.signal-desktop.overrideAttrs (oldAttrs: rec {
+    preFixup = oldAttrs.preFixup + ''
+      substituteInPlace $out/share/applications/signal-desktop.desktop \
+        --replace bin/signal-desktop 'bin/signal-desktop --use-tray-icon'
+    '';
+  });
 in
 {
   programs.home-manager.enable = true;
@@ -32,18 +39,23 @@ in
   ### Packages
 
   programs.fish.enable = true;
+  fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     autossh
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     jq
     keybase-gui
     polybarFull
-    signal-desktop
+    signalWithTray
     slack
     spotify
     tdesktop
     zoom
     zotero
     stable.discord
+    twitter-color-emoji
   ];
 }

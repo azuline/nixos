@@ -195,9 +195,9 @@ bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%
 bindsym --release Shift+Print exec scrot ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
 
 # Sound
-# bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
-# bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
-# bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
+bindsym XF86AudioMute exec amixer sset Master toggle
 
 ### Screen Locker
 
