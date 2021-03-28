@@ -38,6 +38,15 @@ in
   services.keybase.enable = true;
   services.kbfs.enable = true;
 
+  services.polybar = {
+    enable = true;
+    package = pkgs.polybarFull;
+    config = ./polybar/config.ini;
+    script = ''
+      polybar bottom &
+    '';
+  };
+
   ### Packages
 
   programs.fish.enable = true;
@@ -51,7 +60,6 @@ in
     autossh
     jq
     keybase-gui
-    polybarFull
     signalWithTray
     slack
     spotify

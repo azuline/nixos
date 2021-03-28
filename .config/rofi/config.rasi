@@ -67,7 +67,7 @@ configuration {
 /*	display-windowcd: ;*/
 /*	display-run: ;*/
 /*	display-ssh: ;*/
-/*	display-drun: ;*/
+	display-drun: "Launch";
 /*	display-combi: ;*/
 /*	display-keys: ;*/
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
