@@ -5,6 +5,9 @@
 # - evolution (i have a custom tray plugin and idk how to do it in nixos)
 # - calibre (in nixos i just got errors firing it up)
 # - alsa-utils (shared library error?)
+# - foliate (not in nixpkgs)
+#   - can install via flatpak, but need to enable filesystem access for cli to work properly
+#   - sudo flatpak override com.github.johnfactotum.Foliate --filesystem=host
 
 # TODO:
 # - Add `--use-tray-icon` to signal's *.desktop (add a sed into installPHase)?
@@ -27,9 +30,8 @@ in
 
   ### Nix Shit
 
-  # Enables direnv
-  # programs.direnv.enable = true;
-  # programs.direnv.enableNixDirenvIntegration = true;
+  programs.direnv.enable = true;
+  programs.direnv.enableNixDirenvIntegration = true;
 
   ### Services
 
@@ -42,10 +44,11 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    # Stable Overrides
+    stable.discord
+
+    # Packages
     autossh
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
     jq
     keybase-gui
     polybarFull
@@ -55,7 +58,12 @@ in
     tdesktop
     zoom
     zotero
-    stable.discord
+
+    # Fonts
+    font-awesome
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     twitter-color-emoji
   ];
 }

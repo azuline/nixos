@@ -188,7 +188,6 @@ bindsym $mod+p exec alacritty -t pass -e bash -ic "~/.config/i3/pass.sh"
 ### Paper/Book Launcher
 
 bindsym $mod+y exec alacritty -t yy -e bash -ic "~/.config/i3/yy.sh"
-bindsym $mod+shift+y exec alacritty -t yy -e bash -ic "~/.config/i3/shiftyy.sh"
 
 # Screenshots
 bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
