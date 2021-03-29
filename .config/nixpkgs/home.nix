@@ -48,7 +48,7 @@ in
     slack
     spotify
     tdesktop
-    zoom
+    zoom-us
     zotero
 
     # Overrides

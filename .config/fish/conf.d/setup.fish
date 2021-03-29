@@ -52,3 +52,6 @@ set -g PATH "$PATH:$GOPATH/bin"
 
 # nixos applications
 set -g XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+
+# This is a fix for zoom.
+export QT_XCB_GL_INTEGRATION=none
