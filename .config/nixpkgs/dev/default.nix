@@ -6,6 +6,8 @@
 
   programs.fish.enable = true;
 
+  programs.go.enable = true;
+
   home.packages = with pkgs; [
     autossh
     jq

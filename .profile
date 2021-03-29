@@ -10,9 +10,6 @@
 
 export GTK_THEME=Plata-Noir-Compact
 
-# This is a fix for zoom.
-export QT_XCB_GL_INTEGRATION=none
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists

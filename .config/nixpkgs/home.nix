@@ -8,6 +8,7 @@
 # - evolution (i have a custom tray plugin and idk how to do it in nixos)
 # - calibre (in nixos i just got errors firing it up)
 # - alsa-utils (shared library error?)
+# - zoom (video doesn't work and needs some extra QT envvar...)
 # - foliate (not in nixpkgs)
 #   - can install via flatpak, but need to enable filesystem access for cli to work properly
 #   - sudo flatpak override com.github.johnfactotum.Foliate --filesystem=host
