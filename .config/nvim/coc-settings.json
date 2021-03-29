@@ -1,49 +1,50 @@
 {
   "diagnostic.displayByAle": false,
-  "coc.preferences.rootPatterns": [
-    ".git",
-    "pyproject.toml",
-    "setup.py",
-    ".env",
-    "package.json",
-    "stack.yaml"
-  ],
-  "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdown",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "rust",
-    "python",
-    "html",
-    "htmldjango",
-    "html.handlebars",
-    "cpp",
-    "c",
-    "go",
-    "elixir"
-  ],
-  "html.filetypes": [
-    "html",
-    "html.handlebars",
-    "handlebars",
-    "htmldjango",
-    "blade"
-  ],
   "eslint.autoFixOnSave": true,
   "html.autoClosingTags": true,
   "html.format.indentHandlebars": true,
+  "pyright.organizeimports.provider": "isort",
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
-  "pyright.organizeimports.provider": "isort",
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.inlayHints.chainingHints": false,
   "tailwindCSS.headwind.runOnSave": false,
+  "coc.preferences.rootPatterns": [
+    ".env",
+    ".git",
+    "package.json",
+    "pyproject.toml",
+    "setup.py",
+    "stack.yaml"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
+    "css",
+    "elixir",
+    "go",
+    "html",
+    "htmldjango",
+    "html.handlebars",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "markdown",
+    "nix",
+    "python",
+    "rust",
+    "typescript",
+    "typescriptreact"
+  ],
+  "html.filetypes": [
+    "blade",
+    "handlebars",
+    "html",
+    "htmldjango",
+    "html.handlebars"
+  ],
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
@@ -66,6 +67,10 @@
           "directory": "/tmp/ccls"
         }
       }
-		}
+		},
+    "nix": {
+      "command": "rnix-lsp",
+      "filetypes": ["nix"]
+    }
   }
 }
