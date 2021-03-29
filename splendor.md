@@ -3,3 +3,4 @@
   ```
   XKBOPTIONS="altwin:swap_lalt_lwin,caps:escape_shifted_capslock"
   ```
+- evolution with `evolution-on` plugin for tray
