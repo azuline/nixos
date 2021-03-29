@@ -164,10 +164,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 25px
-    bindsym $down resize grow height 25px
-    bindsym $up resize shrink height 25px
-    bindsym $right resize grow width 25px
+    bindsym $left resize shrink width 50px
+    bindsym $down resize grow height 50px
+    bindsym $up resize shrink height 50px
+    bindsym $right resize grow width 50px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -211,11 +211,10 @@ bindsym $mod+Escape exec loginctl lock-session
 
 # Configuration
 exec --no-startup-id feh --bg-fill ~/.background-image
-exec --no-startup-id /usr/bin/setxkbmap -option altwin:swap_lalt_lwin -option caps:escape_shifted_capslock
-exec --no-startup-id xinput set-prop "Microsoft Microsoft® Classic IntelliMouse®" "Coordinate Transformation Matrix" 3 0 0 0 3 0 0 0 1
 
 # Services
 exec --no-startup-id picom
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
+# We shouldn't need this, but the systemd service starts too early right now...
 exec --no-startup-id polybar bottom
