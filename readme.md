@@ -1,15 +1,15 @@
-my configuration files
+My configuration files.
 
-## setup
+## Setup
 
 Symlink the desired dotfiles to the appropriate locations.
 
-### fish
+### Fish
 
 Install the [fisher](https://github.com/jorgebucaran/fisher) plugin manager and
 install the listed plugins. Not sure of the exact process right now.
 
-### nixpkgs
+### Nixpkgs
 
 Some programs and configurations are managed through home-manager. Set up the
 unstable channels of [nixpkgs](https://nixos.org/download.html) and
@@ -25,7 +25,7 @@ Add the stable channel with:
 nix-channel --add https://nixos.org/channels/nixos-20.09 stable
 ```
 
-#### opengl
+#### OpenGL
 
 If not on NixOS, install the wrappers in: https://github.com/guibou/nixGL.
 
@@ -43,20 +43,20 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
   - can install via flatpak, but need to enable filesystem access for cli to work properly
   - `sudo flatpak override com.github.johnfactotum.Foliate --filesystem=host`
 
-## computers
+## Computers
 
-### splendor
+### Splendor
 
 - OS: debian
 - WM: i3
 - Shell: fish
 
-#### changes
+#### Changes
 
 - Use evdev over libinput.
 - `/etc/default/keyboard` contains `XKBOPTIONS="altwin:swap_lalt_lwin,caps:escape_shifted_capslock"`
 
-### tranquility
+### Tranquility
 
 - OS: debian
 - DE: sway
