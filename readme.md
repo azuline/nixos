@@ -28,7 +28,8 @@ nix-channel --add https://nixos.org/channels/nixos-20.09 stable
 Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
 - rofi (starting evolution via nixpkgs rofi created glibc issues)
-- evolution (i have a custom tray plugin... not in nixos)
+- evolution (i have a plugin... it is not in nixos)
+  - `evolution-on` tray plugin
 - calibre (just got errors firing it up)
 - alsa-utils (got some shared library error)
 - zoom (video doesn't work and needs some extra QT envvar)
@@ -40,7 +41,13 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
 ### splendor
 
-WM: i3
+- OS: debian
+- WM: i3
+
+#### changes
+
+- Use evdev over libinput.
+- `/etc/default/keyboard` contains `XKBOPTIONS="altwin:swap_lalt_lwin,caps:escape_shifted_capslock"`
 
 ### tranquility
 
