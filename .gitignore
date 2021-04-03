@@ -1,3 +1,6 @@
 .netrwhist
 .config/nvim/spell
 .config/fish/conf.d/secrets.fish
+
+# NixOS generated files.
+.config/fish/config.fish
