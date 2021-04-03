@@ -5,13 +5,11 @@ for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
 for_window [id="^wpa_gui$"] floating enable
 
-# for_window [app_id="^evince$"] opacity 0.95
-
 ### Idle inhibit windows
 
 # for_window [id="firefox"] inhibit_idle fullscreen
 
-### Colors - Nocturnal Winter (iTerm2 Color Scheme)
+### Colors
 
 # Background/Foreground/Cursor
 set $color_fg    #eeffff
