@@ -80,7 +80,7 @@ SETUVAR pure_symbol_git_stash:\u2261
 SETUVAR pure_symbol_git_unpulled_commits:\u21e3
 SETUVAR pure_symbol_git_unpushed_commits:\u21e1
 SETUVAR pure_symbol_prefix_root_prompt:\x23
-SETUVAR pure_symbol_prompt:\u276f
+SETUVAR pure_symbol_prompt:\x24
 SETUVAR pure_symbol_reverse_prompt:\u276e
 SETUVAR pure_symbol_title_bar_separator:\x2d
 SETUVAR pure_threshold_command_duration:5
