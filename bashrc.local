@@ -21,12 +21,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Prepend /usr/local/bin so everything there registers first. This lets us
-# override other binaries with custom scripts.
-export PATH="$HOME/.local/bin:$PATH"
-
-export GPG_TTY=$(tty)
-export EDITOR=vim
 export PS1="\[\e[96m\]\u\[\e[m\]@\[\e[96m\]\h\[\e[m\] \[\e[93m\]\w\[\e[m\] \[\e[92m\]\`parse_git_branch\`\[\e[m\]"
 
 # Allows us to use aliases with sudo.

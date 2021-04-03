@@ -72,12 +72,10 @@ set $down j
 set $up k
 set $right l
 
-set $term alacritty
-
 ### Keybinds
 
 # Open terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec bash -ic alacritty
 
 # Kill window
 bindsym $mod+q kill
@@ -215,4 +213,4 @@ exec --no-startup-id picom
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 # We shouldn't need this, but the systemd service starts too early right now...
-exec --no-startup-id /home/blissful/.nix-profile/bin/polybar bottom
+exec --no-startup-id bash -ic polybar bottom

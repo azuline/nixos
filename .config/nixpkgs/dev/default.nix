@@ -19,6 +19,7 @@
     fd
     bat
     fzf
+    nnn
     rnix-lsp
   ];
 }

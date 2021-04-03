@@ -25,6 +25,12 @@ Add the stable channel with:
 nix-channel --add https://nixos.org/channels/nixos-20.09 stable
 ```
 
+#### opengl
+
+If not on NixOS, install the wrappers in: https://github.com/guibou/nixGL.
+
+#### broken
+
 Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
 - rofi (starting evolution via nixpkgs rofi created glibc issues)
@@ -43,6 +49,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
 - OS: debian
 - WM: i3
+- Shell: fish
 
 #### changes
 
@@ -51,4 +58,6 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
 ### tranquility
 
-DE: sway
+- OS: debian
+- DE: sway
+- Shell: fish
