@@ -11,6 +11,7 @@ in
 
   home.packages = with pkgs; [
     firefox
+    mpv
     slack
     spotify
     tdesktop
