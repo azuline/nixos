@@ -1,6 +1,25 @@
 " CoC LSP Client
 " ==============
 
+let g:coc_global_extensions = [
+\ 'coc-json', 
+\ 'coc-css',
+\ 'coc-elixir',
+\ 'coc-eslint',
+\ 'coc-fish',
+\ 'coc-go',
+\ 'coc-html',
+\ 'coc-json',
+\ 'coc-prettier',
+\ 'coc-pyright',
+\ 'coc-rust-analyzer',
+\ 'coc-snippets',
+\ 'coc-sql',
+\ 'coc-tailwindcss',
+\ 'coc-tsserver',
+\ 'coc-vimtex',
+\ ]
+
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
