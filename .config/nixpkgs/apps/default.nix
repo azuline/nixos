@@ -5,8 +5,10 @@ let
 in
 {
   imports = [
+    ./alacritty
     ./keybase
     ./signal
+    ./tmux
   ];
 
   home.packages = with pkgs; [
