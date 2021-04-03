@@ -7,6 +7,7 @@ in
   imports = [
     ./keybase
     ./signal
+    ./tmux
   ];
 
   home.packages = with pkgs; [
