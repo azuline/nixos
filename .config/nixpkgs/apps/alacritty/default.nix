@@ -1,20 +1,26 @@
 { pkgs, ... }:
 
 let
-  # TODO: Inject the name for the GL wrapper per-computer.
-  wrapped = pkgs.writeScriptBin "alacritty" ''
+  # TODO: Inject the GL wrapper per-computer.
+  nixGLNvidia = (
+    pkgs.callPackage "${builtins.fetchTarball {
+      url = https://github.com/guibou/nixGL/archive/17c1ec63b969472555514533569004e5f31a921f.tar.gz;
+      sha256 = "0yh8zq746djazjvlspgyy1hvppaynbqrdqpgk447iygkpkp3f5qr";
+    }}/nixGL.nix" {}
+  ).nixGLNvidia;
+  wrappedAlacritty = pkgs.writeScriptBin "alacritty" ''
     #!${pkgs.stdenv.shell}
-    exec nixGLNvidia ${pkgs.alacritty}/bin/alacritty
+    ${nixGLNvidia}/bin/nixGLNvidia ${pkgs.alacritty}/bin/alacritty "$@"
   '';
-  myAlacritty = pkgs.symlinkJoin {
-    name = "alacritty";
-    paths = [ wrapped pkgs.alacritty ];
-  };
 in
 {
   programs.alacritty = {
     enable = true;
-    package = myAlacritty;
+    package =
+      pkgs.symlinkJoin {
+        name = "alacritty";
+        paths = [ wrappedAlacritty pkgs.alacritty ];
+      };
     settings = {
       window = {
         padding = {

@@ -72,10 +72,12 @@ set $down j
 set $up k
 set $right l
 
+set $term /home/blissful/.nix-profile/bin/alacritty
+
 ### Keybinds
 
 # Open terminal
-bindsym $mod+Return exec bash -ic alacritty
+bindsym $mod+Return exec $term
 
 # Kill window
 bindsym $mod+q kill
@@ -179,11 +181,11 @@ bindsym $mod+d exec bash -ic 'rofi -show drun'
 
 ### Password Copier
 
-bindsym $mod+p exec alacritty -t pass -e bash -ic "~/.config/i3/pass.sh"
+bindsym $mod+p exec $term -t pass -e bash -ic "~/.config/i3/pass.sh"
 
 ### Paper/Book Launcher
 
-bindsym $mod+y exec alacritty -t yy -e bash -ic "~/.config/i3/yy.sh"
+bindsym $mod+y exec $term -t yy -e bash -ic "~/.config/i3/yy.sh"
 
 # Screenshots
 bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
@@ -213,4 +215,4 @@ exec --no-startup-id picom
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 # We shouldn't need this, but the systemd service starts too early right now...
-exec --no-startup-id bash -ic polybar bottom
+exec --no-startup-id /home/blissful/.nix-profile/bin/polybar bottom
