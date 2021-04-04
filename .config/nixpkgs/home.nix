@@ -9,8 +9,8 @@
 
   imports = [
     ./apps
+    ./dev
     ./fonts
     ./wm
-    ./dev
   ];
 }

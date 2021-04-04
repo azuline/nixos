@@ -39,6 +39,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 - calibre (just got errors firing it up)
 - alsa-utils (got some shared library error)
 - zoom (video doesn't work and needs some extra QT envvar)
+- blueman (can't connect to bluetooth? get exception)
 - foliate (not in nixpkgs)
   - can install via flatpak, but need to enable filesystem access for cli to work properly
   - `sudo flatpak override com.github.johnfactotum.Foliate --filesystem=host`

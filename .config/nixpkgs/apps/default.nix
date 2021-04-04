@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  stable = import <stable> {};
-in
 {
   imports = [
     ./alacritty
@@ -11,14 +8,12 @@ in
   ];
 
   home.packages = with pkgs; [
+    discord
     firefox
     mpv
     slack
     spotify
     tdesktop
     zotero
-
-    # Overrides
-    stable.discord
   ];
 }
