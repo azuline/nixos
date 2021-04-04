@@ -14,6 +14,7 @@
     slack
     spotify
     tdesktop
+    ungoogled-chromium
     zotero
   ];
 }

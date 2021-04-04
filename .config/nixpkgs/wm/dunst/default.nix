@@ -13,10 +13,15 @@ in
     enable = true;
     settings = {
       global = {
+        allow_markup = true;
+        font = "Source Code Pro 9";
+        format = "<b>%s</b>\\n%b";
         geometry = "300x8-10+10";
+        horizontal_padding = 12;
+        markup = "full";
+        max_icon_size = 32;
         padding = 14;
-        horizontal_padding = 10;
-        font = "Roboto 11";
+        word_wrap = true;
       };
       frame = {
         color = "#090910";
