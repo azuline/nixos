@@ -15,10 +15,11 @@
   home.packages = with pkgs; [
     act
     autossh
-    jq
-    fd
     bat
+    docker-compose
+    fd
     fzf
+    jq
     nnn
     rnix-lsp
   ];

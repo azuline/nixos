@@ -16,11 +16,12 @@ in
         allow_markup = true;
         font = "Source Code Pro 9";
         format = "<b>%s</b>\\n%b";
-        geometry = "300x8-10+10";
+        geometry = "360x8-10+10";
         horizontal_padding = 12;
         markup = "full";
-        max_icon_size = 32;
+        max_icon_size = 48;
         padding = 14;
+        vertical_alignment = "top";
         word_wrap = true;
       };
       frame = {
