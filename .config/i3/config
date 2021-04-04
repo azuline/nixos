@@ -214,6 +214,5 @@ exec --no-startup-id feh --bg-fill ~/.background-image
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id /home/blissful/.nix-profile/bin/picom
-exec --no-startup-id /home/blissful/.nix-profile/bin/dunst
 # We shouldn't need this, but the systemd service starts too early right now...
 exec --no-startup-id /home/blissful/.nix-profile/bin/polybar bottom
