@@ -17,8 +17,8 @@ set $color_bg    #090910
 # Border
 set $color_br    #5ba9eb
 # Black
-set $color0      #090910
-set $color8      #292d3e
+set $color0      #30384c
+set $color8      #3e465b
 # Red
 set $color1      #f77669
 set $color9      #ff5370
@@ -211,8 +211,9 @@ bindsym $mod+Escape exec loginctl lock-session
 exec --no-startup-id feh --bg-fill ~/.background-image
 
 # Services
-exec --no-startup-id picom
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
+exec --no-startup-id /home/blissful/.nix-profile/bin/picom
+exec --no-startup-id /home/blissful/.nix-profile/bin/dunst
 # We shouldn't need this, but the systemd service starts too early right now...
 exec --no-startup-id /home/blissful/.nix-profile/bin/polybar bottom

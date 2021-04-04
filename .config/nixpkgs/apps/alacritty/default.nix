@@ -37,7 +37,7 @@ in
       background_opacity = 0.85;
       colors = {
         normal = {
-          black = "#48487c";
+          black = "#30384c";
           blue = "#7986e7";
           cyan = "#82b1ff";
           green = "#8bd649";
@@ -47,7 +47,7 @@ in
           yellow = "#ffcb6b";
         };
         bright = {
-          black = "#697196";
+          black = "#3e465b";
           blue = "#8eace3";
           cyan = "#89ddff";
           green = "#c3e88d";
