@@ -29,7 +29,7 @@ nix-channel --add https://nixos.org/channels/nixos-20.09 stable
 
 If not on NixOS, install the wrappers in: https://github.com/guibou/nixGL.
 
-#### broken
+#### Broken
 
 Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
@@ -42,6 +42,10 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 - foliate (not in nixpkgs)
   - can install via flatpak, but need to enable filesystem access for cli to work properly
   - `sudo flatpak override com.github.johnfactotum.Foliate --filesystem=host`
+
+#### Other Notes
+
+- the nixos picom service runs slow as hell, so we start it outside of nixos...
 
 ## Computers
 

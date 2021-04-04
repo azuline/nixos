@@ -7,6 +7,8 @@ let
   };
 in
 {
+  home.packages = [ pkgs.dunst ];
+
   services.dunst = {
     enable = true;
     settings = {

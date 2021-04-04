@@ -10,11 +10,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# Set PATH so it includes NixOS packages
-if [ -d "$HOME/.nix-profile/bin" ] ; then
-    export PATH="$HOME/.nix-profile/bin:$PATH"
-fi
-
 # Set PATH so it includes the user's local packages
 if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
