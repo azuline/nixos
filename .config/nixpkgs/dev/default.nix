@@ -22,5 +22,6 @@
     jq
     nnn
     rnix-lsp
+    sqlite
   ];
 }

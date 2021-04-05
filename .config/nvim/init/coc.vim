@@ -53,5 +53,10 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Jump to definition
 nmap <silent> <C-]> <Plug>(coc-definition)
 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " Fix (incl. add missing) Golang imports on save.
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
