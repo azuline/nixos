@@ -60,3 +60,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Fix (incl. add missing) Golang imports on save.
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call CocAction('doHover')<CR>

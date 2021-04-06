@@ -71,3 +71,24 @@ nmap <Leader>d7 <Plug>lightline#bufferline#delete(7)
 nmap <Leader>d8 <Plug>lightline#bufferline#delete(8)
 nmap <Leader>d9 <Plug>lightline#bufferline#delete(9)
 nmap <Leader>d0 <Plug>lightline#bufferline#delete(10)
+
+" Quickfix
+" --------
+
+function! OpenQuickfixList()
+  if empty(getqflist())
+    return
+  endif
+
+  let s:prev_val = ""
+  for d in getqflist()
+      let s:curr_val = bufname(d.bufnr)
+      if (s:curr_val != s:prev_val)
+          "echo s:curr_val
+          exec "edit " . s:curr_val
+      end
+      let s:prev_val = s:curr_val
+  endfor
+endfunction
+
+nmap <Leader>ea :call OpenQuickfixList()<CR>

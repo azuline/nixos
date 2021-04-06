@@ -7,6 +7,12 @@ if [[ -z "$file" ]]; then
 fi
 
 data="$(pass $file)"
+
+ec=$?
+if [ "$ec" -ne 0 ]; then
+    exit "$ec"
+fi
+
 password=$(echo "$data" | head -n1)
 fields=$(echo "$data" | tail -n+2)
 

@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     discord
     firefox
+    gnome3.gedit
     mpv
     slack
     spotify
