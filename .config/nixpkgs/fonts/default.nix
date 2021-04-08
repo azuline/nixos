@@ -5,6 +5,7 @@
 
   home.packages = with pkgs; [
     font-awesome
+    iosevka
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji

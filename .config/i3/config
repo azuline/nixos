@@ -15,7 +15,7 @@ for_window [id="^wpa_gui$"] floating enable
 set $color_fg    #eeffff
 set $color_bg    #090910
 # Border
-set $color_br    #5ba9eb
+set $color_br    #376181
 # Black
 set $color0      #30384c
 set $color8      #3e465b
@@ -48,7 +48,7 @@ font pango: roboto 11
 
 # Window colors
 # class                 border    backgr    text      indicator  child_border
-client.focused          $color_br $color_br $color_bg $color_br  $color_br
+client.focused          $color_br $color_br $color_fg $color_br  $color_br
 client.focused_inactive $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.urgent           $color1   $color1   $color_fg $color1    $color1
