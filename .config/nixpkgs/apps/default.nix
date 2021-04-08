@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./alacritty
     ./keybase
+    ./kitty
     ./signal
   ];
 

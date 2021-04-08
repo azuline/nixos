@@ -72,7 +72,7 @@ set $down j
 set $up k
 set $right l
 
-set $term /home/blissful/.nix-profile/bin/alacritty
+set $term /home/blissful/.nix-profile/bin/kitty
 
 ### Keybinds
 
