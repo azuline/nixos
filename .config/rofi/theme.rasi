@@ -8,9 +8,9 @@
     background-color:            #09091088;
     background:                  #00000000;
     foreground:                  #eeffff;
-    altbg:                       #232344;
-    border:                      #5ba9eb;
-    spacing:                     2;
+    altbg:                       #213e68;
+    border:                      #213148;
+    spacing:                     0;
     active-background:           var(background);
     active-foreground:           var(blue);
     alternate-active-background: var(background);
@@ -131,16 +131,19 @@ case-indicator {
 entry {
     spacing:    0;
     text-color: var(normal-foreground);
+    background-color: #00000000;
 }
 prompt {
     spacing:    0;
     text-color: var(normal-foreground);
+    background-color: #00000000;
 }
 textbox-prompt-colon {
     margin:     0px 0.3000em 0.0000em 0.0000em ;
     expand:     false;
     str:        ":";
     text-color: inherit;
+    background-color: #00000000;
 }
 error-message {
     background-color: rgba ( 0, 0, 0, 0 % );

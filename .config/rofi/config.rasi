@@ -2,7 +2,7 @@ configuration {
 	modi: "window,run,ssh,drun";
 	width: 40;
 	lines: 12;
-	columns: 1;
+	columns: 2;
 	font: "roboto 14";
 /*	bw: 1;*/
 /*	location: 0;*/
@@ -44,7 +44,7 @@ configuration {
 	separator-style: "none";
 /*	hide-scrollbar: false;*/
 /*	fullscreen: false;*/
-	fake-transparency: true;
+	fake-transparency: false;
 /*	dpi: -1;*/
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/
