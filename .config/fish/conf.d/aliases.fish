@@ -41,3 +41,11 @@ alias zc='zotcli'
 # gotestsum
 alias gs='gotestsum -- -count=1 -race ./...'
 alias gsr='gs -run'
+
+# merge conflics
+function mc
+    set old_cwd (pwd)
+    cd (git rev-parse --show-toplevel)
+    git diff --name-only | uniq | xargs vim
+    cd "$old_cwd"
+end
