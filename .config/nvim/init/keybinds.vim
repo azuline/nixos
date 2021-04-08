@@ -20,7 +20,6 @@ nnoremap <Leader>c :Commands!<CR>
 nnoremap <Leader>C :History:!<CR>
 nnoremap <Leader>h :GV!<CR>
 nnoremap <Leader>H :GV<CR>
-nnoremap <Leader>l :Limelight!!<CR>
 
 " NERDTree
 " --------

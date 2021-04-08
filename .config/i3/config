@@ -181,11 +181,11 @@ bindsym $mod+d exec bash -ic 'rofi -show drun'
 
 ### Password Copier
 
-bindsym $mod+p exec $term -t pass -e bash -ic "~/.config/i3/pass.sh"
+bindsym $mod+p exec $term --title pass bash -c "~/.config/i3/pass.sh"
 
 ### Paper/Book Launcher
 
-bindsym $mod+y exec $term -t yy -e bash -ic "~/.config/i3/yy.sh"
+bindsym $mod+y exec $term --title yy bash -c "~/.config/i3/yy.sh"
 
 # Screenshots
 bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
