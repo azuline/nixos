@@ -12,6 +12,7 @@
     ./dev
     ./env
     ./fonts
+    ./scripts
     ./wm
   ];
 }

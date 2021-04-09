@@ -180,11 +180,11 @@ bindsym $mod+d exec rofi -show drun
 
 ### Password Copier
 
-bindsym $mod+p exec $term --title pass bash -c "~/.config/i3/pass.sh"
+bindsym $mod+p exec $term --title pass bash -c i3-pass
 
 ### Paper/Book Launcher
 
-bindsym $mod+y exec $term --title yy bash -c "~/.config/i3/yy.sh"
+bindsym $mod+y exec $term --title yy bash -c i3-yy
 
 # Screenshots
 bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
@@ -199,7 +199,7 @@ bindsym XF86AudioMute exec amixer sset Master toggle
 
 # Auto lock
 # xss-lock grabs a logind suspend inhibit lock and will lock the screen before suspend.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh --nofork
+exec --no-startup-id i3-lock
 
 # Manual lock
 bindsym $mod+Escape exec loginctl lock-session
