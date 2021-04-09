@@ -19,6 +19,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy Finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" Color Scheme
+Plug 'drewtempelmeyer/palenight.vim'
 " Status Bar
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
@@ -26,19 +28,16 @@ Plug 'josa42/vim-lightline-coc'
 Plug 'mengelbrecht/lightline-bufferline'
 " File System Explorer
 Plug 'preservim/nerdtree'
-" Palenight Theme
-Plug 'drewtempelmeyer/palenight.vim'
 
 " Language/Syntax Plugins
 " -----------------------
-" Syntax Highlighting
+" Generic Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
-" Golang!!!
+" Golang
 Plug 'fatih/vim-go'
-" Markdown!
+" Markdown
 Plug 'gabrielelana/vim-markdown'
-" Bullet points (for Markdown), because the replacement Markdown
-" plugins all suck.
+" Bullet points, because the replacement Markdown plugins all suck.
 Plug 'dkarter/bullets.vim'
 
 " Other Plugins
@@ -57,8 +56,6 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/gv.vim'
 " Git Gutter
 Plug 'mhinz/vim-signify'
-" Live Markdown Previewer.
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " LaTeX!
 Plug 'lervag/vimtex', {'tag': 'v1.6'}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -86,13 +83,6 @@ let g:tex_conceal_frac=1
 " ---
 
 let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
-
-" Markdown Preview
-" ----------------
-
-let g:mkdp_browser='firefox'
-let g:mkdp_highlight_css='~/.vim/markdown_preview.css'
-let g:mkdp_port='7237'
 
 " Latex Live Preview
 " ------------------
@@ -124,7 +114,6 @@ let g:bullets_enabled_file_types = [
 
 " vim-go
 " ------
-
 
 " Go syntax highlighting
 let g:go_highlight_fields = 1

@@ -1,34 +1,31 @@
 " Key Bindings
 " ============
 
-" Builtin Vim stuff
-" -----------------
-set pastetoggle=<F2>
-nnoremap <Leader>p <F2>
-
-" vim-go stuff
-" ------------
-nnoremap gt :GoTestFunc<CR>
-
 " FZF commands
 " ------------
+" Git Files
 nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>
+" Relative Files
 nnoremap <Leader>f :Files!<CR>
+" Ripgrep
 nnoremap <Leader>g :Rg!<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>c :Commands!<CR>
-nnoremap <Leader>C :History:!<CR>
-nnoremap <Leader>h :GV!<CR>
-nnoremap <Leader>H :GV<CR>
+" Command All
+nnoremap <Leader>ca :Commands!<CR>
+" Command History
+nnoremap <Leader>ch :History:!<CR>
+" History File
+nnoremap <Leader>hf :GV!<CR>
+" History All
+nnoremap <Leader>ha :GV<CR>
 
 " NERDTree
 " --------
-nnoremap <Leader>t :NERDTreeToggleVCS<CR>
-nnoremap <Leader>T :NERDTreeFind<CR>
+nnoremap <Leader>tt :NERDTreeToggleVCS<CR>
+nnoremap <Leader>tf :NERDTreeFind<CR>
 
 " Terminal
 " --------
-nnoremap <Leader><CR> :terminal<CR>
+nnoremap <Leader>tr :terminal<CR>
 " Map Esc to terminal's Esc
 tnoremap <Esc> <C-\><C-n>
 
@@ -90,4 +87,5 @@ function! OpenQuickfixList()
   endfor
 endfunction
 
+" Open All
 nmap <Leader>ea :call OpenQuickfixList()<CR>

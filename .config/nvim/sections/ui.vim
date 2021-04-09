@@ -18,6 +18,8 @@ set noshowmode
 
 let g:lightline={
   \   'colorscheme': 'palenight',
+  \   'separator': { 'left': '', 'right': '' },
+  \   'subseparator': { 'left': '', 'right': '' },
   \   'component_expand': {
   \     'linter_checking': 'lightline#ale#checking',
   \     'linter_infos': 'lightline#ale#infos',
