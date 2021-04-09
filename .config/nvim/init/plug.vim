@@ -12,9 +12,6 @@ call plug#begin(stdpath('data').'/plugged')
 
 " Core Plugins
 " ------------
-
-" Syntax Highlighting
-Plug 'sheerun/vim-polyglot'
 " Linter and Fixer
 Plug 'dense-analysis/ale'
 " LSP Client
@@ -32,9 +29,20 @@ Plug 'preservim/nerdtree'
 " Palenight Theme
 Plug 'drewtempelmeyer/palenight.vim'
 
+" Language/Syntax Plugins
+" -----------------------
+" Syntax Highlighting
+Plug 'sheerun/vim-polyglot'
+" Golang!!!
+Plug 'fatih/vim-go'
+" Markdown!
+Plug 'gabrielelana/vim-markdown'
+" Bullet points (for Markdown), because the replacement Markdown
+" plugins all suck.
+Plug 'dkarter/bullets.vim'
+
 " Other Plugins
 " -------------
-
 " Extra snippets
 Plug 'honza/vim-snippets'
 " Comment/Uncomment Assistance (because I'm slow)
@@ -56,11 +64,6 @@ Plug 'lervag/vimtex', {'tag': 'v1.6'}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 " A personal wiki!
 Plug 'lervag/wiki.vim'
-" Bullet points (for Markdown), because the replacement Markdown
-" plugins all suck.
-Plug 'dkarter/bullets.vim'
-" Golang!!!
-Plug 'fatih/vim-go'
 
 call plug#end()
 
