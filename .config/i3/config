@@ -72,7 +72,7 @@ set $down j
 set $up k
 set $right l
 
-set $term /home/blissful/.nix-profile/bin/kitty
+set $term kitty
 
 ### Keybinds
 
@@ -176,8 +176,7 @@ bindsym $mod+r mode "resize"
 
 ### Application Launcher
 
-# Need to wrap rofi with bash for NixOS
-bindsym $mod+d exec bash -ic 'rofi -show drun'
+bindsym $mod+d exec rofi -show drun
 
 ### Password Copier
 
@@ -213,6 +212,6 @@ exec --no-startup-id feh --bg-fill ~/.background-image
 # Services
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
-exec --no-startup-id /home/blissful/.nix-profile/bin/picom
+exec --no-startup-id picom
 # We shouldn't need this, but the systemd service starts too early right now...
-exec --no-startup-id systemctl --user restart polybar
+exec --no-startup-id systemctl --user start polybar
