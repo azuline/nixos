@@ -1,10 +1,12 @@
 # On an X11 system, symlink this file to `.xsessionrc` instead.
 
 # Set some environment variables.
-export GTK_THEME=Plata-Noir-Compact
 export GPG_TTY=$(tty)
 export EDITOR=vim
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Firefox can't handle this properly.
+# export GTK_THEME=Plata-Noir-Compact
 
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$HOME/.local/bin:$PATH"

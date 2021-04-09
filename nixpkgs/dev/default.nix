@@ -5,7 +5,6 @@
   # programs.direnv.enableNixDirenvIntegration = true;
 
   programs.fish.enable = true;
-  programs.go.enable = true;
 
   imports = [
     ./haskell

@@ -19,6 +19,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy Finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" File System Explorer
+Plug 'preservim/nerdtree'
+
+" Appearance
+" ----------
 " Color Scheme
 Plug 'drewtempelmeyer/palenight.vim'
 " Status Bar
@@ -26,8 +31,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'josa42/vim-lightline-coc'
 Plug 'mengelbrecht/lightline-bufferline'
-" File System Explorer
-Plug 'preservim/nerdtree'
 
 " Language/Syntax Plugins
 " -----------------------
@@ -39,26 +42,35 @@ Plug 'fatih/vim-go'
 Plug 'gabrielelana/vim-markdown'
 " Bullet points, because the replacement Markdown plugins all suck.
 Plug 'dkarter/bullets.vim'
+" LaTeX!
+Plug 'lervag/vimtex', {'tag': 'v1.6'}
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
+
+" Editing Augmentation
+" --------------------
+" Comment/Uncomment Assistance (because I'm slow)
+Plug 'tpope/vim-commentary'
+" Pluralization & case coercion
+Plug 'tpope/vim-abolish'
+" Extra text objects
+Plug 'wellle/targets.vim'
+" Quick movement!
+Plug 'justinmk/vim-sneak'
+" Text alignment operator
+Plug 'tommcdo/vim-lion'
 
 " Other Plugins
 " -------------
 " Extra snippets
 Plug 'honza/vim-snippets'
-" Comment/Uncomment Assistance (because I'm slow)
-Plug 'tpope/vim-commentary'
 " Highlight `f/F` Letters
 Plug 'unblevable/quick-scope'
 " Git Client
 Plug 'tpope/vim-fugitive'
-" Surrounding brackets/tags/whatever.
-Plug 'tpope/vim-surround'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
 " Git Gutter
 Plug 'mhinz/vim-signify'
-" LaTeX!
-Plug 'lervag/vimtex', {'tag': 'v1.6'}
-Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 " A personal wiki!
 Plug 'lervag/wiki.vim'
 
