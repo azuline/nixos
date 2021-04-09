@@ -41,6 +41,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 #### Other Notes
 
 - the nixos picom service runs slow as hell, so we start it outside of nixos...
+- polybar service is starting too early, so we start it manually with i3
 - `sudo update-alternatives --install /usr/bin/www-browser www-browser "$HOME/.nix-profile/bin/firefox" 100`
 
 ## Computers
