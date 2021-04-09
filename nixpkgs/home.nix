@@ -10,6 +10,7 @@
   imports = [
     ./apps
     ./dev
+    ./env
     ./fonts
     ./wm
   ];
