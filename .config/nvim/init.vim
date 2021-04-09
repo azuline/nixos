@@ -16,7 +16,7 @@ endif
 
 syntax match textCmdStyleBold '\\mathbf\>\s*' skipwhite skipnl nextgroup=texStyleBold conceal
 
-" Load split-configuration files from `config/`.
+" Load split-configuration files from `sections/`.
 let g:configs = [
   \   'plug.vim',
   \   'keybinds.vim',
@@ -28,7 +28,7 @@ let g:configs = [
 let g:nvim_root = expand('<sfile>:p:h')
 
 for s:cfg in g:configs
-  execute printf('source %s/init/%s', g:nvim_root, s:cfg)
+  execute printf('source %s/sections/%s', g:nvim_root, s:cfg)
 endfor
 
 " Racket filetype.
