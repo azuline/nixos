@@ -2,8 +2,6 @@ My configuration files.
 
 ## Setup
 
-Symlink the desired dotfiles to the appropriate locations.
-
 ### Fish
 
 Install the [fisher](https://github.com/jorgebucaran/fisher) plugin manager and
