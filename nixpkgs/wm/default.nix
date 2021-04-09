@@ -3,10 +3,8 @@
 {
   imports = [
     ./dunst
+    ./picom
     ./polybar
-  ];
-
-  home.packages = with pkgs; [
-    picom
+    ./rofi
   ];
 }

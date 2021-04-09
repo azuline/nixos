@@ -4,6 +4,7 @@
   imports = [
     ./keybase
     ./kitty
+    ./mpv
     ./signal
   ];
 
@@ -12,7 +13,6 @@
     firefox
     gnome3.evince
     gnome3.gedit
-    mpv
     slack
     spotify
     tdesktop
