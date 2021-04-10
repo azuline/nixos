@@ -78,24 +78,72 @@ hi Normal guibg=NONE ctermbg=NONE
 
 highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE
 
-" NERDTree
-" --------
+" Fern
+" ----
 
-let NERDTreeIgnore = ['build', 'node_modules', '__pycache__', '\.egg-info$', '\.pyc$', '\.o$']
-let NERDTreeShowHidden=1
+" Disable netrw.
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
 
-" Hack to disable lightline in NERDTree.
-" https://vi.stackexchange.com/a/22414
-augroup filetype_nerdtree
-  au!
-  au FileType nerdtree call s:disable_lightline_on_nerdtree()
-  au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_nerdtree()
+augroup ReplaceNetrw
+  autocmd!
+  autocmd BufEnter * ++nested call s:show_fern()
 augroup END
 
-fu s:disable_lightline_on_nerdtree() abort
- let nerdtree_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'nerdtree') + 1
- call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
-endfu
+function! s:show_fern() abort
+  let path = expand('%:p')
+  if !isdirectory(path)
+    return
+  endif
+  bwipeout %
+  execute printf('Fern %s', fnameescape(path))
+endfunction
 
-" Close Vim if only NERDTree is left.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:fern_git_status#disable_ignored = 1
+
+" Custom settings and mappings.
+let g:fern#disable_default_mappings = 1
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> o <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> l <Plug>(fern-action-expand)
+  nmap <buffer> h <Plug>(fern-action-collapse)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> M <Plug>(fern-action-rename)
+  nmap <buffer> H <Plug>(fern-action-hidden-toggle)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> s <Plug>(fern-action-open:split)
+  nmap <buffer> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer> <C-j> <Plug>(fern-action-mark:toggle)j
+  nmap <buffer> <C-k> <Plug>(fern-action-mark:toggle)k
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
+  nmap <buffer><nowait> > <Plug>(fern-action-enter)
+endfunction
+
+augroup FernGroup
+  autocmd!
+  autocmd FileType fern call FernInit()
+augroup END
+
+" Hack to disable Lightline
+" https://vi.stackexchange.com/a/22414
+augroup FernTypeGroup
+    au FileType  call s:disable_lightline_on_fern()
+    au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_fern()
+augroup END
+
+function s:disable_lightline_on_fern() abort
+ let fern_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'fern') + 1
+ call timer_start(0, {-> fern_winnr && setwinvar(fern_winnr, '&stl', '%#Normal#')})
+endfunction

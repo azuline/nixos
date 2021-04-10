@@ -10,7 +10,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " File System Explorer
-Plug 'preservim/nerdtree'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+" https://github.com/lambdalisue/fern.vim/issues/120
+Plug 'antoinemadec/FixCursorHold.nvim'
 
 " Appearance
 " ----------
@@ -87,11 +90,6 @@ let g:tex_conceal_frac=1
 " ---
 
 let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
-
-" Latex Live Preview
-" ------------------
-
-let g:livepreview_cursorhold_recompile=0
 
 " Wiki
 " ----

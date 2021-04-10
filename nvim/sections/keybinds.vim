@@ -18,10 +18,10 @@ nnoremap <Leader>hf :GV!<CR>
 " History All
 nnoremap <Leader>ha :GV<CR>
 
-" NERDTree
-" --------
-nnoremap <Leader>t :NERDTreeToggleVCS<CR>
-nnoremap <Leader>T :NERDTreeFind<CR>
+" Fern
+" ----
+
+noremap <Leader>f :Fern . -drawer -toggle -reveal=% -width=35<CR>
 
 " Terminal
 " --------

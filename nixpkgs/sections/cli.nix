@@ -15,8 +15,8 @@
     fd
     fzf
     jq
-    nnn
     neovim
+    nnn
     python39Packages.pipx
     speedtest-cli
     sqlite

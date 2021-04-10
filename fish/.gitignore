@@ -10,3 +10,4 @@
 !/conf.d/setup.fish
 !/conf.d/events.fish
 !/functions
+!/functions/n.fish
