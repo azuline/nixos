@@ -5,9 +5,11 @@
   # programs.direnv.enableNixDirenvIntegration = true;
 
   programs.fish.enable = true;
+  programs.gpg.enable = true;
 
   imports = [
     ../pkgs/haskell
+    ../pkgs/git
     ../pkgs/tmux
   ];
 
