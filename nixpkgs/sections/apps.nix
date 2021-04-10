@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./keybase
-    ./kitty
-    ./mpv
-    ./signal
+    ../pkgs/keybase
+    ../pkgs/kitty
+    ../pkgs/mpv
+    ../pkgs/signal
   ];
 
   home.packages = with pkgs; [

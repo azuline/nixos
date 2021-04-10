@@ -7,8 +7,8 @@
   programs.fish.enable = true;
 
   imports = [
-    ./haskell
-    ./tmux
+    ../pkgs/haskell
+    ../pkgs/tmux
   ];
 
   home.packages = with pkgs; [

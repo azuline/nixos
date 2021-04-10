@@ -8,11 +8,11 @@
   home.stateVersion = "21.05";
 
   imports = [
-    ./apps
-    ./dev
-    ./env
-    ./fonts
-    ./scripts
-    ./wm
+    ./sections/apps.nix
+    ./sections/bin.nix
+    ./sections/dev.nix
+    ./sections/env.nix
+    ./sections/fonts.nix
+    ./sections/wm.nix
   ];
 }
