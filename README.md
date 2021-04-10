@@ -1,4 +1,4 @@
-My configuration files.
+# blissful
 
 ## Setup
 
@@ -17,10 +17,6 @@ unstable channels of [nixpkgs](https://nixos.org/download.html) and
 home-manager switch
 ```
 
-#### OpenGL
-
-If not on NixOS, install the wrappers in: https://github.com/guibou/nixGL.
-
 #### Broken
 
 Some programs are installed outside of nixpkgs because nixpkgs sucks:
@@ -38,9 +34,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
 #### Other Notes
 
-- the nixos picom service runs slow as hell, so we start it outside of nixos...
-- polybar service is starting too early, so we start it manually with i3
-- `sudo update-alternatives --install /usr/bin/www-browser www-browser "$HOME/.nix-profile/bin/firefox" 100`
+- (debian) `sudo update-alternatives --install /usr/bin/www-browser www-browser "$HOME/.nix-profile/bin/firefox" 100`
 
 ## Computers
 

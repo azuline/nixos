@@ -20,8 +20,8 @@ nnoremap <Leader>ha :GV<CR>
 
 " NERDTree
 " --------
-nnoremap <Leader>tt :NERDTreeToggleVCS<CR>
-nnoremap <Leader>tf :NERDTreeFind<CR>
+nnoremap <Leader>T :NERDTreeToggleVCS<CR>
+nnoremap <Leader>t :NERDTreeFind<CR>
 
 " Terminal
 " --------

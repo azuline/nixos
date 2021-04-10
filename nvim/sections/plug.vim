@@ -1,13 +1,3 @@
-" Plugin Loader
-" =============
-
-" Pre-plugin configs.
-" -------------------
-"  These need to be configured before we load plugins.
-let g:ale_disable_lsp=1
-let g:polyglot_disabled=['markdown']
-let g:markdown_enable_conceal=1
-
 call plug#begin(stdpath('data').'/plugged')
 
 " Core Plugins
@@ -31,6 +21,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'josa42/vim-lightline-coc'
 Plug 'mengelbrecht/lightline-bufferline'
+" Git Gutter
+Plug 'mhinz/vim-signify'
+" Keep signcolumn on for gutter plugins.
+set signcolumn=yes
 
 " Language/Syntax Plugins
 " -----------------------
@@ -69,8 +63,6 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-fugitive'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
-" Git Gutter
-Plug 'mhinz/vim-signify'
 " A personal wiki!
 Plug 'lervag/wiki.vim'
 
@@ -106,13 +98,6 @@ let g:livepreview_cursorhold_recompile=0
 
 let g:wiki_root='~/notes'
 let g:wiki_filetypes=['md', 'markdown']
-let g:wiki_journal={
-\   'name': 'journal',
-\   'frequency': 'weekly',
-\   'date_format': {
-\     'weekly': '%Y-week%V',
-\   },
-\ }
 
 " Bullet points
 " -------------
