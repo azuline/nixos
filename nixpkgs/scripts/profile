@@ -2,7 +2,7 @@
 
 # Set some environment variables.
 export GPG_TTY=$(tty)
-export EDITOR=vim
+export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Firefox can't handle this properly.

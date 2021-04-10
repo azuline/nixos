@@ -2,11 +2,16 @@ alias vim='nvim'
 
 alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
-alias info='info --vi-keys'  # Emacs and cheese not allowed.
+alias info='info --vi-keys'
+
+# Safety
+alias rm='trash'
 
 alias rscp='rsync -ah --progress'
 alias w='cd ~/notes; vim index.md'
 alias zc='zotcli'
+
+alias hm='home-manager'
 
 # Kubectl
 alias kg="kubectl get"

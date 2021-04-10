@@ -8,8 +8,9 @@
   home.stateVersion = "21.05";
 
   imports = [
-    ./sections/apps.nix
-    ./sections/bin.nix
+    ./sections/cli.nix
+    ./sections/gui.nix
+    ./sections/scripts.nix
     ./sections/dev.nix
     ./sections/env.nix
     ./sections/fonts.nix

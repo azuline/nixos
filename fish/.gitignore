@@ -4,6 +4,7 @@
 !/fish_plugins
 !/completions
 !/completions/password-store.fish
+!/completions/nnn.fish
 !/conf.d
 !/conf.d/aliases.fish
 !/conf.d/setup.fish
