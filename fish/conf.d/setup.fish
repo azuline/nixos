@@ -28,7 +28,9 @@ set -g PATH "$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 set -g PATH "$PATH:$HOME/.git-fuzzy/bin"
 set -g PATH "$PATH:/var/lib/flatpak/exports/bin"
 
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Git fuzzy
 set -x PATH "$HOME/.git-fuzzy/bin:$PATH"

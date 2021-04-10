@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/blissful/devel'
+let g:netrw_dirhist_4='/home/blissful/devel/repertoire'
+let g:netrw_dirhist_3='/home/blissful/devel/repertoire/backend'
+let g:netrw_dirhist_2='/home/blissful/devel/repertoire/backend/tests'
+let g:netrw_dirhist_1='/home/blissful/devel/repertoire/frontend/src/pages/Login'

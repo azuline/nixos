@@ -1,4 +1,4 @@
-" Key Bindings
+" Kee Bindings
 " ============
 
 " FZF commands
@@ -21,13 +21,14 @@ nnoremap <Leader>ha :GV<CR>
 " Fern
 " ----
 
-noremap <Leader>f :Fern . -drawer -toggle -reveal=% -width=35<CR>
+noremap <Leader>t :Fern . -drawer -toggle -reveal=% -width=35<CR>
 
 " Terminal
 " --------
 nnoremap <Leader>tr :terminal<CR>
 " Map Esc to terminal's Esc
-tnoremap <Esc> <C-\><C-n>
+au TermOpen * tnoremap <buffer> <Esc> <C-\><C-n>
+au FileType fzf tunmap <buffer> <Esc>
 
 " Wiki
 " ----

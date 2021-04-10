@@ -55,6 +55,8 @@ Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-sneak'
 " Text alignment operator
 Plug 'tommcdo/vim-lion'
+" Repeat for plugins
+Plug 'tpope/vim-repeat'
 
 " Other Plugins
 " -------------
@@ -122,3 +124,19 @@ let g:go_fmt_autosave = 0
 
 " Status line types/signatures
 let g:go_auto_type_info = 1
+
+" sneak
+" -----
+
+let g:sneak#label = 1
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
+" quick-scope
+" -----------
+
+augroup qs_colors
+  autocmd ColorScheme * highlight QuickScopePrimary gui=underline cterm=underline
+augroup end
