@@ -21,11 +21,11 @@ nnoremap <Leader>ha :GV<CR>
 " Fern
 " ----
 
-noremap <Leader>t :Fern . -drawer -toggle -reveal=% -width=35<CR>
+nnoremap <Leader>t :Fern . -drawer -toggle -reveal=% -width=35<CR>
 
 " Terminal
 " --------
-nnoremap <Leader>tr :terminal<CR>
+nnoremap <Leader><CR> :terminal<CR>
 " Map Esc to terminal's Esc
 au TermOpen * tnoremap <buffer> <Esc> <C-\><C-n>
 au FileType fzf tunmap <buffer> <Esc>

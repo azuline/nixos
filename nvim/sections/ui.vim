@@ -139,7 +139,7 @@ augroup END
 " Hack to disable Lightline
 " https://vi.stackexchange.com/a/22414
 augroup FernTypeGroup
-    au FileType  call s:disable_lightline_on_fern()
+    au FileType fern call s:disable_lightline_on_fern()
     au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_fern()
 augroup END
 

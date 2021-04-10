@@ -137,6 +137,10 @@ map T <Plug>Sneak_T
 " quick-scope
 " -----------
 
-augroup qs_colors
+augroup QuickScopeColors
   autocmd ColorScheme * highlight QuickScopePrimary gui=underline cterm=underline
+augroup end
+
+augroup FernQuickScope
+  au FileType fern let b:qs_local_disable=1
 augroup end
