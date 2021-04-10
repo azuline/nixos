@@ -21,7 +21,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PS1="\[\e[96m\]\u\[\e[m\]@\[\e[96m\]\h\[\e[m\] \[\e[93m\]\w\[\e[m\] \[\e[92m\]\`parse_git_branch\`\[\e[m\]"
+export PS1="\[\e[96m\]\u\[\e[m\]@\[\e[96m\]\h\[\e[m\] \[\e[93m\]\w\[\e[m\] "
 
 # Allows us to use aliases with sudo.
 alias sudo='sudo '
@@ -35,7 +35,6 @@ alias grep='grep --color=auto'
 alias info='info --vi-keys'  # Emacs and cheese not allowed.
 
 alias gname='git config user.name; git config user.email'
-alias gupd='git add .; git commit -m update'
 
 alias gitlines='git ls-files | xargs -d "\n" wc -l'
 alias gst='git status'
@@ -54,60 +53,8 @@ alias gpl='git pull'
 alias gr='git rebase'
 alias gm='git merge'
 
-alias is='bubblegum upload $(/bin/ls -d1t ~/images/scrots/* | head -n1)'
-alias iu='bubblegum upload'
-alias ims='bubblegum upload --host=imgur.com $(/bin/ls -d1t ~/images/scrots/* | head -n1)'
-alias imu='bubblegum upload --host=imgur.com'
-
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
 alias tl='tmux ls'
 
 alias rscp='rsync -ah --progress'
-alias w='cd ~/notes; vim index.md'
-alias zc='zotcli'
-
-parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STAT=`parse_git_dirty`
-		echo "[${BRANCH}${STAT}] "
-	else
-		echo ""
-	fi
-}
-
-parse_git_dirty() {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-	bits=''
-	if [ "${renamed}" == "0" ]; then
-		bits=">${bits}"
-	fi
-	if [ "${ahead}" == "0" ]; then
-		bits="*${bits}"
-	fi
-	if [ "${newfile}" == "0" ]; then
-		bits="+${bits}"
-	fi
-	if [ "${untracked}" == "0" ]; then
-		bits="?${bits}"
-	fi
-	if [ "${deleted}" == "0" ]; then
-		bits="x${bits}"
-	fi
-	if [ "${dirty}" == "0" ]; then
-		bits="!${bits}"
-	fi
-	if [ ! "${bits}" == "" ]; then
-		echo " ${bits}"
-	else
-		echo ""
-	fi
-}
