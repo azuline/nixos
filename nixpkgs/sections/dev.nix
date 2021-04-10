@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     act
+    bfg-repo-cleaner
     docker-compose
     rnix-lsp
   ];
