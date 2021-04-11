@@ -143,3 +143,6 @@ nnoremap <Leader>e- :cprevious<CR>
 nnoremap <Leader>e= :cnext<CR>
 nnoremap <Leader>e, :lprevious<CR>
 nnoremap <Leader>e. :lnext<CR>
+
+" <C-r> in visual mode to S&R selected text.
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left><left>

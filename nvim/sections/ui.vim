@@ -85,6 +85,11 @@ let g:fern_git_status#disable_ignored = 1
 let g:fern#renderer = "nerdfont"
 let g:fern#disable_default_mappings = 1
 
+augroup FernGroup
+  autocmd!
+  autocmd FileType fern call FernInit()
+augroup END
+
 function! FernInit() abort
   nmap <buffer><expr>
         \ <Plug>(fern-my-open-expand-collapse)
@@ -110,19 +115,15 @@ function! FernInit() abort
   nmap <buffer><nowait> > <Plug>(fern-action-enter)
 endfunction
 
-augroup FernGroup
-  autocmd!
-  autocmd FileType fern call FernInit()
-augroup END
-
 " Hack to disable Lightline
 " https://vi.stackexchange.com/a/22414
-augroup FernTypeGroup
-    au FileType fern call s:disable_lightline_on_fern()
-    au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_fern()
+augroup FiletypeFern
+  au!
+  au FileType fern call s:DisableLightlineFern()
+  au WinEnter,BufWinEnter,TabEnter * call s:DisableLightlineFern()
 augroup END
 
-function s:disable_lightline_on_fern() abort
+function s:DisableLightlineFern() abort
  let fern_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'fern') + 1
  call timer_start(0, {-> fern_winnr && setwinvar(fern_winnr, '&stl', '%#Normal#')})
 endfunction
