@@ -2,9 +2,17 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
-" Graphical stuff.
+" Miscellaneous
+" -------------
+
+" Dark!
 set background=dark
+
+" Live previews for search/substitute
 set hlsearch
+if has('nvim')
+  set inccommand=nosplit
+end
 
 " Line numbers
 set number
@@ -18,6 +26,10 @@ set autoindent
 set hidden
 set nobackup
 set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=50
 
 " Extra space to display messages.
 set cmdheight=2
@@ -46,23 +58,32 @@ set nojoinspaces
 set ignorecase
 set smartcase
 
-" Set leader keys
-nnoremap <Space> <nop>
-let mapleader = " "
-let maplocalleader = "\\"
+" Trailing space highlighting
+highlight ExtraWhitespace ctermbg=red guibg=red
+au BufEnter * match ExtraWhitespace /\s\+$/
 
-" I keep hitting <F1> on my bigger keyboard instead of <Esc>...
-map <F1> <Esc>
-imap <F1> <Esc>
+" Reopen file to last read line
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
 
-" File indent settings.
+" Filetype settings
+" -----------------
 
+" Racket filetype.
+au BufReadPost,BufNewFile *.rkt set filetype=racket
+au filetype racket set lisp
+
+" Default indentation settings
 set expandtab
 set autoindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set formatoptions+=t
+
+" Per-filetype indentation settings
 
 au BufEnter *.txt,*.py,*.rst,*.c,*.md,*.mkd,*.markdown,*.tex
   \ set textwidth=79
@@ -75,32 +96,27 @@ au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.
   \ set softtabstop=2 |
   \ set shiftwidth=2
 
+au BufEnter Makefile,makefile,*.php
+  \ set noexpandtab
+
+au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
+  \ set spell
+  \ set spellcapcheck=
+
 " For certain C++ codebases.
 " au BufEnter *.cpp,*.h
 "   \ set tabstop=2 |
 "   \ set softtabstop=2 |
 "   \ set shiftwidth=2
 
-au BufEnter Makefile,makefile,*.php
-  \ set noexpandtab
+" Key mappings
+" ------------
 
-au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
-  \ set spell
+" Set leader keys
+nnoremap <Space> <nop>
+let mapleader = " "
+let maplocalleader = "\\"
 
-" Don't spell-check capitalization.
-set spellcapcheck=
-
-" Trailing space highlighting
-highlight ExtraWhitespace ctermbg=red guibg=red
-au BufEnter * match ExtraWhitespace /\s\+$/
-
-" Reopen file to last read line
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
-endif
-
-" Key mappings.
 nnoremap <Leader>n :noh<CR>
 
 nnoremap <Leader>s :split<CR><C-W>j
