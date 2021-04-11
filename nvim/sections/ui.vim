@@ -81,29 +81,8 @@ highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE
 " Fern
 " ----
 
-" Disable netrw.
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_netrwSettings = 1
-let g:loaded_netrwFileHandlers = 1
-
-augroup ReplaceNetrw
-  autocmd!
-  autocmd BufEnter * ++nested call s:show_fern()
-augroup END
-
-function! s:show_fern() abort
-  let path = expand('%:p')
-  if !isdirectory(path)
-    return
-  endif
-  bwipeout %
-  execute printf('Fern %s', fnameescape(path))
-endfunction
-
 let g:fern_git_status#disable_ignored = 1
-
-" Custom settings and mappings.
+let g:fern#renderer = "nerdfont"
 let g:fern#disable_default_mappings = 1
 
 function! FernInit() abort

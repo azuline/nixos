@@ -4,11 +4,8 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    font-awesome
-    iosevka
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
+    # Nerd Fonts contains Iosevka / Font Awesome / Fira Code / Noto
+    nerdfonts
     twitter-color-emoji
   ];
 }

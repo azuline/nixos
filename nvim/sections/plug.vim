@@ -12,6 +12,10 @@ Plug 'junegunn/fzf.vim'
 " File System Explorer
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
 " https://github.com/lambdalisue/fern.vim/issues/120
 Plug 'antoinemadec/FixCursorHold.nvim'
 

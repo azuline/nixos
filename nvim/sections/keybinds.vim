@@ -21,7 +21,7 @@ nnoremap <Leader>ha :GV<CR>
 " Fern
 " ----
 
-nnoremap <Leader>t :Fern . -drawer -toggle -reveal=% -width=35<CR>
+nnoremap <Leader>t :Fern . -drawer -toggle -reveal=%<CR>
 
 " Terminal
 " --------

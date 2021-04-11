@@ -14,7 +14,7 @@ in
     settings = {
       global = {
         allow_markup = true;
-        font = "Source Code Pro 9";
+        font = "Fira Code 9";
         format = "<b>%s</b>\\n%b";
         geometry = "360x8-10+10";
         horizontal_padding = 12;
