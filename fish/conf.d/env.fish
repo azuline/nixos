@@ -1,7 +1,6 @@
 set -g GTK_IM_MODULE ibus
 set -g XMODIFIERS @im-bus
 set -g QT_IM_MODULE ibus
-ibus-daemon -drx
 
 set -g TERM xterm-256color
 set -gx QT_QPA_PLATFORMTHEME qt5ct

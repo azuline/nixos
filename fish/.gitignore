@@ -8,7 +8,7 @@
 !/completions/password-store.fish
 !/conf.d
 !/conf.d/aliases.fish
+!/conf.d/env.fish
 !/conf.d/events.fish
-!/conf.d/setup.fish
 !/functions
 !/functions/n.fish
