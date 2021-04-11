@@ -34,6 +34,8 @@ Plug 'josa42/vim-lightline-coc'
 Plug 'mengelbrecht/lightline-bufferline'
 " Git Gutter
 Plug 'mhinz/vim-signify'
+" See File Context
+Plug 'wellle/context.vim'
 
 " Language/Syntax Plugins
 " -----------------------
@@ -74,17 +76,21 @@ Plug 'tommcdo/vim-lion'
 Plug 'tpope/vim-repeat'
 " Sublime style multiple cursors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Highlight `f/F` Letters
+Plug 'unblevable/quick-scope'
+" Highlight yanked region
+Plug 'machakann/vim-highlightedyank'
 
 " Other Plugins
 " -------------
 " Extra snippets
 Plug 'honza/vim-snippets'
-" Highlight `f/F` Letters
-Plug 'unblevable/quick-scope'
 " Git Client
 Plug 'tpope/vim-fugitive'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
+" Test Runner
+Plug 'vim-test/vim-test'
 
 call plug#end()
 
@@ -164,3 +170,7 @@ augroup end
 " ----------------
 " The cursors are invisible in default theme.
 let g:VM_theme = 'nord'
+
+" vim-highlightedyank
+" -------------------
+let g:highlightedyank_highlight_duration = 200

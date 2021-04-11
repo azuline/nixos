@@ -5,8 +5,6 @@
 " ------------
 " Git Files
 nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>
-" Relative Files
-nnoremap <Leader>f :Files!<CR>
 " Ripgrep
 nnoremap <Leader>g :Rg!<CR>
 " Command All
@@ -21,7 +19,22 @@ nnoremap <Leader>ha :GV<CR>
 " Fern
 " ----
 
-nnoremap <Leader>t :Fern . -drawer -toggle -reveal=%<CR>
+nnoremap <Leader>f :Fern . -drawer -toggle -reveal=%<CR>
+
+" vim-test
+" --------
+nmap <silent> <Leader>tn :TestNearest<CR>
+nmap <silent> <Leader>tf :TestFile<CR>
+nmap <silent> <Leader>ts :TestSuite<CR>
+nmap <silent> <Leader>tl :TestLast<CR>
+nmap <silent> <Leader>tg :TestVisit<CR>
+
+function! DebugNearest()
+  let g:test#go#runner = 'delve'
+  TestNearest
+  unlet g:test#go#runner
+endfunction
+nmap <silent> <Leader>td :call DebugNearest()<CR>
 
 " Terminal
 " --------
