@@ -100,7 +100,7 @@ au BufEnter Makefile,makefile,*.php
   \ set noexpandtab
 
 au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
-  \ set spell
+  \ set spell |
   \ set spellcapcheck=
 
 " For certain C++ codebases.

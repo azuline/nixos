@@ -51,13 +51,6 @@ Plug 'dkarter/bullets.vim'
 Plug 'lervag/vimtex', {'tag': 'v1.6'}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 
-" Uhh
-" ---
-" A personal wiki!
-" - This plugin defines some weird keybindings that are overridden by some
-"   plugins below.
-Plug 'lervag/wiki.vim'
-
 " Editing Augmentation
 " --------------------
 " Comment/Uncomment Assistance (because I'm slow)
@@ -91,6 +84,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 " Test Runner
 Plug 'vim-test/vim-test'
+" A personal wiki!
+Plug 'lervag/wiki.vim'
 
 call plug#end()
 

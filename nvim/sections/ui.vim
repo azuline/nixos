@@ -114,16 +114,3 @@ function! FernInit() abort
   nmap <buffer><nowait> < <Plug>(fern-action-leave)
   nmap <buffer><nowait> > <Plug>(fern-action-enter)
 endfunction
-
-" Hack to disable Lightline
-" https://vi.stackexchange.com/a/22414
-augroup FiletypeFern
-  au!
-  au FileType fern call s:DisableLightlineFern()
-  au WinEnter,BufWinEnter,TabEnter * call s:DisableLightlineFern()
-augroup END
-
-function s:DisableLightlineFern() abort
- let fern_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'fern') + 1
- call timer_start(0, {-> fern_winnr && setwinvar(fern_winnr, '&stl', '%#Normal#')})
-endfunction
