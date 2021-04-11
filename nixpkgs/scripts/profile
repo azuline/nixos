@@ -6,7 +6,7 @@ export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Firefox can't handle this properly.
-# export GTK_THEME=Plata-Noir-Compact
+# export GTK_THEME=Plata-Noir
 
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$HOME/.local/bin:$PATH"
@@ -23,6 +23,6 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     . "$HOME/.nix-profile/etc/profile.d/nix.sh";
 
     export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
-    export LOCALE_ARCHIVE=$(nix-build '<nixpkgs>' -A glibcLocales)/lib/locale/locale-archive
-fi
+    export LOCALE_ARCHIVE="$(readlink ~/.nix-profile/lib/locale)/locale-archive"
+
 

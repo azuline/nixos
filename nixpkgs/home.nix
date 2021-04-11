@@ -9,11 +9,11 @@
 
   imports = [
     ./sections/cli.nix
-    ./sections/gui.nix
-    ./sections/scripts.nix
     ./sections/dev.nix
     ./sections/env.nix
-    ./sections/fonts.nix
+    ./sections/gui.nix
+    ./sections/scripts.nix
+    ./sections/theme.nix
     ./sections/wm.nix
   ];
 }

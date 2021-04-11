@@ -17,6 +17,7 @@
     jq
     neovim
     nnn
+    procps-ng
     python39Packages.pipx
     speedtest-cli
     sqlite
