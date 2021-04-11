@@ -12,6 +12,7 @@
     act
     bfg-repo-cleaner
     docker-compose
+    gitAndTools.gh
     rnix-lsp
   ];
 }

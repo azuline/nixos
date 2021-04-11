@@ -1,5 +1,9 @@
 call plug#begin(stdpath('data').'/plugged')
 
+" Perhaps one day I will be sane and cherry-pick things from these plugins
+" that I need while forgoing the remaining bloat. However, right now, I'm
+" lazy, my computer is fast, and I don't want to devote the time.
+
 " Core Plugins
 " ------------
 " Linter and Fixer
@@ -30,8 +34,6 @@ Plug 'josa42/vim-lightline-coc'
 Plug 'mengelbrecht/lightline-bufferline'
 " Git Gutter
 Plug 'mhinz/vim-signify'
-" Keep signcolumn on for gutter plugins.
-set signcolumn=yes
 
 " Language/Syntax Plugins
 " -----------------------
@@ -47,6 +49,13 @@ Plug 'dkarter/bullets.vim'
 Plug 'lervag/vimtex', {'tag': 'v1.6'}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 
+" Uhh
+" ---
+" A personal wiki!
+" - This plugin defines some weird keybindings that are overridden by some
+"   plugins below.
+Plug 'lervag/wiki.vim'
+
 " Editing Augmentation
 " --------------------
 " Comment/Uncomment Assistance (because I'm slow)
@@ -55,12 +64,16 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 " Extra text objects
 Plug 'wellle/targets.vim'
+" Surrounding objects mutation
+Plug 'tpope/vim-surround'
 " Quick movement!
 Plug 'justinmk/vim-sneak'
 " Text alignment operator
 Plug 'tommcdo/vim-lion'
 " Repeat for plugins
 Plug 'tpope/vim-repeat'
+" Sublime style multiple cursors
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Other Plugins
 " -------------
@@ -72,8 +85,6 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-fugitive'
 " Git History Viewer
 Plug 'junegunn/gv.vim'
-" A personal wiki!
-Plug 'lervag/wiki.vim'
 
 call plug#end()
 
@@ -148,3 +159,8 @@ augroup end
 augroup FernQuickScope
   au FileType fern let b:qs_local_disable=1
 augroup end
+
+" vim-multi-cursor
+" ----------------
+" The cursors are invisible in default theme.
+let g:VM_theme = 'nord'

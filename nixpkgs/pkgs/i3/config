@@ -187,8 +187,8 @@ bindsym $mod+p exec $term --title pass bash -c i3-pass
 bindsym $mod+y exec $term --title yy bash -c i3-yy
 
 # Screenshots
-bindsym --release Print exec scrot -select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
-bindsym --release Shift+Print exec scrot ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Print exec maim --select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Shift+Print exec maim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
 
 # Sound
 bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+

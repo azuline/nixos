@@ -18,5 +18,6 @@
     tdesktop
     ungoogled-chromium
     zotero
+    maim
   ];
 }

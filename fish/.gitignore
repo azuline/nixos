@@ -3,11 +3,12 @@
 !/fish_variables
 !/fish_plugins
 !/completions
-!/completions/password-store.fish
+!/completions/gh.fish
 !/completions/nnn.fish
+!/completions/password-store.fish
 !/conf.d
 !/conf.d/aliases.fish
-!/conf.d/setup.fish
 !/conf.d/events.fish
+!/conf.d/setup.fish
 !/functions
 !/functions/n.fish

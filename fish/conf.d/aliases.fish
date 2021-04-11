@@ -1,4 +1,6 @@
+alias vi='nvim'
 alias vim='nvim'
+alias vimdiff='nvim -d'
 
 alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
@@ -41,25 +43,27 @@ alias gpl='git pull'
 alias gre='git rebase'
 alias gm='git merge'
 
+function gprune
+    echo "> prune remote"
+    git fetch --prune
+    echo "> prune local branches"
+    git for-each-ref --format "%(refname:short) %(upstream:track)" \
+       | awk '$2 == "[gone]" {print $1}' \
+       | xargs -r git branch -D
+end
+
 # Tmux
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
 alias tl='tmux ls'
-#
+
 # Image Uploading
-alias is='bubblegum upload (/bin/ls -d1t ~/images/scrots/* | head -n1)'
+alias lastscrot='/bin/ls -d1t ~/images/scrots/* | head -n1'
+alias is='bubblegum upload (lastscrot)'
 alias iu='bubblegum upload'
-alias ims='bubblegum upload --host=imgur.com (/bin/ls -d1t ~/images/scrots/* | head -n1)'
+alias ims='bubblegum upload --host=imgur.com (lastscrot)'
 alias imu='bubblegum upload --host=imgur.com'
 
 # gotestsum
 alias gs='gotestsum -- -count=1 -race ./...'
 alias gsr='gs -run'
-
-# merge conflics
-function mc
-    set old_cwd (pwd)
-    cd (git rev-parse --show-toplevel)
-    git diff --name-only | uniq | xargs vim
-    cd "$old_cwd"
-end

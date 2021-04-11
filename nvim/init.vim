@@ -4,6 +4,9 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 " delays and poor user experience.
 set updatetime=50
 
+" Keep signcolumn on for gutter plugins.
+set signcolumn=yes
+
 " Fix terminal colors in Alacritty.
 if exists('+termguicolors')
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
