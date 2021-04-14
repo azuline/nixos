@@ -14,6 +14,7 @@
     bat
     fd
     fzf
+    graphviz
     jq
     neovim
     nnn

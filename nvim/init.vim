@@ -71,7 +71,8 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mhinz/vim-signify'
 
 " Extra file context
-Plug 'wellle/context.vim'
+" This plays poorly with Fern.
+" Plug 'wellle/context.vim'
 
 " Language/Syntax Plugins
 " -----------------------
