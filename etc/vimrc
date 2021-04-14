@@ -145,7 +145,7 @@ nnoremap <Leader>e, :lprevious<CR>
 nnoremap <Leader>e. :lnext<CR>
 
 " <C-r> in visual mode to S&R selected text.
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Bind <C-w> to automatically correct the previous word in insert & normal mode.
 inoremap <C-w> <c-g>u<Esc>[s1z=`]a<c-g>u
