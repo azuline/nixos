@@ -4,9 +4,9 @@
 set spellfile=~/.config/nvim/spell/en.utf-8.add
 
 " These need to be configured before we load plugins.
-let g:ale_disable_lsp=1
 let g:polyglot_disabled=['markdown']
 let g:markdown_enable_conceal=1
+" let g:ale_disable_lsp=1
 
 " Table of Contents. Search symbol to jump!
 
@@ -316,6 +316,7 @@ let g:ale_fix_on_save=1
 let g:ale_linters={
   \ 'haskell': [],
   \ 'cpp': ['clang-tidy'],
+  \ 'sql': ['sqlint'],
   \ }
 
 let g:ale_fixers={
@@ -342,7 +343,6 @@ let g:coc_global_extensions = [
 \ 'coc-pyright',
 \ 'coc-rust-analyzer',
 \ 'coc-snippets',
-\ 'coc-sql',
 \ 'coc-tailwindcss',
 \ 'coc-tsserver',
 \ 'coc-vimtex',

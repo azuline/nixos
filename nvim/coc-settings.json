@@ -35,6 +35,7 @@
     "nix",
     "python",
     "rust",
+    "sql",
     "typescript",
     "typescriptreact"
   ],

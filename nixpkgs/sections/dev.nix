@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  # programs.direnv.enable = true;
-  # programs.direnv.enableNixDirenvIntegration = true;
+  programs.direnv.enable = true;
+  programs.direnv.enableNixDirenvIntegration = true;
 
   imports = [
     ../pkgs/haskell
@@ -14,5 +14,6 @@
     docker-compose
     gitAndTools.gh
     rnix-lsp
+    sqlint
   ];
 }

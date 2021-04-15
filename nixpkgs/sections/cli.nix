@@ -18,6 +18,7 @@
     jq
     neovim
     nnn
+    pdftk
     procps-ng
     python39Packages.pipx
     speedtest-cli

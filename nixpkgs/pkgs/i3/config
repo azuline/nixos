@@ -174,17 +174,21 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+### Clipboard Clearer
+
+bindsym $mod+c exec $term --title pass i3-clear-clipboard
+
 ### Application Launcher
 
 bindsym $mod+d exec rofi -show drun
 
 ### Password Copier
 
-bindsym $mod+p exec $term --title pass bash -c i3-pass
+bindsym $mod+p exec $term --title pass i3-pass
 
 ### Paper/Book Launcher
 
-bindsym $mod+y exec $term --title yy bash -c i3-yy
+bindsym $mod+y exec $term --title yy i3-yy
 
 # Screenshots
 bindsym --release Print exec maim --select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png

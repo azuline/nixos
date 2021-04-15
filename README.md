@@ -24,6 +24,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 - rofi (starting evolution via nixpkgs rofi created glibc issues)
 - evolution (i have a plugin... it is not in nixos)
   - `evolution-on` tray plugin
+- evince (persisting document location wasn't working)
 - calibre (just got errors firing it up)
 - alsa-utils (got some shared library error)
 - zoom (video doesn't work and needs some extra QT envvar)
