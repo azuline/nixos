@@ -1,7 +1,6 @@
 # On an X11 system, symlink this file to `.xsessionrc` instead.
 
 # Set some environment variables.
-export GPG_TTY=$(tty)
 export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
 

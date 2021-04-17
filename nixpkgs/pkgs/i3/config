@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 
 ### Clipboard Clearer
 
-bindsym $mod+c exec $term --title pass i3-clear-clipboard
+bindsym $mod+c exec i3-clear-clipboard
 
 ### Application Launcher
 
@@ -184,7 +184,7 @@ bindsym $mod+d exec rofi -show drun
 
 ### Password Copier
 
-bindsym $mod+p exec $term --title pass i3-pass
+bindsym $mod+p exec $term --title pass bash -ic i3-pass
 
 ### Paper/Book Launcher
 

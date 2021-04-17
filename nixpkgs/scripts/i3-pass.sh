@@ -8,7 +8,7 @@ if [[ -z "$file" ]]; then
     exit 1
 fi
 
-data="$(pass $file)"
+data="$(pass $file)" 2>&1 > /home/blissful/hi.txt
 
 ec=$?
 if [ "$ec" -ne 0 ]; then

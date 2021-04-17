@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../pkgs/firefox
     ../pkgs/keybase
     ../pkgs/kitty
     ../pkgs/mpv
@@ -10,14 +11,13 @@
 
   home.packages = with pkgs; [
     discord
-    firefox
-    # gnome3.evince
     gnome3.gedit
+    maim
     slack
     spotify
     tdesktop
-    ungoogled-chromium
+    vscode
     zotero
-    maim
+    ungoogled-chromium
   ];
 }
