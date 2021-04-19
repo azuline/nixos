@@ -157,6 +157,9 @@ let g:fern_git_status#disable_ignored = 1
 let g:fern#renderer = "nerdfont"
 let g:fern#disable_default_mappings = 1
 
+let g:fern#default_hidden = 1
+let g:fern#default_exclude = '^\%(\.git\|__pycache__\|\.mypy_cache\|\.pytest_cache\|htmlcov\|repertoire\.egg-info\|\.coverage\|node_modules\|build\)$'
+
 augroup FernGroup
   autocmd!
   autocmd FileType fern call FernInit()
@@ -175,6 +178,7 @@ function! FernInit() abort
   nmap <buffer> h <Plug>(fern-action-collapse)
   nmap <buffer> n <Plug>(fern-action-new-path)
   nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> c <Plug>(fern-action-copy)
   nmap <buffer> m <Plug>(fern-action-move)
   nmap <buffer> M <Plug>(fern-action-rename)
   nmap <buffer> H <Plug>(fern-action-hidden-toggle)
