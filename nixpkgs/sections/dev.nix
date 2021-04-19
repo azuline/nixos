@@ -9,11 +9,13 @@
   ];
 
   home.packages = with pkgs; [
+    ack
     act
     bfg-repo-cleaner
     docker-compose
     gitAndTools.gh
     rnix-lsp
     sqlint
+    yarn
   ];
 }
