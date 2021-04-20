@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     autossh
     bat
+    exa
     fd
     fzf
     graphviz
