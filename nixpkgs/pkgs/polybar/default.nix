@@ -6,7 +6,8 @@
     package = pkgs.polybarFull;
     config = ./config.ini;
     script = ''
-      polybar bottom &
+      polybar left &
+      polybar right &
     '';
   };
 }

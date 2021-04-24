@@ -10,6 +10,7 @@
   ];
 
   home.packages = with pkgs; [
+    arandr
     discord
     gnome3.gedit
     maim
