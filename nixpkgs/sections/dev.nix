@@ -14,7 +14,12 @@
     bfg-repo-cleaner
     docker-compose
     gitAndTools.gh
+    google-cloud-sdk
+    kubectl
+    nodejs
+    postgresql
     rnix-lsp
+    shellcheck
     sqlint
     yarn
   ];
