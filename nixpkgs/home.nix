@@ -3,6 +3,10 @@
 {
   programs.home-manager.enable = true;
 
+  nixpkgs.overlays = [
+    (import ./overlays/nixGL.nix)
+  ];
+
   home.username = "blissful";
   home.homeDirectory = "/home/blissful";
   home.stateVersion = "21.05";

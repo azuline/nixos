@@ -23,3 +23,6 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 
     export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 fi
+
+# Display
+xrandr --output DP-0 --left-of HDMI-0

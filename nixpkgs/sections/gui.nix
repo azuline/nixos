@@ -20,9 +20,10 @@
     slack
     spotify
     tdesktop
-    transmission-qt
     ungoogled-chromium
     vscode
     zotero
+    # Excluding this for proper QT theming.
+    # transmission-qt
   ];
 }
