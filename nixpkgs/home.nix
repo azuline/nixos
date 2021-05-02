@@ -4,7 +4,7 @@
   programs.home-manager.enable = true;
 
   nixpkgs.overlays = [
-    (import ./overlays/nixGL.nix)
+    (import ./overlays/nixGL)
   ];
 
   home.username = "blissful";

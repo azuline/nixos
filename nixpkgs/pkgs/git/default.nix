@@ -10,10 +10,26 @@
       signByDefault = true;
     };
     extraConfig = {
-      core.editor = "nvim";
-      init.defaultBranch = "master";
-      pull.rebase = false;
-      push.default = "upstream";
+      core = {
+        editor = "nvim";
+        pager = "delta";
+      };
+      init = {
+        defaultBranch = "master";
+      };
+      pull = {
+        rebase = false;
+      };
+      push = {
+        default = "upstream";
+      };
+      interactive = {
+        diffFilter = "delta --color-only";
+      };
+      delta = {
+        features = "side-by-side line-numbers";
+        whitespace-error-style = "22 reverse";
+      };
     };
   };
 }

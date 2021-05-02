@@ -14,6 +14,7 @@
     bfg-repo-cleaner
     docker-compose
     gitAndTools.gh
+    gitAndTools.delta
     google-cloud-sdk
     kubectl
     nodejs
