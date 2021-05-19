@@ -31,6 +31,7 @@
     speedtest-cli
     sqlite
     sshfs
+    tree
     trash-cli
     weechat
     whois

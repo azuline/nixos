@@ -9,6 +9,9 @@ alias info='info --vi-keys'
 # Safety
 alias rm='trash'
 
+# Bug
+alias hasura="NODE_OPTIONS= "(which hasura)
+
 abbr --add --global rscp 'rsync -ah --progress'
 alias w='cd ~/notes; vim index.md'
 abbr --add --global zc 'zotcli'
@@ -44,6 +47,9 @@ abbr --add --global gco 'git checkout'
 abbr --add --global gcl 'git clean'
 abbr --add --global gpl 'git pull'
 abbr --add --global gre 'git rebase'
+abbr --add --global grea 'git rebase --abort'
+abbr --add --global grec 'git rebase --continue'
+abbr --add --global grs 'git restore --staged'
 abbr --add --global gm 'git merge'
 
 function gprune

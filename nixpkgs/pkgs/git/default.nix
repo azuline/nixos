@@ -23,6 +23,9 @@
       push = {
         default = "upstream";
       };
+      merge = {
+        tool = "vimdiff";
+      };
       interactive = {
         diffFilter = "delta --color-only";
       };

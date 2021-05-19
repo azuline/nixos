@@ -29,6 +29,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 - alsa-utils (got some shared library error)
 - zoom (video doesn't work and needs some extra QT envvar)
 - blueman (can't connect to bluetooth? get exception)
+- i3wsr (`cargo install i3wsr`) (not in nixpkgs)
 
 #### Other Notes
 

@@ -18,10 +18,11 @@
     google-cloud-sdk
     kubectl
     nodejs
-    postgresql
+    postgresql_13
     rnix-lsp
     shellcheck
     sqlint
+    watchman # Needed for coc-tsserver
     yarn
   ];
 }
