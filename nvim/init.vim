@@ -324,6 +324,8 @@ let g:ale_linters={
   \ }
 
 let g:ale_fixers={
+  \ '*': [],
+  \ 'python': ['isort'],
   \ }
 
 for lang in keys(g:ale_fixers)

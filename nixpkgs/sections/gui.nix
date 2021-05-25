@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../pkgs/discord
     ../pkgs/firefox
     ../pkgs/keybase
     ../pkgs/kitty
@@ -11,7 +12,6 @@
 
   home.packages = with pkgs; [
     arandr
-    discord
     feh
     gimp
     gnome3.gedit

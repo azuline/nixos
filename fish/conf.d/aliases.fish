@@ -10,7 +10,7 @@ alias info='info --vi-keys'
 alias rm='trash'
 
 # Bug
-alias hasura="NODE_OPTIONS= "(which hasura)
+# alias hasura='NODE_OPTIONS= '(which hasura)
 
 abbr --add --global rscp 'rsync -ah --progress'
 alias w='cd ~/notes; vim index.md'

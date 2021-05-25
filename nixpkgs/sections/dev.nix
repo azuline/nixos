@@ -6,6 +6,7 @@
 
   imports = [
     ../pkgs/haskell
+    ../pkgs/flake8
   ];
 
   home.packages = with pkgs; [
