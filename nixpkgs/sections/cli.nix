@@ -21,7 +21,8 @@
     jq
     mediainfo
     neofetch
-    neovim
+    # wtf the init.vim isnt working
+    # neovim
     nnn
     pass
     pdftk
@@ -35,5 +36,6 @@
     trash-cli
     weechat
     whois
+    tldr
   ];
 }

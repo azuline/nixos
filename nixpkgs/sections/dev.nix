@@ -18,6 +18,8 @@
     gitAndTools.delta
     google-cloud-sdk
     kubectl
+    minikube
+    nodePackages.lerna
     nodejs
     postgresql_13
     rnix-lsp

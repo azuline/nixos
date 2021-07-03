@@ -35,11 +35,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 set -x PATH "$HOME/.git-fuzzy/bin:$PATH"
 
 # pyenv
-set -gx PYENV_ROOT "$HOME/.pyenv"
-set -gx PATH "$PATH:$PYENV_ROOT/bin"
-if command -v pyenv 1>/dev/null 2>&1
-  pyenv init - | source
-end
+status is-login; and pyenv init --path | source
+pyenv init - | source
 
 # goenv configuration.
 set -g GOENV_ROOT "$HOME/.goenv"

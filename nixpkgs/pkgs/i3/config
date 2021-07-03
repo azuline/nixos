@@ -229,7 +229,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id ibus-daemon -drx
 # Workspace naming
-exec --no-startup-id i3wsr
+exec --no-startup-id systemctl --user start i3wsr
 # We shouldn't need this, but the systemd service starts too early right now.
 exec --no-startup-id systemctl --user start polybar
 # The NixOS picom systemd service breaks the WM, IDK why.

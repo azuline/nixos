@@ -37,7 +37,8 @@
     "rust",
     "sql",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "yaml"
   ],
   "html.filetypes": [
     "blade",

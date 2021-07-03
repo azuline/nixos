@@ -31,6 +31,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 - blueman (can't connect to bluetooth? get exception)
 - i3wsr (`cargo install i3wsr`) (not in nixpkgs)
 - kube-linter (not in nixpkgs)
+- anki (rofi doesn't start it o.O)
 
 #### Other Notes
 

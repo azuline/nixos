@@ -26,7 +26,7 @@ let g:markdown_enable_conceal=1
 " SNEAK
 " QUICKSCOPE
 " TESTRUNNER
-" TERMINAL   
+" TERMINAL
 " QUICKFIX
 
 " ===============
@@ -151,7 +151,7 @@ call plug#end()
 " === FERN ===
 " ============
 
-nnoremap <Leader>f :Fern . -drawer -toggle -reveal=%<CR>
+nnoremap <Leader>f :Fern . -drawer -toggle -width=30 -reveal=%<CR>
 
 let g:fern_git_status#disable_ignored = 1
 let g:fern#renderer = "nerdfont"
@@ -337,7 +337,7 @@ endfor
 " ===========
 
 let g:coc_global_extensions = [
-\ 'coc-json', 
+\ 'coc-json',
 \ 'coc-css',
 \ 'coc-elixir',
 \ 'coc-eslint',

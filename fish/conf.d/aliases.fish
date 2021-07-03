@@ -6,6 +6,9 @@ alias ls='exa'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
 
+alias xc='xclip -sel c'
+alias xp='xclip -o'
+
 # Safety
 alias rm='trash'
 
