@@ -23,7 +23,6 @@ let g:markdown_enable_conceal=1
 " BULLETS
 " YANKHIGHLIGHT
 " GOLANG
-" SNEAK
 " QUICKSCOPE
 " TESTRUNNER
 " TERMINAL
@@ -115,9 +114,6 @@ Plug 'wellle/targets.vim'
 
 " Surrounding objects mutation
 Plug 'tpope/vim-surround'
-
-" Quick movement!
-Plug 'justinmk/vim-sneak'
 
 " Text alignment operator
 Plug 'tommcdo/vim-lion'
@@ -466,16 +462,6 @@ let g:go_highlight_operators = 1
 let g:go_fmt_autosave = 0
 " Status line types/signatures
 let g:go_auto_type_info = 1
-
-" =============
-" === SNEAK ===
-" =============
-
-let g:sneak#label = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
 
 " ==================
 " === QUICKSCOPE ===

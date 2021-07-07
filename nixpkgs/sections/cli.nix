@@ -21,8 +21,7 @@
     jq
     mediainfo
     neofetch
-    # wtf the init.vim isnt working
-    # neovim
+    neovim
     nnn
     pass
     pdftk
