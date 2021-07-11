@@ -35,13 +35,17 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 set -x PATH "$HOME/.git-fuzzy/bin:$PATH"
 
 # pyenv
-status is-login; and pyenv init --path | source
-pyenv init - | source
+status is-interactive; and pyenv init --path | source
 
 # goenv configuration.
 set -g GOENV_ROOT "$HOME/.goenv"
 set -g PATH "$GOENV_ROOT/bin:$PATH"
-source (goenv init - | psub)
+# This is slow as balls, just going to copy paste the useful snippet
+# source (goenv init - | psub)
+if not contains $GOENV_ROOT/shims $PATH
+  set -gx PATH $GOENV_ROOT/shims $PATH
+end
+
 set -g GOENV_GOPATH_PREFIX "$HOME/.go"
 set -g GOPATH "$HOME/.go"
 set -g PATH "$GOROOT/bin:$PATH"

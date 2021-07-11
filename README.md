@@ -42,6 +42,8 @@ Install these system wide instead, since we aren't full NixOS.
 - brightnessctl
 - pinentry-gtk2
 - xclip
+- xdg-utils
+- qt5-style-plugins
 
 #### Other Notes
 

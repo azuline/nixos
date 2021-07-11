@@ -12,6 +12,8 @@
     nerdfonts
     twitter-color-emoji
     noto-fonts
+    source-code-pro
+    source-sans-pro
     noto-fonts-cjk
   ];
 }
