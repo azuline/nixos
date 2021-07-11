@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 xss-lock --transfer-sleep-lock -- \
-    i3lock --nofork -i ~/.bg \
+    i3lock --nofork -i ~/.bg/lock.png \
     --inside-color=ffffff1c \
     --ring-color=ffffff3e \
     --line-color=ffffff00 \
