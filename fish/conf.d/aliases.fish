@@ -13,7 +13,9 @@ alias xp='xclip -o'
 alias rm='trash'
 
 # Bug
-# alias hasura='NODE_OPTIONS= '(which hasura)
+set -gx PATH "$PATH:$HOME/.yarn/bin"
+set HASURA_PATH (which hasura)
+alias hasura="NODE_OPTIONS= $HASURA_PATH"
 
 abbr --add --global rscp 'rsync -ah --progress'
 alias w='cd ~/notes; vim index.md'

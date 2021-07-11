@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     autossh
     bat
+    curl
     dnsutils
     exa
     fd
@@ -31,10 +32,11 @@
     speedtest-cli
     sqlite
     sshfs
-    tree
-    trash-cli
-    weechat
-    whois
     tldr
+    trash-cli
+    tree
+    weechat
+    wget
+    whois
   ];
 }
