@@ -33,25 +33,15 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 - kube-linter (not in nixpkgs)
 - anki (rofi doesn't start it o.O)
 
+#### System-wide
+
+Install these system wide instead, since we aren't full NixOS.
+
+- wireguard (system)
+
 #### Other Notes
 
 - (debian) `sudo update-alternatives --install /usr/bin/www-browser www-browser "$HOME/.nix-profile/bin/firefox" 100`
 
-## Computers
-
-### Splendor
-
-- OS: debian
-- WM: i3
-- Shell: fish
-
-#### Changes
-
 - Use evdev over libinput.
 - `/etc/default/keyboard` contains `XKBOPTIONS="altwin:swap_lalt_lwin,caps:escape_shifted_capslock"`
-
-### Tranquility
-
-- OS: debian
-- DE: sway
-- Shell: fish

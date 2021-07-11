@@ -3,7 +3,7 @@
 let
   wrappedFirefox = pkgs.writeScriptBin "firefox" ''
     #!${pkgs.stdenv.shell}
-    ${pkgs.nixGLNvidia}/bin/nixGLNvidia ${pkgs.firefox}/bin/firefox "$@"
+    ${pkgs.nixGL}/bin/nixGL ${pkgs.firefox}/bin/firefox "$@"
   '';
   wrappedPkg = pkgs.symlinkJoin {
     name = "firefox";
