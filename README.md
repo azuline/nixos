@@ -35,13 +35,11 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
 #### System-wide
 
-Install these system wide instead, since we aren't full NixOS.
+Install these through system package manager instead of nix
 
 - wireguard
 - fonts-roboto
-- brightnessctl
 - pinentry-gtk2
-- xclip
 - xdg-utils
 - qt5-style-plugins
 

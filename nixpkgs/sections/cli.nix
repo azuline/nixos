@@ -12,11 +12,14 @@
   home.packages = with pkgs; [
     autossh
     bat
+    berglas
+    brightnessctl
     curl
     dnsutils
     exa
     fd
     fzf
+    google-cloud-sdk
     graphviz
     imagemagick
     jq
@@ -29,6 +32,7 @@
     procps-ng
     python39Packages.pipx
     ripgrep
+    rsync
     speedtest-cli
     sqlite
     sshfs
@@ -38,5 +42,7 @@
     weechat
     wget
     whois
+    xclip
+    xss-lock
   ];
 }
