@@ -12,3 +12,4 @@
 !/conf.d/events.fish
 !/functions
 !/functions/n.fish
+!/functions/fish_prompt.fish
