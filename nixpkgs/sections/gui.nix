@@ -22,6 +22,7 @@
     tdesktop
     ungoogled-chromium
     vscode
+    xorg.xkill
     # Excluding this because open PDF is broken.
     # zotero
     # Excluding this for proper QT theming.
