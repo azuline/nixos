@@ -13,3 +13,4 @@
 !/functions
 !/functions/n.fish
 !/functions/fish_prompt.fish
+!/functions/prompt_vcs.fish
