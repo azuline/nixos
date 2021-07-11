@@ -23,9 +23,8 @@ in
         padding = 14;
         vertical_alignment = "top";
         word_wrap = true;
-      };
-      frame = {
-        color = "#090910";
+        frame_width = 3;
+        frame_color = "#213e68";
       };
       urgency_low = colors;
       urgency_normal = colors;
