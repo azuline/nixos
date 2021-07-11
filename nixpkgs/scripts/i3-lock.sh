@@ -1,3 +1,20 @@
 #!/usr/bin/env bash
 
-xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/.bg/lock.png --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=ffffff00 --keyhlcolor=00000080 --ringvercolor=00000000 --separatorcolor=22222260 --insidevercolor=0000001c --ringwrongcolor=00000055 --insidewrongcolor=0000001c --verifcolor=00000000 --wrongcolor=ff000000 --timecolor=00000000 --datecolor=00000000 --layoutcolor=00000000 --ring-width=15 $@
+xss-lock --transfer-sleep-lock -- \
+    i3lock --nofork -i ~/.bg \
+    --inside-color=ffffff1c \
+    --ring-color=ffffff3e \
+    --line-color=ffffff00 \
+    --keyhl-color=00000080 \
+    --ringver-color=00000000 \
+    --separator-color=22222260 \
+    --insidever-color=0000001c \
+    --ringwrong-color=00000055 \
+    --insidewrong-color=0000001c \
+    --verif-color=00000000 \
+    --wrong-color=ff000000 \
+    --time-color=00000000 \
+    --date-color=00000000 \
+    --layout-color=00000000 \
+    --ring-width=15 \
+    $@
