@@ -27,7 +27,7 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 fi
 
 # Display
-xrandr --output DP-0 --left-of HDMI-0
+xrandr --output HDMI-0 --right-of DP-0
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
