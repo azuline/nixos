@@ -39,10 +39,12 @@
     tldr
     trash-cli
     tree
+    unrar
     weechat
     wget
     whois
     xclip
     xss-lock
+    python39Packages.shodan
   ];
 }

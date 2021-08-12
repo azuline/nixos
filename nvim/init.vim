@@ -75,8 +75,8 @@ Plug 'mhinz/vim-signify'
 
 " Language/Syntax Plugins
 " -----------------------
-" Generic syntax highlighting
-Plug 'sheerun/vim-polyglot'
+" Language parser & highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Golang
 Plug 'fatih/vim-go'

@@ -222,7 +222,7 @@ bindsym $mod+Escape exec loginctl lock-session
 ### Initial Setup
 
 # Configuration
-exec --no-startup-id feh --bg-fill /.bg/left.png ~/.bg/right.png
+exec --no-startup-id feh --bg-fill /.bg/{right,left}.png
 
 # Services
 exec --no-startup-id blueman-applet
