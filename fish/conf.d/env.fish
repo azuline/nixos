@@ -6,7 +6,7 @@ set -g TERM xterm-256color
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 
 set -gx GPG_TTY (tty)
-set -gx EDITOR vim
+set -gx EDITOR nvim
 
 # Prepend /usr/local/bin so everything there registers first. This lets us
 # override other binaries with custom scripts.
@@ -48,8 +48,7 @@ end
 
 set -g GOENV_GOPATH_PREFIX "$HOME/.go"
 set -g GOPATH "$HOME/.go"
-set -g PATH "$GOROOT/bin:$PATH"
-set -g PATH "$PATH:$GOPATH/bin"
+set -g PATH "$GOPATH/bin:$PATH"
 
 # nixos applications
 set -g XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"

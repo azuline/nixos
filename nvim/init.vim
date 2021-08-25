@@ -75,7 +75,10 @@ Plug 'mhinz/vim-signify'
 
 " Language/Syntax Plugins
 " -----------------------
+
 " Language parser & highlighting
+" We use polyglot for indentation, since tree-sitter is not mature.
+Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Golang
@@ -142,6 +145,27 @@ Plug 'vim-test/vim-test'
 Plug 'lervag/wiki.vim'
 
 call plug#end()
+
+" ==================
+" === TREESITTER ===
+" ==================
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1019#issuecomment-811658387
+  highlight = {
+    enable = true, -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    additional_vim_regex_highlighting = true,
+  },
+  indent = {
+    enable = false,
+  }
+}
+EOF
 
 " ============
 " === FERN ===
