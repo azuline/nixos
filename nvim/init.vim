@@ -8,6 +8,15 @@ let g:polyglot_disabled=['markdown']
 let g:markdown_enable_conceal=1
 " let g:ale_disable_lsp=1
 
+" Setting Coq colors, needs to be configured before we load the plugin.
+augroup CoqtailHighlights
+  autocmd!
+  autocmd ColorScheme *
+    \   hi def CoqtailChecked ctermbg=235 guibg=Black
+    \ | hi def CoqtailSent    ctermbg=235 guibg=Black
+    \ | hi def link CoqtailError Error
+augroup END
+
 " Table of Contents. Search symbol to jump!
 
 " PLUGINS
@@ -83,6 +92,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Golang
 Plug 'fatih/vim-go'
+
+" Coq
+Plug 'whonore/Coqtail'
 
 " Markdown
 Plug 'gabrielelana/vim-markdown'
