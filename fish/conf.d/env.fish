@@ -52,3 +52,6 @@ set -g PATH "$GOPATH/bin:$PATH"
 
 # nixos applications
 set -g XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+
+# opam configuration
+source /home/blissful/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
