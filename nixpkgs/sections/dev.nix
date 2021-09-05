@@ -14,6 +14,7 @@
     act
     bfg-repo-cleaner
     ccls
+    clang-tools
     docker-compose
     gitAndTools.gh
     gitAndTools.delta
