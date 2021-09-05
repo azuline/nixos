@@ -13,6 +13,7 @@
     ack
     act
     bfg-repo-cleaner
+    ccls
     docker-compose
     gitAndTools.gh
     gitAndTools.delta
