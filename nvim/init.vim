@@ -12,8 +12,8 @@ let g:markdown_enable_conceal=1
 augroup CoqtailHighlights
   autocmd!
   autocmd ColorScheme *
-    \   hi def CoqtailChecked ctermbg=235 guibg=Black
-    \ | hi def CoqtailSent    ctermbg=235 guibg=Black
+    \   hi def CoqtailChecked ctermbg=236 guibg=#292D3E
+    \ | hi def CoqtailSent    ctermbg=236 guibg=#292D3E
     \ | hi def link CoqtailError Error
 augroup END
 
