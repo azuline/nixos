@@ -145,6 +145,9 @@ Plug 'unblevable/quick-scope'
 " Highlight yanked region
 Plug 'machakann/vim-highlightedyank'
 
+" Color highlighting.
+Plug 'ap/vim-css-color'
+
 " Integrations
 " ------------
 " Git Client
