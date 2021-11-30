@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  # programs.direnv.enable = true;
-  # programs.direnv.enableNixDirenvIntegration = true;
+  programs.direnv.enable = true;
+  programs.direnv.enableNixDirenvIntegration = true;
 
   imports = [
     ../pkgs/haskell
@@ -25,6 +25,8 @@
     nodejs
     postgresql_13
     rnix-lsp
+    php80
+    php80Packages.composer
     shellcheck
     sqlint
     watchman # Needed for coc-tsserver
