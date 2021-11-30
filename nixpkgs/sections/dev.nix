@@ -4,6 +4,8 @@
   programs.direnv.enable = true;
   programs.direnv.enableNixDirenvIntegration = true;
 
+  services.lorri.enable = true;
+
   imports = [
     ../pkgs/haskell
     ../pkgs/flake8
