@@ -2,7 +2,7 @@
 
 {
   programs.direnv.enable = true;
-  programs.direnv.enableNixDirenvIntegration = true;
+  programs.direnv.nix-direnv.enable = true;
 
   services.lorri.enable = true;
 
@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     ack
+    gdb
     act
     bfg-repo-cleaner
     ccls

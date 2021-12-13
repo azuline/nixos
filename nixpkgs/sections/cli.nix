@@ -35,7 +35,7 @@
     ripgrep
     rsync
     speedtest-cli
-    sqlite
+    sqlite-interactive
     sshfs
     tldr
     trash-cli
