@@ -26,7 +26,7 @@
     mediainfo
     neofetch
     # Broken with some plugins due to missing libc++.
-    # neovim
+    neovim
     nnn
     pass
     pdftk
