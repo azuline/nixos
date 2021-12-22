@@ -31,6 +31,7 @@
     php80
     php80Packages.composer
     shellcheck
+    stack
     sqlint
     watchman # Needed for coc-tsserver
     yarn

@@ -37,12 +37,6 @@ set -x PATH "$HOME/.git-fuzzy/bin:$PATH"
 # pyenv
 status is-interactive; and pyenv init --path | source
 
-# goenv configuration.
-set -gx GOENV_ROOT "$HOME/.goenv"
-set -g PATH "$GOENV_ROOT/bin:$PATH"
-source (goenv init - | psub)
-# set -g PATH $GOENV_ROOT/shims $PATH
-
 # nixos applications
 set -g XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 
