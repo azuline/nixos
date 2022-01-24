@@ -47,5 +47,6 @@
     xclip
     xss-lock
     python39Packages.shodan
+    mkvtoolnix
   ];
 }
