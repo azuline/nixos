@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  modules = import ../pkgs;
+in
 {
   programs.home-manager.enable = true;
 
@@ -14,12 +17,12 @@
   home.homeDirectory = "/home/blissful";
   home.stateVersion = "21.05";
 
-  imports = [
-    ../groups/cli.nix
-    ../groups/dev.nix
-    ../groups/env.nix
-    ../groups/gui.nix
-    ../groups/i3.nix
-    ../groups/theme.nix
+  imports = with modules; [
+    cliModule
+    devModule
+    envModule
+    guiModule
+    i3Module
+    themeModule
   ];
 }
