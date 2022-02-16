@@ -191,7 +191,7 @@ bindsym $mod+r mode "resize"
 
 ### Clipboard Clearer
 
-bindsym $mod+c exec i3-clear-clipboard
+bindsym $mod+c exec sway-clear-clipboard
 
 ### Application Launcher
 
@@ -199,11 +199,11 @@ bindsym $mod+d exec rofi -show drun
 
 ### Password Copier
 
-bindsym $mod+p exec $term --title pass -e bash -ic "i3-pass; exit"
+bindsym $mod+p exec $term --title pass -e bash -ic "sway-pass; exit"
 
 ### Paper/Book Launcher
 
-bindsym $mod+y exec $term --title yy -e i3-yy
+bindsym $mod+y exec $term --title yy -e sway-yy
 
 # Screenshots
 # bindsym --release Print exec maim --select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
