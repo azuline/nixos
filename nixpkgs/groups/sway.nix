@@ -9,6 +9,8 @@
     ../pkgs/waybar
   ];
 
+  home.file.".profile".source = ../configFiles/profile;
+
   home.packages = with pkgs; [
     swayidle
     # Change the name of a workspace based on its contents.
