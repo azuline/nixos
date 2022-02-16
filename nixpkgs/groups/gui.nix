@@ -6,6 +6,7 @@
     # Excluding this on neptune so XWayland can open links.
     # ../pkgs/firefox
     ../pkgs/keybase
+    ../pkgs/kitty
     ../pkgs/alacritty
     ../pkgs/mpv
     ../pkgs/signal
@@ -18,7 +19,7 @@
     gnome3.gedit
     gnome3.nautilus
     # Excluding this on neptune since it can't connect.
-    # slack
+    slack
     spotify
     tdesktop
     ungoogled-chromium
