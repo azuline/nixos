@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   bar-loadavg = pkgs.writeScriptBin "bar-loadavg" (builtins.readFile ../scripts/bar-loadavg.sh);
@@ -10,6 +10,14 @@ let
   i3-yy = pkgs.writeScriptBin "i3-yy" (builtins.readFile ../scripts/i3-yy.sh);
 in
 {
+  imports = [
+    ../pkgs/dunst
+    ../pkgs/i3
+    ../pkgs/picom
+    ../pkgs/polybar
+    ../pkgs/rofi
+  ];
+
   home.packages = [
     bar-loadavg
     bar-gpu

@@ -13,26 +13,28 @@
 
   home.packages = with pkgs; [
     ack
-    gdb
     act
+    berglas
     bfg-repo-cleaner
     ccls
     clang-tools
     docker-compose
-    gitAndTools.gh
+    gdb
     gitAndTools.delta
+    gitAndTools.gh
+    google-cloud-sdk
     google-cloud-sdk
     kubectl
     minikube
     nodePackages.lerna
     nodejs
-    postgresql_13
-    rnix-lsp
     php80
     php80Packages.composer
+    postgresql_13
+    rnix-lsp
     shellcheck
-    stack
     sqlint
+    stack
     watchman # Needed for coc-tsserver
     yarn
   ];

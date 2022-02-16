@@ -12,18 +12,18 @@
   home.packages = with pkgs; [
     autossh
     bat
-    berglas
     brightnessctl
     curl
     dnsutils
+    dolt
     exa
     fd
     fzf
-    google-cloud-sdk
     graphviz
     imagemagick
     jq
     mediainfo
+    mkvtoolnix
     neofetch
     # Broken with some plugins due to missing libc++.
     neovim
@@ -32,6 +32,7 @@
     pdftk
     procps-ng
     python39Packages.pipx
+    python39Packages.shodan
     ripgrep
     rsync
     speedtest-cli
@@ -46,8 +47,5 @@
     whois
     xclip
     xss-lock
-    python39Packages.shodan
-    mkvtoolnix
-    dolt
   ];
 }
