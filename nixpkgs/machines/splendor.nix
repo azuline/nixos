@@ -3,9 +3,7 @@
 {
   programs.home-manager.enable = true;
 
-  nixpkgs.overlays = [
-    (import ../overlays/nixGL)
-  ];
+  nixpkgs.overlays = [ (import ../overlays/nixGLNvidia) ];
 
   home.username = "blissful";
   home.homeDirectory = "/home/blissful";

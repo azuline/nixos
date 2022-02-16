@@ -4,7 +4,7 @@
   imports = [
     ../pkgs/discord
     # Excluding this on neptune so XWayland can open links.
-    # ../pkgs/firefox
+    ../pkgs/firefox
     ../pkgs/keybase
     ../pkgs/kitty
     ../pkgs/alacritty
