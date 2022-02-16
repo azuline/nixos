@@ -18,6 +18,7 @@
     gimp
     gnome3.gedit
     gnome3.nautilus
+    maim
     # Excluding this on neptune since it can't connect.
     slack
     spotify
