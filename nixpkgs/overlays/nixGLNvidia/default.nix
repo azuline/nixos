@@ -8,4 +8,5 @@ self: super: {
         nvidiaVersionFile = ./nvidia_version;
       }
   ).nixGLDefault;
+  nixGLBin = "${self.nixGL}/bin/nixGL";
 }

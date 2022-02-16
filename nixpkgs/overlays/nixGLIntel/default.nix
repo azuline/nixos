@@ -6,4 +6,5 @@ self: super: {
     }}/nixGL.nix"
       { }
   ).nixGLIntel;
+  nixGLBin = "${self.nixGL}/bin/nixGLIntel";
 }

@@ -3,7 +3,7 @@
 let
   wrappedAlacritty = pkgs.writeScriptBin "alacritty" ''
     #!${pkgs.stdenv.shell}
-    ${pkgs.nixGL}/bin/nixGLIntel ${pkgs.alacritty}/bin/alacritty "$@"
+    ${pkgs.nixGLBin} ${pkgs.alacritty}/bin/alacritty "$@"
   '';
 in
 {

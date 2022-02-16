@@ -3,7 +3,7 @@
 let
   wrappedKitty = pkgs.writeScriptBin "kitty" ''
     #!${pkgs.stdenv.shell}
-    ${pkgs.nixGL}/bin/nixGL ${pkgs.kitty}/bin/kitty "$@"
+    ${pkgs.nixGLBin} ${pkgs.kitty}/bin/kitty "$@"
   '';
   wrappedPkg = pkgs.symlinkJoin {
     name = "kitty";
