@@ -12,9 +12,12 @@ set -gx EDITOR nvim
 # override other binaries with custom scripts.
 set -gx PATH "$HOME/.local/bin" $PATH
 
-set -gx npm_config_prefix "$HOME/.node_modules"
-set -gx GEM_HOME "$HOME/.gems"
-set -gx TEXMFHOME "$HOME/.texmf"
+# Fedora doesn't add this to $PATH by default.
+set -gx PATH "$PATH:/usr/sbin"
+
+set -g npm_config_prefix "$HOME/.node_modules"
+set -g GEM_HOME "$HOME/.gems"
+set -g TEXMFHOME "$HOME/.texmf"
 
 set -gx PATH $PATH "$HOME/.poetry/bin"
 set -gx PATH $PATH "$HOME/.node_modules/bin"
@@ -41,4 +44,4 @@ status is-interactive; and pyenv init --path | source
 set -gx XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 
 # opam configuration
-source /home/blissful/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

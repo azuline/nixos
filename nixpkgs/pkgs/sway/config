@@ -3,11 +3,11 @@
 for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
-for_window [id="^wpa_gui$"] floating enable
+for_window [app_id="^pavucontrol$"] floating enable
 
 ### Idle inhibit windows
 
-# for_window [id="firefox"] inhibit_idle fullscreen
+for_window [app_id="firefox"] inhibit_idle fullscreen
 
 ### Colors
 
@@ -44,7 +44,11 @@ set $color15     #eeffff
 ### Aesthetics
 
 # Font
-font pango: roboto 11
+font pango: roboto 22
+
+# Display/Wallpaper
+output * scale 1
+output * bg /usr/share/pixmaps/wallpaper.png fill
 
 # Window colors
 # class                 border    backgr    text      indicator  child_border
@@ -60,8 +64,8 @@ default_floating_border      pixel   3
 for_window [class=.*] border pixel   3
 
 # Gaps
-gaps inner 16
-gaps outer 4
+gaps inner 30
+gaps outer 8
 
 ### Settings
 
@@ -72,7 +76,7 @@ set $down j
 set $up k
 set $right l
 
-set $term kitty
+set $term alacritty
 
 ### Keybinds
 
@@ -86,10 +90,10 @@ bindsym --release $mod+Shift+q exec xkill
 # Drag windows
 floating_modifier $mod
 
-# Reload sway
+# Reload i3
 bindsym $mod+Shift+c reload
 
-# Exit sway
+# Exit i3
 bindsym $mod+Shift+e exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
 
 # Change focus
@@ -160,7 +164,7 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
-# Scratchpad: Sway has a "scratchpad", which is a bag of holding for windows.
+# Scratchpad: i3 has a "scratchpad", which is a bag of holding for windows.
 # Move window to scratchpad
 bindsym $mod+Shift+minus move scratchpad
 # Show scratchpad windows
@@ -195,42 +199,64 @@ bindsym $mod+d exec rofi -show drun
 
 ### Password Copier
 
-bindsym $mod+p exec $term --title pass bash -ic i3-pass
+bindsym $mod+p exec $term --title pass -e bash -ic "i3-pass; exit"
 
 ### Paper/Book Launcher
 
-bindsym $mod+y exec $term --title yy i3-yy
+bindsym $mod+y exec $term --title yy -e i3-yy
 
 # Screenshots
-bindsym --release Print exec maim --select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
-bindsym --release Shift+Print exec maim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+# bindsym --release Print exec maim --select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+# bindsym --release Shift+Print exec maim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Print exec grim -g "$(slurp)" ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+bindsym --release Shift+Print exec grim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
 
 # Sound
 bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
 bindsym XF86AudioMute exec amixer sset Master toggle
 
+# Backlight
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+
 ### Screen Locker
 
 # Auto lock
-# xss-lock grabs a logind suspend inhibit lock and will lock the screen before suspend.
-exec --no-startup-id i3-lock
+exec swayidle -w \
+         timeout 3000 swaylock \
+         timeout 6000 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep swaylock
 
 # Manual lock
-bindsym $mod+Escape exec loginctl lock-session
-
-### Initial Setup
-
-# Configuration
-exec --no-startup-id feh --bg-fill /.bg/{right,left}.png
+bindsym $mod+Escape exec swaylock
 
 # Services
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id ibus-daemon -drx
-# Workspace naming
-exec --no-startup-id systemctl --user start i3wsr
-# We shouldn't need this, but the systemd service starts too early right now.
-exec --no-startup-id systemctl --user start polybar
-# The NixOS picom systemd service breaks the WM, IDK why.
-exec --no-startup-id picom -b
+exec --no-startup-id dunst
+
+# GTK theme
+
+exec_always {
+    gsettings set org.gnome.desktop.interface gtk-theme Plata-Noir-Compact
+    gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
+    gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+    gsettings set org.gnome.desktop.interface font-name RobotoRegular 22
+}
+
+# Keyboard options
+
+input * {
+    xkb_options altwin:swap_lalt_lwin,caps:escape_shifted_capslock
+}
+
+### Bar
+
+bar {
+     swaybar_command waybar
+}
+exec_always swaywsr

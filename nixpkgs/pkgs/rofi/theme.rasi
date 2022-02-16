@@ -33,8 +33,34 @@
     urgent-background:           var(background);
     urgent-foreground:           var(red);
 }
+window {
+    padding:          0;
+    background-color: var(background);
+    border:           3px;
+    border-color:     var(border-color);
+}
+mainbox {
+    padding: 0;
+    border:  0;
+}
+message {
+    padding:      16px ;
+    border-color: var(separator-color);
+    border:       0px ;
+}
+textbox {
+    text-color: var(foreground);
+}
+listview {
+    padding:      2px 0px 0px ;
+    scrollbar:    true;
+    border-color: var(separator-color);
+    spacing:      0px ;
+    fixed-height: 0;
+    border:       0px ;
+}
 element {
-    padding: 12px ;
+    padding: 16px ;
     border:  0;
 }
 element normal.normal {
@@ -114,7 +140,7 @@ listview {
 scrollbar {
     width:        4px ;
     padding:      0;
-    handle-width: 8px ;
+    handle-width: 16px ;
     border:       0;
     handle-color: var(scrollbar-color);
 }
@@ -131,7 +157,7 @@ button selected {
     text-color:       var(selected-normal-foreground);
 }
 inputbar {
-    padding:    12px ;
+    padding:    16px ;
     spacing:    0px ;
     text-color: var(normal-foreground);
     children:   [ prompt,textbox-prompt-colon,entry,overlay,case-indicator ];

@@ -1,13 +1,13 @@
 {
     "layer": "top",
-    "position": "top",
-    "height": 40,
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "position": "bottom",
+    "height": 36,
+    "modules-left": ["clock", "backlight", "battery", "network", "custom/vpn",],
     "modules-center": [],
-    "modules-right": ["tray", "custom/vpn", "network", "backlight", "battery", "pulseaudio", "clock#date", "clock"],
+    "modules-right": ["sway/workspaces", "pulseaudio", "tray"],
     "tray": {
         "icon-size": 30,
-        "spacing": 10
+        "spacing": 14
     },
     "clock#date": {
         "interval": 60,

@@ -21,7 +21,7 @@ fields=$(echo "$data" | tail -n+2)
 choice=$(printf "password: ********\n${fields}\n" | fzf --layout=reverse)
 
 if [[ "$choice" = "password: ********" ]]; then
-    echo $password | tr -d '\n' | nohup xclip -loops 0 -sel c >/dev/null 2>&1
+    echo $password | tr -d '\n' | wl-copy --trim-newline >/dev/null 2>&1
 else
-    echo $choice | awk -F': ' '{$1="";print substr($0,2)}' | tr -d '\n' | nohup xclip -loops 0 -sel c >/dev/null 2>&1
+    echo $choice | awk -F': ' '{$1="";print substr($0,2)}' | tr -d '\n' | wl-copy --trim-newline >/dev/null 2>&1
 fi
