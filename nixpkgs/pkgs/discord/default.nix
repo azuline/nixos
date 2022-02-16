@@ -15,6 +15,5 @@ let
 in
 {
   # RIP in neptune. Doesn't work.
-  # TODO: Per-computer
-  # home.packages = [ discord ];
+  home.packages = [ discord ];
 }
