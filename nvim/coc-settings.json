@@ -11,6 +11,7 @@
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.inlayHints.chainingHints": false,
   "tailwindCSS.headwind.runOnSave": false,
+  "typescript.autoClosingTags": false,
   "coc.preferences.rootPatterns": [
     ".env",
     ".git",

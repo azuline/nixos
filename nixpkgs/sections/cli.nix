@@ -48,5 +48,6 @@
     xss-lock
     python39Packages.shodan
     mkvtoolnix
+    dolt
   ];
 }

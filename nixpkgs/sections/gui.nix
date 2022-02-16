@@ -22,7 +22,6 @@
     tdesktop
     ungoogled-chromium
     # Can't dl...
-    vscode
     xorg.xkill
     # Excluding this because open PDF is broken.
     # zotero
