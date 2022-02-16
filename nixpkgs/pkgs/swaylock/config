@@ -1,7 +1,7 @@
 # Replace 3a7c35 with theme color of choice.
 daemonize
 scaling=fill
-image=/etc/wallpaper.jpg
+image=/usr/share/pixmaps/wallpaper.png
 indicator-radius=140
 indicator-thickness=25
 ring-color=ffffff

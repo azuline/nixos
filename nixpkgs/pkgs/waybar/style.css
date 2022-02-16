@@ -1,8 +1,8 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "Source Sans Pro";
-  font-size: 18px;
+  font-family: "Roboto";
+  font-size: 30px;
   box-shadow: none;
   text-shadow: none;
   transition-duration: 0s;
@@ -11,7 +11,7 @@
 window#waybar {
   /* color: rgb(230, 229, 229); */
   color: #eeffff;
-  background-color: rgba(9, 9, 16, 0.4);
+  background-color: rgba(9, 9, 16, 0.7);
 }
 
 #workspaces button {
@@ -29,6 +29,7 @@ window#waybar {
   color: #ff5376;
 }
 
+#workspaces,
 #tray,
 #clock,
 #mode,
@@ -41,7 +42,7 @@ window#waybar {
 #temperature,
 #custom-layout,
 #backlight {
-  margin: 0px 6px 0px 16px;
+  margin: 0px 12px 0px 30px;
   /*    min-width: 30px;*/
 }
 
@@ -50,7 +51,7 @@ window#waybar {
 }
 
 #clock {
-  margin: 0px 6px 0px 10px;
+  margin: 0px 12px 0px 30px;
 }
 
 #battery.warning {

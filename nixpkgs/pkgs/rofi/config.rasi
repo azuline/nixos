@@ -2,8 +2,8 @@ configuration {
 	modi: "window,run,ssh,drun";
 	width: 40;
 	lines: 12;
-	columns: 2;
-	font: "roboto 14";
+	columns: 1;
+	font: "roboto 24";
 /*	bw: 1;*/
 /*	location: 0;*/
 	padding: 0;

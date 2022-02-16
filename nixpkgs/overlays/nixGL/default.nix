@@ -6,5 +6,5 @@ self: super: {
     }}/nixGL.nix" {
       nvidiaVersionFile = ./nvidia_version;
     }
-  ).nixGLDefault;
+  ).nixGLIntel;
 }

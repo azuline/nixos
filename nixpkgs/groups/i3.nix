@@ -18,6 +18,8 @@ in
     ../pkgs/rofi
   ];
 
+  home.file.".xsessionrc".source = ../configFiles/profile;
+
   home.packages = [
     bar-loadavg
     bar-gpu

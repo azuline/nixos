@@ -14,16 +14,16 @@ in
     settings = {
       global = {
         allow_markup = true;
-        font = "Source Code Pro 9";
+        font = "Source Code Pro 22";
         format = "<b>%s</b>\\n%b";
-        geometry = "360x8-10+10";
-        horizontal_padding = 12;
+        geometry = "640x20-10+10";
+        horizontal_padding = 20;
         markup = "full";
-        max_icon_size = 48;
+        max_icon_size = 72;
         padding = 14;
         vertical_alignment = "top";
         word_wrap = true;
-        frame_width = 3;
+        frame_width = 5;
         frame_color = "#213e68";
       };
       urgency_low = colors;

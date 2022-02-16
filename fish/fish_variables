@@ -6,7 +6,7 @@ SETUVAR _fisher_fischerling_2F_plugin_2D_wd_files:/home/blissful/\x2econfig/fish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/blissful/\x2econfig/fish/functions/fisher\x2efish\x1e/home/blissful/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:/home/blissful/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e/home/blissful/\x2econfig/fish/functions/_nvm_list\x2efish\x1e/home/blissful/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e/home/blissful/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e/home/blissful/\x2econfig/fish/functions/nvm\x2efish\x1e/home/blissful/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e/home/blissful/\x2econfig/fish/completions/nvm\x2efish
 SETUVAR _fisher_lilyball_2F_nix_2D_env_2E_fish_files:/home/blissful/\x2econfig/fish/conf\x2ed/nix\x2denv\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1elilyball/nix\x2denv\x2efish\x1ejorgebucaran/nvm\x2efish\x1efischerling/plugin\x2dwd
+SETUVAR _fisher_plugins:lilyball/nix\x2denv\x2efish\x1ejorgebucaran/nvm\x2efish\x1efischerling/plugin\x2dwd\x1ejorgebucaran/fisher
 SETUVAR fish_color_autosuggestion:888888
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:brcyan

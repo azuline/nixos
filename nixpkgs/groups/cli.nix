@@ -3,6 +3,10 @@
 {
   programs.fish.enable = true;
   programs.gpg.enable = true;
+  services.gpg-agent.enable = true;
+  services.gpg-agent.extraConfig = ''
+    pinentry-program /usr/bin/pinentry-gtk-2
+  '';
 
   imports = [
     ../pkgs/git
@@ -35,6 +39,7 @@
     python39Packages.shodan
     ripgrep
     rsync
+    rsync
     speedtest-cli
     sqlite-interactive
     sshfs
@@ -45,6 +50,7 @@
     weechat
     wget
     whois
+    wl-clipboard
     xclip
     xss-lock
   ];
