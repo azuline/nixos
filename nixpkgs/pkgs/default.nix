@@ -18,7 +18,6 @@
       brightnessctl
       curl
       dnsutils
-      dolt
       exa
       fd
       fzf
@@ -95,7 +94,7 @@
       shellcheck
       sqlint
       stack
-      watchman # Needed for coc-tsserver
+      watchman # Needed for tsserver
       yarn
     ];
   });
@@ -160,27 +159,27 @@
   });
 
   swayModule = ({ config, pkgs, ... }: {
-      imports = [
-        ./dunst
-        ./rofi
-        ./sway
-        ./sway-clear-clipboard
-        ./sway-pass
-        ./sway-yy
-        ./swaylock
-        ./waybar
-      ];
+    imports = [
+      ./dunst
+      ./rofi
+      ./sway
+      ./sway-clear-clipboard
+      ./sway-pass
+      ./sway-yy
+      ./swaylock
+      ./waybar
+    ];
 
-      home.file.".profile".source = ../configFiles/profile;
+    home.file.".profile".source = ../configFiles/profile;
 
-      home.packages = with pkgs; [
-        sway-clear-clipboard
-        sway-pass
-        sway-yy
-        swayidle
-        swaywsr
-      ];
-    });
+    home.packages = with pkgs; [
+      sway-clear-clipboard
+      sway-pass
+      sway-yy
+      swayidle
+      swaywsr
+    ];
+  });
 
   themeModule = ({ pkgs, ... }: {
     fonts.fontconfig.enable = true;
