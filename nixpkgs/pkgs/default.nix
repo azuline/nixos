@@ -77,11 +77,14 @@
       gitAndTools.delta
       gitAndTools.gh
       google-cloud-sdk
-      google-cloud-sdk
       kubectl
       minikube
-      nodePackages.lerna
       nodejs
+      nodePackages.eslint
+      nodePackages.eslint_d
+      nodePackages.prettier
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
       php80
       php80Packages.composer
       postgresql_13

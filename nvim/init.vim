@@ -6,7 +6,6 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 " These need to be configured before we load plugins.
 let g:polyglot_disabled=['markdown']
 let g:markdown_enable_conceal=1
-" let g:ale_disable_lsp=1
 
 " Setting Coq colors, needs to be configured before we load the plugin.
 augroup CoqtailHighlights
@@ -20,12 +19,13 @@ augroup END
 " Table of Contents. Search symbol to jump!
 
 " PLUGINS
-" FERN
+" TREESITTER
 " FZF
+" NULL-LS
+" NVIM-CMP
+" FERN
 " LIGHTLINE
 " PALENIGHT
-" ALE
-" COC
 " GITGUTTER
 " LATEX
 " WIKI
@@ -71,9 +71,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 
 " Status line
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
-Plug 'josa42/vim-lightline-coc'
-Plug 'mengelbrecht/lightline-bufferline'
+Plug 'spywhere/lightline-lsp'
 
 " Git gutter
 Plug 'mhinz/vim-signify'
@@ -106,17 +104,23 @@ Plug 'dkarter/bullets.vim'
 Plug 'lervag/vimtex', {'tag': 'v1.6'}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 
-" Extra snippets
-Plug 'honza/vim-snippets'
-
 " Editing Augmentation
 " --------------------
 
-" Linter and fixer
-Plug 'dense-analysis/ale'
-
 " LSP client
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'onsails/lspkind-nvim'
+Plug 'simrat39/rust-tools.nvim'
+
+" Funnel LSP through null-ls
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 " Comment/uncomment assistance (because I'm slow)
 Plug 'tpope/vim-commentary'
@@ -139,12 +143,6 @@ Plug 'tpope/vim-repeat'
 " Sublime style multiple cursors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-" Highlight `f/F` Letters
-Plug 'unblevable/quick-scope'
-
-" Highlight yanked region
-Plug 'machakann/vim-highlightedyank'
-
 " Color highlighting.
 Plug 'ap/vim-css-color'
 
@@ -156,16 +154,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 " Test Runner
 Plug 'vim-test/vim-test'
-" A personal wiki!
-Plug 'lervag/wiki.vim'
 
 call plug#end()
 
 " ==================
 " === TREESITTER ===
 " ==================
-
-" Disabled until "Read Errors" are fixed when opening files through Fern.
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -182,6 +176,195 @@ require'nvim-treesitter.configs'.setup {
     enable = false,
   }
 }
+EOF
+
+" ===========
+" === FZF ===
+" ===========
+
+" Git Files
+nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>
+" Ripgrep
+nnoremap <Leader>g :Rg!<CR>
+" Command All
+nnoremap <Leader>ca :Commands!<CR>
+" Command History
+nnoremap <Leader>ch :History:!<CR>
+" History File
+nnoremap <Leader>hf :GV!<CR>
+" History All
+nnoremap <Leader>ha :GV<CR>
+
+" Configure FZF preview window.
+let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
+
+" ===============
+" === NULL-LS ===
+" ===============
+
+lua <<EOF
+local lspconfig = require('lspconfig')
+local null_ls = require('null-ls')
+
+local buf_map = function(bufnr, mode, lhs, rhs, opts)
+  vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
+      silent = true,
+  })
+end
+
+local on_attach = function(client, bufnr)
+  vim.cmd('command! LspDef lua vim.lsp.buf.definition()')
+  vim.cmd('command! LspFormatting lua vim.lsp.buf.formatting()')
+  vim.cmd('command! LspCodeAction lua vim.lsp.buf.code_action()')
+  vim.cmd('command! LspHover lua vim.lsp.buf.hover()')
+  vim.cmd('command! LspRename lua vim.lsp.buf.rename()')
+  vim.cmd('command! LspRefs lua vim.lsp.buf.references()')
+  vim.cmd('command! LspTypeDef lua vim.lsp.buf.type_definition()')
+  vim.cmd('command! LspImplementation lua vim.lsp.buf.implementation()')
+  vim.cmd('command! LspDiagPrev lua vim.diagnostic.goto_prev()')
+  vim.cmd('command! LspDiagNext lua vim.diagnostic.goto_next()')
+  vim.cmd('command! LspDiagLine lua vim.diagnostic.open_float()')
+  vim.cmd('command! LspSignatureHelp lua vim.lsp.buf.signature_help()')
+
+  buf_map(bufnr, 'n', '<C-]>', ':LspDef<CR>')
+  buf_map(bufnr, 'n', '<Leader>rn', ':LspRename<CR>')
+  buf_map(bufnr, 'n', 'K', ':LspHover<CR>')
+  buf_map(bufnr, 'n', '[g', ':LspDiagPrev<CR>')
+  buf_map(bufnr, 'n', ']g', ':LspDiagNext<CR>')
+  buf_map(bufnr, 'n', '<Leader>a', ':LspCodeAction<CR>')
+
+  if client.resolved_capabilities.document_formatting then
+    vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+  end
+end
+
+lspconfig.tsserver.setup {
+  on_attach = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+
+    local ts_utils = require('nvim-lsp-ts-utils')
+    ts_utils.setup {
+      update_imports_on_move = true,
+    }
+    ts_utils.setup_client(client)
+    buf_map(bufnr, 'n', '<Leader>i', ':TSLspImportAll<CR>')
+    on_attach(client, bufnr)
+  end,
+}
+
+null_ls.setup {
+  root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", ".git", "tsconfig.json", "go.mod", "poetry.toml"),
+  sources = {
+    -- JS/TS/JSX/TSX
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.formatting.prettierd,
+    -- Python
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.diagnostics.mypy,
+    null_ls.builtins.diagnostics.flake8,
+    -- Golang
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.gofmt,
+    null_ls.builtins.formatting.gofumpt,
+    null_ls.builtins.diagnostics.golangci_lint,
+    null_ls.builtins.diagnostics.revive,
+    null_ls.builtins.diagnostics.staticcheck,
+    -- Nix
+    null_ls.builtins.formatting.nixpkgs_fmt,
+    -- Postgres
+    null_ls.builtins.formatting.pg_format,
+    -- Rust
+    null_ls.builtins.formatting.rustfmt,
+    -- Bash
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.code_actions.shellcheck,
+  },
+  on_attach = on_attach,
+}
+
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- lspconfig['LSP NAME'].setup {
+--   capabilities = capabilities,
+-- }
+EOF
+
+" ================
+" === NVIM-CMP ===
+" ================
+
+set completeopt=menu,menuone,noselect
+
+lua <<EOF
+-- Setup nvim-cmp.
+local cmp = require('cmp')
+local lspkind = require('lspkind')
+
+cmp.setup({
+  mapping = {
+    -- ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    -- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    -- ['<C-y>'] = cmp.config.disable,
+    -- ['<C-e>'] = cmp.mapping({
+    --   i = cmp.mapping.abort(),
+    --   c = cmp.mapping.close(),
+    -- }),
+    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp', keyword_length = 2 },
+  }, {
+    { name = 'buffer', keyword_length = 3 },
+  }),
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[lsp]",
+        path = "[path]",
+        latex_symbols = "[latex]",
+      },
+    },
+  },
+  experimental = {
+    ghost_text = true,
+  },
+  enabled = function()
+    -- disable completion in comments
+    local context = require 'cmp.config.context'
+    -- keep command mode completion enabled when cursor is in a comment
+    if vim.api.nvim_get_mode().mode == 'c' then
+      return true
+    else
+      return not context.in_treesitter_capture("comment")
+        and not context.in_syntax_group("Comment")
+    end
+  end
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer', keyword_length = 3 }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path', keyword_length = 3 }
+  }, {
+    { name = 'cmdline', keyword_length = 3 }
+  })
+})
 EOF
 
 " ============
@@ -228,26 +411,6 @@ function! FernInit() abort
   nmap <buffer><nowait> > <Plug>(fern-action-enter)
 endfunction
 
-" ===========
-" === FZF ===
-" ===========
-
-" Git Files
-nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>
-" Ripgrep
-nnoremap <Leader>g :Rg!<CR>
-" Command All
-nnoremap <Leader>ca :Commands!<CR>
-" Command History
-nnoremap <Leader>ch :History:!<CR>
-" History File
-nnoremap <Leader>hf :GV!<CR>
-" History All
-nnoremap <Leader>ha :GV<CR>
-
-" Configure FZF preview window.
-let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
-
 " =================
 " === LIGHTLINE ===
 " =================
@@ -261,12 +424,11 @@ let g:lightline={
   \   'separator': { 'left': '', 'right': '' },
   \   'subseparator': { 'left': '', 'right': '' },
   \   'component_expand': {
-  \     'linter_checking': 'lightline#ale#checking',
-  \     'linter_infos': 'lightline#ale#infos',
-  \     'linter_warnings': 'lightline#ale#warnings',
-  \     'linter_errors': 'lightline#ale#errors',
-  \     'linter_ok': 'lightline#ale#ok',
-  \     'buffers': 'lightline#bufferline#buffers',
+  \     'linter_hints': 'lightline#lsp#hints',
+  \     'linter_infos': 'lightline#lsp#infos',
+  \     'linter_warnings': 'lightline#lsp#warnings',
+  \     'linter_errors': 'lightline#lsp#errors',
+  \     'linter_ok': 'lightline#lsp#ok',
   \   },
   \   'component_type': {
   \     'linter_checking': 'right',
@@ -274,56 +436,20 @@ let g:lightline={
   \     'linter_warnings': 'warning',
   \     'linter_errors': 'error',
   \     'linter_ok': 'right',
-  \     'buffers': 'tabsel',
   \   },
   \   'active': {
   \     'left': [
   \       ['mode', 'paste'],
   \       ['readonly', 'filename', 'modified', 'helloworld'],
-  \       ['coc_status'],
   \     ],
   \     'right': [
   \       ['lineinfo'],
   \       ['percent'],
   \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
-  \       ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
   \       ['fileformat', 'fileencoding', 'filetype'],
   \     ],
   \   },
-  \   'tabline': {
-  \     'left': [
-  \       ['buffers'],
-  \     ],
-  \   },
   \ }
-call lightline#coc#register()
-
-" Switch to buffer.
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
-
-" Delete buffer.
-nmap <Leader>d1 <Plug>lightline#bufferline#delete(1)
-nmap <Leader>d2 <Plug>lightline#bufferline#delete(2)
-nmap <Leader>d3 <Plug>lightline#bufferline#delete(3)
-nmap <Leader>d4 <Plug>lightline#bufferline#delete(4)
-nmap <Leader>d5 <Plug>lightline#bufferline#delete(5)
-nmap <Leader>d6 <Plug>lightline#bufferline#delete(6)
-nmap <Leader>d7 <Plug>lightline#bufferline#delete(7)
-nmap <Leader>d8 <Plug>lightline#bufferline#delete(8)
-nmap <Leader>d9 <Plug>lightline#bufferline#delete(9)
-nmap <Leader>d0 <Plug>lightline#bufferline#delete(10)
-
-let g:lightline#bufferline#show_number=2
-let g:lightline#bufferline#min_buffer_count=2
 
 " =================
 " === PALENIGHT ===
@@ -347,93 +473,6 @@ set background=dark
 colorscheme palenight
 hi Normal guibg=NONE ctermbg=NONE
 
-" ===========
-" === ALE ===
-" ===========
-
-let g:ale_linters_explicit=1
-let g:ale_fix_on_save=1
-
-let g:ale_linters={
-  \ 'haskell': [],
-  \ 'cpp': ['clang-tidy'],
-  \ 'sql': ['sqlint'],
-  \ }
-
-let g:ale_fixers={
-  \ '*': [],
-  \ 'python': ['isort'],
-  \ }
-
-for lang in keys(g:ale_fixers)
-  let g:ale_fixers[lang] = g:ale_fixers[lang] + ['remove_trailing_lines', 'trim_whitespace']
-endfor
-
-" ===========
-" === COC ===
-" ===========
-
-let g:coc_global_extensions = [
-\ 'coc-json',
-\ 'coc-css',
-\ 'coc-elixir',
-\ 'coc-eslint',
-\ 'coc-fish',
-\ 'coc-go',
-\ 'coc-html',
-\ 'coc-json',
-\ 'coc-prettier',
-\ 'coc-pyright',
-\ 'coc-rust-analyzer',
-\ 'coc-snippets',
-\ 'coc-tailwindcss',
-\ 'coc-tsserver',
-\ 'coc-vimtex',
-\ ]
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" coc-snippets
-let g:coc_snippet_next = '<C-j>'
-let g:coc_snippet_prev = '<C-k>'
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" Jump to definition
-nmap <silent> <C-]> <Plug>(coc-definition)
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Fix (incl. add missing) Golang imports on save.
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call CocAction('doHover')<CR>
 
 " =================
 " === GITGUTTER ===
@@ -486,8 +525,16 @@ let g:bullets_enabled_file_types = [
 " === YANKHIGHLIGHT ===
 " =====================
 
-" Lower the duration of the yank highlight.
-let g:highlightedyank_highlight_duration = 200
+" Highlight on yank.
+lua <<EOF
+vim.cmd [[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]]
+EOF
+
 
 " ==============
 " === Golang ===
