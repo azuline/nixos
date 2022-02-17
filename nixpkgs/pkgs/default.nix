@@ -76,6 +76,8 @@
       gdb
       gitAndTools.delta
       gitAndTools.gh
+      go_1_17
+      golangci-lint
       google-cloud-sdk
       kubectl
       minikube
@@ -85,6 +87,7 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      nixpkgs-fmt
       php80
       php80Packages.composer
       postgresql_13
@@ -156,8 +159,7 @@
     home.file.".xsessionrc".source = ../configFiles/profile;
   });
 
-  swayModule = ({ config, pkgs, ... }:
-    {
+  swayModule = ({ config, pkgs, ... }: {
       imports = [
         ./dunst
         ./rofi

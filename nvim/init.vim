@@ -327,13 +327,28 @@ cmp.setup({
     -- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    -- ['<C-y>'] = cmp.config.disable,
-    -- ['<C-e>'] = cmp.mapping({
-    --   i = cmp.mapping.abort(),
-    --   c = cmp.mapping.close(),
-    -- }),
+    ['<C-y>'] = cmp.config.disable,
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_prev_item()
+      end
+    end, { "i", "s" }),
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp', keyword_length = 2 },
