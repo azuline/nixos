@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
+# TODO: Laptop conditional.
 {
-  xdg.configFile."rofi/config.rasi".source = ./config.rasi;
-  xdg.configFile."rofi/theme.rasi".source = ./theme.rasi;
+  xdg.configFile."rofi/config.rasi".source = ./desktop/config.rasi;
+  xdg.configFile."rofi/theme.rasi".source = ./desktop/theme.rasi;
 }
