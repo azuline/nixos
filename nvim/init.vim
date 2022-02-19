@@ -213,7 +213,7 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
 end
 
 local on_attach = function(client, bufnr)
-  vim.cmd('command! LspDef lua vim.lsp.buf.definition()')
+  vim.cmd('command! LspDef lua vim.lsp.buf.definition({ includeDeclaration = false })')
   vim.cmd('command! LspFormatting lua vim.lsp.buf.formatting()')
   vim.cmd('command! LspCodeAction lua vim.lsp.buf.code_action()')
   vim.cmd('command! LspHover lua vim.lsp.buf.hover()')
@@ -238,6 +238,27 @@ local on_attach = function(client, bufnr)
   end
 end
 
+-- To avoid react.d.ts definitions from opening on jump to definition.
+-- https://github.com/typescript-language-server/typescript-language-server/issues/216#issuecomment-1005272952
+local function filter(arr, fn)
+  if type(arr) ~= "table" then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+local function filterReactDTS(value)
+  return string.match(value.uri, 'react/index.d.ts') == nil
+end
+
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
@@ -250,6 +271,14 @@ lspconfig.tsserver.setup {
     ts_utils.setup_client(client)
     buf_map(bufnr, 'n', '<Leader>i', ':TSLspImportAll<CR>')
     on_attach(client, bufnr)
+  end,
+  ['textDocument/definition'] = function(err, result, method, ...)
+    if vim.tbl_islist(result) and #result > 1 then
+      local filtered_result = filter(result, filterReactDTS)
+      return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+    end
+
+    vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
   end,
 }
 
@@ -356,7 +385,7 @@ cmp.setup({
     end, { "i", "s" }),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp', keyword_length = 2 },
+    { name = 'nvim_lsp' },
   }, {
     { name = 'buffer', keyword_length = 3 },
   }),
@@ -373,6 +402,9 @@ cmp.setup({
   },
   experimental = {
     ghost_text = true,
+  },
+  view = {
+    entries = "native",
   },
   enabled = function()
     -- disable completion in comments
@@ -534,17 +566,6 @@ let g:tex_conceal='abdmg'
 let g:tex_conceal_frac=1
 " Extra conceal matches.
 syntax match textCmdStyleBold '\\mathbf\>\s*' skipwhite skipnl nextgroup=texStyleBold conceal
-
-" ============
-" === WIKI ===
-" ============
-
-" Configure vim-wiki keybinds.
-nnoremap ]w :WikiLinkNext<CR>
-nnoremap [w :WikiLinkPrev<CR>
-" Configure vim-wiki options.
-let g:wiki_root='~/notes'
-let g:wiki_filetypes=['md', 'markdown']
 
 " ===============
 " === BULLETS ===

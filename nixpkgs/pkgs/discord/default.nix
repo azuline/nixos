@@ -6,10 +6,10 @@ let
     pname = "discord";
     binaryName = "Discord";
     desktopName = "Discord";
-    version = "0.0.16";
+    version = "0.0.17";
     src = fetchurl {
       url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-      sha256 = "1s9qym58cjm8m8kg3zywvwai2i3adiq6sdayygk2zv72ry74ldai";
+      sha256 = "sha256-NGJzLl1dm7dfkB98pQR3gv4vlldrII6lOMWTuioDExU=";
     };
   };
 in
