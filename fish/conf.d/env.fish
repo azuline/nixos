@@ -37,9 +37,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Git fuzzy
 set -gx PATH "$HOME/.git-fuzzy/bin" $PATH
 
-# pyenv
-status is-interactive; and pyenv init --path | source
-
 # nixos applications
 set -gx XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 

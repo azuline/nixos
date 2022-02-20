@@ -90,6 +90,7 @@
       php80
       php80Packages.composer
       postgresql_13
+      python39Full
       rnix-lsp
       shellcheck
       sqlint
