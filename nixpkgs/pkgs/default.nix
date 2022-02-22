@@ -150,6 +150,7 @@
       ./i3-clear-clipboard
       ./i3-lock
       ./i3-pass
+      ./i3-screenshot
       ./i3-yy
       ./picom
       ./polybar
