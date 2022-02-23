@@ -26,13 +26,16 @@
       jq
       mediainfo
       mkvtoolnix
+      mypy
       neofetch
       # Broken with some plugins due to missing libc++.
       neovim
       nnn
       pass
       pdftk
+      poetry
       procps-ng
+      python39Packages.pip
       python39Packages.pipx
       python39Packages.shodan
       ripgrep
@@ -69,6 +72,7 @@
       act
       berglas
       bfg-repo-cleaner
+      black
       ccls
       clang-tools
       docker-compose

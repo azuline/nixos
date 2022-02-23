@@ -255,8 +255,8 @@ local function filter(arr, fn)
   return filtered
 end
 
-local function filterReactDTS(value)
-  return string.match(value.uri, 'react/index.d.ts') == nil
+local function filterDTS(value)
+  return string.match(value.uri, '.d.ts') == nil
 end
 
 lspconfig.tsserver.setup {
@@ -272,14 +272,16 @@ lspconfig.tsserver.setup {
     buf_map(bufnr, 'n', '<Leader>i', ':TSLspImportAll<CR>')
     on_attach(client, bufnr)
   end,
-  ['textDocument/definition'] = function(err, result, method, ...)
-    if vim.tbl_islist(result) and #result > 1 then
-      local filtered_result = filter(result, filterReactDTS)
-      return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
-    end
+  handlers = {
+    ['textDocument/definition'] = function(err, result, method, ...)
+      if vim.tbl_islist(result) and #result > 1 then
+        local filtered_result = filter(result, filterDTS)
+        return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+      end
 
-    vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
-  end,
+      vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+    end,
+  }
 }
 
 null_ls.setup {
