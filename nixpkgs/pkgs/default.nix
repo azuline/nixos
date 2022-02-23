@@ -161,7 +161,7 @@
       ./rofi
     ];
 
-    home.file.".xsessionrc".source = ../configFiles/profile;
+    home.file.".xsessionrc".source = ../configFiles/i3-xessionrc;
   });
 
   swayModule = ({ config, pkgs, ... }: {
@@ -176,12 +176,9 @@
       ./waybar
     ];
 
-    home.file.".profile".source = ../configFiles/profile;
+    home.file.".profile".source = ../configFiles/sway-profile;
 
     home.packages = with pkgs; [
-      sway-clear-clipboard
-      sway-pass
-      sway-yy
       swayidle
       swaywsr
     ];
