@@ -75,12 +75,15 @@
       black
       ccls
       clang-tools
+      docker
       docker-compose
       gdb
       gitAndTools.delta
       gitAndTools.gh
       go_1_17
+      gofumpt
       golangci-lint
+      gopls
       google-cloud-sdk
       kubectl
       minikube

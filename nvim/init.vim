@@ -88,9 +88,6 @@ Plug 'mhinz/vim-signify'
 Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Golang
-Plug 'fatih/vim-go'
-
 " Coq
 Plug 'whonore/Coqtail'
 
@@ -226,15 +223,16 @@ local on_attach = function(client, bufnr)
   vim.cmd('command! LspDiagLine lua vim.diagnostic.open_float()')
   vim.cmd('command! LspSignatureHelp lua vim.lsp.buf.signature_help()')
 
-  buf_map(bufnr, 'n', '<C-]>', ':LspDef<CR>')
   buf_map(bufnr, 'n', '<Leader>rn', ':LspRename<CR>')
   buf_map(bufnr, 'n', 'K', ':LspHover<CR>')
   buf_map(bufnr, 'n', '[g', ':LspDiagPrev<CR>')
   buf_map(bufnr, 'n', ']g', ':LspDiagNext<CR>')
   buf_map(bufnr, 'n', '<Leader>a', ':LspCodeAction<CR>')
 
+  buf_map(bufnr, 'n', '<C-]>', ':LspDef<CR>')
+
   if client.resolved_capabilities.document_formatting then
-    vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+    vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
   end
 end
 
@@ -259,6 +257,8 @@ local function filterDTS(value)
   return string.match(value.uri, '.d.ts') == nil
 end
 
+lspconfig.gopls.setup {}
+lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
@@ -319,8 +319,7 @@ null_ls.setup {
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.gofumpt,
     null_ls.builtins.diagnostics.golangci_lint,
-    null_ls.builtins.diagnostics.revive,
-    null_ls.builtins.diagnostics.staticcheck,
+    -- null_ls.builtins.diagnostics.revive,
     -- Nix
     null_ls.builtins.formatting.nixpkgs_fmt,
     -- Postgres
@@ -369,7 +368,10 @@ cmp.setup({
       c = cmp.mapping.close(),
     }),
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -594,22 +596,6 @@ vim.cmd [[
   augroup end
 ]]
 EOF
-
-
-" ==============
-" === Golang ===
-" ==============
-
-" vim-go syntax highlighting
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-" Auto formatting and importing
-let g:go_fmt_autosave = 0
-" Status line types/signatures
-let g:go_auto_type_info = 1
 
 " ==================
 " === QUICKSCOPE ===
