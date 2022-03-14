@@ -164,7 +164,7 @@
       ./rofi
     ];
 
-    home.file.".xsessionrc".source = ../configFiles/i3-xessionrc;
+    home.file.".xsessionrc".source = ../configFiles/i3-xsessionrc;
   });
 
   swayModule = ({ config, pkgs, ... }: {
