@@ -209,6 +209,7 @@ bindsym --release Shift+Print exec i3-screenshot screen
 bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
 bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym Pause exec i3-change-audio
 
 ### Screen Locker
 

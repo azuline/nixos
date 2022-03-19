@@ -228,7 +228,6 @@ local on_attach = function(client, bufnr)
   buf_map(bufnr, 'n', '[g', ':LspDiagPrev<CR>')
   buf_map(bufnr, 'n', ']g', ':LspDiagNext<CR>')
   buf_map(bufnr, 'n', '<Leader>a', ':LspCodeAction<CR>')
-
   buf_map(bufnr, 'n', '<C-]>', ':LspDef<CR>')
 
   if client.resolved_capabilities.document_formatting then
@@ -253,12 +252,13 @@ local function filter(arr, fn)
   return filtered
 end
 
-local function filterDTS(value)
-  return string.match(value.uri, '.d.ts') == nil
-end
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+}
+lspconfig.pyright.setup {
+  on_attach = on_attach,
+}
 
-lspconfig.gopls.setup {}
-lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
@@ -274,6 +274,10 @@ lspconfig.tsserver.setup {
   end,
   handlers = {
     ['textDocument/definition'] = function(err, result, method, ...)
+      local function filterDTS(value)
+        return string.match(value.uri, '.d.ts') == nil
+      end
+
       if vim.tbl_islist(result) and #result > 1 then
         local filtered_result = filter(result, filterDTS)
         return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)

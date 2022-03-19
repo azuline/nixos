@@ -34,7 +34,7 @@
       pass
       pdftk
       poetry
-      procps-ng
+      procps
       python39Packages.pip
       python39Packages.pipx
       python39Packages.shodan
@@ -154,6 +154,7 @@
       ./bar-loadavg
       ./dunst
       ./i3
+      ./i3-change-audio
       ./i3-clear-clipboard
       ./i3-lock
       ./i3-pass
@@ -163,6 +164,12 @@
       ./polybar
       ./rofi
     ];
+
+    # I have no idea where to get these.
+    # home.packages = with pkgs; [
+    #   pacmd
+    #   pactl
+    # ];
 
     home.file.".xsessionrc".source = ../configFiles/i3-xsessionrc;
   });
