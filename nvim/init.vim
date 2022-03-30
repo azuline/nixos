@@ -252,11 +252,16 @@ local function filter(arr, fn)
   return filtered
 end
 
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 lspconfig.gopls.setup {
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 lspconfig.pyright.setup {
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 lspconfig.tsserver.setup {
@@ -272,6 +277,7 @@ lspconfig.tsserver.setup {
     buf_map(bufnr, 'n', '<Leader>i', ':TSLspImportAll<CR>')
     on_attach(client, bufnr)
   end,
+  capabilities = capabilities,
   handlers = {
     ['textDocument/definition'] = function(err, result, method, ...)
       local function filterDTS(value)
@@ -291,6 +297,7 @@ lspconfig.tsserver.setup {
 null_ls.setup {
   root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", ".git", "tsconfig.json", "go.mod", "poetry.toml"),
   sources = {
+    null_ls.builtins.diagnostics.semgrep,
     -- JS/TS/JSX/TSX
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.code_actions.eslint_d,
@@ -336,12 +343,6 @@ null_ls.setup {
   },
   on_attach = on_attach,
 }
-
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- lspconfig['LSP NAME'].setup {
---   capabilities = capabilities,
--- }
 EOF
 
 " ================

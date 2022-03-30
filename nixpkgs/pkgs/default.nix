@@ -25,6 +25,7 @@
       imagemagick
       jq
       mediainfo
+      mktorrent
       mkvtoolnix
       mypy
       neofetch

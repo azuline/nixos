@@ -25,4 +25,9 @@ in
     i3Module
     themeModule
   ];
+
+  home.packages = with pkgs; [
+    # For the Logitech mouse.
+    # solaar
+  ];
 }
