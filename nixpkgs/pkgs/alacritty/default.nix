@@ -16,6 +16,11 @@ in
       };
     settings = {
       window = {
+        opacity = 0.85;
+        dimensions = {
+          columns = 160;
+          lines = 120;
+        };
         padding = {
           x = 12;
           y = 12;
@@ -27,7 +32,6 @@ in
         };
         size = 24.0;
       };
-      background_opacity = 0.85;
       colors = {
         normal = {
           black = "#30384c";

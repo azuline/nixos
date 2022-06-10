@@ -26,6 +26,9 @@
       merge = {
         tool = "vimdiff";
       };
+      difftool = {
+        prompt = false;
+      };
       interactive = {
         diffFilter = "delta --color-only";
       };

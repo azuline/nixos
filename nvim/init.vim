@@ -31,7 +31,6 @@ augroup END
 " WIKI
 " BULLETS
 " YANKHIGHLIGHT
-" GOLANG
 " QUICKSCOPE
 " TESTRUNNER
 " TERMINAL
@@ -119,6 +118,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
+" Snippets to stop nvim-cmp from crashing.
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
 " Comment/uncomment assistance (because I'm slow)
 Plug 'tpope/vim-commentary'
 
@@ -160,7 +163,7 @@ call plug#end()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = { "javascript" }, -- List of parsers to ignore installing
   -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1019#issuecomment-811658387
   highlight = {
@@ -258,10 +261,23 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  
+  settings = {
+    gopls = {
+      gofumpt = false,
+      usePlaceholders = true,
+      -- TODO: Put this into a Pipe-specific config
+      ["local"] = "github.com/pipe-technologies/pipe/backend",
+    },
+  },
 }
+
 lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  handlers = {
+    ['textDocument/definition'] = vim.lsp.handlers['textDocument/definition'],
+  },
 }
 
 lspconfig.tsserver.setup {
@@ -295,7 +311,7 @@ lspconfig.tsserver.setup {
 }
 
 null_ls.setup {
-  root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", ".git", "tsconfig.json", "go.mod", "poetry.toml"),
+  root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),
   sources = {
     null_ls.builtins.diagnostics.semgrep,
     -- JS/TS/JSX/TSX
@@ -327,8 +343,8 @@ null_ls.setup {
     null_ls.builtins.diagnostics.flake8,
     -- Golang
     null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.gofumpt,
+    null_ls.builtins.formatting.gofmt,
     null_ls.builtins.diagnostics.golangci_lint,
     -- null_ls.builtins.diagnostics.revive,
     -- Nix
@@ -362,6 +378,11 @@ local has_words_before = function()
 end
 
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
   mapping = {
     -- ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     -- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -395,6 +416,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'vsnip' },
   }, {
     { name = 'buffer', keyword_length = 3 },
   }),
@@ -430,9 +452,9 @@ cmp.setup({
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
-  sources = {
+  sources = cmp.config.sources({
     { name = 'buffer', keyword_length = 3 }
-  }
+  })
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).

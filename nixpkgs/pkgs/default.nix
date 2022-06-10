@@ -5,6 +5,8 @@
     services.gpg-agent.enable = true;
     services.gpg-agent.extraConfig = ''
       pinentry-program /usr/bin/pinentry-gtk-2
+      default-cache-ttl 14400
+      max-cache-ttl 14400
     '';
 
     imports = [
@@ -81,7 +83,8 @@
       gdb
       gitAndTools.delta
       gitAndTools.gh
-      go_1_17
+      go_1_18
+      jdk11
       gofumpt
       golangci-lint
       gopls
@@ -91,6 +94,7 @@
       nodejs
       nodePackages.eslint
       nodePackages.eslint_d
+      nodePackages.pnpm
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
@@ -133,11 +137,13 @@
       gnome3.gedit
       gnome3.nautilus
       maim
+      meld
       # Excluding this on neptune since it can't connect.
       slack
       spotify
       tdesktop
-      ungoogled-chromium
+      # Takes forever to compile...
+      # ungoogled-chromium
       # Can't dl...
       xorg.xkill
       grim
