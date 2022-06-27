@@ -18,6 +18,8 @@
       autossh
       bat
       brightnessctl
+      ffmpeg
+      cmus
       curl
       dnsutils
       exa

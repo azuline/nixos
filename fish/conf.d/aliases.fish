@@ -80,3 +80,8 @@ alias imu='bubblegum upload --host=imgur.com'
 # gotestsum
 abbr --add --global gs 'gotestsum -- -count=1 -race ./...'
 abbr --add --global gsr 'gotestsum -- -count=1 -race ./... -run'
+
+# beets
+abbr --add --global bm 'beet modify --album'
+abbr --add --global ba 'beet ls --album | sort'
+abbr --add --global bart '~/scripts/artist-transform.py'

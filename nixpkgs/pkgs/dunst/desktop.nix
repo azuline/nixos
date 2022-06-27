@@ -13,6 +13,7 @@ in
     enable = true;
     settings = {
       global = {
+        monitor = 1;
         width = 360;
         height = 300;
         offset = "18x18";
