@@ -42,9 +42,6 @@
       pdftk
       poetry
       procps
-      python39Packages.pip
-      python39Packages.pipx
-      python39Packages.shodan
       ripgrep
       rsync
       rsync
@@ -72,6 +69,7 @@
     services.lorri.enable = true;
 
     imports = [
+      ./python
       ./haskell
       ./flake8
     ];
@@ -108,7 +106,6 @@
       php80
       php80Packages.composer
       postgresql_13
-      python39Full
       rnix-lsp
       shellcheck
       sqlint
