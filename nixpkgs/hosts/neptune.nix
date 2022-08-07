@@ -22,6 +22,7 @@ in
     devModule
     envModule
     guiModule
+    i3Module
     swayModule
     themeModule
   ];

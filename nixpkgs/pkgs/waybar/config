@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "bottom",
     "height": 36,
-    "modules-left": ["clock", "backlight", "battery", "network", "custom/vpn",],
+    "modules-left": ["clock", "backlight", "battery", "custom/loadavg", "network", "custom/vpn"],
     "modules-center": [],
     "modules-right": ["sway/workspaces", "pulseaudio", "tray"],
     "tray": {
@@ -66,5 +66,10 @@
 		"exec": "~/.config/waybar/vpn.sh",
 		"interval": 15,
 		"format": " {}"
+	},
+	"custom/loadavg": {
+		"exec": "~/.nix-profile/bin/bar-loadavg",
+		"interval": 5,
+		"format": "{}"
 	}
 }
