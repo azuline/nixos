@@ -16,26 +16,6 @@ augroup CoqtailHighlights
     \ | hi def link CoqtailError Error
 augroup END
 
-" Table of Contents. Search symbol to jump!
-
-" PLUGINS
-" TREESITTER
-" FZF
-" NULL-LS
-" NVIM-CMP
-" FERN
-" LIGHTLINE
-" PALENIGHT
-" GITGUTTER
-" LATEX
-" WIKI
-" BULLETS
-" YANKHIGHLIGHT
-" QUICKSCOPE
-" TESTRUNNER
-" TERMINAL
-" QUICKFIX
-
 " ===============
 " === PLUGINS ===
 " ===============
@@ -53,14 +33,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " File system explorer
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/glyph-palette.vim'
-" https://github.com/lambdalisue/fern.vim/issues/120
-Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 " Visuals
 " -------
@@ -158,8 +131,142 @@ Plug 'vim-test/vim-test'
 call plug#end()
 
 " ==================
-" === TREESITTER ===
+" === STATUSLINE ===
 " ==================
+" IMPORTANT: This section must be loaded before Palenight theme section.
+
+set laststatus=2
+set noshowmode
+
+let g:lightline={
+  \   'colorscheme': 'palenight',
+  \   'separator': { 'left': '', 'right': '' },
+  \   'subseparator': { 'left': '', 'right': '' },
+  \   'component_expand': {
+  \     'linter_hints': 'lightline#lsp#hints',
+  \     'linter_infos': 'lightline#lsp#infos',
+  \     'linter_warnings': 'lightline#lsp#warnings',
+  \     'linter_errors': 'lightline#lsp#errors',
+  \     'linter_ok': 'lightline#lsp#ok',
+  \   },
+  \   'component_type': {
+  \     'linter_checking': 'right',
+  \     'linter_infos': 'right',
+  \     'linter_warnings': 'warning',
+  \     'linter_errors': 'error',
+  \     'linter_ok': 'right',
+  \   },
+  \   'active': {
+  \     'left': [
+  \       ['mode', 'paste'],
+  \       ['readonly', 'filename', 'modified', 'helloworld'],
+  \     ],
+  \     'right': [
+  \       ['lineinfo'],
+  \       ['percent'],
+  \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+  \       ['fileformat', 'fileencoding', 'filetype'],
+  \     ],
+  \   },
+  \ }
+
+" ===================
+" === APPEARANCE  ===
+" ===================
+
+" === Multiple Cursors
+" The vim multi cursors are invisible in default theme.
+let g:VM_theme = 'nord'
+
+" === Highlight on Yank
+lua <<EOF
+vim.cmd [[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]]
+EOF
+
+" === Theme Fixes
+" Fix terminal colors for Palenight
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+" Enable italics
+let g:palenight_terminal_italics=1
+" The grays in palenight are too dark.
+let g:palenight_color_overrides = {
+  \   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
+  \   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
+  \ }
+" Set the background.
+set background=dark
+colorscheme palenight
+hi Normal guibg=NONE ctermbg=NONE
+
+" === Git gutter configurations.
+" Always keep signcolumn on.
+set signcolumn=yes
+" Modify signify delete color.
+highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE
+
+" === LaTeX configuration.
+" Configure some LaTeX behaviors.
+let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+let g:vimtex_view_general_viewer='evince'
+" For vim-conceal.
+set conceallevel=2
+let g:tex_conceal='abdmg'
+let g:tex_conceal_frac=1
+" Extra conceal matches.
+syntax match textCmdStyleBold '\\mathbf\>\s*' skipwhite skipnl nextgroup=texStyleBold conceal
+
+" ================
+" === BEHAVIOR ===
+" ================
+
+" === Bullet Behavior
+" Selectively enable bullets for these filetypes.
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
+
+" === Vim-test Keybinds
+nmap <silent> <Leader>tn :TestNearest<CR>
+nmap <silent> <Leader>tf :TestFile<CR>
+nmap <silent> <Leader>ts :TestSuite<CR>
+nmap <silent> <Leader>tl :TestLast<CR>
+nmap <silent> <Leader>tg :TestVisit<CR>
+
+" === Quickfix augmentations
+" Custom open quickfix list hotkey.
+nmap <Leader>ea :call OpenQuickfixList()<CR>
+function! OpenQuickfixList()
+  if empty(getqflist())
+    return
+  endif
+
+  let s:prev_val = ""
+  for d in getqflist()
+      let s:curr_val = bufname(d.bufnr)
+      if (s:curr_val != s:prev_val)
+          "echo s:curr_val
+          exec "edit " . s:curr_val
+      end
+      let s:prev_val = s:curr_val
+  endfor
+endfunction
+
+" ===========================
+" === SYNTAX HIGHLIGHTING ===
+" ===========================
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -178,9 +285,35 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" ===========
-" === FZF ===
-" ===========
+" ====================
+" === FILE BROWSER ===
+" ====================
+
+nnoremap <Leader>f <CMD>CHADopen --version-ctl<CR>
+nnoremap <Leader>c <CMD>call setqflist([])<CR>
+lua <<EOF
+local chadtree_settings = { 
+  ["ignore.name_exact"] = {
+    ".DS_Store",
+    ".directory",
+    "thumbs.db",
+    ".git",
+    "node_modules",
+    "__pycache__",
+    "build",
+    "dist",
+  };
+  ["view.window_options"] = {
+    ["number"]: true,
+    ["relativenumber"]: true,
+  };
+}
+vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
+EOF
+
+" ===================
+" === FILE FINDER ===
+" ===================
 
 " Git Files
 nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>
@@ -198,9 +331,9 @@ nnoremap <Leader>ha :GV<CR>
 " Configure FZF preview window.
 let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
 
-" ===============
-" === NULL-LS ===
-" ===============
+" ==================
+" === LSP CONFIG ===
+" ==================
 
 lua <<EOF
 local lspconfig = require('lspconfig')
@@ -369,9 +502,9 @@ null_ls.setup {
 }
 EOF
 
-" ================
-" === NVIM-CMP ===
-" ================
+" ======================
+" === AUTOCOMPLETION ===
+" ======================
 
 set completeopt=menu,menuone,noselect
 
@@ -474,227 +607,3 @@ cmp.setup.cmdline(':', {
   })
 })
 EOF
-
-" ============
-" === FERN ===
-" ============
-
-nnoremap <Leader>f :Fern . -drawer -toggle -width=30 -reveal=%<CR>
-
-let g:fern_git_status#disable_ignored = 1
-let g:fern#renderer = "nerdfont"
-let g:fern#disable_default_mappings = 1
-
-let g:fern#default_hidden = 1
-let g:fern#default_exclude = '^\%(\.git\|__pycache__\|\.mypy_cache\|\.pytest_cache\|htmlcov\|repertoire\.egg-info\|\.coverage\|node_modules\|build\)$'
-
-augroup FernGroup
-  autocmd!
-  autocmd FileType fern call FernInit()
-augroup END
-
-function! FernInit() abort
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-open-expand-collapse)
-        \ fern#smart#leaf(
-        \   "\<Plug>(fern-action-open:select)",
-        \   "\<Plug>(fern-action-expand)",
-        \   "\<Plug>(fern-action-collapse)",
-        \ )
-  nmap <buffer> o <Plug>(fern-my-open-expand-collapse)
-  nmap <buffer> l <Plug>(fern-action-expand)
-  nmap <buffer> h <Plug>(fern-action-collapse)
-  nmap <buffer> n <Plug>(fern-action-new-path)
-  nmap <buffer> d <Plug>(fern-action-remove)
-  nmap <buffer> c <Plug>(fern-action-copy)
-  nmap <buffer> m <Plug>(fern-action-move)
-  nmap <buffer> M <Plug>(fern-action-rename)
-  nmap <buffer> H <Plug>(fern-action-hidden-toggle)
-  nmap <buffer> r <Plug>(fern-action-reload)
-  nmap <buffer> s <Plug>(fern-action-open:split)
-  nmap <buffer> v <Plug>(fern-action-open:vsplit)
-  nmap <buffer> <C-j> <Plug>(fern-action-mark:toggle)j
-  nmap <buffer> <C-k> <Plug>(fern-action-mark:toggle)k
-  nmap <buffer><nowait> < <Plug>(fern-action-leave)
-  nmap <buffer><nowait> > <Plug>(fern-action-enter)
-endfunction
-
-" =================
-" === LIGHTLINE ===
-" =================
-" IMPORTANT: This section must be loaded before Palenight theme section.
-
-set laststatus=2
-set noshowmode
-
-let g:lightline={
-  \   'colorscheme': 'palenight',
-  \   'separator': { 'left': '', 'right': '' },
-  \   'subseparator': { 'left': '', 'right': '' },
-  \   'component_expand': {
-  \     'linter_hints': 'lightline#lsp#hints',
-  \     'linter_infos': 'lightline#lsp#infos',
-  \     'linter_warnings': 'lightline#lsp#warnings',
-  \     'linter_errors': 'lightline#lsp#errors',
-  \     'linter_ok': 'lightline#lsp#ok',
-  \   },
-  \   'component_type': {
-  \     'linter_checking': 'right',
-  \     'linter_infos': 'right',
-  \     'linter_warnings': 'warning',
-  \     'linter_errors': 'error',
-  \     'linter_ok': 'right',
-  \   },
-  \   'active': {
-  \     'left': [
-  \       ['mode', 'paste'],
-  \       ['readonly', 'filename', 'modified', 'helloworld'],
-  \     ],
-  \     'right': [
-  \       ['lineinfo'],
-  \       ['percent'],
-  \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
-  \       ['fileformat', 'fileencoding', 'filetype'],
-  \     ],
-  \   },
-  \ }
-
-" =================
-" === PALENIGHT ===
-" =================
-
-" Fix terminal colors for Palenight
-if exists('+termguicolors')
-  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
-" The grays in palenight are too dark.
-let g:palenight_color_overrides = {
-  \   'gutter_fg_grey': { 'gui': '#657291', 'cterm': '245', 'cterm16': '15' },
-  \   'comment_grey': { 'gui': '#7272a8', 'cterm': '247', 'cterm16': '15' },
-  \ }
-
-" Set the background.
-set background=dark
-colorscheme palenight
-hi Normal guibg=NONE ctermbg=NONE
-
-
-" =================
-" === GITGUTTER ===
-" =================
-
-" Always keep signcolumn on.
-set signcolumn=yes
-" Modify signify delete color.
-highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE
-
-" =============
-" === LATEX ===
-" =============
-
-" Configure some LaTeX behaviors.
-let g:tex_flavor='latex'
-let g:vimtex_quickfix_mode=0
-let g:vimtex_view_general_viewer='evince'
-" For vim-conceal.
-set conceallevel=2
-let g:tex_conceal='abdmg'
-let g:tex_conceal_frac=1
-" Extra conceal matches.
-syntax match textCmdStyleBold '\\mathbf\>\s*' skipwhite skipnl nextgroup=texStyleBold conceal
-
-" ===============
-" === BULLETS ===
-" ===============
-
-" Selectively enable bullets for these filetypes.
-let g:bullets_enabled_file_types = [
-    \ 'markdown',
-    \ 'text',
-    \ 'gitcommit',
-    \ 'scratch'
-    \]
-
-" =====================
-" === YANKHIGHLIGHT ===
-" =====================
-
-" Highlight on yank.
-lua <<EOF
-vim.cmd [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]
-EOF
-
-" ==================
-" === QUICKSCOPE ===
-" ==================
-
-" Underline quickscope letters instead of changing the color.
-augroup QuickScopeColors
-  autocmd ColorScheme * highlight QuickScopePrimary gui=underline cterm=underline
-augroup end
-" Disable quickscope in Fern.
-augroup FernQuickScope
-  au FileType fern let b:qs_local_disable=1
-augroup end
-
-" Multiple Cursors
-" The vim multi cursors are invisible in default theme.
-let g:VM_theme = 'nord'
-
-" ==================
-" === TESTRUNNER ===
-" ==================
-
-" Additional vim-test keybinds.
-nmap <silent> <Leader>tn :TestNearest<CR>
-nmap <silent> <Leader>tf :TestFile<CR>
-nmap <silent> <Leader>ts :TestSuite<CR>
-nmap <silent> <Leader>tl :TestLast<CR>
-nmap <silent> <Leader>tg :TestVisit<CR>
-
-function! DebugNearest()
-  let g:test#go#runner = 'delve'
-  TestNearest
-  unlet g:test#go#runner
-endfunction
-nmap <silent> <Leader>td :call DebugNearest()<CR>
-
-" ================
-" === TERMINAL ===
-" ================
-
-" Terminal keybinds
-nnoremap <Leader><CR> :terminal<CR>
-" Map Esc to terminal's Esc
-au TermOpen * tnoremap <buffer> <Esc> <C-\><C-n>
-au FileType fzf tunmap <buffer> <Esc>
-
-" ================
-" === QUICKFIX ===
-" ================
-
-" Custom open quickfix list hotkey.
-nmap <Leader>ea :call OpenQuickfixList()<CR>
-function! OpenQuickfixList()
-  if empty(getqflist())
-    return
-  endif
-
-  let s:prev_val = ""
-  for d in getqflist()
-      let s:curr_val = bufname(d.bufnr)
-      if (s:curr_val != s:prev_val)
-          "echo s:curr_val
-          exec "edit " . s:curr_val
-      end
-      let s:prev_val = s:curr_val
-  endfor
-endfunction
