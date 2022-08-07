@@ -140,7 +140,7 @@ set laststatus=2
 set noshowmode
 
 lua <<EOF
-vim.api.nvim_set_var("lightline", {
+vim.g["lightline"] = {
   colorscheme = "palenight",
   separator = { 
     left = '', 
@@ -159,6 +159,7 @@ vim.api.nvim_set_var("lightline", {
     linter_warnings = 'lightline#lsp#warnings',
     linter_errors = 'lightline#lsp#errors',
     linter_ok = 'lightline#lsp#ok',
+    buffers = 'lightline#bufferline#buffers',
   },
   component_type = {
     linter_checking = 'right',
@@ -166,6 +167,7 @@ vim.api.nvim_set_var("lightline", {
     linter_warnings = 'warning',
     linter_errors = 'error',
     linter_ok = 'right',
+    buffers = 'tabsel',
   },
   active = {
     left = {
@@ -179,7 +181,7 @@ vim.api.nvim_set_var("lightline", {
       {'fileformat', 'fileencoding', 'filetype'},
     },
   },
-})
+}
 EOF
 
 " ===================
@@ -301,7 +303,7 @@ EOF
 " === FILE NAVIGATION  ===
 " ========================
 
-# === Tree browser
+" === Tree browser
 nnoremap <Leader>f <Cmd>CHADopen<CR>
 nnoremap <Leader>c <Cmd>call setqflist([])<CR>
 lua <<EOF
@@ -349,7 +351,31 @@ nnoremap <Leader>ha :GV<CR>
 let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
 
 " === Tab Bar
-" TODO
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
+" Delete buffer.
+nmap <Leader>d1 <Plug>lightline#bufferline#delete(1)
+nmap <Leader>d2 <Plug>lightline#bufferline#delete(2)
+nmap <Leader>d3 <Plug>lightline#bufferline#delete(3)
+nmap <Leader>d4 <Plug>lightline#bufferline#delete(4)
+nmap <Leader>d5 <Plug>lightline#bufferline#delete(5)
+nmap <Leader>d6 <Plug>lightline#bufferline#delete(6)
+nmap <Leader>d7 <Plug>lightline#bufferline#delete(7)
+nmap <Leader>d8 <Plug>lightline#bufferline#delete(8)
+nmap <Leader>d9 <Plug>lightline#bufferline#delete(9)
+nmap <Leader>d0 <Plug>lightline#bufferline#delete(10)
+
+let g:lightline#bufferline#show_number=2
+let g:lightline#bufferline#min_buffer_count=2
 
 " ==================
 " === LSP CONFIG ===
