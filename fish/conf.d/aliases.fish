@@ -43,7 +43,7 @@ abbr --add --global gpo 'git push -u origin HEAD'
 abbr --add --global gl 'git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 abbr --add --global gr 'cd (git rev-parse --show-toplevel)'
 abbr --add --global gb 'git branch'
-abbr --add --global gbl "git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate"
+abbr --add --global gbl "git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative))' --sort=-committerdate"
 abbr --add --global gfb 'git fuzzy branch'
 abbr --add --global ga 'git add'
 abbr --add --global gc 'git commit'
@@ -65,6 +65,10 @@ function gprune
        | xargs -r git branch -D
 end
 
+function tea
+    termdown $argv[1] && spd-say "tea done yay yay"
+end
+
 # Tmux
 abbr --add --global tn 'tmux new -s'
 abbr --add --global ta 'tmux attach -t'
@@ -82,6 +86,7 @@ abbr --add --global gs 'gotestsum -- -count=1 -race ./...'
 abbr --add --global gsr 'gotestsum -- -count=1 -race ./... -run'
 
 # beets
+abbr --add --global trc '~/scripts/transcoder/run.sh'
 abbr --add --global bm 'beet modify --album'
 abbr --add --global ba 'beet ls --album | sort'
-abbr --add --global bart '~/scripts/artist-transform.py'
+abbr --add --global bart '~/scripts/artist-transform/run.py'

@@ -16,6 +16,7 @@
 
     home.packages = with pkgs; [
       autossh
+      xsv
       bat
       brightnessctl
       ffmpeg
@@ -24,6 +25,7 @@
       dnsutils
       exa
       fd
+      monolith
       fzf
       graphviz
       imagemagick
@@ -47,6 +49,8 @@
       rsync
       rsync
       speedtest-cli
+      termdown
+      unixtools.netstat
       sqlite-interactive
       sshfs
       tldr
@@ -109,6 +113,10 @@
       shellcheck
       sqlint
       stack
+      cabal-install
+      haskellPackages.implicit-hie
+      haskell-language-server
+      ghc
       watchman # Needed for tsserver
       yarn
     ];

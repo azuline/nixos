@@ -280,6 +280,14 @@ lspconfig.pyright.setup {
   },
 }
 
+lspconfig.hls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  handlers = {
+    ['textDocument/definition'] = vim.lsp.handlers['textDocument/definition'],
+  },
+}
+
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
