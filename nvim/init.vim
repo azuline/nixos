@@ -48,6 +48,10 @@ Plug 'spywhere/lightline-lsp'
 " Git gutter
 Plug 'mhinz/vim-signify'
 
+" Tabs
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
+
 " Extra file context
 " This plays poorly with Fern.
 " Plug 'wellle/context.vim'
@@ -289,7 +293,7 @@ EOF
 " === FILE BROWSER ===
 " ====================
 
-nnoremap <Leader>f <CMD>CHADopen --version-ctl<CR>
+nnoremap <Leader>f <CMD>CHADopen<CR>
 nnoremap <Leader>c <CMD>call setqflist([])<CR>
 lua <<EOF
 local chadtree_settings = { 
@@ -303,9 +307,11 @@ local chadtree_settings = {
     "build",
     "dist",
   };
+  -- Eh, this doesn't work with native theme, but nord looks alright.
+  ["theme.text_colour_set"] = "nord";
   ["view.window_options"] = {
-    ["number"]: true,
-    ["relativenumber"]: true,
+    ["number"] = true,
+    ["relativenumber"] = true,
   };
 }
 vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
