@@ -44,13 +44,10 @@ Plug 'drewtempelmeyer/palenight.vim'
 " Status line
 Plug 'itchyny/lightline.vim'
 Plug 'spywhere/lightline-lsp'
+Plug 'mengelbrecht/lightline-bufferline'
 
 " Git gutter
 Plug 'mhinz/vim-signify'
-
-" Tabs
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'romgrk/barbar.nvim'
 
 " Extra file context
 " This plays poorly with Fern.
@@ -142,37 +139,48 @@ call plug#end()
 set laststatus=2
 set noshowmode
 
-let g:lightline={
-  \   'colorscheme': 'palenight',
-  \   'separator': { 'left': '', 'right': '' },
-  \   'subseparator': { 'left': '', 'right': '' },
-  \   'component_expand': {
-  \     'linter_hints': 'lightline#lsp#hints',
-  \     'linter_infos': 'lightline#lsp#infos',
-  \     'linter_warnings': 'lightline#lsp#warnings',
-  \     'linter_errors': 'lightline#lsp#errors',
-  \     'linter_ok': 'lightline#lsp#ok',
-  \   },
-  \   'component_type': {
-  \     'linter_checking': 'right',
-  \     'linter_infos': 'right',
-  \     'linter_warnings': 'warning',
-  \     'linter_errors': 'error',
-  \     'linter_ok': 'right',
-  \   },
-  \   'active': {
-  \     'left': [
-  \       ['mode', 'paste'],
-  \       ['readonly', 'filename', 'modified', 'helloworld'],
-  \     ],
-  \     'right': [
-  \       ['lineinfo'],
-  \       ['percent'],
-  \       ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
-  \       ['fileformat', 'fileencoding', 'filetype'],
-  \     ],
-  \   },
-  \ }
+lua <<EOF
+vim.api.nvim_set_var("lightline", {
+  colorscheme = "palenight",
+  separator = { 
+    left = '', 
+    right = '',
+  },
+  subseparator = {
+    left = '',
+    right = '',
+  },
+  tabline = {
+    left = {{'buffers'}},
+  },
+  component_expand = {
+    linter_hints = 'lightline#lsp#hints',
+    linter_infos = 'lightline#lsp#infos',
+    linter_warnings = 'lightline#lsp#warnings',
+    linter_errors = 'lightline#lsp#errors',
+    linter_ok = 'lightline#lsp#ok',
+  },
+  component_type = {
+    linter_checking = 'right',
+    linter_infos = 'right',
+    linter_warnings = 'warning',
+    linter_errors = 'error',
+    linter_ok = 'right',
+  },
+  active = {
+    left = {
+      {'mode', 'paste'},
+      {'readonly', 'filename', 'modified', 'helloworld'},
+    },
+    right = {
+      {'lineinfo'},
+      {'percent'},
+      {'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'},
+      {'fileformat', 'fileencoding', 'filetype'},
+    },
+  },
+})
+EOF
 
 " ===================
 " === APPEARANCE  ===
@@ -289,38 +297,42 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" ====================
-" === FILE BROWSER ===
-" ====================
+" ========================
+" === FILE NAVIGATION  ===
+" ========================
 
-nnoremap <Leader>f <CMD>CHADopen<CR>
-nnoremap <Leader>c <CMD>call setqflist([])<CR>
+# === Tree browser
+nnoremap <Leader>f <Cmd>CHADopen<CR>
+nnoremap <Leader>c <Cmd>call setqflist([])<CR>
 lua <<EOF
 local chadtree_settings = { 
-  ["ignore.name_exact"] = {
-    ".DS_Store",
-    ".directory",
-    "thumbs.db",
-    ".git",
-    "node_modules",
-    "__pycache__",
-    "build",
-    "dist",
-  };
+  ignore = {
+    name_exact = {
+      ".DS_Store",
+      ".directory",
+      "thumbs.db",
+      ".git",
+      "node_modules",
+      "__pycache__",
+      "build",
+      "dist",
+    },
+  },
   -- Eh, this doesn't work with native theme, but nord looks alright.
-  ["theme.text_colour_set"] = "nord";
-  ["view.window_options"] = {
-    ["number"] = true,
-    ["relativenumber"] = true,
-  };
+  theme = {
+    text_colour_set = "nord";
+  },
+  view = {
+    window_options = {
+      number = true,
+      relativenumber = true,
+    },
+  },
 }
 vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
 EOF
 
-" ===================
-" === FILE FINDER ===
-" ===================
-
+" === Fuzzy File Finder
 " Git Files
 nnoremap <Leader>. :GitFiles! --cached --others --exclude-standard<CR>
 " Ripgrep
@@ -333,9 +345,11 @@ nnoremap <Leader>ch :History:!<CR>
 nnoremap <Leader>hf :GV!<CR>
 " History All
 nnoremap <Leader>ha :GV<CR>
-
 " Configure FZF preview window.
 let g:fzf_preview_window=['up:40%:hidden', 'ctrl-/']
+
+" === Tab Bar
+" TODO
 
 " ==================
 " === LSP CONFIG ===
