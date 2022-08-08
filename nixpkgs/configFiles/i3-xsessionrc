@@ -5,8 +5,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # Firefox can't handle this properly.
 # export GTK_THEME=Plata-Noir
 
-# This is for laptop. Use some magic logic stuff to make it laptop only.
-
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -17,6 +15,7 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export XDG_DATA_DIRS="$HOME/.local/share:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
 
 # Nix
@@ -28,8 +27,3 @@ fi
 
 # Display
 xrandr --output HDMI-0 --right-of DP-0
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
