@@ -42,3 +42,6 @@ set -gx XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 
 # opam configuration
 source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
+# for vim chadtree colors stuff
+set -gx LS_COLORS 'di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'

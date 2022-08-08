@@ -16,8 +16,7 @@ vim.cmd([[
 	augroup END
 ]])
 
--- Load the plugins.
-do
+do -- Load the plugins.
 	-- Perhaps one day I will be sane and cherry-pick things from these plugins
 	-- that I need while forgoing the remaining bloat. However, right now, I"m
 	-- lazy, my computer is fast, and I don"t want to devote the time.
@@ -52,8 +51,7 @@ do
 		-- Git gutter
 		Plug("mhinz/vim-signify")
 		-- Extra file context
-		-- Breaks in Fern. TODO: Try reenabling.
-		-- Plug("wellle/context.vim")
+		Plug("wellle/context.vim")
 	end
 
 	-- Language/Syntax Plugins
