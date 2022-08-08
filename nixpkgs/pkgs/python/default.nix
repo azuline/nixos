@@ -9,6 +9,7 @@ let
         pipx
         shodan
         virtualenv
+        pid
       ]);
 in
 {

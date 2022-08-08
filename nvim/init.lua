@@ -1,6 +1,3 @@
--- Set the spellfile.
-vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
-
 -- These need to be configured before we load plugins.
 vim.g.polyglot_disabled = { "markdown" }
 vim.g.markdown_enable_conceal = 1
@@ -26,8 +23,7 @@ do -- Load the plugins.
 	-- General dependency.
 	Plug("nvim-lua/plenary.nvim")
 
-	-- Navigation
-	do
+	do -- Navigation
 		-- Fuzzy finder
 		Plug("junegunn/fzf", {
 			["do"] = vim.fn["fzf#install()"],
@@ -40,8 +36,7 @@ do -- Load the plugins.
 		})
 	end
 
-	-- Visuals
-	do
+	do -- Visuals
 		-- Theme
 		Plug("drewtempelmeyer/palenight.vim")
 		-- Statusline
@@ -54,8 +49,7 @@ do -- Load the plugins.
 		Plug("wellle/context.vim")
 	end
 
-	-- Language/Syntax Plugins
-	do
+	do -- Language/Syntax Plugins
 		-- Language parser & highlighting
 		-- We use polyglot for indentation, since tree-sitter is not mature.
 		Plug("sheerun/vim-polyglot")
@@ -71,10 +65,13 @@ do -- Load the plugins.
 		Plug("KeitaNakamura/tex-conceal.vim", {
 			["for"] = "tex",
 		})
+		-- CSS
+		Plug("ap/vim-css-color")
 	end
 
-	-- Editor augmentation
-	do
+	do -- Editor augmentation
+		-- Text objects for expanding/contracting syntactic constructs
+		Plug("RRethy/nvim-treesitter-textsubjects")
 		-- Bullet points, because the replacement Markdown plugins all suck
 		Plug("dkarter/bullets.vim")
 		-- Comment/uncomment assistance (because I"m slow)
@@ -85,18 +82,19 @@ do -- Load the plugins.
 		Plug("wellle/targets.vim")
 		-- Surrounding objects mutation
 		Plug("tpope/vim-surround")
+		-- Give me readline in command mode!
+		Plug("tpope/vim-rsi")
 		-- Text alignment operator
 		Plug("tommcdo/vim-lion")
 		-- Repeat for plugins
 		Plug("tpope/vim-repeat")
+		-- Toggle between singleline and multiline syntax
+		Plug("AndrewRadev/splitjoin.vim")
 		-- Sublime style multiple cursors
 		Plug("mg979/vim-visual-multi", { branch = "master" })
-		-- Color highlighting.
-		Plug("ap/vim-css-color")
 	end
 
-	-- Language Server Protocol
-	do
+	do -- Language Server Protocol
 		-- Default LSP configs
 		Plug("neovim/nvim-lspconfig")
 		-- Null-ls for editors/autoformatters -> LSP
@@ -111,13 +109,13 @@ do -- Load the plugins.
 		Plug("hrsh7th/cmp-path")
 		Plug("hrsh7th/cmp-cmdline")
 		Plug("hrsh7th/nvim-cmp")
+		Plug("hrsh7th/cmp-nvim-lsp-signature-help")
 		-- Snippets to stop nvim-cmp from crashing.
 		Plug("hrsh7th/cmp-vsnip")
 		Plug("hrsh7th/vim-vsnip")
 	end
 
-	-- Developer tooling
-	do
+	do -- Developer tooling
 		-- Git Client
 		Plug("tpope/vim-fugitive")
 		-- Git History Viewer
@@ -134,7 +132,10 @@ require("navigation")
 require("lsp")
 require("completion")
 
--- Behavior tweaks
+-- Set the spellfile.
+vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
+
+-- Miscellanous behavior tweaks
 
 do -- Vim-test Keybinds
 	vim.api.nvim_set_keymap("n", "<Leader>tn", "<Cmd>TestNearest<CR>", { silent = true })
@@ -164,3 +165,11 @@ do -- Quickfix augmentations
 	]])
 	vim.api.nvim_set_keymap("n", "<Leader>ea", "<Cmd>call OpenQuickFixList()<CR>", {})
 end
+
+-- Selectively enable bullets behavior for these filetypes.
+vim.g.bullets_enabled_file_types = {
+	"markdown",
+	"text",
+	"gitcommit",
+	"scratch",
+}

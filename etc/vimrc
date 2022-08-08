@@ -117,10 +117,10 @@ nnoremap <Space> <nop>
 let mapleader = " "
 let maplocalleader = "\\"
 
-nnoremap <Leader>n :noh<CR>
+nnoremap <Leader>n <Cmd>noh<CR>
 
-nnoremap <Leader>s :split<CR><C-W>j
-nnoremap <Leader>v :vsplit<CR><C-W>l
+nnoremap <Leader>s <Cmd>split<CR><C-W>j
+nnoremap <Leader>v <Cmd>vsplit<CR><C-W>l
 
 nnoremap <Leader>o :silent %w !wl-copy<CR>
 
@@ -134,17 +134,15 @@ nnoremap = :silent bnext<CR>
 nnoremap <Backspace> :silent b#<CR>
 nnoremap <Leader><Backspace> :silent bp<bar>sp<bar>bn<bar>bd<CR>
 
-nnoremap <Leader>r- :resize -10<CR>
-nnoremap <Leader>r= :resize +10<CR>
-nnoremap <Leader>r, :vertical resize -10<CR>
-nnoremap <Leader>r. :vertical resize +10<CR>
+nnoremap <Leader>r- <Cmd>resize -10<CR>
+nnoremap <Leader>r= <Cmd>resize +10<CR>
+nnoremap <Leader>r, <Cmd>vertical resize -10<CR>
+nnoremap <Leader>r. <Cmd>vertical resize +10<CR>
 
-nnoremap <Leader>e- :cprevious<CR>
-nnoremap <Leader>e= :cnext<CR>
-nnoremap <Leader>e, :lprevious<CR>
-nnoremap <Leader>e. :lnext<CR>
+nnoremap M <Cmd>cprevious<CR>
+nnoremap m <Cmd>cnext<CR>
 
-nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>l <Cmd>ls<CR>
 
 " <C-r> in visual mode to S&R selected text.
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
@@ -152,3 +150,6 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 " Bind <C-w> to automatically correct the previous word in insert & normal mode.
 inoremap <C-w> <c-g>u<Esc>[s1z=`]a<c-g>u
 nnoremap <C-w> i<c-g>u<Esc>[s1z=`]a<c-g>u<Esc>
+
+" Create parent directories when saving new files.
+au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')

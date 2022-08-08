@@ -12,16 +12,16 @@ do -- Treesitter Configuration
 		indent = {
 			enable = false,
 		},
+		textsubjects = {
+			enable = true,
+			prev_selection = ",", -- (Optional) keymap to select the previous selection
+			keymaps = {
+				["."] = "textsubjects-smart",
+				[";"] = "textsubjects-container-outer",
+				["i;"] = "textsubjects-container-inner",
+			},
+		},
 	})
-
-	-- Selectively enable bullets behavior for these filetypes.
-	-- Default language configurations around bullet behavior sucks.
-	vim.g.bullets_enabled_file_types = {
-		"markdown",
-		"text",
-		"gitcommit",
-		"scratch",
-	}
 end
 
 do -- LaTeX
