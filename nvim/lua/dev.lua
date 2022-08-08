@@ -156,6 +156,17 @@ do -- LSP Configuration
   })
 
   lspconfig.tsserver.setup({
+    init_options = {
+      preferences = {
+        importModuleSpecifierPreference = "non-relative",
+        importModuleSpecifierEnding = "minimal",
+        -- This is currently in @typescript/next.
+        autoImportFileExcludePatterns = {
+          -- This reexports every React hook.. absurd.
+          "@storybook/addons/**",
+        },
+      },
+    },
     on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = false
       client.resolved_capabilities.document_range_formatting = false
