@@ -57,18 +57,17 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			with_text = true,
 			menu = {
+				nvim_lsp_signature_help = "[sig]",
 				buffer = "[buf]",
 				nvim_lsp = "[lsp]",
+				vsnip = "[snip]",
 				path = "[path]",
-				latex_symbols = "[latex]",
+				latex_symbols = "[tex]",
 			},
 		}),
 	},
 	experimental = {
 		ghost_text = true,
-	},
-	view = {
-		entries = "native",
 	},
 	enabled = function()
 		-- disable completion in comments
@@ -84,6 +83,7 @@ cmp.setup({
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won"t work anymore).
 cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "buffer", keyword_length = 3 },
 	}),
@@ -91,6 +91,7 @@ cmp.setup.cmdline("/", {
 
 -- Use cmdline & path source for ":" (if you enabled `native_menu`, this won"t work anymore).
 cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path", keyword_length = 3 },
 	}, {

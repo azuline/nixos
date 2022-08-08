@@ -14,9 +14,6 @@ vim.cmd([[
 ]])
 
 do -- Load the plugins.
-	-- Perhaps one day I will be sane and cherry-pick things from these plugins
-	-- that I need while forgoing the remaining bloat. However, right now, I"m
-	-- lazy, my computer is fast, and I don"t want to devote the time.
 	vim.call("plug#begin", vim.fn.stdpath("data") .. "/plugged")
 	local Plug = vim.fn["plug#"]
 
@@ -25,15 +22,10 @@ do -- Load the plugins.
 
 	do -- Navigation
 		-- Fuzzy finder
-		Plug("junegunn/fzf", {
-			["do"] = vim.fn["fzf#install()"],
-		})
+		Plug("junegunn/fzf", { ["do"] = vim.fn["fzf#install()"] })
 		Plug("junegunn/fzf.vim")
 		-- File tree
-		Plug("ms-jpq/chadtree", {
-			branch = "chad",
-			["do"] = "python3 -m chadtree deps",
-		})
+		Plug("ms-jpq/chadtree", { branch = "chad", ["do"] = "python3 -m chadtree deps" })
 	end
 
 	do -- Visuals
@@ -53,18 +45,14 @@ do -- Load the plugins.
 		-- Language parser & highlighting
 		-- We use polyglot for indentation, since tree-sitter is not mature.
 		Plug("sheerun/vim-polyglot")
-		Plug("nvim-treesitter/nvim-treesitter", {
-			["do"] = ":TSUpdate",
-		})
+		Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 		-- Coq
 		Plug("whonore/Coqtail")
 		-- Markdown
 		Plug("gabrielelana/vim-markdown")
 		-- LaTeX!
 		Plug("lervag/vimtex", { tag = "v1.6" })
-		Plug("KeitaNakamura/tex-conceal.vim", {
-			["for"] = "tex",
-		})
+		Plug("KeitaNakamura/tex-conceal.vim", { ["for"] = "tex" })
 		-- CSS
 		Plug("ap/vim-css-color")
 	end
@@ -74,24 +62,24 @@ do -- Load the plugins.
 		Plug("RRethy/nvim-treesitter-textsubjects")
 		-- Bullet points, because the replacement Markdown plugins all suck
 		Plug("dkarter/bullets.vim")
-		-- Comment/uncomment assistance (because I"m slow)
+		-- Extra text objects for braces/quotes/tags. targets.vim gets us things
+		-- _inside_ the tags, vim-surround has fancy stuff for _outside_ the tags.
+		Plug("wellle/targets.vim")
+		Plug("tpope/vim-surround")
+		-- Comment/uncomment assistance (because I'm slow)
 		Plug("tpope/vim-commentary")
 		-- Pluralization & case coercion
 		Plug("tpope/vim-abolish")
-		-- Extra text objects
-		Plug("wellle/targets.vim")
-		-- Surrounding objects mutation
-		Plug("tpope/vim-surround")
 		-- Give me readline in command mode!
 		Plug("tpope/vim-rsi")
-		-- Text alignment operator
-		Plug("tommcdo/vim-lion")
 		-- Repeat for plugins
 		Plug("tpope/vim-repeat")
+		-- Text alignment operator
+		Plug("tommcdo/vim-lion")
 		-- Toggle between singleline and multiline syntax
 		Plug("AndrewRadev/splitjoin.vim")
 		-- Sublime style multiple cursors
-		Plug("mg979/vim-visual-multi", { branch = "master" })
+		Plug("mg979/vim-visual-multi")
 	end
 
 	do -- Language Server Protocol
@@ -118,8 +106,6 @@ do -- Load the plugins.
 	do -- Developer tooling
 		-- Git Client
 		Plug("tpope/vim-fugitive")
-		-- Git History Viewer
-		Plug("junegunn/gv.vim")
 		-- Test Runner
 		Plug("vim-test/vim-test")
 	end
@@ -127,6 +113,7 @@ do -- Load the plugins.
 	vim.call("plug#end")
 end
 
+-- Load in sections!
 require("window")
 require("navigation")
 require("lsp")

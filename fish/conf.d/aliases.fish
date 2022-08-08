@@ -90,3 +90,7 @@ abbr --add --global trc '~/scripts/transcoder/run.sh'
 abbr --add --global bm 'beet modify --album'
 abbr --add --global ba 'beet ls --album | sort'
 abbr --add --global bart '~/scripts/artist-transform/run.py'
+function bac
+    beet modify artist::"$argv[1]" artist="$argv[2]"
+    beet modify -a albumartist::"$argv[1]" albumartist="$argv[2]"
+end

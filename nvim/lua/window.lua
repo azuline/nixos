@@ -24,7 +24,7 @@ do -- Treesitter Configuration
 	})
 end
 
-do -- LaTeX
+do -- LaTeX syntax stuffs
 	-- Configure some LaTeX behaviors.
 	vim.g.tex_flavor = "latex"
 	vim.g.vimtex_quickfix_mode = 0
