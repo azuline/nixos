@@ -1,5 +1,4 @@
--- Tree browser
-do
+do -- Tree browser
 	vim.api.nvim_set_keymap("n", "<Leader>f", "<Cmd>CHADopen<CR>", { noremap = true })
 	vim.api.nvim_set_keymap("n", "<Leader>c", "<Cmd>call setqflist([])<CR>", { noremap = true })
 
@@ -30,8 +29,7 @@ do
 	vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
 end
 
--- Fuzzy File Finder
-do
+do -- Fuzzy File Finder
 	-- Git Files
 	vim.api.nvim_set_keymap(
 		"n",
@@ -53,8 +51,7 @@ do
 	vim.g.fzf_preview_window = { "up:40%:hidden", "ctrl-/" }
 end
 
--- Tab Bar
-do
+do -- Tab Bar
 	vim.api.nvim_set_keymap("n", "<Leader>1", "<Plug>lightline#bufferline#go(1)", {})
 	vim.api.nvim_set_keymap("n", "<Leader>2", "<Plug>lightline#bufferline#go(2)", {})
 	vim.api.nvim_set_keymap("n", "<Leader>3", "<Plug>lightline#bufferline#go(3)", {})

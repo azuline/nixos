@@ -1,3 +1,42 @@
+do -- Treesitter Configuration
+	require("nvim-treesitter.configs").setup({
+		ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+		ignore_install = { "javascript" }, -- List of parsers to ignore installing
+		-- https://github.com/nvim-treesitter/nvim-treesitter/issues/1019#issuecomment-811658387
+		highlight = {
+			enable = true, -- false will disable the whole extension
+			disable = {}, -- list of language that will be disabled
+			-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+			additional_vim_regex_highlighting = true,
+		},
+		indent = {
+			enable = false,
+		},
+	})
+
+	-- Selectively enable bullets behavior for these filetypes.
+	-- Default language configurations around bullet behavior sucks.
+	vim.g.bullets_enabled_file_types = {
+		"markdown",
+		"text",
+		"gitcommit",
+		"scratch",
+	}
+end
+
+do -- LaTeX
+	-- Configure some LaTeX behaviors.
+	vim.g.tex_flavor = "latex"
+	vim.g.vimtex_quickfix_mode = 0
+	vim.g.vimtex_view_general_viewer = "evince"
+	-- For vim-conceal.
+	vim.opt.conceallevel = 2
+	vim.g.tex_conceal = "abdmg"
+	vim.g.tex_conceal_frac = 1
+	-- Extra conceal matches.
+	vim.cmd('syntax match textCmdStyleBold "\\mathbf>s*" skipwhite skipnl nextgroup=texStyleBold conceal')
+end
+
 do -- Configure the statusbar.
 	vim.opt.laststatus = 2
 	vim.opt.showmode = false
@@ -97,17 +136,4 @@ do -- Git Gutter
 	vim.opt.signcolumn = "yes"
 	-- Modify signify delete color.
 	vim.cmd("highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE")
-end
-
-do -- LaTeX
-	-- Configure some LaTeX behaviors.
-	vim.g.tex_flavor = "latex"
-	vim.g.vimtex_quickfix_mode = 0
-	vim.g.vimtex_view_general_viewer = "evince"
-	-- For vim-conceal.
-	vim.opt.conceallevel = 2
-	vim.g.tex_conceal = "abdmg"
-	vim.g.tex_conceal_frac = 1
-	-- Extra conceal matches.
-	vim.cmd('syntax match textCmdStyleBold "\\mathbf>s*" skipwhite skipnl nextgroup=texStyleBold conceal')
 end

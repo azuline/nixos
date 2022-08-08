@@ -169,6 +169,8 @@ null_ls.setup({
 				"graphql",
 			},
 		}),
+		-- Lua
+		null_ls.builtins.formatting.stylua,
 		-- Python
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.isort,
