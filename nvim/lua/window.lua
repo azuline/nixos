@@ -92,22 +92,22 @@ end
 
 do -- Highlight on Yank
   vim.cmd([[
-	augroup YankHighlight
-		autocmd!
-		autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-	augroup end
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
 ]])
 end
 
 do -- Set up Palenight theme
   -- Theme Fixes
   vim.cmd([[
-		if exists("+termguicolors")
-			let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-			let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-			set termguicolors
-		endif
-	]])
+    if exists("+termguicolors")
+      let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+      set termguicolors
+    endif
+  ]])
 
   -- Enable italics
   vim.g.palenight_terminal_italics = 1

@@ -4,13 +4,13 @@ vim.g.markdown_enable_conceal = 1
 
 -- Setting Coq colors, needs to be configured before we load the plugin.
 vim.cmd([[
-	augroup CoqtailHighlights
-		autocmd!
-		autocmd ColorScheme *
-			\   hi def CoqtailChecked ctermbg=236 guibg=#292D3E
-			\ | hi def CoqtailSent    ctermbg=236 guibg=#292D3E
-			\ | hi def link CoqtailError Error
-	augroup END
+  augroup CoqtailHighlights
+    autocmd!
+    autocmd ColorScheme *
+      \   hi def CoqtailChecked ctermbg=236 guibg=#292D3E
+      \ | hi def CoqtailSent    ctermbg=236 guibg=#292D3E
+      \ | hi def link CoqtailError Error
+  augroup END
 ]])
 
 do -- Load the plugins.
@@ -134,22 +134,22 @@ end
 
 do -- Quickfix augmentations
   vim.cmd([[
-		function! OpenQuickfixList()
-			if empty(getqflist())
-				return
-			endif
+    function! OpenQuickfixList()
+      if empty(getqflist())
+        return
+      endif
 
-			let s:prev_val = ""
-			for d in getqflist()
-					let s:curr_val = bufname(d.bufnr)
-					if (s:curr_val != s:prev_val)
-							"echo s:curr_val
-							exec "edit " . s:curr_val
-					end
-					let s:prev_val = s:curr_val
-			endfor
-		endfunction
-	]])
+      let s:prev_val = ""
+      for d in getqflist()
+          let s:curr_val = bufname(d.bufnr)
+          if (s:curr_val != s:prev_val)
+              "echo s:curr_val
+              exec "edit " . s:curr_val
+          end
+          let s:prev_val = s:curr_val
+      endfor
+    endfunction
+  ]])
   vim.api.nvim_set_keymap("n", "<Leader>ea", "<Cmd>call OpenQuickFixList()<CR>", {})
 end
 
