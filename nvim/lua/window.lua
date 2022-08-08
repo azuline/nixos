@@ -109,8 +109,6 @@ do -- Set up Palenight theme
     endif
   ]])
 
-  -- Enable italics
-  vim.g.palenight_terminal_italics = 1
   -- The grays in palenight are too dark.
   vim.g.palenight_color_overrides = {
     gutter_fg_grey = {
@@ -128,7 +126,7 @@ do -- Set up Palenight theme
   -- Set the background.
   vim.opt.background = "dark"
   vim.cmd("colorscheme palenight")
-  vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+  vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
 end
 
 do -- Git Gutter
