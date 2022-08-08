@@ -24,10 +24,11 @@ do -- Quickfix augmentations
       endfor
     endfunction
   ]])
+  -- Open all files in the quickfix list into buffers.
   vim.api.nvim_set_keymap("n", "<Leader>ea", "<Cmd>call OpenQuickFixList()<CR>", {})
 end
 
-do -- Trouble - Quickfix Diagnostics from LSP
+do -- Trouble - Diagnostics from LSP/Quickfix
   require("trouble").setup({
     fold_open = "▼",
     fold_closed = "▶",
