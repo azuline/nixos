@@ -1,6 +1,5 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export PYENV_ROOT:/home/blissful/\x2epyenv
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_fischerling_2F_plugin_2D_wd_files:/home/blissful/\x2econfig/fish/functions/wd\x2efish\x1e/home/blissful/\x2econfig/fish/completions/wd\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/blissful/\x2econfig/fish/functions/fisher\x2efish\x1e/home/blissful/\x2econfig/fish/completions/fisher\x2efish
@@ -39,6 +38,5 @@ SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_prompt_pwd_dir_length:0
-SETUVAR fish_user_paths:/home/blissful/\x2epyenv/bin
 SETUVAR nvm_data:/home/blissful/\x2elocal/share/nvm
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist
