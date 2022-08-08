@@ -91,12 +91,12 @@ au BufEnter *.txt,*.py,*.rst,*.c,*.md,*.mkd,*.markdown,*.tex
 au BufEnter *.py,*.hs,*.ts,*.tsx,*.js,*.jsx,*.v
   \ set textwidth=88
 
-au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim,*.hbs,*.rkt,*.hs,*.v
+au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim,*.hbs,*.rkt,*.hs,*.v,*.lua
   \ set tabstop=2 |
   \ set softtabstop=2 |
   \ set shiftwidth=2
 
-au BufEnter Makefile,makefile,*.php
+au BufEnter Makefile,makefile,*.php,*.lua
   \ set noexpandtab
 
 au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt

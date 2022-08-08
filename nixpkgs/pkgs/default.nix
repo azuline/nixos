@@ -75,6 +75,10 @@
     ];
 
     home.packages = with pkgs; [
+      sumneko-lua-language-server
+      luajitPackages.luacheck
+      stylua
+      selene
       ack
       act
       berglas
