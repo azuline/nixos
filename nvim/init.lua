@@ -82,7 +82,7 @@ do -- Load the plugins.
     Plug("mg979/vim-visual-multi")
   end
 
-  do -- Language Server Protocol
+  do -- Development Tooling
     -- Default LSP configs
     Plug("neovim/nvim-lspconfig")
     -- Null-ls for editors/autoformatters -> LSP
@@ -101,9 +101,8 @@ do -- Load the plugins.
     -- Snippets to stop nvim-cmp from crashing.
     Plug("hrsh7th/cmp-vsnip")
     Plug("hrsh7th/vim-vsnip")
-  end
-
-  do -- Developer tooling
+    -- Quickfix & Diagnostics
+    Plug("folke/trouble.nvim")
     -- Git Client
     Plug("tpope/vim-fugitive")
     -- Test Runner
@@ -116,42 +115,11 @@ end
 -- Load in sections!
 require("window")
 require("navigation")
-require("lsp")
+require("dev")
 require("completion")
 
 -- Set the spellfile.
 vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
-
--- Miscellanous behavior tweaks
-
-do -- Vim-test Keybinds
-  vim.api.nvim_set_keymap("n", "<Leader>tn", "<Cmd>TestNearest<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<Leader>tf", "<Cmd>TestFile<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<Leader>ts", "<Cmd>TestSuite<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<Leader>tl", "<Cmd>TestLast<CR>", { silent = true })
-  vim.api.nvim_set_keymap("n", "<Leader>tg", "<Cmd>TestVisit<CR>", { silent = true })
-end
-
-do -- Quickfix augmentations
-  vim.cmd([[
-    function! OpenQuickfixList()
-      if empty(getqflist())
-        return
-      endif
-
-      let s:prev_val = ""
-      for d in getqflist()
-          let s:curr_val = bufname(d.bufnr)
-          if (s:curr_val != s:prev_val)
-              "echo s:curr_val
-              exec "edit " . s:curr_val
-          end
-          let s:prev_val = s:curr_val
-      endfor
-    endfunction
-  ]])
-  vim.api.nvim_set_keymap("n", "<Leader>ea", "<Cmd>call OpenQuickFixList()<CR>", {})
-end
 
 -- Selectively enable bullets behavior for these filetypes.
 vim.g.bullets_enabled_file_types = {
