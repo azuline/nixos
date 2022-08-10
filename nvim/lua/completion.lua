@@ -9,6 +9,23 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local select_next_item = cmp.mapping(function(fallback)
+  if cmp.visible() then
+    cmp.select_next_item()
+  elseif has_words_before() then
+    cmp.complete()
+  else
+    -- The fallback function sends a already mapped key. In this case, it"s probably `<Tab>`.
+    fallback()
+  end
+end, { "i", "s" })
+
+local select_previous_item = cmp.mapping(function()
+  if cmp.visible() then
+    cmp.select_prev_item()
+  end
+end, { "i", "s" })
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -30,24 +47,12 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        -- The fallback function sends a already mapped key. In this case, it"s probably `<Tab>`.
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      end
-    end, { "i", "s" }),
+    ["<Tab>"] = select_next_item,
+    ["<C-n>"] = select_next_item,
+    ["<S-Tab>"] = select_previous_item,
+    ["<C-p>"] = select_previous_item,
   },
   sources = cmp.config.sources({
-    { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp" },
     { name = "vsnip" },
   }, {
@@ -57,7 +62,6 @@ cmp.setup({
     format = lspkind.cmp_format({
       with_text = true,
       menu = {
-        nvim_lsp_signature_help = "[sig]",
         buffer = "[buf]",
         nvim_lsp = "[lsp]",
         vsnip = "[snip]",

@@ -79,6 +79,8 @@ do -- LSP Configuration
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or { silent = true })
   end
 
+  vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
+
   local on_attach = function(client, bufnr)
     vim.cmd("command! LspDef lua vim.lsp.buf.definition({ includeDeclaration = false })")
     vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")

@@ -75,12 +75,7 @@ end
 
 do -- Fuzzy File Finder
   -- Git Files
-  vim.api.nvim_set_keymap(
-    "n",
-    "<Leader>.",
-    "<Cmd>GitFiles! --cached --others --exclude-standard<CR>",
-    { noremap = true }
-  )
+  vim.api.nvim_set_keymap("n", "<Leader>.", "<Cmd>GFiles! --cached --others --exclude-standard<CR>", { noremap = true })
   -- Ripgrep
   vim.api.nvim_set_keymap("n", "<Leader>g", "<Cmd>Rg!<CR>", { noremap = true })
   -- Command All
