@@ -37,8 +37,6 @@ do -- Load the plugins.
     Plug("mengelbrecht/lightline-bufferline")
     -- Git gutter
     Plug("mhinz/vim-signify")
-    -- Extra file context
-    Plug("wellle/context.vim")
   end
 
   do -- Language/Syntax Plugins

@@ -22,6 +22,7 @@
       };
       push = {
         default = "upstream";
+        autoSetupRemote = true;
       };
       merge = {
         tool = "vimdiff";
