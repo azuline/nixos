@@ -82,10 +82,6 @@ do -- Fuzzy File Finder
   vim.api.nvim_set_keymap("n", "<Leader>ca", "<Cmd>Commands!<CR>", { noremap = true })
   -- Command History
   vim.api.nvim_set_keymap("n", "<Leader>ch", "<Cmd>History:!<CR>", { noremap = true })
-  -- History File
-  vim.api.nvim_set_keymap("n", "<Leader>hf", "<Cmd>GV!<CR>", { noremap = true })
-  -- History All
-  vim.api.nvim_set_keymap("n", "<Leader>ha", "<Cmd>GV<CR>", { noremap = true })
   -- Configure FZF preview window.
   vim.g.fzf_preview_window = { "up:40%:hidden", "ctrl-/" }
 end

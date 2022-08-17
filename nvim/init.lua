@@ -89,6 +89,15 @@ do -- Load the plugins.
     -- Other LSP plugins
     Plug("onsails/lspkind-nvim")
     Plug("simrat39/rust-tools.nvim")
+    -- Quickfix & Diagnostics
+    Plug("folke/trouble.nvim")
+    -- Git Client
+    Plug("tpope/vim-fugitive")
+    -- Test Runner
+    Plug("vim-test/vim-test")
+  end
+
+  do -- Completion
     -- nvim-cmp
     Plug("hrsh7th/cmp-nvim-lsp")
     Plug("hrsh7th/cmp-buffer")
@@ -98,12 +107,6 @@ do -- Load the plugins.
     -- Snippets to stop nvim-cmp from crashing.
     Plug("hrsh7th/cmp-vsnip")
     Plug("hrsh7th/vim-vsnip")
-    -- Quickfix & Diagnostics
-    Plug("folke/trouble.nvim")
-    -- Git Client
-    Plug("tpope/vim-fugitive")
-    -- Test Runner
-    Plug("vim-test/vim-test")
   end
 
   vim.call("plug#end")
@@ -113,6 +116,7 @@ end
 require("window")
 require("navigation")
 require("dev")
+require("lsp")
 require("completion")
 
 -- Set the spellfile.
