@@ -147,56 +147,59 @@ lspconfig.sumneko_lua.setup({
   },
 })
 
+local sources = {
+  -- JS/TS/JSX/TSX
+  null_ls.builtins.diagnostics.eslint_d,
+  null_ls.builtins.code_actions.eslint_d,
+  null_ls.builtins.formatting.eslint_d,
+  null_ls.builtins.formatting.prettierd.with({
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "css",
+      "scss",
+      "less",
+      "html",
+      "json",
+      "yaml",
+      "markdown",
+      "markdown.mdx",
+      "graphql",
+    },
+  }),
+  -- Lua
+  null_ls.builtins.formatting.stylua,
+  -- Python
+  null_ls.builtins.formatting.black,
+  null_ls.builtins.formatting.isort,
+  null_ls.builtins.diagnostics.mypy,
+  null_ls.builtins.diagnostics.flake8,
+  -- Golang
+  null_ls.builtins.formatting.goimports,
+  null_ls.builtins.formatting.gofumpt,
+  null_ls.builtins.formatting.gofmt,
+  null_ls.builtins.diagnostics.golangci_lint,
+  -- null_ls.builtins.diagnostics.revive,
+  -- Nix
+  null_ls.builtins.formatting.nixpkgs_fmt,
+  -- Postgres
+  null_ls.builtins.formatting.pg_format,
+  -- Rust
+  null_ls.builtins.formatting.rustfmt,
+  -- Bash
+  null_ls.builtins.diagnostics.shellcheck,
+  null_ls.builtins.code_actions.shellcheck,
+}
+
+if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
+  table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
+end
+
 null_ls.setup({
   root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),
-  sources = {
-    null_ls.builtins.diagnostics.semgrep.with({
-      command = "semgrep --quiet",
-    }),
-    -- JS/TS/JSX/TSX
-    null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.prettierd.with({
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue",
-        "css",
-        "scss",
-        "less",
-        "html",
-        "json",
-        "yaml",
-        "markdown",
-        "markdown.mdx",
-        "graphql",
-      },
-    }),
-    -- Lua
-    null_ls.builtins.formatting.stylua,
-    -- Python
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
-    null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.diagnostics.flake8,
-    -- Golang
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.gofumpt,
-    null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.diagnostics.golangci_lint,
-    -- null_ls.builtins.diagnostics.revive,
-    -- Nix
-    null_ls.builtins.formatting.nixpkgs_fmt,
-    -- Postgres
-    null_ls.builtins.formatting.pg_format,
-    -- Rust
-    null_ls.builtins.formatting.rustfmt,
-    -- Bash
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.code_actions.shellcheck,
-  },
+  sources = sources,
   on_attach = on_attach,
 })
