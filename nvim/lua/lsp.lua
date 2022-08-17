@@ -51,7 +51,7 @@ local function filter(arr, fn)
 end
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 lspconfig.gopls.setup({
   on_attach = on_attach,
@@ -150,7 +150,9 @@ lspconfig.sumneko_lua.setup({
 null_ls.setup({
   root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),
   sources = {
-    null_ls.builtins.diagnostics.semgrep,
+    null_ls.builtins.diagnostics.semgrep.with({
+      command = "semgrep --quiet",
+    }),
     -- JS/TS/JSX/TSX
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.code_actions.eslint_d,
