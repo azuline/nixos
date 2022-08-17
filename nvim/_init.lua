@@ -1,3 +1,6 @@
+-- This is not `init.lua` because `nixpkgs` writes an `init.vim`. Nix's
+-- init.vim imports this file.
+--
 -- These need to be configured before we load plugins.
 vim.g.polyglot_disabled = { "markdown" }
 vim.g.markdown_enable_conceal = 1
@@ -68,7 +71,9 @@ do -- Load the plugins.
     -- Language parser & highlighting
     -- We use polyglot for indentation, since tree-sitter is not mature.
     Plug("sheerun/vim-polyglot")
-    Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+    -- This is handled via Nix since installing Treesitter parsers at runtime
+    -- breaks sometimes in Nix-installed Neovim with shared libs.
+    --   Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
     -- Coq
     Plug("whonore/Coqtail")
     -- Markdown

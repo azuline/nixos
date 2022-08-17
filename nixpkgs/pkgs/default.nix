@@ -11,6 +11,7 @@
 
     imports = [
       ./git
+      ./neovim
       ./tmux
     ];
 
@@ -35,8 +36,6 @@
       mkvtoolnix
       mypy
       neofetch
-      # Broken with some plugins due to missing libc++.
-      neovim
       nnn
       pass
       pdftk
@@ -84,6 +83,7 @@
       berglas
       bfg-repo-cleaner
       black
+      universal-ctags
       ccls
       clang-tools
       docker
