@@ -176,7 +176,17 @@ local sources = {
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.isort,
   null_ls.builtins.diagnostics.mypy,
-  null_ls.builtins.diagnostics.flake8,
+  null_ls.builtins.diagnostics.flake8.with({
+    args = {
+      "--max-line-length=999",
+      "--extend-ignore=E203,E402,W503",
+      "--format",
+      "default",
+      "--stdin-display-name",
+      "$FILENAME",
+      "-",
+    },
+  }),
   -- Golang
   null_ls.builtins.formatting.goimports,
   null_ls.builtins.formatting.gofumpt,
