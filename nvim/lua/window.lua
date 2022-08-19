@@ -109,6 +109,9 @@ do -- Set up Palenight theme
     endif
   ]])
 
+  -- Italics for my favorite color scheme
+  vim.g.palenight_terminal_italics = 1
+
   -- The grays in palenight are too dark.
   vim.g.palenight_color_overrides = {
     gutter_fg_grey = {
