@@ -112,6 +112,7 @@
       postgresql_13
       rnix-lsp
       shellcheck
+      kube-linter
       sqlint
       stack
       cabal-install
@@ -181,6 +182,7 @@
       ./picom
       ./polybar
       ./rofi
+      ./i3wsr
     ];
 
     # I have no idea where to get these.
