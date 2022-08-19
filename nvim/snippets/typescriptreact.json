@@ -1,0 +1,57 @@
+{
+  "nc": {
+    "prefix": ["nc"],
+    "body": [
+      "const $1: React.FC = () => {",
+      "  return <div>Children children children</div>;",
+      "};"
+    ],
+    "description": "New react component."
+  },
+  "ncp": {
+    "prefix": ["ncp"],
+    "body": [
+      "type I$1Props = {};",
+      "",
+      "const $1: React.FC<I$1Props> = (props) => {",
+      "  return <div>Children children children</div>;",
+      "};"
+    ],
+    "description": "New react component with props."
+  },
+  "nce": {
+    "prefix": ["nce"],
+    "body": [
+      "export const $1: React.FC = () => {",
+      "  return <div>Children children children</div>;",
+      "};"
+    ],
+    "description": "New exported react component."
+  },
+  "ncep": {
+    "prefix": ["ncep"],
+    "body": [
+      "type IProps = {};",
+      "",
+      "export const $1: React.FC<IProps> = (props) => {",
+      "  return <div>Children children children</div>;",
+      "};"
+    ],
+    "description": "New react component with props."
+  },
+  "cl": {
+    "prefix": ["cl"],
+    "body": ["console.log(\"$CLIPBOARD\", $CLIPBOARD)"],
+    "description": "Console log the clipboard."
+  },
+  "sty": {
+    "prefix": ["sty"],
+    "body": ["const $1 = styled($2, {", "  $3", "});"],
+    "description": "New Stitches styled component."
+  },
+  "par": {
+    "prefix": ["par"],
+    "body": ["const $1 = partial($2, {", "  $3", "});"],
+    "description": "New partial props application."
+  }
+}
