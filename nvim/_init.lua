@@ -53,7 +53,7 @@ do -- Load the plugins.
     Plug("junegunn/fzf", { ["do"] = vim.fn["fzf#install()"] })
     Plug("junegunn/fzf.vim")
     -- File tree
-    Plug("ms-jpq/chadtree", { branch = "chad", ["do"] = "python3 -m chadtree deps" })
+    Plug("azuline/chadtree", { branch = "chad", ["do"] = "python3 -m chadtree deps" })
   end
 
   do -- Window visuals
