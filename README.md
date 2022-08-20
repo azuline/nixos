@@ -1,15 +1,8 @@
-# blissful
+# dotfiles
 
 ## Setup
 
-### Fish
-
-Install the [fisher](https://github.com/jorgebucaran/fisher) plugin manager and
-install the listed plugins. Not sure of the exact process right now.
-
-### Nixpkgs
-
-Some programs and configurations are managed through home-manager. Set up the
+Most programs and configurations are managed through home-manager. Set up the
 unstable channels of [nixpkgs](https://nixos.org/download.html) and
 [home-manager](https://github.com/nix-community/home-manager). Then build:
 
@@ -17,7 +10,7 @@ unstable channels of [nixpkgs](https://nixos.org/download.html) and
 home-manager switch
 ```
 
-#### Broken
+### Broken
 
 Some programs are installed outside of nixpkgs because nixpkgs sucks:
 
@@ -31,7 +24,7 @@ Some programs are installed outside of nixpkgs because nixpkgs sucks:
 - blueman (can't connect to bluetooth? get exception)
 - anki (rofi doesn't start it o.O)
 
-#### System-wide
+### System-wide
 
 Install these through system package manager instead of nix
 
@@ -41,7 +34,7 @@ Install these through system package manager instead of nix
 - xdg-utils
 - qt5-style-plugins
 
-#### Other Notes
+## Other Notes
 
 - (debian) `sudo update-alternatives --install /usr/bin/www-browser www-browser "$HOME/.nix-profile/bin/firefox" 100`
 
