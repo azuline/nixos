@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local coq = require("coq")
 local null_ls = require("null-ls")
 
 local buf_map = function(bufnr, mode, lhs, rhs, opts)
@@ -52,9 +53,9 @@ local function filter(arr, fn)
 end
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-lspconfig.gopls.setup({
+lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
 
@@ -66,25 +67,25 @@ lspconfig.gopls.setup({
       ["local"] = "github.com/pipe-technologies/pipe/backend",
     },
   },
-})
+}))
 
-lspconfig.pyright.setup({
+lspconfig.pyright.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
-})
+}))
 
-lspconfig.hls.setup({
+lspconfig.hls.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
-})
+}))
 
-lspconfig.tsserver.setup({
+lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
   init_options = {
     preferences = {
       importModuleSpecifierPreference = "non-relative",
@@ -128,9 +129,9 @@ lspconfig.tsserver.setup({
       vim.lsp.handlers["textDocument/definition"](err, result, method, ...)
     end,
   },
-})
+}))
 
-lspconfig.sumneko_lua.setup({
+lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
   settings = {
     Lua = {
       runtime = {
@@ -151,7 +152,7 @@ lspconfig.sumneko_lua.setup({
       },
     },
   },
-})
+}))
 
 local sources = {
   -- JS/TS/JSX/TSX
