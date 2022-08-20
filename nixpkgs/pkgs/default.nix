@@ -1,6 +1,5 @@
 {
   cliModule = ({ pkgs, ... }: {
-    programs.fish.enable = true;
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;
     services.gpg-agent.extraConfig = ''
@@ -10,6 +9,7 @@
     '';
 
     imports = [
+      ./fish
       ./git
       ./neovim
       ./tmux
@@ -17,16 +17,14 @@
 
     home.packages = with pkgs; [
       autossh
-      xsv
       bat
       brightnessctl
-      ffmpeg
       cmus
       curl
       dnsutils
       exa
       fd
-      monolith
+      ffmpeg
       fzf
       graphviz
       imagemagick
@@ -34,9 +32,9 @@
       mediainfo
       mktorrent
       mkvtoolnix
+      monolith
       mypy
       neofetch
-      nnn
       pass
       pdftk
       poetry
@@ -45,13 +43,13 @@
       rsync
       rsync
       speedtest-cli
-      termdown
-      unixtools.netstat
       sqlite-interactive
       sshfs
+      termdown
       tldr
       trash-cli
       tree
+      unixtools.netstat
       unrar
       weechat
       wget
@@ -59,6 +57,7 @@
       wl-clipboard
       xclip
       xss-lock
+      xsv
     ];
   });
 
@@ -70,35 +69,36 @@
     imports = [
       ./python
       ./haskell
-      ./flake8
     ];
 
     home.packages = with pkgs; [
-      sumneko-lua-language-server
-      luajitPackages.luacheck
-      stylua
-      selene
       ack
       act
       berglas
       bfg-repo-cleaner
       black
-      universal-ctags
+      cabal-install
       ccls
       clang-tools
       docker
       docker-compose
       gdb
+      ghc
       gitAndTools.delta
       gitAndTools.gh
       go_1_18
-      jdk11
       gofumpt
       golangci-lint
-      gopls
       google-cloud-sdk
+      gopls
+      haskell-language-server
+      haskellPackages.implicit-hie
+      jdk11
       kubectl
+      kube-linter
+      luajitPackages.luacheck
       minikube
+      nixpkgs-fmt
       nodejs
       nodePackages.eslint
       nodePackages.eslint_d
@@ -106,19 +106,18 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
-      nixpkgs-fmt
       php80
       php80Packages.composer
       postgresql_13
+      python39Packages.flake8
       rnix-lsp
+      selene
       shellcheck
-      kube-linter
       sqlint
       stack
-      cabal-install
-      haskellPackages.implicit-hie
-      haskell-language-server
-      ghc
+      stylua
+      sumneko-lua-language-server
+      universal-ctags
       watchman # Needed for tsserver
       yarn
     ];
@@ -148,18 +147,15 @@
       gimp
       gnome3.gedit
       gnome3.nautilus
+      grim
       maim
       meld
-      # Excluding this on neptune since it can't connect.
-      slack
+      slurp
       spotify
       tdesktop
-      # Takes forever to compile...
-      # ungoogled-chromium
-      # Can't dl...
       xorg.xkill
-      grim
-      slurp
+      # Excluding this on neptune since it can't connect.
+      slack
       # Excluding this because open PDF is broken.
       # zotero
       # Excluding this for proper QT theming.
