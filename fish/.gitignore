@@ -1,6 +1,5 @@
 *
 !/.gitignore
-!/fish_variables
 !/fish_plugins
 !/completions
 !/completions/gh.fish
@@ -10,6 +9,7 @@
 !/conf.d/aliases.fish
 !/conf.d/env.fish
 !/conf.d/events.fish
+!/conf.d/colors.fish
 !/functions
 !/functions/n.fish
 !/functions/fish_prompt.fish

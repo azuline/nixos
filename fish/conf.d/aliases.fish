@@ -1,6 +1,3 @@
-alias vim='nvim'
-alias vimdiff='nvim -d'
-
 alias ls='exa'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
@@ -8,19 +5,12 @@ alias info='info --vi-keys'
 alias xc='xclip -sel c'
 alias xp='xclip -o'
 
-# Safety
-alias rm='trash'
-
-# Bug
-set -gx PATH "$PATH:$HOME/.yarn/bin"
-# set HASURA_PATH (which hasura)
-# alias hasura="NODE_OPTIONS= $HASURA_PATH"
-
+abbr --add --global hm 'home-manager'
 abbr --add --global rscp 'rsync -ah --progress'
-alias w='cd ~/notes; vim index.md'
 abbr --add --global zc 'zotcli'
 
-abbr --add --global hm 'home-manager'
+# Safety
+alias rm='trash'
 
 # Kubectl
 abbr --add --global kg "kubectl get"
@@ -64,9 +54,15 @@ function gprune
        | xargs -r git branch -D
 end
 
-function tea
-    termdown $argv[1] && spd-say "tea done yay yay"
-end
+# k8s
+abbr --add --global kwp "watch -n 3 \"kubectl get pods --selector=run!=airflow-worker\""
+abbr --add --global kcupr 'kubectl config use-context production'
+abbr --add --global kcust 'kubectl config use-context staging'
+abbr --add --global kcusa 'kubectl config use-context sandbox'
+abbr --add --global kcuin 'kubectl config use-context pipe-dev'
+abbr --add --global krs 'kubectl rollout status deployment/'
+abbr --add --global kpgtun 'kubectl port-forward deployments/pgbouncer 5000:6432'
+abbr --add --global khstun 'kubectl port-forward deployments/hasura 5001:8080'
 
 # Tmux
 abbr --add --global tn 'tmux new -s'
@@ -92,4 +88,11 @@ abbr --add --global bart '~/scripts/artist-transform/run.py'
 function bac
     beet modify artist::"$argv[1]" artist="$argv[2]"
     beet modify -a albumartist::"$argv[1]" albumartist="$argv[2]"
+end
+
+# Use as `lnd -s <url>` or `lnd -q <query>`.
+abbr --add --global lnd 'lncrawl --output /tmp/novelout --all --single --force --suppress'
+
+function tea
+    termdown $argv[1] && spd-say "tea done yay yay"
 end

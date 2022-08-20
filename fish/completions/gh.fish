@@ -161,4 +161,3 @@ complete -c gh -n 'set --query __gh_comp_do_file_comp'
 # The call to __gh_prepare_completions will setup both __gh_comp_results and __gh_comp_do_file_comp.
 # It provides the program's completion choices.
 complete -c gh -n '__gh_prepare_completions' -f -a '$__gh_comp_results'
-
