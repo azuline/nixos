@@ -1,7 +1,29 @@
 { pkgs, ... }:
 
 {
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    plugins = [
+      {
+        name = "wd";
+        src = pkgs.fetchFromGitHub {
+          owner = "fischerling";
+          repo = "plugin-wd";
+          rev = "6cf653b199328c17c1e4b40d20a459e32316e43c";
+          sha256 = "1cjca89pgdcq5bg828kkran73c2mr00bkpaqh8qn1mw5p8xqci5m";
+        };
+      }
+      {
+        name = "nix-env";
+        src = pkgs.fetchFromGitHub {
+          owner = "lilyball";
+          repo = "nix-env.fish";
+          rev = "7b65bd228429e852c8fdfa07601159130a818cfa";
+          sha256 = "sha256-tUSGO7qF12AxgljduQDIVbBxrMpzIoHeKpi1dxNSTLI=";
+        };
+      }
+    ];
+  };
 
   xdg.configFile."fish/completions/gh.fish".source = ./completions/gh.fish;
   xdg.configFile."fish/completions/password-store.fish".source = ./completions/password-store.fish;
