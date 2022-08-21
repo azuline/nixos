@@ -13,10 +13,11 @@ Most programs and configurations are managed through home-manager.
 echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
 ```
 
-3. 3. 3. Then build:
+3. Then build:
 
 ```bash
-home-manager switch
+# host ::= splendor | neptune | sunset
+home-manager switch --flake .#host
 ```
 
 ### System install
