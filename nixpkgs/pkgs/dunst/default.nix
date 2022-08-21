@@ -1,8 +1,6 @@
 { pkgs, specialArgs, ... }:
 
 {
-  home.packages = [ pkgs.dunst ];
-
   services.dunst = {
     enable = true;
     settings = rec {
