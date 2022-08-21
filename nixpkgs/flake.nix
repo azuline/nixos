@@ -18,7 +18,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        modules = import ./pkgs;
+        modules = import ./modules.nix;
       in
       {
         defaultPackage = home-manager.defaultPackage.${system};
@@ -44,7 +44,6 @@
                 }
                 modules.cliModule
                 modules.devModule
-                modules.envModule
                 modules.guiModule
                 modules.i3Module
                 modules.themeModule
@@ -70,7 +69,6 @@
                 }
                 modules.cliModule
                 modules.devModule
-                modules.envModule
                 modules.guiModule
                 modules.i3Module
                 modules.swayModule

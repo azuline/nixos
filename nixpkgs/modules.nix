@@ -12,6 +12,7 @@
       ./fish
       ./git
       ./neovim
+      ./readline
       ./tmux
     ];
 
@@ -62,11 +63,10 @@
   });
 
   devModule = ({ config, pkgs, ... }: {
-    programs.direnv.enable = true;
-    programs.direnv.nix-direnv.enable = true;
     services.lorri.enable = true;
 
     imports = [
+      ./direnv
       ./python
       ./haskell
     ];
@@ -123,18 +123,13 @@
     ];
   });
 
-  envModule = ({ config, pkgs, ... }: {
-    xdg.configFile."user-dirs.dirs".source = ../configFiles/user-dirs.dirs;
-    xdg.configFile."direnv/direnv.toml".source = ../configFiles/direnv.toml;
-    home.file.".inputrc".source = ../configFiles/inputrc;
-  });
-
   guiModule = ({ config, pkgs, specialArgs, ... }: {
     imports = [
       ./keybase
       ./kitty
       ./mpv
       ./signal
+      ./user-dirs
     ] ++ (
       # Excluding this on neptune since it can't connect.
       if specialArgs.host == "splendor" then [ ./discord ] else [ ]
@@ -180,8 +175,6 @@
       ./rofi
       ./i3wsr
     ];
-
-    home.file.".xsessionrc".source = ../configFiles/i3-xsessionrc;
   });
 
   swayModule = ({ config, pkgs, ... }: {
@@ -195,8 +188,6 @@
       ./swaylock
       ./waybar
     ];
-
-    home.file.".profile".source = ../configFiles/sway-profile;
 
     home.packages = with pkgs; [
       swayidle
