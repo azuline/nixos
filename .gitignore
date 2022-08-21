@@ -2,3 +2,5 @@
 /nvim/.netrwhist
 # Written by Nix
 /nvim/init.vim
+# nix flakes
+result
