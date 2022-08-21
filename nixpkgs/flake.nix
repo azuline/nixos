@@ -27,6 +27,7 @@
             splendor = home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               extraSpecialArgs = {
+                host = "splendor";
                 screen = "desktop";
               };
               modules = [
@@ -51,6 +52,7 @@
             neptune = home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               extraSpecialArgs = {
+                host = "neptune";
                 screen = "laptop";
               };
               modules = [
