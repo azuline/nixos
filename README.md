@@ -19,17 +19,19 @@ Then build:
 home-manager switch
 ```
 
-### Broken
+### System install
 
-Some programs are installed outside of nixpkgs because nixpkgs sucks:
+Some programs are installed outside of nixpkgs because nixpkgs sucks (jk <3):
 
+- kitty (nixGL is really annoying)
+- firefox (nixGL is really annoying)
 - rofi (starting evolution via nixpkgs rofi created glibc issues)
+- zoom (video doesn't work and needs some extra QT envvar)
 - evolution (i have a plugin... it is not in nixos)
   - `evolution-on` tray plugin
 - evince (persisting document location wasn't working)
 - calibre (just got errors firing it up)
 - alsa-utils (got some shared library error)
-- zoom (video doesn't work and needs some extra QT envvar)
 - blueman (can't connect to bluetooth? get exception)
 - anki (rofi doesn't start it o.O)
 
@@ -44,8 +46,6 @@ Install these through system package manager instead of nix
 - qt5-style-plugins
 
 ## Other Notes
-
-- (debian) `sudo update-alternatives --install /usr/bin/www-browser www-browser "$HOME/.nix-profile/bin/firefox" 100`
 
 - Use evdev over libinput.
 - `/etc/default/keyboard` contains `XKBOPTIONS="altwin:swap_lalt_lwin,caps:escape_shifted_capslock"`
