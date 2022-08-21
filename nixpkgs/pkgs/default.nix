@@ -132,8 +132,6 @@
   guiModule = ({ config, pkgs, ... }: {
     imports = [
       ./discord
-      # Excluding this on neptune so XWayland can open links.
-      ./firefox
       ./keybase
       ./kitty
       ./mpv

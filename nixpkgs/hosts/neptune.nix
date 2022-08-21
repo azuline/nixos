@@ -8,7 +8,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [
-    (import ../overlays/nixGLIntel)
     (self: super: {
       screen = "laptop";
     })

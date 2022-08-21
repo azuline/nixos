@@ -10,7 +10,6 @@ in
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
   nixpkgs.overlays = [
-    (import ../overlays/nixGLNvidia)
     (self: super: {
       screen = "desktop";
     })
