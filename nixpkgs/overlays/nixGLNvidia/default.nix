@@ -5,7 +5,7 @@ self: super: {
       sha256 = "192k02fd2s3mfpkdwjghiggcn0ighwvmw0fqrzf0vax52v6l9nch";
     }}/nixGL.nix"
       {
-        nvidiaVersionFile = ./nvidia_version;
+        nvidiaVersion = "470.129.06";
       }
   ).nixGLDefault;
   nixGLBin = "${self.nixGL}/bin/nixGL";
