@@ -75,24 +75,27 @@
                 modules.themeModule
               ];
             };
-            sunset = home-manager.lib.homeManagerConfiguration
-              {
-                inherit pkgs;
-                modules = [
-                  {
-                    programs.home-manager.enable = true;
-                    # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
-                    nixpkgs.config.allowUnfreePredicate = (pkg: true);
-                    home = {
-                      username = "regalia";
-                      homeDirectory = "/home/regalia";
-                      stateVersion = "21.05";
-                    };
-                  }
-                  modules.cliModule
-                  modules.devModule
-                ];
+            sunset = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                host = "sunset";
+                screen = "none";
               };
+              modules = [
+                {
+                  programs.home-manager.enable = true;
+                  # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
+                  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+                  home = {
+                    username = "regalia";
+                    homeDirectory = "/home/regalia";
+                    stateVersion = "21.05";
+                  };
+                }
+                modules.cliModule
+                modules.devModule
+              ];
+            };
           };
         };
       }

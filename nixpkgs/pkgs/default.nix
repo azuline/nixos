@@ -131,12 +131,14 @@
 
   guiModule = ({ config, pkgs, specialArgs, ... }: {
     imports = [
-      ./discord
       ./keybase
       ./kitty
       ./mpv
       ./signal
-    ];
+    ] ++ (
+      # Excluding this on neptune since it can't connect.
+      if specialArgs.host == "splendor" then [ ./discord ] else [ ]
+    );
 
     home.packages = with pkgs; [
       arandr
@@ -151,13 +153,14 @@
       spotify
       tdesktop
       xorg.xkill
-      # Excluding this on neptune since it can't connect.
-      slack
       # Excluding this because open PDF is broken.
       # zotero
       # Excluding this for proper QT theming.
       # transmission-qt
-    ];
+    ] ++ (
+      # Excluding this on neptune since it can't connect.
+      if specialArgs.host == "splendor" then [ slack ] else [ ]
+    );
   });
 
   i3Module = ({ config, pkgs, specialArgs, ... }: {
@@ -177,12 +180,6 @@
       ./rofi
       ./i3wsr
     ];
-
-    # I have no idea where to get these.
-    # home.packages = with pkgs; [
-    #   pacmd
-    #   pactl
-    # ];
 
     home.file.".xsessionrc".source = ../configFiles/i3-xsessionrc;
   });
