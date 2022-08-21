@@ -163,7 +163,7 @@
     );
   });
 
-  i3Module = ({ config, pkgs, specialArgs, ... }: {
+  i3Module = ({ config, pkgs, ... }: {
     imports = [
       ./bar-gpu
       ./bar-loadavg
@@ -184,7 +184,7 @@
     home.file.".xsessionrc".source = ../configFiles/i3-xsessionrc;
   });
 
-  swayModule = ({ config, pkgs, specialArgs, ... }: {
+  swayModule = ({ config, pkgs, ... }: {
     imports = [
       ./dunst
       ./rofi

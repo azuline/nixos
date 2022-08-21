@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, specialArgs, ... }:
 
 {
   programs.fish = {
     enable = true;
+    shellAbbrs = {
+      hs = "home-manager switch --flake ${specialArgs.nixDir}/#${specialArgs.host}";
+    };
     plugins = [
       {
         name = "wd";

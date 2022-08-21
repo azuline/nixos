@@ -28,6 +28,7 @@
               inherit pkgs;
               extraSpecialArgs = {
                 host = "splendor";
+                nixDir = "/dots/nixpkgs";
                 screen = "desktop";
               };
               modules = [
@@ -53,6 +54,7 @@
               inherit pkgs;
               extraSpecialArgs = {
                 host = "neptune";
+                nixDir = "/dots/nixpkgs";
                 screen = "laptop";
               };
               modules = [
@@ -79,6 +81,7 @@
               inherit pkgs;
               extraSpecialArgs = {
                 host = "sunset";
+                nixDir = "/dots/nixpkgs";
                 screen = "none";
               };
               modules = [
