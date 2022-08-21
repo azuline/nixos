@@ -24,51 +24,55 @@
         defaultPackage = home-manager.defaultPackage.${system};
         packages = {
           homeConfigurations = {
-            splendor = home-manager.lib.homeManagerConfiguration
-              {
-                inherit pkgs;
-                modules = [
-                  {
-                    programs.home-manager.enable = true;
-                    # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
-                    nixpkgs.config.allowUnfreePredicate = (pkg: true);
-                    home = {
-                      username = "blissful";
-                      homeDirectory = "/home/blissful";
-                      stateVersion = "21.05";
-                    };
-                  }
-                  modules.cliModule
-                  modules.devModule
-                  modules.envModule
-                  modules.guiModule
-                  modules.i3Module
-                  modules.themeModule
-                ];
+            splendor = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                screen = "desktop";
               };
-            neptune = home-manager.lib.homeManagerConfiguration
-              {
-                inherit pkgs;
-                modules = [
-                  {
-                    programs.home-manager.enable = true;
-                    # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
-                    nixpkgs.config.allowUnfreePredicate = (pkg: true);
-                    home = {
-                      username = "blissful";
-                      homeDirectory = "/home/blissful";
-                      stateVersion = "21.05";
-                    };
-                  }
-                  modules.cliModule
-                  modules.devModule
-                  modules.envModule
-                  modules.guiModule
-                  modules.i3Module
-                  modules.swayModule
-                  modules.themeModule
-                ];
+              modules = [
+                {
+                  programs.home-manager.enable = true;
+                  # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
+                  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+                  home = {
+                    username = "blissful";
+                    homeDirectory = "/home/blissful";
+                    stateVersion = "21.05";
+                  };
+                }
+                modules.cliModule
+                modules.devModule
+                modules.envModule
+                modules.guiModule
+                modules.i3Module
+                modules.themeModule
+              ];
+            };
+            neptune = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                screen = "laptop";
               };
+              modules = [
+                {
+                  programs.home-manager.enable = true;
+                  # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
+                  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+                  home = {
+                    username = "blissful";
+                    homeDirectory = "/home/blissful";
+                    stateVersion = "21.05";
+                  };
+                }
+                modules.cliModule
+                modules.devModule
+                modules.envModule
+                modules.guiModule
+                modules.i3Module
+                modules.swayModule
+                modules.themeModule
+              ];
+            };
             sunset = home-manager.lib.homeManagerConfiguration
               {
                 inherit pkgs;

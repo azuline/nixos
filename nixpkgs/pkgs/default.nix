@@ -1,5 +1,5 @@
 {
-  cliModule = ({ pkgs, ... }: {
+  cliModule = ({ config, pkgs, ... }: {
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;
     services.gpg-agent.extraConfig = ''
@@ -61,7 +61,7 @@
     ];
   });
 
-  devModule = ({ pkgs, ... }: {
+  devModule = ({ config, pkgs, ... }: {
     programs.direnv.enable = true;
     programs.direnv.nix-direnv.enable = true;
     services.lorri.enable = true;
@@ -123,13 +123,13 @@
     ];
   });
 
-  envModule = ({ pkgs, ... }: {
+  envModule = ({ config, pkgs, ... }: {
     xdg.configFile."user-dirs.dirs".source = ../configFiles/user-dirs.dirs;
     xdg.configFile."direnv/direnv.toml".source = ../configFiles/direnv.toml;
     home.file.".inputrc".source = ../configFiles/inputrc;
   });
 
-  guiModule = ({ config, pkgs, ... }: {
+  guiModule = ({ config, pkgs, specialArgs, ... }: {
     imports = [
       ./discord
       ./keybase
@@ -160,7 +160,7 @@
     ];
   });
 
-  i3Module = ({ config, pkgs, ... }: {
+  i3Module = ({ config, pkgs, specialArgs, ... }: {
     imports = [
       ./bar-gpu
       ./bar-loadavg
@@ -187,7 +187,7 @@
     home.file.".xsessionrc".source = ../configFiles/i3-xsessionrc;
   });
 
-  swayModule = ({ config, pkgs, ... }: {
+  swayModule = ({ config, pkgs, specialArgs, ... }: {
     imports = [
       ./dunst
       ./rofi
@@ -207,7 +207,7 @@
     ];
   });
 
-  themeModule = ({ pkgs, ... }: {
+  themeModule = ({ config, pkgs, ... }: {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
