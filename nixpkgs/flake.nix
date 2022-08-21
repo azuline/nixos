@@ -39,7 +39,7 @@
                   home = {
                     username = "blissful";
                     homeDirectory = "/home/blissful";
-                    stateVersion = "21.05";
+                    stateVersion = "22.11";
                   };
                 }
                 modules.cliModule
@@ -64,7 +64,7 @@
                   home = {
                     username = "blissful";
                     homeDirectory = "/home/blissful";
-                    stateVersion = "21.05";
+                    stateVersion = "22.11";
                   };
                 }
                 modules.cliModule
@@ -90,7 +90,7 @@
                   home = {
                     username = "regalia";
                     homeDirectory = "/home/regalia";
-                    stateVersion = "21.05";
+                    stateVersion = "22.11";
                   };
                 }
                 modules.cliModule

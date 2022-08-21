@@ -14,6 +14,5 @@ let
   };
 in
 {
-  # RIP in neptune. Doesn't work.
   home.packages = [ discord ];
 }
