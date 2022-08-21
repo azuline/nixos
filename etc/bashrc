@@ -58,3 +58,7 @@ alias ta='tmux attach -t'
 alias tl='tmux ls'
 
 alias rscp='rsync -ah --progress'
+
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
