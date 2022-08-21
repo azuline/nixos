@@ -56,16 +56,6 @@ function gprune
        | xargs -r git branch -D
 end
 
-# k8s
-abbr --add --global kwp "watch -n 3 \"kubectl get pods --selector=run!=airflow-worker\""
-abbr --add --global kcupr 'kubectl config use-context production'
-abbr --add --global kcust 'kubectl config use-context staging'
-abbr --add --global kcusa 'kubectl config use-context sandbox'
-abbr --add --global kcuin 'kubectl config use-context pipe-dev'
-abbr --add --global krs 'kubectl rollout status deployment/'
-abbr --add --global kpgtun 'kubectl port-forward deployments/pgbouncer 5000:6432'
-abbr --add --global khstun 'kubectl port-forward deployments/hasura 5001:8080'
-
 # Tmux
 abbr --add --global tn 'tmux new -s'
 abbr --add --global ta 'tmux attach -t'
