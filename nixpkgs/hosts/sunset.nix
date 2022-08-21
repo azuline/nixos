@@ -5,6 +5,7 @@ let
 in
 {
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   home.username = "regalia";
   home.homeDirectory = "/home/regalia";

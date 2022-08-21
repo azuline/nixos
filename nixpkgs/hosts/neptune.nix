@@ -5,6 +5,7 @@ let
 in
 {
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [
     (import ../overlays/nixGLIntel)

@@ -5,6 +5,7 @@ let
 in
 {
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
   # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
