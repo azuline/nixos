@@ -17,7 +17,7 @@ echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
 
 ```bash
 # host ::= splendor | neptune | sunset
-home-manager switch --flake .#host
+home-manager switch --flake ./nixpkgs/#host
 ```
 
 ### System install
