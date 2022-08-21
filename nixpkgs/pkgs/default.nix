@@ -136,7 +136,6 @@
       ./firefox
       ./keybase
       ./kitty
-      ./alacritty
       ./mpv
       ./signal
     ];
