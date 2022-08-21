@@ -6,6 +6,7 @@ alias xc='xclip -sel c'
 alias xp='xclip -o'
 
 abbr --add --global hm 'home-manager'
+abbr --add --global hs 'home-manager switch --flake .#splendor --impure'
 abbr --add --global rscp 'rsync -ah --progress'
 abbr --add --global zc 'zotcli'
 abbr --add --global s 'perl -pe'

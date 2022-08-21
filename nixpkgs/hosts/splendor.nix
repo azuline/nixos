@@ -5,6 +5,8 @@ let
 in
 {
   programs.home-manager.enable = true;
+  # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
+  nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
   nixpkgs.overlays = [
     (import ../overlays/nixGLNvidia)
@@ -13,9 +15,11 @@ in
     })
   ];
 
-  home.username = "blissful";
-  home.homeDirectory = "/home/blissful";
-  home.stateVersion = "21.05";
+  home = {
+    username = "blissful";
+    homeDirectory = "/home/blissful";
+    stateVersion = "21.05";
+  };
 
   imports = with modules; [
     cliModule
@@ -24,10 +28,5 @@ in
     guiModule
     i3Module
     themeModule
-  ];
-
-  home.packages = with pkgs; [
-    # For the Logitech mouse.
-    # solaar
   ];
 }

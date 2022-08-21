@@ -2,9 +2,18 @@
 
 ## Setup
 
-Most programs and configurations are managed through home-manager. Set up the
-unstable channels of [nixpkgs](https://nixos.org/download.html) and
-[home-manager](https://github.com/nix-community/home-manager). Then build:
+Most programs and configurations are managed through home-manager.
+
+1. Set up the unstable channels of [nixpkgs](https://nixos.org/download.html)
+   and [home-manager](https://github.com/nix-community/home-manager).
+
+Enable flakes
+
+```bash
+echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
+```
+
+Then build:
 
 ```bash
 home-manager switch
