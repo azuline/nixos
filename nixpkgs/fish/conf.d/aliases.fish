@@ -81,8 +81,8 @@ function bac
     beet modify -a albumartist::"$argv[1]" albumartist="$argv[2]"
 end
 
-# Use as `lnd -s <url>` or `lnd -q <query>`.
-abbr --add --global lnd 'lncrawl --output /tmp/novelout --all --single --force --suppress'
+# Specify output dir and pass `-s <url>` or `-q <query>`.
+abbr --add --global lnd 'lncrawl --all --single --force --suppress --output /tmp/webnovel/'
 
 function tea
     termdown $argv[1] && spd-say "tea done yay yay"

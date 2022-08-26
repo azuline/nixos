@@ -113,6 +113,8 @@
       rnix-lsp
       selene
       shellcheck
+      # TODO: Doesn't successfully build yet.
+      # semgrep
       sqlint
       stack
       stylua

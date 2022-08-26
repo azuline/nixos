@@ -1,0 +1,42 @@
+{
+  "e": {
+    "prefix": "en",
+    "body": ["if err != nil {", "    $1", "}", "$0"],
+    "description": "Go error handling"
+  },
+  "enr": {
+    "prefix": "enr",
+    "body": ["if err != nil {", "    return err", "}", "$0"],
+    "description": "Single rval Go error"
+  },
+  "eenr": {
+    "prefix": "eenr",
+    "body": ["if err != nil {", "    return nil, err", "}", "$0"],
+    "description": "Double rval Go error"
+  },
+  "elg": {
+    "prefix": "elg",
+    "body": ["logger.Fatalln(err)"],
+    "description": "Use logger's fatal to handle error."
+  },
+  "eLg": {
+    "prefix": "eLg",
+    "body": ["${1:srv.}Logger.Fatalln(err)"],
+    "description": "Use logger's fatal to handle error (off srv struct)."
+  },
+  "tf": {
+    "prefix": "tf",
+    "body": ["$0tf.$1(func(m *models.$1) {", "    $2", "})", "$0"],
+    "description": "Insert a SQLBoiler model into the database."
+  },
+  "mins": {
+    "prefix": "mins",
+    "body": [
+      "if err := $1.Insert(ctx, ${2:db}, boil.Infer()); err != nil {",
+      "    $3",
+      "}",
+      "$0"
+    ],
+    "description": "Insert a SQLBoiler model into the database."
+  }
+}

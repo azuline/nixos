@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.picom ];
+  # NixGL is annoying!
+  # home.packages = [ pkgs.picom ];
   xdg.configFile."picom/picom.conf".source = ./picom.conf;
 }
