@@ -35,13 +35,14 @@
     let
       makeConfig = { host, nixDir, screen, username, chooseModules }:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
-          src = { inherit discord fish-plugin-wd fish-plugin-nix-env; };
-          modules = import ./modules.nix;
+          sys = { inherit host nixDir screen; };
+          srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env; };
+          pkgs = import ./pkgs { inherit system nixpkgs sys srcs; };
+          modules = import ./modules;
         in
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit host nixDir screen src; };
+          extraSpecialArgs = { inherit sys srcs; };
           modules = chooseModules modules ++ [{
             programs.home-manager.enable = true;
             # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
