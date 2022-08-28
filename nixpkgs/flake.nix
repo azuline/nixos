@@ -21,7 +21,6 @@
         modules = import ./modules.nix;
       in
       {
-        defaultPackage = home-manager.defaultPackage.${system};
         packages = {
           homeConfigurations = {
             splendor = home-manager.lib.homeManagerConfiguration {

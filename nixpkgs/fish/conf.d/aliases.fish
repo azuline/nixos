@@ -28,24 +28,25 @@ abbr --add --global kcu "kubectl config use-context"
 abbr --add --global gname 'git config user.name; git config user.email'
 abbr --add --global gst 'git status'
 abbr --add --global gd 'git diff'
-abbr --add --global gdl 'git -c core.pager=less diff'
 abbr --add --global gds 'git diff --staged'
+abbr --add --global gdl 'git -c core.pager=less diff'
 abbr --add --global gp 'git push'
 abbr --add --global gl 'git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 abbr --add --global gr 'cd (git rev-parse --show-toplevel)'
 abbr --add --global gb 'git branch'
 abbr --add --global gbl "git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative))' --sort=-committerdate"
-abbr --add --global gfb 'git fuzzy branch'
 abbr --add --global ga 'git add'
 abbr --add --global gc 'git commit'
 abbr --add --global gco 'git checkout'
 abbr --add --global gcl 'git clean'
 abbr --add --global gpl 'git pull'
+abbr --add --global grs 'git reset'
 abbr --add --global gre 'git rebase'
 abbr --add --global grea 'git rebase --abort'
 abbr --add --global grec 'git rebase --continue'
-abbr --add --global grs 'git restore --staged'
+abbr --add --global gres 'git restore --staged'
 abbr --add --global gm 'git merge'
+abbr --add --global gma 'git merge --abort'
 
 function gprune
     echo "> prune remote"
