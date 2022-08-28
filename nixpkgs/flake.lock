@@ -1,5 +1,17 @@
 {
   "nodes": {
+    "discord": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-xNadtyKzaGcenXZLWlxhNjrxCBiVhCYXzXualHuwmM8=",
+        "type": "tarball",
+        "url": "https://dl.discordapp.net/apps/linux/0.0.19/discord-0.0.19.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://dl.discordapp.net/apps/linux/0.0.19/discord-0.0.19.tar.gz"
+      }
+    },
     "fish-plugin-nix-env": {
       "flake": false,
       "locked": {
@@ -86,6 +98,7 @@
     },
     "root": {
       "inputs": {
+        "discord": "discord",
         "fish-plugin-nix-env": "fish-plugin-nix-env",
         "fish-plugin-wd": "fish-plugin-wd",
         "flake-utils": "flake-utils",
