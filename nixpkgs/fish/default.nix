@@ -3,29 +3,19 @@
 {
   programs.fish = {
     enable = true;
-    shellAbbrs = {
-      hs = "home-manager switch --flake ${specialArgs.nixDir}/#${specialArgs.host}";
-    };
     plugins = [
       {
         name = "wd";
-        src = pkgs.fetchFromGitHub {
-          owner = "fischerling";
-          repo = "plugin-wd";
-          rev = "6cf653b199328c17c1e4b40d20a459e32316e43c";
-          sha256 = "1cjca89pgdcq5bg828kkran73c2mr00bkpaqh8qn1mw5p8xqci5m";
-        };
+        src = specialArgs.src.fish-plugin-wd;
       }
       {
         name = "nix-env";
-        src = pkgs.fetchFromGitHub {
-          owner = "lilyball";
-          repo = "nix-env.fish";
-          rev = "7b65bd228429e852c8fdfa07601159130a818cfa";
-          sha256 = "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
-        };
+        src = specialArgs.src.fish-plugin-nix-env;
       }
     ];
+    shellAbbrs = {
+      hs = "home-manager switch --flake ${specialArgs.nixDir}/#${specialArgs.host}";
+    };
   };
 
   xdg.configFile."fish/completions/gh.fish".source = ./completions/gh.fish;

@@ -1,5 +1,37 @@
 {
   "nodes": {
+    "fish-plugin-nix-env": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638213644,
+        "narHash": "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=",
+        "owner": "lilyball",
+        "repo": "nix-env.fish",
+        "rev": "7b65bd228429e852c8fdfa07601159130a818cfa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lilyball",
+        "repo": "nix-env.fish",
+        "type": "github"
+      }
+    },
+    "fish-plugin-wd": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1610384278,
+        "narHash": "sha256-tUSGO7qF12AxgljduQDIVbBxrMpzIoHeKpi1dxNSTLI=",
+        "owner": "fischerling",
+        "repo": "plugin-wd",
+        "rev": "6cf653b199328c17c1e4b40d20a459e32316e43c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fischerling",
+        "repo": "plugin-wd",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1659877975,
@@ -54,6 +86,8 @@
     },
     "root": {
       "inputs": {
+        "fish-plugin-nix-env": "fish-plugin-nix-env",
+        "fish-plugin-wd": "fish-plugin-wd",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
