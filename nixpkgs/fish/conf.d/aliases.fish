@@ -5,6 +5,7 @@ alias info='info --vi-keys'
 alias xc='xclip -sel c'
 alias xp='xclip -o'
 
+abbr --add --global v 'vim'
 abbr --add --global hm 'home-manager'
 abbr --add --global rscp 'rsync -ah --progress'
 abbr --add --global zc 'zotcli'
