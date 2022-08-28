@@ -45,6 +45,9 @@
           extraSpecialArgs = { inherit sys srcs; };
           modules = chooseModules modules ++ [{
             programs.home-manager.enable = true;
+            # Automatically set some environment variables that will ease usage of software 
+            # installed with nix on non-NixOS linux (fixing local issues, settings XDG_DATA_DIRS, etc).
+            targets.genericLinux.enable = true;
             # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
             nixpkgs.config.allowUnfreePredicate = (pkg: true);
             home.stateVersion = "22.11";

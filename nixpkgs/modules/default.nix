@@ -67,7 +67,7 @@
 
     imports = [
       ./direnv
-      ./haskell
+      ./ghc
     ];
 
     home.packages = with pkgs; [
@@ -76,6 +76,7 @@
       berglas
       bfg-repo-cleaner
       black
+      cabal-install
       ccls
       clang-tools
       docker
