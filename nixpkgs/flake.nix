@@ -31,33 +31,36 @@
     , discord
     , fish-plugin-wd
     , fish-plugin-nix-env
-    }: (
-      flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-        modules = import ./modules.nix;
-        extraSpecialArgs.src = {
-          inherit discord fish-plugin-wd fish-plugin-nix-env;
+    }: (flake-utils.lib.eachDefaultSystem (system:
+    let
+      makeConfig = { host, nixDir, screen, username, chooseModules }:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          src = { inherit discord fish-plugin-wd fish-plugin-nix-env; };
+          modules = import ./modules.nix;
+        in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit host nixDir screen src; };
+          modules = chooseModules modules ++ [{
+            programs.home-manager.enable = true;
+            # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
+            nixpkgs.config.allowUnfreePredicate = (pkg: true);
+            home.stateVersion = "22.11";
+            home.username = "${username}";
+            home.homeDirectory = "/home/${username}";
+          }];
         };
-      in
-      {
-        packages.homeConfigurations = {
-          splendor = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = extraSpecialArgs // {
-              host = "splendor";
-              nixDir = "/dots/nixpkgs";
-              screen = "desktop";
-            };
-            modules = [
-              {
-                programs.home-manager.enable = true;
-                # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
-                nixpkgs.config.allowUnfreePredicate = (pkg: true);
-                home.stateVersion = "22.11";
-                home.username = "blissful";
-                home.homeDirectory = "/home/blissful";
-              }
+    in
+    {
+      packages = {
+        homeConfigurations = {
+          splendor = makeConfig {
+            host = "splendor";
+            nixDir = "/dots/nixpkgs";
+            screen = "desktop";
+            username = "blissful";
+            chooseModules = modules: [
               modules.cliModule
               modules.devModule
               modules.guiModule
@@ -65,21 +68,12 @@
               modules.themeModule
             ];
           };
-          neptune = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = extraSpecialArgs // {
-              host = "neptune";
-              nixDir = "/dots/nixpkgs";
-              screen = "laptop";
-            };
-            modules = [
-              {
-                programs.home-manager.enable = true;
-                nixpkgs.config.allowUnfreePredicate = (pkg: true);
-                home.stateVersion = "22.11";
-                home.username = "blissful";
-                home.homeDirectory = "/home/blissful";
-              }
+          neptune = makeConfig {
+            host = "neptune";
+            nixDir = "/dots/nixpkgs";
+            screen = "desktop";
+            username = "blissful";
+            chooseModules = modules: [
               modules.cliModule
               modules.devModule
               modules.guiModule
@@ -88,25 +82,17 @@
               modules.themeModule
             ];
           };
-          sunset = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = extraSpecialArgs // {
-              host = "sunset";
-              nixDir = "/dots/nixpkgs";
-              screen = "none";
-            };
-            modules = [
-              {
-                programs.home-manager.enable = true;
-                nixpkgs.config.allowUnfreePredicate = (pkg: true);
-                home.stateVersion = "22.11";
-                home.username = "regalia";
-                home.homeDirectory = "/home/regalia";
-              }
+          sunset = makeConfig {
+            host = "sunset";
+            nixDir = "/dots/nixpkgs";
+            screen = "none";
+            username = "regalia";
+            chooseModules = modules: [
               modules.cliModule
               modules.devModule
             ];
           };
         };
-      }));
+      };
+    }));
 }
