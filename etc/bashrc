@@ -26,6 +26,8 @@ export PS1="\[\e[96m\]\u\[\e[m\]@\[\e[96m\]\h\[\e[m\] \[\e[93m\]\w\[\e[m\] "
 # Allows us to use aliases with sudo.
 alias sudo='sudo '
 
+alias grep='grep --color=auto'
+
 alias ls='ls --color=auto --group-directories-first'
 alias l='ls -lh'
 alias la='ls -lah'
@@ -33,25 +35,6 @@ alias la='ls -lah'
 alias vim='nvim'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'  # Emacs and cheese not allowed.
-
-alias gname='git config user.name; git config user.email'
-
-alias gitlines='git ls-files | xargs -d "\n" wc -l'
-alias gst='git status'
-alias gd='git diff'
-alias gds='git diff --staged'
-alias gp='git push'
-alias gpo='git push -u origin HEAD'
-alias gl='git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-alias gr='cd (git rev-parse --show-toplevel)'
-alias gb="git branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate"
-alias gfb='git fuzzy branch'
-alias ga='git add'
-alias gc='git commit'
-alias gco='git checkout'
-alias gpl='git pull'
-alias gr='git rebase'
-alias gm='git merge'
 
 alias tn='tmux new -s'
 alias ta='tmux attach -t'

@@ -33,12 +33,12 @@
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
-      makeConfig = { host, nixDir, screen, username, chooseModules }:
+      makeHomeConfiguration = { host, nixDir, screen, username, chooseModules }:
         let
           sys = { inherit host nixDir screen; };
           srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env; };
           pkgs = import ./pkgs { inherit system nixpkgs sys srcs; };
-          modules = import ./modules;
+          modules = import ./home;
         in
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -50,50 +50,50 @@
             targets.genericLinux.enable = true;
             # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
             nixpkgs.config.allowUnfreePredicate = (pkg: true);
-            home.stateVersion = "22.11";
             home.username = "${username}";
             home.homeDirectory = "/home/${username}";
+            home.stateVersion = "22.11";
           }];
         };
     in
     {
       packages = {
         homeConfigurations = {
-          splendor = makeConfig {
+          splendor = makeHomeConfiguration {
             host = "splendor";
-            nixDir = "/dots/nixpkgs";
+            nixDir = "/dots/nix";
             screen = "desktop";
             username = "blissful";
-            chooseModules = modules: [
-              modules.cliModule
-              modules.devModule
-              modules.guiModule
-              modules.i3Module
-              modules.themeModule
+            chooseModules = m: [
+              m.cliModule
+              m.devModule
+              m.guiModule
+              m.i3Module
+              m.themeModule
             ];
           };
-          neptune = makeConfig {
+          neptune = makeHomeConfiguration {
             host = "neptune";
-            nixDir = "/dots/nixpkgs";
+            nixDir = "/dots/nix";
             screen = "laptop";
             username = "blissful";
-            chooseModules = modules: [
-              modules.cliModule
-              modules.devModule
-              modules.guiModule
-              modules.i3Module
-              modules.swayModule
-              modules.themeModule
+            chooseModules = m: [
+              m.cliModule
+              m.devModule
+              m.guiModule
+              m.i3Module
+              m.swayModule
+              m.themeModule
             ];
           };
-          sunset = makeConfig {
+          sunset = makeHomeConfiguration {
             host = "sunset";
-            nixDir = "/dots/nixpkgs";
+            nixDir = "/dots/nix";
             screen = "none";
             username = "regalia";
-            chooseModules = modules: [
-              modules.cliModule
-              modules.devModule
+            chooseModules = m: [
+              m.cliModule
+              m.devModule
             ];
           };
         };
