@@ -1,4 +1,4 @@
-{ system, nixpkgs, srcs, sys }:
+{ system, nixpkgs, srcs }:
 
 import nixpkgs {
   inherit system;

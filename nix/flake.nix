@@ -33,17 +33,17 @@
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
-      makeHomeConfiguration = { host, nixDir, screen, username, chooseModules }:
+      makeHomeConfiguration = { host, nixDir, screen, username, chooseBundles }:
         let
           sys = { inherit host nixDir screen; };
           srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env; };
-          pkgs = import ./pkgs { inherit system nixpkgs sys srcs; };
-          modules = import ./home;
+          pkgs = import ./pkgs { inherit system nixpkgs srcs; };
+          bundles = import ./home;
         in
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit sys srcs; };
-          modules = chooseModules modules ++ [{
+          modules = chooseBundles bundles ++ [{
             programs.home-manager.enable = true;
             # Automatically set some environment variables that will ease usage of software 
             # installed with nix on non-NixOS linux (fixing local issues, settings XDG_DATA_DIRS, etc).
@@ -64,12 +64,12 @@
             nixDir = "/dots/nix";
             screen = "desktop";
             username = "blissful";
-            chooseModules = m: [
-              m.cliModule
-              m.devModule
-              m.guiModule
-              m.i3Module
-              m.themeModule
+            chooseBundles = b: [
+              b.cliBundle
+              b.devBundle
+              b.guiBundle
+              b.i3Bundle
+              b.themeBundle
             ];
           };
           neptune = makeHomeConfiguration {
@@ -77,13 +77,13 @@
             nixDir = "/dots/nix";
             screen = "laptop";
             username = "blissful";
-            chooseModules = m: [
-              m.cliModule
-              m.devModule
-              m.guiModule
-              m.i3Module
-              m.swayModule
-              m.themeModule
+            chooseBundles = b: [
+              b.cliBundle
+              b.devBundle
+              b.guiBundle
+              b.i3Bundle
+              b.swayBundle
+              b.themeBundle
             ];
           };
           sunset = makeHomeConfiguration {
@@ -91,9 +91,9 @@
             nixDir = "/dots/nix";
             screen = "none";
             username = "regalia";
-            chooseModules = m: [
-              m.cliModule
-              m.devModule
+            chooseBundles = b: [
+              b.cliBundle
+              b.devBundle
             ];
           };
         };
