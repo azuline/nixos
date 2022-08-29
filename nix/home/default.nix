@@ -21,12 +21,16 @@
       bat
       brightnessctl
       cmus
+      coreutils
       curl
       dnsutils
       exa
       fd
       ffmpeg
+      findutils
       fzf
+      gnumake
+      gnused
       graphviz
       imagemagick
       jq
@@ -34,14 +38,14 @@
       mktorrent
       mkvtoolnix
       monolith
-      mypy
+      moreutils
+      nmap
       neofetch
       pass
       pdftk
       poetry
       procps
       ripgrep
-      rsync
       rsync
       speedtest-cli
       sqlite-interactive
@@ -59,6 +63,7 @@
       xclip
       xss-lock
       xsv
+      zip
     ];
   };
 
@@ -96,6 +101,7 @@
       kube-linter
       luajitPackages.luacheck
       minikube
+      mypy
       nixpkgs-fmt
       nodejs
       nodePackages.eslint
@@ -167,6 +173,7 @@
     home.packages = with pkgs; [
       bar-gpu
       bar-loadavg
+      bar-vpn
       i3-change-audio
       i3-clear-clipboard
       i3-lock
@@ -186,6 +193,7 @@
     ];
 
     home.packages = with pkgs; [
+      bar-vpn
       sway-clear-clipboard
       sway-pass
       sway-yy
@@ -201,13 +209,12 @@
       # plata-theme
       # papirus-icon-theme
 
-      font-awesome
+      font-awesome_5
       # Nerd Fonts contains patched fonts (incl. Iosevka)
-      nerdfonts
-      twitter-color-emoji
-      noto-fonts
+      iosevka-bin
       source-code-pro
       source-sans-pro
+      noto-fonts
       noto-fonts-cjk
     ];
   };
