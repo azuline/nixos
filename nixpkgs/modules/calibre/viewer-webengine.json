@@ -16,8 +16,9 @@
     "standalone_font_settings": {
       "minimum_font_size": 13,
       "mono_family": "Source Code Pro",
-      "sans_family": "Roboto",
-      "serif_family": "Merriweather"
+      "sans_family": "Source Sans Pro",
+      "serif_family": "Source Sans Pro",
+      "standard_font": "sans"
     },
     "standalone_misc_settings": {},
     "standalone_recently_opened": [],

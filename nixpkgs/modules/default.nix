@@ -124,6 +124,7 @@
 
   guiModule = { config, pkgs, ... }: {
     imports = [
+      ./calibre
       ./keybase
       ./kitty
       ./mpv
