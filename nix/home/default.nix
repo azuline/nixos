@@ -19,6 +19,7 @@
     home.packages = with pkgs; [
       autossh
       bat
+      bash
       brightnessctl
       cmus
       coreutils
@@ -29,6 +30,7 @@
       ffmpeg
       findutils
       fzf
+      gawk
       gnumake
       gnused
       graphviz

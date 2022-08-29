@@ -1,8 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "i3-yy" ''
-  #!/usr/bin/env bash
-
+pkgs.writeShellScriptBin "i3-yy" ''
   book_files="$(find "$HOME/books" -type f \( -name '*.pdf' -o -name '*.epub' -o -name '*.azw3' \) -printf '%P\n' | sed 's/^/books\//')"
   zotero_files="$(find "$HOME/Zotero/storage" -type f \( -name '*.pdf' -o -name '*.epub' -o -name '*.azw3' -o -name '*.html' \) -printf '%P\n' | sed 's/^/Zotero\/storage\//')"
 

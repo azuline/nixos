@@ -1,8 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "i3-pass" ''
-  #!/usr/bin/env bash
-
+pkgs.writeShellScriptBin "i3-pass" ''
   export PATH="$HOME/.nix-profile/bin:$PATH"
 
   file=$(find $HOME/.password-store -type f -name '*.gpg' -printf '%P\n' | sed 's/.gpg$//' | fzf --layout=reverse)

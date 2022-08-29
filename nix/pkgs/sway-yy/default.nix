@@ -1,8 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "sway-yy" ''
-  #!/usr/bin/env bash
-
+pkgs.writeShellScriptBin "sway-yy" ''
   text_files="$(find "$HOME/texts" -type f \( -name '*.pdf' -o -name '*.html' \) -printf '%P\n' | sed 's/^/texts\//')"
   book_files="$(find "$HOME/books" -type f \( -name '*.pdf' -o -name '*.epub' -o -name '*.azw3' \) -printf '%P\n' | sed 's/^/books\//')"
 

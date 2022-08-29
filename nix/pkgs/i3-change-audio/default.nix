@@ -1,8 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "i3-change-audio" ''
-  #!/usr/bin/env bash
-
+pkgs.writeShellScriptBin "i3-change-audio" ''
   default_sink="$(pactl get-default-sink)"
 
   # Compute the new sink. We default to headphones, but toggle to bluetooth

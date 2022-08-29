@@ -1,8 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "i3-lock" ''
-  #!/usr/bin/env bash
-
+pkgs.writeShellScriptBin "i3-lock" ''
   xss-lock --transfer-sleep-lock -- \
       i3lock --nofork -i ~/.bg/lock.png \
       --inside-color=ffffff1c \

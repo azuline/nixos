@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "i3-screenshot" ''
+pkgs.writeShellScriptBin "i3-screenshot" ''
   #!/usr/bin/env bash
 
   filename=~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png

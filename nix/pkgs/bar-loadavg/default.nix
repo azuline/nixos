@@ -1,8 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "bar-loadavg" ''
-  #!/bin/sh
-
-  /usr/bin/cat /proc/loadavg \
-    | /usr/bin/awk '{print $1"  "$2"  "$3}'
+pkgs.writeShellScriptBin "bar-loadavg" ''
+  ${pkgs.coreutils}/bin/cat /proc/loadavg \
+    | ${pkgs.gawk}/bin/awk '{print $1"  "$2"  "$3}'
 ''

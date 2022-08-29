@@ -1,8 +1,6 @@
 { pkgs }:
 
-pkgs.writeScriptBin "sway-clear-clipboard" ''
-  #!/usr/bin/env bash
-
+pkgs.writeShellScriptBin "sway-clear-clipboard" ''
   wl-copy --clear
   wl-copy --primary --clear
 ''

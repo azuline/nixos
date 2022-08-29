@@ -1,10 +1,8 @@
 { pkgs }:
 
-pkgs.writeScriptBin "bar-gpu" ''
-  #!/bin/bash
-
+pkgs.writeShellScriptBin "bar-gpu" ''
   /usr/bin/nvidia-smi \
     --query-gpu=utilization.gpu \
     --format=csv,noheader,nounits \
-    | /usr/bin/awk '{ printf "0.%02i", $1}'
+    | ${pkgs.gawk}/bin/awk '{ printf "0.%02i", $1}'
 ''
