@@ -1,5 +1,5 @@
 {
-  cliBundle = { config, pkgs, ... }: {
+  cliBundle = { pkgs, ... }: {
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;
     services.gpg-agent.extraConfig = ''
@@ -69,7 +69,7 @@
     ];
   };
 
-  devBundle = { config, pkgs, ... }: {
+  devBundle = { pkgs, ... }: {
     services.lorri.enable = true;
 
     imports = [
@@ -130,7 +130,7 @@
     ];
   };
 
-  guiBundle = { config, pkgs, ... }: {
+  guiBundle = { pkgs, ... }: {
     imports = [
       ./calibre
       ./keybase
@@ -162,7 +162,7 @@
     ];
   };
 
-  i3Bundle = { config, pkgs, ... }: {
+  i3Bundle = { pkgs, ... }: {
     imports = [
       ./dunst
       ./i3
@@ -185,7 +185,7 @@
     ];
   };
 
-  swayBundle = { config, pkgs, ... }: {
+  swayBundle = { pkgs, ... }: {
     imports = [
       ./dunst
       ./rofi
@@ -204,7 +204,7 @@
     ];
   };
 
-  themeBundle = { config, pkgs, ... }: {
+  themeBundle = { pkgs, ... }: {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
