@@ -1,5 +1,5 @@
 {
-  cliModule = ({ config, pkgs, ... }: {
+  cliModule = { config, pkgs, ... }: {
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;
     services.gpg-agent.extraConfig = ''
@@ -60,9 +60,9 @@
       xss-lock
       xsv
     ];
-  });
+  };
 
-  devModule = ({ config, pkgs, ... }: {
+  devModule = { config, pkgs, ... }: {
     services.lorri.enable = true;
 
     imports = [
@@ -120,9 +120,9 @@
       watchman # Needed for tsserver
       yarn
     ];
-  });
+  };
 
-  guiModule = ({ config, pkgs, ... }: {
+  guiModule = { config, pkgs, ... }: {
     imports = [
       ./keybase
       ./kitty
@@ -151,9 +151,9 @@
       # Excluding this for proper QT theming.
       # transmission-qt
     ];
-  });
+  };
 
-  i3Module = ({ config, pkgs, ... }: {
+  i3Module = { config, pkgs, ... }: {
     imports = [
       ./dunst
       ./i3
@@ -173,9 +173,9 @@
       i3-screenshot
       i3-yy
     ];
-  });
+  };
 
-  swayModule = ({ config, pkgs, ... }: {
+  swayModule = { config, pkgs, ... }: {
     imports = [
       ./dunst
       ./rofi
@@ -191,9 +191,9 @@
       swayidle
       swaywsr
     ];
-  });
+  };
 
-  themeModule = ({ config, pkgs, ... }: {
+  themeModule = { config, pkgs, ... }: {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
@@ -209,5 +209,5 @@
       source-sans-pro
       noto-fonts-cjk
     ];
-  });
+  };
 }

@@ -75,7 +75,7 @@
           neptune = makeConfig {
             host = "neptune";
             nixDir = "/dots/nixpkgs";
-            screen = "desktop";
+            screen = "laptop";
             username = "blissful";
             chooseModules = modules: [
               modules.cliModule
