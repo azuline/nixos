@@ -20,6 +20,7 @@
       autossh
       bat
       bash
+      beets
       brightnessctl
       cmus
       coreutils
@@ -65,6 +66,7 @@
       xclip
       xss-lock
       xsv
+      youtube-dl
       zip
     ];
   };
