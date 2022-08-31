@@ -111,7 +111,7 @@ lspconfig.tsserver.setup({
   handlers = {
     ["textDocument/definition"] = function(err, result, method, ...)
       local function filterDTS(value)
-        return string.match(value.uri, ".d.ts") == nil
+        return value.uri ~= nil and string.match(value.uri, ".d.ts") == nil
       end
 
       if vim.tbl_islist(result) and #result > 1 then
