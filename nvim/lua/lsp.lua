@@ -92,6 +92,7 @@ lspconfig.tsserver.setup({
       autoImportFileExcludePatterns = {
         -- This reexports every React hook.. absurd.
         "@storybook/addons/**",
+        "msw/**",
       },
     },
   },
@@ -110,8 +111,12 @@ lspconfig.tsserver.setup({
   capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = function(err, result, method, ...)
+      -- https://github.com/typescript-language-server/typescript-language-server/issues/216
       local function filterDTS(value)
-        return value.uri ~= nil and string.match(value.uri, ".d.ts") == nil
+        if value.targetUri ~= nil then
+          return string.match(value.targetUri, "%.d.ts") == nil
+        end
+        return string.match(value.uri, "%.d.ts") == nil
       end
 
       if vim.tbl_islist(result) and #result > 1 then
