@@ -90,6 +90,7 @@
       clang-tools
       docker
       docker-compose
+      dune_3
       gdb
       gitAndTools.delta
       gitAndTools.gh
@@ -114,6 +115,9 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      ocamlformat
+      # ocamlformat-rpc-lib # TODO: Might need this.
+      ocamlPackages.utop
       php80
       php80Packages.composer
       postgresql_13
