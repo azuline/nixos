@@ -13,6 +13,10 @@
       url = "https://dl.discordapp.net/apps/linux/0.0.19/discord-0.0.19.tar.gz";
       flake = false;
     };
+    nvim-treesitter = {
+      url = github:nvim-treesitter/nvim-treesitter;
+      flake = false;
+    };
     fish-plugin-wd = {
       url = github:fischerling/plugin-wd;
       flake = false;
@@ -29,6 +33,7 @@
     , nixpkgs
     , flake-utils
     , discord
+    , nvim-treesitter
     , fish-plugin-wd
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
@@ -36,7 +41,7 @@
       makeHomeConfiguration = { host, nixDir, screen, username, chooseBundles }:
         let
           sys = { inherit host nixDir screen; };
-          srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env; };
+          srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
           pkgs = import ./pkgs { inherit system nixpkgs srcs; };
           bundles = import ./home;
         in

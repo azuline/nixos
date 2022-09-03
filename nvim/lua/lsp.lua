@@ -25,7 +25,8 @@ local on_attach = function(client, bufnr)
   buf_map(bufnr, "n", "K", ":LspHover<CR>")
   buf_map(bufnr, "n", "[g", ":LspDiagPrev<CR>")
   buf_map(bufnr, "n", "]g", ":LspDiagNext<CR>")
-  buf_map(bufnr, "n", "<Leader>a", ":LspCodeAction<CR>")
+  buf_map(bufnr, "n", "<Leader>la", ":LspCodeAction<CR>")
+  buf_map(bufnr, "n", "<Leader>lr", ":LspRefs<CR>")
   buf_map(bufnr, "n", "<C-]>", ":LspDef<CR>")
 
   if client.resolved_capabilities.document_formatting then

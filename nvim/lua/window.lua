@@ -1,7 +1,12 @@
 do -- Treesitter Configuration
   require("nvim-treesitter.configs").setup({
-    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ignore_install = { "javascript" }, -- List of parsers to ignore installing
+    -- We install most parsers through Nix, but a few are erroring, probably
+    -- due to some version mismatch. We install those here instead.
+    ensure_installed = { "sql", "lua", "vim", "kotlin", "javascript" },
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = true,
+    -- Automatically install missing parsers when entering buffer
+    auto_install = false,
     -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1019#issuecomment-811658387
     highlight = {
       enable = true, -- false will disable the whole extension

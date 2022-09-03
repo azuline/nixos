@@ -96,6 +96,22 @@
         "type": "github"
       }
     },
+    "nvim-treesitter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662222964,
+        "narHash": "sha256-cVfjrN4+nyxntisDi2cW4OEL2wkD85UrtgIo7EX0ZeI=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "rev": "b56659f15e1d1396271b4938889ed92aca043b75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "discord": "discord",
@@ -103,7 +119,8 @@
         "fish-plugin-wd": "fish-plugin-wd",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nvim-treesitter": "nvim-treesitter"
       }
     },
     "utils": {

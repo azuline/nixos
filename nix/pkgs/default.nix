@@ -21,6 +21,9 @@ import nixpkgs {
         sway-clear-clipboard = import ./sway-clear-clipboard { inherit pkgs; };
         sway-pass = import ./sway-pass { inherit pkgs; };
         sway-yy = import ./sway-yy { inherit pkgs; };
+        vimPlugins = pkgs.vimPlugins // {
+          nvim-treesitter = import ./nvim-treesitter { inherit pkgs srcs; };
+        };
       })
   ];
 }

@@ -1,5 +1,12 @@
 { pkgs, ... }:
 
+let
+  # These plugins are erroring with nvim-treesitter.
+  grammars = builtins.filter
+    ({ name, ... }: builtins.match "tree-sitter-(lua|sql|vim|kotlin|javascript)-.*" name == null)
+    pkgs.tree-sitter.allGrammars;
+in
+
 {
   programs.neovim = {
     enable = true;
@@ -7,7 +14,7 @@
     vimdiffAlias = true;
     withPython3 = true;
     plugins = [
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (_: grammars))
     ];
     extraConfig = ''
       luafile ${builtins.toString ../../../nvim/_init.lua}
