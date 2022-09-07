@@ -66,6 +66,7 @@
       xclip
       xss-lock
       xsv
+      yq-go
       youtube-dl
       zip
     ];
@@ -102,6 +103,7 @@
       haskell-language-server
       haskellPackages.implicit-hie
       jdk11
+      kind
       kubectl
       kube-linter
       luajitPackages.luacheck
