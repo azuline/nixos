@@ -19,12 +19,13 @@
     home.packages = with pkgs; [
       autossh
       bat
-      bash
+      bashInteractive
       beets
       brightnessctl
       cmus
       coreutils
       curl
+      dasel
       dnsutils
       exa
       fd

@@ -4,6 +4,10 @@ for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
 for_window [id="^wpa_gui$"] floating enable
+# https://www.reddit.com/r/i3wm/comments/m27dwc/comment/hsi1l0m/?utm_source=share&utm_medium=web2x&context=3
+for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
 
 ### Idle inhibit windows
 
@@ -86,11 +90,11 @@ bindsym --release $mod+Shift+q exec xkill
 # Drag windows
 floating_modifier $mod
 
-# Reload sway
+# Reload i3
 bindsym $mod+Shift+c reload
 
-# Exit sway
-bindsym $mod+Shift+e exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
+# Exit i3
+bindsym $mod+Shift+e exit
 
 # Change focus
 bindsym $mod+$left focus left

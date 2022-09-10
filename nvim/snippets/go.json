@@ -34,6 +34,21 @@
     "body": ["require.NoError(t, err)", "$0"],
     "description": "require.NoError"
   },
+  "endp": {
+    "prefix": "endp",
+    "body": [
+      "func $1(input *endpoint.Input) (*endpoint.Output, error) {",
+      "    ctx := input.Context()",
+      "    db := input.DB()",
+      "",
+      "    req := struct{}",
+      "    if err := input.Unmarshal(&req); err != nil {",
+      "        return apigen.ErrorUnmarshalFailure()",
+      "    }",
+      "}"
+    ],
+    "description": "require.NoError"
+  },
   "mins": {
     "prefix": "mins",
     "body": [
