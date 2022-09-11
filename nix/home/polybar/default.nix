@@ -23,8 +23,9 @@
   systemd.user.targets.tray = {
     Unit = {
       Description = "Home Manager System Tray";
-      Requires = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
+      WantedBy = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session-pre.target" ];
     };
   };
 }
