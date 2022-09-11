@@ -3,7 +3,7 @@ configuration {
 	width: 40;
 	lines: 12;
 	columns: 1;
-	font: "roboto 24";
+	font: "roboto 18";
 /*	bw: 1;*/
 /*	location: 0;*/
 	padding: 0;

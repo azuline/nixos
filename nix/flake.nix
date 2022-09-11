@@ -38,11 +38,11 @@
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
+      srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
+      pkgs = import ./pkgs { inherit system nixpkgs srcs; };
       makeHomeConfiguration = { host, nixDir, screen, username, chooseBundles }:
         let
           sys = { inherit host nixDir screen; };
-          srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
-          pkgs = import ./pkgs { inherit system nixpkgs srcs; };
           bundles = import ./home;
         in
         home-manager.lib.homeManagerConfiguration {
@@ -58,11 +58,19 @@
             home.username = "${username}";
             home.homeDirectory = "/home/${username}";
             home.stateVersion = "22.11";
+            # TODO: This is desktop only.
+            services.syncthing.enable = true;
           }];
         };
     in
     {
       packages = {
+        nixosConfigurations = {
+          haiqin = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [ ./configuration.nix ];
+          };
+        };
         homeConfigurations = {
           splendor = makeHomeConfiguration {
             host = "splendor";
@@ -77,8 +85,8 @@
               b.themeBundle
             ];
           };
-          neptune = makeHomeConfiguration {
-            host = "neptune";
+          haiqin = makeHomeConfiguration {
+            host = "haiqin";
             nixDir = "/dots/nix";
             screen = "laptop";
             username = "blissful";
@@ -87,13 +95,14 @@
               b.devBundle
               b.guiBundle
               b.i3Bundle
-              b.swayBundle
+              # b.swayBundle
               b.themeBundle
             ];
           };
           sunset = makeHomeConfiguration {
             host = "sunset";
             nixDir = "/dots/nix";
+            system = "x86_64-linux";
             screen = "none";
             username = "regalia";
             chooseBundles = b: [

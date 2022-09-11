@@ -3,7 +3,7 @@
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;
     services.gpg-agent.extraConfig = ''
-      pinentry-program /usr/bin/pinentry-gtk-2
+      pinentry-program ${pkgs.pinentry}/bin/pinentry
       default-cache-ttl 14400
       max-cache-ttl 14400
     '';
@@ -33,6 +33,7 @@
       findutils
       fzf
       gawk
+      gcc
       gnumake
       gnused
       graphviz
@@ -47,6 +48,7 @@
       neofetch
       pass
       pdftk
+      pinentry
       poetry
       procps
       ripgrep
@@ -63,6 +65,7 @@
       weechat
       wget
       whois
+      wireguard-tools
       wl-clipboard
       xclip
       xss-lock

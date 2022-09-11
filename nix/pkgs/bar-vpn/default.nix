@@ -1,5 +1,5 @@
 { pkgs }:
 
 pkgs.writeScriptBin "bar-vpn" ''
-  /usr/bin/wg show interfaces | ${pkgs.gnused}/bin/sed 's/ / • /g'
+  ${pkgs.wireguard-tools}/bin/wg show interfaces | ${pkgs.gnused}/bin/sed 's/ / • /g'
 ''
