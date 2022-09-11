@@ -6,7 +6,7 @@ pkgs.writeShellScriptBin "i3-lock" ''
   -- \
       ${pkgs.i3lock-color}/bin/i3lock-color \
       --nofork \
-      -i ~/.bg/lock.png \
+      -i ~/backgrounds/lock.png \
       --inside-color=ffffff1c \
       --ring-color=ffffff3e \
       --line-color=ffffff00 \
