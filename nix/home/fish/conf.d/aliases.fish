@@ -10,6 +10,11 @@ abbr --add --global hm 'home-manager'
 abbr --add --global rscp 'rsync -ah --progress'
 abbr --add --global zc 'zotcli'
 abbr --add --global s 'perl -pe'
+abbr --add --global si 'perl -i -pe'
+# Set these as aliases too for use in xargs.
+alias s='perl -pe'
+alias si='perl -i -pe'
+alias xargs='xargs '
 
 # Safety
 alias rm='trash'

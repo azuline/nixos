@@ -5,32 +5,26 @@
 { config, pkgs, ... }:
 
 {
+  system.stateVersion = "22.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  imports = [ ./hardware-configuration.nix ];
 
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    initrd.luks.devices = {
+      root = {
+        device = "/dev/nvme0n1p2";
+        preLVM = true;
+      };
+    };
+  };
 
   networking.hostName = "haiqin";
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  time.timeZone = "America/New_York";
+  i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -40,32 +34,23 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    desktopManager = {
-      xterm.enable = false;
-    };
-    displayManager = {
-      defaultSession = "none+i3";
-    };
+    desktopManager.xterm.enable = false;
+    displayManager.defaultSession = "none+i3";
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        i3lock
-      ];
     };
     videoDrivers = [ "intel" ];
     deviceSection = ''
       Option "DRI" "2"
       Option "TearFree" "true"
     '';
+    layout = "us";
+    xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
   };
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
-
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -83,10 +68,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" ];
   };
-  # home-manager.users.blissful = {...}: blissful-system;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     (neovim.override {
       vimAlias = true;
@@ -94,40 +76,9 @@
         customRC = builtins.readFile ../etc/vimrc;
       };
     })
-    firefox
-    git
     wget
     curl
     networkmanagerapplet
-    kitty
     wireguard-tools
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
-
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/nvme0n1p2";
-      preLVM = true;
-    };
-  };
 }

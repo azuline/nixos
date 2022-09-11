@@ -1,8 +1,12 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "i3-lock" ''
-  xss-lock --transfer-sleep-lock -- \
-      i3lock --nofork -i ~/.bg/lock.png \
+  ${pkgs.xss-lock}/bin/xss-lock \
+  --transfer-sleep-lock \
+  -- \
+      ${pkgs.i3lock-color}/bin/i3lock \
+      --nofork \
+      -i ~/.bg/lock.png \
       --inside-color=ffffff1c \
       --ring-color=ffffff3e \
       --line-color=ffffff00 \
