@@ -166,6 +166,8 @@
       gnome3.nautilus
       grim
       libnotify
+      pandoc
+      catimg
       maim
       signal
       slack
