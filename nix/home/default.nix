@@ -17,6 +17,7 @@
     ];
 
     home.packages = with pkgs; [
+      aerc
       autossh
       bat
       bashInteractive
@@ -155,7 +156,9 @@
 
     home.packages = with pkgs; [
       arandr
+      zoom-us
       discord
+      evince
       feh
       firefox
       gimp
@@ -170,6 +173,7 @@
       spotify
       tdesktop
       transmission-qt
+      gvfs
       xorg.xkill
       zotero
     ];

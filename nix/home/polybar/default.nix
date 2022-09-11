@@ -13,7 +13,8 @@
         ''
       else if specialArgs.sys.host == "haiqin" then
         ''
-          polybar haiqin &
+          # Only start if i3 socketpath succeeds.
+          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar haiqin &
         ''
       else throw "Invalid host for polybar."
     );
