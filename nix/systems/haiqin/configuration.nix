@@ -24,12 +24,17 @@
   console = {
     font = "ter-i32b";
     packages = with pkgs; [ terminus_font ];
+    # Load the larger console font earlier in the boot process.
+    earlySetup = true;
     # keyMap = "us";
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
+
+  # Gnome program configuration.
+  programs.dconf.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -43,6 +48,11 @@
         enable = true;
         user = "blissful";
       };
+      sessionCommands = ''
+        ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation' 1
+        ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation Button' 2
+        ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation Axes' 6 7 4 5
+      '';
     };
     windowManager.i3 = {
       enable = true;
@@ -83,6 +93,7 @@
     vim
     wget
     curl
+    jq
     networkmanagerapplet
     wireguard-tools
   ];
