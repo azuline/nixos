@@ -143,6 +143,8 @@
   };
 
   guiBundle = { pkgs, ... }: {
+    services.syncthing.enable = true;
+
     imports = [
       ./calibre
       ./keybase
@@ -160,7 +162,6 @@
       gnome3.gedit
       gnome3.nautilus
       grim
-      kitty
       libnotify
       maim
       signal
@@ -226,7 +227,6 @@
       # papirus-icon-theme
 
       font-awesome_5
-      # Nerd Fonts contains patched fonts (incl. Iosevka)
       iosevka-bin
       source-code-pro
       source-sans-pro
