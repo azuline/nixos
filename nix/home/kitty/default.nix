@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
 {
-  # Install kitty via pkg manager for graphics drivers.
+  home.packages = [ pkgs.kitty ];
   xdg.configFile."kitty/kitty.conf".source = ./kitty.conf;
 }

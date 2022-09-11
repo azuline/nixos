@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -25,26 +21,37 @@
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
+  console = {
+    font = "Lat2-Terminus32";
+    # keyMap = "us";
+    useXkbConfig = true; # use xkbOptions in tty.
+  };
+
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
-    displayManager.defaultSession = "none+i3";
+    displayManager = {
+      defaultSession = "none+i3";
+      # startx.enable = true;
+      # It's fine to enable autologin since we have disk encryption.
+      autoLogin = {
+        enable = true;
+        user = "blissful";
+      };
+    };
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
     };
-    videoDrivers = [ "intel" ];
+    videoDrivers = [ "modesetting" ];
     deviceSection = ''
-      Option "DRI" "2"
-      Option "TearFree" "true"
+      Option "DRI" "3"
     '';
+    # Option "TearFree" "true"
     layout = "us";
     xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
   };
@@ -69,13 +76,10 @@
     extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" ];
   };
 
+  environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
-    (neovim.override {
-      vimAlias = true;
-      configure = {
-        customRC = builtins.readFile ../etc/vimrc;
-      };
-    })
+    neovim
+    vim
     wget
     curl
     networkmanagerapplet

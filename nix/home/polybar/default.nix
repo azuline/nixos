@@ -18,4 +18,12 @@
       else throw "Invalid host for polybar."
     );
   };
+
+  # The tray service doesn't already exist; need to define it.
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = [ "graphical-session-pre.target" ];
+    };
+  };
 }

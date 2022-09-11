@@ -58,8 +58,6 @@
             home.username = "${username}";
             home.homeDirectory = "/home/${username}";
             home.stateVersion = "22.11";
-            # TODO: This is desktop only.
-            services.syncthing.enable = true;
           }];
         };
     in
@@ -68,7 +66,8 @@
         nixosConfigurations = {
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
-            modules = [ ./configuration.nix ];
+            specialArgs = { inherit pkgs; };
+            modules = [ ./systems/haiqin/configuration.nix ];
           };
         };
         homeConfigurations = {
@@ -95,7 +94,6 @@
               b.devBundle
               b.guiBundle
               b.i3Bundle
-              # b.swayBundle
               b.themeBundle
             ];
           };
