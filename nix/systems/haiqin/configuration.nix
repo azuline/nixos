@@ -22,7 +22,8 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus32";
+    font = "ter-i32b";
+    packages = with pkgs; [ terminus_font ];
     # keyMap = "us";
     useXkbConfig = true; # use xkbOptions in tty.
   };
