@@ -228,6 +228,7 @@
 
       font-awesome_5
       iosevka-bin
+      roboto
       source-code-pro
       source-sans-pro
       noto-fonts
