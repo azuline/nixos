@@ -15,6 +15,7 @@
     ];
     shellAbbrs = {
       hs = "home-manager switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";
+      ns = "sudo nixos-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";
     };
   };
 
