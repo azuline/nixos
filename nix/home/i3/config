@@ -224,10 +224,13 @@ exec --no-startup-id i3-lock
 # Manual lock
 bindsym $mod+Escape exec loginctl lock-session
 
-### Initial Setup
+### Initial startup
 
 # Wallpaper
 exec --no-startup-id ~/.fehbg
+
+# Email
+exec --no-startup-id tmux -d -s mail aerc
 
 # Services
 exec --no-startup-id blueman-applet
