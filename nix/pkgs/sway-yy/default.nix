@@ -14,7 +14,7 @@ pkgs.writeShellScriptBin "sway-yy" ''
   filepath=$(printf '%q' "$HOME/$selected")
 
   if [[ "$filepath" == *.pdf ]]; then
-  	swaymsg -t command exec \""evince $filepath"\"
+  	swaymsg -t command exec \""zathura $filepath"\"
   elif [[ "$filepath" == *.html ]]; then
   	swaymsg -t command exec \""firefox $filepath"\"
   elif [[ "$filepath" == *.epub ]] || [[ "$filepath" == *.azw3 ]]; then
