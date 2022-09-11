@@ -3,38 +3,36 @@
 {
   system.stateVersion = "22.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    initrd.luks.devices = {
-      root = {
-        device = "/dev/nvme0n1p2";
-        preLVM = true;
-      };
+    initrd.luks.devices.root = {
+      device = "/dev/nvme0n1p2";
+      preLVM = true;
     };
   };
 
-  networking.hostName = "haiqin";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "haiqin";
+    networkmanager.enable = true;
+  };
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
+
   console = {
     font = "ter-i32b";
     packages = with pkgs; [ terminus_font ];
     # Load the larger console font earlier in the boot process.
     earlySetup = true;
-    # keyMap = "us";
-    useXkbConfig = true; # use xkbOptions in tty.
+    useXkbConfig = true;
   };
 
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
-
-  # Gnome program configuration.
-  programs.dconf.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -62,22 +60,18 @@
     deviceSection = ''
       Option "DRI" "3"
     '';
-    # Option "TearFree" "true"
     layout = "us";
     xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
+    # Disable libinput because I don't want to use the touchpad.
+    libinput.enable = false;
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
-  # Enable sound.
+  programs.dconf.enable = true;
+  services.printing.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.blissful = {
     createHome = true;
     home = "/home/blissful";
@@ -87,14 +81,16 @@
     extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" ];
   };
 
-  environment.variables.EDITOR = "nvim";
-  environment.systemPackages = with pkgs; [
-    neovim
-    vim
-    wget
-    curl
-    jq
-    networkmanagerapplet
-    wireguard-tools
-  ];
+  environment = {
+    variables.EDITOR = "nvim";
+    systemPackages = with pkgs; [
+      neovim
+      vim
+      wget
+      curl
+      jq
+      networkmanagerapplet
+      wireguard-tools
+    ];
+  };
 }
