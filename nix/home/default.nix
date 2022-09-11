@@ -153,24 +153,24 @@
 
     home.packages = with pkgs; [
       arandr
-      feh
       discord
-      slack
+      feh
+      firefox
       gimp
       gnome3.gedit
       gnome3.nautilus
       grim
+      kitty
+      libnotify
       maim
-      meld
       signal
+      slack
       slurp
       spotify
       tdesktop
+      transmission-qt
       xorg.xkill
-      # Excluding this because open PDF is broken.
-      # zotero
-      # Excluding this for proper QT theming.
-      # transmission-qt
+      zotero
     ];
   };
 
@@ -188,6 +188,8 @@
       bar-gpu
       bar-loadavg
       bar-vpn
+      xss-lock
+      i3lock-color
       i3-change-audio
       i3-clear-clipboard
       i3-lock
