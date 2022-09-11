@@ -1,18 +1,16 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "i3-screenshot" ''
-  #!/usr/bin/env bash
-
   filename=~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
   case "$1" in
 
   select)
-    maim --select "$filename"
+    ${pkgs.maim}/bin/maim --select "$filename"
     ;;
   screen)
-    maim "$filename"
+    ${pkgs.maim}/bin/maim "$filename"
     ;;
   esac
 
-  xclip -sel c -t image/png -i "$filename"
+  ${pkgs.xclip}/bin/xclip -sel c -t image/png -i "$filename"
 ''
