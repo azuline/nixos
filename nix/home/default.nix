@@ -38,6 +38,7 @@
       gnumake
       gnused
       graphviz
+      htop
       imagemagick
       jq
       libsecret
