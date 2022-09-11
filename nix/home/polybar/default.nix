@@ -11,9 +11,9 @@
           polybar left &
           polybar right &
         ''
-      else if specialArgs.sys.host == "neptune" then
+      else if specialArgs.sys.host == "haiqin" then
         ''
-          polybar neptune &
+          polybar haiqin &
         ''
       else throw "Invalid host for polybar."
     );

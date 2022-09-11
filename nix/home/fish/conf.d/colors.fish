@@ -22,7 +22,7 @@ set fish_color_status "red"
 set fish_color_suffix "normal"
 set fish_color_user "brcyan"
 set fish_color_valid_path "\x2d\x2dunderline"
-set fish_greetin "g"
+set fish_greeting
 set fish_key_bindings "fish_default_key_bindings"
 set fish_pager_color_completion "normal"
 set fish_pager_color_description "B3A06D\x1eyellow"

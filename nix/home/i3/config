@@ -64,8 +64,8 @@ default_floating_border      pixel   3
 for_window [class=.*] border pixel   3
 
 # Gaps
-gaps inner 16
-gaps outer 4
+gaps inner 8
+gaps outer 2
 
 ### Settings
 
@@ -227,15 +227,9 @@ bindsym $mod+Escape exec loginctl lock-session
 ### Initial Setup
 
 # Configuration
-exec --no-startup-id feh --bg-fill /.bg/{right,left}.png
+exec --no-startup-id feh --bg-fill ~/.bg/bg.png
 
 # Services
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id ibus-daemon -drx
-# Workspace naming
-exec --no-startup-id systemctl --user start i3wsr
-# We shouldn't need this, but the systemd service starts too early right now.
-exec --no-startup-id systemctl --user start polybar
-# The NixOS picom systemd service breaks the WM, IDK why.
-exec --no-startup-id picom -b
