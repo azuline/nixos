@@ -21,11 +21,13 @@
 
   # The tray service doesn't already exist; need to define it.
   systemd.user.targets.tray = {
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
     Unit = {
       Description = "Home Manager System Tray";
-      WantedBy = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
       PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session-pre.target" ];
     };
   };
 }
