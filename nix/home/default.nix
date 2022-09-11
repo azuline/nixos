@@ -156,9 +156,9 @@
 
     home.packages = with pkgs; [
       arandr
-      zoom-us
+      libsecret
+      dante # For aerc HTML filter.
       discord
-      evince
       feh
       firefox
       gimp
@@ -173,8 +173,10 @@
       spotify
       tdesktop
       transmission-qt
-      gvfs
+      w3m # For aerc HTML filter.
       xorg.xkill
+      zathura
+      zoom-us
       zotero
     ];
   };
