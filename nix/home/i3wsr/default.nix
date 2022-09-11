@@ -10,7 +10,8 @@
       };
       Service = {
         Restart = "on-failure";
-        ExecStart = "${pkgs.i3wsr}/bin/i3wsr";
+        # Ensure that i3wsr can call i3 to get the socket path.
+        ExecStart = "/usr/bin/env PATH=${pkgs.i3}/bin:$PATH ${pkgs.i3wsr}/bin/i3wsr";
         Type = "forking";
       };
       Unit = {
