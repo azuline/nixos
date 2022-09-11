@@ -9,6 +9,7 @@
     '';
 
     imports = [
+      ./aerc
       ./fish
       ./git
       ./neovim
@@ -17,10 +18,9 @@
     ];
 
     home.packages = with pkgs; [
-      aerc
       autossh
-      bat
       bashInteractive
+      bat
       beets
       brightnessctl
       cmus
@@ -40,13 +40,14 @@
       graphviz
       imagemagick
       jq
+      libsecret
       mediainfo
       mktorrent
       mkvtoolnix
       monolith
       moreutils
-      nmap
       neofetch
+      nmap
       pass
       pdftk
       pinentry
@@ -71,8 +72,8 @@
       xclip
       xss-lock
       xsv
-      yq-go
       youtube-dl
+      yq-go
       zip
     ];
   };
@@ -156,8 +157,6 @@
 
     home.packages = with pkgs; [
       arandr
-      libsecret
-      dante # For aerc HTML filter.
       discord
       feh
       firefox
@@ -166,8 +165,6 @@
       gnome3.nautilus
       grim
       libnotify
-      pandoc
-      catimg
       maim
       signal
       slack
@@ -175,7 +172,6 @@
       spotify
       tdesktop
       transmission-qt
-      w3m # For aerc HTML filter.
       xorg.xkill
       zathura
       zoom-us

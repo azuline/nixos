@@ -1,0 +1,52 @@
+# Palenight colors:
+# ---
+# red=#f77669
+# yellow=#ffcb6b
+# green=#c3e88d
+# gray=#697098
+# black=#292d3e
+# orange=#f78c6c
+# purple=#c792ea
+# blue=#82b1ff
+# white=#bfc7d5
+# ---
+
+# General
+*error.bold=true
+error.fg=#f77669
+warning.fg=#ffcb6b
+success.fg=#c3e88d
+border.fg=#292d3e
+
+# Tab bar
+tab.fg=#c792ea
+tab.bg=#292d3e
+tab.selected.reverse=true
+
+# Status line
+statusline_default.fg=#bfc7d5
+statusline_default.bg=#292d3e
+statusline_error.fg=#f77669
+statusline_error.bg=#292d3e
+
+# Side bar - directory list
+dirlist_unread.fg=#c792ea
+dirlist_default.selected.bg=#697098
+dirlist_default.selected.fg=#ffffff
+
+# Main window - message list
+msglist_*.selected.fg=#ffffff
+msglist_*.selected.bg=#697098
+msglist_unread.fg=#c792ea
+msglist_flagged.fg=#ffcb6b
+msglist_deleted.fg=#697098
+msglist_marked.bg=#292d3e
+
+# Completion
+
+completion_default.bg=#697098
+completion_default.fg=#ffffff
+
+# Loading
+
+spinner.fg=#697098
