@@ -87,12 +87,13 @@
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
-      neovim
-      vim
-      wget
       curl
       jq
+      neovim
       networkmanagerapplet
+      powertop
+      vim
+      wget
       wireguard-tools
     ];
   };
