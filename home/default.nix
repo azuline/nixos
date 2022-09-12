@@ -156,6 +156,16 @@
       ./user-dirs
     ];
 
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        # Look in ~/.nix-profile/share/applications
+        "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+        "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
+        "x-scheme-handler/mailto" = [ "aerc.desktop" ];
+      };
+    };
+
     home.packages = with pkgs; [
       arandr
       discord
