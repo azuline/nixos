@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, specialArgs, ... }:
 
 let
   # These plugins are erroring with nvim-treesitter.
@@ -18,7 +18,13 @@ in
     ];
     extraConfig = ''
       ${builtins.readFile ./vimrc}
-      luafile ${builtins.toString ../../nvim/_init.lua}
+      luafile ${builtins.toString ./init.lua}
     '';
+  };
+
+  xdg.configFile = {
+    "nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim/lua";
+    "nvim/autoload".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim/autoload";
+    "nvim/snippets".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim/snippets";
   };
 }
