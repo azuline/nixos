@@ -40,9 +40,21 @@
     let
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
       pkgs = import ./pkgs { inherit system nixpkgs srcs; };
-      makeHomeConfiguration = { host, nixDir, screen, username, chooseBundles }:
+      makeHomeConfiguration =
+        {
+          # This enables per-host configurations, typically screen size differences.
+          host
+          # This is to block installation of GL-dependent packages on non-NixOS systems.
+        , nixos
+          # Location of Nix directory.
+        , nixDir
+          # Username for home-manager configuration.
+        , username
+          # A function that takes post-parametrized bundles of packages and returns a subset.
+        , chooseBundles
+        }:
         let
-          sys = { inherit host nixDir screen; };
+          sys = { inherit host nixos nixDir; };
           bundles = import ./home;
         in
         home-manager.lib.homeManagerConfiguration {
@@ -74,7 +86,7 @@
           splendor = makeHomeConfiguration {
             host = "splendor";
             nixDir = "/dots/nix";
-            screen = "desktop";
+            nixos = false;
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle
@@ -87,7 +99,7 @@
           haiqin = makeHomeConfiguration {
             host = "haiqin";
             nixDir = "/dots/nix";
-            screen = "laptop";
+            nixos = true;
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle
@@ -100,8 +112,7 @@
           sunset = makeHomeConfiguration {
             host = "sunset";
             nixDir = "/dots/nix";
-            system = "x86_64-linux";
-            screen = "none";
+            nixos = false;
             username = "regalia";
             chooseBundles = b: [
               b.cliBundle

@@ -145,7 +145,7 @@
     ];
   };
 
-  guiBundle = { pkgs, ... }: {
+  guiBundle = { pkgs, specialArgs, ... }: {
     services.syncthing.enable = true;
 
     imports = [
@@ -160,7 +160,6 @@
       arandr
       discord
       feh
-      firefox
       gimp
       gnome3.gedit
       gnome3.nautilus
@@ -175,9 +174,13 @@
       transmission-qt
       xorg.xkill
       zathura
-      zoom-us
-      zotero
-    ];
+    ] ++ (
+      if specialArgs.sys.nixos then [
+        firefox
+        zoom-us
+        zotero
+      ] else [ ]
+    );
   };
 
   i3Bundle = { pkgs, ... }: {
