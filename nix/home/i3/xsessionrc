@@ -2,9 +2,6 @@
 export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# Firefox can't handle this properly.
-# export GTK_THEME=Plata-Noir
-
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -24,6 +21,3 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 
     export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 fi
-
-# Display
-xrandr --output HDMI-0 --right-of DP-0

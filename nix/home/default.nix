@@ -10,6 +10,7 @@
 
     imports = [
       ./aerc
+      ./bash
       ./fish
       ./git
       ./neovim
@@ -19,7 +20,6 @@
 
     home.packages = with pkgs; [
       autossh
-      bashInteractive
       bat
       beets
       brightnessctl
