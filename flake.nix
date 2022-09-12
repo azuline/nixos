@@ -85,7 +85,7 @@
         homeConfigurations = {
           splendor = makeHomeConfiguration {
             host = "splendor";
-            nixDir = "/dots/nix";
+            nixDir = "/dots";
             nixos = false;
             username = "blissful";
             chooseBundles = b: [
@@ -98,7 +98,7 @@
           };
           haiqin = makeHomeConfiguration {
             host = "haiqin";
-            nixDir = "/dots/nix";
+            nixDir = "/dots";
             nixos = true;
             username = "blissful";
             chooseBundles = b: [
@@ -111,7 +111,7 @@
           };
           sunset = makeHomeConfiguration {
             host = "sunset";
-            nixDir = "/dots/nix";
+            nixDir = "/dots";
             nixos = false;
             username = "regalia";
             chooseBundles = b: [
