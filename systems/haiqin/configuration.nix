@@ -82,7 +82,7 @@
   };
 
   environment = {
-    interactiveShellInit = builtins.readFile ../../etc/bashrc;
+    interactiveShellInit = builtins.readFile ./bashrc;
     variables = {
       EDITOR = "nvim";
     };

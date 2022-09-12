@@ -4,6 +4,6 @@ pkgs.neovim.override {
   vimAlias = true;
   withPython3 = true;
   configure = {
-    customRC = builtins.readFile ../../etc/vimrc;
+    customRC = builtins.readFile ./vimrc;
   };
 }

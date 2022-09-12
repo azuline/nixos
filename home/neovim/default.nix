@@ -17,8 +17,8 @@ in
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (_: grammars))
     ];
     extraConfig = ''
-      ${builtins.readFile ../../etc/vimrc}
-      luafile ${builtins.toString ../../../nvim/_init.lua}
+      ${builtins.readFile ./vimrc}
+      luafile ${builtins.toString ../../nvim/_init.lua}
     '';
   };
 }
