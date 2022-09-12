@@ -1,3 +1,5 @@
+# Note: We set the gaps in Nix because they vary per-machine.
+
 ### Floating windows
 
 for_window [title="^launcher$"] floating enable
@@ -62,10 +64,6 @@ default_border               pixel   3
 default_floating_border      pixel   3
 # Force borders for all windows.
 for_window [class=.*] border pixel   3
-
-# Gaps
-gaps inner 8
-gaps outer 2
 
 ### Settings
 

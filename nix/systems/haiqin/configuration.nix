@@ -82,7 +82,10 @@
   };
 
   environment = {
-    variables.EDITOR = "nvim";
+    interactiveShellInit = builtins.readFile ../../etc/bashrc;
+    variables = {
+      EDITOR = "nvim";
+    };
     systemPackages = with pkgs; [
       neovim
       vim
