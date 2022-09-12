@@ -23,11 +23,11 @@
         frame_width = 3;
         frame_color = "#213e68";
       } // (
-        if specialArgs.sys.screen == "desktop" then {
+        if specialArgs.sys.host == "splendor" then {
           offset = "18x18";
-        } else if specialArgs.sys.screen == "laptop" then {
+        } else if specialArgs.sys.host == "haiqin" then {
           offset = "10x10";
-        } else throw "Invalid screen size in dunst."
+        } else throw "Invalid host in dunst."
       );
       urgency_low = {
         background = "#090910";
