@@ -78,7 +78,7 @@
     uid = 1000;
     shell = pkgs.fish;
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" ];
+    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
   };
 
   environment = {
@@ -97,4 +97,8 @@
       wireguard-tools
     ];
   };
+
+  virtualisation.docker.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
 }
