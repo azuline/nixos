@@ -30,7 +30,7 @@
     "description": "Insert a SQLBoiler model into the database."
   },
   "rne": {
-    "prefix": "nerr",
+    "prefix": "rne",
     "body": ["require.NoError(t, err)", "$0"],
     "description": "require.NoError"
   },

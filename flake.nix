@@ -10,7 +10,7 @@
     };
     # Non-nix inputs
     discord = {
-      url = "https://dl.discordapp.net/apps/linux/0.0.19/discord-0.0.19.tar.gz";
+      url = "https://dl.discordapp.net/apps/linux/0.0.20/discord-0.0.20.tar.gz";
       flake = false;
     };
     nvim-treesitter = {

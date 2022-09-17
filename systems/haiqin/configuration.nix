@@ -18,6 +18,9 @@
   networking = {
     hostName = "haiqin";
     networkmanager.enable = true;
+    extraHosts = ''
+      127.0.0.1 local.pipe-dev.com
+    '';
   };
 
   time.timeZone = "America/New_York";

@@ -3,13 +3,13 @@
     "discord": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-xNadtyKzaGcenXZLWlxhNjrxCBiVhCYXzXualHuwmM8=",
+        "narHash": "sha256-+y6VIWBD+x80u0bWZve9olkCzbW+sOfU/4+sdO7+TGE=",
         "type": "tarball",
-        "url": "https://dl.discordapp.net/apps/linux/0.0.19/discord-0.0.19.tar.gz"
+        "url": "https://dl.discordapp.net/apps/linux/0.0.20/discord-0.0.20.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://dl.discordapp.net/apps/linux/0.0.19/discord-0.0.19.tar.gz"
+        "url": "https://dl.discordapp.net/apps/linux/0.0.20/discord-0.0.20.tar.gz"
       }
     },
     "fish-plugin-nix-env": {

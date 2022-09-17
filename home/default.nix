@@ -163,6 +163,7 @@
         "application/pdf" = [ "org.pwmt.zathura.desktop" ];
         "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
         "x-scheme-handler/mailto" = [ "aerc.desktop" ];
+        "x-www-browser" = [ "firefox.desktop" ];
       };
     };
 
@@ -176,6 +177,7 @@
       grim
       libnotify
       maim
+      peek
       signal
       slack
       slurp
