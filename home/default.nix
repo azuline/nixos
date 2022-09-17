@@ -71,7 +71,6 @@
       wireguard-tools
       wl-clipboard
       xclip
-      xss-lock
       xsv
       youtube-dl
       yq-go
@@ -180,6 +179,7 @@
       peek
       signal
       slack
+      xdotool # For VimTex's forward search.
       slurp
       spotify
       tdesktop
@@ -195,7 +195,7 @@
     );
   };
 
-  i3Bundle = { pkgs, ... }: {
+  i3Bundle = { pkgs, specialArgs, ... }: {
     imports = [
       ./dunst
       ./i3
@@ -209,11 +209,9 @@
       bar-gpu
       bar-loadavg
       bar-vpn
-      xss-lock
-      i3lock-color
       i3-change-audio
       i3-clear-clipboard
-      i3-lock
+      (if specialArgs.sys.nixos then i3-lock-nixos else i3-lock-debian)
       i3-pass
       i3-screenshot
       i3-yy

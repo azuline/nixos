@@ -4,14 +4,19 @@ import nixpkgs {
   inherit system;
   overlays = [
     (self: super:
-      let pkgs = super; in {
+      let
+        pkgs = super;
+        i3-lock = import ./i3-lock { inherit pkgs; };
+      in
+      {
         bar-gpu = import ./bar-gpu { inherit pkgs; };
         bar-loadavg = import ./bar-loadavg { inherit pkgs; };
         bar-vpn = import ./bar-vpn { inherit pkgs; };
         discord = import ./discord { inherit pkgs srcs; };
         i3-change-audio = import ./i3-change-audio { inherit pkgs; };
         i3-clear-clipboard = import ./i3-clear-clipboard { inherit pkgs; };
-        i3-lock = import ./i3-lock { inherit pkgs; };
+        i3-lock-nixos = i3-lock.nixos;
+        i3-lock-debian = i3-lock.debian;
         i3-pass = import ./i3-pass { inherit pkgs; };
         i3-screenshot = import ./i3-screenshot { inherit pkgs; };
         i3-yy = import ./i3-yy { inherit pkgs; };
