@@ -163,6 +163,7 @@
         "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
         "x-scheme-handler/mailto" = [ "aerc.desktop" ];
         "x-www-browser" = [ "firefox.desktop" ];
+        "image/png" = [ "feh.desktop" ];
       };
     };
 
