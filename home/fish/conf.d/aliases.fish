@@ -3,7 +3,7 @@ alias grep='grep --color=auto'
 alias info='info --vi-keys'
 
 alias xc='xclip -sel c'
-alias xp='xclip -o'
+alias xp='xclip -sel c -o'
 
 abbr --add --global hm 'home-manager'
 abbr --add --global rscp 'rsync -ah --progress'
