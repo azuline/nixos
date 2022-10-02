@@ -215,8 +215,8 @@ if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
   table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
 end
 
-null_ls.setup({
+null_ls.setup(coq.ensure_lsp_capabilities({
   root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),
   sources = sources,
   on_attach = on_attach,
-})
+}))
