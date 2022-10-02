@@ -5,6 +5,7 @@ let
   grammars = builtins.filter
     ({ name, ... }: builtins.match "tree-sitter-(lua|sql|vim|kotlin|javascript)-.*" name == null)
     pkgs.tree-sitter.allGrammars;
+  nvimDir = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim";
 in
 
 {
@@ -18,13 +19,13 @@ in
     ];
     extraConfig = ''
       ${builtins.readFile ./vimrc}
-      luafile ${builtins.toString ./init.lua}
+      luafile ${nvimDir}/init.lua
     '';
   };
 
   xdg.configFile = {
-    "nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim/lua";
-    "nvim/autoload".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim/autoload";
-    "nvim/snippets".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim/snippets";
+    "nvim/lua".source = "${nvimDir}/lua";
+    "nvim/autoload".source = "${nvimDir}/autoload";
+    "nvim/snippets".source = "${nvimDir}/snippets";
   };
 }

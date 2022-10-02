@@ -112,9 +112,9 @@ end
 -- Load in sections!
 require("window")
 require("navigation")
+require("completion") -- This needs to be before LSP.
 require("dev")
 require("lsp")
-require("completion")
 
 -- Set the spellfile.
 vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
