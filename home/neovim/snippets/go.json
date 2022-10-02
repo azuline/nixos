@@ -34,6 +34,11 @@
     "body": ["require.NoError(t, err)", "$0"],
     "description": "require.NoError"
   },
+  "tR": {
+    "prefix": "tR",
+    "body": ["t.Run(\"$1\", func(t *testing.T) {", "$0", "})"],
+    "description": "test.Run(...)"
+  },
   "endp": {
     "prefix": "endp",
     "body": [
