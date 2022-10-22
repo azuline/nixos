@@ -3,6 +3,7 @@ do -- Treesitter Configuration
     -- We install most parsers through Nix, but a few are erroring, probably
     -- due to some version mismatch. We install those here instead.
     ensure_installed = { "sql", "lua", "vim", "kotlin", "javascript" },
+    parser_install_dir = "~/.local/share/nvim/site",
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = true,
     -- Automatically install missing parsers when entering buffer

@@ -34,7 +34,7 @@
       findutils
       fzf
       gawk
-      gcc
+      # gcc  # Is this writing some weird nix ld that's half broken?
       gnumake
       gnused
       graphviz
@@ -134,6 +134,7 @@
       selene
       shellcheck
       # semgrep # TODO: Doesn't successfully build yet.
+      sqlcheck
       sqlint
       stack
       stylua

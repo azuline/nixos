@@ -29,7 +29,7 @@ local on_attach = function(client, bufnr)
   buf_map(bufnr, "n", "<Leader>lr", ":LspRefs<CR>")
   buf_map(bufnr, "n", "<C-]>", ":LspDef<CR>")
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 3000)")
   end
 end
@@ -52,7 +52,7 @@ local function filter(arr, fn)
 end
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lspconfig.gopls.setup({
   on_attach = on_attach,
@@ -98,8 +98,8 @@ lspconfig.tsserver.setup({
     },
   },
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
 
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup({
