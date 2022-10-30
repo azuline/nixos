@@ -27,6 +27,9 @@
       merge = {
         tool = "vimdiff";
       };
+      rebase = {
+        updateRefs = true;
+      };
       difftool = {
         prompt = false;
       };
