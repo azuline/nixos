@@ -96,6 +96,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-treesitter-grammars-pinned": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      }
+    },
     "nvim-treesitter": {
       "flake": false,
       "locked": {
@@ -120,6 +136,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-treesitter-grammars-pinned": "nixpkgs-treesitter-grammars-pinned",
         "nvim-treesitter": "nvim-treesitter"
       }
     },

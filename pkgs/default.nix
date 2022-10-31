@@ -1,4 +1,4 @@
-{ system, nixpkgs, srcs }:
+{ system, nixpkgs, srcs, pins }:
 
 import nixpkgs {
   inherit system;
@@ -29,6 +29,6 @@ import nixpkgs {
         vimPlugins = pkgs.vimPlugins // {
           nvim-treesitter = import ./vimPlugins/nvim-treesitter { inherit pkgs srcs; };
         };
-      })
+      } // pins)
   ];
 }

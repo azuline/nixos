@@ -4,6 +4,7 @@
   inputs = {
     flake-utils.url = github:numtide/flake-utils;
     nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
+    nixpkgs-treesitter-grammars-pinned.url = github:nixos/nixpkgs?rev=b7d8c687782c8f9a1d425a7e486eb989654f6468;
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +32,7 @@
     { self
     , home-manager
     , nixpkgs
+    , nixpkgs-treesitter-grammars-pinned
     , flake-utils
     , discord
     , nvim-treesitter
@@ -39,7 +41,10 @@
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
-      pkgs = import ./pkgs { inherit system nixpkgs srcs; };
+      pins = {
+        tree-sitter = (import nixpkgs-treesitter-grammars-pinned { inherit system; }).tree-sitter;
+      };
+      pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
         {
           # This enables per-host configurations, typically screen size differences.
