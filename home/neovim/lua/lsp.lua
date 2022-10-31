@@ -29,9 +29,9 @@ local on_attach = function(client, bufnr)
   buf_map(bufnr, "n", "<Leader>lr", ":LspRefs<CR>")
   buf_map(bufnr, "n", "<C-]>", ":LspDef<CR>")
 
-  -- if client.server_capabilities.document_formatting then
-  vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 3000 })")
-  -- end
+  if client.server_capabilities.documentFormattingProvider then
+    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 3000 })")
+  end
 end
 
 -- To avoid react.d.ts definitions from opening on jump to definition.

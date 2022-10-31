@@ -98,17 +98,17 @@
     },
     "nixpkgs-treesitter-grammars-pinned": {
       "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "lastModified": 1666282307,
+        "narHash": "sha256-O1T2HGLARLKDLfdOmjPBfn3eC4cSIaQD71wUN4I/6/s=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "rev": "b7d8c687782c8f9a1d425a7e486eb989654f6468",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "rev": "b7d8c687782c8f9a1d425a7e486eb989654f6468",
         "type": "github"
       }
     },
