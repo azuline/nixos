@@ -212,6 +212,7 @@ bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%-
 bindsym XF86AudioMute exec amixer sset Master toggle
 bindsym Pause exec i3-change-audio
+bindsym XF86Calculator exec win-switch
 
 ### Screen Locker
 

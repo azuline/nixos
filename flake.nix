@@ -57,6 +57,8 @@
         , username
           # A function that takes post-parametrized bundles of packages and returns a subset.
         , chooseBundles
+          # Additional one-off packages to add to a single host.
+        , packages ? [ ]
         }:
         let
           sys = { inherit host nixos nixDir; };
@@ -75,6 +77,7 @@
             home.username = "${username}";
             home.homeDirectory = "/home/${username}";
             home.stateVersion = "22.11";
+            home.packages = packages;
           }];
         };
     in
@@ -99,6 +102,9 @@
               b.guiBundle
               b.i3Bundle
               b.themeBundle
+            ];
+            packages = with pkgs; [
+              win-switch
             ];
           };
           haiqin = makeHomeConfiguration {

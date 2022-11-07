@@ -89,10 +89,10 @@ lspconfig.tsserver.setup({
     preferences = {
       importModuleSpecifierPreference = "non-relative",
       importModuleSpecifierEnding = "minimal",
-      -- This is currently in @typescript/next.
       autoImportFileExcludePatterns = {
         -- This reexports every React hook.. absurd.
         "@storybook/addons/**",
+        -- This exports a `t`.
         "msw/**",
       },
     },

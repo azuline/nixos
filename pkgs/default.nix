@@ -29,6 +29,7 @@ import nixpkgs {
         vimPlugins = pkgs.vimPlugins // {
           nvim-treesitter = import ./vimPlugins/nvim-treesitter { inherit pkgs srcs; };
         };
+        win-switch = import ./win-switch { inherit pkgs; };
       } // pins)
   ];
 }
