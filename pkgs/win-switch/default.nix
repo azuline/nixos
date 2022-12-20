@@ -9,7 +9,7 @@ pkgs.writeShellScriptBin "win-switch" ''
     pkill -f 'polybar right'
 
     # Background
-    feh --bg-fill ~/backgrounds/right.png
+    feh --bg-fill ~/backgrounds/left.png
 
     synergy &
     disown

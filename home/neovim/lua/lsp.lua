@@ -157,7 +157,7 @@ local sources = {
   -- JS/TS/JSX/TSX
   null_ls.builtins.diagnostics.eslint_d,
   null_ls.builtins.code_actions.eslint_d,
-  null_ls.builtins.formatting.eslint_d,
+  -- null_ls.builtins.formatting.eslint_d,
   null_ls.builtins.formatting.prettierd.with({
     filetypes = {
       "javascript",
@@ -210,9 +210,9 @@ local sources = {
   null_ls.builtins.code_actions.shellcheck,
 }
 
-if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
-  table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
-end
+-- if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
+--   table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
+-- end
 
 null_ls.setup({
   root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),

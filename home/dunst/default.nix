@@ -7,7 +7,7 @@
       global = {
         allow_markup = true;
         history_length = 80;
-        monitor = 1;
+        monitor = 0;
         width = 360;
         height = 360;
         font = "Source Code Pro 10";
