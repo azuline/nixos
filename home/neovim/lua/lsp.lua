@@ -8,6 +8,9 @@ end
 vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
 local on_attach = function(client, bufnr)
+  -- LSP breaks `gq` because it overrides formatexpr.
+  vim.bo.formatexpr = ""
+
   vim.cmd("command! LspDef lua vim.lsp.buf.definition({ includeDeclaration = false })")
   vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
   vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
