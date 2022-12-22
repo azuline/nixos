@@ -9,6 +9,10 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mach-nix = {
+      url = github:DavHau/mach-nix;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Non-nix inputs
     discord = {
       url = "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz";
@@ -34,6 +38,7 @@
     , nixpkgs
     , nixpkgs-treesitter-grammars-pinned
     , flake-utils
+    , mach-nix
     , discord
     , nvim-treesitter
     , fish-plugin-wd
@@ -43,6 +48,7 @@
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
       pins = {
         tree-sitter = (import nixpkgs-treesitter-grammars-pinned { inherit system; }).tree-sitter;
+        # mach-nix = mach-nix.packages.${system}.mach-nix;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =

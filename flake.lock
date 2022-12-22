@@ -59,6 +59,21 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1642700792,
+        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -77,6 +92,28 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "mach-nix": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pypi-deps-db": "pypi-deps-db"
+      },
+      "locked": {
+        "lastModified": 1667918925,
+        "narHash": "sha256-jCZ4iI4UCOC+T5SEgoCbUzqaeMo5WT3DcFwqwvn2fEs=",
+        "owner": "DavHau",
+        "repo": "mach-nix",
+        "rev": "913e6c16f986746ba5507878ef7ff992804d1fa8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DavHau",
+        "repo": "mach-nix",
         "type": "github"
       }
     },
@@ -128,6 +165,22 @@
         "type": "github"
       }
     },
+    "pypi-deps-db": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661155889,
+        "narHash": "sha256-t00mBTZhmZBT4jteO6pJbU0wyRS6/ep4pKmQNeztEms=",
+        "owner": "DavHau",
+        "repo": "pypi-deps-db",
+        "rev": "49c620f3de2b557c9d5c44f58a00fee59f27d1b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DavHau",
+        "repo": "pypi-deps-db",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "discord": "discord",
@@ -135,6 +188,7 @@
         "fish-plugin-wd": "fish-plugin-wd",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "mach-nix": "mach-nix",
         "nixpkgs": "nixpkgs",
         "nixpkgs-treesitter-grammars-pinned": "nixpkgs-treesitter-grammars-pinned",
         "nvim-treesitter": "nvim-treesitter"

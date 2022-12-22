@@ -19,12 +19,13 @@ pkgs.writeShellScriptBin "win-switch" ''
     # XRandr
     xrandr --output HDMI-0 --auto
     xrandr --output HDMI-0 --right-of DP-0
+    xrandr --output DP-0 --primary
 
     # Polybar
     systemctl restart --user polybar
 
     # Background
-    feh --bg-fill ~/backgrounds/{right,left}.png
+    feh --bg-fill ~/backgrounds/{left,right}.png
 
     pkill synergy
   }

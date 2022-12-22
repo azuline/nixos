@@ -15,6 +15,7 @@ let
   xsessionrc = (
     if specialArgs.sys.host == "splendor" then xsessionrcBase + ''
       xrandr --output HDMI-0 --right-of DP-0
+      xrandr --output DP-0 --primary
     '' else if specialArgs.sys.host == "haiqin" then xsessionrcBase
     else throw "Invalid host in i3."
   );

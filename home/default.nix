@@ -113,6 +113,7 @@
       kubectl
       kube-linter
       luajitPackages.luacheck
+      # mach-nix
       minikube
       mypy
       nixpkgs-fmt
@@ -174,7 +175,6 @@
       feh
       gimp
       gnome3.gedit
-      gnome3.nautilus
       grim
       libnotify
       maim
@@ -193,6 +193,7 @@
         firefox
         zoom-us
         zotero
+        gnome3.nautilus
       ] else [ ]
     );
   };

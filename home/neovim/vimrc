@@ -72,9 +72,10 @@ endif
 " Filetype settings
 " -----------------
 
-" Racket filetype.
+" Custom overrides
 au BufReadPost,BufNewFile *.rkt set filetype=racket
 au filetype racket set lisp
+au BufReadPost,BufNewFile *.sqlx set filetype=sql
 
 " Default indentation settings
 set expandtab
