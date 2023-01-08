@@ -50,3 +50,9 @@ completion_default.fg=#ffffff
 # Loading
 
 spinner.fg=#697098
+
+# Selectors (used in setting configs)
+
+selector_focused.fg=#292d3e
+selector_focused.bg=#bfc7d5
+selector_chooser.bg=#697098
