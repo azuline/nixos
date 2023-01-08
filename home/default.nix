@@ -43,6 +43,7 @@
       jq
       libsecret
       mediainfo
+      mkcert
       mktorrent
       mkvtoolnix
       monolith
