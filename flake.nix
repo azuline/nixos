@@ -4,11 +4,9 @@
   inputs = {
     flake-utils.url = github:numtide/flake-utils;
     # A somewhat stable and more infrequently updated nixpkgs version.
-    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
+    nixpkgs.url = github:nixos/nixpkgs?rev=b7d8c687782c8f9a1d425a7e486eb989654f6468;
     # Latest nixpkgs version that we pull specific packages from.
     nixpkgs-latest.url = github:nixos/nixpkgs/nixos-unstable;
-    # We pin treesitter grammars to this specific commit for compatibility reasons sigh.
-    nixpkgs-treesitter-grammars-pinned.url = github:nixos/nixpkgs?rev=b7d8c687782c8f9a1d425a7e486eb989654f6468;
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +39,6 @@
     , home-manager
     , nixpkgs
     , nixpkgs-latest
-    , nixpkgs-treesitter-grammars-pinned
     , flake-utils
     , mach-nix
     , discord
@@ -52,9 +49,7 @@
     let
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
       pins = {
-        tree-sitter = (import nixpkgs-treesitter-grammars-pinned { inherit system; }).tree-sitter;
         signal-desktop = (import nixpkgs-latest { inherit system; }).signal-desktop;
-        telegram-desktop = (import nixpkgs-latest { inherit system; }).telegram-desktop;
         # mach-nix = mach-nix.packages.${system}.mach-nix;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
@@ -81,6 +76,9 @@
           inherit pkgs;
           extraSpecialArgs = { inherit sys srcs; };
           modules = chooseBundles bundles ++ [{
+            # temporarily TODO
+            manual.manpages.enable = false;
+
             programs.home-manager.enable = true;
             # Automatically set some environment variables that will ease usage of software 
             # installed with nix on non-NixOS linux (fixing local issues, settings XDG_DATA_DIRS, etc).

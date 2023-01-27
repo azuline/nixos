@@ -160,42 +160,14 @@ local sources = {
   -- JS/TS/JSX/TSX
   null_ls.builtins.diagnostics.eslint_d,
   null_ls.builtins.code_actions.eslint_d,
-  -- null_ls.builtins.formatting.eslint_d,
-  null_ls.builtins.formatting.prettierd.with({
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "vue",
-      "css",
-      "scss",
-      "less",
-      "html",
-      "json",
-      "yaml",
-      "markdown",
-      "markdown.mdx",
-      "graphql",
-    },
-  }),
+  null_ls.builtins.formatting.eslint_d,
   -- Lua
   null_ls.builtins.formatting.stylua,
   -- Python
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.isort,
   null_ls.builtins.diagnostics.mypy,
-  null_ls.builtins.diagnostics.flake8.with({
-    args = {
-      "--max-line-length=999",
-      "--extend-ignore=E203,E402,W503",
-      "--format",
-      "default",
-      "--stdin-display-name",
-      "$FILENAME",
-      "-",
-    },
-  }),
+  null_ls.builtins.diagnostics.ruff,
   -- Golang
   null_ls.builtins.formatting.goimports,
   null_ls.builtins.formatting.gofumpt,
@@ -216,6 +188,38 @@ local sources = {
 -- if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
 --   table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
 -- end
+
+if vim.fn.isdirectory(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
+  table.insert(sources, 1, null_ls.builtins.formatting.dprint)
+end
+
+if
+  vim.fn.isdirectory(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
+  or vim.fn.isdirectory(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
+then
+  table.insert(
+    sources,
+    1,
+    null_ls.builtins.formatting.prettierd.with({
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "css",
+        "scss",
+        "less",
+        "html",
+        "json",
+        "yaml",
+        "markdown",
+        "markdown.mdx",
+        "graphql",
+      },
+    })
+  )
+end
 
 null_ls.setup({
   root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),

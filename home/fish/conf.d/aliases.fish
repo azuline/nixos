@@ -90,6 +90,9 @@ function bac
     beet modify artist::"$argv[1]" artist="$argv[2]"
     beet modify -a albumartist::"$argv[1]" albumartist="$argv[2]"
 end
+function bal
+    beet modify -a album::"$argv[1]" album="$argv[2]"
+end
 
 # Specify output dir and pass `-s <url>` or `-q <query>`.
 abbr --add --global lnd 'lncrawl --all --single --force --suppress --output /tmp/webnovel/'

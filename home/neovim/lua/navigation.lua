@@ -14,6 +14,9 @@ do -- Tree browser
         "build",
         "dist",
       },
+      name_glob = {
+        ".null-ls*",
+      },
     },
     keymap = {
       -- Open/close

@@ -41,6 +41,7 @@
       htop
       imagemagick
       jq
+      tectonic
       libsecret
       mediainfo
       mkcert
@@ -136,7 +137,6 @@
       selene
       shellcheck
       # semgrep # TODO: Doesn't successfully build yet.
-      sqlcheck
       sqlint
       stack
       stylua

@@ -5,10 +5,10 @@ import nixpkgs {
   overlays = [
     (self: super:
       let
-        pkgs = super;
+        pkgs = super // pins;
         i3-lock = import ./i3-lock { inherit pkgs; };
       in
-      {
+      pins // {
         bar-gpu = import ./bar-gpu { inherit pkgs; };
         bar-loadavg = import ./bar-loadavg { inherit pkgs; };
         bar-vpn = import ./bar-vpn { inherit pkgs; };
@@ -30,6 +30,6 @@ import nixpkgs {
           nvim-treesitter = import ./vimPlugins/nvim-treesitter { inherit pkgs srcs; };
         };
         win-switch = import ./win-switch { inherit pkgs; };
-      } // pins)
+      })
   ];
 }
