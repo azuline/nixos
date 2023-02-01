@@ -23,6 +23,7 @@
       bat
       beets
       brightnessctl
+      bubblewrap
       cmus
       coreutils
       curl
@@ -62,6 +63,7 @@
       sqlite-interactive
       sshfs
       termdown
+      tomb
       tldr
       trash-cli
       tree
