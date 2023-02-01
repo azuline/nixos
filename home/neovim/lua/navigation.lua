@@ -16,6 +16,7 @@ do -- Tree browser
       },
       name_glob = {
         ".null-ls*",
+        ".coverage.*",
       },
     },
     keymap = {

@@ -166,6 +166,7 @@ local sources = {
   -- Python
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.isort,
+  null_ls.builtins.formatting.ruff,
   null_ls.builtins.diagnostics.mypy,
   null_ls.builtins.diagnostics.ruff,
   -- Golang
@@ -176,8 +177,6 @@ local sources = {
   -- null_ls.builtins.diagnostics.revive,
   -- Nix
   null_ls.builtins.formatting.nixpkgs_fmt,
-  -- Postgres
-  null_ls.builtins.formatting.pg_format,
   -- Rust
   null_ls.builtins.formatting.rustfmt,
   -- Bash
@@ -185,17 +184,17 @@ local sources = {
   null_ls.builtins.code_actions.shellcheck,
 }
 
--- if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
---   table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
--- end
+if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
+  table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
+end
 
-if vim.fn.isdirectory(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
+if vim.fn.exists(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
   table.insert(sources, 1, null_ls.builtins.formatting.dprint)
 end
 
 if
-  vim.fn.isdirectory(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
-  or vim.fn.isdirectory(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
+  vim.fn.exists(vim.fn.getcwd() .. "/.prettierrc.js") ~= 0
+  or vim.fn.exists(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
 then
   table.insert(
     sources,

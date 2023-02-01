@@ -118,6 +118,8 @@
       # mach-nix
       minikube
       mypy
+      ruff
+      pgformatter
       nixpkgs-fmt
       nodejs
       nodePackages.eslint
@@ -132,8 +134,10 @@
       php80
       php80Packages.composer
       postgresql_13
+      protoc-gen-go
       python
       rnix-lsp
+      protobuf
       selene
       shellcheck
       # semgrep # TODO: Doesn't successfully build yet.

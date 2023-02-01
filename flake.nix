@@ -50,7 +50,6 @@
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
       pins = {
         signal-desktop = (import nixpkgs-latest { inherit system; }).signal-desktop;
-        # mach-nix = mach-nix.packages.${system}.mach-nix;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
