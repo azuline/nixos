@@ -188,13 +188,13 @@ if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
   table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
 end
 
-if vim.fn.exists(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
+if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
   table.insert(sources, 1, null_ls.builtins.formatting.dprint)
 end
 
 if
-  vim.fn.exists(vim.fn.getcwd() .. "/.prettierrc.js") ~= 0
-  or vim.fn.exists(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
+  vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc.js") ~= 0
+  or vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
 then
   table.insert(
     sources,
