@@ -117,6 +117,7 @@
       kubectl
       kube-linter
       luajitPackages.luacheck
+      node2nix
       minikube
       mypy
       ruff

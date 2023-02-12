@@ -194,7 +194,9 @@ end
 
 if
   vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc.js") ~= 0
+  or vim.fn.filereadable(vim.fn.getcwd() .. "/../.prettierrc.js") ~= 0
   or vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc.json") ~= 0
+  or vim.fn.filereadable(vim.fn.getcwd() .. "/../.prettierrc.json") ~= 0
 then
   table.insert(
     sources,

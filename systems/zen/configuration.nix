@@ -43,10 +43,20 @@
           authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor" ];
           hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
         };
-        # postCommands = ''
-        #   echo 'cryptsetup-askpass' >> /root/.profile
-        # '';
+        # Set the shell profile to meet SSH connections with a decryption
+        # prompt that writes to /tmp/continue if successful.
+        # https://mth.st/blog/nixos-initrd-ssh/
+        postCommands = ''
+          echo 'cryptsetup open /dev/disk/by-uuid/de8653dc-4ad0-486f-a776-f04dc16273e7 enc-pv && echo /tmp/continue' >> /root/.profile
+          echo 'starting sshd...'
+        '';
       };
+      # Block the boot process until /tmp/continue is written to
+      postDeviceCommands = ''
+        echo 'waiting for root device to be opened...'
+        mkfifo /tmp/continue
+        cat /tmp/continue
+      '';
       luks = {
         forceLuksSupportInInitrd = true;
         devices = {
