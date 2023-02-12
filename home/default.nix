@@ -35,7 +35,7 @@
       findutils
       fzf
       gawk
-      # gcc  # Is this writing some weird nix ld that's half broken?
+      gcc # Is this writing some weird nix ld that's half broken?
       gnumake
       gnused
       graphviz
@@ -117,7 +117,6 @@
       kubectl
       kube-linter
       luajitPackages.luacheck
-      # mach-nix
       minikube
       mypy
       ruff
@@ -131,7 +130,6 @@
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       ocamlformat
-      # ocamlformat-rpc-lib # TODO: Might need this.
       ocamlPackages.utop
       php80
       php80Packages.composer

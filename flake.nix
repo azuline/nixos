@@ -136,7 +136,7 @@
             ];
           };
           zen = makeHomeConfiguration {
-            host = "sunset";
+            host = "zen";
             nixDir = "/etc/nixos";
             nixos = false;
             username = "blissful";

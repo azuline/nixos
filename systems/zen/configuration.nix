@@ -72,28 +72,30 @@
   # The RAIDs are assembled in stage1, so we need to make the config available there.
   boot.initrd.services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    vim
-    git
-    wget
-    curl
-    jq
-    fish
-  ];
+  environment = {
+    interactiveShellInit = builtins.readFile ./bashrc;
+    variables = {
+      EDITOR = "nvim";
+    };
+    systemPackages = with pkgs; [
+      curl
+      jq
+      neovim
+      networkmanagerapplet
+      powertop
+      vim
+      wget
+      wireguard-tools
+    ];
+  };
 
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
-    permitRootLogin = "prohibit-password";
+    permitRootLogin = "no";
   };
 
   users.users = {
-    root = {
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
-      ];
-    };
     blissful = {
       createHome = true;
       home = "/home/blissful";
