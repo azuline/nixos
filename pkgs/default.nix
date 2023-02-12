@@ -12,6 +12,7 @@ import nixpkgs {
         bar-gpu = import ./bar-gpu { inherit pkgs; };
         bar-loadavg = import ./bar-loadavg { inherit pkgs; };
         bar-vpn = import ./bar-vpn { inherit pkgs; };
+        decrypt-zen = import ./decrypt-zen { inherit pkgs; };
         discord = import ./discord { inherit pkgs srcs; };
         i3-change-audio = import ./i3-change-audio { inherit pkgs; };
         i3-clear-clipboard = import ./i3-clear-clipboard { inherit pkgs; };

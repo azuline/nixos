@@ -28,6 +28,7 @@
       coreutils
       curl
       dasel
+      decrypt-zen
       dnsutils
       exa
       fd
