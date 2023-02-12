@@ -20,13 +20,8 @@
 
   boot = {
     loader = {
-      systemd-boot = {
-	enable = false;
-	editor = false;
-      };
-      efi = {
-        canTouchEfiVariables = false;
-      };
+      systemd-boot.enable = false;
+      efi.canTouchEfiVariables = false;
       grub = {
         enable = true;
         efiSupport = true;
@@ -35,15 +30,16 @@
         enableCryptodisk = true;
         device = "nodev";
       };
+      supportsInitrdSecrets = true;
     };
-    kernelParams = [ "ip=147.135.1.125::147.135.1.254:255.255.255.192:zen:eno1:off:1.1.1.1:" ];
+    kernelParams = [ "ip=147.135.1.125::147.135.1.254:255.255.255.0:zen:eno1:off:1.1.1.1:" ];
     initrd = {
       kernelModules = [ "cryptd" "aesni_intel" "igb" ];
       network = {
         enable = true;
         ssh = {
           enable = true;
-          port = 2222; # ssh port during boot for luks decryption
+          port = 2222; # ssh port during boot for luks decryption; it will have a different host key from post-boot ssh
           authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor" ];
           hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
         };
@@ -60,6 +56,9 @@
             allowDiscards = true;
           };
         };
+      };
+      secrets = {
+        "/etc/ssh/initrd_ssh_host_ed25519_key" = "/etc/ssh/initrd_ssh_host_ed25519_key";
       };
     };
   };
