@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   system.stateVersion = "21.11";
@@ -47,7 +47,7 @@
         # prompt that writes to /tmp/continue if successful.
         # https://mth.st/blog/nixos-initrd-ssh/
         postCommands = ''
-          echo 'cryptsetup open /dev/disk/by-uuid/de8653dc-4ad0-486f-a776-f04dc16273e7 enc-pv && echo /tmp/continue' >> /root/.profile
+          echo 'cryptsetup open /dev/md/0 enc-pv && echo 'done' > /tmp/continue' >> /root/.profile
           echo 'starting sshd...'
         '';
       };
@@ -59,13 +59,6 @@
       '';
       luks = {
         forceLuksSupportInInitrd = true;
-        devices = {
-          enc-pv = {
-            device = "/dev/disk/by-uuid/de8653dc-4ad0-486f-a776-f04dc16273e7";
-            preLVM = true;
-            allowDiscards = true;
-          };
-        };
       };
       secrets = {
         "/etc/ssh/initrd_ssh_host_ed25519_key" = "/etc/ssh/initrd_ssh_host_ed25519_key";
@@ -76,8 +69,13 @@
   # Better for the SSD.
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
-  # https://gist.github.com/daymien/6e365de58ab37b54a96e8a6a41a79e6c#file-hetzner-dedicated-wipe-and-install-nixos-luks-raid-lvm-sh-L290
-  environment.etc."mdadm.conf".text = "HOMEHOST <ignore>";
+  environment.etc."mdadm.conf".text = ''
+    HOMEHOST zen
+    ARRAY /dev/md/0 level=raid1 num-devices=2 metadata=1.2 name=zen:md0 UUID=06d936cd:a777dfc1:6d15ed88:ddc88fa2
+       devices=/dev/nvme0n1p3,/dev/nvme1n1p3
+    ARRAY /dev/md/boot level=raid1 num-devices=2 metadata=1.0 name=zen:boot UUID=379a1967:098723b9:ae195d76:01d271c7
+       devices=/dev/nvme0n1p2,/dev/nvme1n1p2
+  '';
   # The RAIDs are assembled in stage1, so we need to make the config available there.
   boot.initrd.services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
 
@@ -88,6 +86,7 @@
     };
     systemPackages = with pkgs; [
       curl
+      git
       jq
       neovim
       networkmanagerapplet

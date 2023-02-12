@@ -19,7 +19,7 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/92A1-C0D6";
+    { device = "/dev/disk/by-uuid/E328-9330";
       fsType = "vfat";
     };
 
@@ -27,6 +27,6 @@
     [ { device = "/dev/disk/by-uuid/b494eea6-7ca3-475c-bc5c-563807accbf3"; }
     ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
