@@ -99,6 +99,11 @@
             specialArgs = { inherit pkgs; };
             modules = [ ./systems/haiqin/configuration.nix ];
           };
+          zen = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = { inherit pkgs; };
+            modules = [ ./systems/zen/configuration.nix ];
+          };
         };
         homeConfigurations = {
           splendor = makeHomeConfiguration {
@@ -128,6 +133,16 @@
               b.guiBundle
               b.i3Bundle
               b.themeBundle
+            ];
+          };
+          zen = makeHomeConfiguration {
+            host = "sunset";
+            nixDir = "/etc/nixos";
+            nixos = false;
+            username = "blissful";
+            chooseBundles = b: [
+              b.cliBundle
+              b.devBundle
             ];
           };
           sunset = makeHomeConfiguration {
