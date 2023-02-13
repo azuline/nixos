@@ -88,6 +88,7 @@
 
     imports = [
       ./direnv
+      ./gh
       ./ghc
     ];
 
@@ -105,7 +106,6 @@
       dune_3
       gdb
       gitAndTools.delta
-      gitAndTools.gh
       go_1_18
       gofumpt
       golangci-lint
