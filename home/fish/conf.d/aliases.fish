@@ -55,6 +55,7 @@ abbr --add --global grec 'git rebase --continue'
 abbr --add --global gres 'git restore --staged'
 abbr --add --global gm 'git merge'
 abbr --add --global gma 'git merge --abort'
+abbr --add --global speedrun 'gh prc -l bypass | rg -o "\d+" | xargs gh prm'
 
 function gprune
     echo "> prune remote"

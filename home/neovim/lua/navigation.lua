@@ -45,6 +45,10 @@ do -- Tree browser
       copy_name = { "y" },
       copy_relname = { "Y" },
     },
+    options = {
+      -- Causes too much lag in large monorepos.
+      session = false,
+    },
     view = {
       window_options = {
         number = true,
