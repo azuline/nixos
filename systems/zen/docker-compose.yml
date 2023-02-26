@@ -29,8 +29,9 @@ services:
       - certificates:/etc/letsencrypt:rw
   saffron:
     image: blissful/saffron
+    container_name: saffron
     command: start -h 0.0.0.0
-    restart: always
+    restart: unless-stopped
     volumes:
       - saffron-data:/appdata:rw
     networks:
@@ -39,3 +40,15 @@ services:
       - "100.71.28.44:7071:8000"
     environment:
       - HOST_URL=https://u.sunsetglow.net
+  thelounge:
+    image: lscr.io/linuxserver/thelounge:latest
+    container_name: thelounge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /data/thelounge/config:/config
+    ports:
+      - 100.71.28.44:9001:9000
+    restart: unless-stopped
