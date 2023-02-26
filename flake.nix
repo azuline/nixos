@@ -11,8 +11,12 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-search-cli = {
+    nix-search-cli-src = {
       url = github:peterldowns/nix-search-cli;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    presage-src = {
+      url = github:azuline/presage;
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-nix inputs
@@ -40,7 +44,9 @@
     , nixpkgs
     , nixpkgs-latest
     , flake-utils
-    , nix-search-cli
+    , nix-search-cli-src
+    , presage-src
+      # Non-Nix sources
     , discord
     , nvim-treesitter
     , fish-plugin-wd
@@ -50,7 +56,8 @@
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
       pins = {
         signal-desktop = (import nixpkgs-latest { inherit system; }).signal-desktop;
-        nix-search-cli = (import nix-search-cli).packages.${system}.nix-search;
+        nix-search-cli = (import nix-search-cli-src).packages.${system}.nix-search;
+        presage = presage-src.defaultPackage.${system};
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =

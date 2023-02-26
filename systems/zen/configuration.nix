@@ -110,17 +110,30 @@
     permitRootLogin = "no";
   };
 
-  users.users = {
-    blissful = {
-      createHome = true;
-      home = "/home/blissful";
-      uid = 1000;
-      shell = pkgs.fish;
-      isNormalUser = true;
-      extraGroups = [ "wheel" "docker" ];
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
-      ];
+  users = {
+    users = {
+      blissful = {
+        createHome = true;
+        home = "/home/blissful";
+        uid = 1000;
+        shell = pkgs.fish;
+        isNormalUser = true;
+        extraGroups = [ "wheel" "docker" ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
+        ];
+      };
+      cron = {
+        createHome = false;
+        uid = 1001;
+        shell = pkgs.fish;
+        isNormalUser = true;
+      };
+    };
+    groups = {
+      presage = {
+        members = [ "blissful" "cron" "root" ];
+      };
     };
   };
 

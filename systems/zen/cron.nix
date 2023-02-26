@@ -12,12 +12,12 @@
 
   systemd.services."presage" = {
     script = ''
-      set -eu
-      ${pkgs.coreutils}/bin/echo "Hello World"
+      ${pkgs.presage}/bin/presage -env-file /data/presage/env -feeds-list /data/presage/feeds.txt -send-to suiyun@riseup.net
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = "nobody";
+      User = "cron";
+      Group = "presage";
     };
   };
 }
