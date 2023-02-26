@@ -4,7 +4,10 @@
   system.stateVersion = "21.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./cron.nix
+  ];
 
   time.timeZone = "UTC";
   i18n.defaultLocale = "en_US.UTF-8";
