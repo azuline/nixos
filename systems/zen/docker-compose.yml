@@ -1,0 +1,71 @@
+version: '3.3'
+networks:
+  internal:
+    external: false
+volumes:
+  gitea-data:
+  gitea-postgres:
+  komga-config:
+  znc-config:
+  saffron-data:
+services:
+  gitea:
+    image: gitea/gitea:latest
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - DB_TYPE=postgres
+      - DB_HOST=db:5432
+      - DB_NAME=gitea
+      - DB_USER=gitea
+      - DB_PASSWD=gitea
+      - RUN_MODE=prod
+      - SSH_DOMAIN=git.sunsetglow.net
+      - SSH_PORT=2221
+      - SSH_LISTEN_PORT=22
+      - DISABLE_REGISTRATION=true
+    restart: unless-stopped
+    networks:
+      - internal
+    volumes:
+      - gitea-data:/data
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "2221:22"
+    depends_on:
+      - db
+  gitea-db:
+    image: postgres:9.6
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    networks:
+      - internal
+    volumes:
+      - gitea-postgres:/var/lib/postgresql/data
+  komga:
+    image: gotson/komga
+    container_name: komga
+    volumes:
+      - komga-config:/config
+      - /data/komga/data:/data
+    user: "1000:1000"
+    restart: unless-stopped
+  znc:
+    image: znc:latest
+    container_name: znc
+    ports:
+      - 7796:6697
+    restart: always
+    volumes:
+      - znc-config:rznc-data
+  saffron:
+    image: blissful/saffron
+    command: start -h 0.0.0.0
+    restart: always
+    volumes:
+      - saffron-data:/appdata
+    environment:
+      - HOST_URL=https://u.sunsetglow.net
