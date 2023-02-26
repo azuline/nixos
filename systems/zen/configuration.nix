@@ -15,7 +15,11 @@
     interfaces.eno1.ipv4.addresses = [{ address = "147.135.1.125"; prefixLength = 24; }];
     defaultGateway = "147.135.1.254";
     nameservers = [ "1.1.1.1" ];
-    firewall.allowedTCPPorts = [ 22 2222 ];
+    firewall = {
+      allowedTCPPorts = [ 22 2222 ];
+      # For tailscale https://github.com/tailscale/tailscale/issues/4432.
+      checkReversePath = "loose";
+    };
   };
 
   boot = {
@@ -118,4 +122,5 @@
   };
 
   virtualisation.docker.enable = true;
+  services.tailscale.enable = true;
 }
