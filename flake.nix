@@ -11,8 +11,8 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mach-nix = {
-      url = github:DavHau/mach-nix;
+    nix-search-cli = {
+      url = github:peterldowns/nix-search-cli;
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-nix inputs
@@ -40,7 +40,7 @@
     , nixpkgs
     , nixpkgs-latest
     , flake-utils
-    , mach-nix
+    , nix-search-cli
     , discord
     , nvim-treesitter
     , fish-plugin-wd
@@ -50,6 +50,7 @@
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
       pins = {
         signal-desktop = (import nixpkgs-latest { inherit system; }).signal-desktop;
+        nix-search-cli = (import nix-search-cli).packages.${system}.nix-search;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =

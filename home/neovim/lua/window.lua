@@ -145,3 +145,8 @@ do -- Git Gutter
   -- Modify signify delete color.
   vim.cmd("highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE")
 end
+
+-- Support JSON with comments.
+vim.cmd([[
+  autocmd FileType json syntax match Comment +\/\/.\+$+
+]])

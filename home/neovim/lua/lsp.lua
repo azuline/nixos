@@ -94,9 +94,11 @@ lspconfig.tsserver.setup({
       importModuleSpecifierEnding = "minimal",
       autoImportFileExcludePatterns = {
         -- This reexports every React hook.. absurd.
-        "@storybook/addons/**",
+        "**/@storybook/addons/**",
         -- This exports a `t`.
-        "msw/**",
+        "**/msw/**",
+        -- This also exports a `t`.
+        "**/vitest/dist/**",
       },
     },
   },
@@ -133,7 +135,7 @@ lspconfig.tsserver.setup({
   },
 })
 
-lspconfig.lua_ls.setup({
+lspconfig.sumneko_lua.setup({
   settings = {
     Lua = {
       runtime = {

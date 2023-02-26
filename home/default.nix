@@ -19,7 +19,9 @@
     ];
 
     home.packages = with pkgs; [
+      nix-search-cli
       autossh
+      woff2
       bat
       beets
       brightnessctl
@@ -38,6 +40,7 @@
       gawk
       gcc # Is this writing some weird nix ld that's half broken?
       gnumake
+      rename
       gnused
       graphviz
       htop
@@ -188,6 +191,7 @@
       peek
       signal
       slack
+      fontforge-gtk
       xdotool # For VimTex's forward search.
       slurp
       spotify
