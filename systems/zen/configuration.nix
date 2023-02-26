@@ -134,6 +134,9 @@
       presage = {
         members = [ "blissful" "cron" "root" ];
       };
+      komga = {
+        members = [ "blissful" "root" ];
+      };
     };
   };
 
