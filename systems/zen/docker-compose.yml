@@ -3,19 +3,40 @@ networks:
   internal:
     external: false
 volumes:
+  certificates:
   gitea-data:
   gitea-postgres:
   komga-config:
   znc-config:
   saffron-data:
 services:
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    networks:
+      - internal
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/snippets:/etc/nginx/snippets:ro
+      - certificates:/etc/letsencrypt:ro
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - saffron
+  certbot:
+    image: certbot/certbot:latest
+    restart: never
+    command: certonly --manual --preferred-challenges=dns --agree-tos -d sunsetglow.net -d *.sunsetglow.net
+    volumes:
+      - certificates:/etc/letsencrypt:rw
   gitea:
     image: gitea/gitea:latest
     environment:
       - USER_UID=1000
       - USER_GID=1000
       - DB_TYPE=postgres
-      - DB_HOST=db:5432
+      - DB_HOST=gitea-db:5432
       - DB_NAME=gitea
       - DB_USER=gitea
       - DB_PASSWD=gitea
@@ -28,12 +49,12 @@ services:
     networks:
       - internal
     volumes:
-      - gitea-data:/data
+      - gitea-data:/data:rw
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "2221:22"
     depends_on:
-      - db
+      - gitea-db
   gitea-db:
     image: postgres:9.6
     restart: unless-stopped
@@ -44,28 +65,36 @@ services:
     networks:
       - internal
     volumes:
-      - gitea-postgres:/var/lib/postgresql/data
+      - gitea-postgres:/var/lib/postgresql/data:rw
   komga:
     image: gotson/komga
     container_name: komga
     volumes:
-      - komga-config:/config
-      - /data/komga/data:/data
+      - komga-config:/config:rw
+      - /data/komga/data:/data:ro
+    networks:
+      - internal
     user: "1000:1000"
     restart: unless-stopped
   znc:
     image: znc:latest
     container_name: znc
+    networks:
+      - internal
     ports:
       - 7796:6697
     restart: always
     volumes:
-      - znc-config:rznc-data
+      - znc-config:/znc-data:rw
   saffron:
     image: blissful/saffron
     command: start -h 0.0.0.0
     restart: always
     volumes:
-      - saffron-data:/appdata
+      - saffron-data:/appdata:rw
+    networks:
+      - internal
+    ports:
+      - "100.71.28.44:7071:8000"
     environment:
       - HOST_URL=https://u.sunsetglow.net
