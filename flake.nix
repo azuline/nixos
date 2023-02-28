@@ -3,10 +3,7 @@
 
   inputs = {
     flake-utils.url = github:numtide/flake-utils;
-    # A somewhat stable and more infrequently updated nixpkgs version.
-    nixpkgs.url = github:nixos/nixpkgs?rev=b7d8c687782c8f9a1d425a7e486eb989654f6468;
-    # Latest nixpkgs version that we pull specific packages from.
-    nixpkgs-latest.url = github:nixos/nixpkgs/nixos-unstable;
+    nixpkgs.url = github:nixos/nixpkgs;
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +39,6 @@
     { self
     , home-manager
     , nixpkgs
-    , nixpkgs-latest
     , flake-utils
     , nix-search-cli-src
     , presage-src
@@ -55,7 +51,6 @@
     let
       srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
       pins = {
-        signal-desktop = (import nixpkgs-latest { inherit system; }).signal-desktop;
         nix-search-cli = (import nix-search-cli-src).packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};
       };
