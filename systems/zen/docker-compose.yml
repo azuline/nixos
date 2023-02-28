@@ -9,6 +9,7 @@ volumes:
 services:
   nginx:
     image: nginx:latest
+    container_name: nginx
     restart: unless-stopped
     networks:
       - internal
@@ -16,6 +17,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/snippets:/etc/nginx/snippets:ro
       - certificates:/etc/letsencrypt:ro
+      - /www:/var/www:ro
     ports:
       - 80:80
       - 443:443
