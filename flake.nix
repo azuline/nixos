@@ -21,10 +21,6 @@
       url = "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz";
       flake = false;
     };
-    nvim-treesitter = {
-      url = github:nvim-treesitter/nvim-treesitter;
-      flake = false;
-    };
     fish-plugin-wd = {
       url = github:fischerling/plugin-wd;
       flake = false;
@@ -44,14 +40,13 @@
     , presage-src
       # Non-Nix sources
     , discord
-    , nvim-treesitter
     , fish-plugin-wd
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
-      srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env nvim-treesitter; };
+      srcs = { inherit discord fish-plugin-wd fish-plugin-nix-env; };
       pins = {
-        nix-search-cli = (import nix-search-cli-src).packages.${system}.nix-search;
+        nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };

@@ -205,22 +205,6 @@
         "type": "github"
       }
     },
-    "nvim-treesitter": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1677547472,
-        "narHash": "sha256-4eJ+lAXtFQWfNRXJSsjas6j3FC3GWCTI5C4zpQr+DSM=",
-        "owner": "nvim-treesitter",
-        "repo": "nvim-treesitter",
-        "rev": "5cfb5d776812296a7b77d0d74d63a5f77df22327",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-treesitter",
-        "repo": "nvim-treesitter",
-        "type": "github"
-      }
-    },
     "presage-src": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -251,7 +235,6 @@
         "home-manager": "home-manager",
         "nix-search-cli-src": "nix-search-cli-src",
         "nixpkgs": "nixpkgs",
-        "nvim-treesitter": "nvim-treesitter",
         "presage-src": "presage-src"
       }
     },

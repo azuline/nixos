@@ -2,7 +2,7 @@ do -- Treesitter Configuration
   require("nvim-treesitter.configs").setup({
     -- We install most parsers through Nix, but a few are erroring, probably
     -- due to some version mismatch. We install those here instead.
-    ensure_installed = { "sql", "lua", "vim", "kotlin", "javascript" },
+    ensure_installed = {},
     parser_install_dir = "~/.local/share/nvim/site",
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = true,

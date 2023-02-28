@@ -68,12 +68,12 @@ do -- Load the plugins.
   end
 
   do -- Language/Syntax Plugins
+    -- Treesitter is handled via Nix since installing the dynamically linked
+    -- parsers breaks in Nix.
+    --
     -- Language parser & highlighting
     -- We use polyglot for indentation, since tree-sitter is not mature.
     Plug("sheerun/vim-polyglot")
-    -- This is handled via Nix since installing Treesitter parsers at runtime
-    -- breaks sometimes in Nix-installed Neovim with shared libs.
-    --   Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
     -- Coq
     Plug("whonore/Coqtail")
     -- Markdown
