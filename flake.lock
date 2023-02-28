@@ -205,6 +205,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-peek-pin": {
+      "locked": {
+        "lastModified": 1666282307,
+        "narHash": "sha256-O1T2HGLARLKDLfdOmjPBfn3eC4cSIaQD71wUN4I/6/s=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b7d8c687782c8f9a1d425a7e486eb989654f6468",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b7d8c687782c8f9a1d425a7e486eb989654f6468",
+        "type": "github"
+      }
+    },
     "presage-src": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -235,6 +251,7 @@
         "home-manager": "home-manager",
         "nix-search-cli-src": "nix-search-cli-src",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-peek-pin": "nixpkgs-peek-pin",
         "presage-src": "presage-src"
       }
     },

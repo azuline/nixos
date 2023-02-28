@@ -4,6 +4,7 @@
   inputs = {
     flake-utils.url = github:numtide/flake-utils;
     nixpkgs.url = github:nixos/nixpkgs;
+    nixpkgs-peek-pin.url = github:nixos/nixpkgs?rev=b7d8c687782c8f9a1d425a7e486eb989654f6468;
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +36,7 @@
     { self
     , home-manager
     , nixpkgs
+    , nixpkgs-peek-pin
     , flake-utils
     , nix-search-cli-src
     , presage-src
@@ -48,6 +50,8 @@
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};
+        # Latest peek breaks with ffmpeg issue.
+        peek = (import nixpkgs-peek-pin { inherit system; }).peek;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
