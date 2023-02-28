@@ -3,6 +3,7 @@
 {
   system.stateVersion = "21.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.max-jobs = 8;
 
   imports = [
     ./hardware-configuration.nix
@@ -106,8 +107,10 @@
 
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
-    permitRootLogin = "no";
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
   };
 
   users = {

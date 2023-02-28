@@ -3,6 +3,7 @@
 {
   system.stateVersion = "22.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.max-jobs = 8;
 
   imports = [ ./hardware-configuration.nix ];
 
