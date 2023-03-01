@@ -7,6 +7,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./nomad.nix
     ./cron.nix
   ];
 
@@ -23,6 +24,11 @@
       allowedTCPPorts = [ 22 2222 ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
+      # Allow everything through to tailscale.
+      interfaces.tailscale0 = {
+        allowedTCPPortRanges = [{ from = 1; to = 65535; }];
+        allowedUDPPortRanges = [{ from = 1; to = 65535; }];
+      };
     };
   };
 
@@ -99,6 +105,7 @@
       neovim
       networkmanagerapplet
       powertop
+      smartmontools
       vim
       wget
       wireguard-tools
@@ -115,31 +122,27 @@
 
   users = {
     users = {
+      cron = {
+        isSystemUser = true;
+        uid = 1001;
+        group = "cron";
+      };
       blissful = {
         createHome = true;
         home = "/home/blissful";
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" ];
+        extraGroups = [ "wheel" "docker" "nomad" ];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
         ];
       };
-      cron = {
-        createHome = false;
-        uid = 1001;
-        shell = pkgs.fish;
-        isNormalUser = true;
-      };
     };
     groups = {
-      presage = {
-        members = [ "blissful" "cron" "root" ];
-      };
-      komga = {
-        members = [ "blissful" "root" ];
-      };
+      presage.members = [ "blissful" "cron" "root" ];
+      komga.members = [ "blissful" "root" ];
+      cron = { };
     };
   };
 

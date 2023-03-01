@@ -9,7 +9,6 @@
       Unit = "presage.service";
     };
   };
-
   systemd.services."presage" = {
     script = ''
       ${pkgs.presage}/bin/presage -env-file /data/presage/env -feeds-list /data/presage/feeds.txt -send-to suiyun@riseup.net
