@@ -134,6 +134,7 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      nomad
       ocamlformat
       ocamlPackages.utop
       php80
