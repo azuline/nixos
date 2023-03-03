@@ -74,6 +74,8 @@ do -- Load the plugins.
     -- Language parser & highlighting
     -- We use polyglot for indentation, since tree-sitter is not mature.
     Plug("sheerun/vim-polyglot")
+    -- Astro
+    Plug("wuelnerdotexe/vim-astro")
     -- Coq
     Plug("whonore/Coqtail")
     -- Markdown
