@@ -8,7 +8,6 @@
   imports = [
     ./hardware-configuration.nix
     ./nomad.nix
-    ./cron.nix
   ];
 
   time.timeZone = "UTC";
@@ -99,6 +98,7 @@
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
+      presage
       curl
       git
       jq

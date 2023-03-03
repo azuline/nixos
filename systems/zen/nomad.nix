@@ -6,20 +6,14 @@ in
 {
   environment.systemPackages = with pkgs; [ nomad ];
 
-  users.users.nomad = {
-    isSystemUser = true;
-    group = "nomad";
-  };
-  users.groups.nomad = { };
-
   systemd.services.nomad = {
     path = with pkgs; [ nomad iproute ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      User = "nomad";
-      Group = "nomad";
+      User = "root";
+      Group = "root";
       ExecReload = "/bin/kill -HUP $MAINPID";
       ExecStart = "@${pkgs.nomad}/bin/nomad nomad agent -config ${config}";
       KillMode = "process";

@@ -13,6 +13,17 @@ client {
     cidr = "100.71.28.44/32"
     reserved_ports = "22"
   }
+  host_volume "nix" {
+    path = "/nix"
+    read_only = true
+  }
+  host_volume "run" {
+    path = "/run"
+    read_only = true
+  }
+  host_volume "presage-data" {
+    path = "/data/presage"
+  }
 }
 
 ui {
