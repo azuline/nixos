@@ -24,7 +24,7 @@ in
   };
 
   systemd.services.nomad = {
-    path = with pkgs; [ nomad iproute ];
+    path = with pkgs; [ nomad consul iproute iptables ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -45,7 +45,7 @@ in
   };
 
   systemd.services.consul = {
-    path = with pkgs; [ consul iproute ];
+    path = with pkgs; [ consul iproute iptables ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];

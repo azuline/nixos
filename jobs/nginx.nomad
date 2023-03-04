@@ -5,11 +5,14 @@ job "nginx" {
     count = 1
 
     network {
+      mode = "bridge"
       port "http" {
         static = 81
+        to     = 80
       }
       port "https" {
         static = 444
+        to     = 443
       }
     }
     service {
@@ -49,15 +52,15 @@ job "nginx" {
         data          = <<EOF
 # sunsetglow.net - root page
 server {
-	listen 81;
-	listen [::]:81;
+	listen 80;
+	listen [::]:80;
 	server_name sunsetglow.net;
 	return 301 https://sunsetglow.net$request_uri;
 }
 
 server {
-	listen 444 ssl;
-	listen [::]:444 ssl;
+	listen 443 ssl;
+	listen [::]:443 ssl;
 	include snippets/ssl-sunsetglow.net.conf;
 	include snippets/ssl-params.conf;
 	server_name sunsetglow.net;
@@ -66,28 +69,28 @@ server {
 }
 
 # u.sunsetglow.net - image host
-server {
-    listen 81;
-    listen [::]:81;
-    server_name u.sunsetglow.net;
-    return 301 https://u.sunsetglow.net$request_uri;
-}
-server {
-	listen 444 ssl;
-	listen [::]:444 ssl;
-	include snippets/ssl-params.conf;
-	include snippets/ssl-sunsetglow.net.conf;
-	include snippets/proxy-params.conf;
-	server_name u.sunsetglow.net;
+# server {
+#     listen 80;
+#     listen [::]:80;
+#     server_name u.sunsetglow.net;
+#     return 301 https://u.sunsetglow.net$request_uri;
+# }
+# server {
+# 	listen 443 ssl;
+# 	listen [::]:443 ssl;
+# 	include snippets/ssl-params.conf;
+# 	include snippets/ssl-sunsetglow.net.conf;
+# 	include snippets/proxy-params.conf;
+# 	server_name u.sunsetglow.net;
 
-  client_max_body_size 0;
-  underscores_in_headers on;
+#   client_max_body_size 0;
+#   underscores_in_headers on;
 
-  location ~ {
-    add_header Front-End-Https on;
-    proxy_pass http://100.71.28.44:7071;
-  }
-}
+#   location ~ {
+#     add_header Front-End-Https on;
+#     proxy_pass http://100.71.28.44:7071;
+#   }
+# }
 EOF
         destination   = "local/nginx.conf"
         change_mode   = "signal"

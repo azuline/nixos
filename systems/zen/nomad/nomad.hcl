@@ -1,39 +1,44 @@
 datacenter = "zen"
-data_dir = "/data/nomad"
-bind_addr = "100.71.28.44"
+data_dir   = "/data/nomad"
+bind_addr  = "100.71.28.44"
 
 server {
-  enabled = true
+  enabled          = true
   bootstrap_expect = 1
 }
 
 client {
   enabled = true
   host_network "tailscale" {
-    cidr = "100.71.28.44/32"
+    cidr           = "100.71.28.44/32"
     reserved_ports = "22"
   }
   host_volume "nix" {
-    path = "/nix"
+    path      = "/nix"
     read_only = true
   }
   host_volume "run" {
-    path = "/run"
+    path      = "/run"
     read_only = true
   }
   host_volume "sunsetglow-certs" {
-    path = "/data/certs"
+    path      = "/data/certs"
     read_only = true
   }
   host_volume "presage-data" {
     path = "/data/presage"
   }
   host_volume "sunsetglow-site" {
-    path = "/www"
+    path      = "/www"
     read_only = true
   }
 }
 
 ui {
   enabled = true
+}
+
+consul {
+  address = "100.71.28.44:8500"
+  grpc_address = "127.0.0.1:8502"
 }

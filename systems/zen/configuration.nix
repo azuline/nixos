@@ -25,6 +25,10 @@
       checkReversePath = "loose";
       interfaces.tailscale0 = {
         allowedTCPPorts = [
+          81 # tmp
+          444 # tmp
+          8501
+          # tmp above
           22 # ssh
           4646 # nomad
           8500 # consul
