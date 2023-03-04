@@ -1,23 +1,6 @@
 datacenter = "zen"
 data_dir   = "/data/consul/data"
 
-# tls {
-#   defaults {
-#     ca_file         = "/data/consul/certs/consul-agent-ca.pem"
-#     cert_file       = "/data/consul/certs/zen-server-consul-0.pem"
-#     key_file        = "/data/consul/certs/zen-server-consul-0-key.pem"
-#     verify_incoming = true
-#     verify_outgoing = true
-#   }
-#   internal_rpc {
-#     verify_server_hostname = true
-#   }
-# }
-
-# auto_encrypt {
-#   allow_tls = true
-# }
-
 acl {
   enabled = true
   # TODO: Make false after bootstrap.
