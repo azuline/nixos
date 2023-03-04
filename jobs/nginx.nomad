@@ -37,7 +37,7 @@ job "nginx" {
         ports = ["http"]
         volumes = [
           "local/snippets:/etc/nginx/snippets",
-          "local/nginx.conf:/etc/nginx/nginx.conf",
+          "local/nginx.conf:/etc/nginx/conf.d/default.conf",
         ]
       }
       volume_mount {
