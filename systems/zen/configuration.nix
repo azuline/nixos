@@ -23,10 +23,13 @@
       allowedTCPPorts = [ 22 2222 ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
-      # Allow everything through to tailscale.
       interfaces.tailscale0 = {
-        allowedTCPPortRanges = [{ from = 1; to = 65535; }];
-        allowedUDPPortRanges = [{ from = 1; to = 65535; }];
+        allowedTCPPorts = [
+          22 # ssh
+          4646 # nomad
+          8500 # consul
+          9001 # thelounge
+        ];
       };
     };
   };
@@ -140,9 +143,13 @@
       };
     };
     groups = {
-      presage.members = [ "blissful" "cron" "root" ];
-      komga.members = [ "blissful" "root" ];
-      cron = { };
+      cron = {
+        gid = 1001;
+      };
+      presage = {
+        gid = 2001;
+        members = [ "blissful" "cron" "root" ];
+      };
     };
   };
 

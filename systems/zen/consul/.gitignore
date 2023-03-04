@@ -1,0 +1,3 @@
+# Should be a file of the format:
+#   encrypt = "gossip-key"
+encrypt.hcl
