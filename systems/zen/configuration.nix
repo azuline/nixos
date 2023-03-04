@@ -7,7 +7,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./nomad.nix
+    ./services.nix
   ];
 
   time.timeZone = "UTC";

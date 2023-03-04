@@ -21,8 +21,16 @@ client {
     path = "/run"
     read_only = true
   }
+  host_volume "sunsetglow-certs" {
+    path = "/data/certs"
+    read_only = true
+  }
   host_volume "presage-data" {
     path = "/data/presage"
+  }
+  host_volume "sunsetglow-site" {
+    path = "/www"
+    read_only = true
   }
 }
 

@@ -1,46 +1,46 @@
 job "presage" {
   datacenters = ["zen"]
-  type = "batch"
+  type        = "batch"
 
   periodic {
-    cron = "0 */2 * * *"
+    cron             = "0 */2 * * *"
     prohibit_overlap = true
   }
 
   group "presage" {
     volume "data" {
-      type = "host"
+      type   = "host"
       source = "presage-data"
     }
     volume "nix" {
-      type = "host"
-      source = "nix"
+      type      = "host"
+      source    = "nix"
       read_only = true
     }
     volume "run" {
-      type = "host"
-      source = "run"
+      type      = "host"
+      source    = "run"
       read_only = true
     }
 
     task "presage" {
       driver = "exec"
-      user = "cron"
+      user   = "cron"
       volume_mount {
-        volume = "data"
+        volume      = "data"
         destination = "/data/presage"
       }
       volume_mount {
-        volume = "nix"
+        volume      = "nix"
         destination = "/nix"
       }
       volume_mount {
-        volume = "run"
+        volume      = "run"
         destination = "/run"
       }
       config {
         command = "/run/current-system/sw/bin/presage"
-        args = ["-env-file", "/data/presage/env", "-feeds-list", "/data/presage/feeds.txt", "-send-to", "suiyun@riseup.net"]
+        args    = ["-env-file", "/data/presage/env", "-feeds-list", "/data/presage/feeds.txt", "-send-to", "suiyun@riseup.net"]
       }
     }
   }

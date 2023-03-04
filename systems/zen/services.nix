@@ -1,10 +1,13 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  config = builtins.path { path = ./nomad; name = "nomad"; };
+  nomadConfig = builtins.path { path = ./nomad; name = "nomad"; };
 in
 {
-  environment.systemPackages = with pkgs; [ nomad ];
+  environment.systemPackages = with pkgs; [
+    nomad
+    consul
+  ];
 
   systemd.services.nomad = {
     path = with pkgs; [ nomad iproute ];
@@ -15,7 +18,7 @@ in
       User = "root";
       Group = "root";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${pkgs.nomad}/bin/nomad nomad agent -config ${config}";
+      ExecStart = "@${pkgs.nomad}/bin/nomad nomad agent -config ${nomadConfig}";
       KillMode = "process";
       KillSignal = "SIGINT";
       LimitNOFILE = 65536;
