@@ -6,3 +6,5 @@ machines.
 - `pkgs` contains an overlaid `nixpkgs` that's shared between all machines.
 - `home` contains Home Manager configurations for all machines.
 - `systems` contains NixOS configurations for a subset of machines.
+- `jobs` contains Nomad job specs for my services.
+- `consul` contains Consul configurations for my services.
