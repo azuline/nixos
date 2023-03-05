@@ -51,3 +51,7 @@ consul {
   address      = "100.71.28.44:8500"
   grpc_address = "100.71.28.44:8502"
 }
+
+acl {
+  enabled = true
+}

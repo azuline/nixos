@@ -1,10 +1,9 @@
-# Nix Configs
+# System Configs
 
-This repository contains my NixOS and Home Manager configurations for my
-machines.
+This repository contains my system configs.
 
 - `pkgs` contains an overlaid `nixpkgs` that's shared between all machines.
 - `home` contains Home Manager configurations for all machines.
 - `systems` contains NixOS configurations for a subset of machines.
-- `jobs` contains Nomad job specs for my services.
-- `consul` contains Consul configurations for my services.
+- `nomad` contains Nomad configurations & job specs.
+- `consul` contains Consul configurations.
