@@ -10,7 +10,7 @@ server {
 client {
   enabled = true
   host_network "default" {
-    cidr           = "100.71.28.44/32"
+    cidr = "100.71.28.44/32"
   }
   host_network "public" {
     cidr           = "147.135.1.125/32"
