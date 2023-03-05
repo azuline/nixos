@@ -38,6 +38,9 @@ client {
   host_volume "saffron-data" {
     path = "/data/saffron"
   }
+  host_volume "thelounge-config" {
+    path = "/data/thelounge/config"
+  }
 }
 
 ui {
