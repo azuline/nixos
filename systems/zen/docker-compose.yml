@@ -1,47 +1,5 @@
 version: '3.3'
-networks:
-  internal:
-    external: false
-volumes:
-  certificates:
-  komga-config:
-  saffron-data:
 services:
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    restart: unless-stopped
-    networks:
-      - internal
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./nginx/snippets:/etc/nginx/snippets:ro
-      - certificates:/etc/letsencrypt:ro
-      - /www:/var/www:ro
-    ports:
-      - 80:80
-      - 443:443
-    depends_on:
-      - saffron
-  certbot:
-    image: certbot/certbot:latest
-    restart: never
-    command: certonly --manual --preferred-challenges=dns --agree-tos -d sunsetglow.net -d *.sunsetglow.net
-    volumes:
-      - certificates:/etc/letsencrypt:rw
-  saffron:
-    image: blissful/saffron
-    container_name: saffron
-    command: start -h 0.0.0.0
-    restart: unless-stopped
-    volumes:
-      - saffron-data:/appdata:rw
-    networks:
-      - internal
-    ports:
-      - "100.71.28.44:7071:8000"
-    environment:
-      - HOST_URL=https://u.sunsetglow.net
   thelounge:
     image: lscr.io/linuxserver/thelounge:latest
     container_name: thelounge

@@ -1,5 +1,11 @@
 { config, lib, pkgs, ... }:
 
+let
+  renew-certs = pkgs.writeShellScriptBin "renew-certs" ''
+    ${pkgs.certbot}/bin/certbot certonly --manual --preferred-challenges=dns --agree-tos -d sunsetglow.net -d *.sunsetglow.net
+    echo "Move the certs to /data/certs; automate this some day."
+  '';
+in
 {
   system.stateVersion = "21.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -106,13 +112,15 @@
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
-      presage
+      certbot
       curl
       git
       jq
       neovim
       networkmanagerapplet
       powertop
+      presage
+      renew-certs
       smartmontools
       vim
       wget
