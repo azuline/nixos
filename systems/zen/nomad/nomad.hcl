@@ -9,8 +9,11 @@ server {
 
 client {
   enabled = true
-  host_network "tailscale" {
+  host_network "default" {
     cidr           = "100.71.28.44/32"
+  }
+  host_network "public" {
+    cidr           = "147.135.1.125/32"
     reserved_ports = "22"
   }
   host_volume "nix" {
@@ -25,12 +28,15 @@ client {
     path      = "/data/certs"
     read_only = true
   }
-  host_volume "presage-data" {
-    path = "/data/presage"
-  }
   host_volume "sunsetglow-site" {
     path      = "/www"
     read_only = true
+  }
+  host_volume "presage-data" {
+    path = "/data/presage"
+  }
+  host_volume "saffron-data" {
+    path = "/data/saffron"
   }
 }
 
@@ -39,6 +45,6 @@ ui {
 }
 
 consul {
-  address = "100.71.28.44:8500"
-  grpc_address = "127.0.0.1:8502"
+  address      = "100.71.28.44:8500"
+  grpc_address = "100.71.28.44:8502"
 }

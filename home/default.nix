@@ -21,6 +21,7 @@
     home.packages = with pkgs; [
       nix-search-cli
       autossh
+      unzip
       woff2
       bat
       beets

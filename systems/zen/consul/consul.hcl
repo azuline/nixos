@@ -1,12 +1,12 @@
 datacenter = "zen"
-data_dir   = "/data/consul/data"
+data_dir   = "/data/consul"
+log_level  = "INFO"
 
-acl {
-  enabled = true
-  # TODO: Make false after bootstrap.
-  default_policy           = "allow"
-  enable_token_persistence = true
-}
+# acl {
+#   enabled                  = true
+#   default_policy           = "deny"
+#   enable_token_persistence = true
+# }
 
 performance {
   raft_multiplier = 1
@@ -21,9 +21,6 @@ client_addr      = "100.71.28.44"
 # Consul service mesh.
 connect {
   enabled = true
-}
-addresses {
-  grpc = "100.71.28.44"
 }
 ports {
   grpc = 8502

@@ -8,11 +8,13 @@ in
   environment.systemPackages = with pkgs; [
     nomad
     consul
+    envoy
   ];
 
   # Install CNI plugins into /opt/cni.
   system.activationScripts.cni.text = ''
     mkdir -p /opt
+    rm -f /opt/cni
     ln -sf ${pkgs.cni-plugins} /opt/cni
   '';
 
@@ -64,7 +66,7 @@ in
   };
 
   systemd.services.consul = {
-    path = with pkgs; [ consul iproute iptables cni-plugins ];
+    path = with pkgs; [ consul envoy iproute iptables cni-plugins ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];

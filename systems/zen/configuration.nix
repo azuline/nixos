@@ -20,15 +20,16 @@
     defaultGateway = "147.135.1.254";
     nameservers = [ "1.1.1.1" ];
     firewall = {
-      allowedTCPPorts = [ 22 2222 ];
+      allowedTCPPorts = [
+        22 # ssh
+        2222 # boot ssh
+        80 # http
+        443 # https
+      ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
       interfaces.tailscale0 = {
         allowedTCPPorts = [
-          81 # tmp
-          444 # tmp
-          8501
-          # tmp above
           22 # ssh
           4646 # nomad
           8500 # consul
