@@ -106,6 +106,9 @@
       ccls
       clang-tools
       docker
+      levant
+      nomad
+      consul
       docker-compose
       dune_3
       gdb
@@ -135,7 +138,6 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
-      nomad
       ocamlformat
       ocamlPackages.utop
       php80

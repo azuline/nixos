@@ -27,6 +27,10 @@ job "nginx" {
               destination_name = "saffron"
               local_bind_port = 29001
             }
+            upstreams {
+              destination_name = "blossom-ladle"
+              local_bind_port = 29002
+            }
           }
         }
       }
@@ -94,6 +98,21 @@ server {
   location ~ {
     add_header Front-End-Https on;
     proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_saffron" }};
+  }
+}
+
+# celestial.sunsetglow.net - design system ladle
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	include snippets/ssl-params.conf;
+	include snippets/ssl-sunsetglow.net.conf;
+	include snippets/proxy-params.conf;
+	server_name celestial.sunsetglow.net;
+
+  location ~ {
+    add_header Front-End-Https on;
+    proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_blossom-ladle" }};
   }
 }
 EOF

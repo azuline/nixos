@@ -28,7 +28,6 @@ job "saffron" {
       }
       config {
         image   = "blissful/saffron"
-        ports   = ["http"]
         args    = ["start", "-h", "0.0.0.0", "-p", "80"]
       }
       volume_mount {

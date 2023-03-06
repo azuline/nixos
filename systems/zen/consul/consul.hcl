@@ -2,11 +2,11 @@ datacenter = "zen"
 data_dir   = "/data/consul"
 log_level  = "INFO"
 
-# acl {
-#   enabled                  = true
-#   default_policy           = "deny"
-#   enable_token_persistence = true
-# }
+acl {
+  enabled                  = true
+  default_policy           = "allow"
+  enable_token_persistence = true
+}
 
 performance {
   raft_multiplier = 1
