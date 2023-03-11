@@ -67,15 +67,15 @@ job "nginx" {
       template {
         data          = <<EOF
 server {
-	listen 80;
-	listen [::]:80;
+	listen 80 http2;
+	listen [::]:80 http2;
 	return 301 https://$host$request_uri;
 }
 
 # sunsetglow.net - root page
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	include snippets/ssl-sunsetglow.net.conf;
 	include snippets/ssl-params.conf;
 	server_name sunsetglow.net;
@@ -85,8 +85,8 @@ server {
 
 # u.sunsetglow.net - image host
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	include snippets/ssl-params.conf;
 	include snippets/ssl-sunsetglow.net.conf;
 	include snippets/proxy-params.conf;
@@ -103,8 +103,8 @@ server {
 
 # celestial.sunsetglow.net - design system ladle
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	include snippets/ssl-params.conf;
 	include snippets/ssl-sunsetglow.net.conf;
 	include snippets/proxy-params.conf;
