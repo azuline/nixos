@@ -117,7 +117,7 @@
       gofumpt
       golangci-lint
       gopls
-      google-cloud-sdk
+      (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
       haskell-language-server
       haskellPackages.implicit-hie
       jdk11
@@ -175,7 +175,7 @@
       enable = true;
       defaultApplications = {
         # Look in ~/.nix-profile/share/applications
-        "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+        "application/pdf" = [ "org.gnome.Evince.desktop" ];
         "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
         "x-scheme-handler/mailto" = [ "aerc.desktop" ];
         "x-www-browser" = [ "firefox.desktop" ];
@@ -209,6 +209,7 @@
         zoom-us
         zotero
         gnome3.nautilus
+        evince # Not b/c of GPU, but because dconf doesn't work outside NixOS.
       ] else [ ]
     );
   };

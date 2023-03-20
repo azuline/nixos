@@ -14,7 +14,7 @@ pkgs.writeShellScriptBin "i3-yy" ''
   filepath=$(printf '%q' "$HOME/$selected")
 
   if [[ "$filepath" == *.pdf ]]; then
-    i3-msg -t command exec \""zathura $filepath"\"
+    i3-msg -t command exec \""evince $filepath"\"
   elif [[ "$filepath" == *.html ]]; then
     i3-msg -t command exec \""firefox $filepath"\"
   elif [[ "$filepath" == *.epub ]] || [[ "$filepath" == *.azw3 ]]; then

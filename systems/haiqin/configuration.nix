@@ -70,7 +70,6 @@
     libinput.enable = false;
   };
 
-
   programs.dconf.enable = true;
   services.printing.enable = true;
   sound.enable = true;

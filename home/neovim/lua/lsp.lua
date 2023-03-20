@@ -98,6 +98,8 @@ lspconfig.tsserver.setup({
         "**/msw/**",
         -- This also exports a `t`.
         "**/vitest/dist/**",
+        -- Never import from stories.
+        "**/*.stories.tsx",
       },
     },
   },
@@ -115,7 +117,7 @@ lspconfig.tsserver.setup({
   end,
   capabilities = capabilities,
   handlers = {
-    ["textDocument/definition"] = function(err, result, method, ...)
+    ["textDocument/definition"] = function(err, result, method)
       -- https://github.com/typescript-language-server/typescript-language-server/issues/216
       local function filterDTS(value)
         if value.targetUri ~= nil then
@@ -126,10 +128,10 @@ lspconfig.tsserver.setup({
 
       if vim.tbl_islist(result) and #result > 1 then
         local filtered_result = filter(result, filterDTS)
-        return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method, ...)
+        return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method)
       end
 
-      vim.lsp.handlers["textDocument/definition"](err, result, method, ...)
+      vim.lsp.handlers["textDocument/definition"](err, result, method)
     end,
   },
 })

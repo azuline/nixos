@@ -10,7 +10,7 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
   default_sink="$(pactl get-default-sink)"
 
   function sink_exists() {
-    pactl list sources | grep "$1"
+    pactl list sinks | grep "$1"
   }
 
   # Compute the new sink. We cycle through the configured sinks in the order of:
@@ -45,6 +45,7 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
   fi
 
   # Update pulseaudio's default sink.
+  echo "new_sink=$new_sink"
   pactl set-default-sink "$new_sink"
 
   # Update existing applications to output to the new sink.
