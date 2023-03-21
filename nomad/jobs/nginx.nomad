@@ -89,14 +89,13 @@ server {
 	listen [::]:443 ssl http2;
 	include snippets/ssl-params.conf;
 	include snippets/ssl-sunsetglow.net.conf;
-	include snippets/proxy-params.conf;
 	server_name u.sunsetglow.net;
 
   client_max_body_size 0;
   underscores_in_headers on;
 
   location ~ {
-    add_header Front-End-Https on;
+    include snippets/proxy-params.conf;
     proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_saffron" }};
   }
 }
@@ -107,11 +106,10 @@ server {
 	listen [::]:443 ssl http2;
 	include snippets/ssl-params.conf;
 	include snippets/ssl-sunsetglow.net.conf;
-	include snippets/proxy-params.conf;
 	server_name celestial.sunsetglow.net;
 
   location ~ {
-    add_header Front-End-Https on;
+    include snippets/proxy-params.conf;
     proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_blossom-ladle" }};
   }
 }
@@ -154,6 +152,7 @@ EOF
       }
       template {
         data          = <<EOF
+proxy_http_version 1.1;
 proxy_set_header Host $http_host;
 proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
