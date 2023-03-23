@@ -228,6 +228,8 @@
       bar-gpu
       bar-loadavg
       bar-vpn
+      i3-atelier.identifier
+      i3-atelier.opener
       i3-change-audio
       i3-clear-clipboard
       (if specialArgs.sys.nixos then i3-lock-nixos else i3-lock-debian)
