@@ -180,6 +180,7 @@
         "x-scheme-handler/mailto" = [ "aerc.desktop" ];
         "x-www-browser" = [ "firefox.desktop" ];
         "image/png" = [ "feh.desktop" ];
+        "image/jpeg" = [ "feh.desktop" ];
       };
     };
 
@@ -225,6 +226,7 @@
     ];
 
     home.packages = with pkgs; [
+      vscode
       bar-gpu
       bar-loadavg
       bar-vpn
