@@ -3,7 +3,7 @@
 {
   opener = pkgs.writeShellScriptBin "i3-atelier-opener" ''
     files="$(find "$HOME/atelier/store" -type f \( -name '*.pdf' -o -name '*.html' -o -name '*.epub' -o -name '*.azw3' \) -printf '%P\n')"
-    selected=$(printf '%s' "$files" | fzf --layout=reverse)
+    selected=$(printf '%s' "$files" | fzf --layout=reverse --with-nth 2 --delimiter '/')
 
     [[ -z "$selected" ]] && exit 1
 
@@ -19,7 +19,7 @@
   '';
   identifier = pkgs.writeShellScriptBin "i3-atelier-identifier" ''
     files="$(find "$HOME/atelier/store" -type f \( -name '*.pdf' -o -name '*.html' -o -name '*.epub' -o -name '*.azw3' \) -printf '%P\n')"
-    selected=$(printf '%s' "$files" | fzf --layout=reverse)
+    selected=$(printf '%s' "$files" | fzf --layout=reverse --with-nth 2 --delimiter '/')
     [[ -z "$selected" ]] && exit 1
     echo "$(dirname "$selected")" | tr -d '\n' | nohup xclip -sel c
   '';
