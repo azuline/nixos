@@ -105,6 +105,7 @@
   virtualisation.docker.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.mullvad-vpn.enable = true;
+  services.upower.enable = true;
   programs.seahorse.enable = true;
   services.tailscale.enable = true;
 }
