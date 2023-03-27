@@ -217,6 +217,11 @@ bindsym XF86AudioMute exec amixer sset Master toggle
 bindsym Pause exec i3-change-audio
 bindsym XF86Calculator exec win-switch
 
+# Backlight
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+
 ### Screen Locker
 
 # Auto lock

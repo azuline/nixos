@@ -199,6 +199,7 @@
       fontforge-gtk
       xdotool # For VimTex's forward search.
       slurp
+      pavucontrol
       spotify
       tdesktop
       transmission-qt
