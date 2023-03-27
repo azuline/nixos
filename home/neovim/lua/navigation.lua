@@ -17,6 +17,15 @@ do -- Tree browser
       name_glob = {
         ".null-ls*",
         ".coverage.*",
+        -- LaTeX stuff
+        "*.pdf",
+        "*.aux",
+        "*.log",
+        "*.toc",
+        "*.synctex*",
+        "*.out",
+        "*.fls",
+        "*.fdb_latexmk",
       },
     },
     keymap = {

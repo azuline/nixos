@@ -104,9 +104,10 @@ au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.
 au BufEnter Makefile,makefile,*.php,*.lua
   \ set noexpandtab
 
-au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
-  \ set spell |
-  \ set spellcapcheck=
+" NVM, turn spell off.
+" au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
+"   \ set spell |
+"   \ set spellcapcheck=
 
 " For certain C++ codebases.
 " au BufEnter *.cpp,*.h

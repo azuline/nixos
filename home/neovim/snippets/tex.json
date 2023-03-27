@@ -1,0 +1,22 @@
+{
+  "\\s": {
+    "prefix": "\\s",
+    "body": ["\\section{$1}", "$0"],
+    "description": "Start a section"
+  },
+  "\\ss": {
+    "prefix": "\\ss",
+    "body": ["\\subsection{$1}", "$0"],
+    "description": "Start a subsection"
+  },
+  "\\sss": {
+    "prefix": "\\sss",
+    "body": ["\\subsubsection{$1}", "$0"],
+    "description": "Start a subsubsection"
+  },
+  "[": {
+    "prefix": "[",
+    "body": ["[[$1]]$0"],
+    "description": "Atelier reference shortcut."
+  }
+}

@@ -81,7 +81,7 @@
       wl-clipboard
       xclip
       xsv
-      youtube-dl
+      # youtube-dl
       yq-go
       zip
     ];
