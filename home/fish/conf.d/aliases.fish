@@ -92,7 +92,8 @@ abbr --add --global gsr 'gotestsum -- -count=1 -race ./... -run'
 abbr --add --global trc '~/scripts/transcoder/run.sh'
 abbr --add --global bm 'beet modify --album'
 abbr --add --global ba 'beet ls --album | sort'
-abbr --add --global bart '~/scripts/artist-transform/run.py'
+abbr --add --global bart '~/scripts/beets-scripts/artist-transform.py'
+abbr --add --global bgen '~/scripts/beets-scripts/genre-inferrer.py'
 function bac
     beet modify artist::"$argv[1]" artist="$argv[2]"
     beet modify -a albumartist::"$argv[1]" albumartist="$argv[2]"
