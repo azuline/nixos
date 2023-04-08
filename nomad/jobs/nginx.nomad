@@ -81,6 +81,10 @@ server {
 	server_name sunsetglow.net;
 	root /www/index;
 	index index.html;
+
+  location /files/ {
+    autoindex on;
+  }
 }
 
 # u.sunsetglow.net - image host
