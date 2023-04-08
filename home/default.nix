@@ -19,10 +19,7 @@
     ];
 
     home.packages = with pkgs; [
-      nix-search-cli
       autossh
-      unzip
-      woff2
       bat
       beets
       brightnessctl
@@ -37,17 +34,16 @@
       fd
       ffmpeg
       findutils
+      flexget
       fzf
       gawk
       gcc # Is this writing some weird nix ld that's half broken?
       gnumake
-      rename
       gnused
       graphviz
       htop
       imagemagick
       jq
-      tectonic
       libsecret
       mediainfo
       mkcert
@@ -56,32 +52,37 @@
       monolith
       moreutils
       neofetch
+      nix-search-cli
       nmap
       pass
       pdftk
       pinentry
       poetry
       procps
+      rename
       ripgrep
       rsync
       speedtest-cli
       sqlite-interactive
       sshfs
+      tectonic
       termdown
-      tomb
       tldr
+      tomb
       trash-cli
       tree
       unixtools.netstat
       unrar
+      unzip
       weechat
       wget
       whois
       wireguard-tools
       wl-clipboard
+      woff2
       xclip
       xsv
-      # youtube-dl
+      yt-dlp
       yq-go
       zip
     ];
