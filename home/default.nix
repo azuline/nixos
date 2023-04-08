@@ -37,7 +37,7 @@
       flexget
       fzf
       gawk
-      gcc # Is this writing some weird nix ld that's half broken?
+      gcc
       gnumake
       gnused
       graphviz

@@ -14,6 +14,7 @@ import nixpkgs {
         bar-vpn = import ./bar-vpn { inherit pkgs; };
         decrypt-zen = import ./decrypt-zen { inherit pkgs; };
         discord = import ./discord { inherit pkgs srcs; };
+        flexget = import ./flexget { inherit pkgs; };
         i3-atelier = import ./i3-atelier { inherit pkgs; };
         i3-change-audio = import ./i3-change-audio { inherit pkgs; };
         i3-clear-clipboard = import ./i3-clear-clipboard { inherit pkgs; };
