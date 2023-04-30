@@ -163,9 +163,9 @@ lspconfig.lua_ls.setup({
 
 local sources = {
   -- JS/TS/JSX/TSX
-  null_ls.builtins.diagnostics.eslint_d,
-  null_ls.builtins.code_actions.eslint_d,
-  null_ls.builtins.formatting.eslint_d,
+  null_ls.builtins.diagnostics.eslint,
+  null_ls.builtins.code_actions.eslint,
+  -- null_ls.builtins.formatting.eslint,
   -- Lua
   null_ls.builtins.formatting.stylua,
   -- Python
@@ -175,9 +175,7 @@ local sources = {
   null_ls.builtins.diagnostics.mypy,
   null_ls.builtins.diagnostics.ruff,
   -- Golang
-  null_ls.builtins.formatting.goimports,
   null_ls.builtins.formatting.gofumpt,
-  null_ls.builtins.formatting.gofmt,
   null_ls.builtins.diagnostics.golangci_lint,
   -- null_ls.builtins.diagnostics.revive,
   -- Nix
@@ -195,6 +193,18 @@ end
 
 if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
   table.insert(sources, 1, null_ls.builtins.formatting.dprint)
+end
+
+if string.find(vim.fn.getcwd(), "/pipe/pipe") ~= nil then
+  table.insert(
+    sources,
+    #sources - 1,
+    null_ls.builtins.formatting.goimports.with({
+      extra_args = { "-local", "github.com/pipe-technologies/pipe/backend" },
+    })
+  )
+else
+  table.insert(sources, #sources - 1, null_ls.builtins.formatting.goimports)
 end
 
 if

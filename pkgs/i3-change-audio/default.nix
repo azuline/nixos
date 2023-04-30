@@ -44,16 +44,6 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
     exit 0
   fi
 
-  # Update pulseaudio's default sink.
-  echo "new_sink=$new_sink"
-  pactl set-default-sink "$new_sink"
-
-  # Update existing applications to output to the new sink.
-  pactl list sink-inputs | \
-    grep 'Sink Input #' | \
-    cut -d'#' -f2 | \
-    xargs -I{} sh -c "pactl move-sink-input {} $new_sink"
-
   # Notify the user.
   if [[ "$new_sink" == "$wired_headphones_sink" ]]; then
     notify-send "Switched audio to wired headphones."
@@ -62,4 +52,15 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
   elif [[ "$new_sink" == "$bt_headphones_sink" ]]; then
     notify-send "Switched audio to bluetooth headphones."
   fi
+
+  # Update pulseaudio's default sink.
+  echo "new_sink=$new_sink"
+  pactl set-default-sink "$new_sink"
+
+  # Update existing applications to output to the new sink.
+  # Will fail if there are no existing applications.
+  pactl list sink-inputs | \
+    grep 'Sink Input #' | \
+    cut -d'#' -f2 | \
+    xargs -I{} sh -c "pactl move-sink-input {} $new_sink"
 ''

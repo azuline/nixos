@@ -196,6 +196,7 @@
       maim
       peek
       signal
+      postman
       slack
       fontforge-gtk
       xdotool # For VimTex's forward search.
