@@ -1,6 +1,3 @@
--- This is not `init.lua` because `nixpkgs` writes an `init.vim`. Nix's
--- init.vim imports this file.
---
 -- These need to be configured before we load plugins.
 vim.g.polyglot_disabled = { "markdown" }
 vim.g.markdown_enable_conceal = 1
