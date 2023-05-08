@@ -163,9 +163,9 @@ lspconfig.lua_ls.setup({
 
 local sources = {
   -- JS/TS/JSX/TSX
-  null_ls.builtins.diagnostics.eslint,
-  null_ls.builtins.code_actions.eslint,
-  -- null_ls.builtins.formatting.eslint,
+  null_ls.builtins.diagnostics.eslint_d,
+  null_ls.builtins.code_actions.eslint_d,
+  -- null_ls.builtins.formatting.eslint_d,
   -- Lua
   null_ls.builtins.formatting.stylua,
   -- Python
