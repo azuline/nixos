@@ -28,9 +28,12 @@ abbr --add --global kgd "kubectl get deployments"
 abbr --add --global kgdw "kubectl get deployment -o wide"
 abbr --add --global kgp "kubectl get pods"
 abbr --add --global kgpw "kubectl get pods -o wide"
+abbr --add --global kl "kubectl logs"
 abbr --add --global kc "kubectl config"
 abbr --add --global kcg "kubectl config get-contexts"
 abbr --add --global kcu "kubectl config use-context"
+abbr --add --global kcc "kubectl config current-context"
+abbr --add --global kcuc "kubectl config unset current-context"
 
 # Git
 abbr --add --global gname 'git config user.name; git config user.email'

@@ -23,10 +23,17 @@ function fish_prompt --description 'Write out the prompt'
 
     set -l prompt_status (__fish_print_pipestatus " [" "]" "|" (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
 
-    echo -s (set_color $color_cwd) (prompt_pwd) $normal (prompt_vcs) $prompt_status
+    echo -s (set_color $color_cwd) (prompt_pwd) $normal (prompt_vcs) (prompt_kubecontext) $prompt_status
     echo -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $color_host) (prompt_hostname) $normal " " (set_color $fish_color_suffix) $suffix $normal " "
 
     set _prompt_fresh_session false
+end
+
+function prompt_kubecontext --description 'kubectl current context prompt'
+    set -l current_context (kubectl config current-context 2>/dev/null)
+    if string length --quiet $current_context
+        printf " %s[k8s:%s]%s" (set_color $fish_color_kubecontext) "$current_context" "$normal"
+    end
 end
 
 function prompt_vcs --description 'vcs prompt'
