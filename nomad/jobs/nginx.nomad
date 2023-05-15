@@ -7,31 +7,74 @@ job "nginx" {
     network {
       mode = "bridge"
       port "http" {
-        static = 80
-        to     = 80
+        static       = 80
+        to           = 80
         host_network = "public"
       }
       port "https" {
-        static = 443
-        to     = 443
+        static       = 443
+        to           = 443
         host_network = "public"
       }
     }
 
     service {
       name = "nginx"
+      port = "https"
       connect {
         sidecar_service {
           proxy {
             upstreams {
               destination_name = "saffron"
-              local_bind_port = 29001
+              local_bind_port  = 29001
             }
             upstreams {
               destination_name = "blossom-ladle"
-              local_bind_port = 29002
+              local_bind_port  = 29002
             }
           }
+        }
+      }
+      check {
+        name            = "service: nginx root check"
+        type            = "http"
+        protocol        = "https"
+        port            = "https"
+        path            = "/"
+        tls_skip_verify = true
+        interval        = "10s"
+        timeout         = "2s"
+        header {
+          Host       = ["sunsetglow.net"]
+          User-Agent = ["Consul Healthcheck"]
+        }
+      }
+      check {
+        name            = "service: nginx blossom check"
+        type            = "http"
+        protocol        = "https"
+        port            = "https"
+        path            = "/"
+        tls_skip_verify = true
+        interval        = "10s"
+        timeout         = "2s"
+        header {
+          Host       = ["celestial.sunsetglow.net"]
+          User-Agent = ["Consul Healthcheck"]
+        }
+      }
+      check {
+        name            = "service: nginx saffron check"
+        type            = "http"
+        protocol        = "https"
+        port            = "https"
+        path            = "/login"
+        tls_skip_verify = true
+        interval        = "10s"
+        timeout         = "2s"
+        header {
+          Host       = ["u.sunsetglow.net"]
+          User-Agent = ["Consul Healthcheck"]
         }
       }
     }

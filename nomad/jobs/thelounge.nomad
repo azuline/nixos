@@ -22,11 +22,11 @@ job "thelounge" {
       env {
         PUID = "1000"
         PGID = "1000"
-        TZ = "Etc/UTC"
+        TZ   = "Etc/UTC"
       }
       config {
-        image   = "lscr.io/linuxserver/thelounge"
-        ports   = ["http"]
+        image = "lscr.io/linuxserver/thelounge"
+        ports = ["http"]
       }
       volume_mount {
         volume      = "config"
