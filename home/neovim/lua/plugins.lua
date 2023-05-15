@@ -55,7 +55,7 @@ do -- Load the plugins.
 
   do -- Window visuals
     -- Theme
-    Plug("drewtempelmeyer/palenight.vim")
+    Plug("azuline/palenight.vim")
     -- Statusline
     Plug("itchyny/lightline.vim")
     Plug("spywhere/lightline-lsp")
