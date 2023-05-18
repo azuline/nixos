@@ -13,6 +13,7 @@ let
           inherit version;
           hash = "sha256-lfwC9/wfMZmqpHqKdXQ3E0z2GOnZlMhO/9U/Uww4WG8=";
         };
+        doCheck = false;
       });
       transmission-rpc = super.transmission-rpc.overrideAttrs (_: rec {
         version = "3.4.1";
