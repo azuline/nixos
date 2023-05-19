@@ -24,10 +24,8 @@ alias rm='trash'
 
 # Kubectl
 abbr --add --global kg "kubectl get"
-abbr --add --global kgd "kubectl get deployments"
-abbr --add --global kgdw "kubectl get deployment -o wide"
-abbr --add --global kgp "kubectl get pods"
-abbr --add --global kgpw "kubectl get pods -o wide"
+abbr --add --global kgd "kubectl get deployments -o wide"
+abbr --add --global kgp "kubectl get pods -o wide"
 abbr --add --global kl "kubectl logs"
 abbr --add --global kc "kubectl config"
 abbr --add --global kcg "kubectl config get-contexts"
