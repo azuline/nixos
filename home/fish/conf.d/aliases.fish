@@ -23,6 +23,7 @@ abbr --add --global scu 'systemctl --user'
 alias rm='trash'
 
 # Kubectl
+abbr --add --global k "kubectl"
 abbr --add --global kg "kubectl get"
 abbr --add --global kgd "kubectl get -o wide deployments"
 abbr --add --global kgp "kubectl get -o wide pods"
