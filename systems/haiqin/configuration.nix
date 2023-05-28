@@ -37,6 +37,7 @@
 
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
+  hardware.opengl.extraPackages = [ pkgs.mesa.drivers ];
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -89,11 +90,15 @@
     interactiveShellInit = builtins.readFile ./bashrc;
     variables = {
       EDITOR = "nvim";
+      XCURSOR_SIZE = "64";
     };
     systemPackages = with pkgs; [
       curl
       jq
+      mesa
       neovim
+      intel-gpu-tools
+      glxinfo
       networkmanagerapplet
       powertop
       vim

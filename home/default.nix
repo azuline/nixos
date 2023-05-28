@@ -25,6 +25,7 @@
       brightnessctl
       bubblewrap
       cmus
+      intel-gpu-tools
       coreutils
       curl
       dasel
