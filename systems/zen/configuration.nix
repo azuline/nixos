@@ -53,7 +53,6 @@ in
         enable = true;
         efiSupport = true;
         efiInstallAsRemovable = true;
-        version = 2;
         enableCryptodisk = true;
         device = "nodev";
       };
@@ -149,7 +148,7 @@ in
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "nomad" ];
+        extraGroups = [ "wheel" "docker" "nomad" "otel" ];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
         ];
@@ -168,4 +167,5 @@ in
 
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
+  programs.fish.enable = true;
 }

@@ -9,6 +9,7 @@ in
     nomad
     consul
     envoy
+    opentelemetry-collector-contrib
   ];
 
   # Install CNI plugins into /opt/cni.
@@ -30,9 +31,15 @@ in
         group = "consul";
         uid = 1002;
       };
+      otel = {
+        isSystemUser = true;
+        group = "otel";
+        uid = 1003;
+      };
     };
     groups = {
       consul.gid = 1002;
+      otel.gid = 1003;
     };
   };
 
@@ -75,6 +82,25 @@ in
       Group = "consul";
       ExecReload = "/bin/kill -HUP $MAINPID";
       ExecStart = "@${pkgs.consul}/bin/consul consul agent -config-dir=${consulConfig}";
+      KillMode = "process";
+      KillSignal = "SIGTERM";
+      LimitNOFILE = 65536;
+      Restart = "on-failure";
+      RestartSec = 2;
+      OOMScoreAdjust = -1000;
+    };
+  };
+
+  systemd.services.otelcollector = {
+    path = with pkgs; [ opentelemetry-collector-contrib ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      User = "otel";
+      Group = "otel";
+      ExecReload = "/bin/kill -HUP $MAINPID";
+      ExecStart = "${pkgs.opentelemetry-collector-contrib}/bin/otelcontribcol --config=file:/data/otel/config.yaml";
       KillMode = "process";
       KillSignal = "SIGTERM";
       LimitNOFILE = 65536;

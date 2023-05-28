@@ -55,3 +55,11 @@ consul {
 acl {
   enabled = true
 }
+
+telemetry {
+  collection_interval        = "1s"
+  disable_hostname           = true
+  publish_allocation_metrics = true
+  publish_node_metrics       = true
+  prometheus_metrics         = true
+}
