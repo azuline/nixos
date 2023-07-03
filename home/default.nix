@@ -218,6 +218,12 @@
     );
   };
 
+  localBundle = { pkgs, ... }: {
+    imports = [
+      ./atelier
+    ];
+  };
+
   i3Bundle = { pkgs, specialArgs, ... }: {
     imports = [
       ./dunst

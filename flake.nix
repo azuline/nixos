@@ -117,6 +117,7 @@
               b.cliBundle
               b.devBundle
               b.guiBundle
+              b.localBundle
               b.i3Bundle
               b.themeBundle
             ];
@@ -133,6 +134,7 @@
               b.cliBundle
               b.devBundle
               b.guiBundle
+              b.localBundle
               b.i3Bundle
               b.themeBundle
             ];

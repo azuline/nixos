@@ -29,10 +29,10 @@
     "body": ["$0tf.$1(func(m *models.$1) {", "    $2", "})", "$0"],
     "description": "Insert a SQLBoiler model into the database."
   },
-  "rne": {
-    "prefix": "rne",
-    "body": ["require.NoError(t, err)", "$0"],
-    "description": "require.NoError"
+  "tne": {
+    "prefix": "tne",
+    "body": ["testz.NoError(t, err)", "$0"],
+    "description": "testz.NoError"
   },
   "tR": {
     "prefix": "tR",
