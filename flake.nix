@@ -5,6 +5,10 @@
     flake-utils.url = github:numtide/flake-utils;
     nixpkgs.url = github:nixos/nixpkgs;
     nixpkgs-peek-pin.url = github:nixos/nixpkgs?rev=b7d8c687782c8f9a1d425a7e486eb989654f6468;
+    devenv = {
+      url = github:cachix/devenv/latest;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +42,7 @@
     , nixpkgs
     , nixpkgs-peek-pin
     , flake-utils
+    , devenv
     , nix-search-cli-src
     , presage-src
       # Non-Nix sources
@@ -53,7 +58,7 @@
         # Latest peek breaks with ffmpeg issue.
         peek = (import nixpkgs-peek-pin { inherit system; }).peek;
       };
-      pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
+      pkgs = import ./pkgs { inherit system nixpkgs srcs pins devenv; };
       makeHomeConfiguration =
         {
           # This enables per-host configurations, typically screen size differences.

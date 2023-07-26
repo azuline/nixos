@@ -86,6 +86,14 @@ lspconfig.hls.setup({
   },
 })
 
+lspconfig.zls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  handlers = {
+    ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
+  },
+})
+
 lspconfig.tsserver.setup({
   init_options = {
     preferences = {
@@ -185,6 +193,8 @@ local sources = {
   -- Bash
   null_ls.builtins.diagnostics.shellcheck,
   null_ls.builtins.code_actions.shellcheck,
+  -- Zig
+  null_ls.builtins.formatting.zigfmt,
 }
 
 if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then

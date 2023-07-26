@@ -1,4 +1,4 @@
-{ system, nixpkgs, srcs, pins }:
+{ system, nixpkgs, srcs, pins, devenv }:
 
 import nixpkgs {
   inherit system;
@@ -9,6 +9,7 @@ import nixpkgs {
         i3-lock = import ./i3-lock { inherit pkgs; };
       in
       pins // {
+        devenv = devenv.packages.${system}.devenv;
         bar-gpu = import ./bar-gpu { inherit pkgs; };
         bar-loadavg = import ./bar-loadavg { inherit pkgs; };
         bar-vpn = import ./bar-vpn { inherit pkgs; };

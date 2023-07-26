@@ -110,11 +110,12 @@
       levant
       nomad
       consul
+      devenv
       docker-compose
       dune_3
       gdb
       gitAndTools.delta
-      go_1_18
+      go
       gofumpt
       golangci-lint
       gopls
@@ -158,6 +159,8 @@
       universal-ctags
       watchman # Needed for tsserver
       yarn
+      zig
+      zls
     ];
   };
 
@@ -202,7 +205,7 @@
       xdotool # For VimTex's forward search.
       slurp
       pavucontrol
-      spotify
+      # spotify  # Dynamic linking issues ._.
       tdesktop
       transmission-qt
       xorg.xkill
