@@ -142,6 +142,7 @@
       nodePackages.vscode-langservers-extracted
       ocamlformat
       ocamlPackages.utop
+      pgmigrate
       php80
       php80Packages.composer
       postgresql_13

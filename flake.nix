@@ -21,6 +21,10 @@
       url = github:azuline/presage;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pgmigrate-src = {
+      url = github:peterldowns/pgmigrate;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Non-nix inputs
     discord = {
       url = "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz";
@@ -45,6 +49,7 @@
     , devenv
     , nix-search-cli-src
     , presage-src
+    , pgmigrate-src
       # Non-Nix sources
     , discord
     , fish-plugin-wd
@@ -55,6 +60,7 @@
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};
+        pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
         # Latest peek breaks with ffmpeg issue.
         peek = (import nixpkgs-peek-pin { inherit system; }).peek;
       };
