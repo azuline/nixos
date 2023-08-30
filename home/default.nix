@@ -83,7 +83,7 @@
       woff2
       xclip
       xsv
-      yt-dlp
+      # yt-dlp  # old version; TODO: Pull latest from github
       yq-go
       zip
     ];
@@ -210,6 +210,7 @@
       # spotify  # Dynamic linking issues ._.
       tdesktop
       transmission-qt
+      xbindkeys
       xorg.xkill
       zathura
     ] ++ (
@@ -237,6 +238,7 @@
       ./picom
       ./polybar
       ./rofi
+      ./xbindkeys
     ];
 
     home.packages = with pkgs; [
