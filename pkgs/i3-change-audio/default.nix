@@ -3,8 +3,8 @@
 pkgs.writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
-  wired_headphones_sink="alsa_output.pci-0000_0d_00.4.analog-stereo"
-  bt_speaker_sink="bluez_sink.78_2B_64_5C_F4_AA.a2dp_sink"
+  wired_headphones_sink="alsa_output.pci-0000_0d_00.4.iec958-stereo"
+  bt_speaker_sink="bluez_sink.84_17_15_04_BB_EC.a2dp_sink"
   bt_headphones_sink="bluez_sink.CC_98_8B_E3_18_BC.a2dp_sink"
 
   default_sink="$(pactl get-default-sink)"
@@ -32,11 +32,11 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
       new_sink="$wired_headphones_sink"
     fi
   elif [[ "$default_sink" == "$bt_headphones_sink" ]]; then
-    if sink_exists "$wired_headphones_sink"; then
-      new_sink="$wired_headphones_sink"
-    elif sink_exists "$bt_speaker_sink"; then
+    if sink_exists "$bt_speaker_sink"; then
       new_sink="$bt_speaker_sink"
     fi
+    # Don't transition from BT headphones to wired headphones; if we have BT
+    # headphones connected, we will _always_ want that over wired headphones.
   fi
 
   if [[ -z "$new_sink" ]]; then

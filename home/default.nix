@@ -101,6 +101,7 @@
     home.packages = with pkgs; [
       ack
       act
+      dprint
       berglas
       bfg-repo-cleaner
       black
