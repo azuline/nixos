@@ -4,7 +4,7 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
   wired_headphones_sink="alsa_output.pci-0000_0d_00.4.iec958-stereo"
-  bt_speaker_sink="bluez_sink.84_17_15_04_BB_EC.a2dp_sink"
+  desktop_speaker_sink="alsa_output.usb-KEF_LSX_II-01.analog-stereo"
   bt_headphones_sink="bluez_sink.CC_98_8B_E3_18_BC.a2dp_sink"
 
   default_sink="$(pactl get-default-sink)"
@@ -20,20 +20,20 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
   # Kind of lazy and bash is hard, so I just expanded the rotation into conditionals.
   new_sink=
   if [[ "$default_sink" == "$wired_headphones_sink" ]]; then
-    if sink_exists "$bt_speaker_sink"; then
-      new_sink="$bt_speaker_sink"
+    if sink_exists "$desktop_speaker_sink"; then
+      new_sink="$desktop_speaker_sink"
     elif sink_exists "$bt_headphones_sink"; then
       new_sink="$bt_headphones_sink"
     fi
-  elif [[ "$default_sink" == "$bt_speaker_sink" ]]; then
+  elif [[ "$default_sink" == "$desktop_speaker_sink" ]]; then
     if sink_exists "$bt_headphones_sink"; then
       new_sink="$bt_headphones_sink"
     elif sink_exists "$wired_headphones_sink"; then
       new_sink="$wired_headphones_sink"
     fi
   elif [[ "$default_sink" == "$bt_headphones_sink" ]]; then
-    if sink_exists "$bt_speaker_sink"; then
-      new_sink="$bt_speaker_sink"
+    if sink_exists "$desktop_speaker_sink"; then
+      new_sink="$desktop_speaker_sink"
     fi
     # Don't transition from BT headphones to wired headphones; if we have BT
     # headphones connected, we will _always_ want that over wired headphones.
@@ -47,7 +47,7 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
   # Notify the user.
   if [[ "$new_sink" == "$wired_headphones_sink" ]]; then
     notify-send "Switched audio to wired headphones."
-  elif [[ "$new_sink" == "$bt_speaker_sink" ]]; then
+  elif [[ "$new_sink" == "$desktop_speaker_sink" ]]; then
     notify-send "Switched audio to bluetooth speaker."
   elif [[ "$new_sink" == "$bt_headphones_sink" ]]; then
     notify-send "Switched audio to bluetooth headphones."
