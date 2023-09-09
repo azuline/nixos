@@ -4,7 +4,7 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
   wired_headphones_sink="alsa_output.pci-0000_0d_00.4.iec958-stereo"
-  desktop_speaker_sink="alsa_output.usb-KEF_LSX_II-01.analog-stereo"
+  desktop_speaker_sink="bluez_sink.0A_11_75_33_AD_49.a2dp_sink"
   bt_headphones_sink="bluez_sink.CC_98_8B_E3_18_BC.a2dp_sink"
 
   default_sink="$(pactl get-default-sink)"
@@ -37,6 +37,8 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
     fi
     # Don't transition from BT headphones to wired headphones; if we have BT
     # headphones connected, we will _always_ want that over wired headphones.
+  else
+    new_sink="$wired_headphones_sink"
   fi
 
   if [[ -z "$new_sink" ]]; then
@@ -46,11 +48,11 @@ pkgs.writeShellScriptBin "i3-change-audio" ''
 
   # Notify the user.
   if [[ "$new_sink" == "$wired_headphones_sink" ]]; then
-    notify-send "Switched audio to wired headphones."
+    notify-send "Switched audio to Wired Output."
   elif [[ "$new_sink" == "$desktop_speaker_sink" ]]; then
-    notify-send "Switched audio to bluetooth speaker."
+    notify-send "Switched audio to LSX II Speakers."
   elif [[ "$new_sink" == "$bt_headphones_sink" ]]; then
-    notify-send "Switched audio to bluetooth headphones."
+    notify-send "Switched audio to Sony WH-1000XM3."
   fi
 
   # Update pulseaudio's default sink.
