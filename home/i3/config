@@ -244,3 +244,6 @@ exec --no-startup-id tmux -d -s mail aerc
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id ibus-daemon -drx
+
+# Temporary
+xmodmap -e 'keycode 69 = 3 numbersign 3 numbersign'
