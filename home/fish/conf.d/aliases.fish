@@ -1,4 +1,4 @@
-alias ls='exa'
+alias ls='eza'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
 

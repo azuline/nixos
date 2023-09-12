@@ -31,7 +31,7 @@
       dasel
       decrypt-zen
       dnsutils
-      exa
+      eza
       fd
       ffmpeg
       findutils
@@ -146,8 +146,8 @@
       ocamlformat
       ocamlPackages.utop
       pgmigrate
-      php80
-      php80Packages.composer
+      php83
+      php83Packages.composer
       postgresql_13
       protoc-gen-go
       python
