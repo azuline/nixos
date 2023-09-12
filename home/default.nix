@@ -84,6 +84,7 @@
       xclip
       xsv
       # yt-dlp  # old version; TODO: Pull latest from github
+      yazi
       yq-go
       zip
     ];
