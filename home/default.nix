@@ -22,7 +22,6 @@
       autossh
       bat
       beets
-      brightnessctl
       bubblewrap
       cmus
       intel-gpu-tools
@@ -68,14 +67,13 @@
       sshfs
       tectonic
       termdown
-      tldr
       tomb
       trash-cli
       tree
       unixtools.netstat
       unrar
       unzip
-      weechat
+      rclone
       wget
       whois
       wireguard-tools
@@ -84,7 +82,7 @@
       xclip
       xsv
       # yt-dlp  # old version; TODO: Pull latest from github
-      yazi
+      nnn
       yq-go
       zip
     ];
@@ -193,6 +191,7 @@
     };
 
     home.packages = with pkgs; [
+      brightnessctl
       arandr
       discord
       feh
