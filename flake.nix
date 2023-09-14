@@ -160,16 +160,6 @@
               b.devBundle
             ];
           };
-          sunset = makeHomeConfiguration {
-            host = "sunset";
-            nixDir = "/etc/nixos";
-            nixos = false;
-            username = "regalia";
-            chooseBundles = b: [
-              b.cliBundle
-              b.devBundle
-            ];
-          };
         };
       };
     }));
