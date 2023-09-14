@@ -17,6 +17,8 @@ do -- Tree browser
       name_glob = {
         ".null-ls*",
         ".coverage.*",
+        "*.png",
+        "*.jpg",
         -- LaTeX stuff
         "*.pdf",
         "*.aux",
@@ -25,6 +27,13 @@ do -- Tree browser
         "*.synctex*",
         "*.out",
         "*.fls",
+        "*.4tc",
+        "*.4ct",
+        "*.dvi",
+        "*.lg",
+        "*.tmp",
+        "*.idv",
+        "*.xref",
         "*.fdb_latexmk",
       },
     },
@@ -57,6 +66,7 @@ do -- Tree browser
     options = {
       -- Causes too much lag in large monorepos.
       session = false,
+      show_hidden = false,
     },
     view = {
       window_options = {
