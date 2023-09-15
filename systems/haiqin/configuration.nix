@@ -14,6 +14,9 @@
       device = "/dev/nvme0n1p2";
       preLVM = true;
     };
+    # True by default; creates a warning when other parameters are unset. So we
+    # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.
+    swraid.enable = false;
   };
 
   networking = {
