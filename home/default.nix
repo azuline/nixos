@@ -185,6 +185,10 @@
         "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
         "x-scheme-handler/mailto" = [ "aerc.desktop" ];
         "x-www-browser" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/about" = [ "firefox.desktop" ];
+        "x-scheme-handler/unknown" = [ "firefox.desktop" ];
         "image/png" = [ "feh.desktop" ];
         "image/jpeg" = [ "feh.desktop" ];
       };
@@ -207,6 +211,7 @@
       fontforge-gtk
       xdotool # For VimTex's forward search.
       slurp
+      paprefs
       pavucontrol
       # spotify  # Dynamic linking issues ._.
       tdesktop
@@ -216,10 +221,12 @@
       zathura
     ] ++ (
       if specialArgs.sys.nixos then [
+        chromium
         firefox
         zoom-us
         zotero
         gnome3.nautilus
+        simplescreenrecorder
         evince # Not b/c of GPU, but because dconf doesn't work outside NixOS.
       ] else [ ]
     );

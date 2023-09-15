@@ -184,7 +184,7 @@ local sources = {
   null_ls.builtins.diagnostics.ruff,
   -- Golang
   null_ls.builtins.formatting.gofumpt,
-  null_ls.builtins.diagnostics.golangci_lint,
+  -- null_ls.builtins.diagnostics.golangci_lint,
   -- null_ls.builtins.diagnostics.revive,
   -- Nix
   null_ls.builtins.formatting.nixpkgs_fmt,
