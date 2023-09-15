@@ -117,6 +117,11 @@
             specialArgs = { inherit pkgs; };
             modules = [ ./systems/zen/configuration.nix ];
           };
+          splendor = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = { inherit pkgs; };
+            modules = [ ./systems/splendor/configuration.nix ];
+          };
         };
         homeConfigurations = {
           splendor = makeHomeConfiguration {

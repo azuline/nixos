@@ -8,7 +8,7 @@
       };
       Service = {
         Restart = "on-failure";
-        ExecStart = "/home/blissful/.nix-profile/bin/nix develop --command bash -c \"python -m _tool.daemon\"";
+        ExecStart = "/run/current-system/sw/bin/nix develop --command bash -c \"python -m _tool.daemon\"";
         WorkingDirectory = "/home/blissful/atelier";
       };
       Unit = {

@@ -3,7 +3,7 @@
 {
   system.stateVersion = "22.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.max-jobs = 8;
+  nix.settings.max-jobs = 12;
 
   imports = [ ./hardware-configuration.nix ];
 
@@ -20,7 +20,7 @@
   };
 
   networking = {
-    hostName = "haiqin";
+    hostName = "splendor";
     networkmanager.enable = true;
     extraHosts = ''
     '';
@@ -54,19 +54,12 @@
         user = "blissful";
       };
       sessionCommands = ''
-        ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation' 1
-        ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation Button' 2
-        ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation Axes' 6 7 4 5
       '';
     };
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
     };
-    videoDrivers = [ "modesetting" ];
-    deviceSection = ''
-      Option "DRI" "3"
-    '';
     layout = "us";
     xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
     # Disable libinput because I don't want to use the touchpad.
@@ -97,10 +90,7 @@
     systemPackages = with pkgs; [
       curl
       jq
-      mesa
       neovim
-      intel-gpu-tools
-      glxinfo
       networkmanagerapplet
       powertop
       vim
@@ -108,17 +98,6 @@
       nftables
       wireguard-tools
     ];
-  };
-
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_BOOST_ON_BAT = 0;
-      CPU_SCALING_GOVERNOR_ON_BATTERY = "powersave";
-      START_CHARGE_THRESH_BAT0 = 90;
-      STOP_CHARGE_THRESH_BAT0 = 97;
-      RUNTIME_PM_ON_BAT = "auto";
-    };
   };
 
   virtualisation.docker.enable = true;
