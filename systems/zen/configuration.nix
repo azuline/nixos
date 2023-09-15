@@ -5,6 +5,13 @@ let
     ${pkgs.certbot}/bin/certbot certonly --manual --preferred-challenges=dns --agree-tos -d sunsetglow.net -d *.sunsetglow.net
     echo "Move the certs to /data/certs; automate this some day."
   '';
+  mdadmConf = ''
+    HOMEHOST zen
+    ARRAY /dev/md/0 level=raid1 num-devices=2 metadata=1.2 name=zen:md0 UUID=06d936cd:a777dfc1:6d15ed88:ddc88fa2
+       devices=/dev/nvme0n1p3,/dev/nvme1n1p3
+    ARRAY /dev/md/boot level=raid1 num-devices=2 metadata=1.0 name=zen:boot UUID=379a1967:098723b9:ae195d76:01d271c7
+       devices=/dev/nvme0n1p2,/dev/nvme1n1p2
+  '';
 in
 {
   system.stateVersion = "21.11";
@@ -95,15 +102,10 @@ in
   # Better for the SSD.
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
-  environment.etc."mdadm.conf".text = ''
-    HOMEHOST zen
-    ARRAY /dev/md/0 level=raid1 num-devices=2 metadata=1.2 name=zen:md0 UUID=06d936cd:a777dfc1:6d15ed88:ddc88fa2
-       devices=/dev/nvme0n1p3,/dev/nvme1n1p3
-    ARRAY /dev/md/boot level=raid1 num-devices=2 metadata=1.0 name=zen:boot UUID=379a1967:098723b9:ae195d76:01d271c7
-       devices=/dev/nvme0n1p2,/dev/nvme1n1p2
-  '';
-  # The RAIDs are assembled in stage1, so we need to make the config available there.
-  boot.initrd.services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
+  # Make the mdadm conf available in stage2.
+  environment.etc."mdadm.conf".text = mdadmConf;
+  # The RAIDs are assembled in stage1, so we need to make the config available there too.
+  boot.swraid.mdadmConf = mdadmConf;
 
   environment = {
     interactiveShellInit = builtins.readFile ./bashrc;
