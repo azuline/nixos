@@ -75,8 +75,6 @@ do -- Load the plugins.
     Plug("wuelnerdotexe/vim-astro")
     -- Coq
     Plug("whonore/Coqtail")
-    -- Markdown
-    Plug("gabrielelana/vim-markdown")
     -- LaTeX!
     Plug("lervag/vimtex", { tag = "v1.6" })
     Plug("KeitaNakamura/tex-conceal.vim", { ["for"] = "tex" })
