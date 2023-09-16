@@ -136,6 +136,8 @@
             ];
             packages = with pkgs; [
               win-switch
+              # Temporary while keyboard is broken.
+              xorg.xmodmap
             ];
           };
           haiqin = makeHomeConfiguration {

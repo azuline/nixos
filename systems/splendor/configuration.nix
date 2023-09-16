@@ -51,7 +51,13 @@
   };
 
   time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    inputMethod = {
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ anthy ];
+    };
+    defaultLocale = "en_US.UTF-8";
+  };
 
   console = {
     font = "ter-i32b";
@@ -98,6 +104,7 @@
   programs.dconf.enable = true;
   services.printing.enable = true;
   sound.enable = true;
+  hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
@@ -137,4 +144,5 @@
   programs.seahorse.enable = true;
   services.tailscale.enable = true;
   programs.fish.enable = true;
+  services.blueman.enable = true;
 }
