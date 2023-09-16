@@ -15,10 +15,22 @@
       device = "/dev/disk/by-uuid/c1bc2705-939f-4dc4-b6ce-6527192463a9";
       preLVM = true;
     };
+    # Stuff for future passthrough. Not needed rn; tried to use it to fix another nvidia issue but it didn't solve it.
+    # initrd.kernelModules = [
+    #   "vfio_pci"
+    #   "vfio"
+    #   "vfio_iommu_type1"
+    #   "vfio_virqfd"
+    # ];
+    # kernelParams = [
+    #   "amd_iommu=on"
+    #   "vfio-pci.ids=10de:2185,10de:1aeb,10de:1aec,10de:1aed"
+    # ];
     # True by default; creates a warning when other parameters are unset. So we
     # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.
     swraid.enable = false;
   };
+  # virtualisation.spiceUSBRedirection.enable = true;
 
   fileSystems = {
     "/mnt/elements" = {
@@ -78,9 +90,9 @@
   };
   hardware.nvidia = {
     modesetting.enable = true;
-    open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # The open source drivers don't work with the 1080Ti.
+    open = false;
   };
 
   programs.dconf.enable = true;
