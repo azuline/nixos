@@ -111,6 +111,7 @@
       networkmanagerapplet
       powertop
       git
+      pciutils
       vim
       wget
       nftables
