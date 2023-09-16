@@ -1,6 +1,6 @@
 XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 XDG_CONFIG_HOME="$HOME/.config"
-XDG_DESKTOP_DIR="$HOME/desktop"
+XDG_DESKTOP_DIR="$HOME/.desktop"
 XDG_DOWNLOAD_DIR="$HOME/downloads"
 XDG_DOCUMENTS_DIR="$HOME/documents"
 XDG_PICTURES_DIR="$HOME/images"

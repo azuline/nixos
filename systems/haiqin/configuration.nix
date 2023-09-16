@@ -25,6 +25,18 @@
     networkmanager.enable = true;
     extraHosts = ''
     '';
+    firewall = {
+      allowedTCPPorts = [
+        22000 # syncthing
+      ];
+      # For tailscale https://github.com/tailscale/tailscale/issues/4432.
+      checkReversePath = "loose";
+      interfaces.tailscale0 = {
+        allowedTCPPorts = [
+          22 # ssh
+        ];
+      };
+    };
   };
 
   time.timeZone = "America/New_York";
