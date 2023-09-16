@@ -85,6 +85,9 @@
       enable = true;
       package = pkgs.i3-gaps;
     };
+    screenSection = ''
+      Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
+    '';
     layout = "us";
     xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
     videoDrivers = [ "nvidia" ];
