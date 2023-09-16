@@ -57,6 +57,7 @@
       interfaces.tailscale0 = {
         allowedTCPPorts = [
           22 # ssh
+          19187 # atelier
         ];
       };
     };
