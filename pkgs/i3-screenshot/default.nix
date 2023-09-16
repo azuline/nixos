@@ -1,7 +1,8 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "i3-screenshot" ''
-  filename=~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+  # Use `-` instead of `:` because syncthing can't sync colons to Android.
+  filename=~/images/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
   case "$1" in
 
   select)

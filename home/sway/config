@@ -206,10 +206,9 @@ bindsym $mod+p exec $term --title pass -e bash -ic "sway-pass; exit"
 bindsym $mod+y exec $term --title yy -e sway-yy
 
 # Screenshots
-# bindsym --release Print exec maim --select ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
-# bindsym --release Shift+Print exec maim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
-bindsym --release Print exec grim -g "$(slurp)" ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
-bindsym --release Shift+Print exec grim ~/images/scrots/$(date +%Y-%m-%d_%H:%M:%S).png
+# Use `-` instead of `:` because syncthing can't sync colons to Android.
+bindsym --release Print exec grim -g "$(slurp)" ~/images/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+bindsym --release Shift+Print exec grim ~/images/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 
 # Sound
 bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+

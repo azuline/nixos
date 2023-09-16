@@ -80,7 +80,7 @@ abbr --add --global ta 'tmux attach -t'
 abbr --add --global tl 'tmux ls'
 
 # Image Uploading
-alias lastscrot='~/.nix-profile/bin/ls -d1t ~/images/scrots/* | head -n1'
+alias lastscrot='~/.nix-profile/bin/ls -d1t ~/images/Screenshots/* | head -n1'
 alias is='bubblegum upload (lastscrot)'
 alias iu='bubblegum upload'
 alias ims='bubblegum upload --host=imgur.com (lastscrot)'
