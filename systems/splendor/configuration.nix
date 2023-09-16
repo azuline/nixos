@@ -4,6 +4,7 @@
   system.stateVersion = "22.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.max-jobs = 12;
+  nixpkgs.config.allowUnfree = true;
 
   imports = [ ./hardware-configuration.nix ];
 
@@ -11,12 +12,23 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     initrd.luks.devices.root = {
-      device = "/dev/nvme0n1p2";
+      device = "/dev/disk/by-uuid/c1bc2705-939f-4dc4-b6ce-6527192463a9";
       preLVM = true;
     };
     # True by default; creates a warning when other parameters are unset. So we
     # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.
     swraid.enable = false;
+  };
+
+  fileSystems = {
+    "/mnt/elements" = {
+      device = "/dev/disk/by-uuid/01822c0a-0963-47b4-8f3c-a9765ea53093";
+      fsType = "ext4";
+    };
+    "/mnt/backup" = {
+      device = "/dev/disk/by-uuid/09ca7108-e0de-4fc8-9cbf-86fee575bba3";
+      fsType = "ext4";
+    };
   };
 
   networking = {
@@ -37,17 +49,12 @@
     useXkbConfig = true;
   };
 
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.extraPackages = [ pkgs.mesa.drivers ];
-
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
     displayManager = {
       defaultSession = "none+i3";
-      # startx.enable = true;
       # It's fine to enable autologin since we have disk encryption.
       autoLogin = {
         enable = true;
@@ -62,8 +69,18 @@
     };
     layout = "us";
     xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
-    # Disable libinput because I don't want to use the touchpad.
-    libinput.enable = false;
+    videoDrivers = [ "nvidia" ];
+  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   programs.dconf.enable = true;
@@ -93,6 +110,7 @@
       neovim
       networkmanagerapplet
       powertop
+      git
       vim
       wget
       nftables
@@ -102,7 +120,6 @@
 
   virtualisation.docker.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  services.mullvad-vpn.enable = true;
   services.upower.enable = true;
   programs.seahorse.enable = true;
   services.tailscale.enable = true;

@@ -8,8 +8,8 @@
     script = (
       if specialArgs.sys.host == "splendor" then
         ''
-          polybar left &
-          polybar right &
+          polybar splendor-left &
+          polybar splendor-right &
         ''
       else if specialArgs.sys.host == "haiqin" then
         ''

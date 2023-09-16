@@ -69,7 +69,7 @@
         {
           # This enables per-host configurations, typically screen size differences.
           host
-          # This is to block installation of GL-dependent packages on non-NixOS systems.
+          # This is to block installation of packages that do not work on non-NixOS systems.
         , nixos
           # Location of Nix directory.
         , nixDir
@@ -109,17 +109,14 @@
         nixosConfigurations = {
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit pkgs; };
             modules = [ ./systems/haiqin/configuration.nix ];
           };
           zen = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit pkgs; };
             modules = [ ./systems/zen/configuration.nix ];
           };
           splendor = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit pkgs; };
             modules = [ ./systems/splendor/configuration.nix ];
           };
         };
@@ -127,7 +124,7 @@
           splendor = makeHomeConfiguration {
             host = "splendor";
             nixDir = "/etc/nixos";
-            nixos = false;
+            nixos = true;
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle
