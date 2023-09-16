@@ -74,7 +74,9 @@ in
         ssh = {
           enable = true;
           port = 2222; # ssh port during boot for luks decryption; it will have a different host key from post-boot ssh
-          authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor" ];
+          authorizedKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
+          ];
           hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
         };
         # Set the shell profile to meet SSH connections with a decryption

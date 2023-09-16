@@ -7,6 +7,7 @@
       default-cache-ttl 14400
       max-cache-ttl 14400
     '';
+    services.ssh-agent.enable = true;
 
     imports = [
       ./aerc
