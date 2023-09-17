@@ -25,7 +25,6 @@
       beets
       bubblewrap
       cmus
-      intel-gpu-tools
       coreutils
       curl
       dasel
@@ -44,6 +43,7 @@
       graphviz
       htop
       imagemagick
+      intel-gpu-tools
       jq
       libsecret
       mediainfo
@@ -55,11 +55,13 @@
       neofetch
       nix-search-cli
       nmap
+      nnn
       pass
       pdftk
       pinentry
       poetry
       procps
+      rclone
       rename
       ripgrep
       rsync
@@ -74,7 +76,6 @@
       unixtools.netstat
       unrar
       unzip
-      rclone
       wget
       whois
       wireguard-tools
@@ -82,9 +83,8 @@
       woff2
       xclip
       xsv
-      # yt-dlp  # old version; TODO: Pull latest from github
-      nnn
       yq-go
+      yt-dlp
       zip
     ];
   };
@@ -101,40 +101,37 @@
     home.packages = with pkgs; [
       ack
       act
-      dprint
       berglas
       bfg-repo-cleaner
       black
       cabal-install
       ccls
       clang-tools
-      docker
-      levant
-      nomad
       consul
       devenv
+      docker
       docker-compose
+      dprint
       dune_3
       gdb
       gitAndTools.delta
       go
       gofumpt
       golangci-lint
-      gopls
       (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+      gopls
       haskell-language-server
       haskellPackages.implicit-hie
       jdk11
       kind
       kubectl
       kube-linter
+      levant
       luajitPackages.luacheck
-      node2nix
       minikube
       mypy
-      ruff
-      pgformatter
       nixpkgs-fmt
+      node2nix
       nodejs
       nodePackages.eslint
       nodePackages.eslint_d
@@ -142,23 +139,27 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      nomad
       ocamlformat
       ocamlPackages.utop
+      pgformatter
       pgmigrate
       php83
       php83Packages.composer
       postgresql_13
+      protobuf
       protoc-gen-go
       python
       rnix-lsp
-      protobuf
+      ruff
       selene
+      semgrep # TODO: Doesn't successfully build yet.
       shellcheck
-      # semgrep # TODO: Doesn't successfully build yet.
       sqlint
       stack
       stylua
       sumneko-lua-language-server
+      tokei
       universal-ctags
       watchman # Needed for tsserver
       yarn
@@ -183,41 +184,42 @@
       defaultApplications = {
         # Look in ~/.nix-profile/share/applications
         "application/pdf" = [ "org.gnome.Evince.desktop" ];
-        "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
-        "x-scheme-handler/mailto" = [ "aerc.desktop" ];
-        "x-www-browser" = [ "firefox.desktop" ];
+        "image/jpeg" = [ "feh.desktop" ];
+        "image/png" = [ "feh.desktop" ];
+        "x-scheme-handler/about" = [ "firefox.desktop" ];
         "x-scheme-handler/http" = [ "firefox.desktop" ];
         "x-scheme-handler/https" = [ "firefox.desktop" ];
-        "x-scheme-handler/about" = [ "firefox.desktop" ];
+        "x-scheme-handler/mailto" = [ "aerc.desktop" ];
+        "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
         "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-        "image/png" = [ "feh.desktop" ];
-        "image/jpeg" = [ "feh.desktop" ];
+        "x-www-browser" = [ "firefox.desktop" ];
       };
     };
 
     home.packages = with pkgs; [
-      brightnessctl
       arandr
+      brightnessctl
+      chromium
+      evince
       feh
+      firefox
+      fontforge-gtk
       gimp
       gnome3.gedit
+      gnome3.nautilus
       libnotify
       maim
-      peek
-      slack
-      fontforge-gtk
-      xdotool # For VimTex's forward search.
       paprefs
       pavucontrol
-      spotify
-      xbindkeys
-      xorg.xkill
-      chromium
-      firefox
-      zoom-us
-      gnome3.nautilus
+      peek
       simplescreenrecorder
-      evince
+      slack
+      spotify
+      vscode
+      xbindkeys
+      xdotool # For VimTex's forward search.
+      xorg.xkill
+      zoom-us
     ];
   };
 
@@ -225,13 +227,14 @@
     imports = [
       ./atelier
     ];
+
     home.packages = with pkgs; [
-      puddletag
-      zotero
       discord
+      puddletag
       signal
       tdesktop
       transmission-qt
+      zotero
     ];
   };
 
@@ -249,7 +252,6 @@
     ];
 
     home.packages = with pkgs; [
-      vscode
       bar-gpu
       bar-loadavg
       bar-vpn
@@ -264,11 +266,11 @@
       # papirus-icon-theme
       font-awesome_5
       iosevka-bin
+      noto-fonts
+      noto-fonts-cjk
       roboto
       source-code-pro
       source-sans-pro
-      noto-fonts
-      noto-fonts-cjk
     ];
   };
 }
