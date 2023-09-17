@@ -6,7 +6,10 @@
   nix.settings.max-jobs = 12;
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./transmission.nix
+  ];
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -124,13 +127,24 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
-  users.users.blissful = {
-    createHome = true;
-    home = "/home/blissful";
-    uid = 1000;
-    shell = pkgs.fish;
-    isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
+  users = {
+    users = {
+      blissful = {
+        createHome = true;
+        home = "/home/blissful";
+        uid = 1000;
+        shell = pkgs.fish;
+        isNormalUser = true;
+        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" ];
+      };
+      # Controlled by transmission.nix.
+      transmission = { };
+    };
+    groups = {
+      media = {
+        gid = 1001;
+      };
+    };
   };
 
   environment = {
@@ -141,15 +155,15 @@
     };
     systemPackages = with pkgs; [
       curl
+      git
       jq
       neovim
       networkmanagerapplet
-      powertop
-      git
+      nftables
       pciutils
+      powertop
       vim
       wget
-      nftables
       wireguard-tools
     ];
   };
