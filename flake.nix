@@ -69,8 +69,6 @@
         {
           # This enables per-host configurations, typically screen size differences.
           host
-          # This is to block installation of packages that do not work on non-NixOS systems.
-        , nixos
           # Location of Nix directory.
         , nixDir
           # Username for home-manager configuration.
@@ -81,7 +79,7 @@
         , packages ? [ ]
         }:
         let
-          sys = { inherit host nixos nixDir; };
+          sys = { inherit host nixDir; };
           bundles = import ./home;
         in
         home-manager.lib.homeManagerConfiguration {
@@ -92,8 +90,9 @@
             manual.manpages.enable = false;
 
             programs.home-manager.enable = true;
-            # Automatically set some environment variables that will ease usage of software 
-            # installed with nix on non-NixOS linux (fixing local issues, settings XDG_DATA_DIRS, etc).
+            # Automatically set some environment variables that will ease usage
+            # of software installed with nix on non-NixOS linux (fixing local
+            # issues, settings XDG_DATA_DIRS, etc).
             targets.genericLinux.enable = true;
             # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
             nixpkgs.config.allowUnfreePredicate = (pkg: true);
@@ -124,15 +123,13 @@
           splendor = makeHomeConfiguration {
             host = "splendor";
             nixDir = "/etc/nixos";
-            nixos = true;
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
               b.guiBundle
-              b.localBundle
+              b.personalMachineBundle
               b.i3Bundle
-              b.themeBundle
             ];
             packages = with pkgs; [
               win-switch
@@ -143,21 +140,18 @@
           haiqin = makeHomeConfiguration {
             host = "haiqin";
             nixDir = "/etc/nixos";
-            nixos = true;
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
               b.guiBundle
-              b.localBundle
+              b.personalMachineBundle
               b.i3Bundle
-              b.themeBundle
             ];
           };
           zen = makeHomeConfiguration {
             host = "zen";
             nixDir = "/etc/nixos";
-            nixos = false;
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle

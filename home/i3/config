@@ -163,7 +163,6 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+Shift+p focus parent
 
-# Scratchpad: Sway has a "scratchpad", which is a bag of holding for windows.
 # Move window to scratchpad
 bindsym $mod+Shift+minus move scratchpad
 # Show scratchpad windows

@@ -16,6 +16,6 @@ let
   );
 in
 {
-  programs.kitty.enable = specialArgs.sys.nixos;
+  programs.kitty.enable = true;
   xdg.configFile."kitty/kitty.conf".text = config;
 }

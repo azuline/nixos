@@ -1,7 +1,7 @@
 { pkgs, specialArgs, ... }:
 
 {
-  home.packages = if specialArgs.sys.nixos then [ pkgs.rofi ] else [ ];
+  home.packages = [ pkgs.rofi ];
 } // (if specialArgs.sys.host == "splendor" then {
   xdg.configFile."rofi/config.rasi".source = ./desktop/config.rasi;
   xdg.configFile."rofi/theme.rasi".source = ./desktop/theme.rasi;

@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    i3-atelier.identifier
+    i3-atelier.opener
+  ];
+
   systemd.user.services = {
     atelier = {
       Install = {

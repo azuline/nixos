@@ -198,48 +198,46 @@
     home.packages = with pkgs; [
       brightnessctl
       arandr
-      discord
       feh
       gimp
       gnome3.gedit
-      grim
       libnotify
       maim
       peek
-      signal
       slack
       fontforge-gtk
       xdotool # For VimTex's forward search.
-      slurp
       paprefs
       pavucontrol
-      # spotify  # Dynamic linking issues ._.
-      tdesktop
-      transmission-qt
+      spotify
       xbindkeys
       xorg.xkill
-      zathura
-    ] ++ (
-      if specialArgs.sys.nixos then [
-        chromium
-        firefox
-        puddletag
-        zoom-us
-        zotero
-        gnome3.nautilus
-        simplescreenrecorder
-        evince # Not b/c of GPU, but because dconf doesn't work outside NixOS.
-      ] else [ ]
-    );
+      chromium
+      firefox
+      zoom-us
+      gnome3.nautilus
+      simplescreenrecorder
+      evince
+    ];
   };
 
-  localBundle = { pkgs, ... }: {
+  personalMachineBundle = { pkgs, ... }: {
     imports = [
       ./atelier
+    ];
+    home.packages = with pkgs; [
+      puddletag
+      zotero
+      discord
+      signal
+      tdesktop
+      transmission-qt
     ];
   };
 
   i3Bundle = { pkgs, specialArgs, ... }: {
+    fonts.fontconfig.enable = true;
+
     imports = [
       ./dunst
       ./i3
@@ -255,43 +253,15 @@
       bar-gpu
       bar-loadavg
       bar-vpn
-      i3-atelier.identifier
-      i3-atelier.opener
       i3-change-audio
       i3-clear-clipboard
-      (if specialArgs.sys.nixos then i3-lock-nixos else i3-lock-debian)
+      i3-lock
       i3-pass
       i3-screenshot
       i3-yy
-    ];
-  };
 
-  swayBundle = { pkgs, ... }: {
-    imports = [
-      ./dunst
-      ./rofi
-      ./sway
-      ./swaylock
-      ./waybar
-    ];
-
-    home.packages = with pkgs; [
-      bar-vpn
-      sway-clear-clipboard
-      sway-pass
-      sway-yy
-      swayidle
-      swaywsr
-    ];
-  };
-
-  themeBundle = { pkgs, ... }: {
-    fonts.fontconfig.enable = true;
-
-    home.packages = with pkgs; [
       # plata-theme
       # papirus-icon-theme
-
       font-awesome_5
       iosevka-bin
       roboto

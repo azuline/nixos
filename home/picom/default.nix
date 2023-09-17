@@ -1,8 +1,6 @@
 { specialArgs, ... }:
 
 {
-  services.picom = {
-    enable = specialArgs.sys.nixos;
-  };
+  services.picom.enable = true;
   xdg.configFile."picom/picom.conf".source = ./picom.conf;
 }
