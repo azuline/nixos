@@ -6,6 +6,7 @@ for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
 for_window [title="^atelier$"] floating enable
+for_window [class="^feh$"] floating enable
 for_window [class="^Anki$"] floating enable
 # https://www.reddit.com/r/i3wm/comments/m27dwc/comment/hsi1l0m/?utm_source=share&utm_medium=web2x&context=3
 for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
