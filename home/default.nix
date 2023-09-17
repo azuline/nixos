@@ -207,7 +207,6 @@
       puddletag
       signal
       tdesktop
-      transmission-qt
       tremotesf
       zotero
     ];

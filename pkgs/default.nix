@@ -8,11 +8,11 @@ import nixpkgs {
         pkgs = super // pins;
       in
       pins // {
-        devenv = devenv.packages.${system}.devenv;
         bar-gpu = import ./bar-gpu { inherit pkgs; };
         bar-loadavg = import ./bar-loadavg { inherit pkgs; };
         bar-vpn = import ./bar-vpn { inherit pkgs; };
         decrypt-zen = import ./decrypt-zen { inherit pkgs; };
+        devenv = devenv.packages.${system}.devenv;
         discord = import ./discord { inherit pkgs srcs; };
         flexget = import ./flexget { inherit pkgs; };
         i3-atelier = import ./i3-atelier { inherit pkgs; };
@@ -25,6 +25,7 @@ import nixpkgs {
         neovim = import ./neovim { inherit pkgs; };
         python = import ./python { inherit pkgs; };
         signal = import ./signal { inherit pkgs; };
+        tremotesf = import ./tremotesf { inherit pkgs; };
         win-switch = import ./win-switch { inherit pkgs; };
       })
   ];

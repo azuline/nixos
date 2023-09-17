@@ -15,6 +15,8 @@
       "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
       "x-scheme-handler/unknown" = [ "firefox.desktop" ];
       "x-www-browser" = [ "firefox.desktop" ];
+      "application/x-bittorrent" = [ "tremotesf.desktop" ];
+      "x-scheme-handler/magnet" = [ "tremotesf.desktop" ];
     };
   };
 }
