@@ -161,4 +161,6 @@
   services.tailscale.enable = true;
   programs.fish.enable = true;
   services.blueman.enable = true;
+  # Doesn't work in Flakes.
+  programs.command-not-found.enable = false;
 }

@@ -173,4 +173,6 @@ in
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
   programs.fish.enable = true;
+  # Doesn't work in Flakes.
+  programs.command-not-found.enable = false;
 }
