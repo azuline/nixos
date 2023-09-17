@@ -1,5 +1,10 @@
 { pkgs }:
 
 pkgs.writeScriptBin "bar-vpn" ''
-  ${pkgs.wireguard-tools}/bin/wg show interfaces | ${pkgs.gnused}/bin/sed 's/ / • /g'
+  out="$(${pkgs.wireguard-tools}/bin/wg show interfaces | ${pkgs.gnused}/bin/sed 's/ / • /g')"
+  if [ -z "$out" ]; then
+    echo "N/A"
+  else
+    echo "$out"
+  fi
 ''
