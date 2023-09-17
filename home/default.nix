@@ -207,7 +207,6 @@
       maim
       peek
       signal
-      postman
       slack
       fontforge-gtk
       xdotool # For VimTex's forward search.
@@ -224,6 +223,7 @@
       if specialArgs.sys.nixos then [
         chromium
         firefox
+        puddletag
         zoom-us
         zotero
         gnome3.nautilus
