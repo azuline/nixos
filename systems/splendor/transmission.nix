@@ -1,6 +1,10 @@
 { ... }:
 
 {
+  # The NixOS systemd service restricts writes to the explicitly configured
+  # BindPaths.
+  systemd.services.transmission.serviceConfig.BindPaths = [ "/mnt/elements" ];
+
   services.transmission = {
     enable = true;
     user = "transmission";
@@ -28,7 +32,7 @@
       blocklist-url = "http://www.example.com/blocklist";
       cache-size-mb = 4;
       default-trackers = "";
-      dht-enabled = true;
+      dht-enabled = false;
       download-dir = "/mnt/elements/misc";
       download-limit = 100;
       download-limit-enabled = 0;
@@ -60,7 +64,7 @@
       ratio-limit = 2;
       ratio-limit-enabled = false;
       rename-partial-files = true;
-      scrape-paused-torrents-enabled = true;
+      scrape-paused-torrents-enabled = false;
       script-torrent-added-enabled = false;
       script-torrent-added-filename = null;
       script-torrent-done-enabled = false;

@@ -154,6 +154,7 @@
       XCURSOR_SIZE = "64";
     };
     systemPackages = with pkgs; [
+      borgbackup
       curl
       git
       jq
@@ -162,6 +163,7 @@
       nftables
       pciutils
       powertop
+      smartmontools
       vim
       wget
       wireguard-tools
