@@ -76,6 +76,7 @@ in
           port = 2222; # ssh port during boot for luks decryption; it will have a different host key from post-boot ssh
           authorizedKeys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPT/WSwL6oN2JNVy1juCAKk/gJ7KFgPVko3BX0nO3neQ haiqin"
           ];
           hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
         };
@@ -156,6 +157,7 @@ in
         extraGroups = [ "wheel" "docker" "nomad" "otel" ];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPT/WSwL6oN2JNVy1juCAKk/gJ7KFgPVko3BX0nO3neQ haiqin"
         ];
       };
     };
