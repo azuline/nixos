@@ -23,8 +23,8 @@ abbr --add --global scu 'systemctl --user'
 alias rm='trash'
 
 # Systemd
-alias --add --global sd "systemd"
-alias --add --global sdu "systemd --user"
+abbr --add --global sd "systemctl"
+abbr --add --global sdu "systemctl --user"
 
 # Kubectl
 abbr --add --global k "kubectl"
