@@ -78,8 +78,6 @@
   console = {
     font = "ter-i32b";
     packages = with pkgs; [ terminus_font ];
-    # Load the larger console font earlier in the boot process.
-    earlySetup = true;
     useXkbConfig = true;
   };
 
