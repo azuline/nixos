@@ -2,13 +2,14 @@ from pathlib import Path
 
 import click
 
+from src.backblaze import backup_backblaze
 from src.flash import backup_flash_drives
 from src.mount import mount_drives, unmount_drives
 
 
 @click.group()
 def cli() -> None:
-    """Work with backups."""
+    """Personal backup tool!"""
 
 
 @cli.group()
@@ -41,6 +42,17 @@ def unmount(devices: list[Path]) -> None:
 def backup(devices: list[Path]) -> None:
     """Create a new backup on the encrypted flash drives."""
     backup_flash_drives(devices)
+
+
+@cli.group()
+def backblaze() -> None:
+    """Work with the Backblaze B2 Restic repository."""
+
+
+@backblaze.command()
+def backup() -> None:
+    """Create a new backup in the Backblaze B2 with Restic."""
+    backup_backblaze()
 
 
 if __name__ == "__main__":
