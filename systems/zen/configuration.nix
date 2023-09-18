@@ -84,8 +84,8 @@ in
         # prompt that writes to /tmp/continue if successful.
         # https://mth.st/blog/nixos-initrd-ssh/
         postCommands = ''
-          echo 'cryptsetup open /dev/md/0 enc-pv && echo 'done' > /tmp/continue' >> /root/.profile
-          echo 'starting sshd...'
+          echo "mdadm --assemble /dev/md/0 && mdadm --assemble /dev/md/boot && cryptsetup open /dev/md/0 enc-pv && echo 'done' > /tmp/continue" >> /root/.profile
+          echo "starting sshd..."
         '';
       };
       # Block the boot process until /tmp/continue is written to

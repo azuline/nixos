@@ -174,6 +174,7 @@
       gimp
       libnotify
       maim
+      gnome.nautilus
       paprefs
       pavucontrol
       peek
