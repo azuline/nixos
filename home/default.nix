@@ -96,7 +96,6 @@
       cabal-install
       ccls
       clang-tools
-      consul
       devenv
       docker
       docker-compose
@@ -127,7 +126,6 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
-      nomad
       ocamlformat
       ocamlPackages.utop
       pgformatter

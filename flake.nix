@@ -4,7 +4,6 @@
   inputs = {
     flake-utils.url = github:numtide/flake-utils;
     nixpkgs.url = github:nixos/nixpkgs;
-    nixpkgs-peek-pin.url = github:nixos/nixpkgs?rev=b7d8c687782c8f9a1d425a7e486eb989654f6468;
     devenv = {
       url = github:cachix/devenv/latest;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,12 +12,12 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-search-cli-src = {
-      url = github:peterldowns/nix-search-cli;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     presage-src = {
       url = github:azuline/presage;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-search-cli-src = {
+      url = github:peterldowns/nix-search-cli;
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pgmigrate-src = {
@@ -44,7 +43,6 @@
     { self
     , home-manager
     , nixpkgs
-    , nixpkgs-peek-pin
     , flake-utils
     , devenv
     , nix-search-cli-src
@@ -61,8 +59,6 @@
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
-        # Latest peek breaks with ffmpeg issue.
-        peek = (import nixpkgs-peek-pin { inherit system; }).peek;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins devenv; };
       makeHomeConfiguration =
