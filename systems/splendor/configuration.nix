@@ -169,6 +169,7 @@
       vim
       wget
       wireguard-tools
+      restic
     ];
   };
 
