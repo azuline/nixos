@@ -90,9 +90,7 @@
     ];
 
     home.packages = with pkgs; [
-      ack
       act
-      berglas
       bfg-repo-cleaner
       black
       cabal-install
@@ -109,7 +107,6 @@
       go
       gofumpt
       golangci-lint
-      (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
       gopls
       haskell-language-server
       haskellPackages.implicit-hie
@@ -144,7 +141,7 @@
       rnix-lsp
       ruff
       selene
-      semgrep # TODO: Doesn't successfully build yet.
+      semgrep
       shellcheck
       sqlint
       stack
@@ -161,12 +158,9 @@
 
   guiBundle = { pkgs, specialArgs, ... }: {
     imports = [
-      ./calibre
-      ./keybase
       ./kitty
       ./mimetypes
       ./mpv
-      ./syncthing
       ./user-dirs
     ];
 
@@ -200,6 +194,9 @@
   personalMachineBundle = { pkgs, ... }: {
     imports = [
       ./atelier
+      ./calibre
+      ./keybase
+      ./syncthing
     ];
 
     home.packages = with pkgs; [
