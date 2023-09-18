@@ -104,6 +104,15 @@
         };
     in
     {
+      devShells = {
+        default = pkgs.mkShell {
+          buildInputs = [
+            pkgs.python
+            pkgs.ruff
+            pkgs.mypy
+          ];
+        };
+      };
       packages = {
         nixosConfigurations = {
           splendor = nixpkgs.lib.nixosSystem {

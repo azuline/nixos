@@ -4,30 +4,27 @@ import nixpkgs {
   inherit system;
   overlays = [
     (self: super:
-      let
-        pkgs = super // pins;
-      in
       pins // {
-        backup-scripts = pkgs.callPackage ./backup-scripts { };
-        bar-gpu = import ./bar-gpu { inherit pkgs; };
-        bar-loadavg = import ./bar-loadavg { inherit pkgs; };
-        bar-vpn = import ./bar-vpn { inherit pkgs; };
-        decrypt-zen = import ./decrypt-zen { inherit pkgs; };
+        backup-scripts = self.callPackage ./backup-scripts { };
+        bar-gpu = import ./bar-gpu { pkgs = super; };
+        bar-loadavg = import ./bar-loadavg { pkgs = super; };
+        bar-vpn = import ./bar-vpn { pkgs = super; };
+        decrypt-zen = import ./decrypt-zen { pkgs = super; };
         devenv = devenv.packages.${system}.devenv;
-        discord = import ./discord { inherit pkgs srcs; };
-        flexget = import ./flexget { inherit pkgs; };
-        i3-atelier = import ./i3-atelier { inherit pkgs; };
-        i3-change-audio = import ./i3-change-audio { inherit pkgs; };
-        i3-clear-clipboard = import ./i3-clear-clipboard { inherit pkgs; };
-        i3-lock = import ./i3-lock { inherit pkgs; };
-        i3-pass = import ./i3-pass { inherit pkgs; };
-        i3-screenshot = import ./i3-screenshot { inherit pkgs; };
-        i3-yy = import ./i3-yy { inherit pkgs; };
-        neovim = import ./neovim { inherit pkgs; };
-        python = import ./python { inherit pkgs; };
-        signal = import ./signal { inherit pkgs; };
-        tremotesf = import ./tremotesf { inherit pkgs; };
-        win-switch = import ./win-switch { inherit pkgs; };
+        discord = import ./discord { pkgs = super; inherit srcs; };
+        flexget = import ./flexget { pkgs = super; };
+        i3-atelier = import ./i3-atelier { pkgs = super; };
+        i3-change-audio = import ./i3-change-audio { pkgs = super; };
+        i3-clear-clipboard = import ./i3-clear-clipboard { pkgs = super; };
+        i3-lock = import ./i3-lock { pkgs = super; };
+        i3-pass = import ./i3-pass { pkgs = super; };
+        i3-screenshot = import ./i3-screenshot { pkgs = super; };
+        i3-yy = import ./i3-yy { pkgs = super; };
+        neovim = import ./neovim { pkgs = super; };
+        python = import ./python { pkgs = super; };
+        signal = import ./signal { pkgs = super; };
+        tremotesf = import ./tremotesf { pkgs = super; };
+        win-switch = import ./win-switch { pkgs = super; };
       })
   ];
 }

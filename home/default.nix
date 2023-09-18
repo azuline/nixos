@@ -124,6 +124,7 @@
       nodePackages.eslint_d
       nodePackages.pnpm
       nodePackages.prettier
+      nodePackages.pyright
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       ocamlformat

@@ -1,3 +1,10 @@
-{ writers, python }:
+{ python }:
 
-writers.writePython3Bin "backup-encrypted-drives" { flakeIgnore = [ "E501" ]; } (builtins.readFile ./encrypted-drives.py)
+python.pkgs.buildPythonPackage {
+  pname = "backup-scripts";
+  version = "0.0.0";
+  src = ./.;
+  propagatedBuildInputs = [
+    python.pkgs.click
+  ];
+}

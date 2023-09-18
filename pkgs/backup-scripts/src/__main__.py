@@ -1,0 +1,47 @@
+from pathlib import Path
+
+import click
+
+from src.flash import backup_flash_drives
+from src.mount import mount_drives, unmount_drives
+
+
+@click.group()
+def cli() -> None:
+    """Work with backups."""
+
+
+@cli.group()
+def flash() -> None:
+    """Work with the encrypted flash drives."""
+
+
+# fmt: off
+@flash.command()
+@click.argument("devices", type=click.Path(path_type=Path), nargs=-1, required=True)
+# fmt: on
+def mount(devices: list[Path]) -> None:
+    """Mount encrypted flash drives."""
+    mount_drives(devices)
+
+
+# fmt: off
+@flash.command()
+@click.argument("devices", type=click.Path(path_type=Path), nargs=-1, required=True)
+# fmt: on
+def unmount(devices: list[Path]) -> None:
+    """Unmount encrypted flash drives."""
+    unmount_drives(devices)
+
+
+# fmt: off
+@flash.command()
+@click.argument("devices", type=click.Path(path_type=Path), nargs=-1, required=True)
+# fmt: on
+def backup(devices: list[Path]) -> None:
+    """Create a new backup on the encrypted flash drives."""
+    backup_flash_drives(devices)
+
+
+if __name__ == "__main__":
+    cli()
