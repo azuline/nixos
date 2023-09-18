@@ -1,8 +1,8 @@
-{ pkgs }:
+{ original, makeDesktopItem }:
 
 # I can't type tremotesf. Too hard.
-pkgs.tremotesf.overrideAttrs (old: {
-  desktopItem = pkgs.makeDesktopItem {
+original.overrideAttrs (old: {
+  desktopItem = makeDesktopItem {
     name = "tremotesf";
     desktopName = "Transmission UI";
     exec = "tremotesf %U";

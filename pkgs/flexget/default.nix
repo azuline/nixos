@@ -1,23 +1,23 @@
-{ pkgs }:
+{ python3, fetchFromGitHub }:
 
 # Vendored and edited from nixpkgs to resolve:
 # https://github.com/Flexget/Flexget/issues/3699
 
 let
-  python = pkgs.python3.override {
-    packageOverrides = self: super: {
-      sqlalchemy = super.sqlalchemy.overridePythonAttrs (old: rec {
+  python = python3.override {
+    packageOverrides = final: prev: {
+      sqlalchemy = prev.sqlalchemy.overridePythonAttrs (old: rec {
         version = "1.4.47";
-        src = self.fetchPypi {
+        src = final.fetchPypi {
           pname = "SQLAlchemy";
           inherit version;
           hash = "sha256-lfwC9/wfMZmqpHqKdXQ3E0z2GOnZlMhO/9U/Uww4WG8=";
         };
         doCheck = false;
       });
-      transmission-rpc = super.transmission-rpc.overrideAttrs (_: rec {
+      transmission-rpc = prev.transmission-rpc.overrideAttrs (_: rec {
         version = "3.4.1";
-        src = pkgs.fetchFromGitHub {
+        src = fetchFromGitHub {
           owner = "Trim21";
           repo = "transmission-rpc";
           rev = "refs/tags/v${version}";
@@ -34,7 +34,7 @@ python.pkgs.buildPythonApplication rec {
   format = "pyproject";
 
   # Fetch from GitHub in order to use `requirements.in`
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "Flexget";
     repo = "Flexget";
     rev = "refs/tags/v${version}";

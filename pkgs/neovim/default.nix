@@ -1,6 +1,6 @@
-{ pkgs }:
+{ neovim }:
 
-pkgs.neovim.override {
+neovim.override {
   vimAlias = true;
   withPython3 = true;
   configure = {

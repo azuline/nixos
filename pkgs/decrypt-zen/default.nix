@@ -1,6 +1,6 @@
-{ pkgs }:
+{ writeShellScriptBin }:
 
-pkgs.writeShellScriptBin "decrypt-zen" ''
+writeShellScriptBin "decrypt-zen" ''
   #!/usr/bin/env bash
 
   printf "waiting for stage 1 to become available.."

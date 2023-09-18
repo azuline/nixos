@@ -1,6 +1,6 @@
-{ pkgs }:
+{ writeShellScriptBin, jq, coreutils, wireguard-tools }:
 
-pkgs.writeShellScriptBin "bar-vpn" ''
+writeShellScriptBin "bar-vpn" ''
   # To lookup tailscale.
   export PATH="/run/current-system/sw/bin:$PATH"
 
@@ -15,12 +15,12 @@ pkgs.writeShellScriptBin "bar-vpn" ''
   # If we're connected to tailscale, add the tailnet name to the VPN array.
   vpns=()
   if [[ "$(tailscale status)" != "Tailscale is stopped." ]]; then
-    tailnet_name="$(tailscale status --json | ${pkgs.jq}/bin/jq --raw-output '.MagicDNSSuffix' | ${pkgs.coreutils}/bin/cut -d'.' -f1)"
+    tailnet_name="$(tailscale status --json | ${jq}/bin/jq --raw-output '.MagicDNSSuffix' | ${coreutils}/bin/cut -d'.' -f1)"
     vpns+=("$tailnet_name")
   fi
 
   # And add any wireguard interfaces we're connected to.
-  vpns+=($(${pkgs.wireguard-tools}/bin/wg show interfaces))
+  vpns+=($(${wireguard-tools}/bin/wg show interfaces))
 
   # Print!
   if [ ''${#vpns[@]} -eq 0 ]; then

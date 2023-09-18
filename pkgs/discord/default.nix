@@ -1,5 +1,5 @@
-{ pkgs, srcs }:
+{ original, srcs }:
 
-pkgs.discord.overrideAttrs (_: {
+original.overrideAttrs (_: {
   src = srcs.discord;
 })

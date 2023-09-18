@@ -1,6 +1,6 @@
-{ pkgs }:
+{ writeShellScriptBin }:
 
-pkgs.writeShellScriptBin "i3-change-audio" ''
+writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
   wired_headphones_sink="alsa_output.pci-0000_0d_00.4.iec958-stereo"

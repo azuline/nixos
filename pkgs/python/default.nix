@@ -1,6 +1,6 @@
-{ pkgs }:
+{ python311 }:
 
-pkgs.python3.withPackages (ps: with ps; [
+python311.withPackages (ps: with ps; [
   flake8
   fonttools
   passlib

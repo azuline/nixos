@@ -3,28 +3,31 @@
 import nixpkgs {
   inherit system;
   overlays = [
-    (self: super:
+    (final: prev:
       pins // {
-        backup-scripts = self.callPackage ./backup-scripts { };
-        bar-gpu = import ./bar-gpu { pkgs = super; };
-        bar-loadavg = import ./bar-loadavg { pkgs = super; };
-        bar-vpn = import ./bar-vpn { pkgs = super; };
-        decrypt-zen = import ./decrypt-zen { pkgs = super; };
+        backup-scripts = final.callPackage ./backup-scripts { };
+        bar-gpu = prev.callPackage ./bar-gpu { };
+        bar-loadavg = prev.callPackage ./bar-loadavg { };
+        bar-vpn = prev.callPackage ./bar-vpn { };
+        decrypt-zen = prev.callPackage ./decrypt-zen { };
         devenv = devenv.packages.${system}.devenv;
-        discord = import ./discord { pkgs = super; inherit srcs; };
-        flexget = import ./flexget { pkgs = super; };
-        i3-atelier = import ./i3-atelier { pkgs = super; };
-        i3-change-audio = import ./i3-change-audio { pkgs = super; };
-        i3-clear-clipboard = import ./i3-clear-clipboard { pkgs = super; };
-        i3-lock = import ./i3-lock { pkgs = super; };
-        i3-pass = import ./i3-pass { pkgs = super; };
-        i3-screenshot = import ./i3-screenshot { pkgs = super; };
-        i3-yy = import ./i3-yy { pkgs = super; };
-        neovim = import ./neovim { pkgs = super; };
-        python = import ./python { pkgs = super; };
-        signal = import ./signal { pkgs = super; };
-        tremotesf = import ./tremotesf { pkgs = super; };
-        win-switch = import ./win-switch { pkgs = super; };
+        discord = prev.callPackage ./discord {
+          inherit srcs;
+          original = prev.discord;
+        };
+        flexget = prev.callPackage ./flexget { };
+        i3-atelier = prev.callPackage ./i3-atelier { };
+        i3-change-audio = prev.callPackage ./i3-change-audio { };
+        i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };
+        i3-lock = prev.callPackage ./i3-lock { };
+        i3-pass = prev.callPackage ./i3-pass { };
+        i3-screenshot = prev.callPackage ./i3-screenshot { };
+        i3-yy = prev.callPackage ./i3-yy { };
+        neovim = prev.callPackage ./neovim { };
+        python = prev.callPackage ./python { };
+        signal = prev.callPackage ./signal { };
+        tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };
+        win-switch = prev.callPackage ./win-switch { };
       })
   ];
 }

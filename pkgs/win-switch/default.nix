@@ -1,6 +1,6 @@
-{ pkgs }:
+{ writeShellScriptBin }:
 
-pkgs.writeShellScriptBin "win-switch" ''
+writeShellScriptBin "win-switch" ''
   function windowsOn() {
     # XRandr
     xrandr --output HDMI-0 --off
