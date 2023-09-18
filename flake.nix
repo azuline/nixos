@@ -133,9 +133,9 @@
               b.i3Bundle
             ];
             packages = with pkgs; [
+              backup-scripts
               win-switch
-              # Temporary while keyboard is broken.
-              xorg.xmodmap
+              xorg.xmodmap # Temporary while keyboard is broken.
             ];
           };
           haiqin = makeHomeConfiguration {

@@ -8,6 +8,7 @@ import nixpkgs {
         pkgs = super // pins;
       in
       pins // {
+        backup-scripts = pkgs.callPackage ./backup-scripts { };
         bar-gpu = import ./bar-gpu { inherit pkgs; };
         bar-loadavg = import ./bar-loadavg { inherit pkgs; };
         bar-vpn = import ./bar-vpn { inherit pkgs; };
