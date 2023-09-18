@@ -163,6 +163,7 @@
     ];
 
     home.packages = with pkgs; [
+      adoptopenjdk-icedtea-web # Run jlnp files.
       arandr
       brightnessctl
       chromium
