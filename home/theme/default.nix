@@ -22,10 +22,6 @@
     };
   };
 
-  home.packages = with pkgs; [
-    qt5ct
-    qt6ct
-    # libsForQt5.qtstyleplugins
-    # qt6Packages.qt6gtk2
-  ];
+  # We should set Qt up here, but it didn't really work the way we desired. So
+  # instead, we set it at the NixOS level.
 }
