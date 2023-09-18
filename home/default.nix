@@ -178,6 +178,7 @@
       peek
       simplescreenrecorder
       slack
+      speechd
       spotify
       vscode
       xbindkeys
