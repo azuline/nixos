@@ -1,3 +1,8 @@
+# Default aliases in fish; erase them so we start from a blank slate.
+functions --erase ls
+functions --erase ll
+functions --erase l
+
 alias ls='eza'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
@@ -17,16 +22,13 @@ abbr --add --global si 'perl -i -pe'
 alias s='perl -pe'
 alias si='perl -i -pe'
 alias xargs='xargs '
+
 # systemd
 abbr --add --global sc 'systemctl'
 abbr --add --global scu 'systemctl --user'
 
 # Safety
 alias rm='trash'
-
-# Systemd
-abbr --add --global sd "systemctl"
-abbr --add --global sdu "systemctl --user"
 
 # Kubectl
 abbr --add --global k "kubectl"

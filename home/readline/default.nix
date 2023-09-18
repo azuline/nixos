@@ -1,5 +1,6 @@
 { ... }:
 
 {
-  home.file.".inputrc".source = ./inputrc;
+  programs.readline.enable = true;
+  programs.readline.extraConfig = builtins.readFile ./inputrc;
 }
