@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-stable, ... }:
 
 let
   renew-certs = pkgs.writeShellScriptBin "renew-certs" ''

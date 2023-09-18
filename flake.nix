@@ -2,8 +2,13 @@
   description = "nix home-manager configuration";
 
   inputs = {
-    flake-utils.url = github:numtide/flake-utils;
+    # Rolling unstable nixpkgs, updated frequently.
     nixpkgs.url = github:nixos/nixpkgs;
+    # Pin a less frequently updated version of Nixpkgs for server services like
+    # Nomad, Consul, etc.
+    nixpkgs-stable.url = github:nixos/nixpkgs?rev=dc194ec7950463c8e3ed5237236ff40d48e9df81;
+    flake-utils.url = github:numtide/flake-utils;
+    # Flake sources.
     devenv = {
       url = github:cachix/devenv/latest;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +29,7 @@
       url = github:peterldowns/pgmigrate;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Non-nix inputs
+    # Non-flake sources.
     discord = {
       url = "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz";
       flake = false;
@@ -43,6 +48,7 @@
     { self
     , home-manager
     , nixpkgs
+    , nixpkgs-stable
     , flake-utils
     , devenv
     , nix-search-cli-src
@@ -61,6 +67,7 @@
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins devenv; };
+      pkgs-stable = import nixpkgs-stable { inherit system; };
       makeHomeConfiguration =
         {
           # This enables per-host configurations, typically screen size differences.
@@ -99,17 +106,18 @@
     {
       packages = {
         nixosConfigurations = {
+          splendor = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [ ./systems/splendor/configuration.nix ];
+          };
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [ ./systems/haiqin/configuration.nix ];
           };
           zen = nixpkgs.lib.nixosSystem {
             inherit system;
+            specialArgs = { inherit pkgs-stable; };
             modules = [ ./systems/zen/configuration.nix ];
-          };
-          splendor = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ ./systems/splendor/configuration.nix ];
           };
         };
         homeConfigurations = {

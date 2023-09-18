@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs-stable, ... }:
 
 let
   nomadConfig = "/etc/nixos/systems/zen/nomad";
   consulConfig = "/etc/nixos/systems/zen/consul";
 in
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs-stable; [
     nomad
     consul
     envoy
@@ -16,7 +16,7 @@ in
   system.activationScripts.cni.text = ''
     mkdir -p /opt
     rm -f /opt/cni
-    ln -sf ${pkgs.cni-plugins} /opt/cni
+    ln -sf ${pkgs-stable.cni-plugins} /opt/cni
   '';
 
   environment.variables = {
@@ -52,7 +52,7 @@ in
   };
 
   systemd.services.nomad = {
-    path = with pkgs; [ nomad consul iproute iptables cni-plugins ];
+    path = with pkgs-stable; [ nomad consul iproute iptables cni-plugins ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -60,7 +60,7 @@ in
       User = "root";
       Group = "root";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${pkgs.nomad}/bin/nomad nomad agent -config ${nomadConfig}";
+      ExecStart = "@${pkgs-stable.nomad}/bin/nomad nomad agent -config ${nomadConfig}";
       KillMode = "process";
       KillSignal = "SIGINT";
       LimitNOFILE = 65536;
@@ -73,7 +73,7 @@ in
   };
 
   systemd.services.consul = {
-    path = with pkgs; [ consul envoy iproute iptables cni-plugins ];
+    path = with pkgs-stable; [ consul envoy iproute iptables cni-plugins ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -81,7 +81,7 @@ in
       User = "consul";
       Group = "consul";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${pkgs.consul}/bin/consul consul agent -config-dir=${consulConfig}";
+      ExecStart = "@${pkgs-stable.consul}/bin/consul consul agent -config-dir=${consulConfig}";
       KillMode = "process";
       KillSignal = "SIGTERM";
       LimitNOFILE = 65536;
@@ -92,7 +92,7 @@ in
   };
 
   systemd.services.otelcollector = {
-    path = with pkgs; [ opentelemetry-collector-contrib ];
+    path = with pkgs-stable; [ opentelemetry-collector-contrib ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -100,7 +100,7 @@ in
       User = "otel";
       Group = "otel";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "${pkgs.opentelemetry-collector-contrib}/bin/otelcontribcol --config=file:/data/otel/config.yaml";
+      ExecStart = "${pkgs-stable.opentelemetry-collector-contrib}/bin/otelcontribcol --config=file:/data/otel/config.yaml";
       KillMode = "process";
       KillSignal = "SIGTERM";
       LimitNOFILE = 65536;
