@@ -15,6 +15,15 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
+    gtk2.extraConfig = ''
+      gtk-application-prefer-dark-theme = true
+    '';
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
   };
 
   home.pointerCursor = {
@@ -23,8 +32,8 @@
     package = pkgs.nordzy-cursor-theme;
     x11.enable = true;
   };
-  # While X is managed by NixOS, we enable this here so that the pointerCursor
-  # `xsetroot` command gets written.
+  # We set this here to ensure that the pointerCursor `xsetroot` command gets
+  # written.
   xsession.enable = true;
 
   # We should set Qt up here, but it didn't really work the way we desired. So

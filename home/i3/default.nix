@@ -13,5 +13,6 @@ let
   );
 in
 {
+  xsession.enable = true;
   xdg.configFile."i3/config".text = config;
 }

@@ -173,8 +173,6 @@
       firefox
       fontforge-gtk
       gimp
-      gnome3.gedit
-      gnome3.nautilus
       libnotify
       maim
       paprefs
