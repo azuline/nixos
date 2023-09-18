@@ -6,7 +6,7 @@
     nixpkgs.url = github:nixos/nixpkgs;
     # Pin a less frequently updated version of Nixpkgs for server services like
     # Nomad, Consul, etc.
-    nixpkgs-stable.url = github:nixos/nixpkgs?rev=dc194ec7950463c8e3ed5237236ff40d48e9df81;
+    nixpkgs-stable.url = github:nixos/nixpkgs?rev=4c5f59b5982cc53ebc104a44d666cbd85cf56184;
     flake-utils.url = github:numtide/flake-utils;
     # Flake sources.
     devenv = {
