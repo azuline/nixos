@@ -86,9 +86,6 @@
           inherit pkgs;
           extraSpecialArgs = { inherit sys srcs; };
           modules = chooseBundles bundles ++ [{
-            # temporarily TODO
-            manual.manpages.enable = false;
-
             programs.home-manager.enable = true;
             # Automatically set some environment variables that will ease usage
             # of software installed with nix on non-NixOS linux (fixing local

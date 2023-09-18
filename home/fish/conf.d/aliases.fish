@@ -5,6 +5,8 @@ alias info='info --vi-keys'
 alias xc='xclip -sel c'
 alias xp='xclip -sel c -o'
 
+alias n='nnn'
+
 abbr --add --global hm 'home-manager'
 abbr --add --global rscp 'rsync -ah --progress'
 
