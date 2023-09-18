@@ -210,15 +210,15 @@
   };
 
   i3Bundle = { pkgs, specialArgs, ... }: {
-    fonts.fontconfig.enable = true;
-
     imports = [
       ./dunst
+      ./fonts
       ./i3
       ./i3wsr
       ./picom
       ./polybar
       ./rofi
+      ./theme
       ./xbindkeys
     ];
 
@@ -232,16 +232,6 @@
       i3-pass
       i3-screenshot
       i3-yy
-
-      # plata-theme
-      # papirus-icon-theme
-      font-awesome_5
-      iosevka-bin
-      noto-fonts
-      noto-fonts-cjk
-      roboto
-      source-code-pro
-      source-sans-pro
     ];
   };
 }

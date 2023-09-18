@@ -170,7 +170,14 @@
     ];
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";
+    style = "gtk2";
+  };
+
   virtualisation.docker.enable = true;
+  services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.upower.enable = true;
   programs.seahorse.enable = true;
