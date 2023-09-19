@@ -3,6 +3,7 @@ Unlock, mount, and unlock the encrypted drives.
 """
 
 import logging
+import re
 import shlex
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,6 +11,9 @@ from pathlib import Path
 from src.common import shell
 
 logger = logging.getLogger(__name__)
+
+MOUNT_DIR = Path.home().resolve() / "mnt" / "encrypted-drives"
+DRIVE_NAME_PREFIX = "backup-flash"
 
 
 @dataclass
@@ -32,14 +36,7 @@ def mount_drives(devices: list[Path]) -> list[UnlockedDrive]:
 
     # Clean up in case a previous run failed.
     logger.info("Cleaning up any previous runs...")
-    for d in drives:
-        # Unmount the drive if it wasn't previously unmounted. Errors are OK.
-        shell(f"sudo umount --quiet {shlex.quote(str(d.mount))}", check=False)
-        # And if the drive is unlocked, lock it.
-        result = shell(f"sudo cryptsetup status {shlex.quote(d.name)}", check=False, capture=True)
-        if "is active." in result.stdout.decode():
-            logger.info(f"Closed {d.device} from a previous run.")
-            shell(f"sudo cryptsetup luksClose {shlex.quote(d.name)}")
+    unmount_drives()
 
     # Open and mount the drives.
     for d in drives:
@@ -52,14 +49,35 @@ def mount_drives(devices: list[Path]) -> list[UnlockedDrive]:
     return drives
 
 
-def unmount_drives(devices: list[Path]) -> None:
-    drives = parse_drives(devices)
+def unmount_drives() -> None:
+    """
+    Unmounts everything mounted in the mount directory and then locks the crypto_LUKS devices
+    matching the name scheme.
+    """
+    # First, unmount everything.
+    regex = re.compile(r".+? on (\/.*?) type .+")
+    result = shell("mount", capture=True)
+    for line in result.stdout.decode().splitlines():
+        m = regex.match(line)
+        if not m:
+            raise Exception(f"Failed to parse output of mount: {line=}")
+        mountpoint = Path(m[1])
+        if mountpoint.parent == MOUNT_DIR.resolve():
+            logger.debug(f"UNMOUNTING: Matched mountpoint {mountpoint} with MOUNT_DIR.")
+            shell(f"sudo umount {shlex.quote(str(mountpoint))}")
+            mountpoint.rmdir()
+        else:
+            logger.debug(f"SKIPPING: Did not match mountpoint {mountpoint} with MOUNT_DIR.")
 
-    for d in drives:
-        logger.info(f"Unmounting drive {d.device}...")
-        shell(f"sudo umount {shlex.quote(str(d.mount))}")
-        logger.info(f"Locking drive {d.device}...")
-        shell(f"sudo cryptsetup luksClose {shlex.quote(d.name)}")
+    # And then lock the devices.
+    result = shell("sudo dmsetup ls --target crypt | awk '{ print $1 }'", capture=True)
+    for line in result.stdout.decode().splitlines():
+        device = line.strip()
+        if device.startswith(DRIVE_NAME_PREFIX):
+            logger.debug(f"CLOSING: Matched device {device} with DRIVE_NAME_PREFIX.")
+            shell(f"sudo cryptsetup luksClose {shlex.quote(device)}")
+        else:
+            logger.debug(f"SKIPPING: Did not match device {device} with DRIVE_NAME_PREFIX.")
 
 
 def parse_drives(devices: list[Path]) -> list[UnlockedDrive]:
@@ -74,10 +92,13 @@ def parse_drives(devices: list[Path]) -> list[UnlockedDrive]:
 
     # Prepare the mount directory. Create it if it's missing so that we don't
     # get errors later.
-    mount_dir = Path.home() / "mnt" / "encrypted-drives"
-    mount_dir.mkdir(parents=True, exist_ok=True)
+    MOUNT_DIR.mkdir(parents=True, exist_ok=True)
 
     return [
-        UnlockedDrive(device=str(d), name=f"enc-{d.name}", mount=mount_dir / f"enc-{d.name}")
+        UnlockedDrive(
+            device=str(d),
+            name=f"{DRIVE_NAME_PREFIX}-{d.name}",
+            mount=MOUNT_DIR / f"{DRIVE_NAME_PREFIX}-{d.name}",
+        )
         for d in devices
     ]

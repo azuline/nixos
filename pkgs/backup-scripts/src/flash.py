@@ -51,4 +51,4 @@ def backup_flash_drives(devices: list[Path]) -> None:
 
     input("Backup completed. Press any key to close the drives...")
 
-    unmount_drives(devices)
+    unmount_drives()

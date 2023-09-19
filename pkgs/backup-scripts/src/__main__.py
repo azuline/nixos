@@ -28,11 +28,10 @@ def mount(devices: list[Path]) -> None:
 
 # fmt: off
 @flash.command()
-@click.argument("devices", type=click.Path(path_type=Path), nargs=-1, required=True)
 # fmt: on
-def unmount(devices: list[Path]) -> None:
+def unmount() -> None:
     """Unmount encrypted flash drives."""
-    unmount_drives(devices)
+    unmount_drives()
 
 
 # fmt: off
