@@ -47,7 +47,7 @@ def main() -> None:
     directory = args.directory
 
     result = subprocess.run(
-        f"fd -e jpg -e png . {quote(directory)} | xargs -d'\n' exiftool -filepath -FileModifyDate -DateTimeOriginal -createdate -T | sort",
+        f"fd -e jpg -e jpeg -e png . {quote(directory)} | xargs -d'\n' exiftool -filepath -FileModifyDate -DateTimeOriginal -createdate -T | sort",
         shell=True,
         check=True,
         stdout=subprocess.PIPE,
