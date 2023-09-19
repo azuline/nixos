@@ -1,5 +1,5 @@
 """
-Execute a backup onto the Backblaze B2.
+Execute a backup onto the Backblaze B2 cloud storage via Restic.
 """
 
 import subprocess
@@ -40,6 +40,8 @@ restic backup \
     "$HOME/music" \
     "$HOME/wlop" \
     "$HOME/.password-store" \
+    "$HOME/.gnupg/pubring.kbx" \
+    "$HOME/.gnupg/private-keys-v1.d" \
     "$HOME/.ssh"
 """
 

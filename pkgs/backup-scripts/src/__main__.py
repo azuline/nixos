@@ -51,7 +51,7 @@ def backblaze() -> None:
 
 @backblaze.command()
 def backup() -> None:
-    """Create a new backup in the Backblaze B2 with Restic."""
+    """Create a new backup in Backblaze B2 with Restic."""
     backup_backblaze()
 
 
