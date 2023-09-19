@@ -5,7 +5,6 @@ Execute a backup onto the Backblaze B2.
 import subprocess
 
 # TODO: artbooks?
-# TODO: wlop after cleanup
 # TODO: atelier after cleanup
 # TODO: archive after cleanup
 RESTIC_SCRIPT = """
@@ -39,6 +38,7 @@ restic backup \
     "$HOME/images" \
     "$HOME/kpop" \
     "$HOME/music" \
+    "$HOME/wlop" \
     "$HOME/.password-store" \
     "$HOME/.ssh"
 """
