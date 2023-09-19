@@ -2,9 +2,9 @@ from pathlib import Path
 
 import click
 
-from src.backblaze import backup_backblaze
-from src.flash import backup_flash_drives
-from src.mount import mount_drives, unmount_drives
+from backup_scripts.backblaze import backup_backblaze
+from backup_scripts.flash import backup_flash_drives
+from backup_scripts.mount import mount_drives, unmount_drives
 
 
 @click.group()

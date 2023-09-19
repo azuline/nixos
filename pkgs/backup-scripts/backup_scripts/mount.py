@@ -8,7 +8,7 @@ import shlex
 from dataclasses import dataclass
 from pathlib import Path
 
-from src.common import shell
+from backup_scripts.common import shell
 
 logger = logging.getLogger(__name__)
 

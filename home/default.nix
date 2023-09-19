@@ -23,11 +23,13 @@
       dasel
       decrypt-zen
       dnsutils
+      exiftool
       eza
       fd
       ffmpeg
       findutils
       flexget
+      fx
       fzf
       gawk
       gcc
@@ -37,6 +39,7 @@
       htop
       imagemagick
       intel-gpu-tools
+      jhead
       jq
       libsecret
       mediainfo

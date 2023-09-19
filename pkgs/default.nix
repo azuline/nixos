@@ -5,7 +5,8 @@ import nixpkgs {
   overlays = [
     (final: prev:
       pins // {
-        backup-scripts = final.callPackage ./backup-scripts { };
+        backup-scripts = prev.callPackage ./backup-scripts { };
+        exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
         bar-gpu = prev.callPackage ./bar-gpu { };
         bar-loadavg = prev.callPackage ./bar-loadavg { };
         bar-vpn = prev.callPackage ./bar-vpn { };

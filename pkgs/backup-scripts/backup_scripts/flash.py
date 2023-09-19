@@ -9,8 +9,8 @@ import socket
 from datetime import datetime
 from pathlib import Path
 
-from src.common import shell
-from src.mount import mount_drives, unmount_drives
+from backup_scripts.common import shell
+from backup_scripts.mount import mount_drives, unmount_drives
 
 logger = logging.getLogger(__name__)
 
