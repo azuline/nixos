@@ -190,8 +190,8 @@ EOF
       }
       template {
         data          = <<EOF
-ssl_certificate /certs/live/sunsetglow.net/fullchain.pem;
-ssl_certificate_key /certs/live/sunsetglow.net/privkey.pem;
+ssl_certificate /certs/sunsetglow.net/fullchain.pem;
+ssl_certificate_key /certs/sunsetglow.net/key.pem;
 EOF
         destination   = "local/snippets/ssl-sunsetglow.net.conf"
         change_mode   = "signal"

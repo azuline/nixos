@@ -25,7 +25,7 @@ client {
     read_only = true
   }
   host_volume "sunsetglow-certs" {
-    path      = "/data/certs"
+    path      = "/var/lib/acme"
     read_only = true
   }
   host_volume "sunsetglow-site" {

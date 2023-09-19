@@ -1,10 +1,6 @@
 { config, lib, pkgs, pkgs-stable, ... }:
 
 let
-  renew-certs = pkgs.writeShellScriptBin "renew-certs" ''
-    ${pkgs.certbot}/bin/certbot certonly --manual --preferred-challenges=dns --agree-tos -d sunsetglow.net -d *.sunsetglow.net
-    echo "Move the certs to /data/certs; automate this some day."
-  '';
   mdadmConf = ''
     HOMEHOST zen
     ARRAY /dev/md/0 level=raid1 num-devices=2 metadata=1.2 name=zen:md0 UUID=06d936cd:a777dfc1:6d15ed88:ddc88fa2
@@ -131,7 +127,6 @@ in
       networkmanagerapplet
       powertop
       presage
-      renew-certs
       smartmontools
       vim
       wget
@@ -144,6 +139,21 @@ in
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "blissful@sunsetglow.net";
+    certs."sunsetglow.net" = {
+      domain = "sunsetglow.net";
+      extraDomainNames = [ "*.sunsetglow.net" ];
+      dnsProvider = "porkbun";
+      environmentFile = "/secrets/acme/credentials";
+      postRun = ''
+        source /secrets/acme/nomad.env
+        ${pkgs.nomad}/bin/nomad job allocs -json nginx | ${pkgs.jq}/bin/jq -r '.[0].ID' | ${pkgs.findutils}/bin/xargs ${pkgs.nomad}/bin/nomad alloc restart
+      '';
     };
   };
 
