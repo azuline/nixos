@@ -47,7 +47,7 @@ def main() -> None:
     directory = args.directory
 
     result = subprocess.run(
-        f"fd -e jpg -e jpeg -e png . {quote(directory)} | xargs -d'\n' exiftool -filepath -FileModifyDate -DateTimeOriginal -createdate -T | sort",
+        f"fd -e jpg -e jpeg -e png -e gif -e heic -e webp . {quote(directory)} | xargs -d'\n' exiftool -filepath -FileModifyDate -DateTimeOriginal -createdate -T | sort",  # noqa: E501
         shell=True,
         check=True,
         stdout=subprocess.PIPE,
@@ -89,18 +89,17 @@ def main() -> None:
             logline += " m>d m>c"
             writes.extend(["-createdate<FileModifyDate", "-DateTimeOriginal<FileModifyDate", "-FileModifyDate<FileModifyDate"])
 
-        # Print the log line to console.
+        logger.debug(f"Variables: {filepath=} {mtime=} {datetimeoriginal=} {createdate=} {writes=}")
+
         if not writes:
-            logline += " no changes"
-        logger.info(logline)
-        logger.debug(f"Variables: {filepath=} {mtime=} {datetimeoriginal=} {createdate=}")
+            continue
 
         # Dxecute the shell command.
-        if writes:
-            cmd = ["exiftool", "-overwrite_original", *writes, filepath]
-            logger.debug(f"shell: {cmd}")
-            if not dryrun:
-                subprocess.run(cmd, check=True, stdout=subprocess.PIPE)
+        logger.info(logline)
+        cmd = ["exiftool", "-overwrite_original", *writes, filepath]
+        logger.debug(f"shell: {cmd}")
+        if not dryrun:
+            subprocess.run(cmd, check=True, stdout=subprocess.PIPE)
 
 
 if __name__ == "__main__":

@@ -6,6 +6,8 @@ for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
 for_window [title="^atelier$"] floating enable
+for_window [title="^Volume Control$"] floating enable
+for_window [title="^Bluetooth Devices$"] floating enable
 for_window [class="^feh$"] floating enable
 for_window [class="^Anki$"] floating enable
 # https://www.reddit.com/r/i3wm/comments/m27dwc/comment/hsi1l0m/?utm_source=share&utm_medium=web2x&context=3
@@ -82,6 +84,7 @@ set $term kitty
 
 # Open terminal
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term nnn
 
 # Kill window
 bindsym $mod+q kill
