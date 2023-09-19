@@ -103,6 +103,12 @@
 
   environment = {
     interactiveShellInit = builtins.readFile ./bashrc;
+    # Unset NixOS default shell aliases.
+    shellAliases = {
+      l = null;
+      ls = null;
+      ll = null;
+    };
     variables = {
       EDITOR = "nvim";
       XCURSOR_SIZE = "64";

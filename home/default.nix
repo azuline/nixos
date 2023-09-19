@@ -173,9 +173,9 @@
       firefox
       fontforge-gtk
       gimp
+      gnome.nautilus
       libnotify
       maim
-      gnome.nautilus
       paprefs
       pavucontrol
       peek
