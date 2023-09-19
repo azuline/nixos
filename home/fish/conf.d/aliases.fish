@@ -10,12 +10,16 @@ alias info='info --vi-keys'
 alias xc='xclip -sel c'
 alias xp='xclip -sel c -o'
 
-alias n='nnn'
-
-abbr --add --global hm 'home-manager'
-abbr --add --global rscp 'rsync -ah --progress'
-
+# Minor conveniences.
 abbr --add --global v 'vim'
+abbr --add --global n 'nnn'
+abbr --add --global hm 'home-manager'
+
+abbr --add --global rscp 'rsync -ah --progress'
+abbr --add --global ytv 'yt-dlp --remux-video mkv'
+abbr --add --global ytm 'yt-dlp -x --audio-format opus'
+
+# Substitutions.
 abbr --add --global s 'perl -pe'
 abbr --add --global si 'perl -i -pe'
 # Set these as aliases too for use in xargs.
@@ -23,12 +27,12 @@ alias s='perl -pe'
 alias si='perl -i -pe'
 alias xargs='xargs '
 
-# systemd
-abbr --add --global sc 'systemctl'
-abbr --add --global scu 'systemctl --user'
-
 # Safety
 alias rm='trash'
+
+# Systemd
+abbr --add --global sc 'systemctl'
+abbr --add --global scu 'systemctl --user'
 
 # Kubectl
 abbr --add --global k "kubectl"
