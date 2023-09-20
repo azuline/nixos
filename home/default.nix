@@ -181,7 +181,6 @@
       firefox
       fontforge-gtk
       gimp
-      gnome.nautilus
       libnotify
       maim
       paprefs
