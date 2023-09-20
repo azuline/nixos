@@ -7,8 +7,12 @@
       # Look in ~/.nix-profile/share/applications
       "application/pdf" = [ "org.gnome.Evince.desktop" ];
       "application/x-bittorrent" = [ "tremotesf.desktop" ];
-      "image/jpeg" = [ "feh.desktop" ];
-      "image/png" = [ "feh.desktop" ];
+      "image/bif" = [ "nsxiv.desktop" ];
+      "image/heic" = [ "nsxiv.desktop" ];
+      "image/jpeg" = [ "nsxiv.desktop" ];
+      "image/png" = [ "nsxiv.desktop" ];
+      "image/tiff" = [ "nsxiv.desktop" ];
+      "image/webp" = [ "nsxiv.desktop" ];
       "text/x-lua" = [ "nvim.desktop" ];
       "x-scheme-handler/about" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];

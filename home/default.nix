@@ -183,6 +183,7 @@
       gnome.nautilus
       libnotify
       maim
+      nsxiv
       paprefs
       pavucontrol
       peek

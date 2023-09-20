@@ -1,28 +1,6 @@
 { pkgs, srcs, ... }:
 
 let
-  runtimeDeps = with pkgs; [
-    atool
-    bat
-    coreutils
-    eza
-    ffmpegthumbnailer
-    file
-    fontpreview
-    glow
-    gnome-epub-thumbnailer
-    html2text
-    imagemagick
-    jq
-    mediainfo
-    mpv
-    nsxiv
-    p7zip
-    poppler_utils
-    unrar
-    unzip
-    w3m
-  ];
   nnnWrapped = (pkgs.nnn.override {
     withPcre = true;
   }).overrideAttrs (old: {
@@ -46,6 +24,7 @@ let
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TRASH=1
         export NNN_TMPFILE=/home/blissful/tmp/.lastd
+        export NNN_PREVIEWDIR=/home/blissful/.cache/nsxiv
         $out/bin/.nnn-unwrapped "\''${@:-.}"
       EOF
       cat - >> $out/bin/nnn <<EOF
@@ -62,11 +41,33 @@ in
   programs.nnn = {
     enable = true;
     package = nnnWrapped;
-    extraPackages = runtimeDeps;
+    extraPackages = with pkgs; [
+      atool
+      bat
+      coreutils
+      eza
+      ffmpegthumbnailer
+      file
+      fontpreview
+      glow
+      gnome-epub-thumbnailer
+      html2text
+      imagemagick
+      jq
+      mediainfo
+      mpv
+      nsxiv
+      p7zip
+      poppler_utils
+      unrar
+      unzip
+      w3m
+    ];
     plugins = {
       mappings = {
-        p = "preview-tui";
         f = "fzopen";
+        i = "imgview";
+        p = "preview-tui";
       };
       src = srcs.nnn-for-plugins + "/plugins";
     };
