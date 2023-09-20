@@ -24,6 +24,7 @@ import nixpkgs {
         i3-yy = prev.callPackage ./i3-yy { };
         file-uploader = prev.callPackage ./file-uploader { };
         neovim = prev.callPackage ./neovim { };
+        nsxiv = prev.callPackage ./nsxiv { inherit srcs; original = prev.nsxiv; };
         python = prev.callPackage ./python { };
         signal = prev.callPackage ./signal { };
         tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };

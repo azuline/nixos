@@ -427,6 +427,22 @@
         "type": "github"
       }
     },
+    "nsxiv-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1695249554,
+        "narHash": "sha256-cHRnXW8VtJlZE0L1SrPpdFrd/wzNs1AQHwV+r5AsCnM=",
+        "owner": "azuline",
+        "repo": "nsxiv",
+        "rev": "b0a8eea23d54b356496f4b3d41efbecb40eaebc1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "azuline",
+        "repo": "nsxiv",
+        "type": "github"
+      }
+    },
     "pgmigrate-src": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -511,6 +527,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nnn-for-plugins": "nnn-for-plugins",
+        "nsxiv-src": "nsxiv-src",
         "pgmigrate-src": "pgmigrate-src",
         "presage-src": "presage-src"
       }

@@ -34,6 +34,10 @@
       url = "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz";
       flake = false;
     };
+    nsxiv-src = {
+      url = github:azuline/nsxiv;
+      flake = false;
+    };
     nnn-for-plugins = {
       url = github:jarun/nnn;
       flake = false;
@@ -60,12 +64,13 @@
     , pgmigrate-src
       # Non-Nix sources
     , discord
+    , nsxiv-src
     , nnn-for-plugins
     , fish-plugin-wd
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
-      srcs = { inherit discord nnn-for-plugins fish-plugin-wd fish-plugin-nix-env; };
+      srcs = { inherit discord nsxiv-src nnn-for-plugins fish-plugin-wd fish-plugin-nix-env; };
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};

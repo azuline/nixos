@@ -167,6 +167,7 @@
       ./kitty
       ./mimetypes
       ./mpv
+      ./nsxiv
       ./user-dirs
     ];
 
@@ -183,7 +184,6 @@
       gnome.nautilus
       libnotify
       maim
-      nsxiv
       paprefs
       pavucontrol
       peek
