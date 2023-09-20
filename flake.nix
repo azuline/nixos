@@ -106,10 +106,13 @@
     {
       devShells = {
         default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.python
-            pkgs.ruff
-            pkgs.mypy
+          buildInputs = with pkgs; [
+            python
+            ruff
+            mypy
+            python.pkgs.aiohttp
+            python.pkgs.pyperclip
+            python.pkgs.python-dotenv
           ];
         };
       };

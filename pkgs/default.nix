@@ -22,6 +22,7 @@ import nixpkgs {
         i3-pass = prev.callPackage ./i3-pass { };
         i3-screenshot = prev.callPackage ./i3-screenshot { };
         i3-yy = prev.callPackage ./i3-yy { };
+        file-uploader = prev.callPackage ./file-uploader { };
         neovim = prev.callPackage ./neovim { };
         python = prev.callPackage ./python { };
         signal = prev.callPackage ./signal { };

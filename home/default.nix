@@ -27,6 +27,7 @@
       eza
       fd
       ffmpeg
+      file-uploader
       findutils
       flexget
       fx
