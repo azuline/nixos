@@ -7,6 +7,7 @@
       ./git
       ./gpg
       ./neovim
+      ./nnn
       ./readline
       ./ssh
       ./tmux
@@ -27,6 +28,7 @@
       eza
       fd
       ffmpeg
+      file
       file-uploader
       findutils
       flexget
@@ -52,7 +54,6 @@
       neofetch
       nix-search-cli
       nmap
-      nnn
       pass
       pdftk
       pinentry
@@ -73,6 +74,7 @@
       unixtools.netstat
       unrar
       unzip
+      w3m
       wget
       whois
       wireguard-tools

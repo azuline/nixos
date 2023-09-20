@@ -411,6 +411,22 @@
         "type": "github"
       }
     },
+    "nnn-for-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1695233514,
+        "narHash": "sha256-tAR+uC8OrCX9Py55/R+OdHzWCsCzLjfnhdHbXBztTM8=",
+        "owner": "jarun",
+        "repo": "nnn",
+        "rev": "dd07aeb70323c70ae01314df2399afb71ef77780",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jarun",
+        "repo": "nnn",
+        "type": "github"
+      }
+    },
     "pgmigrate-src": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -494,6 +510,7 @@
         "nix-search-cli-src": "nix-search-cli-src",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable_2",
+        "nnn-for-plugins": "nnn-for-plugins",
         "pgmigrate-src": "pgmigrate-src",
         "presage-src": "presage-src"
       }
