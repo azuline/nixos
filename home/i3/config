@@ -216,7 +216,7 @@ bindsym --release Shift+Print exec i3-screenshot screen
 # Sound
 bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume $(pactl get-default-sink) +5%'
 bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume $(pactl get-default-sink) -5%'
-bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 bindsym Pause exec i3-change-audio
 bindsym XF86Calculator exec win-switch
 
