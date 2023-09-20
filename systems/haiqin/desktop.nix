@@ -1,9 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
+    dpi = 172;
     displayManager = {
       defaultSession = "none+i3";
       # startx.enable = true;

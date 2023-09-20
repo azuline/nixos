@@ -10,7 +10,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./desktop
+    ./desktop.nix
   ];
 
   boot = {
