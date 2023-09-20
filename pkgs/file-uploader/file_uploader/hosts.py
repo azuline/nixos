@@ -115,10 +115,29 @@ async def litterbox_upload(session: aiohttp.ClientSession, filepath: Path) -> st
         return await resp.text()
 
 
+async def ptpimg_upload(session: aiohttp.ClientSession, filepath: Path) -> str:
+    _enforce_extensions(filepath, ["jpg", "jpeg", "png", "gif"])
+    apikey = _read_credential("PTPIMG_KEY")
+    with filepath.open("rb") as fp:
+        resp = await session.post(
+            "https://ptpimg.me/upload.php",
+            data={"api_key": apikey, "file-upload[0]": fp},
+            headers={
+                "referer": "https://ptpimg.me/index.php",
+                "User-Agent": USER_AGENT,
+                "Accept": "application/json",
+            },
+        )
+        return await _extract_from_json_response(
+            resp, lambda d: f"https://ptpimg.me/{d[0]['code']}.{d[0]['ext']}"
+        )
+
+
 HOSTS: dict[str, UploadFunction] = {
     "sunsetglow": sunsetglow_upload,
     "vgy": vgy_upload,
     "imgur": imgur_upload,
     "catbox": catbox_upload,
     "litterbox": litterbox_upload,
+    "ptpimg": ptpimg_upload,
 }

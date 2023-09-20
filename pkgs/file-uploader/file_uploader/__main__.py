@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from file_uploader.hosts import HOSTS, MissingCredentialsError, UploadFunction
 
 # fmt: off
-parser = argparse.ArgumentParser("fup", description="Upload a file to a filehost.")
+parser = argparse.ArgumentParser("file-uploader", description="Upload a file to a filehost.")
 parser.add_argument("file", type=Path, nargs=1, help="Path of file to upload")
 parser.add_argument("--to", "-t", type=str, choices=HOSTS.keys(), default="sunsetglow", help="File host to upload to")  # noqa: E501
 # fmt: on

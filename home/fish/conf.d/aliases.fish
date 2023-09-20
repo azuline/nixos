@@ -93,12 +93,7 @@ abbr --add --global tl 'tmux ls'
 
 # Image Uploading
 alias lastscrot='command ls -d1t ~/images/Screenshots/* | head -n1'
-alias is='bubblegum upload (lastscrot)'
-alias iu='bubblegum upload'
-alias ims='bubblegum upload --host=imgur.com (lastscrot)'
-alias ivs='bubblegum upload --host=vgy.me (lastscrot)'
-alias imu='bubblegum upload --host=imgur.com'
-alias ivu='bubblegum upload --host=vgy.me'
+alias ups='up (lastscrot)'
 
 # gotestsum
 abbr --add --global gs 'gotestsum -- -count=1 -race ./...'
