@@ -1,7 +1,4 @@
-# Note: We set the gaps in Nix because they vary per-machine.
-
 ### Floating windows
-
 for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
@@ -15,12 +12,7 @@ for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
 
-### Idle inhibit windows
-
-# for_window [id="firefox"] inhibit_idle fullscreen
-
 ### Colors
-
 # Background/Foreground/Cursor
 set $color_fg    #eeffff
 set $color_bg    #090910
@@ -52,17 +44,12 @@ set $color7      #d9f55d
 set $color15     #eeffff
 
 ### Aesthetics
-
-# Font
-font pango: roboto 11
-
 # Window colors
 # class                 border    backgr    text      indicator  child_border
 client.focused          $color_br $color_br $color_fg $color_br  $color_br
 client.focused_inactive $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.unfocused        $color_bg $color_bg $color_fg $color_bg  $color_bg
 client.urgent           $color1   $color1   $color_fg $color1    $color1
-
 # Window borders
 default_border               pixel   3
 default_floating_border      pixel   3
@@ -70,58 +57,32 @@ default_floating_border      pixel   3
 for_window [class=.*] border pixel   3
 
 ### Settings
-
 set $mod Mod4
-
 set $left h
 set $down j
 set $up k
 set $right l
 
-set $term kitty
-
-### Keybinds
-
-# Open terminal
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec $term nnn
-
+### i3 Keybinds
 # Kill window
 bindsym $mod+q kill
 bindsym --release $mod+Shift+q exec xkill
-
 # Drag windows
 floating_modifier $mod
-
 # Reload i3
 bindsym $mod+Shift+c reload
-
 # Exit i3
 bindsym $mod+Shift+e exit
-
 # Change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-
 # Move windows
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-
-workspace 1 output DP-0
-workspace 2 output DP-0
-workspace 3 output DP-0
-workspace 4 output DP-0
-workspace 5 output DP-0
-workspace 6 output HDMI-0
-workspace 7 output HDMI-0
-workspace 8 output HDMI-0
-workspace 9 output HDMI-0
-workspace 10 output HDMI-0
-
 # Change workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -133,7 +94,6 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
-
 # Move windows in between workspaces
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -145,35 +105,27 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
-
 # Change split focus
 bindsym $mod+b splith
 bindsym $mod+v splitv
-
 # Change layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
 # Fullscreen window
 bindsym $mod+f fullscreen
-
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
-
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
-
 # Move focus to the parent container
 bindsym $mod+Shift+p focus parent
-
 # Move window to scratchpad
 bindsym $mod+Shift+minus move scratchpad
 # Show scratchpad windows
 bindsym $mod+minus scratchpad show
-
-### Resizing containers
-
+# Resize
+bindsym $mod+r mode "resize"
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -189,67 +141,46 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
-
-### Email Client
-
-bindsym $mod+m exec $term i3-aerc
-
-### Clipboard Clearer
-
-bindsym $mod+c exec i3-clear-clipboard
-
-### Application Launcher
-
+### User Keybinds
+# Terminal
+set $term kitty
+bindsym $mod+Return exec $term
+# Launcher
 bindsym $mod+d exec rofi -show drun
-
-### Password Copier
-
+# Program spawners
+bindsym $mod+m exec $term i3-aerc
+bindsym $mod+n exec $term nnn
+bindsym $mod+c exec i3-clear-clipboard
 bindsym $mod+p exec $term --title pass bash -ic i3-pass
-
-### Paper/Book Launcher
-
 bindsym $mod+a exec $term --title atelier i3-atelier-opener
 bindsym $mod+Shift+a exec $term --title atelier i3-atelier-identifier
 bindsym $mod+y exec $term --title yy i3-yy
-
 # Screenshots
 bindsym --release Print exec i3-screenshot select
 bindsym --release Shift+Print exec i3-screenshot screen
-
 # Sound
 bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume $(pactl get-default-sink) +5%'
 bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume $(pactl get-default-sink) -5%'
 bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 bindsym Pause exec i3-change-audio
 bindsym XF86Calculator exec win-switch
-
-# Backlight
-
+# Brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
 ### Screen Locker
-
 # Auto lock
 # xss-lock grabs a logind suspend inhibit lock and will lock the screen before suspend.
 exec --no-startup-id i3-lock
-
 # Manual lock
 bindsym $mod+Escape exec loginctl lock-session
 
 ### Initial startup
-
 # Wallpaper
 exec --no-startup-id ~/.fehbg
-
-# Email
-exec --no-startup-id tmux -d -s mail aerc
-
 # Services
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id ibus-daemon -drx
-
 # Temporary
 exec --no-startup-id xmodmap -e 'keycode 69 = 3 numbersign 3 numbersign'
