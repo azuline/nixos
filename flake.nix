@@ -144,7 +144,6 @@
             packages = with pkgs; [
               backup-scripts
               exif-mtime-sync
-              win-switch
               xorg.xmodmap # Temporary while keyboard is broken.
             ];
           };
