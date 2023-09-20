@@ -6,17 +6,15 @@ import nixpkgs {
     (final: prev:
       pins // {
         backup-scripts = prev.callPackage ./backup-scripts { };
-        exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
         bar-gpu = prev.callPackage ./bar-gpu { };
         bar-loadavg = prev.callPackage ./bar-loadavg { };
         bar-vpn = prev.callPackage ./bar-vpn { };
         decrypt-zen = prev.callPackage ./decrypt-zen { };
         devenv = devenv.packages.${system}.devenv;
-        discord = prev.callPackage ./discord {
-          inherit srcs;
-          original = prev.discord;
-        };
+        discord = prev.callPackage ./discord { inherit srcs; original = prev.discord; };
+        exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
         flexget = prev.callPackage ./flexget { };
+        i3-aerc = prev.callPackage ./i3-aerc { };
         i3-atelier = prev.callPackage ./i3-atelier { };
         i3-change-audio = prev.callPackage ./i3-change-audio { };
         i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };

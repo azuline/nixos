@@ -230,6 +230,7 @@
       bar-gpu
       bar-loadavg
       bar-vpn
+      i3-aerc
       i3-change-audio
       i3-clear-clipboard
       i3-lock

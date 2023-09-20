@@ -191,6 +191,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+### Email Client
+
+bindsym $mod+m exec $term i3-aerc
+
 ### Clipboard Clearer
 
 bindsym $mod+c exec i3-clear-clipboard
