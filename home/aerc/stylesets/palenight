@@ -1,3 +1,5 @@
+# vim: ft=dosini
+
 # Palenight colors:
 # ---
 # red=#f77669
@@ -9,7 +11,13 @@
 # purple=#c792ea
 # blue=#82b1ff
 # white=#bfc7d5
+# lightgray=#9197BC (newly defined here for better contrast)
 # ---
+
+# Defaults
+# IDK what the selector for the mimetype switcher is, but this selector does
+# work (copied the selector from the builtin Nord theme).
+*.selected.bg=#697098
 
 # General
 *error.bold=true
@@ -21,7 +29,8 @@ border.fg=#292d3e
 # Tab bar
 tab.fg=#c792ea
 tab.bg=#292d3e
-tab.selected.reverse=true
+tab.selected.fg=#ffffff
+tab.selected.bg=#697098
 
 # Status line
 statusline_default.fg=#bfc7d5
@@ -31,16 +40,17 @@ statusline_error.bg=#292d3e
 
 # Side bar - directory list
 dirlist_unread.fg=#c792ea
-dirlist_default.selected.bg=#697098
-dirlist_default.selected.fg=#ffffff
+dirlist_*.selected.bg=#697098
+dirlist_*.selected.fg=#ffffff
 
 # Main window - message list
-msglist_*.selected.fg=#ffffff
-msglist_*.selected.bg=#697098
-msglist_unread.fg=#c792ea
+msglist_default.fg=#9197BC
+msglist_unread.fg=#ffffff
 msglist_flagged.fg=#ffcb6b
 msglist_deleted.fg=#697098
 msglist_marked.bg=#292d3e
+msglist_*.selected.fg=#ffffff
+msglist_*.selected.bg=#697098
 
 # Completion
 
