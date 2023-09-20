@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import argparse
 import asyncio
 import os
@@ -9,20 +8,7 @@ import aiohttp
 import pyperclip
 from dotenv import load_dotenv
 
-from file_uploader.common import MissingCredentialsError, UploadFunction
-from file_uploader.hosts.catbox import catbox_upload
-from file_uploader.hosts.imgur import imgur_upload
-from file_uploader.hosts.litterbox import litterbox_upload
-from file_uploader.hosts.sunsetglow import sunsetglow_upload
-from file_uploader.hosts.vgy import vgy_upload
-
-HOSTS: dict[str, UploadFunction] = {
-    "sunsetglow": sunsetglow_upload,
-    "vgy": vgy_upload,
-    "imgur": imgur_upload,
-    "catbox": catbox_upload,
-    "litterbox": litterbox_upload,
-}
+from file_uploader.hosts import HOSTS, MissingCredentialsError, UploadFunction
 
 # fmt: off
 parser = argparse.ArgumentParser("fup", description="Upload a file to a filehost.")
