@@ -126,8 +126,11 @@
   services.printing.enable = true;
   sound.enable = true;
   hardware.bluetooth.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   users = {
     users = {

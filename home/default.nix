@@ -182,6 +182,7 @@
       paprefs
       pavucontrol
       peek
+      pulseaudio # for pactl
       simplescreenrecorder
       slack
       speechd
