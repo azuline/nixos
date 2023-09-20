@@ -24,9 +24,9 @@
         frame_color = "#213e68";
       } // (
         if specialArgs.sys.host == "splendor" then {
-          offset = "18x18";
-        } else if specialArgs.sys.host == "haiqin" then {
           offset = "10x10";
+        } else if specialArgs.sys.host == "haiqin" then {
+          offset = "5x5";
         } else throw "Invalid host in dunst."
       );
       urgency_low = {
