@@ -56,6 +56,7 @@
       nmap
       pass
       pdftk
+      perl536Packages.FileMimeInfo
       pinentry
       poetry
       procps

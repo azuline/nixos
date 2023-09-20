@@ -23,11 +23,15 @@ let
     unzip
     w3m
   ];
-  # Apply the `cd on quit` logic and set the `envvars` in this hacky way. We
-  # have to do this hack in order to work with the home-manager module.
   nnnWrapped = (pkgs.nnn.override {
     withPcre = true;
   }).overrideAttrs (old: {
+    # Apply the:
+    # - `cd on quit` logic
+    # - configuration envvars
+    # - default to cwd when no args are specified
+    # We have to do this shitty hack postInstall in order to work with the
+    # home-manager module.
     postInstall = old.postInstall + ''
       mv $out/bin/nnn $out/bin/.nnn-unwrapped
       cat - > $out/bin/nnn <<EOF
@@ -42,7 +46,7 @@ let
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TRASH=1
         export NNN_TMPFILE=/home/blissful/tmp/.lastd
-        $out/bin/.nnn-unwrapped "\$@"
+        $out/bin/.nnn-unwrapped "\''${@:-.}"
       EOF
       cat - >> $out/bin/nnn <<EOF
       [ ! -f "$NNN_TMPFILE" ] || {
@@ -62,6 +66,7 @@ in
     plugins = {
       mappings = {
         p = "preview-tui";
+        f = "fzopen";
       };
       src = srcs.nnn-for-plugins + "/plugins";
     };
@@ -74,13 +79,5 @@ in
       k = "~/kpop";
       v = "~/evergarden/visions";
     };
-  };
-
-  home.sessionVariables = {
-    NNN_OPTS = "aAdEgR";
-    NNN_COLORS = "4532";
-    NNN_FCOLORS = "0a0b04010f07060c05030d09";
-    NNN_TRASH = 1;
-    NNN_TMPFILE = "/home/blissful/tmp/.lastd";
   };
 }
