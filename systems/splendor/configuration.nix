@@ -5,10 +5,13 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.max-jobs = 12;
   nixpkgs.config.allowUnfree = true;
+  # Doesn't work in Flakes.
+  programs.command-not-found.enable = false;
 
   imports = [
     ./hardware-configuration.nix
     ./transmission.nix
+    ./desktop.nix
   ];
 
   boot = {
@@ -18,22 +21,10 @@
       device = "/dev/disk/by-uuid/c1bc2705-939f-4dc4-b6ce-6527192463a9";
       preLVM = true;
     };
-    # Stuff for future passthrough. Not needed rn; tried to use it to fix another nvidia issue but it didn't solve it.
-    # initrd.kernelModules = [
-    #   "vfio_pci"
-    #   "vfio"
-    #   "vfio_iommu_type1"
-    #   "vfio_virqfd"
-    # ];
-    # kernelParams = [
-    #   "amd_iommu=on"
-    #   "vfio-pci.ids=10de:2185,10de:1aeb,10de:1aec,10de:1aed"
-    # ];
     # True by default; creates a warning when other parameters are unset. So we
     # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.
     swraid.enable = false;
   };
-  # virtualisation.spiceUSBRedirection.enable = true;
 
   fileSystems = {
     "/mnt/elements" = {
@@ -71,6 +62,7 @@
   };
 
   time.timeZone = "America/New_York";
+
   i18n = {
     inputMethod = {
       enabled = "ibus";
@@ -83,53 +75,6 @@
     font = "ter-i32b";
     packages = with pkgs; [ terminus_font ];
     useXkbConfig = true;
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    desktopManager.xterm.enable = false;
-    displayManager = {
-      defaultSession = "none+i3";
-      # It's fine to enable autologin since we have disk encryption.
-      autoLogin = {
-        enable = true;
-        user = "blissful";
-      };
-      sessionCommands = ''
-      '';
-    };
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
-    screenSection = ''
-      Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
-    '';
-    layout = "us";
-    xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
-    videoDrivers = [ "nvidia" ];
-  };
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-  hardware.nvidia = {
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    # The open source drivers don't work with the 1080Ti.
-    open = false;
-  };
-
-  programs.dconf.enable = true;
-  services.printing.enable = true;
-  sound.enable = true;
-  hardware.bluetooth.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
   };
 
   users = {
@@ -146,9 +91,7 @@
       transmission = { };
     };
     groups = {
-      media = {
-        gid = 1001;
-      };
+      media.gid = 1001;
     };
   };
 
@@ -181,21 +124,7 @@
       restic
     ];
   };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
-  };
-
   virtualisation.docker.enable = true;
-  services.gvfs.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  services.upower.enable = true;
-  programs.seahorse.enable = true;
-  services.tailscale.enable = true;
   programs.fish.enable = true;
-  services.blueman.enable = true;
-  # Doesn't work in Flakes.
-  programs.command-not-found.enable = false;
+  services.tailscale.enable = true;
 }

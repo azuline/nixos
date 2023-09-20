@@ -109,4 +109,19 @@ in
       OOMScoreAdjust = -1000;
     };
   };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "blissful@sunsetglow.net";
+    certs."sunsetglow.net" = {
+      domain = "sunsetglow.net";
+      extraDomainNames = [ "*.sunsetglow.net" ];
+      dnsProvider = "porkbun";
+      environmentFile = "/secrets/acme/credentials";
+      postRun = ''
+        source /secrets/acme/nomad.env
+        ${pkgs-stable.nomad}/bin/nomad job allocs -json nginx | ${pkgs-stable.jq}/bin/jq -r '.[0].ID' | ${pkgs-stable.findutils}/bin/xargs ${pkgs-stable.nomad}/bin/nomad alloc restart
+      '';
+    };
+  };
 }

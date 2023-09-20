@@ -14,6 +14,8 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.max-jobs = 8;
   nixpkgs.config.allowUnfree = true;
+  # Doesn't work in Flakes.
+  programs.command-not-found.enable = false;
 
   imports = [
     ./hardware-configuration.nix
@@ -101,7 +103,6 @@ in
 
   # Better for the SSD.
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
-
   # Make the mdadm conf available in stage2.
   environment.etc."mdadm.conf".text = mdadmConf;
   # The RAIDs are assembled in stage1, so we need to make the config available there too.
@@ -142,21 +143,6 @@ in
     };
   };
 
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "blissful@sunsetglow.net";
-    certs."sunsetglow.net" = {
-      domain = "sunsetglow.net";
-      extraDomainNames = [ "*.sunsetglow.net" ];
-      dnsProvider = "porkbun";
-      environmentFile = "/secrets/acme/credentials";
-      postRun = ''
-        source /secrets/acme/nomad.env
-        ${pkgs.nomad}/bin/nomad job allocs -json nginx | ${pkgs.jq}/bin/jq -r '.[0].ID' | ${pkgs.findutils}/bin/xargs ${pkgs.nomad}/bin/nomad alloc restart
-      '';
-    };
-  };
-
   users = {
     users = {
       cron = {
@@ -191,6 +177,4 @@ in
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
   programs.fish.enable = true;
-  # Doesn't work in Flakes.
-  programs.command-not-found.enable = false;
 }
