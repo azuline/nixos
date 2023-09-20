@@ -39,6 +39,11 @@
     extraPackages = [ pkgs.mesa.drivers ];
   };
 
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [ anthy ];
+  };
+
   qt = {
     enable = true;
     platformTheme = "gtk2";
@@ -48,10 +53,11 @@
   hardware.bluetooth.enable = true;
   sound.enable = true;
 
+  services.mullvad-vpn.enable = true;
   services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  services.mullvad-vpn.enable = true;
   services.upower.enable = true;
+  services.blueman.enable = true;
   services.printing.enable = true;
   services.pipewire = {
     enable = true;

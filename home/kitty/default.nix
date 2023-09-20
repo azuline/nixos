@@ -9,7 +9,7 @@ let
       ''
     else if specialArgs.sys.host == "haiqin" then
       builtins.readFile ./kitty.conf + ''
-        font_size 18.0
+        font_size 20.0
         window_padding_width 6
       ''
     else throw "Invalid host in kitty."

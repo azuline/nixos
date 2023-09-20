@@ -46,7 +46,6 @@
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
-
   console = {
     font = "ter-i32b";
     packages = with pkgs; [ terminus_font ];

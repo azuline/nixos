@@ -38,6 +38,11 @@
     open = false;
   };
 
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [ anthy ];
+  };
+
   qt = {
     enable = true;
     platformTheme = "gtk2";
