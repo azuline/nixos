@@ -33,6 +33,8 @@ restic backup \
     --exclude '**/.tmp' \
     --exclude '**/.xref' \
     "$HOME/backups" \
+    --exclude "$HOME/backups/signal-*" \
+    --exclude "$HOME/backups/threema-*" \
     "$HOME/books" \
     "$HOME/documents" \
     "$HOME/images" \
