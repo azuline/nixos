@@ -24,13 +24,6 @@ do -- Treesitter Configuration
   })
 end
 
-do -- Astro
-  vim.g.astro_typescript = "enable"
-  vim.cmd([[
-		autocmd BufNewFile,BufRead *.astro setfiletype astro
-	]])
-end
-
 do -- LaTeX syntax stuffs
   -- Configure some LaTeX behaviors.
   vim.g.tex_flavor = "latex"

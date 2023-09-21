@@ -2,7 +2,6 @@ vim.opt.completeopt = "menu,menuone,noselect"
 
 do -- Setup nvim-cmp.
   local cmp = require("cmp")
-  local lspkind = require("lspkind")
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -58,18 +57,6 @@ do -- Setup nvim-cmp.
     }, {
       { name = "buffer", keyword_length = 3 },
     }),
-    formatting = {
-      format = lspkind.cmp_format({
-        with_text = true,
-        menu = {
-          buffer = "[buf]",
-          nvim_lsp = "[lsp]",
-          vsnip = "[snip]",
-          path = "[path]",
-          latex_symbols = "[tex]",
-        },
-      }),
-    },
     experimental = {
       ghost_text = true,
     },

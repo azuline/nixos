@@ -1,18 +1,3 @@
--- These need to be configured before we load plugins.
-vim.g.polyglot_disabled = { "markdown" }
-vim.g.markdown_enable_conceal = 1
-
--- Setting Coq colors, needs to be configured before we load the plugin.
-vim.cmd([[
-  augroup CoqtailHighlights
-    autocmd!
-    autocmd ColorScheme *
-      \   hi def CoqtailChecked ctermbg=236 guibg=#292D3E
-      \ | hi def CoqtailSent    ctermbg=236 guibg=#292D3E
-      \ | hi def link CoqtailError Error
-  augroup END
-]])
-
 do -- Load the plugins.
   vim.call("plug#begin", vim.fn.stdpath("data") .. "/plugged")
   local Plug = vim.fn["plug#"]
@@ -71,15 +56,9 @@ do -- Load the plugins.
     -- Language parser & highlighting
     -- We use polyglot for indentation, since tree-sitter is not mature.
     Plug("sheerun/vim-polyglot")
-    -- Astro
-    Plug("wuelnerdotexe/vim-astro")
-    -- Coq
-    Plug("whonore/Coqtail")
     -- LaTeX!
     Plug("lervag/vimtex", { tag = "v1.6" })
     Plug("KeitaNakamura/tex-conceal.vim", { ["for"] = "tex" })
-    -- CSS
-    Plug("ap/vim-css-color")
   end
 
   do -- Development Tooling
@@ -89,10 +68,7 @@ do -- Load the plugins.
     Plug("jose-elias-alvarez/null-ls.nvim")
     Plug("jose-elias-alvarez/nvim-lsp-ts-utils")
     -- Other LSP plugins
-    Plug("onsails/lspkind-nvim")
     Plug("simrat39/rust-tools.nvim")
-    -- Quickfix & Diagnostics
-    Plug("folke/trouble.nvim")
     -- Git Client
     Plug("tpope/vim-fugitive")
     -- Test Runner
@@ -106,7 +82,7 @@ do -- Load the plugins.
     Plug("hrsh7th/cmp-path")
     Plug("hrsh7th/cmp-cmdline")
     Plug("hrsh7th/nvim-cmp")
-    -- Snippets to stop nvim-cmp from crashing.
+    -- Snippets
     Plug("hrsh7th/cmp-vsnip")
     Plug("hrsh7th/vim-vsnip")
   end

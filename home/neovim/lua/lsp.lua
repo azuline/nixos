@@ -205,17 +205,18 @@ if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
   table.insert(sources, 1, null_ls.builtins.formatting.dprint)
 end
 
-if string.find(vim.fn.getcwd(), "/pipe/pipe") ~= nil then
-  table.insert(
-    sources,
-    #sources - 1,
-    null_ls.builtins.formatting.goimports.with({
-      extra_args = { "-local", "github.com/pipe-technologies/pipe/backend" },
-    })
-  )
-else
-  table.insert(sources, #sources - 1, null_ls.builtins.formatting.goimports)
-end
+-- I left pipe, but for future Go codebases, we should do something similar.
+-- if string.find(vim.fn.getcwd(), "/pipe/pipe") ~= nil then
+--   table.insert(
+--     sources,
+--     #sources - 1,
+--     null_ls.builtins.formatting.goimports.with({
+--       extra_args = { "-local", "github.com/pipe-technologies/pipe/backend" },
+--     })
+--   )
+-- else
+table.insert(sources, #sources - 1, null_ls.builtins.formatting.goimports)
+-- end
 
 if
   vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc.js") ~= 0
