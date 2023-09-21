@@ -5,8 +5,8 @@
 * {
     red:                         #f77669;
     blue:                        #7986e7;
-    background-color:            #09091088;
-    background:                  #00000000;
+    background-color:            #090910;
+    background:                  #000000;
     foreground:                  #eeffff;
     altbg:                       #213e68;
     border:                      #213148;
