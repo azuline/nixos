@@ -29,7 +29,7 @@ let
       # Gaps
       gaps inner 8
       gaps outer 2
-    '' else throw "Invalid host in i3."
+    '' else throw "Unsupported host in i3."
   );
 in
 {

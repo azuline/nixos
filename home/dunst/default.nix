@@ -27,7 +27,7 @@
           offset = "10x10";
         } else if specialArgs.sys.host == "haiqin" then {
           offset = "5x5";
-        } else throw "Invalid host in dunst."
+        } else throw "Unsupported host in dunst."
       );
       urgency_low = {
         background = "#090910";

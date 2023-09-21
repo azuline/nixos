@@ -144,8 +144,9 @@ mode "resize" {
 # Terminal
 set $term kitty
 bindsym $mod+Return exec $term
-# Launcher
+# Launcher+another window switcher
 bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show window
 # Program spawners
 bindsym $mod+m exec $term i3-aerc
 bindsym $mod+n exec $term nnn

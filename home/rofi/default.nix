@@ -1,11 +1,71 @@
 { pkgs, specialArgs, ... }:
 
+let
+  colorsTheme = builtins.readFile ./colors.rasi;
+  splendorSpacingTheme = ''
+    window {
+      width:   960px;
+      border:  5px;
+    }
+    element {
+      padding: 12px;
+      spacing: 10px;
+    }
+    inputbar {
+      padding: 12px;
+    }
+  '';
+  haiqinSpacingTheme = ''
+    window {
+      width:   720px;
+      border:  3px;
+    }
+    element {
+      padding: 16px;
+      spacing: 14px;
+    }
+    inputbar {
+      padding: 16px;
+    }
+  '';
+  theme = pkgs.writeText "theme.rasi" ''
+    ${colorsTheme}
+    * {
+      spacing: 0;
+    }
+    listview {
+      lines: 12;
+    }
+    window {
+      padding: 0;
+    }
+    inputbar {
+      children: [ "prompt", "textbox-prompt-colon", "entry" ];
+    }
+    ${
+      if specialArgs.sys.host == "splendor" then splendorSpacingTheme
+      else if specialArgs.sys.host == "haiqin" then haiqinSpacingTheme
+      else throw "Unsupported host in rofi."
+    }
+  '';
+in
 {
-  home.packages = [ pkgs.rofi ];
-} // (if specialArgs.sys.host == "splendor" then {
-  xdg.configFile."rofi/config.rasi".source = ./desktop/config.rasi;
-  xdg.configFile."rofi/theme.rasi".source = ./desktop/theme.rasi;
-} else if specialArgs.sys.host == "haiqin" then {
-  xdg.configFile."rofi/config.rasi".source = ./laptop/config.rasi;
-  xdg.configFile."rofi/theme.rasi".source = ./laptop/theme.rasi;
-} else throw "Invalid host in rofi.")
+  programs.rofi = {
+    enable = true;
+    extraConfig = {
+      modi = "window,run,ssh,drun";
+      show-icons = true;
+      cycle = false;
+      terminal = "kitty";
+      ssh-client = "ssh";
+      icon-theme = "Papirus-Dark";
+      display-drun = "Launch";
+      font = (
+        if specialArgs.sys.host == "splendor" then "Roboto 14"
+        else if specialArgs.sys.host == "haiqin" then "Roboto 18"
+        else throw "Unsupported host in rofi."
+      );
+    };
+    theme = "${theme}";
+  };
+}

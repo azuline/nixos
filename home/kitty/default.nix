@@ -12,7 +12,7 @@ let
         font_size 20.0
         window_padding_width 6
       ''
-    else throw "Invalid host in kitty."
+    else throw "Unsupported host in kitty."
   );
 in
 {

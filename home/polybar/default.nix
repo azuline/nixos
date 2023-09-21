@@ -8,15 +8,16 @@
     script = (
       if specialArgs.sys.host == "splendor" then
         ''
-          polybar splendor-left &
-          polybar splendor-right &
+          # Only start if i3 socketpath succeeds.
+          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar splendor-left &
+          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar splendor-right &
         ''
       else if specialArgs.sys.host == "haiqin" then
         ''
           # Only start if i3 socketpath succeeds.
           ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar haiqin &
         ''
-      else throw "Invalid host for polybar."
+      else throw "Unsupported host for polybar."
     );
   };
 
