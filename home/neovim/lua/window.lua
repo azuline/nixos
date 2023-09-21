@@ -1,20 +1,16 @@
 do -- Treesitter Configuration
   require("nvim-treesitter.configs").setup({
-    -- We install most parsers through Nix, but a few are erroring, probably
-    -- due to some version mismatch. We install those here instead.
-    -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1019#issuecomment-811658387
+    -- We install parsers through Nix because a lot unfortunately have
+    -- dependencies on shared libs.
     highlight = {
       enable = true, -- false will disable the whole extension
       disable = {}, -- list of language that will be disabled
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
       additional_vim_regex_highlighting = true,
     },
-    indent = {
-      enable = false,
-    },
+    -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1019#issuecomment-811658387
+    indent = { enable = false },
     textsubjects = {
       enable = true,
-      prev_selection = ",", -- (Optional) keymap to select the previous selection
       keymaps = {
         ["."] = "textsubjects-smart",
         [";"] = "textsubjects-container-outer",

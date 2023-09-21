@@ -114,6 +114,7 @@
       gofumpt
       golangci-lint
       gopls
+      gotools
       haskell-language-server
       haskellPackages.implicit-hie
       jdk11
@@ -146,6 +147,7 @@
       python
       rnix-lsp
       ruff
+      rustfmt
       selene
       semgrep
       shellcheck
