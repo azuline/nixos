@@ -15,7 +15,8 @@ import nixpkgs {
         exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
         flexget = prev.callPackage ./flexget { };
         i3-aerc = prev.callPackage ./i3-aerc { };
-        i3-atelier = prev.callPackage ./i3-atelier { };
+        i3-atelier-identifier = prev.callPackage ./i3-atelier-identifier { };
+        i3-atelier-opener = prev.callPackage ./i3-atelier-opener { };
         i3-change-audio = prev.callPackage ./i3-change-audio { };
         i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };
         i3-lock = prev.callPackage ./i3-lock { };

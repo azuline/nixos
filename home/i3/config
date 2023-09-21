@@ -2,7 +2,7 @@
 for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
-for_window [title="^atelier$"] floating enable
+for_window [title="^yy-id$"] floating enable
 for_window [title="^Volume Control$"] floating enable
 for_window [title="^Bluetooth Devices$"] floating enable
 for_window [class="^Anki$"] floating enable
@@ -153,8 +153,8 @@ bindsym $mod+n exec $term nnn
 bindsym $mod+c exec i3-clear-clipboard
 bindsym $mod+p exec $term --title pass bash -ic i3-pass
 bindsym $mod+a exec $term --title atelier i3-atelier-opener
-bindsym $mod+Shift+a exec $term --title atelier i3-atelier-identifier
 bindsym $mod+y exec $term --title yy i3-yy
+bindsym $mod+Shift+y exec $term --title yy-id i3-atelier-identifier
 # Screenshots
 bindsym --release Print exec i3-screenshot select
 bindsym --release Shift+Print exec i3-screenshot screen

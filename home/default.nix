@@ -240,7 +240,6 @@
       i3-lock
       i3-pass
       i3-screenshot
-      i3-yy
     ];
   };
 }

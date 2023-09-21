@@ -2,8 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    i3-atelier.identifier
-    i3-atelier.opener
+    i3-atelier-identifier
+    i3-atelier-opener
+    i3-yy
   ];
 
   systemd.user.services = {
