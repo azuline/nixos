@@ -14,6 +14,7 @@
       "image/tiff" = [ "nsxiv.desktop" ];
       "image/webp" = [ "nsxiv.desktop" ];
       "text/x-lua" = [ "nvim.desktop" ];
+      "text/markdown" = [ "nvim.desktop" ];
       "x-scheme-handler/about" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
