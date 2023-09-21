@@ -199,7 +199,13 @@ local sources = {
 }
 
 if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
-  table.insert(sources, 1, null_ls.builtins.diagnostics.semgrep)
+  table.insert(
+    sources,
+    1,
+    null_ls.builtins.diagnostics.semgrep.with({
+      extra_args = { "--config", vim.fn.getcwd() .. "/.semgrep" },
+    })
+  )
 end
 
 if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
