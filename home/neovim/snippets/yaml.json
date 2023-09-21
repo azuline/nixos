@@ -1,7 +1,0 @@
-{
-  "f": {
-    "prefix": ["f"],
-    "body": ["- name: $1", "  type: $2", "$0"],
-    "description": "apigen field"
-  }
-}

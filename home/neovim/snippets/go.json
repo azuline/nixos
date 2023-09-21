@@ -1,5 +1,5 @@
 {
-  "e": {
+  "en": {
     "prefix": "en",
     "body": ["if err != nil {", "    $1", "}", "$0"],
     "description": "Go error handling"
@@ -9,59 +9,14 @@
     "body": ["if err != nil {", "    return err", "}", "$0"],
     "description": "Single rval Go error"
   },
-  "eenr": {
+  "ennr": {
     "prefix": "eenr",
     "body": ["if err != nil {", "    return nil, err", "}", "$0"],
     "description": "Double rval Go error"
   },
-  "elg": {
-    "prefix": "elg",
-    "body": ["logger.Fatalln(err)"],
-    "description": "Use logger's fatal to handle error."
-  },
-  "eLg": {
-    "prefix": "eLg",
-    "body": ["${1:srv.}Logger.Fatalln(err)"],
-    "description": "Use logger's fatal to handle error (off srv struct)."
-  },
-  "tf": {
-    "prefix": "tf",
-    "body": ["$0tf.$1(func(m *models.$1) {", "    $2", "})", "$0"],
-    "description": "Insert a SQLBoiler model into the database."
-  },
-  "tne": {
-    "prefix": "tne",
-    "body": ["testz.NoError(t, err)", "$0"],
-    "description": "testz.NoError"
-  },
-  "tR": {
+  "tr": {
     "prefix": "tR",
     "body": ["t.Run(\"$1\", func(t *testing.T) {", "$0", "})"],
     "description": "test.Run(...)"
-  },
-  "endp": {
-    "prefix": "endp",
-    "body": [
-      "func $1(input *endpoint.Input) (*endpoint.Output, error) {",
-      "    ctx := input.Context()",
-      "    db := input.DB()",
-      "",
-      "    req := struct{}",
-      "    if err := input.Unmarshal(&req); err != nil {",
-      "        return apigen.ErrorUnmarshalFailure()",
-      "    }",
-      "}"
-    ],
-    "description": "require.NoError"
-  },
-  "mins": {
-    "prefix": "mins",
-    "body": [
-      "if err := $1.Insert(ctx, ${2:db}, boil.Infer()); err != nil {",
-      "    $3",
-      "}",
-      "$0"
-    ],
-    "description": "Insert a SQLBoiler model into the database."
   }
 }

@@ -14,9 +14,14 @@
     "body": ["\\subsubsection{$1}", "$0"],
     "description": "Start a subsubsection"
   },
-  "[": {
-    "prefix": "[",
-    "body": ["[[$1]]$0"],
-    "description": "Atelier reference shortcut."
+  "\\i": {
+    "prefix": "\\i",
+    "body": ["\\begin{itemize}", "  \\item $0", "\\end{itemize}"],
+    "description": "Start an unordered list"
+  },
+  "\\e": {
+    "prefix": "\\e",
+    "body": ["\\begin{enumerate}", "  \\item $0", "\\end{enumerate}"],
+    "description": "Start an ordered list"
   }
 }
