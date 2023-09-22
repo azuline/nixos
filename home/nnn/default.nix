@@ -67,9 +67,10 @@ in
       mappings = {
         f = "fzopen";
         i = "imgview";
-        p = "preview-tui";
+        ";" = "preview-tui";
       };
-      src = srcs.nnn-for-plugins + "/plugins";
+      # We vendor plugins in order to be able to add our own.
+      src = ./plugins;
     };
     bookmarks = {
       a = "~/atelier";
