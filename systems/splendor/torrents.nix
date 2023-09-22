@@ -1,10 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
-  # The NixOS systemd service restricts writes to the explicitly configured
-  # BindPaths.
-  systemd.services.transmission.serviceConfig.BindPaths = [ "/mnt/elements" ];
-
   services.transmission = {
     enable = true;
     user = "transmission";
@@ -88,6 +84,38 @@
       utp-enabled = true;
       watch-dir = "/home/blissful/downloads/torrents";
       watch-dir-enabled = true;
+    };
+  };
+
+  # The NixOS systemd service restricts writes to the explicitly configured
+  # BindPaths.
+  systemd.services.transmission.serviceConfig.BindPaths = [ "/mnt/elements" ];
+
+  # Weekly backups of the external drive to another external drive via borg.
+  systemd.timers."backup-elements" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      # Weekly on Sunday midnight.
+      OnCalendar = "Sun 00:00";
+      Persistent = true;
+    };
+  };
+  systemd.services."backup-elements" = {
+    script = ''
+      #!${pkgs.bash}/bin/bash
+      today=$(${pkgs.coreutils}/bin/date +"%Y-%m-%d")
+      ${pkgs.coreutils}/bin/printf "\nNew Backup\n===========\nDate: ''${today}\n\n" >> /root/backup_elements.log
+      ${pkgs.borgbackup}/bin/borg create \
+        --verbose \
+        --stats \
+        /mnt/backup/borg::"elements-daily-''${today}" \
+        /mnt/elements \
+        /var/lib/transmission/.config/transmission-daemon \
+        2>&1 | ${pkgs.coreutils}/bin/tee -a /root/backup_elements.log
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
     };
   };
 }
