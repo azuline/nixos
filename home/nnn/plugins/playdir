@@ -12,9 +12,9 @@ play() {
 }
 
 if [ -d "$hovered_node" ]; then
-    play "$hovered_node"
+    play "$hovered_node" >/dev/null 2>&1 &
 else
-    play "$working_dir"
+    play "$working_dir" >/dev/null 2>&1 &
 fi
 
 clear
