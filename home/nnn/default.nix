@@ -65,9 +65,10 @@ in
     ];
     plugins = {
       mappings = {
+        ";" = "preview-tui";
         f = "fzopen";
         i = "imgview";
-        ";" = "preview-tui";
+        p = "playdir";
       };
       # We vendor plugins in order to be able to add our own.
       src = ./plugins;
@@ -79,6 +80,7 @@ in
       f = "~/fonts";
       i = "~/images";
       k = "~/kpop";
+      m = "~/music";
       v = "~/evergarden/visions";
     };
   };

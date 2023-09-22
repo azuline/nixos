@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Play all music/video files in a directory with mpv.
+# If the hovered node is a directory, we will play that directory. Otherwise,
+# we will play the working directory.
+
+hovered_node="$(readlink -f "$1")"
+working_dir="$(readlink -f "$2")"
+
+play() {
+    fd . "$1" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts -0 | xargs -0 mpv
+}
+
+if [ -d "$hovered_node" ]; then
+    play "$hovered_node"
+else
+    play "$working_dir"
+fi
+
+clear
