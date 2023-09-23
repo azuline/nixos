@@ -10,7 +10,15 @@ let
     desktopItem = pkgs.makeDesktopItem {
       name = "mpv-fullscreen";
       desktopName = "mpv Fullscreen";
-      exec = "mpv --force-window --player-operation-mode=pseudo-gui --fs -- %U";
+      # We can't use --fs here because i3 doesn't support the hint that mpv
+      # uses to determine the monitor to fullscreen on. Often, mpv would start
+      # in the incorrect monitor if we use --fs.
+      #
+      # See https://github.com/mpv-player/mpv/issues/3852#issuecomment-362623569.
+      #
+      # So we instead assign the window a special title and then set fullscreen
+      # enable in i3 config for that window title.
+      exec = "mpv --force-window --player-operation-mode=pseudo-gui --title=mpv-fullscreen -- %U";
       icon = "mpv";
       categories = [ "AudioVideo" "Audio" "Video" "Player" "TV" ];
       startupWMClass = "mpv";
