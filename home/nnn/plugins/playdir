@@ -4,12 +4,17 @@
 # If the hovered node is a directory, we will play that directory. Otherwise,
 # we will play the working directory.
 
-hovered_node="$(readlink -f "$1")"
-working_dir="$(readlink -f "$2")"
+# Kill any existing instance of playdir. This ensures we are only playing one
+# thing simultaneously.
+ps x | grep 'playdir-mpv' | awk '{print $1}' | xargs -n1 kill
 
 play() {
-    fd . "$1" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts -0 | xargs -0 mpv
+    fd . "$1" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts -0 | xargs -0 mpv --force-window --title="playdir-mpv"
 }
+
+# These are arguments passed into every plugin, as specified by nnn.
+hovered_node="$(readlink -f "$1")"
+working_dir="$(readlink -f "$2")"
 
 if [ -d "$hovered_node" ]; then
     play "$hovered_node" >/dev/null 2>&1 &

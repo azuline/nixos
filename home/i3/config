@@ -6,6 +6,13 @@ for_window [title="^yy-id$"] floating enable
 for_window [title="^Volume Control$"] floating enable
 for_window [title="^Bluetooth Devices$"] floating enable
 for_window [class="^Anki$"] floating enable
+# Move the music player from the center of the screen to the bottom right.
+# Calibrated at a standard 4K resolution. Since we don't know the size of mpv,
+# we must first force it to 720x720 before we apply movements. Since
+# post-resize it will be uncentered, we first center it before moving it. Since
+# we don't know which monitor it's on, we do the relative resizing instead of
+# an absolute positioning, which will always put it on the left monitor.
+for_window [title="^playdir-mpv$"] floating enable, resize set 720 720 px, move position center, move right 1496 px, move down 630 px
 # https://www.reddit.com/r/i3wm/comments/m27dwc/comment/hsi1l0m/?utm_source=share&utm_medium=web2x&context=3
 for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable

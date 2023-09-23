@@ -6,7 +6,7 @@ vim.g.coq_settings = {
   keymap = {
     -- Should be <c-l> but only in insert mode. I need to figure out how this
     -- actually behaves first.
-    jump_to_mark = "<Leader>l",
+    jump_to_mark = "<c-0>",
   },
   clients = {
     tmux = { enabled = true },
