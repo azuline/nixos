@@ -3,6 +3,7 @@ for_window [title="^launcher$"] floating enable
 for_window [title="^pass$"] floating enable
 for_window [title="^yy$"] floating enable
 for_window [title="^yy-id$"] floating enable
+for_window [title="^nsxiv$"] floating enable
 for_window [title="^Volume Control$"] floating enable
 for_window [title="^Bluetooth Devices$"] floating enable
 for_window [class="^Anki$"] floating enable

@@ -430,11 +430,11 @@
     "nsxiv-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1695249554,
-        "narHash": "sha256-cHRnXW8VtJlZE0L1SrPpdFrd/wzNs1AQHwV+r5AsCnM=",
+        "lastModified": 1695438023,
+        "narHash": "sha256-Ie3wKvFmmqKsxNL886ton3/N2s/gbOlvz3i0vjOLe0E=",
         "owner": "azuline",
         "repo": "nsxiv",
-        "rev": "b0a8eea23d54b356496f4b3d41efbecb40eaebc1",
+        "rev": "6675b6a6c3d4c9e30487e7c7bae2bc63bd5079d2",
         "type": "github"
       },
       "original": {
