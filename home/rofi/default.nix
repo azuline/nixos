@@ -3,10 +3,6 @@
 let
   colorsTheme = builtins.readFile ./colors.rasi;
   splendorSpacingTheme = ''
-    window {
-      width:   960px;
-      border:  5px;
-    }
     element {
       padding: 12px;
       spacing: 10px;
@@ -16,10 +12,6 @@ let
     }
   '';
   haiqinSpacingTheme = ''
-    window {
-      width:   720px;
-      border:  3px;
-    }
     element {
       padding: 16px;
       spacing: 14px;
@@ -38,6 +30,8 @@ let
     }
     window {
       padding: 0;
+      width:   960px;
+      border:  5px;
     }
     inputbar {
       children: [ "prompt", "textbox-prompt-colon", "entry" ];
