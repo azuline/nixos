@@ -30,6 +30,7 @@ in
       demuxer-thread = "yes";
       demuxer-readahead-secs = "120";
       demuxer-max-bytes = "500M";
+      osd-font-size = 24;
       screenshot-format = "png";
       screenshot-png-compression = "9";
       screenshot-template = "%F - %wH-%wM-%wS";
