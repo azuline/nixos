@@ -14,6 +14,7 @@ let
       icon = "mpv";
       categories = [ "AudioVideo" "Audio" "Video" "Player" "TV" ];
       startupWMClass = "mpv";
+      terminal = false;
     };
     postInstall = ''
       mkdir -p "$out/share/applications"
