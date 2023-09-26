@@ -9,8 +9,8 @@ let
       ''
     else if specialArgs.sys.host == "haiqin" then
       builtins.readFile ./kitty.conf + ''
-        font_size 20.0
-        window_padding_width 6
+        font_size 22.0
+        window_padding_width 8
       ''
     else throw "Unsupported host in kitty."
   );

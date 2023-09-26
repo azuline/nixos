@@ -1,0 +1,41 @@
+{
+	"hosts": {
+		"splendor": "100.109.183.108",
+		"zen":      "100.71.28.44",
+	},
+	"groups": {
+	  "group:admins": [
+	    "azuline@github",
+	  ],
+	},
+	"acls": [
+		{
+			"action": "accept",
+			"src":    ["group:admins"],
+			"dst":    ["*:*"],
+		},
+		{
+			"action": "accept",
+			"src":    ["tag:ci"],
+			"dst":    ["zen:4646"],
+		},
+	],
+	"ssh": [
+		{
+			"action": "check",
+			"src":    ["autogroup:members"],
+			"dst":    ["tag:server"],
+			"users":  ["autogroup:nonroot"],
+		},
+		{
+			"action": "check",
+			"src":    ["autogroup:members"],
+			"dst":    ["autogroup:self"],
+			"users":  ["autogroup:nonroot"],
+		},
+	],
+	"tagOwners": {
+		"tag:server": ["azuline@github"],
+		"tag:ci": ["azuline@github"],
+	},
+}
