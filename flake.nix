@@ -136,6 +136,10 @@
             inherit system;
             modules = [ ./os/haiqin/configuration.nix ];
           };
+          neptune = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [ ./os/neptune/configuration.nix ];
+          };
           zen = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit pkgs-stable; };
@@ -162,6 +166,18 @@
           };
           haiqin = makeHomeConfiguration {
             host = "haiqin";
+            nixDir = "/etc/nixos";
+            username = "blissful";
+            chooseBundles = b: [
+              b.cliBundle
+              b.devBundle
+              b.guiBundle
+              b.personalMachineBundle
+              b.i3Bundle
+            ];
+          };
+          neptune = makeHomeConfiguration {
+            host = "neptune";
             nixDir = "/etc/nixos";
             username = "blissful";
             chooseBundles = b: [
