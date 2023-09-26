@@ -1,8 +1,8 @@
 { pkgs-stable, ... }:
 
 let
-  nomadConfig = "/etc/nixos/systems/zen/nomad";
-  consulConfig = "/etc/nixos/systems/zen/consul";
+  nomadConfig = "/etc/nixos/hosts/zen/nomad";
+  consulConfig = "/etc/nixos/hosts/zen/consul";
 in
 {
   environment.systemPackages = with pkgs-stable; [

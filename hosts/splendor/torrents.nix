@@ -9,7 +9,7 @@
     openPeerPorts = true;
     openRPCPort = false;
     performanceNetParameters = true;
-    credentialsFile = "/etc/nixos/systems/splendor/transmission-credentials.json";
+    credentialsFile = "/etc/nixos/hosts/splendor/transmission-credentials.json";
     settings = {
       alt-speed-down = 200;
       alt-speed-enabled = false;

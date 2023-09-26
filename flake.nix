@@ -130,16 +130,16 @@
         nixosConfigurations = {
           splendor = nixpkgs.lib.nixosSystem {
             inherit system;
-            modules = [ ./systems/splendor/configuration.nix ];
+            modules = [ ./hosts/splendor/configuration.nix ];
           };
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
-            modules = [ ./systems/haiqin/configuration.nix ];
+            modules = [ ./hosts/haiqin/configuration.nix ];
           };
           zen = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit pkgs-stable; };
-            modules = [ ./systems/zen/configuration.nix ];
+            modules = [ ./hosts/zen/configuration.nix ];
           };
         };
         homeConfigurations = {
