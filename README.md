@@ -29,7 +29,7 @@ are kept in this repository, and they are:
 - [Backup Scripts](./pkgs/backup-scripts): Manage my local and remote backups.
 - [File Uploader](./pkgs/file-uploader): Upload files to various image and file
   hosting services.
-- [EXIF & Last Modified Syncer](./pkgs/file-uploader): Sync an image's EXIF
+- [EXIF & Last Modified Syncer](./pkgs/exif-mtime-sync/): Sync an image's EXIF
   Created Date and filesystem Last Modified time.
 
 # Directory Structure
