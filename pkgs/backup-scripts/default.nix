@@ -1,4 +1,4 @@
-{ python }:
+{ python, restic, util-linux }:
 
 python.pkgs.buildPythonPackage {
   pname = "backup-scripts";
@@ -6,5 +6,7 @@ python.pkgs.buildPythonPackage {
   src = ./.;
   propagatedBuildInputs = [
     python.pkgs.click
+    restic
+    util-linux # blkid
   ];
 }
