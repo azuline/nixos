@@ -42,10 +42,10 @@ def backup_flash_drives(devices: list[Path]) -> None:
         logger.info("Copying backups...")
         shutil.copytree(Path.home() / "backups", target_dir / "backups")
 
-        # Update permissions to 600/700. I would use a umask, but copying files
+        # Update permissions to 400/500. I would use a umask, but copying files
         # apparently doesn't respect the umask and preserves the previous permissions.
-        shell(rf'find {shlex.quote(str(target_dir))} -type f -exec chmod 600 "{{}}" \+')
-        shell(rf'find {shlex.quote(str(target_dir))} -type d -exec chmod 700 "{{}}" \+')
+        shell(rf'find {shlex.quote(str(target_dir))} -type f -exec chmod 400 "{{}}" \+')
+        shell(rf'find {shlex.quote(str(target_dir))} -type d -exec chmod 500 "{{}}" \+')
 
         logger.info(f"Finished creating backup for {date} in {d.device} ({d.name}).")
 
