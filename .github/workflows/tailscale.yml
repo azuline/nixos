@@ -4,12 +4,12 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - "tailscale.policy.hujson"
+      - "tailscale.policy.json"
       - ".github/workflows/tailscale.yml"
   pull_request:
     branches: [ "master" ]
     paths:
-      - "tailscale.policy.hujson"
+      - "tailscale.policy.json"
       - ".github/workflows/tailscale.yml"
 
 jobs:
@@ -24,6 +24,7 @@ jobs:
         with:
           api-key: ${{ secrets.TS_API_KEY }}
           tailnet: ${{ secrets.TS_TAILNET }}
+          policy-file: tailscale.policy.json
           action: apply
       - name: Test ACL
         if: github.event_name == 'pull_request'
@@ -32,4 +33,5 @@ jobs:
         with:
           api-key: ${{ secrets.TS_API_KEY }}
           tailnet: ${{ secrets.TS_TAILNET }}
+          policy-file: tailscale.policy.json
           action: test
