@@ -12,6 +12,7 @@ source /etc/nixos/pkgs/backup-scripts/.env.restic
 
 restic backup \
     --exclude '**/.git/**' \
+    --exclude '**/.syncthing*' \
     --exclude '**/.stfolder/**' \
     --exclude '**/.stversions/**' \
     --exclude '**/.thumbnails/**' \

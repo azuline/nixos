@@ -4,7 +4,6 @@ Execute a backup onto the encrypted flash drive.
 
 import logging
 import shlex
-import shutil
 import socket
 from datetime import datetime
 from pathlib import Path
@@ -17,6 +16,19 @@ logger = logging.getLogger(__name__)
 
 class BackupDirectoryAlreadyExistsError(Exception):
     pass
+
+
+def copy_dir(src: Path, dst: Path) -> None:
+    """Copy a directory w/ rsync, excluding syncthing directories."""
+    dst.mkdir(parents=True, exist_ok=True)
+    shell(
+        "rsync -ah "
+        "--exclude='.stversions/*' --exclude '.stfolder/*' --exclude '.syncthing*' "
+        # The trailing slash here tells rync to copy the directory contents into the destination,
+        # instead of copying the directory itself into the contents.
+        f"{shlex.quote(str(src))}/ "
+        f"{shlex.quote(str(dst))}"
+    )
 
 
 def backup_flash_drives(devices: list[Path]) -> None:
@@ -34,13 +46,13 @@ def backup_flash_drives(devices: list[Path]) -> None:
         target_dir.mkdir()
 
         logger.info("Copying SSH keys...")
-        shutil.copytree(Path.home() / ".ssh", target_dir / "ssh" / socket.gethostname())
+        copy_dir(Path.home() / ".ssh", target_dir / "ssh" / socket.gethostname())
         logger.info("Copying passwords...")
-        shutil.copytree(Path.home() / ".password-store", target_dir / "pass")
+        copy_dir(Path.home() / ".password-store", target_dir / "pass")
         logger.info("Copying documents...")
-        shutil.copytree(Path.home() / "documents", target_dir / "documents")
+        copy_dir(Path.home() / "documents", target_dir / "documents")
         logger.info("Copying backups...")
-        shutil.copytree(Path.home() / "backups", target_dir / "backups")
+        copy_dir(Path.home() / "backups", target_dir / "backups")
 
         # Update permissions to 400/500. I would use a umask, but copying files
         # apparently doesn't respect the umask and preserves the previous permissions.
