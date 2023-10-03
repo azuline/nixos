@@ -8,9 +8,6 @@ writeShellScriptBin "win-switch" ''
     # Polybar
     pkill -f 'polybar right'
 
-    # Background
-    feh --bg-fill ~/backgrounds/left.png
-
     synergy &
     disown
   }
@@ -23,9 +20,6 @@ writeShellScriptBin "win-switch" ''
 
     # Polybar
     systemctl restart --user polybar
-
-    # Background
-    feh --bg-fill ~/backgrounds/{left,right}.png
 
     pkill synergy
   }

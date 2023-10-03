@@ -8,4 +8,5 @@
     "Nsxiv.mark.foreground" = "#8bd649";
     "Nsxiv.bar.font" = "Roboto";
   };
+  xdg.configFile."nsxiv/exec/image-info".source = ./image-info;
 }

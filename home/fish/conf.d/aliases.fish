@@ -86,6 +86,9 @@ function gprune
        | xargs -r git branch -D
 end
 
+# nnn
+alias nsel="cat ~/.config/nnn/.selection"
+
 # Tmux
 abbr --add --global tn 'tmux new -s'
 abbr --add --global ta 'tmux attach -t'
@@ -94,10 +97,6 @@ abbr --add --global tl 'tmux ls'
 # Image Uploading
 alias lastscrot='command ls -d1t ~/images/Screenshots/* | head -n1'
 alias ups='up (lastscrot)'
-
-# gotestsum
-abbr --add --global gs 'gotestsum -- -count=1 -race ./...'
-abbr --add --global gsr 'gotestsum -- -count=1 -race ./... -run'
 
 # beets
 abbr --add --global trc '~/scripts/transcoder/run.sh'

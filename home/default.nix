@@ -162,6 +162,7 @@
     ];
   };
 
+  # TODO: Split this up into X11 and GUI apps.
   guiBundle = { pkgs, specialArgs, ... }: {
     imports = [
       ./kitty
@@ -177,7 +178,6 @@
       brightnessctl
       chromium
       evince
-      feh
       firefox
       fontforge-gtk
       gimp
@@ -195,6 +195,7 @@
       xbindkeys
       xdotool # For VimTex's forward search.
       xorg.xkill
+      xwallpaper
       zoom-us
     ];
   };
