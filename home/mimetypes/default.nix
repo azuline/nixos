@@ -7,12 +7,10 @@
       # Look in ~/.nix-profile/share/applications
       "application/epub+zip" = [ "org.pwmt.zathura.desktop" ];
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-      "application/vnd.amazon.mobi8-ebook" = [ "org.pwmt.zathura.desktop" ];
       "application/vnd.comicbook-rar" = [ "org.pwmt.zathura.desktop" ];
       "application/vnd.comicbook+zip" = [ "org.pwmt.zathura.desktop" ];
       "application/x-awk" = [ "nvim.desktop" ];
       "application/x-bittorrent" = [ "tremotesf.desktop" ];
-      "application/x-mobipocket-ebook" = [ "org.pwmt.zathura.desktop" ];
       "audio/flac" = [ "mpv.desktop" ];
       "audio/ogg" = [ "mpv.desktop" ];
       "audio/x-opus+ogg" = [ "mpv.desktop" ];
