@@ -40,7 +40,9 @@
       incomplete-dir = "/mnt/elements/tmp";
       incomplete-dir-enabled = true;
       lpd-enabled = false;
-      max-peers-global = 50;
+      # I think if this is less than peer-limit-per-torrent *
+      # download-queue-size, the RPC connection can be rejected.
+      max-peers-global = 80;
       message-level = 2;
       peer-congestion-algorithm = "";
       peer-id-ttl-hours = 6;

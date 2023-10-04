@@ -22,7 +22,7 @@ writeShellScriptBin "bar-now-playing" ''
   }
 
   filepath="$(get_property path)"
-  track_text="$(basename "$filepath" | sed 's/\.[^.]*$//' | sed 's/^[0-9]*\. //')"
+  track_text="$(basename "$filepath" | sed 's/\.[^.]*$//' | sed 's/^[0-9\-]*\. //')"
   album_text="$(basename "$(dirname "$filepath")")"
 
   time_pos="$(get_property time-pos)"
