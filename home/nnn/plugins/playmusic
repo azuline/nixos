@@ -12,7 +12,7 @@ node="$(readlink -f "$1")"
 if [ -d "$node" ]; then
     fd . "$node" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts -0 | xargs -0 mpv --force-window --title="playmusic-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" >/dev/null 2>&1 &
 else
-    mpv --force-window --title="playmusic-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" "$node" play_file "$node" >/dev/null 2>&1 &
+    mpv --force-window --title="playmusic-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" "$node" >/dev/null 2>&1 &
 fi
 
 clear

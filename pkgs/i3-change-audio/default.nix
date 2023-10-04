@@ -3,7 +3,7 @@
 writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
-  wired_headphones_sink="alsa_output.pci-0000_0d_00.4.iec958-stereo.2"
+  wired_headphones_sink="alsa_output.pci-0000_0d_00.4.iec958-stereo"
   desktop_speaker_sink="bluez_output.0A_11_75_33_AD_49.1"
   bt_headphones_sink="bluez_sink.CC_98_8B_E3_18_BC.a2dp_sink"
 

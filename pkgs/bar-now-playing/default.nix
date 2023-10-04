@@ -13,6 +13,7 @@ writeShellScriptBin "bar-now-playing" ''
   exit_handler() {
     if [ $? -ne 0 ]; then
       echo "N/A"
+      exit 0
     fi
   }
 

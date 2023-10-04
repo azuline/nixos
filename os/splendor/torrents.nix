@@ -33,14 +33,14 @@
       download-limit = 100;
       download-limit-enabled = 0;
       download-queue-enabled = true;
-      download-queue-size = 8;
+      download-queue-size = 5;
       encryption = 1;
       idle-seeding-limit = 34463;
       idle-seeding-limit-enabled = false;
       incomplete-dir = "/mnt/elements/tmp";
       incomplete-dir-enabled = true;
       lpd-enabled = false;
-      max-peers-global = 200;
+      max-peers-global = 50;
       message-level = 2;
       peer-congestion-algorithm = "";
       peer-id-ttl-hours = 6;
@@ -69,8 +69,8 @@
       script-torrent-done-seeding-filename = null;
       seed-queue-enabled = false;
       seed-queue-size = 10;
-      speed-limit-down = 20000;
-      speed-limit-down-enabled = false;
+      speed-limit-down = 40000;
+      speed-limit-down-enabled = true;
       speed-limit-up = 20000;
       speed-limit-up-enabled = true;
       start-added-torrents = true;

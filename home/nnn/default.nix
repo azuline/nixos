@@ -74,13 +74,16 @@ in
       src = ./plugins;
     };
     bookmarks = {
-      a = "~/atelier";
+      a = "~/anime";
       b = "~/books";
+      c = "~/cdrama";
       d = "~/downloads";
-      f = "~/fonts";
+      f = "~/films";
+      g = "~/manga";
       i = "~/images";
       k = "~/kpop";
       m = "~/music";
+      t = "~/tv";
       v = "~/evergarden/visions";
     };
   };
