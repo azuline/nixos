@@ -7,6 +7,7 @@ import nixpkgs {
       pins // {
         backup-scripts = prev.callPackage ./backup-scripts { };
         bar-gpu = prev.callPackage ./bar-gpu { };
+        bar-now-playing = prev.callPackage ./bar-now-playing { };
         bar-loadavg = prev.callPackage ./bar-loadavg { };
         bar-vpn = prev.callPackage ./bar-vpn { };
         decrypt-zen = prev.callPackage ./decrypt-zen { };

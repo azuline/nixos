@@ -9,7 +9,7 @@
 ps x | grep 'playdir-mpv' | awk '{print $1}' | xargs -n1 kill
 
 play() {
-    fd . "$1" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts -0 | xargs -0 mpv --force-window --title="playdir-mpv"
+    fd . "$1" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts -0 | xargs -0 mpv --force-window --title="playdir-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playdir"
 }
 
 # These are arguments passed into every plugin, as specified by nnn.

@@ -45,4 +45,7 @@ in
       screenshot-directory = "~/images/Screenshots";
     };
   };
+  xdg.configFile."mpv/input.conf".text = ''
+    p show-text ''${playlist}
+  '';
 }

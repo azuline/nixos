@@ -157,3 +157,7 @@ nnoremap <C-w> i<c-g>u<Esc>[s1z=`]a<c-g>u<Esc>
 
 " Create parent directories when saving new files.
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+
+" Auto-exit when editing some filetypes. Do not allow them to be edited
+au BufEnter *.ogg,*.opus,*.m4a,*.mp4,*.mkv,*.mp3,*.jpg,*.jpeg,*.png,*.webm,*.gif
+  \ :q

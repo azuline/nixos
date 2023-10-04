@@ -16,6 +16,7 @@
     home.packages = with pkgs; [
       autossh
       bat
+      bc
       beets
       bubblewrap
       cmus
@@ -64,6 +65,7 @@
       rename
       ripgrep
       rsync
+      socat
       speedtest-cli
       sqlite-interactive
       sshfs
@@ -234,6 +236,7 @@
     home.packages = with pkgs; [
       bar-gpu
       bar-loadavg
+      bar-now-playing
       bar-vpn
       i3-aerc
       i3-change-audio
