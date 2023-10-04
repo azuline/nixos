@@ -183,6 +183,7 @@
       firefox
       fontforge-gtk
       gimp
+      kdocker
       libnotify
       maim
       paprefs

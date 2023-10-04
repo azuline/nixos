@@ -79,7 +79,7 @@
       tcp-enabled = true;
       torrent-added-verify-mode = "fast";
       trash-original-torrent-files = true;
-      umask = 002;
+      umask = 027;
       upload-limit = 100;
       upload-limit-enabled = false;
       upload-slots-per-torrent = 15;
