@@ -17,7 +17,7 @@ writeShellScriptBin "bar-now-playing" ''
   }
 
   get_property() {
-    echo "{ \"command\": [\"get_property_string\", \"$1\"] }" | socat - "$XDG_RUNTIME_DIR/mpv-playdir" | jq -r ".data"
+    echo "{ \"command\": [\"get_property_string\", \"$1\"] }" | socat - "$XDG_RUNTIME_DIR/mpv-playmusic" | jq -r ".data"
   }
 
   filepath="$(get_property path)"

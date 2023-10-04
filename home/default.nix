@@ -199,6 +199,7 @@
       xorg.xkill
       xwallpaper
       zoom-us
+      zathura
     ];
   };
 

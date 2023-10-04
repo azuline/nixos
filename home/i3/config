@@ -14,7 +14,7 @@ for_window [title="^mpv-fullscreen$"] fullscreen enable
 # post-resize it will be uncentered, we first center it before moving it. Since
 # we don't know which monitor it's on, we do the relative resizing instead of
 # an absolute positioning, which will always put it on the left monitor.
-for_window [title="^playdir-mpv$"] floating enable, resize set 720 720 px, move position center, move right 1496 px, move down 630 px
+for_window [title="^playmusic-mpv$"] floating enable, resize set 720 720 px, move position center, move right 1496 px, move down 630 px
 # https://www.reddit.com/r/i3wm/comments/m27dwc/comment/hsi1l0m/?utm_source=share&utm_medium=web2x&context=3
 for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable

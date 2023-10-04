@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Play music/video files in a directory, or a single file, with mpv.
+
+# Kill any existing instance of playmusic. This ensures we are only playing one
+# thing simultaneously.
+ps x | grep 'playmusic-mpv' | awk '{print $1}' | xargs -n1 kill
+
+# These are arguments passed into every plugin, as specified by nnn.
+node="$(readlink -f "$1")"
+
+if [ -d "$node" ]; then
+    fd . "$node" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts -0 | xargs -0 mpv --force-window --title="playmusic-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" >/dev/null 2>&1 &
+else
+    mpv --force-window --title="playmusic-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" "$node" play_file "$node" >/dev/null 2>&1 &
+fi
+
+clear

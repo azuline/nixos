@@ -68,7 +68,7 @@ in
         ";" = "preview-tui";
         f = "fzopen";
         i = "imgview";
-        p = "playdir";
+        p = "playmusic";
       };
       # We vendor plugins in order to be able to add our own.
       src = ./plugins;
