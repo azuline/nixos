@@ -4,9 +4,11 @@ vim.g.coq_settings = {
   auto_start = "shut-up",
   display = { pum = { fast_close = false } },
   keymap = {
-    -- Should be <c-l> but only in insert mode. I need to figure out how this
-    -- actually behaves first.
-    jump_to_mark = "<c-0>",
+    -- This is some bullshit keybind we'll never call, in order to disable
+    -- this. It acts up and causes delays and lags if we set it to anything
+    -- reasonable, and then it overrides <c-l> in normal mode. Instead, we
+    -- manually set this keybind below only in insert mode.
+    jump_to_mark = "<c-_>",
   },
   clients = {
     tmux = { enabled = true },
@@ -16,3 +18,5 @@ vim.g.coq_settings = {
     tree_sitter = { enabled = true },
   },
 }
+
+vim.api.nvim_set_keymap("i", "<c-l>", "<Cmd>lua COQ.Nav_mark()<CR>", {})

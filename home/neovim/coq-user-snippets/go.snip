@@ -1,0 +1,22 @@
+snippet en
+  if err != nil {
+  	$1
+  }
+  $0
+
+snippet enr
+  if err != nil {
+  	return err
+  }
+  $0
+
+snippet ennr
+  if err != nil {
+  	return nil, err
+  }
+  $0
+
+snippet tr
+  t.Run("${1:Name}", func(t *testing.T) {
+  	$0
+  })

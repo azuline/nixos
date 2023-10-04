@@ -1,30 +1,45 @@
-snippet newc
-  export const ${0:ComponentName}: React.FC = () => {
-    return (
+snippet nc
+  const $1: React.FC = () => {
+    return ($0
       <div>
         Children
       </div>
     );
   };
 
-snippet newcp
-  type IProps = {
-  };
-
-  export const ${0:ComponentName}: React.FC<IProps> = (props) => {
-    return (
+snippet nce
+  export const $1: React.FC = () => {
+    return ($0
       <div>
         Children
       </div>
     );
   };
 
-snippet sty
-  const ${0:ComponentName} = styled(${1:Parent}, {
-    ${2:Styles}
-  });
+snippet ncp
+  $1type I$2Props = {
+  };
 
-snippet par
-  const ${0:ComponentName} = partial(${1:Parent}, {
-    ${2:Styles}
-  });
+  const $2: React.FC<I$2Props> = (props) => {
+    return ($0
+      <div>
+        Children
+      </div>
+    );
+  };
+
+snippet ncep
+  $1type I$2Props = {
+  };
+
+  export const $2: React.FC<I$2Props> = (props) => {
+    return ($0
+      <div>
+        Children
+      </div>
+    );
+  };
+
+snippet cl
+  console.log("${CLIPBOARD}", ${CLIPBOARD}");
+  $0

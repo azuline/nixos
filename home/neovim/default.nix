@@ -19,6 +19,6 @@ in
   xdg.configFile = {
     "nvim/lua".source = "${nvimDir}/lua";
     "nvim/autoload".source = "${nvimDir}/autoload";
-    "nvim/snippets".source = "${nvimDir}/snippets";
+    "nvim/coq-user-snippets".source = "${nvimDir}/coq-user-snippets";
   };
 }
