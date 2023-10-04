@@ -12,11 +12,9 @@ writeShellScriptBin "i3-yy" ''
 
   filepath=$(printf '%q' "$HOME/$selected")
 
-  if [[ "$filepath" == *.pdf ]]; then
-    i3-msg -t command exec \""evince $filepath"\"
+  if [[ "$filepath" == *.pdf ]] || [[ "$filepath" == *.epub ]] || [[ "$filepath" == *.azw3 ]]; then
+    i3-msg -t command exec \""zathura $filepath"\"
   elif [[ "$filepath" == *.html ]]; then
     i3-msg -t command exec \""firefox $filepath"\"
-  elif [[ "$filepath" == *.epub ]] || [[ "$filepath" == *.azw3 ]]; then
-    i3-msg -t command exec \""ebook-viewer $filepath"\"
   fi
 ''

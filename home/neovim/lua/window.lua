@@ -29,7 +29,7 @@ do -- LaTeX syntax stuffs
   vim.g.tex_flavor = "latex"
   vim.g.vimtex_quickfix_mode = 0
   vim.g.vimtex_view_method = "general"
-  vim.g.vimtex_view_general_viewer = "evince"
+  vim.g.vimtex_view_general_viewer = "zathura"
   vim.g.vimtex_view_enabled = 1
   -- For vim-conceal.
   vim.opt.conceallevel = 2

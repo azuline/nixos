@@ -172,6 +172,7 @@
       ./mpv
       ./nsxiv
       ./user-dirs
+      ./zathura
     ];
 
     home.packages = with pkgs; [
@@ -179,7 +180,6 @@
       arandr
       brightnessctl
       chromium
-      evince
       firefox
       fontforge-gtk
       gimp
@@ -199,19 +199,18 @@
       xorg.xkill
       xwallpaper
       zoom-us
-      zathura
     ];
   };
 
   personalMachineBundle = { pkgs, ... }: {
     imports = [
       ./atelier
-      ./calibre
       ./keybase
       ./syncthing
     ];
 
     home.packages = with pkgs; [
+      calibre
       discord
       puddletag
       signal
