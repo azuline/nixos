@@ -25,12 +25,15 @@
       render-loading-fg = "#eeffff";
       recolor-lightcolor = "#090910";
       recolor-darkcolor = "#eeffff";
-      recolor = true;
+      recolor = false;
       index-bg = "#090910";
       index-fg = "#eeffff";
       index-active-bg = "#232344";
       window-title-home-tilde = true;
       selection-clipboard = "clipboard";
+      # Otherwise, in files with mismatching page sizes (common in artbooks
+      # etc), it's impossible to scroll.
+      scroll-page-aware = true;
     };
   };
 }
