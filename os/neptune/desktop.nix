@@ -4,7 +4,7 @@
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
-    dpi = 172;
+    dpi = 132;
     displayManager = {
       defaultSession = "none+i3";
       # It's fine to enable autologin since we have disk encryption.

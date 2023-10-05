@@ -118,7 +118,7 @@ within the `pkgs` directory. The more interesting tools and scripts are:
 # Networking
 
 All hosts are connected to each other via Tailscale VPN. There is an ACL,
-defined [here](./tailscale.policy.hujson).
+defined [here](./tailscale.policy.json).
 
 The ACL is applied via GitOps; see the [GitHub Action](./.github/workflows/tailscale.yml) for the instructions.
 

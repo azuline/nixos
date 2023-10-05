@@ -67,6 +67,7 @@ in
       font = (
         if specialArgs.sys.host == "splendor" then "Roboto 14"
         else if specialArgs.sys.host == "haiqin" then "Roboto 18"
+        else if specialArgs.sys.host == "neptune" then "Roboto 14"
         else throw "Unsupported host in rofi."
       );
     };

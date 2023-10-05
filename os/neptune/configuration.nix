@@ -26,7 +26,7 @@
   };
 
   networking = {
-    hostName = "haiqin";
+    hostName = "neptune";
     networkmanager.enable = true;
     extraHosts = ''
     '';
@@ -81,6 +81,7 @@
       mesa
       neovim
       intel-gpu-tools
+      git
       glxinfo
       networkmanagerapplet
       powertop

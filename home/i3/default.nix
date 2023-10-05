@@ -34,8 +34,8 @@ let
       font pango: roboto 11
 
       # Gaps
-      gaps inner 16
-      gaps outer 4
+      gaps inner 8
+      gaps outer 2
     '' else throw "Unsupported host in i3."
   );
 in
