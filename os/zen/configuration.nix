@@ -126,6 +126,7 @@ in
       jq
       neovim
       networkmanagerapplet
+      pinentry-curses
       powertop
       presage
       smartmontools

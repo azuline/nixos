@@ -77,17 +77,18 @@
     };
     systemPackages = with pkgs; [
       curl
+      git
+      glxinfo
+      intel-gpu-tools
       jq
       mesa
       neovim
-      intel-gpu-tools
-      git
-      glxinfo
       networkmanagerapplet
+      nftables
+      pinentry-curses
       powertop
       vim
       wget
-      nftables
       wireguard-tools
     ];
   };

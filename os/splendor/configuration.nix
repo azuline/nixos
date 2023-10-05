@@ -108,12 +108,13 @@
       networkmanagerapplet
       nftables
       pciutils
+      pinentry-curses
       powertop
+      restic
       smartmontools
       vim
       wget
       wireguard-tools
-      restic
     ];
   };
   virtualisation.docker.enable = true;
