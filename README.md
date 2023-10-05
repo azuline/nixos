@@ -40,6 +40,67 @@ exports the Home Manager and NixOS configurations.
 
 # Screenshots
 
+# Bootstrapping
+
+The following commands bootstrap a new machine. These should be run after
+booting into a minimal NixOS installation media.
+
+```bash
+# Partition the drive into boot and primary.
+$ DISK=/dev/nvme0n1  # Set to SSD device name.
+$ parted "$DISK" -- mklabel gpt
+$ parted "$DISK" -- mkpart ESP fat32 1MiB 512MiB
+$ parted "$DISK" -- set 1 boot on
+$ parted "$DISK" -- mkpart primary 512MiB 100%
+$ BOOT=/dev/nvme0n1p1     # Set boot and primary.
+$ PRIMARY=/dev/nvme0n1p2  # Get partition names from `lsblk`.
+# Encrypt the primary partition with LUKS.
+$ cryptsetup luksFormat "$PRIMARY"
+$ cryptsetup luksOpen "$PRIMARY" enc
+# Configure LVM with root+swap partitions.
+$ pvcreate /dev/mapper/enc
+$ vgcreate vg /dev/mapper/enc
+$ lvcreate -L 16G -n swap vg
+$ lvcreate -l '100%FREE' -n root vg
+# Format boot, root, and swap partitions.
+$ mkfs.fat -F 32 -n boot "$BOOT"
+$ mkfs.ext4 -L root /dev/vg/root
+$ mkswap -L swap /dev/vg/swap
+# Mount disks into /mnt (for NixOS installer).
+$ mount /dev/vg/root /mnt
+$ mkdir /mnt/boot
+$ mount "$BOOT" /mnt/boot
+$ swapon /dev/vg/swap
+# Generate NixOS config. Add the following lines to /etc/nixos/configuration.nix:
+#
+#   boot.initrd.luks.devices.root = {
+#     device = "/dev/nvme0n1p2";  # Set this to "$PRIMARY".
+#     preLVM = true;
+#   }
+#   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+#   nix.settings.max-jobs = 8;
+#   environment.systemPackages = with pkgs; [ git vim ];
+#
+# These lines configure boot for LUKS+LVM and prepare the system to build this
+# repository's configs.
+$ nixos-generate-config --root /mnt
+# Connect to the internet. Skip this step # if on ethernet. Get `$iface` from
+# the `ip l` command.
+$ wpa_supplicant -B -i $iface -c <(wpa_passphrase SSID passphrase)
+# Install NixOS and then nixos-enter into the new installation.
+$ nixos-install
+$ reboot
+# Download this repository and switch, but keep the generated
+# hardware-configuration.nix file. This step assumes that a NixOS flake has
+# been pre-prepared for this host.
+$ mv /etc/nixos /etc/nixos.backup
+$ git clone https://github.com/azuline/nixos /etc/nixos
+$ mv /etc/nixos.backup/hardware-configuration.nix /etc/nixos/os/host/
+$ nixos-rebuild switch --flake /etc/nixos/#host
+# And we're done!
+$ reboot
+```
+
 # Philosophy
 
 # Personal Tools

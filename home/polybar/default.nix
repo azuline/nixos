@@ -17,6 +17,11 @@
           # Only start if i3 socketpath succeeds.
           ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar haiqin &
         ''
+      else if specialArgs.sys.host == "neptune" then
+        ''
+          # Only start if i3 socketpath succeeds.
+          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar neptune &
+        ''
       else throw "Unsupported host for polybar."
     );
   };

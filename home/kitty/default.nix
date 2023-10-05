@@ -12,6 +12,11 @@ let
         font_size 22.0
         window_padding_width 8
       ''
+    else if specialArgs.sys.host == "neptune" then
+      builtins.readFile ./kitty.conf + ''
+        font_size 15.0
+        window_padding_width 8
+      ''
     else throw "Unsupported host in kitty.";
 in
 {

@@ -27,6 +27,8 @@
           offset = "10x10";
         } else if specialArgs.sys.host == "haiqin" then {
           offset = "5x5";
+        } else if specialArgs.sys.host == "neptune" then {
+          offset = "10x10";
         } else throw "Unsupported host in dunst."
       );
       urgency_low = {

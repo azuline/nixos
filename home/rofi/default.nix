@@ -20,6 +20,15 @@ let
       padding: 16px;
     }
   '';
+  neptuneSpacingTheme = ''
+    element {
+      padding: 12px;
+      spacing: 10px;
+    }
+    inputbar {
+      padding: 12px;
+    }
+  '';
   theme = pkgs.writeText "theme.rasi" ''
     ${colorsTheme}
     * {
@@ -39,6 +48,7 @@ let
     ${
       if specialArgs.sys.host == "splendor" then splendorSpacingTheme
       else if specialArgs.sys.host == "haiqin" then haiqinSpacingTheme
+      else if specialArgs.sys.host == "neptune" then neptuneSpacingTheme
       else throw "Unsupported host in rofi."
     }
   '';

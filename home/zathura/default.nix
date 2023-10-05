@@ -11,6 +11,8 @@
           "Source Code Pro 12"
         else if specialArgs.sys.host == "haiqin" then
           "Source Code Pro 16"
+        else if specialArgs.sys.host == "neptune" then
+          "Source Code Pro 12"
         else throw "Unsupported host in zathura.";
       inputbar-bg = "#232344";
       inputbar-fg = "#bbbbbb";

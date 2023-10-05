@@ -29,6 +29,13 @@ let
       # Gaps
       gaps inner 8
       gaps outer 2
+    '' else if specialArgs.sys.host == "neptune" then configBase + ''
+      # Font
+      font pango: roboto 11
+
+      # Gaps
+      gaps inner 16
+      gaps outer 4
     '' else throw "Unsupported host in i3."
   );
 in

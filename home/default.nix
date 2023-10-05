@@ -55,6 +55,7 @@
       neofetch
       nix-search-cli
       nmap
+      ocrmypdf
       pass
       pdftk
       perl536Packages.FileMimeInfo
@@ -148,6 +149,7 @@
       python
       rnix-lsp
       ruff
+      rustup
       selene
       semgrep
       shellcheck
