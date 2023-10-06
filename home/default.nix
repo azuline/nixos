@@ -56,6 +56,7 @@
       nix-search-cli
       nmap
       ocrmypdf
+      p7zip
       pass
       pdftk
       perl536Packages.FileMimeInfo

@@ -31,7 +31,7 @@ alias xargs='xargs '
 alias rm='trash'
 
 # Systemd
-abbr --add --global sc 'systemctl'
+abbr --add --global sc 'sudo systemctl'
 abbr --add --global scu 'systemctl --user'
 
 # Kubectl
