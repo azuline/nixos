@@ -49,8 +49,12 @@ def backup_flash_drives(devices: list[Path]) -> None:
         copy_dir(Path.home() / ".ssh", target_dir / "ssh" / socket.gethostname())
         logger.info("Copying passwords...")
         copy_dir(Path.home() / ".password-store", target_dir / "pass")
+        logger.info("Opening documents...")
+        shell("/home/blissful/documents/open.sh")
         logger.info("Copying documents...")
-        copy_dir(Path.home() / "documents", target_dir / "documents")
+        copy_dir(Path.home() / "documents" / "contents", target_dir / "documents")
+        logger.info("Cosing documents...")
+        shell("/home/blissful/documents/close.sh")
         logger.info("Copying backups...")
         copy_dir(Path.home() / "backups", target_dir / "backups")
 

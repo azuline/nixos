@@ -4,12 +4,10 @@ Execute a backup onto the Backblaze B2 cloud storage via Restic.
 
 import subprocess
 
-# TODO: artbooks?
-# TODO: atelier after cleanup
-# TODO: archive after cleanup
 RESTIC_SCRIPT = """
 source /etc/nixos/pkgs/backup-scripts/.env.restic
 
+"$HOME/documents/open.sh"
 restic backup \
     --exclude '**/.git/**' \
     --exclude '**/.syncthing*' \
@@ -36,16 +34,21 @@ restic backup \
     "$HOME/backups" \
     --exclude "$HOME/backups/signal-*" \
     --exclude "$HOME/backups/threema-*" \
+    "$HOME/archive" \
+    "$HOME/artbooks" \
+    "$HOME/atelier" \
     "$HOME/books" \
-    "$HOME/documents" \
+    "$HOME/documents/contents" \
     "$HOME/images" \
     "$HOME/kpop" \
+    "$HOME/manga" \
     "$HOME/music" \
     "$HOME/wlop" \
     "$HOME/.password-store" \
     "$HOME/.gnupg/pubring.kbx" \
     "$HOME/.gnupg/private-keys-v1.d" \
     "$HOME/.ssh"
+"$HOME/documents/close.sh"
 """
 
 
