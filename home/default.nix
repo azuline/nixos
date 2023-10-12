@@ -26,7 +26,6 @@
       decrypt-zen
       dnsutils
       exiftool
-      eza
       fd
       ffmpeg
       file

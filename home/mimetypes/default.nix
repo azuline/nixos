@@ -23,6 +23,7 @@
       "text/markdown" = [ "nvim.desktop" ];
       "text/*" = [ "nvim.desktop" ];
       "text/x-lua" = [ "nvim.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
       "video/mp4" = [ "mpv-fullscreen.desktop" ];
       "video/x-matroska" = [ "mpv-fullscreen.desktop" ];
       "x-scheme-handler/about" = [ "firefox.desktop" ];

@@ -45,7 +45,6 @@ in
       atool
       bat
       coreutils
-      eza
       ffmpegthumbnailer
       file
       fontpreview

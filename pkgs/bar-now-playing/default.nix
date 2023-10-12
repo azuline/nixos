@@ -33,5 +33,9 @@ writeShellScriptBin "bar-now-playing" ''
   playlist_pos="$(get_property playlist-pos | tr -d "\n" | cat - <(echo "+1") | bc)"
   playlist_total="$(get_property playlist-count)"
 
-  echo "[$playlist_pos/$playlist_total] $track_text ($time_pos/$time_total) from $album_text"
+  printf "%s" "[$playlist_pos/$playlist_total] $track_text ($time_pos/$time_total)"
+  if [ "$(hostname)" = "splendor" ]; then
+    printf "%s" "from $album_text"
+  fi
+  echo
 ''

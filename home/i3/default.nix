@@ -24,7 +24,7 @@ let
       workspace 10 output HDMI-0
     '' else if specialArgs.sys.host == "haiqin" then configBase + ''
       # Font
-      font pango: roboto 16
+      font pango: roboto 11
 
       # Gaps
       gaps inner 8

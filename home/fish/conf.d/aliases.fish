@@ -3,7 +3,7 @@ functions --erase ls
 functions --erase ll
 functions --erase l
 
-alias ls='eza'
+alias ls='ls -h --group-directories-first --color'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
 
