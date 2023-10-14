@@ -15,6 +15,11 @@
 # ---
 
 # Defaults
+# In release, 0.16.0, aerc changed the defaults. This restores the previous
+# defaults, as I'm too lazy to figure out how to udpate my theme to use the new
+# defaults.
+*.default=true
+*.normal=true
 # IDK what the selector for the mimetype switcher is, but this selector does
 # work (copied the selector from the builtin Nord theme).
 *.selected.bg=#697098
