@@ -61,7 +61,8 @@ make_thumbs() {
 }
 
 listimages() {
-    find -L "$dir" "$NNN_PREVIEWDIR$dir" -maxdepth 1 -type f -print0 2>/dev/null | sort -z
+    # Fork point: sort by mtime descending.
+    find -L "$dir" -maxdepth 1 -type f -printf "%T+ %p\0" 2>/dev/null | sort -rz | cut -z -d' ' -f 2-
 }
 
 view_files() {
