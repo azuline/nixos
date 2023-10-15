@@ -162,6 +162,7 @@ bindsym $mod+n exec $term nnn
 bindsym $mod+c exec i3-clear-clipboard
 bindsym $mod+p exec $term --title pass bash -ic i3-pass
 bindsym $mod+a exec $term --title atelier i3-atelier-opener
+bindsym $mod+Shift+a exec firefox --new-window 'http://127.0.0.1:19187/'
 bindsym $mod+y exec $term --title yy i3-yy
 bindsym $mod+Shift+y exec $term --title yy-id i3-atelier-identifier
 # Screenshots
