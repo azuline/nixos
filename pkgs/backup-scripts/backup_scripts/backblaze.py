@@ -2,12 +2,12 @@
 Execute a backup onto the Backblaze B2 cloud storage via Restic.
 """
 
+import os
 import subprocess
 
 RESTIC_SCRIPT = """
 source /etc/nixos/pkgs/backup-scripts/.env.restic
 
-"$HOME/documents/open.sh"
 restic backup \
     --exclude '**/.git/**' \
     --exclude '**/.syncthing*' \
@@ -42,15 +42,18 @@ restic backup \
     "$HOME/images" \
     "$HOME/kpop" \
     "$HOME/manga" \
-    "$HOME/music" \
+    "$HOME/.music-source" \
     "$HOME/wlop" \
     "$HOME/.password-store" \
     "$HOME/.gnupg/pubring.kbx" \
     "$HOME/.gnupg/private-keys-v1.d" \
     "$HOME/.ssh"
-"$HOME/documents/close.sh"
 """
 
 
 def backup_backblaze() -> None:
-    subprocess.run(["bash", "-c", RESTIC_SCRIPT], check=True)
+    try:
+        subprocess.run([os.environ["HOME"] + "/documents/open.sh"], check=True)
+        subprocess.run(["bash", "-c", RESTIC_SCRIPT], check=True)
+    finally:
+        subprocess.run([os.environ["HOME"] + "/documents/close.sh"], check=True)

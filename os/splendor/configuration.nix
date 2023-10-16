@@ -87,6 +87,12 @@
     };
   };
 
+  # Allow this command to use sudo without password. This allows us to avoid
+  # asking for sudo throughout the backup script.
+  security.sudo.configFile = ''
+    blissful ALL=(ALL:ALL) NOPASSWD: /run/current-system/sw/bin/tomb
+  '';
+
   environment = {
     interactiveShellInit = builtins.readFile ./bashrc;
     # Unset NixOS default shell aliases.
@@ -112,6 +118,7 @@
       powertop
       restic
       smartmontools
+      tomb
       vim
       wget
       wireguard-tools

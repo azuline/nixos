@@ -87,6 +87,7 @@
       nftables
       pinentry-curses
       powertop
+      tomb
       vim
       wget
       wireguard-tools

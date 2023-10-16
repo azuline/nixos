@@ -72,7 +72,6 @@
       sshfs
       tectonic
       termdown
-      tomb
       trash-cli
       tree
       unixtools.netstat
@@ -179,6 +178,7 @@
 
     home.packages = with pkgs; [
       adoptopenjdk-icedtea-web # Run jlnp files.
+      anki
       arandr
       brightnessctl
       chromium
