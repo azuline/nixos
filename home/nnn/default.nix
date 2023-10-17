@@ -19,7 +19,7 @@ let
           echo "nnn is already running"
           exit 0
         }
-        export NNN_OPTS=aDERx
+        export NNN_OPTS=aAERx
         export NNN_COLORS=4532
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TRASH=1
