@@ -35,7 +35,7 @@ writeShellScriptBin "bar-now-playing" ''
 
   printf "%s" "[$playlist_pos/$playlist_total] $track_text ($time_pos/$time_total)"
   if [ "$(hostname)" = "splendor" ]; then
-    printf "%s" "from $album_text"
+    printf "%s" " from $album_text"
   fi
   echo
 ''
