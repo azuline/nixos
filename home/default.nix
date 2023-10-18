@@ -72,7 +72,6 @@
       sshfs
       tectonic
       termdown
-      trash-cli
       tree
       unixtools.netstat
       unrar
@@ -195,7 +194,6 @@
       simplescreenrecorder
       slack
       speechd
-      spotify
       vscode
       xbindkeys
       xdotool # For VimTex's forward search.
@@ -208,7 +206,6 @@
   personalMachineBundle = { pkgs, ... }: {
     imports = [
       ./atelier
-      ./keybase
       ./syncthing
     ];
 

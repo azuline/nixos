@@ -65,8 +65,6 @@ lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
     gopls = {
       gofumpt = false,
       usePlaceholders = false,
-      -- TODO: Put this into a Pipe-specific config
-      ["local"] = "github.com/pipe-technologies/pipe/backend",
     },
   },
 }))
@@ -213,6 +211,8 @@ if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
 end
 
 -- I left pipe, but for future Go codebases, we should do something similar.
+-- This should also be applied for gopls.
+--
 -- if string.find(vim.fn.getcwd(), "/pipe/pipe") ~= nil then
 --   table.insert(
 --     sources,

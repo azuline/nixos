@@ -6,7 +6,6 @@ require("plugins")
 require("window")
 require("navigation")
 require("completion") -- This needs to be before LSP.
-require("dev")
 require("lsp")
-require("completion")
+require("dev")
 require("editing")

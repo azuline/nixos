@@ -27,9 +27,6 @@ alias s='perl -pe'
 alias si='perl -i -pe'
 alias xargs='xargs '
 
-# Safety
-alias rm='trash'
-
 # Systemd
 abbr --add --global sc 'sudo systemctl'
 abbr --add --global scu 'systemctl --user'

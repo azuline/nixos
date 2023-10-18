@@ -12,6 +12,7 @@ vim.g.coq_settings = {
   },
   clients = {
     tmux = { enabled = true },
+    lsp = { enabled = true, resolve_timeout = 1.0 },
     paths = { enabled = true },
     tags = { enabled = false },
     snippets = { enabled = true, weight_adjust = 1.5 },
