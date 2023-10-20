@@ -74,6 +74,7 @@
     variables = {
       EDITOR = "nvim";
       XCURSOR_SIZE = "64";
+      LC_COLLATE = "C"; # Lets special characters sort last; doesn't ignore them.
     };
     systemPackages = with pkgs; [
       curl

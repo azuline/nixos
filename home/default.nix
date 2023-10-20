@@ -19,7 +19,6 @@
       bc
       beets
       bubblewrap
-      cmus
       coreutils
       curl
       dasel

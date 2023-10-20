@@ -118,6 +118,7 @@ in
     };
     variables = {
       EDITOR = "nvim";
+      LC_COLLATE = "C"; # Lets special characters sort last; doesn't ignore them.
     };
     systemPackages = with pkgs; [
       certbot
