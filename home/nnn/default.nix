@@ -4,12 +4,6 @@ let
   nnnWrapped = (pkgs.nnn.override {
     withPcre = true;
   }).overrideAttrs (old: {
-    src = pkgs.fetchFromGitHub {
-      owner = "azuline";
-      repo = "nnn";
-      rev = "085226f14f394b7f8191bc246752478b3fe15cae";
-      hash = "sha256-y0QsQ84cmf2ulpg9oDH8JJ2R8+COxGbWZxbmkE85UNY=";
-    };
     # Apply the:
     # - `cd on quit` logic
     # - configuration envvars
