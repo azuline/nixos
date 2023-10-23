@@ -16,7 +16,7 @@ abbr --add --global n 'nnn'
 abbr --add --global hm 'home-manager'
 
 abbr --add --global rscp 'rsync -ah --progress'
-abbr --add --global ytv 'yt-dlp --remux-video mkv'
+abbr --add --global ytv 'yt-dlp --remux-video mkv --embed-subs'
 abbr --add --global ytm 'yt-dlp -x --audio-format opus'
 
 # Substitutions.
