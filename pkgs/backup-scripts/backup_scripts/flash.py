@@ -34,6 +34,8 @@ def copy_dir(src: Path, dst: Path) -> None:
 def backup_flash_drives(devices: list[Path]) -> None:
     drives = mount_drives(devices)
 
+    logger.info("Opening documents...")
+    shell("/home/blissful/documents/open.sh")
     for d in drives:
         date = datetime.today().strftime("%Y-%m-%d")
         logger.info(f"Creating backup for {date} in {d.device} ({d.name})...")
@@ -49,12 +51,8 @@ def backup_flash_drives(devices: list[Path]) -> None:
         copy_dir(Path.home() / ".ssh", target_dir / "ssh" / socket.gethostname())
         logger.info("Copying passwords...")
         copy_dir(Path.home() / ".password-store", target_dir / "pass")
-        logger.info("Opening documents...")
-        shell("/home/blissful/documents/open.sh")
         logger.info("Copying documents...")
         copy_dir(Path.home() / "documents" / "contents", target_dir / "documents")
-        logger.info("Cosing documents...")
-        shell("/home/blissful/documents/close.sh")
         logger.info("Copying backups...")
         copy_dir(Path.home() / "backups", target_dir / "backups")
 
@@ -65,6 +63,8 @@ def backup_flash_drives(devices: list[Path]) -> None:
 
         logger.info(f"Finished creating backup for {date} in {d.device} ({d.name}).")
 
+    logger.info("Closing documents...")
+    shell("/home/blissful/documents/close.sh")
     input("Backup completed. Press any key to close the drives...")
 
     unmount_drives()

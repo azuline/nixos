@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Copy the selected node's name to clipboard.
+echo "$1" | xargs -0 basename | tr -d '\n' | xclip -sel c

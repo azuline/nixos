@@ -24,6 +24,7 @@ let
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TMPFILE=$XDG_RUNTIME_DIR/nnn-lastd
         export NNN_PREVIEWDIR=/home/blissful/.cache/nsxiv
+        export NNN_ORDER="r:/home/blissful/music/3. Releases - Recently Added"
         $out/bin/.nnn-unwrapped "\''${@:-.}"
       EOF
       cat - >> $out/bin/nnn <<EOF
@@ -64,6 +65,7 @@ in
     plugins = {
       mappings = {
         ";" = "preview-tui";
+        c = "copy-highlighted";
         f = "fzopen";
         i = "imgview";
         p = "playmusic";
