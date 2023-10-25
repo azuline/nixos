@@ -66,6 +66,7 @@ in
       mappings = {
         ";" = "preview-tui";
         c = "copy-highlighted";
+        "e" = "rose-edit";
         f = "fzopen";
         i = "imgview";
         p = "playmusic";

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Edits the current collage/release in Rose.
+node="$(readlink -f "$1")"
+
+# Strip away the leading directory path so that the pattern starts with the
+# Rose index. Also remove the leading slash.
+local="${node##/home/blissful/music}"
+local="${local#/}"
+
+extract_nth() {
+    # Get nth slaash.
+    echo "$1" | awk -F'/' "{print \$$2}"
+}
+
+case "$local" in
+    "1. Releases"*)
+        release="$(extract_nth "$local" 2)"
+        [ "$release" ] && rose releases edit "$release"
+        ;;
+    "2. Releases"*)
+        release="$(extract_nth "$local" 2)"
+        [ "$release" ] && rose releases edit "$release"
+        ;;
+    "3. Releases"*)
+        release="$(extract_nth "$local" 2)"
+        [ "$release" ] && rose releases edit "$release"
+        ;;
+    "4. Artists"*)
+        release="$(extract_nth "$local" 3)"
+        [ "$release" ] && rose releases edit "$release"
+        ;;
+    "5. Genres"*)
+        release="$(extract_nth "$local" 3)"
+        [ "$release" ] && rose releases edit "$release"
+        ;;
+    "6. Labels"*)
+        release="$(extract_nth "$local" 3)"
+        [ "$release" ] && rose releases edit "$release"
+        ;;
+    "7. Collages"*)
+        collage="$(extract_nth "$local" 2)"
+        release="$(extract_nth "$local" 3 | perl -pe 's/^\d+\. //')"
+        if [ "$release" ]; then
+            rose releases edit "$release"
+        elif [ "$collage" ]; then
+            rose collages edit "$collage"
+        fi 
+        ;;
+    "8. Playlists"*)
+        playlist="$(extract_nth "$local" 2)"       
+        [ "$playlist" ] && rose playlists edit "$playlist"
+        ;;
+esac
