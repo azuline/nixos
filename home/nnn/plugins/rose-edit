@@ -20,12 +20,13 @@ case "$local" in
         release="$(extract_nth "$local" 2)"
         [ "$release" ] && rose releases edit "$release"
         ;;
-    "2. Releases"*)
+    "2. Releases - New"*)
         release="$(extract_nth "$local" 2)"
         [ "$release" ] && rose releases edit "$release"
         ;;
-    "3. Releases"*)
-        release="$(extract_nth "$local" 2)"
+    "3. Releases - Recently Added"*)
+        # Strip the leading date.
+        release="$(extract_nth "$local" 2 | cut -c 14-)"
         [ "$release" ] && rose releases edit "$release"
         ;;
     "4. Artists"*)

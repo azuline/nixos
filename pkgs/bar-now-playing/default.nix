@@ -1,7 +1,7 @@
 { writeShellScriptBin, coreutils, gnused, socat, jq, bc }:
 
 writeShellScriptBin "bar-now-playing" ''
-  export PATH="${bc}/bin:${jq}/bin:${gnused}/bin:${socat}/bin:${coreutils}/bin:$PATH"
+  export PATH="${bc}/bin:${jq}/bin:${gnused}/bin:${socat}/bin:${coreutils}/bin:/run/current-system/sw/bin:$PATH"
 
   set -euo pipefail
 

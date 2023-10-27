@@ -74,6 +74,7 @@
       tree
       unixtools.netstat
       unrar
+      trash-cli
       unzip
       w3m
       wget
