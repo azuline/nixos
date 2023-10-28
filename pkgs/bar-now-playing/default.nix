@@ -1,5 +1,6 @@
 { writeShellScriptBin, coreutils, gnused, socat, jq, bc }:
 
+# TODO: Read the audio file and maintain a cache in ~/.local/cache.
 writeShellScriptBin "bar-now-playing" ''
   export PATH="${bc}/bin:${jq}/bin:${gnused}/bin:${socat}/bin:${coreutils}/bin:/run/current-system/sw/bin:$PATH"
 
@@ -33,7 +34,7 @@ writeShellScriptBin "bar-now-playing" ''
   playlist_pos="$(get_property playlist-pos | tr -d "\n" | cat - <(echo "+1") | bc)"
   playlist_total="$(get_property playlist-count)"
 
-  printf "%s" "[$playlist_pos/$playlist_total] $track_text ($time_pos/$time_total)"
+  printf "%s" "($time_pos/$time_total) [$playlist_pos/$playlist_total] $track_text"
   if [ "$(hostname)" = "splendor" ]; then
     printf "%s" " from $album_text"
   fi

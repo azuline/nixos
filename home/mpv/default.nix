@@ -47,5 +47,7 @@ in
   };
   xdg.configFile."mpv/input.conf".text = ''
     p show-text ''${playlist}
+    Ctrl+Shift+> add playlist-pos 5
+    Ctrl+Shift+< add playlist-pos -5
   '';
 }

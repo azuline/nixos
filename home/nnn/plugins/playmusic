@@ -4,14 +4,33 @@
 
 # Kill any existing instance of playmusic. This ensures we are only playing one
 # thing simultaneously.
-ps x | grep 'playmusic-mpv' | awk '{print $1}' | xargs -n1 kill
+ps x | grep 'playmusic-mpv' | grep -v grep | awk '{print $1}' | xargs -n1 kill
 
 node="$(readlink -f "$1")"
 
+# Plays a directory ($1) of music, optionally starting at file ($2).
+play() {
+    playlist="$(fd . "$1" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts | sort)"
+    start_at=0
+    if [ $# -eq 2 ]; then
+        start_at="$(echo "$playlist" | awk -v needle="$2" '$0 == needle { print NR-1; exit }')"
+    fi
+    echo "$playlist" | \
+        tr '\n' '\0' | \
+        xargs -0 nohup mpv \
+            --force-window \
+            --title="playmusic-mpv" \
+            --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" \
+            --playlist-start="$start_at" \
+            >/dev/null 2>&1 &
+}
+
 if [ -d "$node" ]; then
-    fd . "$node" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts | sort | tr '\n' '\0' | xargs -0 nohup mpv --force-window --title="playmusic-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" >/dev/null 2>&1 &
+    # Play from the start.
+    play "$node"
 else
-    nohup mpv --force-window --title="playmusic-mpv" --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" "$node" >/dev/null 2>&1 &
+    # Play from the selected file.
+    play "$(dirname "$node")" "$node"
 fi
 
 clear
