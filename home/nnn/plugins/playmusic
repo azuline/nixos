@@ -4,7 +4,10 @@
 
 # Kill any existing instance of playmusic. This ensures we are only playing one
 # thing simultaneously.
-ps x | grep 'playmusic-mpv' | grep -v grep | awk '{print $1}' | xargs -n1 kill
+existing="$(ps x | grep 'playmusic-mpv' | grep -v grep | awk '{print $1}')"
+if [ -n "$existing" ]; then
+    echo "$existing" | xargs -n1 kill
+fi
 
 node="$(readlink -f "$1")"
 

@@ -27,13 +27,13 @@
     "discord": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-f39g9rnvvOuquPSGdJkqSoc12VGHzaVjF8Z6kATBid8=",
+        "narHash": "sha256-fcdP8jCcCkmPQcjciPcrXG0K/9numvbTZ2B6qCg4pNY=",
         "type": "tarball",
-        "url": "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"
+        "url": "https://dl.discordapp.net/apps/linux/0.0.33/discord-0.0.33.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"
+        "url": "https://dl.discordapp.net/apps/linux/0.0.33/discord-0.0.33.tar.gz"
       }
     },
     "fish-plugin-nix-env": {
@@ -189,6 +189,24 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_6": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
         "type": "github"
       },
       "original": {
@@ -523,7 +541,30 @@
         "nnn-for-plugins": "nnn-for-plugins",
         "nsxiv-src": "nsxiv-src",
         "pgmigrate-src": "pgmigrate-src",
-        "presage-src": "presage-src"
+        "presage-src": "presage-src",
+        "rose-src": "rose-src"
+      }
+    },
+    "rose-src": {
+      "inputs": {
+        "flake-utils": "flake-utils_6",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1698605082,
+        "narHash": "sha256-yPnudeS46yegd+3SZ1BP9HiMofGnPUbyCRuzR1qBfs4=",
+        "owner": "azuline",
+        "repo": "rose",
+        "rev": "d85dbd16e3b9296fa593206d04f8dfc972ab4540",
+        "type": "github"
+      },
+      "original": {
+        "owner": "azuline",
+        "ref": "master",
+        "repo": "rose",
+        "type": "github"
       }
     },
     "systems": {
@@ -542,6 +583,21 @@
       }
     },
     "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

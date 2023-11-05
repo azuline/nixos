@@ -29,9 +29,13 @@
       url = github:peterldowns/pgmigrate;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rose-src = {
+      url = github:azuline/rose/master;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Non-flake sources.
     discord = {
-      url = "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz";
+      url = "https://dl.discordapp.net/apps/linux/0.0.33/discord-0.0.33.tar.gz";
       flake = false;
     };
     nsxiv-src = {
@@ -62,6 +66,7 @@
     , nix-search-cli-src
     , presage-src
     , pgmigrate-src
+    , rose-src
       # Non-Nix sources
     , discord
     , nsxiv-src
