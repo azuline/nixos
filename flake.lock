@@ -269,11 +269,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1696737557,
-        "narHash": "sha256-YD/pjDjj/BNmisEvRdM/vspkCU3xyyeGVAUWhvVSi5Y=",
+        "lastModified": 1699368917,
+        "narHash": "sha256-nUtGIWf86BOkUbtksWtfglvCZ/otP0FTZlQH8Rzc7PA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3c1d8758ac3f55ab96dcaf4d271c39da4b6e836d",
+        "rev": "6a8444467c83c961e2f5ff64fb4f422e303c98d3",
         "type": "github"
       },
       "original": {
@@ -362,11 +362,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1696778922,
-        "narHash": "sha256-dA45rGSoqN5wGu7C2pM9NnAKm7CGL/wfBHgMBoZSEhE=",
+        "lastModified": 1699405371,
+        "narHash": "sha256-YsV1VF/Wxw41vTRKL/zMJT/E/8jI4jmKZpJCgZhLvbA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "df6b235efa0164d09fc0a87321ba4326f163c3da",
+        "rev": "23a5f1f80dbc198c9a81ed0bea13f6be3b4b3689",
         "type": "github"
       },
       "original": {
@@ -426,11 +426,11 @@
     "nnn-for-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1696766582,
-        "narHash": "sha256-B9WRQW4wbs3+lJ9ACFheTaO+0+G/r67yJZJJPMDIQXI=",
+        "lastModified": 1697592213,
+        "narHash": "sha256-enAJNIulWWHp0dvTiZJ/zLFoHoa2iNgBzaJLY2cLf9M=",
         "owner": "jarun",
         "repo": "nnn",
-        "rev": "7f63bef4d6c9f70b99a4c98435c9c0a68e05be44",
+        "rev": "1051d7213d910be4643d8736fea7a8b922916d3e",
         "type": "github"
       },
       "original": {
@@ -553,11 +553,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1698605082,
-        "narHash": "sha256-yPnudeS46yegd+3SZ1BP9HiMofGnPUbyCRuzR1qBfs4=",
+        "lastModified": 1699396698,
+        "narHash": "sha256-l5xpg4BlH139b8kagpXSgO3hLtRdZ8qbgR6KlVGW6vQ=",
         "owner": "azuline",
         "repo": "rose",
-        "rev": "d85dbd16e3b9296fa593206d04f8dfc972ab4540",
+        "rev": "eb87f47ee917cac71c84e6ae8fe73e6d4d6e72a7",
         "type": "github"
       },
       "original": {

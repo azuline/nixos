@@ -75,14 +75,15 @@
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
+      pkgs-stable = import nixpkgs-stable { inherit system; };
       srcs = { inherit discord nsxiv-src nnn-for-plugins fish-plugin-wd fish-plugin-nix-env; };
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
+        sqlint = pkgs-stable.sqlint;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins devenv; };
-      pkgs-stable = import nixpkgs-stable { inherit system; };
       makeHomeConfiguration =
         {
           # This enables per-host configurations, typically screen size differences.

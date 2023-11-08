@@ -76,6 +76,11 @@ lspconfig.pyright.setup({
   },
 })
 
+lspconfig.ruff_lsp.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 lspconfig.hls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -175,11 +180,9 @@ local sources = {
   -- Lua
   null_ls.builtins.formatting.stylua,
   -- Python
-  null_ls.builtins.formatting.black,
-  null_ls.builtins.formatting.isort,
-  null_ls.builtins.formatting.ruff,
+  -- null_ls.builtins.formatting.black,
+  -- null_ls.builtins.formatting.isort,
   null_ls.builtins.diagnostics.mypy,
-  null_ls.builtins.diagnostics.ruff,
   -- Golang
   null_ls.builtins.formatting.gofumpt,
   -- null_ls.builtins.diagnostics.golangci_lint,

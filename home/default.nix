@@ -118,6 +118,7 @@
       gopls
       haskell-language-server
       haskellPackages.implicit-hie
+      isort
       jdk11
       kind
       kubectl
@@ -148,6 +149,7 @@
       python
       rnix-lsp
       ruff
+      ruff-lsp
       rustup
       selene
       semgrep
