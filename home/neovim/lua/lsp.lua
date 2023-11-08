@@ -1,5 +1,4 @@
 local lspconfig = require("lspconfig")
-local coq = require("coq")
 local null_ls = require("null-ls")
 
 local buf_map = function(bufnr, mode, lhs, rhs, opts)
@@ -56,9 +55,9 @@ local function filter(arr, fn)
 end
 
 -- Setup lspconfig.
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+lspconfig.gopls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -67,23 +66,23 @@ lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
       usePlaceholders = false,
     },
   },
-}))
+})
 
-lspconfig.pyright.setup(coq.lsp_ensure_capabilities({
+lspconfig.pyright.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
-}))
+})
 
-lspconfig.hls.setup(coq.lsp_ensure_capabilities({
+lspconfig.hls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
-}))
+})
 
 lspconfig.zls.setup({
   on_attach = on_attach,
@@ -93,7 +92,7 @@ lspconfig.zls.setup({
   },
 })
 
-lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
+lspconfig.tsserver.setup({
   init_options = {
     preferences = {
       importModuleSpecifierPreference = "non-relative",
@@ -141,9 +140,9 @@ lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
       vim.lsp.handlers["textDocument/definition"](err, result, method)
     end,
   },
-}))
+})
 
-lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities({
+lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       runtime = {
@@ -166,7 +165,7 @@ lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities({
       },
     },
   },
-}))
+})
 
 local sources = {
   -- JS/TS/JSX/TSX
