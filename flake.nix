@@ -93,8 +93,8 @@
         , username
           # A function that takes post-parametrized bundles of packages and returns a subset.
         , chooseBundles
-          # Additional one-off packages to add to a single host.
-        , packages ? [ ]
+          # Custom per-host module code.
+        , custom ? { ... }: { }
         }:
         let
           sys = { inherit host nixDir; };
@@ -114,8 +114,7 @@
             home.username = "${username}";
             home.homeDirectory = "/home/${username}";
             home.stateVersion = "22.11";
-            home.packages = packages;
-          }];
+          }] ++ [ custom ];
         };
     in
     {
@@ -163,11 +162,14 @@
               b.personalMachineBundle
               b.i3Bundle
             ];
-            packages = with pkgs; [
-              backup-scripts
-              exif-mtime-sync
-              xorg.xmodmap # Temporary while keyboard is broken.
-            ];
+            custom = { pkgs, ... }: {
+              imports = [ ./home/cdrama-rss ];
+              home.packages = with pkgs; [
+                backup-scripts
+                exif-mtime-sync
+                xorg.xmodmap # Temporary while keyboard is broken.
+              ];
+            };
           };
           haiqin = makeHomeConfiguration {
             host = "haiqin";

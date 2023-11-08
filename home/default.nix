@@ -107,6 +107,7 @@
       devenv
       docker
       docker-compose
+      dotnet-sdk_8
       dprint
       dune_3
       gdb
