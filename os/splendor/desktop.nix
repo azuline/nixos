@@ -64,4 +64,10 @@
 
   programs.dconf.enable = true;
   programs.seahorse.enable = true;
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 }

@@ -93,6 +93,9 @@ au BufEnter *.txt,*.rst,*.c,*.md,*.mkd,*.markdown,*.tex
 au BufEnter *.hs,*.ts,*.tsx,*.js,*.jsx,*.v
   \ set textwidth=100
 
+" Wrap at 100 but not automatically.
+au BufEnter *.py set textwidth=100 | set formatoptions-=t
+
 au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim,*.hbs,*.rkt,*.hs,*.v,*.lua
   \ set tabstop=2 |
   \ set softtabstop=2 |

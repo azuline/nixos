@@ -12,7 +12,9 @@ let
     # home-manager module.
     postInstall = old.postInstall + ''
       mv $out/bin/nnn $out/bin/.nnn-unwrapped
-      cat - > $out/bin/nnn <<EOF
+      # Echo the main script body without evaluating the script ('EOF' does
+      # that). This way variables are preserved for real runtime.
+      cat - > $out/bin/nnn <<'EOF'
         #!${pkgs.bash}/bin/bash
 
         [ "''${NNNLVL:-0}" -eq 0 ] || {
@@ -25,13 +27,18 @@ let
         export NNN_TMPFILE=$XDG_RUNTIME_DIR/nnn-lastd
         export NNN_PREVIEWDIR=/home/blissful/.cache/nsxiv
         export NNN_ORDER="r:/home/blissful/music/3. Releases - Recently Added"
+        # And dynamically set an order for every subdirectory in ~/images.
+        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/images -mindepth 1 -maxdepth 1 -type d -printf 't:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
+      EOF
+      # And now echo the final program call but with evaluation (so that $out gets evaluated).
+      cat - >> $out/bin/nnn <<EOF
         $out/bin/.nnn-unwrapped "\''${@:-.}"
       EOF
-      cat - >> $out/bin/nnn <<EOF
-      [ ! -f "$NNN_TMPFILE" ] || {
-          . "$NNN_TMPFILE"
-          rm -f "$NNN_TMPFILE" > /dev/null
-      }
+      cat - >> $out/bin/nnn <<'EOF'
+        [ ! -f "$NNN_TMPFILE" ] || {
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+        }
       EOF
       chmod +x $out/bin/nnn
     '';
@@ -85,6 +92,7 @@ in
       i = "~/images";
       k = "~/kpop";
       m = "~/music";
+      M = "~/.music-source";
       t = "~/tv";
       v = "~/evergarden/visions";
     };

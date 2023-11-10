@@ -36,8 +36,8 @@ in
     enable = true;
     config = {
       demuxer-thread = "yes";
-      demuxer-readahead-secs = "120";
-      demuxer-max-bytes = "500M";
+      demuxer-readahead-secs = "360";
+      demuxer-max-bytes = "1000M";
       osd-font-size = 24;
       screenshot-format = "png";
       screenshot-png-compression = "9";
