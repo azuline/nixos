@@ -6,7 +6,7 @@ writeShellScriptBin "win-switch" ''
     xrandr --output HDMI-0 --off
 
     # Polybar
-    pkill -f 'polybar right'
+    pkill -f 'polybar splendor-right'
 
     synergy &
     disown

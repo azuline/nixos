@@ -12,6 +12,7 @@
     ./hardware-configuration.nix
     ./torrents.nix
     ./desktop.nix
+    ./vm.nix
   ];
 
   boot = {
@@ -24,6 +25,20 @@
     # True by default; creates a warning when other parameters are unset. So we
     # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.
     swraid.enable = false;
+    kernelModules = [
+      # == For qemu-kvm ==
+      "vfio"
+      "vfio_iommu_type1"
+      "vfio_pci"
+      "vhost-net"
+    ];
+    kernelParams = [
+      # == For qemu-kvm ==
+      "intel_iommu=on"
+      "vfio-pci.ids=10de:2184,10de:1aeb,10de:1aec,10de:1aed"
+      # 16GB with the default size of 2048kB size hugepages. For the virtual machine.
+      "nr_hugepages=8600"
+    ];
   };
 
   fileSystems = {
@@ -58,6 +73,11 @@
           19187 # atelier
         ];
       };
+      # Virtual machine. Allow all ports.
+      interfaces.virbr0 = {
+        allowedTCPPortRanges = [{ from = 1; to = 65535; }];
+        allowedUDPPortRanges = [{ from = 1; to = 65535; }];
+      };
     };
   };
 
@@ -77,7 +97,7 @@
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" ];
+        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" "libvirtd" ];
       };
       # Controlled by transmission.nix.
       transmission = { };
@@ -117,6 +137,8 @@
       pciutils
       pinentry-curses
       powertop
+      lshw
+      synergy
       restic
       smartmontools
       tomb
@@ -125,6 +147,7 @@
       wireguard-tools
     ];
   };
+
   virtualisation.docker.enable = true;
   programs.fish.enable = true;
   services.tailscale.enable = true;

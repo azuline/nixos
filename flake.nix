@@ -169,6 +169,7 @@
                 backup-scripts
                 exif-mtime-sync
                 xorg.xmodmap # Temporary while keyboard is broken.
+                win-switch
               ];
             };
           };
