@@ -194,6 +194,7 @@
       pavucontrol
       peek
       pulseaudio # for pactl
+      screenkey
       simplescreenrecorder
       slack
       speechd
