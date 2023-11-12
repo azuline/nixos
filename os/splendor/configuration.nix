@@ -133,6 +133,7 @@
       jq
       neovim
       networkmanagerapplet
+      dmidecode
       nftables
       pciutils
       pinentry-curses
