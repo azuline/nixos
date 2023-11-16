@@ -1,8 +1,7 @@
 { writeShellScriptBin, coreutils, gnused, socat, jq, bc }:
 
-# TODO: Read the audio file and maintain a cache in ~/.local/cache.
 writeShellScriptBin "bar-now-playing" ''
-  export PATH="${bc}/bin:${jq}/bin:${gnused}/bin:${socat}/bin:${coreutils}/bin:/run/current-system/sw/bin:$PATH"
+  export PATH="${bc}/bin:${jq}/bin:${gnused}/bin:${socat}/bin:${coreutils}/bin:$HOME/.nix-profile/bin:/run/current-system/sw/bin:$PATH"
 
   set -euo pipefail
 
@@ -22,9 +21,26 @@ writeShellScriptBin "bar-now-playing" ''
     echo "{ \"command\": [\"get_property_string\", \"$1\"] }" | socat - "$XDG_RUNTIME_DIR/mpv-playmusic" | jq -r ".data"
   }
 
+  arrayfmt() {
+    jq -r '[.[]] | if length == 0 then ""
+           elif length == 1 then .[0] 
+           elif length == 2 then join(" & ") 
+           else (.[0:-1] | join(", ")) + " & " + .[-1] 
+           end'
+  }
+
   filepath="$(get_property path)"
-  track_text="$(basename "$filepath" | sed 's/\.[^.]*$//' | sed 's/^[0-9\-]*\. //')"
-  album_text="$(basename "$(dirname "$filepath")")"
+  data="$(rose tracks print "$filepath")"
+
+  tracktitle="$(echo "$data" | jq -r .tracktitle)"
+  albumtitle="$(echo "$data" | jq -r .albumtitle)"
+  year="$(echo "$data" | jq -r .year)"
+
+  artists="$(echo "$data" | jq '.trackartists.main | map(select(.alias == false) | .name)' | arrayfmt)"
+  guest_artists="$(echo "$data" | jq '.trackartists.guest | map(select(.alias == false) | .name)' | arrayfmt)"
+  if [ -n "$guest_artists" ]; then
+    artists="$artists (feat. $guest_artists)"
+  fi
 
   time_pos="$(get_property time-pos)"
   time_total="$(echo "$(get_property time-remaining) + $time_pos" | bc)"
@@ -34,9 +50,12 @@ writeShellScriptBin "bar-now-playing" ''
   playlist_pos="$(get_property playlist-pos | tr -d "\n" | cat - <(echo "+1") | bc)"
   playlist_total="$(get_property playlist-count)"
 
-  printf "%s" "($time_pos/$time_total) [$playlist_pos/$playlist_total] $track_text"
+  printf "%s" "($time_pos/$time_total) [$playlist_pos/$playlist_total] $tracktitle by $artists"
   if [ "$(hostname)" = "splendor" ]; then
-    printf "%s" " from $album_text"
+    printf "%s" " from $albumtitle"
+    if [ -n "$year" ]; then
+      printf "%s" " ($year)"
+    fi
   fi
   echo
 ''

@@ -11,6 +11,10 @@ fi
 
 node="$(readlink -f "$1")"
 
+if [ ! -d "$node" ]; then
+    node="$(dirname "$node")"
+fi
+
 # Plays a directory ($1) of music, optionally starting at file ($2).
 playlist="$(fd . "$node" -e ogg -e opus -e mp3 -e m4a -e mkv -e ts | shuf)"
 echo "$playlist" | \
