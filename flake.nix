@@ -34,16 +34,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-flake sources.
+    nnn-src = {
+      url = github:azuline/nnn;
+      flake = false;
+    };
     discord = {
       url = "https://dl.discordapp.net/apps/linux/0.0.33/discord-0.0.33.tar.gz";
       flake = false;
     };
     nsxiv-src = {
       url = github:azuline/nsxiv;
-      flake = false;
-    };
-    nnn-for-plugins = {
-      url = github:jarun/nnn;
       flake = false;
     };
     fish-plugin-wd = {
@@ -68,15 +68,15 @@
     , pgmigrate-src
     , rose-src
       # Non-Nix sources
+    , nnn-src
     , discord
     , nsxiv-src
-    , nnn-for-plugins
     , fish-plugin-wd
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs-stable = import nixpkgs-stable { inherit system; };
-      srcs = { inherit discord nsxiv-src nnn-for-plugins fish-plugin-wd fish-plugin-nix-env; };
+      srcs = { inherit discord nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env; };
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         presage = presage-src.defaultPackage.${system};

@@ -4,6 +4,7 @@ let
   nnnWrapped = (pkgs.nnn.override {
     withPcre = true;
   }).overrideAttrs (old: {
+    src = srcs.nnn-src;
     # Apply the:
     # - `cd on quit` logic
     # - configuration envvars

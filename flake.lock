@@ -423,18 +423,18 @@
         "type": "github"
       }
     },
-    "nnn-for-plugins": {
+    "nnn-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1697592213,
-        "narHash": "sha256-enAJNIulWWHp0dvTiZJ/zLFoHoa2iNgBzaJLY2cLf9M=",
-        "owner": "jarun",
+        "lastModified": 1700408458,
+        "narHash": "sha256-1e1uwKDNwritWS4KGbz1vjUshxhgsPeYzEmP+y258/0=",
+        "owner": "azuline",
         "repo": "nnn",
-        "rev": "1051d7213d910be4643d8736fea7a8b922916d3e",
+        "rev": "f7a22dfb07f1ea93544974b6b06852219a793f7b",
         "type": "github"
       },
       "original": {
-        "owner": "jarun",
+        "owner": "azuline",
         "repo": "nnn",
         "type": "github"
       }
@@ -538,7 +538,7 @@
         "nix-search-cli-src": "nix-search-cli-src",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable_2",
-        "nnn-for-plugins": "nnn-for-plugins",
+        "nnn-src": "nnn-src",
         "nsxiv-src": "nsxiv-src",
         "pgmigrate-src": "pgmigrate-src",
         "presage-src": "presage-src",
