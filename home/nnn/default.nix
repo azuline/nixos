@@ -73,11 +73,9 @@ in
       mappings = {
         ";" = "preview-tui";
         c = "copy-highlighted";
-        e = "rose-edit";
         f = "fzopen";
         i = "imgview";
-        p = "playmusic";
-        P = "shufflemusic";
+        r = "rose";
       };
       # We vendor plugins in order to be able to add our own.
       src = ./plugins;

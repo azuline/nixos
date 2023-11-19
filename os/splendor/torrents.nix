@@ -29,7 +29,7 @@
       cache-size-mb = 4;
       default-trackers = "";
       dht-enabled = false;
-      download-dir = "/mnt/elements/misc";
+      download-dir = "/mnt/elements/music";
       download-limit = 100;
       download-limit-enabled = 0;
       download-queue-enabled = true;

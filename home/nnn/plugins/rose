@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+
+node="$(readlink -f "$1")"
+
+# Logic for play_tracks, which runs this in the background.
+play_tracks_executor() {
+    # Kill any existing instance of playmusic. This ensures we are only playing one
+    # thing simultaneously.
+    existing="$(ps x | grep 'playmusic-mpv' | grep -v grep | awk '{print $1}')"
+    if [ -n "$existing" ]; then
+        echo "$existing" | xargs -n1 kill
+    fi
+
+    echo "$1" | tr '\n' '\0' | \
+        xargs -0 mpv \
+            --force-window \
+            --title="playmusic-mpv" \
+            --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" \
+            --playlist-start="$2"
+}
+
+# Plays a filelist ($1) in mpv, optionally starting at file ($2).
+play_tracks() {
+    export -f play_tracks_executor
+    nohup bash -c "play_tracks_executor '$1' '$2'" >/dev/null 2>&1 &
+}
+
+# Get the tracklist to play given a directory or file. If a file is passed in,
+# we pull the tracklist of its parent directory. The tracklist is returned
+# unsorted.
+get_tracklist() {
+    directory="$1"
+    [ ! -d "$directory" ] && directory="$(dirname "$directory")"
+    find "$directory" -type f \( -name "*.ogg" -o -name "*.opus" -o -name "*.mp3" -o -name "*.m4a" -o -name "*.mkv" -o -name "*.ts" \)
+}
+
+# Truncate the "$1" path until the remaining $2 "virtual parts" remain.
+truncate_virtual_parts() {
+    vpath="${1##/home/blissful/music}"
+    num_parts="$(echo "$vpath" | tr -cd '/' | wc -c)"
+    realpath="$1"
+    num_to_truncate=$((num_parts - $2))
+    [[ num_to_truncate -lt 0 ]] && return
+    for _ in $(seq 1 $num_to_truncate); do
+        realpath="$(dirname "$realpath")"
+    done
+    echo "$realpath"
+}
+
+# Get the path to the selected release. Handles truncating potential filepaths
+# included after the release.
+get_selected_release() {
+    vpath="${1##/home/blissful/music}"
+    case "$vpath" in
+    "/1. Releases"* | "/2. Releases"* | "/3. Releases"*)
+        truncate_virtual_parts "$1" 2
+        ;;
+    "/4. Artists"* | "/5. Genres"* | "/6. Labels"*)
+        truncate_virtual_parts "$1" 3
+        ;;
+    "/7. Collages"*)
+        truncate_virtual_parts "$1" 3
+        ;;
+    esac
+}
+
+# Get the path to the selected collage.
+get_selected_collage() {
+    vpath="${1##/home/blissful/music}"
+    [[ "$vpath" == "/7. Collages"* ]] && truncate_virtual_parts "$1" 2
+}
+
+# Get the path to the selected playlist.
+get_selected_playlist() {
+    vpath="${1##/home/blissful/music}"
+    [[ "$vpath" == "/8. Playlists"* ]] && truncate_virtual_parts "$1" 2
+}
+
+read -N1 -r -p "(p)lay (s)huffle toggle(n)ew (e)dit: " action
+
+case "$action" in 
+    p) # Play a directory in order.
+        tracklist="$(get_tracklist "$node" | sort)"
+        # If a file is selected in nnn, start at that file's index in the tracklist.
+        start_at=0
+        [ -f "$node" ] && start_at="$(echo "$tracklist" | awk -v needle="$node" '$0 == needle { print NR-1; exit }')"
+        play_tracks "$tracklist" "$start_at"
+        ;;
+    s) # Shuffle a directory.
+        tracklist="$(get_tracklist "$node" | shuf)"
+        play_tracks "$tracklist" "0"
+        ;;
+    n) # Toggle the new-ness of a release.
+        release="$(get_selected_release "$node")"
+        [ -z "$release" ] && exit 1
+        rose releases toggle-new "$release"
+        ;;
+    e) # Edit a release/collage/playlist's metadata.
+        edit() {
+            release="$(get_selected_release "$node")"
+            if [ -n "$release" ]; then
+                rose releases edit "$release"
+                return
+            fi
+            collage="$(get_selected_collage "$node")"
+            if [ -n "$collage" ]; then
+                rose collage edit "$release"
+                return
+            fi
+            playlist="$(get_selected_playlist "$node")"
+            if [ -n "$playlist" ]; then
+                rose playlist edit "$release"
+            fi
+        }
+        edit
+        ;;
+    *)
+        exit 1
+        ;;
+esac
