@@ -10,33 +10,18 @@
       signByDefault = true;
     };
     extraConfig = {
-      core = {
-        editor = "nvim";
-        pager = "delta";
-      };
-      init = {
-        defaultBranch = "master";
-      };
-      pull = {
-        rebase = false;
-      };
-      push = {
-        default = "upstream";
-        autoSetupRemote = true;
-      };
-      merge = {
-        tool = "vimdiff";
-      };
-      difftool = {
-        prompt = false;
-      };
-      interactive = {
-        diffFilter = "delta --color-only";
-      };
-      delta = {
-        features = "side-by-side line-numbers";
-        whitespace-error-style = "22 reverse";
-      };
+      core.editor = "nvim";
+      core.pager = "delta";
+      init.defaultBranch = "master";
+      pull.rebase = false;
+      push.default = "upstream";
+      push.autoSetupRemote = true;
+      merge.tool = "vimdiff";
+      rebase.updateRefs = true;
+      difftool.prompt = false;
+      interactive.diffFilter = "delta --color-only";
+      delta.features = "side-by-side line-numbers";
+      delta.whitespace-error-style = "22 reverse";
     };
   };
 }
