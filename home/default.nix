@@ -198,6 +198,7 @@
       simplescreenrecorder
       slack
       speechd
+      tor-browser-bundle-bin
       vscode
       xbindkeys
       xdotool # For VimTex's forward search.
