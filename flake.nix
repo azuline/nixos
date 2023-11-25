@@ -202,7 +202,6 @@
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle
-              b.devBundle
             ];
           };
         };
