@@ -30,6 +30,9 @@ function fish_prompt --description 'Write out the prompt'
 end
 
 function prompt_kubecontext --description 'kubectl current context prompt'
+    if not command -v kubectl
+        return
+    end
     set -l current_context (kubectl config current-context 2>/dev/null)
     if string length --quiet $current_context
         printf " %s[k8s:%s]%s" (set_color $fish_color_kubecontext) "$current_context" "$normal"
