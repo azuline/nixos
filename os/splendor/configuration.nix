@@ -25,6 +25,9 @@
     # True by default; creates a warning when other parameters are unset. So we
     # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.
     swraid.enable = false;
+    kernel.sysctl = {
+      "net.ipv6.conf.all.forwarding" = 1;
+    };
     kernelModules = [
       # == For qemu-kvm ==
       "vfio"
