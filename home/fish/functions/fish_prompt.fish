@@ -30,7 +30,7 @@ function fish_prompt --description 'Write out the prompt'
 end
 
 function prompt_kubecontext --description 'kubectl current context prompt'
-    if not command -v kubectl
+    if not command -v kubectl >/dev/null 2>&1
         return
     end
     set -l current_context (kubectl config current-context 2>/dev/null)
