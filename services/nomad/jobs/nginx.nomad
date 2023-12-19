@@ -1,5 +1,5 @@
 job "nginx" {
-  datacenters = ["zen"]
+  datacenters = ["frieren"]
 
   group "nginx" {
     count = 1

@@ -1,6 +1,6 @@
 datacenter = "frieren"
 data_dir   = "/data/nomad"
-bind_addr  = "100.71.28.44"
+bind_addr  = "100.84.146.55"
 
 server {
   enabled          = true
@@ -10,7 +10,7 @@ server {
 client {
   enabled = true
   host_network "default" {
-    cidr = "100.71.28.44/32"
+    cidr = "100.84.146.55/32"
   }
   host_network "public" {
     cidr           = "147.135.10.32/32"
@@ -48,8 +48,8 @@ ui {
 }
 
 consul {
-  address      = "100.71.28.44:8500"
-  grpc_address = "100.71.28.44:8502"
+  address      = "100.84.146.55:8500"
+  grpc_address = "100.84.146.55:8502"
 }
 
 acl {

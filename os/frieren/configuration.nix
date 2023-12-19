@@ -3,14 +3,14 @@
 let
   mdadmConf = ''
     HOMEHOST frieren
-    ARRAY /dev/md/0 level=raid1 num-devices=2 metadata=1.2 name=frieren:0 UUID=dc490347-1616-47e6-a19e-3b7b669c48fb
-       devices=/dev/nvme0n1p2,/dev/nvme1n1p1
-    ARRAY /dev/md/boot level=raid1 num-devices=2 metadata=1.0 name=frieren:boot UUID=C54C-D58B
-       devices=/dev/nvme0n1p1,/dev/nvme1n1p1
+    ARRAY /dev/md/boot level=raid1 num-devices=2 metadata=1.0 name=frieren:boot UUID=cead52f6:31d93e99:9ddd42fb:38f32893
+       devices=/dev/nvme0n1p2,/dev/nvme1n1p2
+    ARRAY /dev/md/root level=raid1 num-devices=2 metadata=1.2 name=frieren:root UUID=31e25b0c:782fe16a:b4bb60b0:f2cfbd47
+       devices=/dev/nvme0n1p3,/dev/nvme1n1p3
   '';
 in
 {
-  system.stateVersion = "21.11";
+  system.stateVersion = "23.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.max-jobs = 8;
   nixpkgs.config.allowUnfree = true;
@@ -82,11 +82,12 @@ in
         # prompt that writes to /tmp/continue if successful.
         # https://mth.st/blog/nixos-initrd-ssh/
         postCommands = ''
-          echo "mdadm --assemble /dev/md/0 && mdadm --assemble /dev/md/boot && cryptsetup open /dev/md/0 enc-pv && echo 'done' > /tmp/continue" >> /root/.profile
+          echo "cryptsetup luksOpen /dev/md/root enc-pv && echo 'done' > /tmp/continue" >> /root/.profile
           echo "starting sshd..."
         '';
       };
       # Block the boot process until /tmp/continue is written to
+      # To debug, run /bin/sh here.
       postDeviceCommands = ''
         echo 'waiting for root device to be opened...'
         mkfifo /tmp/continue
@@ -101,12 +102,13 @@ in
     };
   };
 
-  # Better for the SSD.
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
   # Make the mdadm conf available in stage2.
   environment.etc."mdadm.conf".text = mdadmConf;
   # The RAIDs are assembled in stage1, so we need to make the config available there too.
   boot.swraid.mdadmConf = mdadmConf;
+
+  # Better for the SSD.
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
   environment = {
     interactiveShellInit = builtins.readFile ./bashrc;
@@ -121,26 +123,16 @@ in
       LC_COLLATE = "C"; # Lets special characters sort last; doesn't ignore them.
     };
     systemPackages = with pkgs; [
-      certbot
       curl
       git
       jq
+      presage
       neovim
       pinentry-curses
-      powertop
-      presage
       smartmontools
       vim
       wget
     ];
-  };
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
   };
 
   users = {
@@ -157,10 +149,6 @@ in
         shell = pkgs.fish;
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" "nomad" "otel" ];
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7+XlAgpi6eSC0GjgUq1bMOtGOzrOODBTkID8LuuZAL splendor"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPT/WSwL6oN2JNVy1juCAKk/gJ7KFgPVko3BX0nO3neQ haiqin"
-        ];
       };
     };
     groups = {

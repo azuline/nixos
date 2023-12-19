@@ -150,6 +150,11 @@
             specialArgs = { inherit pkgs-stable; };
             modules = [ ./os/zen/configuration.nix ];
           };
+          frieren = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = { inherit pkgs-stable; };
+            modules = [ ./os/frieren/configuration.nix ];
+          };
         };
         homeConfigurations = {
           splendor = makeHomeConfiguration {
@@ -198,6 +203,14 @@
           };
           zen = makeHomeConfiguration {
             host = "zen";
+            nixDir = "/etc/nixos";
+            username = "blissful";
+            chooseBundles = b: [
+              b.cliBundle
+            ];
+          };
+          frieren = makeHomeConfiguration {
+            host = "frieren";
             nixDir = "/etc/nixos";
             username = "blissful";
             chooseBundles = b: [

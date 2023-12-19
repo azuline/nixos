@@ -1,5 +1,5 @@
 job "saffron" {
-  datacenters = ["zen"]
+  datacenters = ["frieren"]
   type        = "service"
 
   group "saffron" {

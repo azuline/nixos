@@ -20,8 +20,8 @@ in
   '';
 
   environment.variables = {
-    NOMAD_ADDR = "http://100.71.28.44:4646";
-    CONSUL_HTTP_ADDR = "http://100.71.28.44:8500";
+    NOMAD_ADDR = "http://100.84.146.55:4646";
+    CONSUL_HTTP_ADDR = "http://100.84.146.55:8500";
   };
 
   users = {

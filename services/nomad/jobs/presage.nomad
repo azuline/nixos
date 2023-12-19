@@ -1,5 +1,5 @@
 job "presage" {
-  datacenters = ["zen"]
+  datacenters = ["frieren"]
   type        = "batch"
 
   periodic {

@@ -15,8 +15,8 @@ performance {
 # Server config.
 server           = true
 bootstrap_expect = 1
-bind_addr        = "100.71.28.44"
-client_addr      = "100.71.28.44"
+bind_addr        = "100.84.146.55"
+client_addr      = "100.84.146.55"
 
 # Consul service mesh.
 connect {

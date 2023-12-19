@@ -62,6 +62,7 @@
       pinentry
       poetry
       procps
+      python
       rclone
       rename
       ripgrep
@@ -147,7 +148,6 @@
       postgresql_13
       protobuf
       protoc-gen-go
-      python
       rnix-lsp
       ruff
       ruff-lsp
