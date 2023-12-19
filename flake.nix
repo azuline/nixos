@@ -145,11 +145,6 @@
             inherit system;
             modules = [ ./os/neptune/configuration.nix ];
           };
-          zen = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = { inherit pkgs-stable; };
-            modules = [ ./os/zen/configuration.nix ];
-          };
           frieren = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit pkgs-stable; };
@@ -199,14 +194,6 @@
               b.guiBundle
               b.personalMachineBundle
               b.i3Bundle
-            ];
-          };
-          zen = makeHomeConfiguration {
-            host = "zen";
-            nixDir = "/etc/nixos";
-            username = "blissful";
-            chooseBundles = b: [
-              b.cliBundle
             ];
           };
           frieren = makeHomeConfiguration {

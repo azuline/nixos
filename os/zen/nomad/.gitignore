@@ -1,5 +1,0 @@
-# Should be a file of the format:
-#   consul {
-#     token = "consul-acl-token"
-#   }
-consul-token.hcl

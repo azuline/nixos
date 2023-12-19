@@ -22,7 +22,6 @@
       coreutils
       curl
       dasel
-      decrypt-zen
       decrypt-frieren
       dnsutils
       exiftool

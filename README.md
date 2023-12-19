@@ -20,7 +20,7 @@ I currently have four hosts, all on NixOS:
 - `splendor`: (NixOS) My [custom built desktop](https://pcpartpicker.com/user/meowihaveagrape/saved/wKxRK8).
 - `haiqin`: (NixOS) My primary laptop, a Thinkpad X1 Carbon 9th Gen.
 - `neptune`: (NixOS) My secondary laptop, a Thinkpad X1 Carbon 5th Gen.
-- `zen`: (NixOS) An OVH server.
+- `frieren`: (NixOS) An OVH server.
 
 # Directory Structure
 

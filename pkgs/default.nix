@@ -11,7 +11,6 @@ import nixpkgs {
         bar-loadavg = prev.callPackage ./bar-loadavg { };
         bar-vpn = prev.callPackage ./bar-vpn { };
         decrypt-frieren = prev.callPackage ./decrypt-frieren { };
-        decrypt-zen = prev.callPackage ./decrypt-zen { };
         devenv = devenv.packages.${system}.devenv;
         discord = prev.callPackage ./discord { inherit srcs; original = prev.discord; };
         exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
