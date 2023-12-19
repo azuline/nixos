@@ -1,7 +1,7 @@
 {
   "hosts": {
     "splendor": "100.109.183.108",
-    "zen": "100.71.28.44"
+    "frieren": "100.84.146.55"
   },
   "groups": {
     "group:admins": ["azuline@github"]
@@ -15,7 +15,7 @@
     {
       "action": "accept",
       "src": ["tag:ci"],
-      "dst": ["zen:4646"]
+      "dst": ["frieren:4646"]
     }
   ],
   "ssh": [
