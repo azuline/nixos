@@ -100,6 +100,9 @@ in
         "/etc/ssh/initrd_ssh_host_ed25519_key" = "/etc/ssh/initrd_ssh_host_ed25519_key";
       };
     };
+    kernel.sysctl = {
+      "net.ipv6.conf.all.forwarding" = 1;
+    };
   };
 
   # Make the mdadm conf available in stage2.
