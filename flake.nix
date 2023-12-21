@@ -147,7 +147,10 @@
           };
           frieren = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit pkgs-stable; };
+            specialArgs = {
+              inherit pkgs-stable;
+              presage-pin = pkgs.presage;
+            };
             modules = [ ./os/frieren/configuration.nix ];
           };
         };
