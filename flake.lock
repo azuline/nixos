@@ -515,11 +515,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1661705598,
-        "narHash": "sha256-ZA+n5agmx5bAYBPOwzKWlMX+IgYauDLuUFn+dPhOvTM=",
+        "lastModified": 1703164762,
+        "narHash": "sha256-Efz9MajLNiv3OvD15hJr1QXDky5Whg8bkWXLThcOans=",
         "owner": "azuline",
         "repo": "presage",
-        "rev": "6326d333e57704ab53678a6305eef492a4c8bc25",
+        "rev": "36f0fe3a15361432689f2836063b0aef591d479e",
         "type": "github"
       },
       "original": {
