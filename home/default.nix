@@ -105,7 +105,6 @@
       cabal-install
       ccls
       clang-tools
-      devenv
       docker
       docker-compose
       dotnet-sdk_8

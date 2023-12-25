@@ -1,18 +1,16 @@
 {
-  description = "nix home-manager configuration";
+  description = "blissful's /etc/nixos";
 
   inputs = {
-    # Rolling unstable nixpkgs, updated frequently.
-    nixpkgs.url = github:nixos/nixpkgs;
-    # Pin a less frequently updated version of Nixpkgs for server services like
-    # Nomad, Consul, etc.
-    nixpkgs-stable.url = github:nixos/nixpkgs?rev=4c5f59b5982cc53ebc104a44d666cbd85cf56184;
     flake-utils.url = github:numtide/flake-utils;
+    # Rolling unstable nixpkgs, updated frequently. Always set to a commit
+    # built in Hydra. https://hydra.nixos.org/jobset/nixos/trunk-combined
+    nixpkgs.url = github:nixos/nixpkgs?rev=5f64a12a728902226210bf01d25ec6cbb9d9265b;
+    # Stable nixpkgs, updated less frequently. Always set to a commit built in
+    # Hydra. https://hydra.nixos.org/jobset/nixos/release-23.11. Used for
+    # Nomad, Consul, etc.
+    nixpkgs-stable.url = github:nixos/nixpkgs?rev=d02d818f22c777aa4e854efc3242ec451e5d462a;
     # Flake sources.
-    devenv = {
-      url = github:cachix/devenv/latest;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +60,6 @@
     , nixpkgs
     , nixpkgs-stable
     , flake-utils
-    , devenv
     , nix-search-cli-src
     , presage-src
     , pgmigrate-src
@@ -83,7 +80,7 @@
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
         sqlint = pkgs-stable.sqlint;
       };
-      pkgs = import ./pkgs { inherit system nixpkgs srcs pins devenv; };
+      pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
         {
           # This enables per-host configurations, typically screen size differences.
