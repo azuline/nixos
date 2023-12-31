@@ -32,14 +32,13 @@ restic backup \
     --exclude '**/.tmp' \
     --exclude '**/.xref' \
     "$HOME/backups" \
-    --exclude "$HOME/backups/signal-*" \
-    --exclude "$HOME/backups/threema-*" \
     "$HOME/archive" \
     "$HOME/artbooks" \
     "$HOME/atelier" \
     "$HOME/books" \
     "$HOME/documents/contents" \
     "$HOME/images" \
+    --exclude "$HOME/backups/images/Screenshots" \
     "$HOME/kpop" \
     "$HOME/manga" \
     "$HOME/.music-source" \
