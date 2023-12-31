@@ -2,40 +2,62 @@ do -- Tree browser
   vim.api.nvim_set_keymap("n", "<Leader>f", "<Cmd>CHADopen<CR>", { noremap = true })
   vim.api.nvim_set_keymap("n", "<Leader>c", "<Cmd>call setqflist([])<CR>", { noremap = true })
 
+  local ignore_name_exact = {
+    ".DS_Store",
+    ".directory",
+    "thumbs.db",
+    ".git",
+    "node_modules",
+    "__pycache__",
+    "build",
+    "dist",
+    ".direnv",
+    ".mypy_cache",
+    ".ruff_cache",
+  }
+
+  local ignore_name_glob = {
+    ".null-ls*",
+    ".coverage.*",
+    "*.png",
+    "*.jpg",
+    -- LaTeX stuff
+    "*.pdf",
+    "*.aux",
+    "*.toc",
+    "*.synctex*",
+    "*.out",
+    "*.fls",
+    "*.4tc",
+    "*.4ct",
+    "*.dvi",
+    "*.lg",
+    "*.tmp",
+    "*.idv",
+    "*.xref",
+    "*.fdb_latexmk",
+  }
+
+  if string.find(vim.fn.getcwd(), "^/home/blissful/atelier") and not os.getenv("ATELIER_DEV") then
+    table.insert(ignore_name_exact, "_lib")
+    table.insert(ignore_name_exact, "_store")
+    table.insert(ignore_name_exact, "_tool")
+    table.insert(ignore_name_exact, ".envrc")
+    table.insert(ignore_name_exact, ".fdignore")
+    table.insert(ignore_name_exact, ".gitignore")
+    table.insert(ignore_name_exact, "flake.lock")
+    table.insert(ignore_name_exact, "flake.nix")
+    table.insert(ignore_name_exact, ".root")
+    table.insert(ignore_name_exact, "pyproject.toml")
+    table.insert(ignore_name_glob, "*.html")
+    table.insert(ignore_name_glob, "*.css")
+    table.insert(ignore_name_glob, "*.log")
+  end
+
   vim.g["chadtree_settings"] = {
     ignore = {
-      name_exact = {
-        ".DS_Store",
-        ".directory",
-        "thumbs.db",
-        ".git",
-        "node_modules",
-        "__pycache__",
-        "build",
-        "dist",
-      },
-      name_glob = {
-        ".null-ls*",
-        ".coverage.*",
-        "*.png",
-        "*.jpg",
-        -- LaTeX stuff
-        "*.pdf",
-        "*.aux",
-        "*.log",
-        "*.toc",
-        "*.synctex*",
-        "*.out",
-        "*.fls",
-        "*.4tc",
-        "*.4ct",
-        "*.dvi",
-        "*.lg",
-        "*.tmp",
-        "*.idv",
-        "*.xref",
-        "*.fdb_latexmk",
-      },
+      name_exact = ignore_name_exact,
+      name_glob = ignore_name_glob,
     },
     keymap = {
       -- Open/close
