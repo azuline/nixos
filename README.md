@@ -1,6 +1,6 @@
 # /etc/nixos
 
-_README is WIP._
+_WIP_
 
 This repository contains my system configs. I use [Nix](https://nixos.org/) to
 manage my systems, with NixOS whenever possible, and Home Manager otherwise.
@@ -40,9 +40,52 @@ exports the Home Manager and NixOS configurations.
 
 # Screenshots
 
+_TODO_
+
+# Philosophy
+
+- I favor running local software over SaaS and self-hosted software. I
+  synchronize state between computers with Syncthing.
+- My workflows and tools generally follow the Unix philosophy. For example, my
+  music system is the combination of three focused tools: [rose](https://github.com/azuline/rose), [nnn](https://github.com/jarun/nnn), and [mpv](https://github.com/mpv-player/mpv).
+- I like immutability, reproducibility, yada yada. Hence NixOS.
+
+# Personal Tools
+
+Some of the little tools I wrote for my workflow are kept in this repository's
+`pkgs` directory instead of spun out into their own repositories. They are:
+
+- [Backup Scripts](./pkgs/backup-scripts): Manage my local and remote backups.
+- [File Uploader](./pkgs/file-uploader): Upload files to various image and file
+  hosting services.
+- [EXIF & Last Modified Syncer](./pkgs/exif-mtime-sync/): Sync an image's EXIF
+  Created Date and filesystem Last Modified time.
+
+# Networking
+
+All hosts are connected to each other via Tailscale VPN. There is an ACL,
+defined [here](./tailscale.policy.json).
+
+The ACL is applied via GitOps; see the [GitHub Action](./.github/workflows/tailscale.yml) for the instructions.
+
+# File Synchronization
+
+Machines synchronize files and application state with each other using
+Syncthing.
+
+# Backgrounds
+
+I maintain a directory of desktop backgrounds in `~/backgrounds`, which I
+periodically cycle through. Backgrounds are configured using `xwallpaper`.
+
+# Fonts
+
+I maintain a separate repository of fonts for system usage and design projects
+in `~/fonts`. This repository is symlinked to `~/.local/share/fonts/collection`.
+
 # Bootstrapping
 
-The following commands bootstrap a new machine. These should be run after
+The following commands bootstrap a new laptop. These should be run after
 booting into a minimal NixOS installation media.
 
 ```bash
@@ -101,35 +144,49 @@ $ nixos-rebuild switch --flake /etc/nixos/#host
 $ reboot
 ```
 
-# Philosophy
+The following commands bootstrap an OVH server. These should be run after
+booting into a minimal NixOS installation media.
 
-# Personal Tools
-
-I like to write software for myself. Some more reusable software is spun out
-into separate repositories, but other software remains in this repository
-within the `pkgs` directory. The more interesting tools and scripts are:
-
-- [Backup Scripts](./pkgs/backup-scripts): Manage my local and remote backups.
-- [File Uploader](./pkgs/file-uploader): Upload files to various image and file
-  hosting services.
-- [EXIF & Last Modified Syncer](./pkgs/exif-mtime-sync/): Sync an image's EXIF
-  Created Date and filesystem Last Modified time.
-
-# Networking
-
-All hosts are connected to each other via Tailscale VPN. There is an ACL,
-defined [here](./tailscale.policy.json).
-
-The ACL is applied via GitOps; see the [GitHub Action](./.github/workflows/tailscale.yml) for the instructions.
-
-# File Synchronization
-
-# Media Management
-
-music books manga images movies tv
-
-# File Navigation
-
-# Backgrounds
-
-# Fonts
+```bash
+# Partition the drives into boot and primary.
+$ parted /dev/nvme0n1 -- mklabel gpt
+$ parted /dev/nvme1n1 -- mklabel gpt
+$ parted --script --align optimal /dev/nvme0n1 -- mklabel gpt mkpart 'BIOS-boot0' 1MB 2MB set 1 bios_grub on mkpart 'boot0' 2MB 2000MB mkpart 'primary0' 2001MB '100%'
+$ parted --script --align optimal /dev/nvme1n1 -- mklabel gpt mkpart 'BIOS-boot0' 1MB 2MB set 1 bios_grub on mkpart 'boot1' 2MB 2000MB mkpart 'primary1' 2001MB '100%'
+# Create RAID partitions for boot and primary.
+$ mdadm --zero-superblock /dev/nvme0n1p1
+$ mdadm --zero-superblock /dev/nvme0n1p2
+$ mdadm --zero-superblock /dev/nvme1n1p1
+$ mdadm --zero-superblock /dev/nvme1n1p2
+$ mdadm --create --run --verbose /dev/md/boot --level=1 --raid-devices=2 --homehost=frieren --name=boot /dev/nvme0n1p2 /dev/nvme1n1p2 --metadata=0.90
+$ mdadm --create --run --verbose /dev/md/root --level=1 --raid-devices=2 --homehost=frieren --name=root /dev/nvme0n1p3 /dev/nvme1n1p3
+# Wipe filesystem signatures that might be on the RAID from some possibly
+# existing older use of the disks (RAID creation does not do that).
+# See https://serverfault.com/questions/911370/why-does-mdadm-zero-superblock-preserve-file-system-information
+$ wipefs -a /dev/md/boot
+$ wipefs -a /dev/md/root
+# Disable RAID recovery. We don't want this to slow down machine provisioning
+# in the rescue mode. It can run in normal operation after reboot.
+$ echo 0 > /proc/sys/dev/raid/speed_limit_max
+# Encrypt the primary partition with LUKS.
+$ cryptsetup --batch-mode luksFormat /dev/md/root
+# Configure LVM.
+$ cryptsetup luksOpen /dev/md/root enc-pv
+$ pvcreate /dev/mapper/enc-pv
+$ vgcreate vg /dev/mapper/enc-pv
+$ lvcreate --extents 95%FREE -n root vg
+# Format partitions.
+$ mkfs.fat -F 32 -n boot /dev/md/boot
+$ mkfs.ext4 -F -L root /dev/mapper/vg-root
+# Mount disks into /mnt for NixOS installer.
+$ mount /dev/disk/by-label/root /mnt
+$ mkdir /mnt/boot
+$ mount /dev/disk/by-label/boot /mnt/boot
+# Generate NixOS config. Modify boot parameters to match the configuration.nix
+# in this repository.
+$ nixos-generate-config --root /mnt
+# Install NixOS.
+$ nixos-install --root /mnt --max-jobs 40
+# And we're done!
+$ reboot
+```
