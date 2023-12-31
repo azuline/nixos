@@ -16,3 +16,4 @@ aliases:
     prw: pr view --web
     prm: pr merge --auto --squash --delete-branch
 browser: firefox
+version: "1"
