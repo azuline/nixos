@@ -14,6 +14,7 @@ do -- Tree browser
     ".direnv",
     ".mypy_cache",
     ".ruff_cache",
+    ".stfolder",
   }
 
   local ignore_name_glob = {
@@ -49,6 +50,7 @@ do -- Tree browser
     table.insert(ignore_name_exact, "flake.nix")
     table.insert(ignore_name_exact, ".root")
     table.insert(ignore_name_exact, "pyproject.toml")
+    table.insert(ignore_name_exact, ".stignore")
     table.insert(ignore_name_glob, "*.html")
     table.insert(ignore_name_glob, "*.css")
     table.insert(ignore_name_glob, "*.log")

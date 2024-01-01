@@ -191,6 +191,3 @@ exec --no-startup-id ~/backgrounds/apply.sh
 # Services
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
-exec --no-startup-id ibus-daemon -drx
-# Temporary
-exec --no-startup-id xmodmap -e 'keycode 69 = 3 numbersign 3 numbersign'

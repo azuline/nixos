@@ -40,7 +40,7 @@
 
   i18n.inputMethod = {
     enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [ anthy libpinyin ];
+    ibus.engines = with pkgs.ibus-engines; [ table table-others libpinyin anthy ];
   };
 
   qt = {

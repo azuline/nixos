@@ -1,12 +1,5 @@
-set -gx GTK_IM_MODULE ibus
-set -gx XMODIFIERS @im-bus
-set -gx QT_IM_MODULE ibus
-
 set -gx TERM xterm-256color
-set -gx QT_QPA_PLATFORMTHEME qt5ct
-
 set -gx GPG_TTY (tty)
-set -gx EDITOR nvim
 
 # Prepend /usr/local/bin so everything there registers first. This lets us
 # override other binaries with custom scripts.
@@ -35,14 +28,6 @@ export FZF_DEFAULT_COMMAND="$HOME/.nix-profile/bin/fd --type file --hidden --fol
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_G_COMMAND="$FZF_DEFAULT_COMMAND --exclude .pdf"
 export FZF_CTRL_C_COMMAND="$HOME/.nix-profile/bin/fd --type directory --hidden --follow --exclude .git"
-# Git fuzzy
-set -gx PATH "$HOME/.git-fuzzy/bin" $PATH
-
-# nixos applications
-set -gx XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
-
-# opam configuration
-source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 # for vim chadtree colors stuff
 set -gx LS_COLORS 'di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
