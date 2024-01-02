@@ -43,6 +43,7 @@ restic backup \
     "$HOME/manga" \
     "$HOME/.music-source" \
     "$HOME/wlop" \
+    "$HOME/scripts" \
     "$HOME/.password-store" \
     "$HOME/.gnupg/pubring.kbx" \
     "$HOME/.gnupg/private-keys-v1.d" \

@@ -29,33 +29,50 @@ writeShellScriptBin "bar-now-playing" ''
            end'
   }
 
-  filepath="$(get_property path)"
-  data="$(rose tracks print "$filepath")"
-
-  tracktitle="$(echo "$data" | jq -r .tracktitle)"
-  albumtitle="$(echo "$data" | jq -r .albumtitle)"
-  year="$(echo "$data" | jq -r .year)"
-
-  artists="$(echo "$data" | jq '.trackartists.main | map(select(.alias == false) | .name)' | arrayfmt)"
-  guest_artists="$(echo "$data" | jq '.trackartists.guest | map(select(.alias == false) | .name)' | arrayfmt)"
-  if [ -n "$guest_artists" ]; then
-    artists="$artists (feat. $guest_artists)"
-  fi
-
-  time_pos="$(get_property time-pos)"
-  time_total="$(echo "$(get_property time-remaining) + $time_pos" | bc)"
-  time_pos="$(date -d "@$time_pos" +"%-M:%S")"
-  time_total="$(date -d "@$time_total" +"%-M:%S")"
-
-  playlist_pos="$(get_property playlist-pos | tr -d "\n" | cat - <(echo "+1") | bc)"
-  playlist_total="$(get_property playlist-count)"
-
-  printf "%s" "($time_pos/$time_total) [$playlist_pos/$playlist_total] $tracktitle by $artists"
-  if [ "$(hostname)" = "splendor" ]; then
-    printf "%s" " from $albumtitle"
-    if [ -n "$year" ]; then
-      printf "%s" " ($year)"
+  trim() {
+    if (( "''${#1}" > "$2" )); then
+      echo "''${1:0:$2}..."
+    else
+      echo "$1"
     fi
+  }
+
+  now_playing() {
+    filepath="$(get_property path)"
+    data="$(rose tracks print "$filepath")"
+
+    tracktitle="$(echo "$data" | jq -r .tracktitle)"
+    albumtitle="$(echo "$data" | jq -r .albumtitle)"
+    year="$(echo "$data" | jq -r .year)"
+
+    artists="$(echo "$data" | jq '.trackartists.main | map(select(.alias == false) | .name)' | arrayfmt)"
+    guest_artists="$(echo "$data" | jq '.trackartists.guest | map(select(.alias == false) | .name)' | arrayfmt)"
+    if [ -n "$guest_artists" ]; then
+      artists="$artists (feat. $guest_artists)"
+    fi
+
+    time_pos="$(get_property time-pos)"
+    time_total="$(echo "$(get_property time-remaining) + $time_pos" | bc)"
+    time_pos="$(date -d "@$time_pos" +"%-M:%S")"
+    time_total="$(date -d "@$time_total" +"%-M:%S")"
+
+    playlist_pos="$(get_property playlist-pos | tr -d "\n" | cat - <(echo "+1") | bc)"
+    playlist_total="$(get_property playlist-count)"
+
+    printf "%s" "($time_pos/$time_total) [$playlist_pos/$playlist_total] $tracktitle by $artists"
+    if [ "$(hostname)" = "splendor" ]; then
+      printf "%s" " from $albumtitle"
+      if [ -n "$year" ]; then
+        printf "%s" " ($year)"
+      fi
+    fi
+    echo
+  }
+
+  max_len=80
+  if [ "$(hostname)" = "splendor" ]; then
+    max_len=140
   fi
-  echo
+
+  trim "$(now_playing)" "$max_len"
 ''
