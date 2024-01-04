@@ -30,16 +30,19 @@ writeShellScriptBin "bar-now-playing" ''
   }
 
   trim() {
-    if (( "''${#1}" > "$2" )); then
-      echo "''${1:0:$2}..."
+    local data
+    read -r data
+
+    if (( "''${#data}" > "$1" )); then
+      echo "''${data:0:$1}..."
     else
-      echo "$1"
+      echo "$data"
     fi
   }
 
   now_playing() {
-    filepath="$(get_property path)"
-    data="$(rose tracks print "$filepath")"
+    local data
+    read -r data
 
     tracktitle="$(echo "$data" | jq -r .tracktitle)"
     albumtitle="$(echo "$data" | jq -r .albumtitle)"
@@ -74,5 +77,5 @@ writeShellScriptBin "bar-now-playing" ''
     max_len=140
   fi
 
-  trim "$(now_playing)" "$max_len"
+  get_property path | xargs -d'\n' rose tracks print | now_playing | trim "$max_len"
 ''
