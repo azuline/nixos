@@ -22,6 +22,15 @@ job "presage" {
       source    = "run"
       read_only = true
     }
+    
+    restart {
+      attempts = 0
+      mode     = "fail"
+    }
+    reschedule {
+      attempts  = 0
+      unlimited = false
+    }
 
     task "presage" {
       driver = "exec"
