@@ -9,6 +9,8 @@ play_tracks_executor() {
     existing="$(ps x | grep 'playmusic-mpv' | grep -v grep | awk '{print $1}')"
     [ -n "$existing" ] && echo "$existing" | xargs -n1 kill
 
+    echo "$1" >> /tmp/rosedbg
+
     echo "$1" | tr '\n' '\0' | \
         xargs -0 mpv \
             --force-window \
@@ -20,7 +22,9 @@ play_tracks_executor() {
 # Plays a filelist ($1) in mpv, optionally starting at file ($2).
 play_tracks() {
     export -f play_tracks_executor
-    nohup bash -c 'play_tracks_executor "'"$1"'" "'"$2"'"' >/dev/null 2>&1 &
+    # Escape any dollar signs in the track title before we pass it to bash.
+    tracklist="${1//$/\\$}"
+    nohup bash -c 'play_tracks_executor "'"$tracklist"'" "'"$2"'"' >/dev/null 2>&1 &
 }
 
 # Get the tracklist to play given a directory or file. If a file is passed in,
