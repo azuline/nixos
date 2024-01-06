@@ -3,7 +3,7 @@ job "presage" {
   type        = "batch"
 
   periodic {
-    cron             = "0 */2 * * *"
+    cron             = "0 0 * * *"
     prohibit_overlap = true
   }
 
