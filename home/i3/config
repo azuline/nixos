@@ -188,6 +188,7 @@ bindsym $mod+Escape exec loginctl lock-session
 ### Initial startup
 # Wallpaper
 exec --no-startup-id ~/backgrounds/apply.sh
+exec --no-startup-id systemctl --user restart polybar
 # Services
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
