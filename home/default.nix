@@ -215,6 +215,7 @@
 
     home.packages = with pkgs; [
       calibre
+      bazecor
       discord
       puddletag
       signal
