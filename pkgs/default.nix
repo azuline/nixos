@@ -13,7 +13,6 @@ import nixpkgs {
         decrypt-frieren = prev.callPackage ./decrypt-frieren { };
         discord = prev.callPackage ./discord { inherit srcs; original = prev.discord; };
         exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
-        flexget = prev.callPackage ./flexget { };
         i3-aerc = prev.callPackage ./i3-aerc { };
         i3-atelier-identifier = prev.callPackage ./i3-atelier-identifier { };
         i3-atelier-opener = prev.callPackage ./i3-atelier-opener { };
