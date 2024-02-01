@@ -54,6 +54,7 @@
       nix-search-cli
       nmap
       ocrmypdf
+      opusTools
       p7zip
       pass
       pdftk

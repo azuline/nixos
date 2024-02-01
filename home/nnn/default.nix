@@ -86,6 +86,7 @@ in
       b = "~/books";
       c = "~/cdrama";
       d = "~/downloads";
+      e = "/mnt/elements";
       f = "~/films";
       g = "~/manga";
       i = "~/images";
