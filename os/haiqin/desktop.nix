@@ -49,6 +49,12 @@
     style = "gtk2";
   };
 
+  fonts.fontconfig.defaultFonts = {
+    serif = [ "EB Garamond" "Noto Serif CJK SC" ];
+    sansSerif = [ "Roboto" "Noto Sans CJK SC" ];
+    monospace = [ "Source Code Pro" ];
+  };
+
   hardware.bluetooth.enable = true;
   sound.enable = true;
 

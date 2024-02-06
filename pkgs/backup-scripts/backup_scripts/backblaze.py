@@ -37,6 +37,7 @@ restic backup \
     "$HOME/atelier" \
     "$HOME/books" \
     "$HOME/documents/contents" \
+    "$HOME/fonts" \
     "$HOME/images" \
     --exclude "$HOME/backups/images/Screenshots" \
     "$HOME/kpop" \

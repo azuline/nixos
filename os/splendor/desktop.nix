@@ -11,8 +11,7 @@
         enable = true;
         user = "blissful";
       };
-      sessionCommands = ''
-      '';
+      sessionCommands = "";
     };
     windowManager.i3 = {
       enable = true;
@@ -22,7 +21,6 @@
       Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
     '';
     layout = "us";
-    xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
     videoDrivers = [ "nvidia" ];
   };
 
@@ -41,6 +39,12 @@
   i18n.inputMethod = {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [ table table-others libpinyin anthy ];
+  };
+
+  fonts.fontconfig.defaultFonts = {
+    serif = [ "EB Garamond" "Noto Serif CJK SC" ];
+    sansSerif = [ "Roboto" "Noto Sans CJK SC" ];
+    monospace = [ "Source Code Pro" ];
   };
 
   qt = {
