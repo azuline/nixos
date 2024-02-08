@@ -42,8 +42,8 @@
   };
 
   fonts.fontconfig.defaultFonts = {
-    serif = [ "EB Garamond" "Noto Serif CJK SC" ];
-    sansSerif = [ "Roboto" "Noto Sans CJK SC" ];
+    serif = [ "EB Garamond" "Noto Serif CJK SC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Serif CJK TC" "Noto Serif CJK HK" ];
+    sansSerif = [ "Roboto" "Noto Sans CJK SC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Sans CJK TC" "Noto Sans CJK HK" ];
     monospace = [ "Source Code Pro" ];
   };
 
