@@ -3,6 +3,7 @@
 {
   services.transmission = {
     enable = true;
+    package = pkgs.transmission_4;
     user = "transmission";
     group = "media";
     home = "/var/lib/transmission";

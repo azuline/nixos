@@ -40,7 +40,7 @@
       "intel_iommu=on"
       "vfio-pci.ids=10de:2184,10de:1aeb,10de:1aec,10de:1aed"
       # 16GB with the default size of 2048kB size hugepages. For the virtual machine.
-      "nr_hugepages=8600"
+      "hugepages=8600"
     ];
   };
 
