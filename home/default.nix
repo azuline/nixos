@@ -212,6 +212,7 @@
     imports = [
       ./atelier
       ./syncthing
+      ./rose
     ];
 
     home.packages = with pkgs; [

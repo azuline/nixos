@@ -1,0 +1,373 @@
+music_source_dir = "~/.music-source"
+fuse_mount_dir = "~/music"
+ignore_release_directories = [ ".stversions" ]
+rename_source_files = true
+
+artist_aliases = [
+    { artist = "BTS", aliases = ["V", "RM", "Rap Monster", "Jimin", "j-hope"] },
+    { artist = "Four Tet", aliases = ["00110100 01010100", "Kieran Hebden", "⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ"] },
+    { artist = "LOONA", aliases = ["LOONA 1/3", "LOONA ODD EYE CIRCLE", "LOONA yyxy", "Loossemble", "Kim Lip", "HaSeul", "Chuu", "Yves", "HeeJin", "HyunJin", "YeoJin", "ViVi", "JinSoul", "Choerry", "Go Won", "Olivia Hye", "ARTMS"] },
+    { artist = "ARTMS", aliases = ["LOONA ODD EYE CIRCLE", "Kim Lip", "HaSeul", "HeeJin", "JinSoul", "Choerry"] },
+    { artist = "EXO", aliases = ["EXO-K", "EXO-CBX"] },
+    { artist = "tripleS", aliases = ["EVOLution", "LOVElution", "+(KR)ystal Eyes", "Acid Angel from Asia", "Acid Eyes", "Aria", "NXT"] },
+    { artist = "Akasha System", aliases = ["DJ Panthr"] },
+    { artist = "NewJeans", aliases = ["HANNI", "HAERIN", "MINJI", "DANIELLE", "HYEIN"] },
+    { artist = "Calvin Harris", aliases = ["Love Regenerator"] },
+    { artist = "LE SSERAFIM", aliases = ["Huh Yunjin"] },
+    { artist = "Matthew Dear", aliases = ["Audion"] },
+]
+
+fuse_artists_blacklist = [
+    "Disciples",
+    "Rosa Walton",
+    # Aliases
+    "+(KR)ystal Eyes",
+    "Acid Angel from Asia",
+    "Acid Eyes",
+    "EVOLution",
+    "LOVElution",
+    "Aria",
+    "NXT",
+    "Kieran Hebden",
+    "00110100 01010100",
+    "EXO-K",
+    "EXO-CBX",
+    "Love Regenerator",
+    # Classical Performers
+    "Alceo Galliera",
+    "Alice Sara Ott",
+    "André Previn",
+    "Berliner Philharmoniker",
+    "Bernard Haitink",
+    "Birgit Nilsson",
+    "Carlos Kleiber",
+    "Charles Mackerras",
+    "Fritz Wunderlich",
+    "Philharmonia Orchestra",
+    "Chicago Symphony Orchestra",
+    "Chris Merritt",
+    "Christa Ludwig",
+    "Claudio Abbado",
+]
+
+[path_templates]
+default.release = """
+{% if new %}{{ '{N}' }}{% endif %}
+{{ artists | artistsfmt }} -
+{% if year %}{{ year }}.{% endif %}
+{{ title }}
+{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+"""
+# Avoid too much churn in source directory names, so only include relatively
+# stable identifiers.
+source.release = """
+{{ artists | artistsfmt }} -
+{% if year %}{{ year }}.{% endif %}
+{{ title }}
+"""
+new_releases.release = """
+{{ artists | artistsfmt }} -
+{% if year %}{{ year }}.{% endif %}
+{{ title }}
+{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+"""
+recently_added_releases.release = """
+[{{ added_at[:10] }}]{% if new %}!{% endif %}
+{{ artists | artistsfmt }} -
+{% if year %}{{ year }}.{% endif %}
+{{ title }}
+{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+"""
+artists.release = """
+[{{ releasetype | releasetypefmt }}]{% if new %}!{% endif %}
+{% if year %}{{ year }}.{% else %}0000.{% endif %}
+{{ artists | artistsfmt }} -
+{{ title }}
+"""
+genres.release = """
+{% if new %}{{ '{N}' }}{% endif %}
+{{ artists | artistsfmt }} -
+{% if year %}{{ year }}.{% endif %}
+{{ title }}
+{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+"""
+playlists = """
+{{ position }}.
+{{ artists | artistsfmt }} -
+{{ title }}
+{% if year %}({{ year }}){% endif %}
+"""
+
+# Artist splitting.
+[[stored_metadata_rules]]
+matcher = "artist:,"
+actions = ["split:,"]
+[[stored_metadata_rules]]
+matcher = "artist: \\\\\\\\ "
+actions = ["split: \\\\\\\\ "]
+[[stored_metadata_rules]]
+matcher = "artist: / "
+actions = ["split: / "]
+[[stored_metadata_rules]]
+matcher = "artist: with "
+actions = ["split: with "]
+[[stored_metadata_rules]]
+matcher = "artist: + "
+actions = ["split: + "]
+
+# Disk number fixing
+[[stored_metadata_rules]]
+matcher = "discnumber:^0$"
+actions = ["replace:1"]
+
+# Character normalization. The replacements are not stylistically correct, but
+# I can input them.
+[[stored_metadata_rules]]
+matcher = "tracktitle,albumtitle,artist,genre,label:‐"
+actions = ["sed:‐:-"]
+[[stored_metadata_rules]]
+matcher = "tracktitle,albumtitle,artist,genre,label:’"
+actions = ["sed:’:'"]
+[[stored_metadata_rules]]
+matcher = "tracktitle,albumtitle,artist,genre,label:‘"
+actions = ["sed:‘:'"]
+[[stored_metadata_rules]]
+matcher = "tracktitle,albumtitle,artist,genre,label:“"
+actions = ["sed:“:\""]
+[[stored_metadata_rules]]
+matcher = "tracktitle,albumtitle,artist,genre,label:”"
+actions = ["sed:”:\""]
+
+# Genre normalization heuristics.
+[[stored_metadata_rules]]
+matcher = "genre:,"
+actions = ["split:,"]
+[[stored_metadata_rules]]
+matcher = "genre:/"
+actions = ["split:/"]
+[[stored_metadata_rules]]
+matcher = "genre:^kpop$:i"
+actions = ["replace:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "genre:^k-pop$"
+actions = ["replace:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "genre:^K-pop$"
+actions = ["replace:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "genre:^K-POP$"
+actions = ["replace:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "genre:^hip hop$:i"
+actions = ["replace:Hip-Hop"]
+[[stored_metadata_rules]]
+matcher = "genre:^K-Pop$"
+actions = ["genre:^Pop$::delete", "genre:^Korean$:i::delete"]
+
+# Release type heuristics.
+[[stored_metadata_rules]]
+matcher = "albumtitle: EP$"
+actions = ["releasetype::replace:ep", "albumtitle::sed: ?-? EP$:"]
+
+# Artist normalization.
+[[stored_metadata_rules]]
+matcher = "artist:^ROSE$:i"
+actions = ["replace:ROSÉ"]
+[[stored_metadata_rules]]
+matcher = "artist:^heize$:i"
+actions = ["replace:Heize"]
+[[stored_metadata_rules]]
+matcher = "artist:^Yukika$"
+actions = ["replace:YUKIKA"]
+[[stored_metadata_rules]]
+matcher = "artist:^유키카$"
+actions = ["replace:YUKIKA"]
+[[stored_metadata_rules]]
+matcher = "artist:^강혜원$"
+actions = ["replace:Kang Hyewon"]
+[[stored_metadata_rules]]
+matcher = "artist:^조유리$"
+actions = ["replace:Jo Yuri"]
+[[stored_metadata_rules]]
+matcher = "artist:^소녀시대$"
+actions = ["replace:Girls' Generation"]
+[[stored_metadata_rules]]
+matcher = "artist:^가인$"
+actions = ["replace:Gain"]
+[[stored_metadata_rules]]
+matcher = "artist:^브라운아이드걸스$"
+actions = ["replace:Brown Eyed Girls"]
+[[stored_metadata_rules]]
+matcher = "artist:^태연$"
+actions = ["replace:Taeyeon"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^TAEYEON$"
+actions = ["replace:Taeyeon"]
+
+# Artist genre inference.
+[[stored_metadata_rules]]
+matcher = "albumartist:^LOONA$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^JEON SOMI$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^IU$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^AKMU$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^YENA$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^TWICE$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Red Velvet$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Mamamoo$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Heize$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^LE SSERAFIM$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^aespa$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^NewJeans$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^XG$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^fromis_9$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^(G)I-DLE$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^ITZY$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^GFRIEND$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^OH MY GIRL$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^ROSÉ$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^JISOO$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^JENNIE$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^HUH YUNJIN$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^EXO"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^BTS$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^ONEUS$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^KWON EUN BI$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Choi HEART$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Yerin Baek$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^KAI$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^SOOJIN$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^SHINee$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Jo Yuri$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Kang Hyewon$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Girls' Generation$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Rainbow Note$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Kang Hyewon$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^YUKIKA$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Lovelyz$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^EXID$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^CLC$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Taeyeon$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^f(x)$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Brown Eyed Girls$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^ARTMS$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^tripleS$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Nine Muses$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Gain$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Jimin$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Kep1er$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^Kim Areum$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^LADIES' CODE$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^RM$"
+actions = ["genre::add:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "albumartist:^BABYMONSTER$"
+actions = ["genre::add:K-Pop"]
