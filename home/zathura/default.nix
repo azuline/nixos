@@ -1,8 +1,9 @@
-{ specialArgs, ... }:
+{ pkgs, specialArgs, ... }:
 
 {
   programs.zathura = {
     enable = true;
+    package = pkgs.zathura;
     options = {
       default-bg = "#090910";
       default-fg = "#eeffff";
