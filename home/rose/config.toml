@@ -53,55 +53,55 @@ fuse_artists_blacklist = [
 [path_templates]
 default.release = """
 {% if new %}{{ '{N}' }}{% endif %}
-{{ artists | artistsfmt }} -
+{{ albumartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ title }}
+{{ albumtitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 """
 # Avoid too much churn in source directory names, so only include relatively
 # stable identifiers.
 source.release = """
-{{ artists | artistsfmt }} -
+{{ albumartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ title }}
+{{ albumtitle }}
 """
 new_releases.release = """
-{{ artists | artistsfmt }} -
+{{ albumartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ title }}
+{{ albumtitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 """
 recently_added_releases.release = """
 [{{ added_at[:10] }}]{% if new %}!{% endif %}
-{{ artists | artistsfmt }} -
+{{ albumartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ title }}
+{{ albumtitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 """
 artists.release = """
 [{{ releasetype | releasetypefmt }}]{% if new %}!{% endif %}
 {% if year %}{{ year }}.{% else %}0000.{% endif %}
-{{ artists | artistsfmt }} -
-{{ title }}
+{{ albumartists | artistsfmt }} -
+{{ albumtitle }}
 """
 genres.release = """
 {% if new %}{{ '{N}' }}{% endif %}
-{{ artists | artistsfmt }} -
+{{ albumartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ title }}
+{{ albumtitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not title.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 """
 playlists = """
 {{ position }}.
-{{ artists | artistsfmt }} -
-{{ title }}
+{{ trackartists | artistsfmt }} -
+{{ tracktitle }}
 {% if year %}({{ year }}){% endif %}
 """
 
