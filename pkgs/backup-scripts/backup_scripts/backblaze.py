@@ -45,7 +45,7 @@ restic backup \
     "$HOME/.music-source" \
     "$HOME/wlop" \
     "$HOME/scripts" \
-    "$HOME/.password-store" \
+    "$HOME/.passwarbles" \
     "$HOME/.gnupg/pubring.kbx" \
     "$HOME/.gnupg/private-keys-v1.d" \
     "$HOME/.ssh"

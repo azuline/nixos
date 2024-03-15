@@ -18,7 +18,6 @@
       bat
       bc
       beets
-      bubblewrap
       coreutils
       curl
       dasel
@@ -41,14 +40,11 @@
       htop
       imagemagick
       intel-gpu-tools
-      jhead
       jq
-      libsecret
       mediainfo
       mkcert
       mktorrent
       mkvtoolnix
-      monolith
       moreutils
       neofetch
       nix-search-cli
@@ -58,7 +54,6 @@
       p7zip
       pass
       pdftk
-      perl536Packages.FileMimeInfo
       pinentry
       poetry
       procps
@@ -185,16 +180,13 @@
       brightnessctl
       chromium
       firefox
-      fontforge-gtk
       gimp
-      kdocker
       libnotify
       maim
       paprefs
       pavucontrol
       peek
       pulseaudio # for pactl
-      screenkey
       simplescreenrecorder
       slack
       speechd
@@ -217,7 +209,6 @@
 
     home.packages = with pkgs; [
       calibre
-      bazecor
       discord
       puddletag
       signal

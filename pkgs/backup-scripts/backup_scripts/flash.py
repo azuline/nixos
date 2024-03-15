@@ -50,7 +50,7 @@ def backup_flash_drives(devices: list[Path]) -> None:
         logger.info("Copying SSH keys...")
         copy_dir(Path.home() / ".ssh", target_dir / "ssh" / socket.gethostname())
         logger.info("Copying passwords...")
-        copy_dir(Path.home() / ".password-store", target_dir / "pass")
+        copy_dir(Path.home() / ".passwarbles", target_dir / "pass")
         logger.info("Copying documents...")
         copy_dir(Path.home() / "documents" / "contents", target_dir / "documents")
         logger.info("Copying backups...")
