@@ -19,7 +19,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     initrd.luks.devices.root = {
-      device = "/dev/disk/by-uuid/c1bc2705-939f-4dc4-b6ce-6527192463a9";
+      device = "/dev/nvme0n1p2";
       preLVM = true;
     };
     # True by default; creates a warning when other parameters are unset. So we

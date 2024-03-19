@@ -23,6 +23,8 @@ do -- Tree browser
     "*.png",
     "*.jpg",
     -- LaTeX stuff
+    "*.gen.tex",
+    "*.gen.md",
     "*.pdf",
     "*.aux",
     "*.toc",

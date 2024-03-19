@@ -3,7 +3,6 @@
     "discord": {
       "flake": false,
       "locked": {
-        "lastModified": 1698769854,
         "narHash": "sha256-fcdP8jCcCkmPQcjciPcrXG0K/9numvbTZ2B6qCg4pNY=",
         "type": "tarball",
         "url": "https://dl.discordapp.net/apps/linux/0.0.33/discord-0.0.33.tar.gz"

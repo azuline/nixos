@@ -3,7 +3,7 @@
 writeShellScriptBin "i3-pass" ''
   export PATH="$HOME/.nix-profile/bin:$PATH"
 
-  file=$(find $HOME/.password-store -type f -name '*.gpg' -printf '%P\n' | sed 's/.gpg$//' | fzf --layout=reverse)
+  file=$(find $HOME/.passwarbles -type f -name '*.gpg' -printf '%P\n' | sed 's/.gpg$//' | fzf --layout=reverse)
 
   if [[ -z "$file" ]]; then
       exit 1
