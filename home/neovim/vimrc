@@ -87,10 +87,10 @@ set formatoptions+=t
 
 " Per-filetype indentation settings
 
-au BufEnter *.txt,*.rst,*.c,*.md,*.mkd,*.markdown,*.tex
+au BufEnter *.c
   \ set textwidth=79
 
-au BufEnter *.hs,*.ts,*.tsx,*.js,*.jsx,*.v
+au BufEnter *.txt,*.rst,*.md,*.mkd,*.markdown,*.tex,*.hs,*.ts,*.tsx,*.js,*.jsx,*.v
   \ set textwidth=100
 
 " Wrap at 100 but not automatically.
