@@ -20,5 +20,6 @@ in
     "nvim/lua".source = "${nvimDir}/lua";
     "nvim/autoload".source = "${nvimDir}/autoload";
     "nvim/snippets".source = "${nvimDir}/snippets";
+    "nvim/ftplugin".source = "${nvimDir}/ftplugin";
   };
 }

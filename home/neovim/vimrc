@@ -61,7 +61,7 @@ set smartcase
 
 " Trailing space highlighting
 highlight ExtraWhitespace ctermbg=red guibg=red
-au BufEnter * match ExtraWhitespace /\s\+$/
+au BufEnter * match ExtraWhitespace /\s\*$/
 
 " Reopen file to last read line
 if has("autocmd")
