@@ -57,8 +57,7 @@ do -- Load the plugins.
     -- We use polyglot for indentation, since tree-sitter is not mature.
     Plug("sheerun/vim-polyglot")
     -- LaTeX!
-    Plug("lervag/vimtex", { tag = "v1.6" })
-    Plug("KeitaNakamura/tex-conceal.vim", { ["for"] = "tex" })
+    Plug("lervag/vimtex")
   end
 
   do -- Development Tooling

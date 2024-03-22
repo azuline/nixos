@@ -31,12 +31,31 @@ do -- LaTeX syntax stuffs
   vim.g.vimtex_view_method = "general"
   vim.g.vimtex_view_general_viewer = "zathura"
   vim.g.vimtex_view_enabled = 1
-  -- For vim-conceal.
+  -- For conceal.
   vim.opt.conceallevel = 2
-  vim.g.tex_conceal = "abdmg"
-  vim.g.tex_conceal_frac = 1
-  -- Extra conceal matches.
-  vim.cmd('syntax match textCmdStyleBold "\\mathbf>s*" skipwhite skipnl nextgroup=texStyleBold conceal')
+  vim.g.vimtex_syntax_conceal = {
+    accents = true,
+    ligatures = true,
+    cites = true,
+    fancy = true,
+    spacing = true,
+    greek = true,
+    math_bounds = true,
+    math_delimiters = true,
+    math_fracs = true,
+    math_super_sub = true,
+    math_symbols = true,
+    sections = true,
+    styles = true,
+  }
+  vim.g.vimtex_syntax_custom_cmds = {
+    { name = "ti", conceal = true, opt = false, argstyle = "ital" },
+    { name = "tb", conceal = true, opt = false, argstyle = "bold" },
+  }
+  vim.g.vimtex_syntax_custom_cmds_with_concealed_delims = {
+    { name = "fn", nargs = 1, cchar_open = "(", cchar_close = ")", argstyle = "ital" },
+    { name = "hl", nargs = 2, cchar_open = "[", cchar_mid = "|", cchar_close = "]" },
+  }
 end
 
 do -- Configure the statusbar.
