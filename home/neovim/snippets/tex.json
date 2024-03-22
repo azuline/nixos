@@ -1,0 +1,106 @@
+{
+	"s": {
+		"prefix": ["s"],
+		"body": [
+			"\\section{$1}",
+			"",
+			"$0"
+		]
+	},
+	"ss": {
+		"prefix": ["ss"],
+		"body": [
+			"\\subsection{$1}",
+			"",
+			"$0"
+		]
+	},
+	"sss": {
+		"prefix": ["sss"],
+		"body": [
+			"\\subsubsection{$1}",
+			"",
+			"$0"
+		]
+	},
+	"s*": {
+		"prefix": ["s*"],
+		"body": [
+			"\\section*{$1}",
+			"",
+			"$0"
+		]
+	},
+	"ss*": {
+		"prefix": ["ss*"],
+		"body": [
+			"\\subsection*{$1}",
+			"",
+			"$0"
+		]
+	},
+	"sss*": {
+		"prefix": ["sss*"],
+		"body": [
+			"\\subsubsection*{$1}",
+			"",
+			"$0"
+		]
+	},
+	"it": {
+		"prefix": ["it"],
+		"body": [
+			"\\begin{itemize}[noitemsep]",
+			"  \\item $0",
+			"\\end{itemize}"
+		]
+	},
+	"en": {
+		"prefix": ["en"],
+		"body": [
+			"\\begin{enumerate}[noitemsep]",
+			"  \\item $0",
+			"\\end{enumerate}"
+		]
+	},
+	"-": {
+		"prefix": ["-"],
+		"body": [
+			"\\item $0"
+		]
+	},
+	"i": {
+		"prefix": ["i"],
+		"body": [
+			"\\ti{$1}$0"
+		]
+	},
+	"b": {
+		"prefix": ["b"],
+		"body": [
+			"\\tb{$1}$0"
+		]
+	},
+	"hs": {
+		"prefix": ["hs"],
+		"body": [
+			"\\hs{$1}{",
+			"$2",
+			"}",
+			"",
+			"$0"
+		]
+	},
+	"hl": {
+		"prefix": ["hl"],
+		"body": [
+			"\\hl{$1}{$2}$0"
+		]
+	},
+	"fn": {
+		"prefix": ["fn"],
+		"body": [
+			"\\fn{$1}{$2}$0"
+		]
+	}
+}
