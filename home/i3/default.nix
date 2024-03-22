@@ -8,8 +8,8 @@ let
       font pango: roboto 11
 
       # Gaps
-      gaps inner 16
-      gaps outer 4
+      gaps inner 8
+      gaps outer 2
 
       # Configure workspace monitor split.
       workspace 1 output DP-0
@@ -27,15 +27,15 @@ let
       font pango: roboto 11
 
       # Gaps
-      gaps inner 8
-      gaps outer 2
+      gaps inner 4
+      gaps outer 1
     '' else if specialArgs.sys.host == "neptune" then configBase + ''
       # Font
       font pango: roboto 11
 
       # Gaps
-      gaps inner 8
-      gaps outer 2
+      gaps inner 1
+      gaps outer 1
     '' else throw "Unsupported host in i3."
   );
 in
