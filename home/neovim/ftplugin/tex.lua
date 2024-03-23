@@ -4,11 +4,10 @@ local function insert_item()
     vim.fn.searchpair("\\\\begin{itemize}", "", "\\\\end{itemize}", "nW") > 0
     or vim.fn.searchpair("\\\\begin{enumerate}", "", "\\\\end{enumerate}", "nW") > 0
   then
-    return vim.api.nvim_put({ "", "  \\item " }, "c", true, true)
+    return "<CR><BS>\\item "
   else
-    return vim.api.nvim_put({ "", "" }, "c", false, true)
-    -- return vim.api.nvim_input("<CR>")
+    return "<CR>"
   end
 end
 
-vim.keymap.set("i", "<CR>", insert_item, { buffer = true, noremap = true })
+vim.keymap.set("i", "<CR>", insert_item, { buffer = true, expr = true, noremap = true })
