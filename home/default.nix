@@ -29,7 +29,7 @@
       file
       file-uploader
       findutils
-      flexget
+      # flexget  # Failing in unstable; I don't use it rn so I don't care.
       fx
       fzf
       gawk
@@ -123,6 +123,7 @@
       luajitPackages.luacheck
       minikube
       mypy
+      nil
       nixpkgs-fmt
       node2nix
       nodejs
@@ -142,7 +143,6 @@
       postgresql_13
       protobuf
       protoc-gen-go
-      rnix-lsp
       ruff
       ruff-lsp
       rustup

@@ -1,4 +1,4 @@
-{ python311 }:
+{ python311, broken-pipx }:
 
 python311.withPackages (ps: with ps; [
   aiohttp
@@ -7,7 +7,7 @@ python311.withPackages (ps: with ps; [
   passlib
   pid
   pip
-  pipx
+  broken-pipx
   requests
   shodan
   virtualenv

@@ -172,6 +172,8 @@ lspconfig.lua_ls.setup({
   },
 })
 
+lspconfig.nil_ls.setup({})
+
 local sources = {
   -- JS/TS/JSX/TSX
   null_ls.builtins.diagnostics.eslint_d,
