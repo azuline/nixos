@@ -81,26 +81,32 @@
 			"\\tb{$1}$0"
 		]
 	},
-	"hs": {
-		"prefix": ["hs"],
+	"t": {
+		"prefix": ["t"],
 		"body": [
-			"\\hs{$1}{",
-			"$2",
-			"}",
-			"",
-			"$0"
+			"\\hypertarget{$1}{",
+			"$0",
+			"}"
 		]
 	},
-	"hl": {
-		"prefix": ["hl"],
+	"l": {
+		"prefix": ["l"],
 		"body": [
 			"\\hl{$1}{$2}$0"
 		]
 	},
-	"fn": {
-		"prefix": ["fn"],
+	"f": {
+		"prefix": ["f"],
 		"body": [
 			"\\fn{$1}$0"
+		]
+	},
+	"q": {
+		"prefix": ["q"],
+		"body": [
+			"\\begin{quote}",
+      "  $0",
+      "\\end{quote}"
 		]
 	}
 }
