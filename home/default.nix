@@ -23,6 +23,7 @@
       dasel
       decrypt-frieren
       dnsutils
+      edit-toc
       exiftool
       fd
       ffmpeg

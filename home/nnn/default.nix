@@ -84,7 +84,7 @@ in
     bookmarks = {
       a = "~/anime";
       b = "~/books";
-      B = "~/books/Religion   - Buddhism";
+      B = "~/buddhism/books";
       c = "~/cdrama";
       d = "~/downloads";
       e = "/mnt/elements";
