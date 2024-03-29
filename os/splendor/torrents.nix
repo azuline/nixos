@@ -90,7 +90,10 @@
 
   # The NixOS systemd service restricts writes to the explicitly configured
   # BindPaths.
-  systemd.services.transmission.serviceConfig.BindPaths = [ "/mnt/elements" ];
+  systemd.services.transmission.serviceConfig.BindPaths = [
+    "/mnt/elements"
+    "/home/blissful/tmp"
+  ];
 
   # Weekly backups of the external drive to another external drive via borg.
   systemd.timers."backup-elements" = {

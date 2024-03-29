@@ -34,11 +34,18 @@ do -- Tree browser
     "*.4tc",
     "*.4ct",
     "*.dvi",
+    "*.log",
     "*.lg",
     "*.tmp",
     "*.idv",
     "*.xref",
     "*.fdb_latexmk",
+    -- Bibtex
+    "*.bbl",
+    "*.bcf",
+    "*.blg",
+    "*.run.xml",
+    "*-SAVE-ERROR",
   }
 
   if string.find(vim.fn.getcwd(), "^/home/blissful/atelier") and not os.getenv("ATELIER_DEV") then

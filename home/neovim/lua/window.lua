@@ -31,6 +31,8 @@ do -- LaTeX syntax stuffs
   vim.g.vimtex_view_method = "general"
   vim.g.vimtex_view_general_viewer = "zathura"
   vim.g.vimtex_view_enabled = 1
+  -- Open the local subfile instead of the main file.
+  vim.g.vimtex_subfile_start_local = true
   -- For conceal.
   vim.opt.conceallevel = 2
   vim.g.vimtex_syntax_conceal = {
