@@ -75,6 +75,7 @@
       EDITOR = "nvim";
       XCURSOR_SIZE = "64";
       LC_COLLATE = "C"; # Lets special characters sort last; doesn't ignore them.
+      PASSWORD_STORE_DIR = "/home/blissful/.passwarbles";
     };
     systemPackages = with pkgs; [
       curl
