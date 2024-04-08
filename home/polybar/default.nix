@@ -16,7 +16,6 @@
         ''
           # Only start if i3 socketpath succeeds.
           ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar haiqin &
-          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar haiqin-monitor &
         ''
       else if specialArgs.sys.host == "neptune" then
         ''

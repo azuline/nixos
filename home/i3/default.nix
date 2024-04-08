@@ -29,18 +29,6 @@ let
       # Gaps
       gaps inner 4
       gaps outer 1
-
-      # Temporary external monitor.
-      workspace 1 output eDP-1
-      workspace 2 output eDP-1
-      workspace 3 output eDP-1
-      workspace 4 output eDP-1
-      workspace 5 output eDP-1
-      workspace 6 output DP-3
-      workspace 7 output DP-3
-      workspace 8 output DP-3
-      workspace 9 output DP-3
-      workspace 10 output DP-3
     '' else if specialArgs.sys.host == "neptune" then configBase + ''
       # Font
       font pango: roboto 11
