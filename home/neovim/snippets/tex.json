@@ -101,6 +101,18 @@
 			"\\fn{$1}$0"
 		]
 	},
+	"fc": {
+		"prefix": ["fc"],
+		"body": [
+			"\\fn{\\fullcite{$1}}$0"
+		]
+	},
+	"fcc": {
+		"prefix": ["fcc"],
+		"body": [
+			"\\fn{\\fullcite[$2]{$1}}$0"
+		]
+	},
 	"q": {
 		"prefix": ["q"],
 		"body": [

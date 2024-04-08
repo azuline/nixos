@@ -28,13 +28,14 @@
       fd
       ffmpeg
       file
+      # flexget  # Failing in unstable; I don't use it rn so I don't care.
       file-uploader
       findutils
-      # flexget  # Failing in unstable; I don't use it rn so I don't care.
       fx
       fzf
       gawk
       gcc
+      ghostscript
       gnumake
       gnused
       graphviz
@@ -57,6 +58,7 @@
       pdftk
       pinentry
       poetry
+      poppler_utils
       procps
       python
       rclone
@@ -69,10 +71,11 @@
       sshfs
       tectonic
       termdown
+      tesseract
+      trash-cli
       tree
       unixtools.netstat
       unrar
-      trash-cli
       unzip
       w3m
       wget
