@@ -26,8 +26,10 @@
     deviceSection = ''
       Option "DRI" "3"
     '';
-    layout = "us";
-    xkbOptions = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
+    xkb = {
+      layout = "us";
+      options = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
+    };
     # Disable libinput because I don't want to use the touchpad.
     libinput.enable = false;
   };
