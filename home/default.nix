@@ -54,6 +54,7 @@
       ocrmypdf
       opusTools
       p7zip
+      (lib.hiPrio parallel-full) # parallel is also part of moreutils
       pass
       pdftk
       pinentry
