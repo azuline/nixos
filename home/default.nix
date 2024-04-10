@@ -52,11 +52,13 @@
       nix-search-cli
       nmap
       ocrmypdf
+      optipng
       opusTools
       p7zip
       (lib.hiPrio parallel-full) # parallel is also part of moreutils
       pass
       pdftk
+      pngquant
       pinentry
       poetry
       poppler_utils
