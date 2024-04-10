@@ -53,50 +53,50 @@ fuse_artists_blacklist = [
 [path_templates]
 default.release = """
 {% if new %}{{ '{N}' }}{% endif %}
-{{ albumartists | artistsfmt }} -
+{{ releaseartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ albumtitle }}
+{{ releasetitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 """
 # Avoid too much churn in source directory names, so only include relatively
 # stable identifiers.
 source.release = """
-{{ albumartists | artistsfmt }} -
+{{ releaseartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ albumtitle }}
+{{ releasetitle }}
 """
 new_releases.release = """
-{{ albumartists | artistsfmt }} -
+{{ releaseartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ albumtitle }}
+{{ releasetitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 """
 recently_added_releases.release = """
 [{{ added_at[:10] }}]{% if new %}!{% endif %}
-{{ albumartists | artistsfmt }} -
+{{ releaseartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ albumtitle }}
+{{ releasetitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 """
 artists.release = """
 [{{ releasetype | releasetypefmt }}]{% if new %}!{% endif %}
 {% if year %}{{ year }}.{% else %}0000.{% endif %}
-{{ albumartists | artistsfmt }} -
-{{ albumtitle }}
+{{ releaseartists | artistsfmt }} -
+{{ releasetitle }}
 """
 genres.release = """
 {% if new %}{{ '{N}' }}{% endif %}
-{{ albumartists | artistsfmt }} -
+{{ releaseartists | artistsfmt }} -
 {% if year %}{{ year }}.{% endif %}
-{{ albumtitle }}
+{{ releasetitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not albumtitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 """
 playlists = """
 {{ position }}.
@@ -131,19 +131,19 @@ actions = ["replace:1"]
 # Character normalization. The replacements are not stylistically correct, but
 # I can input them.
 [[stored_metadata_rules]]
-matcher = "tracktitle,albumtitle,artist,genre,label:‐"
+matcher = "tracktitle,releasetitle,artist,genre,label:‐"
 actions = ["sed:‐:-"]
 [[stored_metadata_rules]]
-matcher = "tracktitle,albumtitle,artist,genre,label:’"
+matcher = "tracktitle,releasetitle,artist,genre,label:’"
 actions = ["sed:’:'"]
 [[stored_metadata_rules]]
-matcher = "tracktitle,albumtitle,artist,genre,label:‘"
+matcher = "tracktitle,releasetitle,artist,genre,label:‘"
 actions = ["sed:‘:'"]
 [[stored_metadata_rules]]
-matcher = "tracktitle,albumtitle,artist,genre,label:“"
+matcher = "tracktitle,releasetitle,artist,genre,label:“"
 actions = ["sed:“:\""]
 [[stored_metadata_rules]]
-matcher = "tracktitle,albumtitle,artist,genre,label:”"
+matcher = "tracktitle,releasetitle,artist,genre,label:”"
 actions = ["sed:”:\""]
 
 # Genre normalization heuristics.
@@ -174,12 +174,12 @@ actions = ["genre:^Pop$::delete", "genre:^Korean$:i::delete"]
 
 # Release type heuristics.
 [[stored_metadata_rules]]
-matcher = "albumtitle: EP$"
-actions = ["releasetype::replace:ep", "albumtitle::sed: ?-? EP$:"]
+matcher = "releasetitle: EP$"
+actions = ["releasetype::replace:ep", "releasetitle::sed: ?-? EP$:"]
 ignore = [
-    "albumtitle:^The Get Silly EP$",
-    "albumtitle:^The Up Down Left Right EP$",
-    "albumtitle:^THIS IS A MAD ZOO HOUSE EP$",
+    "releasetitle:^The Get Silly EP$",
+    "releasetitle:^The Up Down Left Right EP$",
+    "releasetitle:^THIS IS A MAD ZOO HOUSE EP$",
 ]
 
 # Artist normalization.
@@ -214,166 +214,166 @@ actions = ["replace:Brown Eyed Girls"]
 matcher = "artist:^태연$"
 actions = ["replace:Taeyeon"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^TAEYEON$"
+matcher = "releaseartist:^TAEYEON$"
 actions = ["replace:Taeyeon"]
 
 # Artist genre inference.
 [[stored_metadata_rules]]
-matcher = "albumartist:^LOONA$"
+matcher = "releaseartist:^LOONA$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^JEON SOMI$"
+matcher = "releaseartist:^JEON SOMI$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^IU$"
+matcher = "releaseartist:^IU$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^AKMU$"
+matcher = "releaseartist:^AKMU$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^YENA$"
+matcher = "releaseartist:^YENA$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^TWICE$"
+matcher = "releaseartist:^TWICE$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Red Velvet$"
+matcher = "releaseartist:^Red Velvet$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Mamamoo$"
+matcher = "releaseartist:^Mamamoo$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Heize$"
+matcher = "releaseartist:^Heize$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^LE SSERAFIM$"
+matcher = "releaseartist:^LE SSERAFIM$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^aespa$"
+matcher = "releaseartist:^aespa$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^NewJeans$"
+matcher = "releaseartist:^NewJeans$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^XG$"
+matcher = "releaseartist:^XG$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^fromis_9$"
+matcher = "releaseartist:^fromis_9$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^(G)I-DLE$"
+matcher = "releaseartist:^(G)I-DLE$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^ITZY$"
+matcher = "releaseartist:^ITZY$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^GFRIEND$"
+matcher = "releaseartist:^GFRIEND$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^OH MY GIRL$"
+matcher = "releaseartist:^OH MY GIRL$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^ROSÉ$"
+matcher = "releaseartist:^ROSÉ$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^JISOO$"
+matcher = "releaseartist:^JISOO$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^JENNIE$"
+matcher = "releaseartist:^JENNIE$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^HUH YUNJIN$"
+matcher = "releaseartist:^HUH YUNJIN$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^EXO"
+matcher = "releaseartist:^EXO"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^BTS$"
+matcher = "releaseartist:^BTS$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^ONEUS$"
+matcher = "releaseartist:^ONEUS$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^KWON EUN BI$"
+matcher = "releaseartist:^KWON EUN BI$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Choi HEART$"
+matcher = "releaseartist:^Choi HEART$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Yerin Baek$"
+matcher = "releaseartist:^Yerin Baek$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^KAI$"
+matcher = "releaseartist:^KAI$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^SOOJIN$"
+matcher = "releaseartist:^SOOJIN$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^SHINee$"
+matcher = "releaseartist:^SHINee$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Jo Yuri$"
+matcher = "releaseartist:^Jo Yuri$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Kang Hyewon$"
+matcher = "releaseartist:^Kang Hyewon$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Girls' Generation$"
+matcher = "releaseartist:^Girls' Generation$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Rainbow Note$"
+matcher = "releaseartist:^Rainbow Note$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Kang Hyewon$"
+matcher = "releaseartist:^Kang Hyewon$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^YUKIKA$"
+matcher = "releaseartist:^YUKIKA$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Lovelyz$"
+matcher = "releaseartist:^Lovelyz$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^EXID$"
+matcher = "releaseartist:^EXID$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^CLC$"
+matcher = "releaseartist:^CLC$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Taeyeon$"
+matcher = "releaseartist:^Taeyeon$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^f(x)$"
+matcher = "releaseartist:^f(x)$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Brown Eyed Girls$"
+matcher = "releaseartist:^Brown Eyed Girls$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^ARTMS$"
+matcher = "releaseartist:^ARTMS$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^tripleS$"
+matcher = "releaseartist:^tripleS$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Nine Muses$"
+matcher = "releaseartist:^Nine Muses$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Gain$"
+matcher = "releaseartist:^Gain$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Jimin$"
+matcher = "releaseartist:^Jimin$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Kep1er$"
+matcher = "releaseartist:^Kep1er$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^Kim Areum$"
+matcher = "releaseartist:^Kim Areum$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^LADIES' CODE$"
+matcher = "releaseartist:^LADIES' CODE$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^RM$"
+matcher = "releaseartist:^RM$"
 actions = ["genre::add:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "albumartist:^BABYMONSTER$"
+matcher = "releaseartist:^BABYMONSTER$"
 actions = ["genre::add:K-Pop"]
