@@ -109,6 +109,7 @@ playlists = """
 [[stored_metadata_rules]]
 matcher = "artist:,"
 actions = ["split:,"]
+ignore = ["artist:^Seo Taiji, Boys$"]
 [[stored_metadata_rules]]
 matcher = "artist: \\\\\\\\ "
 actions = ["split: \\\\\\\\ "]
@@ -175,6 +176,11 @@ actions = ["genre:^Pop$::delete", "genre:^Korean$:i::delete"]
 [[stored_metadata_rules]]
 matcher = "albumtitle: EP$"
 actions = ["releasetype::replace:ep", "albumtitle::sed: ?-? EP$:"]
+ignore = [
+    "albumtitle:^The Get Silly EP$",
+    "albumtitle:^The Up Down Left Right EP$",
+    "albumtitle:^THIS IS A MAD ZOO HOUSE EP$",
+]
 
 # Artist normalization.
 [[stored_metadata_rules]]
