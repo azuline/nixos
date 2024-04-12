@@ -3,7 +3,6 @@
 		"prefix": ["s"],
 		"body": [
 			"\\section{$1}",
-			"",
 			"$0"
 		]
 	},
@@ -11,7 +10,6 @@
 		"prefix": ["ss"],
 		"body": [
 			"\\subsection{$1}",
-			"",
 			"$0"
 		]
 	},
@@ -19,7 +17,6 @@
 		"prefix": ["sss"],
 		"body": [
 			"\\subsubsection{$1}",
-			"",
 			"$0"
 		]
 	},
@@ -27,7 +24,6 @@
 		"prefix": ["s*"],
 		"body": [
 			"\\section*{$1}",
-			"",
 			"$0"
 		]
 	},
@@ -35,7 +31,6 @@
 		"prefix": ["ss*"],
 		"body": [
 			"\\subsection*{$1}",
-			"",
 			"$0"
 		]
 	},
@@ -43,7 +38,6 @@
 		"prefix": ["sss*"],
 		"body": [
 			"\\subsubsection*{$1}",
-			"",
 			"$0"
 		]
 	},

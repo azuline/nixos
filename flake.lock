@@ -376,11 +376,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712795330,
-        "narHash": "sha256-NTWGw2I3fvPcAVxr8Hz2YQh9brF18O5Jpqm3+VlLN20=",
+        "lastModified": 1712944418,
+        "narHash": "sha256-Y8WhhIgAeHgeYnT5UitezSa2GlDxnTCAVVAJTe14MLE=",
         "owner": "azuline",
         "repo": "rose",
-        "rev": "8e9039033ad36a6471d9630e503e40bcd67c409e",
+        "rev": "71bdc6122c434fae581117003e4660e95d814dc9",
         "type": "github"
       },
       "original": {
