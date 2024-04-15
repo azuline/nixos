@@ -45,7 +45,7 @@ writeShellScriptBin "bar-now-playing" ''
     read -r data
 
     tracktitle="$(echo "$data" | jq -r .tracktitle)"
-    albumtitle="$(echo "$data" | jq -r .albumtitle)"
+    albumtitle="$(echo "$data" | jq -r .releasetitle)"
     year="$(echo "$data" | jq -r .year)"
 
     artists="$(echo "$data" | jq '.trackartists.main | map(select(.alias == false) | .name)' | arrayfmt)"

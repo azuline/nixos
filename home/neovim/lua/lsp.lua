@@ -37,23 +37,6 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- To avoid react.d.ts definitions from opening on jump to definition.
--- https://github.com/typescript-language-server/typescript-language-server/issues/216#issuecomment-1005272952
-local function filter(arr, fn)
-  if type(arr) ~= "table" then
-    return arr
-  end
-
-  local filtered = {}
-  for k, v in pairs(arr) do
-    if fn(v, k, arr) then
-      table.insert(filtered, v)
-    end
-  end
-
-  return filtered
-end
-
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -97,7 +80,29 @@ lspconfig.zls.setup({
   },
 })
 
-lspconfig.tsserver.setup({
+lspconfig.bashls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+-- To avoid react.d.ts definitions from opening on jump to definition.
+-- https://github.com/typescript-language-server/typescript-language-server/issues/216#issuecomment-1005272952
+local function filter(arr, fn)
+  if type(arr) ~= "table" then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+require("typescript-tools").setup({
   init_options = {
     preferences = {
       importModuleSpecifierPreference = "non-relative",
@@ -147,7 +152,20 @@ lspconfig.tsserver.setup({
   },
 })
 
+lspconfig.eslint.setup({
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+		on_attach(client, bufnr)
+  end,
+})
+
 lspconfig.lua_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -172,13 +190,12 @@ lspconfig.lua_ls.setup({
   },
 })
 
-lspconfig.nil_ls.setup({})
+lspconfig.nil_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 local sources = {
-  -- JS/TS/JSX/TSX
-  null_ls.builtins.diagnostics.eslint_d,
-  null_ls.builtins.code_actions.eslint_d,
-  -- null_ls.builtins.formatting.eslint_d,
   -- Lua
   null_ls.builtins.formatting.stylua,
   -- Python
@@ -191,13 +208,6 @@ local sources = {
   -- null_ls.builtins.diagnostics.revive,
   -- Nix
   null_ls.builtins.formatting.nixpkgs_fmt,
-  -- Rust
-  null_ls.builtins.formatting.rustfmt,
-  -- Bash
-  null_ls.builtins.diagnostics.shellcheck,
-  null_ls.builtins.code_actions.shellcheck,
-  -- Zig
-  null_ls.builtins.formatting.zigfmt,
 }
 
 if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then

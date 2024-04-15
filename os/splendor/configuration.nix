@@ -58,12 +58,12 @@
   networking = {
     hostName = "splendor";
     networkmanager.enable = true;
-    interfaces.wlp5s0.ipv4.addresses = [
-      {
-        address = "192.168.1.160";
-        prefixLength = 24;
-      }
-    ];
+    # interfaces.wlp5s0.ipv4.addresses = [
+    #   {
+    #     address = "192.168.1.160";
+    #     prefixLength = 24;
+    #   }
+    # ];
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing

@@ -51,23 +51,19 @@ do -- Load the plugins.
 
   do -- Language/Syntax Plugins
     -- Treesitter is handled via Nix since installing the dynamically linked
-    -- parsers breaks in Nix.
-    --
-    -- Language parser & highlighting
-    -- We use polyglot for indentation, since tree-sitter is not mature.
-    Plug("sheerun/vim-polyglot")
-    -- LaTeX!
+    -- parsers breaks in Nix. For languages where tree-sitter is not fully
+    -- mature, we use language-specific plugins for indentation.
     Plug("lervag/vimtex")
   end
 
   do -- Development Tooling
-    -- Default LSP configs
+    -- Prepackaged "default" LSP configs
     Plug("neovim/nvim-lspconfig")
-    -- Null-ls for editors/autoformatters -> LSP
-    Plug("jose-elias-alvarez/null-ls.nvim")
-    Plug("jose-elias-alvarez/nvim-lsp-ts-utils")
+    -- None-ls for integrating editors/autoformatters with LSP
+    Plug("nvimtools/none-ls.nvim")
     -- Other LSP plugins
-    Plug("simrat39/rust-tools.nvim")
+    Plug("mrcjkb/rustaceanvim")
+    Plug("pmizio/typescript-tools.nvim")
     -- Git Client
     Plug("tpope/vim-fugitive")
     -- Test Runner

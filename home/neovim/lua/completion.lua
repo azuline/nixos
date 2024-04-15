@@ -51,7 +51,16 @@ do -- Setup nvim-cmp.
       { name = "nvim_lsp" },
       { name = "vsnip" },
     }, {
-      { name = "buffer", keyword_length = 3 },
+      {
+        name = "buffer",
+        keyword_length = 3,
+        -- Pull autocompletion from all buffers.
+        option = {
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end,
+        },
+      },
     }),
     formatting = {
       format = lspkind.cmp_format({

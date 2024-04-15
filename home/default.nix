@@ -124,8 +124,8 @@
       isort
       jdk11
       kind
-      kubectl
       kube-linter
+      kubectl
       levant
       luajitPackages.luacheck
       minikube
@@ -133,16 +133,16 @@
       nil
       nixpkgs-fmt
       node2nix
-      nodejs
+			nodePackages.bash-language-server
       nodePackages.eslint
-      nodePackages.eslint_d
       nodePackages.pnpm
       nodePackages.prettier
       nodePackages.pyright
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
-      ocamlformat
+      nodejs
       ocamlPackages.utop
+      ocamlformat
       pgformatter
       pgmigrate
       php83
@@ -162,6 +162,7 @@
       sumneko-lua-language-server
       tokei
       universal-ctags
+			vscode-langservers-extracted
       watchman # Needed for tsserver
       yarn
       zig
