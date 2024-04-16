@@ -11,7 +11,7 @@ in
     withPython3 = true;
     plugins = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
     extraConfig = ''
-      ${builtins.readFile ./vimrc}
+      source ${nvimDir}/vimrc
       luafile ${nvimDir}/init.lua
     '';
   };

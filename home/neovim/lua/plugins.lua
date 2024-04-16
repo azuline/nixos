@@ -7,6 +7,7 @@ do -- Load the plugins.
 
   do -- Editor augmentation
     -- Text objects for expanding/contracting syntactic constructs
+    Plug("nvim-treesitter/nvim-treesitter-textobjects")
     Plug("RRethy/nvim-treesitter-textsubjects")
     -- Bullet points, because the replacement Markdown plugins all suck
     Plug("dkarter/bullets.vim")

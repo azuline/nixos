@@ -133,7 +133,7 @@
       nil
       nixpkgs-fmt
       node2nix
-			nodePackages.bash-language-server
+      nodePackages.bash-language-server
       nodePackages.eslint
       nodePackages.pnpm
       nodePackages.prettier
@@ -162,7 +162,7 @@
       sumneko-lua-language-server
       tokei
       universal-ctags
-			vscode-langservers-extracted
+      vscode-langservers-extracted
       watchman # Needed for tsserver
       yarn
       zig

@@ -59,14 +59,9 @@ set nojoinspaces
 set ignorecase
 set smartcase
 
-" Trailing space highlighting
-highlight ExtraWhitespace ctermbg=red guibg=red
-au BufEnter * match ExtraWhitespace /\s\*$/
-
 " Reopen file to last read line
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " Filetype settings
@@ -86,34 +81,34 @@ set shiftwidth=4
 set formatoptions+=t
 
 " Per-filetype indentation settings
-
-au BufEnter *.c
-  \ set textwidth=79
-
-au BufEnter *.txt,*.rst,*.md,*.mkd,*.markdown,*.tex,*.hs,*.ts,*.tsx,*.js,*.jsx,*.v
-  \ set textwidth=100
-
-" Wrap at 100 but not automatically.
 au BufEnter *.py set textwidth=100 | set formatoptions-=t
+au BufEnter *.js,*.jsx,*.ts,*.tsx set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.c,*.h set textwidth=79
+" au BufEnter *.cpp,*.h set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.html set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.css,*.scss set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.yml,*.yaml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.json set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter Makefile,makefile set noexpandtab
+au BufEnter *.hs set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.lua set tabstop=2 | set softtabstop=2 | set shiftwidth=2 | set noexpandtab
+au BufEnter *.vue set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.ex,*.exs set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.rb set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.ml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.vim set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.hbs set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.rkt set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.v set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.php set noexpandtab
 
-au BufEnter *.md,*.js,*.yml,*.html,*.css,*.json,*.tex,*.vue,*.ex,*.exs,*.scss,*.rb,*.ml,*.jsx,*.ts,*.tsx,*.vim,*.hbs,*.rkt,*.hs,*.v,*.lua
-  \ set tabstop=2 |
-  \ set softtabstop=2 |
-  \ set shiftwidth=2
-
-au BufEnter Makefile,makefile,*.php,*.lua
-  \ set noexpandtab
+au BufEnter *.txt set textwidth=100
+au BufEnter *.md,*.mkd,*.markdown set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.rst set textwidth=100
+au BufEnter *.tex set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 
 " NVM, turn spell off.
-" au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt
-"   \ set spell |
-"   \ set spellcapcheck=
-
-" For certain C++ codebases.
-" au BufEnter *.cpp,*.h
-"   \ set tabstop=2 |
-"   \ set softtabstop=2 |
-"   \ set shiftwidth=2
+" au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt set spell | set spellcapcheck=
 
 " Key mappings
 " ------------
@@ -159,5 +154,4 @@ nnoremap <C-w> i<c-g>u<Esc>[s1z=`]a<c-g>u<Esc>
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
 " Auto-exit when editing some filetypes. Do not allow them to be edited
-au BufEnter *.ogg,*.opus,*.m4a,*.mp4,*.mkv,*.mp3,*.jpg,*.jpeg,*.png,*.webm,*.gif,*.cbz,*.cbr,*.pdf
-  \ :bd
+au BufEnter *.ogg,*.opus,*.m4a,*.mp4,*.mkv,*.mp3,*.jpg,*.jpeg,*.png,*.webm,*.gif,*.cbz,*.cbr,*.pdf :bd

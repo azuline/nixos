@@ -12,15 +12,63 @@ do -- Treesitter Configuration
     indent = {
       enable = false,
     },
+    textobjects = {
+      select = {
+        enable = true,
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true,
+        keymaps = {
+          ia = "@assignment.inner",
+          aa = "@assignment.outer",
+          h = "@assignment.lhs",
+          l = "@assignment.rhs",
+          ic = "@call.inner",
+          ac = "@call.outer",
+          ii = "@conditional.inner",
+          ai = "@conditional.outer",
+          ["if"] = "@function.inner",
+          af = "@function.outer",
+          il = "@loop.inner",
+          al = "@loop.outer",
+          ir = "@return.inner",
+          ar = "@return.outer",
+          as = "@statement.outer",
+        },
+        selection_modes = {
+          ["@assignment.inner"] = "v",
+          ["@assignment.outer"] = "V",
+          ["@assignment.lhs"] = "v",
+          ["@assignment.rhs"] = "v",
+          ["@call.inner"] = "v",
+          ["@call.outer"] = "v",
+          ["@comment.inner"] = "v",
+          ["@comment.outer"] = "V",
+          ["@conditional.inner"] = "V",
+          ["@conditional.outer"] = "V",
+          ["@function.inner"] = "V",
+          ["@function.outer"] = "V",
+          ["@loop.inner"] = "V",
+          ["@loop.outer"] = "V",
+          ["@return.inner"] = "v",
+          ["@return.outer"] = "V",
+          ["@statement.outer"] = "V",
+        },
+      },
+    },
     textsubjects = {
       enable = true,
       prev_selection = ",", -- (Optional) keymap to select the previous selection
       keymaps = {
         ["."] = "textsubjects-smart",
         [";"] = "textsubjects-container-outer",
-        ["i;"] = "textsubjects-container-inner",
+        [":"] = "textsubjects-container-inner",
       },
     },
+    modules = {},
+    ensure_installed = {},
+    ignore_install = {},
+    sync_install = false,
+    auto_install = false,
   })
 end
 
