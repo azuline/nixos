@@ -109,7 +109,17 @@ playlists = """
 [[stored_metadata_rules]]
 matcher = "artist:,"
 actions = ["split:,"]
-ignore = ["artist:^Seo Taiji, Boys$"]
+ignore = [
+    "artist:^Seo Taiji, Boys$",
+    "artist:^St. Maur, Clevaux$",
+]
+[[stored_metadata_rules]]
+matcher = "artist: & "
+actions = ["split: & "]
+ignore = [
+    "artist:^Eli & Fur$",
+    "artist:^Jos & Eli$",
+]
 [[stored_metadata_rules]]
 matcher = "artist: \\\\ "
 actions = ["split: \\\\ "]

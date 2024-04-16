@@ -20,8 +20,8 @@ do -- Treesitter Configuration
         keymaps = {
           ia = "@assignment.inner",
           aa = "@assignment.outer",
-          h = "@assignment.lhs",
-          l = "@assignment.rhs",
+          ih = "@assignment.lhs",
+          il = "@assignment.rhs",
           ic = "@call.inner",
           ac = "@call.outer",
           ii = "@conditional.inner",

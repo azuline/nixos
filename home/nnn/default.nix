@@ -27,7 +27,7 @@ let
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TMPFILE=$XDG_RUNTIME_DIR/nnn-lastd
         export NNN_PREVIEWDIR=/home/blissful/.cache/nsxiv
-        export NNN_ORDER="r:/home/blissful/music/3. Releases - Recently Added"
+        export NNN_ORDER="V:/home/blissful/music/3. Releases - Recently Added;v:/home/blissful/buddhism/books;v:/home/blissful/books/Religion   - Buddhism"
         # And dynamically set an order for every subdirectory in ~/images.
         export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/images -mindepth 1 -maxdepth 1 -type d -printf 't:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
       EOF

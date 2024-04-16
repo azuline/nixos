@@ -2,38 +2,38 @@
   description = "blissful's /etc/nixos";
 
   inputs = {
-    flake-utils.url = github:numtide/flake-utils;
+    flake-utils.url = "github:numtide/flake-utils";
     # Rolling unstable nixpkgs, updated frequently. Always set to a commit
     # built in Hydra. https://hydra.nixos.org/jobset/nixos/trunk-combined
-    nixpkgs.url = github:nixos/nixpkgs?rev=57e6b3a9e4ebec5aa121188301f04a6b8c354c9b;
+    nixpkgs.url = "github:nixos/nixpkgs?rev=57e6b3a9e4ebec5aa121188301f04a6b8c354c9b";
     # Stable nixpkgs, updated less frequently. Always set to a commit built in
     # Hydra. https://hydra.nixos.org/jobset/nixos/release-23.11. Used for
     # Nomad, Consul, etc.
-    nixpkgs-stable.url = github:nixos/nixpkgs?rev=56528ee42526794d413d6f244648aaee4a7b56c0;
+    nixpkgs-stable.url = "github:nixos/nixpkgs?rev=56528ee42526794d413d6f244648aaee4a7b56c0";
     # Flake sources.
     home-manager = {
-      url = github:nix-community/home-manager;
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     presage-src = {
-      url = github:azuline/presage;
+      url = "github:azuline/presage";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-search-cli-src = {
-      url = github:peterldowns/nix-search-cli;
+      url = "github:peterldowns/nix-search-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pgmigrate-src = {
-      url = github:peterldowns/pgmigrate;
+      url = "github:peterldowns/pgmigrate";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rose-src = {
-      url = github:azuline/rose/master;
+      url = "github:azuline/rose/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-flake sources.
     nnn-src = {
-      url = github:azuline/nnn;
+      url = "github:azuline/nnn";
       flake = false;
     };
     discord = {
@@ -41,15 +41,15 @@
       flake = false;
     };
     nsxiv-src = {
-      url = github:azuline/nsxiv;
+      url = "github:azuline/nsxiv";
       flake = false;
     };
     fish-plugin-wd = {
-      url = github:fischerling/plugin-wd;
+      url = "github:fischerling/plugin-wd";
       flake = false;
     };
     fish-plugin-nix-env = {
-      url = github:lilyball/nix-env.fish;
+      url = "github:lilyball/nix-env.fish";
       flake = false;
     };
   };
