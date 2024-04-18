@@ -79,7 +79,6 @@
 		"prefix": ["t"],
 		"body": [
 			"\\hypertarget{$1}{",
-			"$0",
 			"}"
 		]
 	},

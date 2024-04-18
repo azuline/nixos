@@ -4,6 +4,7 @@ import nixpkgs {
   inherit system;
   overlays = [
     (final: prev: {
+      aerc-in-kitty = prev.callPackage ./aerc-in-kitty { };
       backup-scripts = prev.callPackage ./backup-scripts { };
       bar-gpu = prev.callPackage ./bar-gpu { };
       bar-now-playing = prev.callPackage ./bar-now-playing { };
@@ -13,7 +14,6 @@ import nixpkgs {
       discord = prev.callPackage ./discord { inherit srcs; original = prev.discord; };
       exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
       edit-toc = prev.callPackage ./edit-toc { };
-      i3-aerc = prev.callPackage ./i3-aerc { };
       i3-atelier-identifier = prev.callPackage ./i3-atelier-identifier { };
       i3-atelier-opener = prev.callPackage ./i3-atelier-opener { };
       i3-change-audio = prev.callPackage ./i3-change-audio { };

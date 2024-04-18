@@ -4,6 +4,8 @@
   # Runtime dependencies for HTML/image filters.
   home.packages = with pkgs; [ dante w3m pandoc catimg ];
 
+  xdg.configFile."aerc/colorize.awk".source = ./colorize.awk;
+
   programs.aerc = {
     enable = true;
     extraBinds = builtins.readFile ./binds.conf;
@@ -11,5 +13,9 @@
     stylesets.palenight = builtins.readFile ./stylesets/palenight;
   };
 
-  xdg.configFile."aerc/colorize.awk".source = ./colorize.awk;
+  # Make a desktop file.
+  xdg.desktopEntries.aerc = {
+    name = "aerc";
+    exec = "${pkgs.aerc-in-kitty}/bin/aerc-in-kitty";
+  };
 }

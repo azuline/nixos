@@ -80,10 +80,10 @@ lspconfig.zls.setup({
   },
 })
 
-lspconfig.bashls.setup{
+lspconfig.bashls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- To avoid react.d.ts definitions from opening on jump to definition.
 -- https://github.com/typescript-language-server/typescript-language-server/issues/216#issuecomment-1005272952
@@ -159,13 +159,13 @@ lspconfig.eslint.setup({
       buffer = bufnr,
       command = "EslintFixAll",
     })
-		on_attach(client, bufnr)
+    on_attach(client, bufnr)
   end,
 })
 
 lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+  capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -191,8 +191,8 @@ lspconfig.lua_ls.setup({
 })
 
 lspconfig.nil_ls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+  capabilities = capabilities,
+  on_attach = on_attach,
 })
 
 local sources = {

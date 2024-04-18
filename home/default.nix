@@ -57,6 +57,7 @@
       p7zip
       (lib.hiPrio parallel-full) # parallel is also part of moreutils
       pass
+      pdfgrep
       pdftk
       pngquant
       pinentry
@@ -244,7 +245,6 @@
       bar-loadavg
       bar-now-playing
       bar-vpn
-      i3-aerc
       i3-change-audio
       i3-clear-clipboard
       i3-lock

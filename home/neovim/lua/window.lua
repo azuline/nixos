@@ -61,7 +61,7 @@ do -- Treesitter Configuration
       keymaps = {
         ["."] = "textsubjects-smart",
         [";"] = "textsubjects-container-outer",
-        [":"] = "textsubjects-container-inner",
+        ["i;"] = "textsubjects-container-inner",
       },
     },
     modules = {},

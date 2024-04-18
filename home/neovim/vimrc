@@ -91,6 +91,7 @@ au BufEnter *.yml,*.yaml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.json set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter Makefile,makefile set noexpandtab
 au BufEnter *.hs set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.nix set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.lua set tabstop=2 | set softtabstop=2 | set shiftwidth=2 | set noexpandtab
 au BufEnter *.vue set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.ex,*.exs set tabstop=2 | set softtabstop=2 | set shiftwidth=2
