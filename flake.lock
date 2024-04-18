@@ -278,11 +278,11 @@
     "nnn-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1713239323,
-        "narHash": "sha256-3em7EBlQ/15lN4jA8rll2cj03/9QVAYVx+ccgU/nZf4=",
+        "lastModified": 1713462794,
+        "narHash": "sha256-YeMhEsI+sZ5VaAZYx/zDn3FOdQw3MjzSgOdhuEQKmDE=",
         "owner": "azuline",
         "repo": "nnn",
-        "rev": "9e7d378d170fa1c5752851a1826d0eb55c83ffeb",
+        "rev": "7c13a3250689758e849b72f9de389883f3845059",
         "type": "github"
       },
       "original": {

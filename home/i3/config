@@ -161,6 +161,7 @@ bindsym $mod+Shift+d exec rofi -show window
 bindsym $mod+n exec $term nnn
 bindsym $mod+Backspace exec i3-clear-clipboard
 bindsym $mod+p exec $term --title pass bash -ic i3-pass
+bindsym $mod+y exec $term --title yy i3-yy
 bindsym $mod+Shift+y exec $term --title yy-id i3-atelier-identifier
 # Screenshots
 bindsym --release Print exec i3-screenshot select
