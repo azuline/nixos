@@ -30,8 +30,8 @@ let
         export NNN_ORDER="V:/home/blissful/music/3. Releases - Recently Added"
         # Dynamically set an order for every subdirectory in the following directories:
         export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/images/ -mindepth 1 -maxdepth 1 -type d -printf 't:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
-        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/buddhism/books/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
-        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/books/religion/buddhism/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
+        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/studies/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
+        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/books/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
       EOF
       # And now echo the final program call but with evaluation (so that $out gets evaluated).
       cat - >> $out/bin/nnn <<EOF
@@ -86,7 +86,6 @@ in
     bookmarks = {
       a = "~/anime";
       b = "~/books";
-      B = "~/buddhism/books";
       c = "~/cdrama";
       d = "~/downloads";
       e = "/mnt/elements";
@@ -96,6 +95,7 @@ in
       k = "~/kpop";
       m = "~/music";
       M = "~/.music-source";
+      s = "~/studies";
       t = "~/tv";
       v = "~/evergarden/visions";
     };
