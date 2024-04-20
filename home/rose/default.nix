@@ -1,7 +1,8 @@
 { pkgs, config, specialArgs, ... }:
 
 {
-  home.packages = [ pkgs.rose ];
+  # Rose is already on the $PATH because we build it into Python (so we can script against it).
+
   xdg.configFile."rose/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
 
   # Ensure the Home Manager systemd services are enabled

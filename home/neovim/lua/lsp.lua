@@ -57,10 +57,28 @@ lspconfig.pyright.setup({
   handlers = {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
+  settings = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { "*" },
+      },
+    },
+  },
 })
 
 lspconfig.ruff_lsp.setup({
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- Defer to Pyright's hover.
+    if client.name == "ruff_lsp" then
+      client.server_capabilities.hoverProvider = false
+    end
+    on_attach(client, bufnr)
+  end,
   capabilities = capabilities,
 })
 

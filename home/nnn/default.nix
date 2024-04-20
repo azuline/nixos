@@ -84,20 +84,15 @@ in
       src = ./plugins;
     };
     bookmarks = {
-      a = "~/anime";
       b = "~/books";
-      c = "~/cdrama";
+      c = "~/music/5. Genres/Classical Music";
       d = "~/downloads";
       e = "/mnt/elements";
-      f = "~/films";
-      g = "~/manga";
       i = "~/images";
-      k = "~/kpop";
+      k = "~/music/5. Genres/K-Pop";
       m = "~/music";
       M = "~/.music-source";
       s = "~/studies";
-      t = "~/tv";
-      v = "~/evergarden/visions";
     };
   };
 }

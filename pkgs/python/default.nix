@@ -1,4 +1,4 @@
-{ python311, broken-pipx }:
+{ rose, python311, broken-pipx }:
 
 python311.withPackages (ps: with ps; [
   aiohttp
@@ -11,4 +11,5 @@ python311.withPackages (ps: with ps; [
   requests
   shodan
   virtualenv
+  rose
 ])

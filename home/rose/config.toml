@@ -54,7 +54,7 @@ fuse_artists_blacklist = [
 default.release = """
 {% if new %}{{ '{N}' }}{% endif %}
 {{ releaseartists | artistsfmt }} -
-{% if year %}{{ year }}.{% endif %}
+{% if releaseyear %}{{ releaseyear }}.{% endif %}
 {{ releasetitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
@@ -64,12 +64,12 @@ default.release = """
 # stable identifiers.
 source.release = """
 {{ releaseartists | artistsfmt }} -
-{% if year %}{{ year }}.{% endif %}
+{% if releaseyear %}{{ releaseyear }}.{% endif %}
 {{ releasetitle }}
 """
 new_releases.release = """
 {{ releaseartists | artistsfmt }} -
-{% if year %}{{ year }}.{% endif %}
+{% if releaseyear %}{{ releaseyear }}.{% endif %}
 {{ releasetitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
@@ -78,7 +78,7 @@ new_releases.release = """
 recently_added_releases.release = """
 [{{ added_at[:10] }}]{% if new %}!{% endif %}
 {{ releaseartists | artistsfmt }} -
-{% if year %}{{ year }}.{% endif %}
+{% if releaseyear %}{{ releaseyear }}.{% endif %}
 {{ releasetitle }}
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
@@ -86,23 +86,32 @@ recently_added_releases.release = """
 """
 artists.release = """
 [{{ releasetype | releasetypefmt }}]{% if new %}!{% endif %}
-{% if year %}{{ year }}.{% else %}0000.{% endif %}
+{% if releaseyear %}{{ releaseyear }}.{% else %}0000.{% endif %}
 {{ releaseartists | artistsfmt }} -
 {{ releasetitle }}
 """
 genres.release = """
-{% if new %}{{ '{N}' }}{% endif %}
-{{ releaseartists | artistsfmt }} -
-{% if year %}{{ year }}.{% endif %}
-{{ releasetitle }}
-{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% if "Classical Music" in genres or "Classical Music" in parent_genres %}
+    {% if new %}{{ '{N}' }}{% endif %}
+    {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
+    {% if compositionyear %}{{ compositionyear }}.{% endif %}
+    {{ releasetitle }}
+    performed by {{ releaseartists | artistsfmt(omit=["composer"]) }}
+    {% if releaseyear %}({{ releaseyear }}){% endif %}
+{% else %}
+    {% if new %}{{ '{N}' }}{% endif %}
+    {{ releaseartists | artistsfmt }} -
+    {% if releaseyear %}{{ releaseyear }}.{% endif %}
+    {{ releasetitle }}
+    {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+{% endif %}
 """
 playlists = """
 {{ position }}.
 {{ trackartists | artistsfmt }} -
 {{ tracktitle }}
-{% if year %}({{ year }}){% endif %}
+{% if releaseyear %}({{ releaseyear }}){% endif %}
 """
 
 # Artist splitting.

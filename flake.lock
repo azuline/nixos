@@ -259,6 +259,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-latest": {
+      "locked": {
+        "lastModified": 1713633826,
+        "narHash": "sha256-h5fGCMKKb/LGIvOP+NudYWsfUSP4czrFEm/K96LKjMY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "3773b498fef7b207b486a6e79c453fb136d902a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1711124224,
@@ -360,6 +376,7 @@
         "home-manager": "home-manager",
         "nix-search-cli-src": "nix-search-cli-src",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-latest": "nixpkgs-latest",
         "nixpkgs-stable": "nixpkgs-stable",
         "nnn-src": "nnn-src",
         "nsxiv-src": "nsxiv-src",
@@ -376,11 +393,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712944418,
-        "narHash": "sha256-Y8WhhIgAeHgeYnT5UitezSa2GlDxnTCAVVAJTe14MLE=",
+        "lastModified": 1713652655,
+        "narHash": "sha256-5CDnq+b3uBlzfOUojIXNr/3WKrVpuy+8vc4JW6VGr2Q=",
         "owner": "azuline",
         "repo": "rose",
-        "rev": "71bdc6122c434fae581117003e4660e95d814dc9",
+        "rev": "cf66f727267483adfd1311d4d922c865831a343a",
         "type": "github"
       },
       "original": {

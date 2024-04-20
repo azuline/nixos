@@ -31,6 +31,6 @@ import nixpkgs {
       win-switch = prev.callPackage ./win-switch { };
       broken-pipx = prev.python3Packages.callPackage ./pipx { };
     })
-    (final: prev: pins // prev)
+    (final: prev: prev // pins)
   ];
 }

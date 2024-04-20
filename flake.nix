@@ -10,6 +10,8 @@
     # Hydra. https://hydra.nixos.org/jobset/nixos/release-23.11. Used for
     # Nomad, Consul, etc.
     nixpkgs-stable.url = "github:nixos/nixpkgs?rev=56528ee42526794d413d6f244648aaee4a7b56c0";
+    # Most up to date nixpkgs, for specific bug fixes.
+    nixpkgs-latest.url = "github:nixos/nixpkgs/master";
     # Flake sources.
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -59,6 +61,7 @@
     , home-manager
     , nixpkgs
     , nixpkgs-stable
+    , nixpkgs-latest
     , flake-utils
     , nix-search-cli-src
     , presage-src
@@ -73,13 +76,14 @@
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs-stable = import nixpkgs-stable { inherit system; };
+      pkgs-latest = import nixpkgs-latest { inherit system; };
       srcs = { inherit discord nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env; };
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         rose = rose-src.packages.${system}.rose;
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
-        sqlint = pkgs-stable.sqlint;
+        puddletag = pkgs-latest.puddletag;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-node="$(readlink -f "$1")"
+node="$(readlink -f -- "$1")"
 
 # Logic for play_tracks, which runs this in the background.
 play_tracks_executor() {
@@ -94,23 +94,23 @@ case "$action" in
     n) # Toggle the new-ness of a release.
         release="$(get_selected_release "$node")"
         [ -z "$release" ] && exit 1
-        rose releases toggle-new "$release"
+        rose releases toggle-new -- "$release"
         ;;
     e) # Edit a release/collage/playlist's metadata.
         edit() {
             release="$(get_selected_release "$node")"
             if [ -n "$release" ]; then
-                rose releases edit "$release"
+                rose releases edit -- "$release"
                 return
             fi
             collage="$(get_selected_collage "$node")"
             if [ -n "$collage" ]; then
-                rose collages edit "$collage"
+                rose collages edit -- "$collage"
                 return
             fi
             playlist="$(get_selected_playlist "$node")"
             if [ -n "$playlist" ]; then
-                rose playlists edit "$playlist"
+                rose playlists edit -- "$playlist"
                 return
             fi
             exit 1
