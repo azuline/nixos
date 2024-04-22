@@ -9,7 +9,6 @@ RESTIC_SCRIPT = """
 source /etc/nixos/pkgs/backup-scripts/.env.restic
 
 restic backup \
-    --exclude '**/.git/**' \
     --exclude '**/.syncthing*' \
     --exclude '**/.stfolder/**' \
     --exclude '**/.stversions/**' \
@@ -17,6 +16,8 @@ restic backup \
     --exclude '**/.direnv/**' \
     --exclude '**/.ruff_cache/**' \
     --exclude '**/.mypy_cache/**' \
+    --exclude '**/__pycache__/**' \
+    --exclude '**/node_modules/**' \
     --exclude '**/.aux' \
     --exclude '**/.fls' \
     --exclude '**/.log' \
@@ -31,20 +32,21 @@ restic backup \
     --exclude '**/.lg' \
     --exclude '**/.tmp' \
     --exclude '**/.xref' \
-    "$HOME/backups" \
     "$HOME/archive" \
     "$HOME/artbooks" \
     "$HOME/atelier" \
+    "$HOME/backgrounds" \
+    "$HOME/backups" \
     "$HOME/books" \
     "$HOME/documents/contents" \
     "$HOME/fonts" \
-    "$HOME/images" \
-    --exclude "$HOME/backups/images/Screenshots" \
+    "$HOME/images" --exclude "$HOME/backups/images/Screenshots" \
     "$HOME/kpop" \
     "$HOME/manga" \
     "$HOME/.music-source" \
-    "$HOME/wlop" \
     "$HOME/scripts" \
+    "$HOME/studies" \
+    "$HOME/wlop" \
     "$HOME/.passwarbles" \
     "$HOME/.gnupg/pubring.kbx" \
     "$HOME/.gnupg/private-keys-v1.d" \

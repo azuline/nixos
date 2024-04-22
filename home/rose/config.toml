@@ -15,6 +15,8 @@ artist_aliases = [
     { artist = "Calvin Harris", aliases = ["Love Regenerator"] },
     { artist = "LE SSERAFIM", aliases = ["Huh Yunjin"] },
     { artist = "Matthew Dear", aliases = ["Audion"] },
+    { artist = "Kanye West", aliases = ["¥$"] },
+    { artist = "Ty Dolla $ign", aliases = ["¥$"] },
 ]
 
 fuse_artists_blacklist = [
@@ -59,6 +61,7 @@ default.release = """
 {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+{% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
 """
 # Avoid too much churn in source directory names, so only include relatively
 # stable identifiers.
@@ -91,12 +94,12 @@ artists.release = """
 {{ releasetitle }}
 """
 genres.release = """
-{% if "Classical Music" in genres or "Classical Music" in parent_genres %}
+{% if ("Classical Music" in genres or "Classical Music" in parent_genres) and releaseartists.composer | length > 0 %}
     {% if new %}{{ '{N}' }}{% endif %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if compositionyear %}{{ compositionyear }}.{% endif %}
     {{ releasetitle }}
-    performed by {{ releaseartists | artistsfmt(omit=["composer"]) }}
+    performed by {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
     {% if releaseyear %}({{ releaseyear }}){% endif %}
 {% else %}
     {% if new %}{{ '{N}' }}{% endif %}
@@ -185,11 +188,43 @@ actions = ["replace:K-Pop"]
 matcher = "genre:^K-POP$"
 actions = ["replace:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "genre:^hip hop$:i"
-actions = ["replace:Hip-Hop"]
+matcher = "genre:^hip-hop$:i"
+actions = ["replace:Hip Hop"]
 [[stored_metadata_rules]]
 matcher = "genre:^K-Pop$"
 actions = ["genre:^Pop$/delete", "genre:^Korean$:i/delete"]
+[[stored_metadata_rules]]
+matcher = "genre:^Classical$"
+actions = ["replace:Classical Music"]
+
+# Label normalization heuristics.
+[[stored_metadata_rules]]
+matcher = "label:,"
+actions = ["split:,"]
+[[stored_metadata_rules]]
+matcher = "label://"
+actions = ["split://"]
+ignore = [
+    "label:^I/AM/ME$",
+]
+[[stored_metadata_rules]]
+matcher = "label: Entertainment$"
+actions = ["sed: Entertainment$:"]
+[[stored_metadata_rules]]
+matcher = "label: Record"
+actions = ["sed: Record(ing)?s?$:"]
+[[stored_metadata_rules]]
+matcher = "label: Music$"
+actions = ["sed: Music$:"]
+[[stored_metadata_rules]]
+matcher = "label: MUSIC$"
+actions = ["sed: MUSIC$:"]
+[[stored_metadata_rules]]
+matcher = "label: LLC$"
+actions = ["sed: LLC$:"]
+[[stored_metadata_rules]]
+matcher = "label: CG$"
+actions = ["sed: CG$:"]
 
 # Release type heuristics.
 [[stored_metadata_rules]]
