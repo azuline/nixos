@@ -1,9 +1,23 @@
 { pkgs, ... }:
 
 {
-  services.xserver = {
-    enable = true;
-    desktopManager.xterm.enable = false;
+  services = {
+    xserver = {
+      enable = true;
+      desktopManager.xterm.enable = false;
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+      };
+      screenSection = ''
+        Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
+      '';
+      videoDrivers = [ "nvidia" ];
+      xkb = {
+        layout = "us";
+        options = "altwin:swap_lalt_lwin,caps";
+      };
+    };
     displayManager = {
       defaultSession = "none+i3";
       # It's fine to enable autologin since we have disk encryption.
@@ -11,19 +25,6 @@
         enable = true;
         user = "blissful";
       };
-      sessionCommands = "";
-    };
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
-    screenSection = ''
-      Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
-    '';
-    videoDrivers = [ "nvidia" ];
-    xkb = {
-      layout = "us";
-      options = "altwin:swap_lalt_lwin,caps";
     };
   };
 

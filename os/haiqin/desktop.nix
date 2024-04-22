@@ -1,10 +1,26 @@
 { pkgs, ... }:
 
 {
-  services.xserver = {
-    enable = true;
-    desktopManager.xterm.enable = false;
-    dpi = 172;
+  services = {
+    xserver = {
+      enable = true;
+      desktopManager.xterm.enable = false;
+      dpi = 172;
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+      };
+      videoDrivers = [ "modesetting" ];
+      deviceSection = ''
+        Option "DRI" "3"
+      '';
+      xkb = {
+        layout = "us";
+        options = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
+      };
+      # Disable libinput because I don't want to use the touchpad.
+      libinput.enable = false;
+    };
     displayManager = {
       defaultSession = "none+i3";
       # It's fine to enable autologin since we have disk encryption.
@@ -18,20 +34,6 @@
         ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation Axes' 6 7 4 5
       '';
     };
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
-    videoDrivers = [ "modesetting" ];
-    deviceSection = ''
-      Option "DRI" "3"
-    '';
-    xkb = {
-      layout = "us";
-      options = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
-    };
-    # Disable libinput because I don't want to use the touchpad.
-    libinput.enable = false;
   };
 
   hardware.opengl = {

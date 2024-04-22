@@ -3,13 +3,11 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    # Rolling unstable nixpkgs, updated frequently. Always set to a commit
-    # built in Hydra. https://hydra.nixos.org/jobset/nixos/trunk-combined
-    nixpkgs.url = "github:nixos/nixpkgs?rev=57e6b3a9e4ebec5aa121188301f04a6b8c354c9b";
-    # Stable nixpkgs, updated less frequently. Always set to a commit built in
-    # Hydra. https://hydra.nixos.org/jobset/nixos/release-23.11. Used for
-    # Nomad, Consul, etc.
-    nixpkgs-stable.url = "github:nixos/nixpkgs?rev=56528ee42526794d413d6f244648aaee4a7b56c0";
+    # Rolling unstable nixpkgs, updated frequently. If setting manually, pick a
+    # commit built in Hydra: https://hydra.nixos.org/jobset/nixos/trunk-combined
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # https://hydra.nixos.org/jobset/nixos/release-23.11
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     # Most up to date nixpkgs, for specific bug fixes.
     nixpkgs-latest.url = "github:nixos/nixpkgs/master";
     # Flake sources.
