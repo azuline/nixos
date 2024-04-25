@@ -94,13 +94,32 @@ artists.release = """
 {{ releasetitle }}
 """
 genres.release = """
-{% if ("Classical Music" in genres or "Classical Music" in parent_genres) and releaseartists.composer | length > 0 %}
+{% if "Classical Music" in genres or "Classical Music" in parent_genres %}
     {% if new %}{{ '{N}' }}{% endif %}
-    {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
-    {% if compositionyear %}{{ compositionyear }}.{% endif %}
-    {{ releasetitle }}
-    performed by {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
-    {% if releaseyear %}({{ releaseyear }}){% endif %}
+    {% if releaseartists.composer | length == 0 %}
+        [Z]
+        {{ releaseartists | artistsfmt }} -
+        {% if releaseyear %}{{ releaseyear }}.{% endif %}
+        {{ releasetitle }}
+    {% elif releasetype == "live" %}
+        [L]
+        {{ releaseartists.main | artistsarrayfmt }} -
+        {% if releaseyear %}{{ releaseyear }}.{% endif %}
+        {{ releasetitle }}
+        by {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }}
+    {% else %}
+        {% if "Gregorian Chant" in genres or "Gregorian Chant" in parent_genres %} [1]
+        {% elif "Baroque Music" in genres or "Baroque Music" in parent_genres %} [2]
+        {% elif "Classical Period" in genres or "Classical Period" in parent_genres %} [3]
+        {% elif "Romanticism" in genres or "Romanticism" in parent_genres %} [4]
+        {% elif "Modern Classical" in genres or "Modern Classical" in parent_genres %} [5]
+        {% endif %}
+        {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
+        {% if compositionyear %}{{ compositionyear }}.{% endif %}
+        {{ releasetitle }} -
+        {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
+        {% if releaseyear %}({{ releaseyear }}){% endif %}
+    {% endif %}
 {% else %}
     {% if new %}{{ '{N}' }}{% endif %}
     {{ releaseartists | artistsfmt }} -
@@ -188,11 +207,11 @@ actions = ["replace:K-Pop"]
 matcher = "genre:^K-POP$"
 actions = ["replace:K-Pop"]
 [[stored_metadata_rules]]
-matcher = "genre:^hip-hop$:i"
-actions = ["replace:Hip Hop"]
-[[stored_metadata_rules]]
 matcher = "genre:^K-Pop$"
 actions = ["genre:^Pop$/delete", "genre:^Korean$:i/delete"]
+[[stored_metadata_rules]]
+matcher = "genre:^hip-hop$:i"
+actions = ["replace:Hip Hop"]
 [[stored_metadata_rules]]
 matcher = "genre:^Classical$"
 actions = ["replace:Classical Music"]
@@ -268,8 +287,14 @@ actions = ["replace:Brown Eyed Girls"]
 matcher = "artist:^태연$"
 actions = ["replace:Taeyeon"]
 [[stored_metadata_rules]]
-matcher = "releaseartist:^TAEYEON$"
+matcher = "artist:^TAEYEON$"
 actions = ["replace:Taeyeon"]
+[[stored_metadata_rules]]
+matcher = "artist:^Béla Bartók$"
+actions = ["replace:Bela Bartok"]
+[[stored_metadata_rules]]
+matcher = "artist:^Leoš Janáček$"
+actions = ["replace:Leos Janacek"]
 
 # Artist genre inference.
 [[stored_metadata_rules]]

@@ -44,6 +44,16 @@
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [ table table-others libpinyin anthy ];
   };
+  environment = {
+    systemPackages = with pkgs; [
+      ibus
+      ibus-engines.libpinyin
+    ];
+    variables = {
+      # Make ibus work with Kitty.
+      GLFW_IM_MODULE = "ibus";
+    };
+  };
 
   fonts.fontconfig.defaultFonts = {
     serif = [ "EB Garamond" "Noto Serif CJK SC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Serif CJK TC" "Noto Serif CJK HK" ];

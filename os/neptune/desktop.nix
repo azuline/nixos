@@ -46,6 +46,10 @@
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [ anthy ];
   };
+  environment.variables = {
+    # Make ibus work with Kitty.
+    GLFW_IM_MODULE = "ibus";
+  };
 
   qt = {
     enable = true;

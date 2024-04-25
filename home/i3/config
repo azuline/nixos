@@ -124,9 +124,9 @@ bindsym $mod+e layout toggle split
 # Fullscreen window
 bindsym $mod+f fullscreen
 # Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+o floating toggle
 # Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
+bindsym $mod+o focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+Shift+p focus parent
 # Move window to scratchpad
@@ -190,3 +190,4 @@ exec --no-startup-id systemctl --user restart polybar
 # Services
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
+exec --no-startup-id ibus-daemon -drx

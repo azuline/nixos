@@ -29,6 +29,8 @@ do -- Load the plugins.
     Plug("AndrewRadev/splitjoin.vim")
     -- Sublime style multiple cursors
     Plug("mg979/vim-visual-multi")
+    -- ibus integration (back to eng in normal mode)
+    Plug("rlue/vim-barbaric")
   end
 
   do -- Navigation

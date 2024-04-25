@@ -8,3 +8,7 @@ vim.g.bullets_enabled_file_types = {
 
 -- Have vim-lion remove excess spaces when aligning characters.
 vim.g.lion_squeeze_spaces = 1
+
+-- Configure barbaric.
+vim.g.barbaric_ime = "ibus"
+vim.g.barbaric_default = "xkb:us::eng"
