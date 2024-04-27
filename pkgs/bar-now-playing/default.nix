@@ -46,7 +46,7 @@ writeShellScriptBin "bar-now-playing" ''
 
     tracktitle="$(echo "$data" | jq -r .tracktitle)"
     albumtitle="$(echo "$data" | jq -r .releasetitle)"
-    year="$(echo "$data" | jq -r .releaseyear)"
+    year="$(echo "$data" | jq -r .releasedate | sed 's/^\(....\).*/\1/')"
 
     artists="$(echo "$data" | jq '.trackartists.main | map(select(.alias == false) | .name)' | arrayfmt)"
     guest_artists="$(echo "$data" | jq '.trackartists.guest | map(select(.alias == false) | .name)' | arrayfmt)"

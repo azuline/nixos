@@ -4,19 +4,30 @@ ignore_release_directories = [ ".stversions" ]
 rename_source_files = true
 
 artist_aliases = [
+    # Parents
+    { artist = "BLACKPINK", aliases = ["JENNIE", "JISOO", "ROSE", "LISA"] },
     { artist = "BTS", aliases = ["V", "RM", "Rap Monster", "Jimin", "j-hope"] },
-    { artist = "Four Tet", aliases = ["00110100 01010100", "Kieran Hebden", "⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ"] },
-    { artist = "LOONA", aliases = ["LOONA 1/3", "LOONA ODD EYE CIRCLE", "LOONA yyxy", "Loossemble", "Kim Lip", "HaSeul", "Chuu", "Yves", "HeeJin", "HyunJin", "YeoJin", "ViVi", "JinSoul", "Choerry", "Go Won", "Olivia Hye", "ARTMS"] },
-    { artist = "ARTMS", aliases = ["LOONA ODD EYE CIRCLE", "Kim Lip", "HaSeul", "HeeJin", "JinSoul", "Choerry"] },
     { artist = "EXO", aliases = ["EXO-K", "EXO-CBX"] },
-    { artist = "tripleS", aliases = ["EVOLution", "LOVElution", "+(KR)ystal Eyes", "Acid Angel from Asia", "Acid Eyes", "Aria", "NXT"] },
-    { artist = "Akasha System", aliases = ["DJ Panthr"] },
-    { artist = "NewJeans", aliases = ["HANNI", "HAERIN", "MINJI", "DANIELLE", "HYEIN"] },
-    { artist = "Calvin Harris", aliases = ["Love Regenerator"] },
     { artist = "LE SSERAFIM", aliases = ["Huh Yunjin"] },
+    { artist = "NewJeans", aliases = ["HANNI", "HAERIN", "MINJI", "DANIELLE", "HYEIN"] },
+    { artist = "tripleS", aliases = ["EVOLution", "LOVElution", "+(KR)ystal Eyes", "Acid Angel from Asia", "Acid Eyes", "Aria", "NXT"] },
+    # Aliases
+    { artist = "Akasha System", aliases = ["DJ Panthr"] },
+    { artist = "Calvin Harris", aliases = ["Love Regenerator"] },
+    { artist = "Four Tet", aliases = ["00110100 01010100", "Kieran Hebden", "⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ"] },
     { artist = "Matthew Dear", aliases = ["Audion"] },
+    { artist = "HyeJu", aliases = ["Olivia Hye"] },
+    { artist = "ODD EYE CIRCLE", aliases = ["LOONA ODD EYE CIRCLE"] },
+    # Collaborations
     { artist = "Kanye West", aliases = ["¥$"] },
     { artist = "Ty Dolla $ign", aliases = ["¥$"] },
+    # Thank you BlockBerryCreative!
+    { artist = "LOONA", aliases = ["LOONA 1/3", "LOONA ODD EYE CIRCLE", "LOONA yyxy", "ARTMS", "Loossemble"] },
+    { artist = "LOONA 1/3", aliases = ["HaSeul", "HeeJin", "HyunJin", "ViVi"] },
+    { artist = "LOONA ODD EYE CIRCLE", aliases = ["Kim Lip", "Choerry", "JinSoul"] },
+    { artist = "LOONA yyxy", aliases = ["Yves", "Chuu", "Go Won", "Olivia Hye"] },
+    { artist = "ARTMS", aliases = ["ODD EYE CIRCLE", "Kim Lip", "HaSeul", "HeeJin", "JinSoul", "Choerry"] },
+    { artist = "Loossemble", aliases = ["ViVi", "HyunJin", "Go Won", "HyeJu", "YeoJin"] },
 ]
 
 fuse_artists_blacklist = [
@@ -36,105 +47,129 @@ fuse_artists_blacklist = [
     "EXO-CBX",
     "Love Regenerator",
     # Classical Performers
+    "Aase Nordmo Levberg",
     "Alceo Galliera",
     "Alice Sara Ott",
+    "Andrea Marcon",
     "André Previn",
+    "Anne Sofie Von Otter",
+    "Anthony Rolfe-Johnson",
+    "Barbara Bonney",
+    "Barbara Schlick",
+    "Benjamin Britten",
+    "Berlin Radio Symphony Orchestra",
     "Berliner Philharmoniker",
+    "Bernanda Fink",
     "Bernard Haitink",
+    "Bernarda Fink",
     "Birgit Nilsson",
+    "Brigitte Fassbaender",
+    "Bruno Walter",
     "Carlos Kleiber",
+    "Catherine Robbin",
+    "Charles Brett",
     "Charles Mackerras",
-    "Fritz Wunderlich",
-    "Philharmonia Orchestra",
     "Chicago Symphony Orchestra",
     "Chris Merritt",
     "Christa Ludwig",
     "Claudio Abbado",
+    "Columbia Symphony Orchestra",
+    "Concerto Köln",
+    "Cyprien Katsaris",
+    "Derek Lee Ragin",
+    "Dominique Visse",
+    "Fritz Wunderlich",
+    "Thomas Moser",
+    "Furio Zanasi",
+    "Georg Friedrich Handel",
+    "Jennifer Larmore",
+    "Marianne Rørholm",
+    "Olivier Lallouette",
+    "Philharmonia Orchestra",
+    "René Jacobs",
 ]
 
 [path_templates]
-default.release = """
-{% if new %}{{ '{N}' }}{% endif %}
-{{ releaseartists | artistsfmt }} -
-{% if releaseyear %}{{ releaseyear }}.{% endif %}
-{{ releasetitle }}
-{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if genres %}[{{ genres | arrayfmt }}]{% endif %}
-{% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
-"""
 # Avoid too much churn in source directory names, so only include relatively
 # stable identifiers.
-source.release = """
-{{ releaseartists | artistsfmt }} -
-{% if releaseyear %}{{ releaseyear }}.{% endif %}
-{{ releasetitle }}
+default.release = """
+{% if new %}{{ '{N}' }}{% endif %}
+{% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
+    {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
+    {% if compositionyear %}{{ compositionyear }}.{% endif %}
+    {{ releasetitle }} -
+    {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
+    {% if releasedate %}({{ releasedate.year }}){% endif %}
+{% else %}
+    {{ releaseartists | artistsfmt }} -
+    {% if releasedate %}{{ releasedate.year }}.{% endif %}
+    {{ releasetitle }}
+{% endif %}
 """
-new_releases.release = """
-{{ releaseartists | artistsfmt }} -
-{% if releaseyear %}{{ releaseyear }}.{% endif %}
-{{ releasetitle }}
-{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if genres %}[{{ genres | arrayfmt }}]{% endif %}
-"""
-recently_added_releases.release = """
-[{{ added_at[:10] }}]{% if new %}!{% endif %}
-{{ releaseartists | artistsfmt }} -
-{% if releaseyear %}{{ releaseyear }}.{% endif %}
-{{ releasetitle }}
-{% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
-{% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+all_releases.release = """
+{% if new %}{{ '{N}' }}{% endif %}
+{% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
+    {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
+    {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
+    {{ releasetitle }} -
+    {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
+    {% if releasedate %}({{ releasedate }}){% endif %}
+    {% if genres %}[{{ genres | select("ne", "Classical Music") | arrayfmt }}]{% endif %}
+{% else %}
+    {{ releaseartists | artistsfmt }} -
+    {% if releasedate %}{{ releasedate }}.{% endif %}
+    {{ releasetitle }}
+    {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+    {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
+{% endif %}
 """
 artists.release = """
-[{{ releasetype | releasetypefmt }}]{% if new %}!{% endif %}
-{% if releaseyear %}{{ releaseyear }}.{% else %}0000.{% endif %}
+[{{ releasetype | releasetypefmt }}]
+{% if new %}{{ "{N}" }}{% endif %}
+{% if releasedate %}{{ releasedate.year }}.{% else %}0000.{% endif %}
 {{ releaseartists | artistsfmt }} -
 {{ releasetitle }}
+{% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
 """
 genres.release = """
-{% if "Classical Music" in genres or "Classical Music" in parent_genres %}
-    {% if new %}{{ '{N}' }}{% endif %}
+{% if new %}{{ '{N}' }}{% endif %}
+{% if context.genre in ["Classical Music", "Western Classical Music"] %}
     {% if releaseartists.composer | length == 0 %}
         [Z]
         {{ releaseartists | artistsfmt }} -
-        {% if releaseyear %}{{ releaseyear }}.{% endif %}
+        {% if releasedate %}{{ releasedate.year }}.{% endif %}
         {{ releasetitle }}
     {% elif releasetype == "live" %}
         [L]
         {{ releaseartists.main | artistsarrayfmt }} -
-        {% if releaseyear %}{{ releaseyear }}.{% endif %}
+        {% if releasedate %}{{ releasedate.year }}.{% endif %}
         {{ releasetitle }}
         by {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }}
     {% else %}
-        {% if "Gregorian Chant" in genres or "Gregorian Chant" in parent_genres %} [1]
-        {% elif "Baroque Music" in genres or "Baroque Music" in parent_genres %} [2]
-        {% elif "Classical Period" in genres or "Classical Period" in parent_genres %} [3]
-        {% elif "Romanticism" in genres or "Romanticism" in parent_genres %} [4]
-        {% elif "Modern Classical" in genres or "Modern Classical" in parent_genres %} [5]
-        {% endif %}
         {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
-        {% if releasetype == "single" %}L{% endif %}
-        {% if compositionyear %}{{ compositionyear }}.{% endif %}
+        {% if releasetype == "single" %}x{% endif %}{% if compositiondate %}{{ compositiondate.year }}.{% endif %}
         {{ releasetitle }} -
         {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
-        {% if releaseyear %}({{ releaseyear }}){% endif %}
+        {% if releasedate %}({{ releasedate.year }}){% endif %}
     {% endif %}
 {% else %}
-    {% if new %}{{ '{N}' }}{% endif %}
     {{ releaseartists | artistsfmt }} -
-    {% if releaseyear %}{{ releaseyear }}.{% endif %}
+    {% if releasedate %}{{ releasedate.year }}.{% endif %}
     {{ releasetitle }}
     {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
     {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% endif %}
 """
 playlists = """
-{{ position }}.
+{% if context.playlist.startswith("+") and (originaldate or releasedate) %}
+    [{{ originaldate or releasedate }}]
+{% else %}
+    {{ position }}.
+{% endif %}
 {{ trackartists | artistsfmt }} -
 {{ tracktitle }}
-{% if releaseyear %}({{ releaseyear }}){% endif %}
 """
 
 # Artist splitting.
@@ -258,8 +293,8 @@ actions = ["sed: CG$:"]
 
 # Artist normalization.
 [[stored_metadata_rules]]
-matcher = "artist:^ROSE$:i"
-actions = ["replace:ROSÉ"]
+matcher = "artist:^ROSÉ$"
+actions = ["replace:ROSE"]
 [[stored_metadata_rules]]
 matcher = "artist:^heize$:i"
 actions = ["replace:Heize"]
