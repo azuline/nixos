@@ -101,6 +101,7 @@ do -- LaTeX syntax stuffs
   vim.g.vimtex_syntax_custom_cmds = {
     { name = "ti", conceal = true, opt = false, argstyle = "ital" },
     { name = "tb", conceal = true, opt = false, argstyle = "bold" },
+    { name = "fc", conceal = true, opt = false },
   }
   vim.g.vimtex_syntax_custom_cmds_with_concealed_delims = {
     { name = "fn", nargs = 1, cchar_open = "(", cchar_close = ")", argstyle = "ital" },

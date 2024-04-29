@@ -99,11 +99,12 @@ default.release = """
     {% if compositionyear %}{{ compositionyear }}.{% endif %}
     {{ releasetitle }} -
     {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
-    {% if releasedate %}({{ releasedate.year }}){% endif %}
+    {% if releasedate or originaldate %}({{ (originaldate or releasedate).year }}){% endif %}
 {% else %}
     {{ releaseartists | artistsfmt }} -
-    {% if releasedate %}{{ releasedate.year }}.{% endif %}
+    {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
     {{ releasetitle }}
+    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% endif %}
 """
 all_releases.release = """
@@ -113,14 +114,13 @@ all_releases.release = """
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
     {{ releasetitle }} -
     {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
-    {% if releasedate %}({{ releasedate }}){% endif %}
+    {% if releasedate or originaldate %}({{ originaldate or releasedate }}){% endif %}
     {% if genres %}[{{ genres | select("ne", "Classical Music") | arrayfmt }}]{% endif %}
 {% else %}
     {{ releaseartists | artistsfmt }} -
-    {% if releasedate %}{{ releasedate }}.{% endif %}
+    {% if releasedate or originaldate %}{{ originaldate or releasedate }}.{% endif %}
     {{ releasetitle }}
-    {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-    {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
     {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
     {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
 {% endif %}
@@ -128,7 +128,7 @@ all_releases.release = """
 artists.release = """
 [{{ releasetype | releasetypefmt }}]
 {% if new %}{{ "{N}" }}{% endif %}
-{% if releasedate %}{{ releasedate.year }}.{% else %}0000.{% endif %}
+{% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% else %}0000.{% endif %}
 {{ releaseartists | artistsfmt }} -
 {{ releasetitle }}
 {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
@@ -139,12 +139,12 @@ genres.release = """
     {% if releaseartists.composer | length == 0 %}
         [Z]
         {{ releaseartists | artistsfmt }} -
-        {% if releasedate %}{{ releasedate.year }}.{% endif %}
+        {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
         {{ releasetitle }}
     {% elif releasetype == "live" %}
         [L]
         {{ releaseartists.main | artistsarrayfmt }} -
-        {% if releasedate %}{{ releasedate.year }}.{% endif %}
+        {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
         {{ releasetitle }}
         by {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }}
     {% else %}
@@ -152,14 +152,13 @@ genres.release = """
         {% if releasetype == "single" %}x{% endif %}{% if compositiondate %}{{ compositiondate.year }}.{% endif %}
         {{ releasetitle }} -
         {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
-        {% if releasedate %}({{ releasedate.year }}){% endif %}
+        {% if releasedate or originaldate %}({{ (originaldate or releasedate).year }}){% endif %}
     {% endif %}
 {% else %}
     {{ releaseartists | artistsfmt }} -
-    {% if releasedate %}{{ releasedate.year }}.{% endif %}
+    {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
     {{ releasetitle }}
-    {% if releasetype == "single" %}- {{ releasetype | releasetypefmt }}{% endif %}
-    {% if releasetype == "ep" and not releasetitle.endswith("EP") %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
 {% endif %}
 """
 playlists = """
@@ -205,6 +204,11 @@ actions = ["split: + "]
 matcher = "discnumber:^0$"
 actions = ["replace:1"]
 
+# Garbage date fix.
+[[stored_metadata_rules]]
+matcher = "originaldate:^0000$"
+actions = ["delete"]
+
 # Character normalization. The replacements are not stylistically correct, but
 # I can input them.
 [[stored_metadata_rules]]
@@ -241,37 +245,16 @@ actions = ["split:,"]
 matcher = "genre://"
 actions = ["split://"]
 [[stored_metadata_rules]]
-matcher = "genre:^kpop$:i"
-actions = ["replace:K-Pop"]
-[[stored_metadata_rules]]
-matcher = "genre:^k-pop$"
-actions = ["replace:K-Pop"]
-[[stored_metadata_rules]]
-matcher = "genre:^K-pop$"
-actions = ["replace:K-Pop"]
-[[stored_metadata_rules]]
-matcher = "genre:^K-POP$"
-actions = ["replace:K-Pop"]
-[[stored_metadata_rules]]
-matcher = "genre:^K-Pop$"
-actions = ["genre:^Pop$/delete", "genre:^Korean$:i/delete"]
-[[stored_metadata_rules]]
-matcher = "genre:^hip-hop$:i"
-actions = ["replace:Hip Hop"]
-[[stored_metadata_rules]]
 matcher = "genre:^Classical$"
 actions = ["replace:Classical Music"]
 
 # Label normalization heuristics.
 [[stored_metadata_rules]]
-matcher = "label:,"
-actions = ["split:,"]
+matcher = "label: LLC$"
+actions = ["sed:,? LLC$:"]
 [[stored_metadata_rules]]
-matcher = "label://"
-actions = ["split://"]
-ignore = [
-    "label:^I/AM/ME$",
-]
+matcher = "label: CG$"
+actions = ["sed: CG$:"]
 [[stored_metadata_rules]]
 matcher = "label: Entertainment$"
 actions = ["sed: Entertainment$:"]
@@ -285,11 +268,14 @@ actions = ["sed: Music$:"]
 matcher = "label: MUSIC$"
 actions = ["sed: MUSIC$:"]
 [[stored_metadata_rules]]
-matcher = "label: LLC$"
-actions = ["sed: LLC$:"]
+matcher = "label:,"
+actions = ["split:,"]
 [[stored_metadata_rules]]
-matcher = "label: CG$"
-actions = ["sed: CG$:"]
+matcher = "label://"
+actions = ["split://"]
+ignore = [
+    "label:^I/AM/ME$",
+]
 
 # Artist normalization.
 [[stored_metadata_rules]]

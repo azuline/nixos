@@ -65,6 +65,7 @@
       poppler_utils
       procps
       python
+      qpdf
       rclone
       rename
       ripgrep
