@@ -106,7 +106,7 @@ au BufEnter *.php set noexpandtab
 au BufEnter *.txt set textwidth=100
 au BufEnter *.md,*.mkd,*.markdown set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.rst set textwidth=100
-au BufEnter *.tex set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.tex,*.sty,*.cls set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 
 " NVM, turn spell off.
 " au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt set spell | set spellcapcheck=

@@ -67,6 +67,7 @@
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing
+        56002 # nicotine
       ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";

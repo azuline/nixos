@@ -222,6 +222,7 @@
       discord
       puddletag
       signal
+      nicotine-plus
       tdesktop
       tremotesf
       zotero
