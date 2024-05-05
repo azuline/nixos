@@ -112,6 +112,12 @@ default.release = """
     {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 {% endif %}
 """
+default.track = """
+{% if disctotal > 1 %}{{ discnumber.rjust(2, '0') }}-{% endif %}{{ tracknumber.rjust(2, '0') }}.
+{% if trackartists.main != releaseartists.main %}{{ trackartists.main | artistsarrayfmt }} -{% endif %}
+{{ tracktitle }}
+{% if trackartists.guest %}(feat. {{ trackartists.guest | artistsarrayfmt }}){% endif %}
+"""
 # Avoid too much churn in source directory names, so only include relatively
 # stable identifiers.
 source.release = """
@@ -129,7 +135,32 @@ source.release = """
     {% if edition %}({{ edition }}){% endif %}
 {% endif %}
 """
+source.track = """
+{% if disctotal > 1 %}{{ discnumber.rjust(2, '0') }}-{% endif %}{{ tracknumber.rjust(2, '0') }}.
+{{ tracktitle }}
+{% if trackartists.guest %}(feat. {{ trackartists.guest | artistsarrayfmt }}){% endif %}
+"""
 releases.release = """
+{% if new %}{{ '{N}' }}{% endif %}
+{% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
+    {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
+    {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
+    {{ releasetitle }} -
+    {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
+    {% if releasedate or originaldate %}({{ originaldate or releasedate }}){% endif %}
+    {% if genres %}[{{ genres | select("ne", "Classical Music") | arrayfmt }}]{% endif %}
+{% else %}
+    {{ releaseartists | artistsfmt }} -
+    {% if releasedate or originaldate %}{{ originaldate or releasedate }}.{% endif %}
+    {{ releasetitle }}
+    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if edition %}({{ edition }}){% endif %}
+    {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+    {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
+{% endif %}
+"""
+releases_added_on.release = """
+[{{ added_at[:10] }}.{{ added_at[11:13] }}]
 {% if new %}{{ '{N}' }}{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
@@ -239,6 +270,7 @@ actions = ["split:,"]
 ignore = [
     "artist:^Seo Taiji, Boys$",
     "artist:^St. Maur, Clevaux$",
+    "artist:^Benedictine Monks Of The Abbey Of St. Maurice & St. Maur, Clervaux$",
 ]
 [[stored_metadata_rules]]
 matcher = "artist: & "
@@ -246,6 +278,8 @@ actions = ["split: & "]
 ignore = [
     "artist:^Eli & Fur$",
     "artist:^Jos & Eli$",
+    "artist:^Camo & Krooked$",
+    "artist:^Drumsound & Bassline Smith$",
     "artist:^Benedictine Monks Of The Abbey Of St. Maurice & St. Maur, Clervaux$",
 ]
 [[stored_metadata_rules]]
@@ -309,6 +343,21 @@ actions = ["split://"]
 [[stored_metadata_rules]]
 matcher = "genre:^Classical$"
 actions = ["replace:Classical Music"]
+[[stored_metadata_rules]]
+matcher = "genre:^Drum n Bass$"
+actions = ["replace:Drum and Bass"]
+[[stored_metadata_rules]]
+matcher = "genre:^Drum & Bass$"
+actions = ["replace:Drum and Bass"]
+[[stored_metadata_rules]]
+matcher = "genre:^kpop$:i"
+actions = ["replace:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "genre:^K-pop$"
+actions = ["replace:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "genre:^K-POP$"
+actions = ["replace:K-Pop"]
 
 # Label normalization heuristics.
 [[stored_metadata_rules]]

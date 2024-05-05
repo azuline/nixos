@@ -60,6 +60,9 @@ get_selected_release() {
     "/2. Artists"* | "/3. Genres"* | "/4. Descriptors"* | "/5. Labels"* | "/6. Collages"*)
         truncate_virtual_parts "$1" 3
         ;;
+    *)
+        echo "$1"
+        ;;
     esac
 }
 
@@ -89,6 +92,11 @@ case "$action" in
     s) # Shuffle a directory.
         tracklist="$(get_tracklist "$node" | shuf)"
         [ -z "$tracklist" ] && exit 1
+        # If a file is selected in nnn, move that file to the start of the tracklist.
+        if [ -f "$node" ]; then
+            tracklist="$(echo "$tracklist" | grep -vFx "$node")"
+            tracklist="$node"$'\n'"$tracklist"
+        fi
         play_tracks "$tracklist" "0"
         ;;
     n) # Toggle the new-ness of a release.
@@ -98,11 +106,6 @@ case "$action" in
         ;;
     e) # Edit a release/collage/playlist's metadata.
         edit() {
-            release="$(get_selected_release "$node")"
-            if [ -n "$release" ]; then
-                rose releases edit -- "$release"
-                return
-            fi
             collage="$(get_selected_collage "$node")"
             if [ -n "$collage" ]; then
                 rose collages edit -- "$collage"
@@ -111,6 +114,11 @@ case "$action" in
             playlist="$(get_selected_playlist "$node")"
             if [ -n "$playlist" ]; then
                 rose playlists edit -- "$playlist"
+                return
+            fi
+            release="$(get_selected_release "$node")"
+            if [ -n "$release" ]; then
+                rose releases edit -- "$release"
                 return
             fi
             exit 1
