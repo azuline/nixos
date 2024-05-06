@@ -294,11 +294,11 @@
     "nnn-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1713462794,
-        "narHash": "sha256-YeMhEsI+sZ5VaAZYx/zDn3FOdQw3MjzSgOdhuEQKmDE=",
+        "lastModified": 1715014628,
+        "narHash": "sha256-+QSYisqB4E5Fo2cyG9Iq9DdglBmcwPBAvdEHILmYSn0=",
         "owner": "azuline",
         "repo": "nnn",
-        "rev": "7c13a3250689758e849b72f9de389883f3845059",
+        "rev": "fa000834eff2408e57e1137953c3e799b7bafc18",
         "type": "github"
       },
       "original": {
@@ -393,11 +393,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1714683956,
-        "narHash": "sha256-IUTkxuYZGnYbdZW4Oo40YUcvENp/xkwagyXgjcVGrZM=",
+        "lastModified": 1715017715,
+        "narHash": "sha256-C8AWUZAMLX7CgRJONmWDmN87FPM1hKCLzWgSvLDNLjQ=",
         "owner": "azuline",
         "repo": "rose",
-        "rev": "1c850714b0bc2293b50f1567638e0fcc05accba0",
+        "rev": "8701b88d53491599e30c62f55a99e1e313f87324",
         "type": "github"
       },
       "original": {

@@ -1,11 +1,6 @@
 music_source_dir = "~/.music-source"
-fuse_mount_dir = "~/music"
 ignore_release_directories = [ ".stversions" ]
 rename_source_files = true
-
-hide_genres_with_only_new_releases = true
-hide_descriptors_with_only_new_releases = true
-hide_labels_with_only_new_releases = true
 
 artist_aliases = [
     # Parents
@@ -15,6 +10,7 @@ artist_aliases = [
     { artist = "LE SSERAFIM", aliases = ["Huh Yunjin"] },
     { artist = "NewJeans", aliases = ["HANNI", "HAERIN", "MINJI", "DANIELLE", "HYEIN"] },
     { artist = "tripleS", aliases = ["EVOLution", "LOVElution", "+(KR)ystal Eyes", "Acid Angel from Asia", "Acid Eyes", "Aria", "NXT"] },
+    { artist = "Brown Eyed Girls", aliases = ["Gain"] },
     # Aliases
     { artist = "Akasha System", aliases = ["DJ Panthr"] },
     { artist = "Calvin Harris", aliases = ["Love Regenerator"] },
@@ -35,7 +31,14 @@ artist_aliases = [
     { artist = "Loossemble", aliases = ["ViVi", "HyunJin", "Go Won", "HyeJu", "YeoJin"] },
 ]
 
-fuse_artists_blacklist = [
+[vfs]
+mount_dir = "~/music"
+
+hide_genres_with_only_new_releases = true
+hide_descriptors_with_only_new_releases = true
+hide_labels_with_only_new_releases = true
+
+artists_blacklist = [
     "Disciples",
     "Rosa Walton",
     # Aliases
@@ -96,7 +99,7 @@ fuse_artists_blacklist = [
 
 [path_templates]
 default.release = """
-{% if new %}{{ '{N}' }}{% endif %}
+{% if new %}^{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -135,13 +138,26 @@ source.release = """
     {% if edition %}({{ edition }}){% endif %}
 {% endif %}
 """
-source.track = """
-{% if disctotal > 1 %}{{ discnumber.rjust(2, '0') }}-{% endif %}{{ tracknumber.rjust(2, '0') }}.
-{{ tracktitle }}
-{% if trackartists.guest %}(feat. {{ trackartists.guest | artistsarrayfmt }}){% endif %}
-"""
 releases.release = """
-{% if new %}{{ '{N}' }}{% endif %}
+{% if new %}^{% endif %}
+{% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
+    {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
+    {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
+    {{ releasetitle }} -
+    {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
+    {% if releasedate or originaldate %}({{ originaldate or releasedate }}){% endif %}
+    {% if genres %}[{{ genres | select("ne", "Classical Music") | arrayfmt }}]{% endif %}
+{% else %}
+    {{ releaseartists | artistsfmt }} -
+    {% if releasedate or originaldate %}{{ originaldate or releasedate }}.{% endif %}
+    {{ releasetitle }}
+    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if edition %}({{ edition }}){% endif %}
+    {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+    {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
+{% endif %}
+"""
+releases.new = """
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -160,8 +176,7 @@ releases.release = """
 {% endif %}
 """
 releases_added_on.release = """
-[{{ added_at[:10] }}.{{ added_at[11:13] }}]
-{% if new %}{{ '{N}' }}{% endif %}
+[{{ added_at[:10] }}.{{ added_at[11:13] }}]{% if new %}^{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -180,8 +195,7 @@ releases_added_on.release = """
 {% endif %}
 """
 releases_released_on.release = """
-[{{ originaldate or releasedate or "0000" }}]
-{% if new %}{{ '{N}' }}{% endif %}
+[{{ originaldate or releasedate or "0000" }}]{% if new %}^{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -196,8 +210,7 @@ releases_released_on.release = """
 {% endif %}
 """
 artists.release = """
-[{{ releasetype | releasetypefmt }}]
-{% if new %}{{ "{N}" }}{% endif %}
+[{{ releasetype | releasetypefmt }}]{% if new %}^{% endif %}
 {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% else %}0000.{% endif %}
 {{ releaseartists | artistsfmt }} -
 {{ releasetitle }}
@@ -205,7 +218,7 @@ artists.release = """
 {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
 """
 genres.release = """
-{% if new %}{{ '{N}' }}{% endif %}
+{% if new %}^{% endif %}
 {% if context.genre in ["Classical Music", "Western Classical Music"] %}
     {% if releaseartists.composer | length == 0 %}
         [Z]
@@ -237,16 +250,14 @@ genres.release = """
 """
 labels.release = """
 {% if context.label in ["Regelbau"] %}
-    [{{ catalognumber }}]
-    {% if new %}{{ '{N}' }}{% endif %}
+    [{{ catalognumber }}]{% if new %}^{% endif %}
     {{ releaseartists | artistsfmt }} -
     {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
     {{ releasetitle }}
     {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
     {% if edition %}({{ edition }}){% endif %}
 {% else %}
-    [{{ originaldate or releasedate or "0000-00-00" }}]
-    {% if new %}{{ '{N}' }}{% endif %}
+    [{{ originaldate or releasedate or "0000-00-00" }}]{% if new %}^{% endif %}
     {{ releaseartists | artistsfmt }} -
     {{ releasetitle }}
     {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
@@ -269,7 +280,6 @@ matcher = "artist:,"
 actions = ["split:,"]
 ignore = [
     "artist:^Seo Taiji, Boys$",
-    "artist:^St. Maur, Clevaux$",
     "artist:^Benedictine Monks Of The Abbey Of St. Maurice & St. Maur, Clervaux$",
 ]
 [[stored_metadata_rules]]
@@ -283,8 +293,8 @@ ignore = [
     "artist:^Benedictine Monks Of The Abbey Of St. Maurice & St. Maur, Clervaux$",
 ]
 [[stored_metadata_rules]]
-matcher = "artist: \\\\ "
-actions = ["split: \\\\ "]
+matcher = "artist:\\\\"
+actions = ["split:\\\\"]
 [[stored_metadata_rules]]
 matcher = "artist: // "
 actions = ["split: // "]
@@ -303,6 +313,9 @@ actions = ["replace:1"]
 # Garbage date fix.
 [[stored_metadata_rules]]
 matcher = "originaldate:^0000$"
+actions = ["delete"]
+[[stored_metadata_rules]]
+matcher = "releasedate:^0000$"
 actions = ["delete"]
 
 # Character normalization. The replacements are not stylistically correct, but
@@ -330,7 +343,6 @@ actions = ["releasetype/replace:ep", "releasetitle/sed: ?-? EP$:"]
 ignore = [
     "releasetitle:^The Get Silly EP$",
     "releasetitle:^The Up Down Left Right EP$",
-    "releasetitle:^THIS IS A MAD ZOO HOUSE EP$",
 ]
 
 # Genre normalization heuristics.
