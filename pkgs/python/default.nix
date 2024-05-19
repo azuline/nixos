@@ -1,15 +1,24 @@
-{ rose, python311, broken-pipx }:
+{ rose, python311 }:
 
 python311.withPackages (ps: with ps; [
+  # Python Tooling
+  pip
+  pipx
+  virtualenv
+  # Libraries
   aiohttp
-  flake8
-  fonttools
   passlib
   pid
-  pip
-  broken-pipx
   requests
-  shodan
-  virtualenv
+  # CLI Tools
+  flake8
+  fonttools
   rose
+  shodan
+  # Data Science
+  graphviz
+  jupyter
+  matplotlib
+  numpy
+  torch
 ])

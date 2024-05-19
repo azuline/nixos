@@ -16,8 +16,12 @@ restic backup \
     --exclude '**/.direnv/**' \
     --exclude '**/.ruff_cache/**' \
     --exclude '**/.mypy_cache/**' \
+    --exclude '**/.cache/**' \
+    --exclude '**/.toolchain/**' \
+    --exclude '**/.next/**' \
     --exclude '**/__pycache__/**' \
     --exclude '**/node_modules/**' \
+    --exclude '**/.o' \
     --exclude '**/.aux' \
     --exclude '**/.fls' \
     --exclude '**/.log' \

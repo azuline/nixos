@@ -2,43 +2,37 @@
 	"s": {
 		"prefix": ["s"],
 		"body": [
-			"\\section{$1}",
-			"$0"
+			"\\section{$1}$0"
 		]
 	},
 	"ss": {
 		"prefix": ["ss"],
 		"body": [
-			"\\subsection{$1}",
-			"$0"
+			"\\subsection{$1}$0"
 		]
 	},
 	"sss": {
 		"prefix": ["sss"],
 		"body": [
-			"\\subsubsection{$1}",
-			"$0"
+			"\\subsubsection{$1}$0"
 		]
 	},
 	"s*": {
 		"prefix": ["s*"],
 		"body": [
-			"\\section*{$1}",
-			"$0"
+			"\\section*{$1}$0"
 		]
 	},
 	"ss*": {
 		"prefix": ["ss*"],
 		"body": [
-			"\\subsection*{$1}",
-			"$0"
+			"\\subsection*{$1}$0"
 		]
 	},
 	"sss*": {
 		"prefix": ["sss*"],
 		"body": [
-			"\\subsubsection*{$1}",
-			"$0"
+			"\\subsubsection*{$1}$0"
 		]
 	},
 	"it": {
@@ -119,5 +113,81 @@
       "  $0",
       "\\end{quote}"
 		]
-	}
+	},
+  "def": {
+		"prefix": ["def"],
+		"body": [
+			"\\begin{definition}",
+      "  $0",
+      "\\end{definition}"
+		]
+  },
+  "thm": {
+		"prefix": ["thm"],
+		"body": [
+			"\\begin{theorem}",
+      "  $0",
+      "\\end{theorem}"
+		]
+  },
+  "lem": {
+		"prefix": ["lem"],
+		"body": [
+			"\\begin{lemma}",
+      "  $0",
+      "\\end{lemma}"
+		]
+  },
+  "cor": {
+		"prefix": ["cor"],
+		"body": [
+			"\\begin{corollary}",
+      "  $0",
+      "\\end{corollary}"
+		]
+  },
+  "rem": {
+		"prefix": ["rem"],
+		"body": [
+			"\\begin{remark}",
+      "  $0",
+      "\\end{remark}"
+		]
+  },
+  "exm": {
+		"prefix": ["exm"],
+		"body": [
+			"\\begin{example}",
+      "  $0",
+      "\\end{example}"
+		]
+  },
+  "al": {
+		"prefix": ["al"],
+		"body": [
+			"\\begin{align*}",
+      "  $0",
+      "\\end{align*}"
+		]
+  },
+  "all": {
+		"prefix": ["all"],
+		"body": [
+			"\\begin{align}",
+      "  $0",
+      "\\end{align}"
+		]
+  },
+  "p": {
+		"prefix": ["p"],
+		"body": [
+			"\\problem{$1}$0"
+		]
+  },
+  "pp": {
+		"prefix": ["pp"],
+		"body": [
+			"\\problempart{$1}$0"
+		]
+  }
 }

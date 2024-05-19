@@ -157,7 +157,7 @@ releases.release = """
     {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
 {% endif %}
 """
-releases.new = """
+releases_new.release = """
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -219,6 +219,9 @@ artists.release = """
 """
 genres.release = """
 {% if new %}^{% endif %}
+{% if context.genre not in genres + parentgenres %}
+    ~
+{% endif %}
 {% if context.genre in ["Classical Music", "Western Classical Music"] %}
     {% if releaseartists.composer | length == 0 %}
         [Z]
@@ -434,6 +437,9 @@ actions = ["replace:Taeyeon"]
 [[stored_metadata_rules]]
 matcher = "artist:^TAEYEON$"
 actions = ["replace:Taeyeon"]
+[[stored_metadata_rules]]
+matcher = "artist:^러블리즈$"
+actions = ["replace:Lovelyz"]
 [[stored_metadata_rules]]
 matcher = "artist:^Béla Bartók$"
 actions = ["replace:Bela Bartok"]

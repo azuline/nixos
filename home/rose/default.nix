@@ -1,7 +1,7 @@
 { pkgs, config, specialArgs, ... }:
 
 {
-  # Rose is already on the $PATH because we build it into Python (so we can script against it).
+  home.packages = [ pkgs.rose-cli ];
 
   xdg.configFile."rose/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
 
@@ -11,7 +11,7 @@
       WantedBy = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${pkgs.rose}/bin/rose fs mount --foreground";
+      ExecStart = "${pkgs.rose-cli}/bin/rose fs mount --foreground";
       Restart = "always";
     };
     Unit = {

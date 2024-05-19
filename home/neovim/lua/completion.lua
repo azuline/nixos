@@ -49,7 +49,9 @@ do -- Setup nvim-cmp.
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      { name = "vsnip" },
+      -- Snippets keep on firing on the most random characters. Extremely
+      -- unhelpful. I never call them from autocomplete anyways, I ctrl-j them.
+      -- { name = "vsnip" },
     }, {
       {
         name = "buffer",

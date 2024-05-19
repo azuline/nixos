@@ -90,8 +90,10 @@ in
       e = "/mnt/elements";
       i = "~/images";
       k = "~/music/3. Genres/K-Pop";
+      K = "~/kpop";
       m = "~/music";
       M = "~/.music-source";
+      p = "~/music/7. Playlists";
       s = "~/studies";
     };
   };
