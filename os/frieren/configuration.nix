@@ -50,6 +50,9 @@ in
       };
     };
   };
+  # https://github.com/NixOS/nixpkgs/issues/195777#issuecomment-1324378856
+  # Unsure if this works, haven't tried it yet.
+  system.activationScripts.restart-udev = "${pkgs.systemd}/bin/systemctl restart systemd-udev-trigger.service";
 
   boot = {
     loader = {

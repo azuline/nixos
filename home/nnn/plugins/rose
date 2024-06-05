@@ -14,6 +14,7 @@ play_tracks_executor() {
     echo "$1" | tr '\n' '\0' | \
         xargs -0 mpv \
             --force-window \
+            --prefetch-playlist \
             --title="playmusic-mpv" \
             --input-ipc-server="$XDG_RUNTIME_DIR/mpv-playmusic" \
             --playlist-start="$2"

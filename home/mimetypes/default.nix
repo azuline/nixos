@@ -14,6 +14,7 @@
       "audio/flac" = [ "mpv.desktop" ];
       "audio/ogg" = [ "mpv.desktop" ];
       "audio/x-opus+ogg" = [ "mpv.desktop" ];
+      "image/avif" = [ "nsxiv.desktop" ];
       "image/bif" = [ "nsxiv.desktop" ];
       "image/heic" = [ "nsxiv.desktop" ];
       "image/jpeg" = [ "nsxiv.desktop" ];

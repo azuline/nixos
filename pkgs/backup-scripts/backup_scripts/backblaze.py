@@ -37,6 +37,7 @@ restic backup \
     --exclude '**/.tmp' \
     --exclude '**/.xref' \
     "$HOME/archive" \
+    "$HOME/art" \
     "$HOME/artbooks" \
     "$HOME/atelier" \
     "$HOME/backgrounds" \
@@ -44,18 +45,18 @@ restic backup \
     "$HOME/books" \
     "$HOME/documents/contents" \
     "$HOME/fonts" \
-    "$HOME/images" --exclude "$HOME/backups/images/Screenshots" \
+    "$HOME/images" --exclude "$HOME/backups/images/Camera" --exclude "$HOME/backups/images/Screenshots" \
     "$HOME/kpop" \
     "$HOME/manga" \
     "$HOME/.music-source" \
+    "$HOME/resume" \
     "$HOME/scripts" \
     "$HOME/studies" \
-    "$HOME/wlop" \
     "$HOME/.passwarbles" \
     "$HOME/.gnupg/pubring.kbx" \
     "$HOME/.gnupg/private-keys-v1.d" \
     "$HOME/.ssh"
-"""
+"""  # noqa: E501
 
 
 def backup_backblaze() -> None:
