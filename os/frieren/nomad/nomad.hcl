@@ -9,6 +9,10 @@ server {
 
 client {
   enabled = true
+  artifact {
+    # https://github.com/hashicorp/nomad/issues/18721
+    disable_filesystem_isolation = true
+  }
   host_network "default" {
     cidr = "100.84.146.55/32"
   }

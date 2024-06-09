@@ -32,6 +32,10 @@ job "nginx" {
               destination_name = "blossom-ladle"
               local_bind_port  = 29002
             }
+            upstreams {
+              destination_name = "sunsetglow-site"
+              local_bind_port  = 29003
+            }
           }
         }
       }
@@ -110,33 +114,32 @@ job "nginx" {
       template {
         data          = <<EOF
 server {
-	listen 80 http2;
-	listen [::]:80 http2;
-	return 301 https://$host$request_uri;
+  listen 80 http2;
+  listen [::]:80 http2;
+  return 301 https://$host$request_uri;
 }
 
 # sunsetglow.net - root page
 server {
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	include snippets/ssl-sunsetglow.net.conf;
-	include snippets/ssl-params.conf;
-	server_name sunsetglow.net;
-	root /www/index;
-	index index.html;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  include snippets/ssl-sunsetglow.net.conf;
+  include snippets/ssl-params.conf;
+  server_name sunsetglow.net;
 
-  location /files/ {
-    autoindex on;
+  location ~ {
+    include snippets/proxy-params.conf;
+    proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_sunsetglow-site" }};
   }
 }
 
 # u.sunsetglow.net - image host
 server {
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	include snippets/ssl-params.conf;
-	include snippets/ssl-sunsetglow.net.conf;
-	server_name u.sunsetglow.net;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  include snippets/ssl-params.conf;
+  include snippets/ssl-sunsetglow.net.conf;
+  server_name u.sunsetglow.net;
 
   client_max_body_size 0;
   underscores_in_headers on;
@@ -149,17 +152,33 @@ server {
 
 # celestial.sunsetglow.net - design system ladle
 server {
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	include snippets/ssl-params.conf;
-	include snippets/ssl-sunsetglow.net.conf;
-	server_name celestial.sunsetglow.net;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  include snippets/ssl-params.conf;
+  include snippets/ssl-sunsetglow.net.conf;
+  server_name celestial.sunsetglow.net;
 
   location ~ {
     include snippets/proxy-params.conf;
     proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_blossom-ladle" }};
   }
 }
+
+# f.sunsetglow.net - files
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  include snippets/ssl-sunsetglow.net.conf;
+  include snippets/ssl-params.conf;
+  server_name f.sunsetglow.net;
+  root /www/index;
+  index index.html;
+
+  location /files/ {
+    autoindex on;
+  }
+}
+
 EOF
         destination   = "local/nginx.conf"
         change_mode   = "signal"
