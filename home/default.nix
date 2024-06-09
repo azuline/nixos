@@ -99,6 +99,7 @@
   devBundle = { pkgs, ... }: {
     imports = [
       ./direnv
+      ./figma-agent
       ./gh
       ./ghc
     ];
