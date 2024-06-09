@@ -6,8 +6,8 @@
     # Rolling unstable nixpkgs, updated frequently. If setting manually, pick a
     # commit built in Hydra: https://hydra.nixos.org/jobset/nixos/trunk-combined
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # https://hydra.nixos.org/jobset/nixos/release-23.11
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    # https://hydra.nixos.org/jobset/nixos/release-24.05
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     # Most up to date nixpkgs, for specific bug fixes.
     nixpkgs-latest.url = "github:nixos/nixpkgs/master";
     # Flake sources.
@@ -73,8 +73,8 @@
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
-      pkgs-stable = import nixpkgs-stable { inherit system; };
-      pkgs-latest = import nixpkgs-latest { inherit system; };
+      pkgs-stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };
+      pkgs-latest = import nixpkgs-latest { inherit system; config.allowUnfree = true; };
       srcs = { inherit discord nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env; };
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
@@ -149,7 +149,7 @@
           frieren = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              inherit pkgs-stable;
+              inherit pkgs-latest pkgs-stable;
               presage-pin = pkgs.presage;
             };
             modules = [ ./os/frieren/configuration.nix ];

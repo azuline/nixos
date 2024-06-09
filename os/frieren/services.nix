@@ -1,4 +1,4 @@
-{ pkgs-stable, ... }:
+{ pkgs-stable, pkgs-latest, ... }:
 
 let
   nomadConfig = "/etc/nixos/os/frieren/nomad";
@@ -6,8 +6,8 @@ let
 in
 {
   environment.systemPackages = with pkgs-stable; [
-    nomad
-    consul
+    pkgs-latest.nomad_1_8
+    pkgs-latest.consul
     envoy
     opentelemetry-collector-contrib
   ];
@@ -52,7 +52,7 @@ in
   };
 
   systemd.services.nomad = {
-    path = with pkgs-stable; [ nomad consul iproute iptables cni-plugins ];
+    path = with pkgs-stable; [ pkgs-latest.nomad_1_8 pkgs-latest.consul iproute iptables cni-plugins ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -60,7 +60,7 @@ in
       User = "root";
       Group = "root";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${pkgs-stable.nomad}/bin/nomad nomad agent -config ${nomadConfig}";
+      ExecStart = "@${pkgs-latest.nomad_1_8}/bin/nomad nomad agent -config ${nomadConfig}";
       KillMode = "process";
       KillSignal = "SIGINT";
       LimitNOFILE = 65536;
@@ -73,7 +73,7 @@ in
   };
 
   systemd.services.consul = {
-    path = with pkgs-stable; [ consul envoy iproute iptables cni-plugins ];
+    path = with pkgs-stable; [ pkgs-latest.consul envoy iproute iptables cni-plugins ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -81,7 +81,7 @@ in
       User = "consul";
       Group = "consul";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${pkgs-stable.consul}/bin/consul consul agent -config-dir=${consulConfig}";
+      ExecStart = "@${pkgs-latest.consul}/bin/consul consul agent -config-dir=${consulConfig}";
       KillMode = "process";
       KillSignal = "SIGTERM";
       LimitNOFILE = 65536;
@@ -120,7 +120,7 @@ in
       environmentFile = "/secrets/acme/credentials";
       postRun = ''
         source /secrets/acme/nomad.env
-        ${pkgs-stable.nomad}/bin/nomad job allocs -json nginx | ${pkgs-stable.jq}/bin/jq -r '.[0].ID' | ${pkgs-stable.findutils}/bin/xargs ${pkgs-stable.nomad}/bin/nomad alloc restart
+        ${pkgs-latest.nomad_1_8}/bin/nomad job allocs -json nginx | ${pkgs-stable.jq}/bin/jq -r '.[0].ID' | ${pkgs-stable.findutils}/bin/xargs ${pkgs-latest.nomad_1_8}/bin/nomad alloc restart
       '';
     };
   };
