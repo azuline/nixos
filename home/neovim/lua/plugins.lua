@@ -35,7 +35,7 @@ do -- Load the plugins.
 
   do -- Navigation
     -- Fuzzy finder
-    Plug("junegunn/fzf", { ["do"] = vim.fn["fzf#install()"] })
+    Plug("junegunn/fzf")
     Plug("junegunn/fzf.vim")
     -- File tree
     Plug("azuline/chadtree", { branch = "chad", ["do"] = "python3 -m chadtree deps" })

@@ -83,6 +83,7 @@
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
         puddletag = pkgs-latest.puddletag;
+        fzf = pkgs-latest.fzf;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =

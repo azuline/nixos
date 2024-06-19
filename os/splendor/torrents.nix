@@ -92,7 +92,6 @@
   # BindPaths.
   systemd.services.transmission.serviceConfig.BindPaths = [
     "/mnt/elements"
-    "/home/blissful/tmp"
   ];
 
   # Weekly backups of the external drive to another external drive via borg.

@@ -206,6 +206,7 @@
       xbindkeys
       xdotool # For VimTex's forward search.
       xorg.xkill
+      xournalpp
       xwallpaper
       zoom-us
     ];

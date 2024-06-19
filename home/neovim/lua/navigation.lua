@@ -143,7 +143,9 @@ do -- Fuzzy File Finder
   -- Command History
   vim.api.nvim_set_keymap("n", "<Leader>ch", "<Cmd>History:!<CR>", { noremap = true })
   -- Configure FZF preview window.
-  vim.g.fzf_preview_window = { "up:40%:hidden", "ctrl-/" }
+	vim.g.fzf_vim = {
+		preview_window = { "up,40%,hidden", "ctrl-/" },
+	};
 end
 
 do -- Tab Bar
