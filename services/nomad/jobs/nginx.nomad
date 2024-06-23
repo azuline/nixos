@@ -227,7 +227,6 @@ add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
 add_header X-Frame-Options sameorigin;
 add_header X-Content-Type-Options nosniff;
 add_header X-XSS-Protection "1; mode=block";
-add_header Referrer-Policy "no-referrer";
 EOF
         destination   = "local/snippets/ssl-params.conf"
         change_mode   = "signal"
