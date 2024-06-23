@@ -1,12 +1,10 @@
 job "presage" {
   datacenters = ["frieren"]
   type        = "batch"
-
   periodic {
     cron             = "0 0 * * *"
     prohibit_overlap = true
   }
-
   group "presage" {
     volume "data" {
       type   = "host"
@@ -31,7 +29,6 @@ job "presage" {
       attempts  = 0
       unlimited = false
     }
-
     task "presage" {
       driver = "exec"
       user   = "cron"

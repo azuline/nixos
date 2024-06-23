@@ -66,6 +66,7 @@ endif
 au BufReadPost,BufNewFile *.rkt set filetype=racket
 au filetype racket set lisp
 au BufReadPost,BufNewFile *.sqlx set filetype=sql
+au BufReadPost,BufNewFile *.nomad set filetype=hcl
 
 " Default indentation settings
 set expandtab
@@ -97,6 +98,7 @@ au BufEnter *.hbs set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.rkt set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.v set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.php set noexpandtab
+au BufEnter *.hcl,*.nomad set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 
 au BufEnter *.txt set textwidth=100
 au BufEnter *.md,*.mkd,*.markdown set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2

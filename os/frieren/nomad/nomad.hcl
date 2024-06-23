@@ -42,6 +42,9 @@ client {
   host_volume "saffron-data" {
     path = "/data/saffron"
   }
+  host_volume "postgres-data" {
+    path = "/data/postgres"
+  }
   host_volume "thelounge-config" {
     path = "/data/thelounge/config"
   }

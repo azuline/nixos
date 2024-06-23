@@ -1,9 +1,7 @@
 job "nginx" {
   datacenters = ["frieren"]
-
   group "nginx" {
     count = 1
-
     network {
       mode = "bridge"
       port "http" {
@@ -17,7 +15,6 @@ job "nginx" {
         host_network = "public"
       }
     }
-
     service {
       name = "nginx"
       port = "https"
@@ -35,6 +32,10 @@ job "nginx" {
             upstreams {
               destination_name = "sunsetglow-site"
               local_bind_port  = 29003
+            }
+            upstreams {
+              destination_name = "umami"
+              local_bind_port  = 29004
             }
           }
         }
@@ -81,8 +82,21 @@ job "nginx" {
           User-Agent = ["Consul Healthcheck"]
         }
       }
+      check {
+        name            = "service: nginx umami check"
+        type            = "http"
+        protocol        = "https"
+        port            = "https"
+        path            = "/api/heartbeat"
+        tls_skip_verify = true
+        interval        = "10s"
+        timeout         = "2s"
+        header {
+          Host       = ["ozu.sunsetglow.net"]
+          User-Agent = ["Consul Healthcheck"]
+        }
+      }
     }
-
     volume "certs" {
       type      = "host"
       source    = "sunsetglow-certs"
@@ -93,7 +107,6 @@ job "nginx" {
       source    = "sunsetglow-site"
       read_only = true
     }
-
     task "nginx" {
       driver = "docker"
       config {
@@ -123,13 +136,27 @@ server {
 server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
-  include snippets/ssl-sunsetglow.net.conf;
   include snippets/ssl-params.conf;
+  include snippets/ssl-sunsetglow.net.conf;
   server_name sunsetglow.net;
 
   location ~ {
     include snippets/proxy-params.conf;
     proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_sunsetglow-site" }};
+  }
+}
+
+# ozu.sunsetglow.net - umami
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  include snippets/ssl-params.conf;
+  include snippets/ssl-sunsetglow.net.conf;
+  server_name ozu.sunsetglow.net;
+
+  location ~ {
+    include snippets/proxy-params.conf;
+    proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_umami" }};
   }
 }
 
@@ -178,7 +205,6 @@ server {
     autoindex on;
   }
 }
-
 EOF
         destination   = "local/nginx.conf"
         change_mode   = "signal"

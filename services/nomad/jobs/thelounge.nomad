@@ -1,9 +1,8 @@
 job "thelounge" {
   datacenters = ["frieren"]
-
+  type = "service"
   group "thelounge" {
     count = 1
-
     network {
       mode = "bridge"
       port "http" {
@@ -11,12 +10,10 @@ job "thelounge" {
         to     = 9000
       }
     }
-
     volume "config" {
       type   = "host"
       source = "thelounge-config"
     }
-
     task "thelounge" {
       driver = "docker"
       env {

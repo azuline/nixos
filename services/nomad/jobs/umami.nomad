@@ -1,41 +1,43 @@
-job "saffron" {
+job "umami" {
   datacenters = ["frieren"]
   type        = "service"
-  group "saffron" {
+  group "umami" {
     count = 1
     network {
       mode = "bridge"
     }
     service {
-      name = "saffron"
-      port = "80"
+      name = "umami"
+      port = "3000"
       connect {
-        sidecar_service {}
+        sidecar_service {
+          proxy {
+            upstreams {
+              destination_name = "postgres"
+              local_bind_port  = 5432
+            }
+          }
+        }
       }
       check {
         expose   = true
         type     = "http"
-        path     = "/login"
+        path     = "/api/heartbeat"
         interval = "10s"
         timeout  = "2s"
       }
     }
-    volume "data" {
-      type   = "host"
-      source = "saffron-data"
-    }
-    task "saffron" {
+    task "umami" {
       driver = "docker"
       config {
-        image = "blissful/saffron"
-        args  = ["start", "-h", "0.0.0.0", "-p", "80"]
+        image = "ghcr.io/umami-software/umami:postgresql-v2.12.0"
       }
       env {
-        HOST_URL = "https://u.sunsetglow.net"
+        DATABASE_URL = "postgresql://umami:umami@${NOMAD_UPSTREAM_ADDR_postgres}/umami"
       }
-      volume_mount {
-        volume      = "data"
-        destination = "/appdata"
+      resources {
+        cpu    = 100
+        memory = 1024
       }
     }
   }
@@ -50,3 +52,4 @@ job "saffron" {
     canary            = 1
   }
 }
+
