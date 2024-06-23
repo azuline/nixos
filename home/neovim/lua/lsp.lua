@@ -120,55 +120,57 @@ local function filter(arr, fn)
   return filtered
 end
 
-require("typescript-tools").setup({
-  init_options = {
-    preferences = {
-      importModuleSpecifierPreference = "non-relative",
-      importModuleSpecifierEnding = "minimal",
-      autoImportFileExcludePatterns = {
-        -- This reexports every React hook.. absurd.
-        "**/@storybook/addons/**",
-        -- This exports a `t`.
-        "**/msw/**",
-        -- This also exports a `t`.
-        "**/vitest/dist/**",
-        -- Never import from stories.
-        "**/*.stories.tsx",
+if vim.fn.executable("tsc") then
+  require("typescript-tools").setup({
+    init_options = {
+      preferences = {
+        importModuleSpecifierPreference = "non-relative",
+        importModuleSpecifierEnding = "minimal",
+        autoImportFileExcludePatterns = {
+          -- This reexports every React hook.. absurd.
+          "**/@storybook/addons/**",
+          -- This exports a `t`.
+          "**/msw/**",
+          -- This also exports a `t`.
+          "**/vitest/dist/**",
+          -- Never import from stories.
+          "**/*.stories.tsx",
+        },
       },
     },
-  },
-  on_attach = function(client, bufnr)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
+    on_attach = function(client, bufnr)
+      client.server_capabilities.document_formatting = false
+      client.server_capabilities.document_range_formatting = false
 
-    local ts_utils = require("nvim-lsp-ts-utils")
-    ts_utils.setup({
-      update_imports_on_move = true,
-    })
-    ts_utils.setup_client(client)
-    buf_map(bufnr, "n", "<Leader>i", ":TSLspImportAll<CR>")
-    on_attach(client, bufnr)
-  end,
-  capabilities = capabilities,
-  handlers = {
-    ["textDocument/definition"] = function(err, result, method)
-      -- https://github.com/typescript-language-server/typescript-language-server/issues/216
-      local function filterDTS(value)
-        if value.targetUri ~= nil then
-          return string.match(value.targetUri, "%.d.ts") == nil
-        end
-        return string.match(value.uri, "%.d.ts") == nil
-      end
-
-      if vim.tbl_islist(result) and #result > 1 then
-        local filtered_result = filter(result, filterDTS)
-        return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method)
-      end
-
-      vim.lsp.handlers["textDocument/definition"](err, result, method)
+      local ts_utils = require("nvim-lsp-ts-utils")
+      ts_utils.setup({
+        update_imports_on_move = true,
+      })
+      ts_utils.setup_client(client)
+      buf_map(bufnr, "n", "<Leader>i", ":TSLspImportAll<CR>")
+      on_attach(client, bufnr)
     end,
-  },
-})
+    capabilities = capabilities,
+    handlers = {
+      ["textDocument/definition"] = function(err, result, method)
+        -- https://github.com/typescript-language-server/typescript-language-server/issues/216
+        local function filterDTS(value)
+          if value.targetUri ~= nil then
+            return string.match(value.targetUri, "%.d.ts") == nil
+          end
+          return string.match(value.uri, "%.d.ts") == nil
+        end
+
+        if vim.tbl_islist(result) and #result > 1 then
+          local filtered_result = filter(result, filterDTS)
+          return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method)
+        end
+
+        vim.lsp.handlers["textDocument/definition"](err, result, method)
+      end,
+    },
+  })
+end
 
 lspconfig.eslint.setup({
   capabilities = capabilities,

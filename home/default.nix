@@ -74,6 +74,7 @@
       speedtest-cli
       sqlite-interactive
       sshfs
+      tcpdump
       tectonic
       termdown
       tesseract
@@ -206,7 +207,6 @@
       xbindkeys
       xdotool # For VimTex's forward search.
       xorg.xkill
-      xournalpp
       xwallpaper
       zoom-us
     ];
