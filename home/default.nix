@@ -141,7 +141,6 @@
       nodePackages.eslint
       nodePackages.pnpm
       nodePackages.prettier
-      nodePackages.pyright
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       nodejs
@@ -154,6 +153,7 @@
       postgresql_13
       protobuf
       protoc-gen-go
+      pyright
       ruff
       ruff-lsp
       rustup
@@ -228,6 +228,7 @@
       tdesktop
       tremotesf
       zotero
+      plexamp
     ];
   };
 

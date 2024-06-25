@@ -36,9 +36,8 @@
     };
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
     extraPackages = [ pkgs.mesa.drivers ];
   };
 
