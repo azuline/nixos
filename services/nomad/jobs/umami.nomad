@@ -20,11 +20,11 @@ job "umami" {
         }
       }
       check {
-        expose   = true
-        type     = "http"
-        path     = "/api/heartbeat"
-        interval = "10s"
-        timeout  = "2s"
+        address_mode   = "alloc"
+        type           = "http"
+        path           = "/api/heartbeat"
+        interval       = "10s"
+        timeout        = "2s"
       }
     }
     task "umami" {

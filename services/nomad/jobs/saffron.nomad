@@ -13,11 +13,12 @@ job "saffron" {
         sidecar_service {}
       }
       check {
-        expose   = true
-        type     = "http"
-        path     = "/login"
-        interval = "10s"
-        timeout  = "2s"
+        address_mode = "alloc"
+        name         = "http check"
+        type         = "http"
+        path         = "/login"
+        interval     = "10s"
+        timeout      = "2s"
       }
     }
     volume "data" {

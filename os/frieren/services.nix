@@ -120,7 +120,7 @@ in
       environmentFile = "/secrets/acme/credentials";
       postRun = ''
         source /secrets/acme/nomad.env
-        ${pkgs-latest.nomad_1_8}/bin/nomad job allocs -json nginx | ${pkgs-stable.jq}/bin/jq -r '.[0].ID' | ${pkgs-stable.findutils}/bin/xargs ${pkgs-latest.nomad_1_8}/bin/nomad alloc restart
+        ${pkgs-latest.nomad_1_8}/bin/nomad job allocs -json router | ${pkgs-stable.jq}/bin/jq -r '.[0].ID' | ${pkgs-stable.findutils}/bin/xargs ${pkgs-latest.nomad_1_8}/bin/nomad alloc restart
       '';
     };
   };
