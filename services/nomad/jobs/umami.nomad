@@ -30,7 +30,7 @@ job "umami" {
     task "umami" {
       driver = "docker"
       config {
-        image = "ghcr.io/umami-software/umami:postgresql-v2.12.0"
+        image = "ghcr.io/umami-software/umami:postgresql-v2.12.1"
       }
       env {
         DATABASE_URL = "postgresql://umami:umami@${NOMAD_UPSTREAM_ADDR_postgres}/umami"
