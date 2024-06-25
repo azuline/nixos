@@ -7,4 +7,5 @@ node_prefix "" {
 service_prefix "" {
   policy = "write"
 }
-acl = "write"
+acl  = "write"
+mesh = "write"
