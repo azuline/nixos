@@ -1,7 +1,8 @@
 # Should be a file of the format:
 #   acl {
 #     tokens {
-#       agent = "consul-acl-token"
+#       agent              = "consul-acl-token"
+#       initial_management = "consul-acl-token"
 #     }
 #   }
 consul-token.hcl
