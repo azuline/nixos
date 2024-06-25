@@ -1,0 +1,7 @@
+# Should be a file of the format:
+#   acl {
+#     tokens {
+#       agent = "consul-acl-token"
+#     }
+#   }
+consul-token.hcl
