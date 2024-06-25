@@ -6,8 +6,8 @@
     # Rolling unstable nixpkgs, updated frequently. If setting manually, pick a
     # commit built in Hydra: https://hydra.nixos.org/jobset/nixos/trunk-combined
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # https://hydra.nixos.org/jobset/nixos/release-24.05
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    # Whatever pin makes my server happy... https://hydra.nixos.org/jobset/nixos/release-24.05
+    nixpkgs-stable.url = "github:nixos/nixpkgs?rev=a7d87b7f9b63f97c43269fa902eb89851b379687";
     # Most up to date nixpkgs, for specific bug fixes.
     nixpkgs-latest.url = "github:nixos/nixpkgs/master";
     # Flake sources.
@@ -82,8 +82,6 @@
         rose-cli = rose-src.packages.${system}.rose-cli;
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
-        puddletag = pkgs-latest.puddletag;
-        fzf = pkgs-latest.fzf;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =

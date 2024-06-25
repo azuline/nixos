@@ -1,13 +1,21 @@
-{ pkgs-stable, pkgs-latest, ... }:
+{ pkgs-stable, ... }:
 
 let
+  nomad = pkgs-stable.nomad;
+  consul = pkgs-stable.consul;
+  envoy = pkgs-stable.envoy;
+  opentelemetry-collector-contrib = pkgs-stable.opentelemetry-collector-contrib;
+  cni-plugins = pkgs-stable.cni-plugins;
+  iproute = pkgs-stable.iproute;
+  iptables = pkgs-stable.iptables;
+
   nomadConfig = "/etc/nixos/os/frieren/nomad";
   consulConfig = "/etc/nixos/os/frieren/consul";
 in
 {
-  environment.systemPackages = with pkgs-stable; [
-    pkgs-latest.nomad_1_8
-    pkgs-latest.consul
+  environment.systemPackages = [
+    nomad
+    consul
     envoy
     opentelemetry-collector-contrib
   ];
@@ -16,7 +24,7 @@ in
   system.activationScripts.cni.text = ''
     mkdir -p /opt
     rm -f /opt/cni
-    ln -sf ${pkgs-stable.cni-plugins} /opt/cni
+    ln -sf ${cni-plugins} /opt/cni
   '';
 
   environment.variables = {
@@ -52,7 +60,7 @@ in
   };
 
   systemd.services.nomad = {
-    path = with pkgs-stable; [ pkgs-latest.nomad_1_8 pkgs-latest.consul iproute iptables cni-plugins ];
+    path = [ nomad consul iproute iptables cni-plugins ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -60,7 +68,7 @@ in
       User = "root";
       Group = "root";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${pkgs-latest.nomad_1_8}/bin/nomad nomad agent -config ${nomadConfig}";
+      ExecStart = "@${nomad}/bin/nomad nomad agent -config ${nomadConfig}";
       KillMode = "process";
       KillSignal = "SIGINT";
       LimitNOFILE = 65536;
@@ -73,7 +81,7 @@ in
   };
 
   systemd.services.consul = {
-    path = with pkgs-stable; [ pkgs-latest.consul envoy iproute iptables cni-plugins ];
+    path = [ consul envoy iproute iptables cni-plugins ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -81,7 +89,7 @@ in
       User = "consul";
       Group = "consul";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${pkgs-latest.consul}/bin/consul consul agent -config-dir=${consulConfig}";
+      ExecStart = "@${consul}/bin/consul consul agent -config-dir=${consulConfig}";
       KillMode = "process";
       KillSignal = "SIGTERM";
       LimitNOFILE = 65536;
@@ -92,7 +100,7 @@ in
   };
 
   systemd.services.otelcollector = {
-    path = with pkgs-stable; [ opentelemetry-collector-contrib ];
+    path = [ opentelemetry-collector-contrib ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -100,7 +108,7 @@ in
       User = "otel";
       Group = "otel";
       ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "${pkgs-stable.opentelemetry-collector-contrib}/bin/otelcontribcol --config=file:/data/otel/config.yaml";
+      ExecStart = "${opentelemetry-collector-contrib}/bin/otelcontribcol --config=file:/data/otel/config.yaml";
       KillMode = "process";
       KillSignal = "SIGTERM";
       LimitNOFILE = 65536;
@@ -120,7 +128,7 @@ in
       environmentFile = "/secrets/acme/credentials";
       postRun = ''
         source /secrets/acme/nomad.env
-        ${pkgs-latest.nomad_1_8}/bin/nomad job allocs -json router | ${pkgs-stable.jq}/bin/jq -r '.[0].ID' | ${pkgs-stable.findutils}/bin/xargs ${pkgs-latest.nomad_1_8}/bin/nomad alloc restart
+        ${nomad}/bin/nomad job allocs -json router | ${pkgs-stable.jq}/bin/jq -r '.[0].ID' | ${pkgs-stable.findutils}/bin/xargs ${nomad}/bin/nomad alloc restart
       '';
     };
   };
