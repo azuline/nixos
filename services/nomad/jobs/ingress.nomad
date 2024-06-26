@@ -6,12 +6,12 @@ job "ingress" {
     network {
       mode = "bridge"
       port "http" {
-        static       = 10080
+        static       = 80
         to           = 80
         host_network = "public"
       }
       port "https" {
-        static       = 10443
+        static       = 443
         to           = 443
         host_network = "public"
       }

@@ -37,8 +37,6 @@ in
         2222 # boot ssh
         80 # http
         443 # https
-        10080 # tmp
-        10443 # tmp
       ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
