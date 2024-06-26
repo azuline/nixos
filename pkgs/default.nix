@@ -29,6 +29,7 @@ import nixpkgs {
       signal = prev.callPackage ./signal { };
       tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };
       win-switch = prev.callPackage ./win-switch { };
+      zathura = prev.callPackage ./zathura { inherit srcs; original = prev.zathura; };
     })
     (final: prev: prev // pins)
   ];

@@ -382,7 +382,8 @@
         "nsxiv-src": "nsxiv-src",
         "pgmigrate-src": "pgmigrate-src",
         "presage-src": "presage-src",
-        "rose-src": "rose-src"
+        "rose-src": "rose-src",
+        "zathura-pdf-mupdf-src": "zathura-pdf-mupdf-src"
       }
     },
     "rose-src": {
@@ -449,6 +450,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "zathura-pdf-mupdf-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719445332,
+        "narHash": "sha256-t6jcbjMtM+hULv/7y1IaVHC3JQcrFQ/Eze9hM4tgMb0=",
+        "owner": "azuline",
+        "repo": "zathura-pdf-mupdf",
+        "rev": "cd4b6cb7d658fb2d1cebd26f04075c9d02bca124",
+        "type": "github"
+      },
+      "original": {
+        "owner": "azuline",
+        "repo": "zathura-pdf-mupdf",
         "type": "github"
       }
     }

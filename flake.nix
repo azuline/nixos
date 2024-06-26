@@ -44,6 +44,10 @@
       url = "github:azuline/nsxiv";
       flake = false;
     };
+    zathura-pdf-mupdf-src = {
+      url = "github:azuline/zathura-pdf-mupdf";
+      flake = false;
+    };
     fish-plugin-wd = {
       url = "github:fischerling/plugin-wd";
       flake = false;
@@ -69,13 +73,14 @@
     , nnn-src
     , discord
     , nsxiv-src
+    , zathura-pdf-mupdf-src
     , fish-plugin-wd
     , fish-plugin-nix-env
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs-stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };
       pkgs-latest = import nixpkgs-latest { inherit system; config.allowUnfree = true; };
-      srcs = { inherit discord nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env; };
+      srcs = { inherit discord nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env zathura-pdf-mupdf-src; };
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         rose = rose-src.packages.${system}.rose-py;
