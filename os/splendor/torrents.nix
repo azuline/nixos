@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  users.users.transmission = { };
   services.transmission = {
     enable = true;
     package = pkgs.transmission_4;

@@ -67,6 +67,7 @@ au BufReadPost,BufNewFile *.rkt set filetype=racket
 au filetype racket set lisp
 au BufReadPost,BufNewFile *.sqlx set filetype=sql
 au BufReadPost,BufNewFile *.nomad set filetype=hcl
+au BufReadPost,BufNewFile *.html.jinja set filetype=html
 
 " Default indentation settings
 set expandtab

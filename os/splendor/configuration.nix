@@ -108,10 +108,6 @@
         isNormalUser = true;
         extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" "libvirtd" ];
       };
-      # Controlled by transmission.nix.
-      transmission = { };
-      # Controlled by plex.nix.
-      plex = { };
     };
     groups = {
       media.gid = 1001;
