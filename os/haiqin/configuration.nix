@@ -105,21 +105,16 @@
   services.tlp = {
     enable = true;
     settings = {
-      CPU_BOOST_ON_BAT = 0;
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
-      INTEL_GPU_MIN_FREQ_ON_AC = 100;
-      INTEL_GPU_MIN_FREQ_ON_BAT = 100;
-      INTEL_GPU_MAX_FREQ_ON_AC = 1300;
-      INTEL_GPU_MAX_FREQ_ON_BAT = 1300;
-      INTEL_GPU_BOOST_FREQ_ON_AC = 1300;
-      INTEL_GPU_BOOST_FREQ_ON_BAT = 1300;
-      START_CHARGE_THRESH_BAT0 = 85;
+      PLATFORM_PROFILE_ON_AC = "performance";
+      PLATFORM_PROFILE_ON_BAT = "balanced";
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+      CPU_HWP_DYN_BOOST_ON_AC = 1;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
+      START_CHARGE_THRESH_BAT0 = 90;
       STOP_CHARGE_THRESH_BAT0 = 95;
-      RUNTIME_PM_ON_AC = "on";
-      RUNTIME_PM_ON_BAT = "auto";
     };
   };
 }

@@ -18,7 +18,7 @@
         layout = "us";
         options = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
       };
-      displaymanager.sessionCommands = ''
+      displayManager.sessionCommands = ''
         ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation' 1
         ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation Button' 2
         ${pkgs.xorg.xinput}/bin/xinput --set-prop 'TPPS/2 Elan TrackPoint' 'Evdev Wheel Emulation Axes' 6 7 4 5
