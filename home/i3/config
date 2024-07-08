@@ -171,7 +171,6 @@ bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume $(pactl get-def
 bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume $(pactl get-default-sink) -5%'
 bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 bindsym Pause exec i3-change-audio
-bindsym XF86Calculator exec win-switch
 # Brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%

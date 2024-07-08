@@ -43,7 +43,7 @@
       # 16GB with the default size of 2048kB size hugepages. For the virtual machine.
       # It should be 8600 but it seems to be a smidge too small after 20240612
       # (IDK why it started failing!), so instead we are going 8888 for good luck.
-      "hugepages=8888"
+      # "hugepages=8888"
     ];
   };
 
@@ -61,12 +61,6 @@
   networking = {
     hostName = "splendor";
     networkmanager.enable = true;
-    interfaces.wlp5s0.ipv4.addresses = [
-      {
-        address = "192.168.1.160";
-        prefixLength = 24;
-      }
-    ];
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing

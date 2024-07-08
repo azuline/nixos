@@ -10,7 +10,8 @@ do -- Treesitter Configuration
       additional_vim_regex_highlighting = true,
     },
     indent = {
-      enable = false,
+      -- Trying this again...
+      enable = true,
     },
     textobjects = {
       select = {

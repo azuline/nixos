@@ -72,6 +72,7 @@ au BufReadPost,BufNewFile *.html.jinja set filetype=html
 " Default indentation settings
 set expandtab
 set autoindent
+set smartindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
