@@ -28,9 +28,7 @@ local on_attach = function(client, bufnr)
   buf_map(bufnr, "n", "K", ":LspHover<CR>")
   buf_map(bufnr, "n", "[g", ":LspDiagPrev<CR>")
   buf_map(bufnr, "n", "]g", ":LspDiagNext<CR>")
-  buf_map(bufnr, "n", "<Leader>la", ":LspCodeAction<CR>")
-  buf_map(bufnr, "n", "<Leader>lr", ":LspRefs<CR>")
-  buf_map(bufnr, "n", "<C-]>", ":LspDef<CR>")
+  -- Also see navigation.lua's telescope keybinds.
 
   if client.server_capabilities.documentFormattingProvider then
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 3000 })")

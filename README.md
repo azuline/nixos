@@ -1,7 +1,5 @@
 # /etc/nixos
 
-_WIP_
-
 This repository contains my system configs. I use [Nix](https://nixos.org/) to
 manage my systems, with NixOS whenever possible, and Home Manager otherwise.
 

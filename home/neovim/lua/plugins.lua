@@ -8,12 +8,9 @@ do -- Load the plugins.
   do -- Editor augmentation
     -- Text objects for expanding/contracting syntactic constructs
     Plug("nvim-treesitter/nvim-treesitter-textobjects")
-    Plug("RRethy/nvim-treesitter-textsubjects")
-    -- Bullet points, because the replacement Markdown plugins all suck
-    Plug("dkarter/bullets.vim")
-    -- Extra text objects for braces/quotes/tags. targets.vim gets us things
-    -- _inside_ the tags, vim-surround has fancy stuff for _outside_ the tags.
+    -- Extra text objects for stuff inside braces/quotes/tags.
     Plug("wellle/targets.vim")
+    -- Extra text objects for stuff outside braces/quotes/tags.
     Plug("tpope/vim-surround")
     -- Comment/uncomment assistance (because I'm slow)
     Plug("tpope/vim-commentary")
@@ -33,14 +30,6 @@ do -- Load the plugins.
     Plug("rlue/vim-barbaric")
   end
 
-  do -- Navigation
-    -- Fuzzy finder
-    Plug("junegunn/fzf")
-    Plug("junegunn/fzf.vim")
-    -- File tree
-    Plug("azuline/chadtree", { branch = "chad", ["do"] = "python3 -m chadtree deps" })
-  end
-
   do -- Window visuals
     -- Theme
     Plug("azuline/palenight.vim")
@@ -50,6 +39,17 @@ do -- Load the plugins.
     Plug("mengelbrecht/lightline-bufferline")
     -- Git gutter
     Plug("mhinz/vim-signify")
+  end
+
+  do -- Navigation
+    -- Fuzzy finder
+    Plug("nvim-telescope/telescope.nvim")
+    Plug(
+      "nvim-telescope/telescope-fzf-native.nvim",
+      { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" }
+    )
+    -- File tree
+    Plug("luukvbaal/nnn.nvim")
   end
 
   do -- Language/Syntax Plugins
@@ -80,7 +80,7 @@ do -- Load the plugins.
     Plug("hrsh7th/cmp-path")
     Plug("hrsh7th/cmp-cmdline")
     Plug("hrsh7th/nvim-cmp")
-    Plug("onsails/lspkind-nvim")
+    Plug("onsails/lspkind.nvim")
     -- Snippets
     Plug("hrsh7th/cmp-vsnip")
     Plug("hrsh7th/vim-vsnip")

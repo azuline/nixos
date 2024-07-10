@@ -2,7 +2,7 @@ vim.opt.completeopt = "menu,menuone,noselect"
 
 do -- Setup nvim-cmp.
   local cmp = require("cmp")
-  local lspkind = require("lspkind")
+	local lspkind = require('lspkind')
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -66,7 +66,7 @@ do -- Setup nvim-cmp.
     }),
     formatting = {
       format = lspkind.cmp_format({
-        with_text = true,
+        mode = "text",
         menu = {
           buffer = "[buf]",
           nvim_lsp = "[lsp]",
@@ -82,12 +82,20 @@ do -- Setup nvim-cmp.
     enabled = function()
       -- disable completion in comments
       local context = require("cmp.config.context")
-      -- keep command mode completion enabled when cursor is in a comment
-      if vim.api.nvim_get_mode().mode == "c" then
-        return true
-      else
-        return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+      if context.in_treesitter_capture("comment") or context.in_syntax_group("Comment") then
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == "c" then
+          return true
+        end
+        return false
       end
+      -- disable nvim-cmp in Telescope prompt buffers
+      local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+      if buftype == "prompt" then
+        return false
+      end
+      -- otherwise enable
+      return true
     end,
   })
 

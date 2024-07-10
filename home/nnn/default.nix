@@ -23,6 +23,10 @@ let
           exit 0
         }
         export NNN_OPTS=aAERx
+        # Because nnn.nvim requires its own FIFO, we disable auto-FIFO when -F is passed.
+        if [[ "$@" == *"-F1"* ]]; then
+          export NNN_OPTS=AERx
+        fi
         export NNN_COLORS=4532
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TMPFILE=$XDG_RUNTIME_DIR/nnn-lastd

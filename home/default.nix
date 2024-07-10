@@ -18,6 +18,7 @@
       bat
       bc
       beets
+      cmake
       coreutils
       curl
       dasel

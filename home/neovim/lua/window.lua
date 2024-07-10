@@ -21,8 +21,8 @@ do -- Treesitter Configuration
         keymaps = {
           ia = "@assignment.inner",
           aa = "@assignment.outer",
-          ih = "@assignment.lhs",
-          il = "@assignment.rhs",
+          h = "@assignment.lhs",
+          l = "@assignment.rhs",
           ic = "@call.inner",
           ac = "@call.outer",
           ii = "@conditional.inner",
@@ -54,15 +54,6 @@ do -- Treesitter Configuration
           ["@return.outer"] = "V",
           ["@statement.outer"] = "V",
         },
-      },
-    },
-    textsubjects = {
-      enable = true,
-      prev_selection = ",", -- (Optional) keymap to select the previous selection
-      keymaps = {
-        ["."] = "textsubjects-smart",
-        [";"] = "textsubjects-container-outer",
-        ["i;"] = "textsubjects-container-inner",
       },
     },
     modules = {},

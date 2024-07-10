@@ -1,151 +1,61 @@
-do -- Tree browser
-  vim.api.nvim_set_keymap("n", "<Leader>f", "<Cmd>CHADopen<CR>", { noremap = true })
+do -- File browser
+  require("nnn").setup({
+    explorer = {
+      width = 32,
+      fullscreen = false,
+    },
+    auto_close = true,
+    replace_netrw = "picker",
+    windownav = {
+      left = "<C-h>",
+      right = "<C-l>",
+      next = "<C-j>",
+      prev = "<C-k>",
+    },
+  })
+  vim.api.nvim_set_keymap("n", "<Leader>f", "<Cmd>NnnExplorer %:p:h<CR>", { noremap = true })
   vim.api.nvim_set_keymap("n", "<Leader>c", "<Cmd>call setqflist([])<CR>", { noremap = true })
-
-  local ignore_name_exact = {
-    ".DS_Store",
-    ".directory",
-    "thumbs.db",
-    ".git",
-    "node_modules",
-    "__pycache__",
-    "build",
-    "dist",
-    ".direnv",
-    ".mypy_cache",
-    ".ruff_cache",
-    ".stfolder",
-  }
-
-  local ignore_name_glob = {
-    ".null-ls*",
-    ".coverage.*",
-    "*.png",
-    "*.jpg",
-    -- LaTeX stuff
-    "*.gen.tex",
-    "*.gen.md",
-    "*.pdf",
-    "*.aux",
-    "*.toc",
-    "*.synctex*",
-    "*.out",
-    "*.fls",
-    "*.4tc",
-    "*.4ct",
-    "*.dvi",
-    "*.log",
-    "*.lg",
-    "*.tmp",
-    "*.idv",
-    "*.xref",
-    "*.fdb_latexmk",
-    -- Bibtex
-    "*.bbl",
-    "*.bcf",
-    "*.blg",
-    "*.run.xml",
-    "*-SAVE-ERROR",
-  }
-
-  if string.find(vim.fn.getcwd(), "^/home/blissful/atelier") and not os.getenv("ATELIER_DEV") then
-    table.insert(ignore_name_exact, "_lib")
-    table.insert(ignore_name_exact, "_store")
-    table.insert(ignore_name_exact, "_tool")
-    table.insert(ignore_name_exact, ".envrc")
-    table.insert(ignore_name_exact, ".fdignore")
-    table.insert(ignore_name_exact, ".gitignore")
-    table.insert(ignore_name_exact, "flake.lock")
-    table.insert(ignore_name_exact, "flake.nix")
-    table.insert(ignore_name_exact, ".root")
-    table.insert(ignore_name_exact, "pyproject.toml")
-    table.insert(ignore_name_exact, ".stignore")
-    table.insert(ignore_name_glob, "*.html")
-    table.insert(ignore_name_glob, "*.css")
-    table.insert(ignore_name_glob, "*.log")
-  end
-
-  vim.g["chadtree_settings"] = {
-    ignore = {
-      name_exact = ignore_name_exact,
-      name_glob = ignore_name_glob,
-    },
-    keymap = {
-      -- Open/close
-      primary = { "<Enter>", "<Tab>", "o" },
-      collapse = { "<S-Tab>" },
-      v_split = { "w" },
-      h_split = { "W" },
-      -- File manipulation
-      new = { "a" },
-      rename = { "r" },
-      copy = { "p" },
-      cut = { "x" },
-      delete = { "d" },
-      -- Navigate
-      quit = { "q" },
-      change_focus = { "c" },
-      change_focus_up = { "C" },
-      jump_to_current = { "J" },
-      -- Change view
-      filter = { "f" },
-      clear_filter = { "F" },
-      select = { "s" },
-      clear_selection = { "S" },
-      -- Extra action
-      copy_name = { "y" },
-      copy_relname = { "Y" },
-    },
-    options = {
-      -- Causes too much lag in large monorepos.
-      session = false,
-      show_hidden = false,
-    },
-    view = {
-      window_options = {
-        number = true,
-        relativenumber = true,
-      },
-    },
-    -- For some reason, CHADtree doesn't pick up the theme by default, so we
-    -- need to define colors by hand. Copy pasted from Palenight.
-    theme = {
-      icon_glyph_set = "ascii",
-      discrete_colour_map = {
-        black = "#292D3E",
-        red = "#ff5370",
-        green = "#C3E88D",
-        yellow = "#ffcb6b",
-        blue = "#82b1ff",
-        magenta = "#939ede",
-        cyan = "#89DDFF",
-        white = "#bfc7d5",
-        bright_black = "#4B5263", -- gutter_fg_grey
-        bright_red = "#ff869a", -- light_red
-        bright_green = "#69ff94", -- dracula
-        bright_yellow = "#ffffa5", -- dracula
-        bright_blue = "#d6acff", -- dracula
-        bright_magenta = "#ff92df", -- dracula
-        bright_cyan = "#a4ffff", -- dracula
-        bright_white = "#ffffff", -- white
-      },
-    },
-  }
 end
 
-do -- Fuzzy File Finder
-  -- Git Files
-  vim.api.nvim_set_keymap("n", "<Leader>.", "<Cmd>GFiles! --cached --others --exclude-standard<CR>", { noremap = true })
-  -- Ripgrep
-  vim.api.nvim_set_keymap("n", "<Leader>g", "<Cmd>Rg!<CR>", { noremap = true })
-  -- Command All
-  vim.api.nvim_set_keymap("n", "<Leader>ca", "<Cmd>Commands!<CR>", { noremap = true })
-  -- Command History
-  vim.api.nvim_set_keymap("n", "<Leader>ch", "<Cmd>History:!<CR>", { noremap = true })
-  -- Configure FZF preview window.
-	vim.g.fzf_vim = {
-		preview_window = { "up,40%,hidden", "ctrl-/" },
-	};
+do -- Telescope
+  local actions = require("telescope.actions")
+  local telescope = require("telescope")
+  telescope.setup({
+    defaults = {
+      mappings = {
+        i = {
+          -- Allow esc to close the window in insert mode.
+          ["<ESC>"] = actions.close,
+          -- Allow ctrl+u to clear the prompt in insert mode.
+          ["<C-u>"] = false,
+        },
+      },
+    },
+    pickers = {
+      live_grep = {
+        previewer = false,
+      },
+    },
+  })
+  telescope.load_extension("fzf")
+  -- Disable the nvim-cmp prompt in Telescope.
+  vim.cmd([[
+		autocmd FileType TelescopePrompt lua require'cmp'.setup.buffer {
+		\   completion = { autocomplete = false }
+		\ }
+	]])
+  vim.api.nvim_set_keymap("n", "<Leader>.", "<Cmd>Telescope find_files<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>g", "<Cmd>Telescope live_grep<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>b", "<Cmd>Telescope buffers<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<C-]>", "<Cmd>Telescope lsp_definitions<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>ra", "<Cmd>Telescope lsp_references<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>ri", "<Cmd>Telescope lsp_incoming_calls<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>ro", "<Cmd>Telescope lsp_outgoing_calls<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>ca", "<Cmd>Telescope commands<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>ch", "<Cmd>Telescope command_history<CR>", { noremap = true })
+  vim.g.fzf_vim = {
+    preview_window = { "up,40%,hidden", "ctrl-/" },
+  }
 end
 
 do -- Tab Bar
