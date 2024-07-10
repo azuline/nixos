@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local coq = require("coq")
 local null_ls = require("null-ls")
 
 local buf_map = function(bufnr, mode, lhs, rhs, opts)
@@ -38,9 +39,9 @@ local on_attach = function(client, bufnr)
 end
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-lspconfig.gopls.setup({
+lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -49,9 +50,9 @@ lspconfig.gopls.setup({
       usePlaceholders = false,
     },
   },
-})
+}))
 
-lspconfig.pyright.setup({
+lspconfig.pyright.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
@@ -69,9 +70,9 @@ lspconfig.pyright.setup({
       },
     },
   },
-})
+}))
 
-lspconfig.ruff_lsp.setup({
+lspconfig.ruff_lsp.setup(coq.lsp_ensure_capabilities({
   on_attach = function(client, bufnr)
     -- Defer to Pyright's hover.
     if client.name == "ruff_lsp" then
@@ -80,28 +81,28 @@ lspconfig.ruff_lsp.setup({
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
-})
+}))
 
-lspconfig.hls.setup({
+lspconfig.hls.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
-})
+}))
 
-lspconfig.zls.setup({
+lspconfig.zls.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
-})
+}))
 
-lspconfig.bashls.setup({
+lspconfig.bashls.setup(coq.lsp_ensure_capabilities({
   on_attach = on_attach,
   capabilities = capabilities,
-})
+}))
 
 -- To avoid react.d.ts definitions from opening on jump to definition.
 -- https://github.com/typescript-language-server/typescript-language-server/issues/216#issuecomment-1005272952
@@ -121,7 +122,7 @@ local function filter(arr, fn)
 end
 
 if vim.fn.executable("tsc") then
-  require("typescript-tools").setup({
+  require("typescript-tools").setup(coq.lsp_ensure_capabilities({
     init_options = {
       preferences = {
         importModuleSpecifierPreference = "non-relative",
@@ -143,9 +144,7 @@ if vim.fn.executable("tsc") then
       client.server_capabilities.document_range_formatting = false
 
       local ts_utils = require("nvim-lsp-ts-utils")
-      ts_utils.setup({
-        update_imports_on_move = true,
-      })
+      ts_utils.setup({ update_imports_on_move = true })
       ts_utils.setup_client(client)
       buf_map(bufnr, "n", "<Leader>i", ":TSLspImportAll<CR>")
       on_attach(client, bufnr)
@@ -169,10 +168,10 @@ if vim.fn.executable("tsc") then
         vim.lsp.handlers["textDocument/definition"](err, result, method)
       end,
     },
-  })
+  }))
 end
 
-lspconfig.eslint.setup({
+lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -181,9 +180,9 @@ lspconfig.eslint.setup({
     })
     on_attach(client, bufnr)
   end,
-})
+}))
 
-lspconfig.lua_ls.setup({
+lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities({
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -208,12 +207,12 @@ lspconfig.lua_ls.setup({
       },
     },
   },
-})
+}))
 
-lspconfig.nil_ls.setup({
+lspconfig.nil_ls.setup(coq.lsp_ensure_capabilities({
   capabilities = capabilities,
   on_attach = on_attach,
-})
+}))
 
 local sources = {
   -- Lua
@@ -289,8 +288,8 @@ then
   )
 end
 
-null_ls.setup({
+null_ls.setup(coq.lsp_ensure_capabilities({
   root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),
   sources = sources,
   on_attach = on_attach,
-})
+}))
