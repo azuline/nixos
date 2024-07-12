@@ -132,8 +132,6 @@ if vim.fn.executable("tsc") then
         importModuleSpecifierPreference = "non-relative",
         importModuleSpecifierEnding = "minimal",
         autoImportFileExcludePatterns = {
-          -- Prefer to not import from /dist/ dirs.
-          "**/dist/**",
           -- This reexports every React hook.. absurd.
           "**/@storybook/addons/**",
           -- This exports a `t`.
