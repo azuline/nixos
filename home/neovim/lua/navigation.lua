@@ -20,6 +20,7 @@ end
 do -- Telescope
   local actions = require("telescope.actions")
   local telescope = require("telescope")
+  local builtin = require("telescope.builtin")
   telescope.setup({
     defaults = {
       mappings = {
@@ -38,14 +39,48 @@ do -- Telescope
     },
   })
   telescope.load_extension("fzf")
+
+  -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+  local is_inside_work_tree = {}
+  _G.project_files = function()
+    local opts = {} -- define here if you want to define something
+    local cwd = vim.fn.getcwd()
+    if is_inside_work_tree[cwd] == nil then
+      vim.fn.system("git rev-parse --is-inside-work-tree")
+      is_inside_work_tree[cwd] = vim.v.shell_error == 0
+    end
+    if is_inside_work_tree[cwd] then
+      builtin.git_files(opts)
+    else
+      builtin.find_files(opts)
+    end
+  end
+  _G.root_grep = function()
+    local cwd = vim.fn.getcwd()
+    if is_inside_work_tree[cwd] == nil then
+      vim.fn.system("git rev-parse --is-inside-work-tree")
+      is_inside_work_tree[cwd] = vim.v.shell_error == 0
+    end
+    local function get_git_root()
+      local dot_git_path = vim.fn.finddir(".git", ".;")
+      return vim.fn.fnamemodify(dot_git_path, ":h")
+    end
+    local opts = {}
+    if is_inside_work_tree[cwd] then
+      opts = { cwd = get_git_root() }
+    end
+    builtin.live_grep(opts)
+  end
+
   -- Disable the nvim-cmp prompt in Telescope.
   vim.cmd([[
 		autocmd FileType TelescopePrompt lua require'cmp'.setup.buffer {
 		\   completion = { autocomplete = false }
 		\ }
 	]])
-  vim.api.nvim_set_keymap("n", "<Leader>.", "<Cmd>Telescope find_files<CR>", { noremap = true })
-  vim.api.nvim_set_keymap("n", "<Leader>g", "<Cmd>Telescope live_grep<CR>", { noremap = true })
+
+  vim.api.nvim_set_keymap("n", "<Leader>.", "<Cmd>lua _G.project_files()<CR>", { noremap = true })
+  vim.api.nvim_set_keymap("n", "<Leader>g", "<Cmd>lua _G.root_grep()<CR>", { noremap = true })
   vim.api.nvim_set_keymap("n", "<Leader>b", "<Cmd>Telescope buffers<CR>", { noremap = true })
   vim.api.nvim_set_keymap("n", "<C-]>", "<Cmd>Telescope lsp_definitions<CR>", { noremap = true })
   vim.api.nvim_set_keymap("n", "<Leader>ra", "<Cmd>Telescope lsp_references<CR>", { noremap = true })

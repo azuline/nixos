@@ -75,6 +75,12 @@ lspconfig.ruff_lsp.setup({
     if client.name == "ruff_lsp" then
       client.server_capabilities.hoverProvider = false
     end
+    local callback = function()
+      if vim.bo.ft == "python" then
+        vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
+      end
+    end
+    vim.api.nvim_create_autocmd("BufWritePre", { callback = callback })
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
@@ -226,7 +232,7 @@ local sources = {
   -- Python
   -- null_ls.builtins.formatting.black,
   -- null_ls.builtins.formatting.isort,
-  null_ls.builtins.diagnostics.mypy,
+  -- null_ls.builtins.diagnostics.mypy,
   -- Golang
   null_ls.builtins.formatting.gofumpt,
   -- null_ls.builtins.diagnostics.golangci_lint,
