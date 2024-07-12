@@ -120,11 +120,14 @@ end
 
 if vim.fn.executable("tsc") then
   require("typescript-tools").setup({
-    init_options = {
-      preferences = {
+    settings = {
+      expose_as_code_action = "all",
+      tsserver_file_preferences = {
         importModuleSpecifierPreference = "non-relative",
         importModuleSpecifierEnding = "minimal",
         autoImportFileExcludePatterns = {
+          -- Prefer to not import from /dist/ dirs.
+          "**/dist/**",
           -- This reexports every React hook.. absurd.
           "**/@storybook/addons/**",
           -- This exports a `t`.
@@ -137,36 +140,33 @@ if vim.fn.executable("tsc") then
       },
     },
     on_attach = function(client, bufnr)
-      client.server_capabilities.document_formatting = false
-      client.server_capabilities.document_range_formatting = false
-
-      local ts_utils = require("nvim-lsp-ts-utils")
-      ts_utils.setup({
-        update_imports_on_move = true,
-      })
-      ts_utils.setup_client(client)
-      buf_map(bufnr, "n", "<Leader>i", ":TSLspImportAll<CR>")
+      buf_map(bufnr, "n", "<Leader>i", ":TSToolsAddMissingImports<CR>")
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   buffer = bufnr,
+      --   command = "TSToolsFixAll",
+      -- })
       on_attach(client, bufnr)
     end,
     capabilities = capabilities,
-    handlers = {
-      ["textDocument/definition"] = function(err, result, method)
-        -- https://github.com/typescript-language-server/typescript-language-server/issues/216
-        local function filterDTS(value)
-          if value.targetUri ~= nil then
-            return string.match(value.targetUri, "%.d.ts") == nil
-          end
-          return string.match(value.uri, "%.d.ts") == nil
-        end
+    -- TODO: Unknown if this is still an issue with typescript-tools. Uncomment if it is.
+    -- handlers = {
+    --   ["textDocument/definition"] = function(err, result, method)
+    --     -- https://github.com/typescript-language-server/typescript-language-server/issues/216
+    --     local function filterDTS(value)
+    --       if value.targetUri ~= nil then
+    --         return string.match(value.targetUri, "%.d.ts") == nil
+    --       end
+    --       return string.match(value.uri, "%.d.ts") == nil
+    --     end
 
-        if vim.tbl_islist(result) and #result > 1 then
-          local filtered_result = filter(result, filterDTS)
-          return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method)
-        end
+    --     if vim.tbl_islist(result) and #result > 1 then
+    --       local filtered_result = filter(result, filterDTS)
+    --       return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method)
+    --     end
 
-        vim.lsp.handlers["textDocument/definition"](err, result, method)
-      end,
-    },
+    --     vim.lsp.handlers["textDocument/definition"](err, result, method)
+    --   end,
+    -- },
   })
 end
 
@@ -213,6 +213,13 @@ lspconfig.nil_ls.setup({
   on_attach = on_attach,
 })
 
+if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") == 1 then
+  lspconfig.dprint.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
+
 local sources = {
   -- Lua
   null_ls.builtins.formatting.stylua,
@@ -228,18 +235,13 @@ local sources = {
   null_ls.builtins.formatting.nixpkgs_fmt,
 }
 
-if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") ~= 0 then
+if vim.fn.isdirectory(vim.fn.getcwd() .. "/.semgrep") == 1 then
   table.insert(
     sources,
-    1,
     null_ls.builtins.diagnostics.semgrep.with({
       extra_args = { "--config", vim.fn.getcwd() .. "/.semgrep" },
     })
   )
-end
-
-if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") ~= 0 then
-  table.insert(sources, 1, null_ls.builtins.formatting.dprint)
 end
 
 -- I left pipe, but for future Go codebases, we should do something similar.
@@ -248,13 +250,12 @@ end
 -- if string.find(vim.fn.getcwd(), "/pipe/pipe") ~= nil then
 --   table.insert(
 --     sources,
---     #sources - 1,
 --     null_ls.builtins.formatting.goimports.with({
 --       extra_args = { "-local", "github.com/pipe-technologies/pipe/backend" },
 --     })
 --   )
 -- else
-table.insert(sources, #sources - 1, null_ls.builtins.formatting.goimports)
+table.insert(sources, null_ls.builtins.formatting.goimports)
 -- end
 
 if
@@ -265,7 +266,6 @@ if
 then
   table.insert(
     sources,
-    1,
     null_ls.builtins.formatting.prettierd.with({
       filetypes = {
         "javascript",
@@ -288,7 +288,15 @@ then
 end
 
 null_ls.setup({
-  root_dir = lspconfig.util.root_pattern(".null-ls-root", "Makefile", "tsconfig.json", "go.mod", "poetry.toml", ".git"),
+  root_dir = lspconfig.util.root_pattern(
+    ".null-ls-root",
+    "Makefile",
+    "tsconfig.json",
+    "go.mod",
+    "poetry.toml",
+    "package.json",
+    ".git"
+  ),
   sources = sources,
   on_attach = on_attach,
 })

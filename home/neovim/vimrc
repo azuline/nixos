@@ -59,6 +59,10 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" So that :wqa closes nnn.nvim https://github.com/neovim/neovim/issues/14061
+command Z w | qa
+cabbrev wqa Z
+
 " Filetype settings
 " -----------------
 
