@@ -16,6 +16,11 @@
       "action": "accept",
       "src": ["tag:ci"],
       "dst": ["frieren:4646"]
+    },
+    {
+      "action": "accept",
+      "src": ["tag:ci"],
+      "dst": ["100.100.100.100"]
     }
   ],
   "ssh": [
