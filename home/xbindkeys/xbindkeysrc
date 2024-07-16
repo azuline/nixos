@@ -64,7 +64,6 @@
 ## Control + mouse button 2 release event starts rxvt
 #"rxvt"
 #  Control + b:2 + Release
-
 "xset -r 66; pactl set-source-mute alsa_input.usb-0c76_USB_PnP_Audio_Device-00.mono-fallback 0"
   c:135
 

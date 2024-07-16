@@ -8,6 +8,10 @@
 
 function __auto_source_venv --on-variable PWD --description "Activate/Deactivate virtualenv on directory change"
   status --is-command-substitution; and return
+  # Don't bother with this while in dot poetry.. weird shenanigans.
+  if set -q DOT_ROOT
+    return
+  end
 
   # Check if we are inside a git directory
   if git rev-parse --show-toplevel &>/dev/null
