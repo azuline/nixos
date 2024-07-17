@@ -8,7 +8,7 @@
       default-bg = "#090910";
       default-fg = "#eeffff";
       font =
-        if specialArgs.sys.host == "splendor" then
+        if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor then
           "Source Code Pro 12"
         else if specialArgs.sys.host == "haiqin" then
           "Source Code Pro 16"

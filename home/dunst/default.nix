@@ -23,7 +23,7 @@
         frame_width = 3;
         frame_color = "#213e68";
       } // (
-        if specialArgs.sys.host == "splendor" then {
+        if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor then {
           offset = "10x10";
         } else if specialArgs.sys.host == "haiqin" then {
           offset = "5x5";

@@ -125,6 +125,7 @@
       golangci-lint
       gopls
       haskell-language-server
+      ngrok
       haskellPackages.implicit-hie
       isort
       jdk11

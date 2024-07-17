@@ -57,6 +57,7 @@ do -- Load the plugins.
     -- parsers breaks in Nix. For languages where tree-sitter is not fully
     -- mature, we use language-specific plugins for indentation.
     Plug("lervag/vimtex")
+    Plug("Vimjas/vim-python-pep8-indent")
   end
 
   do -- Development Tooling

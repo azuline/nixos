@@ -95,6 +95,8 @@
           host
           # Location of Nix directory.
         , nixDir
+          # Whether we are connected to an external monitor (laptop only).
+        , monitor ? false
           # Username for home-manager configuration.
         , username
           # A function that takes post-parametrized bundles of packages and returns a subset.
@@ -103,7 +105,7 @@
         , custom ? { ... }: { }
         }:
         let
-          sys = { inherit host nixDir; };
+          sys = { inherit host nixDir monitor; };
           bundles = import ./home;
         in
         home-manager.lib.homeManagerConfiguration {
@@ -184,6 +186,7 @@
             host = "haiqin";
             nixDir = "/etc/nixos";
             username = "blissful";
+            monitor = true;
             chooseBundles = b: [
               b.cliBundle
               b.devBundle

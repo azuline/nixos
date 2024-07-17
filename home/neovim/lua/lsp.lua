@@ -69,18 +69,19 @@ lspconfig.pyright.setup({
   },
 })
 
-lspconfig.ruff_lsp.setup({
+lspconfig.ruff.setup({
+  cmd = { "/home/blissful/.nix-profile/bin/ruff", "server", "--preview" },
   on_attach = function(client, bufnr)
     -- Defer to Pyright's hover.
-    if client.name == "ruff_lsp" then
+    if client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
     end
-    local callback = function()
-      if vim.bo.ft == "python" then
-        vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
-      end
-    end
-    vim.api.nvim_create_autocmd("BufWritePre", { callback = callback })
+    -- local callback = function()
+    --   if vim.bo.ft == "python" then
+    --     vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
+    --   end
+    -- end
+    -- vim.api.nvim_create_autocmd("BufWritePre", { callback = callback })
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,

@@ -46,7 +46,7 @@ let
       children: [ "prompt", "textbox-prompt-colon", "entry" ];
     }
     ${
-      if specialArgs.sys.host == "splendor" then splendorSpacingTheme
+      if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor then splendorSpacingTheme
       else if specialArgs.sys.host == "haiqin" then haiqinSpacingTheme
       else if specialArgs.sys.host == "neptune" then neptuneSpacingTheme
       else throw "Unsupported host in rofi."
@@ -65,7 +65,7 @@ in
       icon-theme = "Papirus-Dark";
       display-drun = "Launch";
       font = (
-        if specialArgs.sys.host == "splendor" then "Roboto 14"
+        if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor then "Roboto 14"
         else if specialArgs.sys.host == "haiqin" then "Roboto 18"
         else if specialArgs.sys.host == "neptune" then "Roboto 14"
         else throw "Unsupported host in rofi."
