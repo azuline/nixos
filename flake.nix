@@ -179,6 +179,7 @@
                 backup-scripts
                 exif-mtime-sync
                 win-switch
+                splendor-change-audio
               ];
             };
           };
@@ -194,6 +195,9 @@
               b.personalMachineBundle
               b.i3Bundle
             ];
+            custom = { pkgs, ... }: {
+              home.packages = with pkgs; [ haiqin-change-audio ];
+            };
           };
           neptune = makeHomeConfiguration {
             host = "neptune";

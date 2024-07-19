@@ -67,6 +67,7 @@
       procps
       python
       qpdf
+      sox
       rclone
       rename
       ripgrep
@@ -252,7 +253,6 @@
       bar-loadavg
       bar-now-playing
       bar-vpn
-      i3-change-audio
       i3-clear-clipboard
       i3-lock
       i3-pass

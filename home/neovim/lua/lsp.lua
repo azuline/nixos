@@ -52,19 +52,13 @@ lspconfig.gopls.setup({
 lspconfig.pyright.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  handlers = {
-    ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
-  },
   settings = {
     pyright = {
-      -- Using Ruff's import organizer
-      disableOrganizeImports = true,
+      disableOrganizeImports = true, -- Using Ruff's import organizer
+      diagnosticMode = "workspace", -- Otherwise the LSP does not autocomplete in unimported files.
     },
     python = {
-      analysis = {
-        -- Ignore all files for analysis to exclusively use Ruff for linting
-        ignore = { "*" },
-      },
+      analysis = {},
     },
   },
 })
@@ -76,12 +70,12 @@ lspconfig.ruff.setup({
     if client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
     end
-    -- local callback = function()
-    --   if vim.bo.ft == "python" then
-    --     vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
-    --   end
-    -- end
-    -- vim.api.nvim_create_autocmd("BufWritePre", { callback = callback })
+    local callback = function()
+      if vim.bo.ft == "python" then
+        vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
+      end
+    end
+    vim.api.nvim_create_autocmd("BufWritePre", { callback = callback })
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,

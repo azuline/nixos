@@ -16,7 +16,6 @@ import nixpkgs {
       edit-toc = prev.callPackage ./edit-toc { };
       i3-atelier-identifier = prev.callPackage ./i3-atelier-identifier { };
       i3-atelier-opener = prev.callPackage ./i3-atelier-opener { };
-      i3-change-audio = prev.callPackage ./i3-change-audio { };
       i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };
       i3-lock = prev.callPackage ./i3-lock { };
       i3-pass = prev.callPackage ./i3-pass { };
@@ -30,6 +29,8 @@ import nixpkgs {
       tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };
       win-switch = prev.callPackage ./win-switch { };
       zathura = prev.callPackage ./zathura { inherit srcs; original = prev.zathura; };
+      splendor-change-audio = prev.callPackage ./splendor-change-audio { };
+      haiqin-change-audio = prev.callPackage ./haiqin-change-audio { };
     })
     (final: prev: prev // pins)
   ];

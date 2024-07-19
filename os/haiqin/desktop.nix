@@ -14,6 +14,13 @@
       deviceSection = ''
         Option "DRI" "3"
       '';
+      # monitorSection = ''
+      #   Section "Monitor"
+      #     Identifier "LG UltraFine 5K"
+      #     Modeline "5120x2880_60.00" 1188.00  5120 5376 5920 6720  2880 2883 2893 2944 -hsync +vsync
+      #     Option "PreferredMode" "5120x2880_60.00"
+      #   EndSection
+      # '';
       xkb = {
         layout = "us";
         options = "altwin:swap_lalt_lwin,caps:escape_shifted_capslock";
