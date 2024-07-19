@@ -31,6 +31,7 @@ import nixpkgs {
       zathura = prev.callPackage ./zathura { inherit srcs; original = prev.zathura; };
       splendor-change-audio = prev.callPackage ./splendor-change-audio { };
       haiqin-change-audio = prev.callPackage ./haiqin-change-audio { };
+      monitor-switch = prev.callPackage ./monitor-switch { };
     })
     (final: prev: prev // pins)
   ];

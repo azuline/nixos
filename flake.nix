@@ -187,6 +187,25 @@
             host = "haiqin";
             nixDir = "/etc/nixos";
             username = "blissful";
+            monitor = false;
+            chooseBundles = b: [
+              b.cliBundle
+              b.devBundle
+              b.guiBundle
+              b.personalMachineBundle
+              b.i3Bundle
+            ];
+            custom = { pkgs, ... }: {
+              home.packages = with pkgs; [
+                monitor-switch
+                haiqin-change-audio
+              ];
+            };
+          };
+          haiqin-monitor = makeHomeConfiguration {
+            host = "haiqin";
+            nixDir = "/etc/nixos";
+            username = "blissful";
             monitor = true;
             chooseBundles = b: [
               b.cliBundle

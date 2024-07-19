@@ -125,6 +125,7 @@
       gofumpt
       golangci-lint
       gopls
+      biome
       haskell-language-server
       ngrok
       haskellPackages.implicit-hie
