@@ -72,7 +72,7 @@ lspconfig.ruff.setup({
     end
     local callback = function()
       if vim.bo.ft == "python" then
-        vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
+        vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true, async = true })
       end
     end
     vim.api.nvim_create_autocmd("BufWritePre", { callback = callback })
@@ -178,6 +178,11 @@ lspconfig.eslint.setup({
     })
     on_attach(client, bufnr)
   end,
+})
+
+lspconfig.biome.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
 })
 
 lspconfig.lua_ls.setup({

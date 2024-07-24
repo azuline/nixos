@@ -215,7 +215,10 @@
               b.i3Bundle
             ];
             custom = { pkgs, ... }: {
-              home.packages = with pkgs; [ haiqin-change-audio ];
+              home.packages = with pkgs; [
+                monitor-switch
+                haiqin-change-audio
+              ];
             };
           };
           neptune = makeHomeConfiguration {
