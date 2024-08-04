@@ -118,7 +118,7 @@ in
       } else { });
       "bar/monitor" = {
         "inherit" = "bar/base";
-        monitor = "HDMI-1";
+        monitor = specialArgs.sys.monitor;
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
         modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
       } // (if specialArgs.sys.monitor then {

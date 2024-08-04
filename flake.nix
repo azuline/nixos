@@ -95,8 +95,8 @@
           host
           # Location of Nix directory.
         , nixDir
-          # Whether we are connected to an external monitor (laptop only).
-        , monitor ? false
+          # Whether we are connected to an external monitor (laptop only). The monitor name.
+        , monitor ? null
           # Username for home-manager configuration.
         , username
           # A function that takes post-parametrized bundles of packages and returns a subset.
@@ -187,7 +187,7 @@
             host = "haiqin";
             nixDir = "/etc/nixos";
             username = "blissful";
-            monitor = false;
+            monitor = null;
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
@@ -207,7 +207,7 @@
             host = "haiqin";
             nixDir = "/etc/nixos";
             username = "blissful";
-            monitor = true;
+            monitor = "HDMI-1";
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
@@ -217,7 +217,7 @@
             ];
             custom = { pkgs, ... }: {
               home.packages = with pkgs; [
-                monitor-switch
+                (monitor-switch.override { monitor = "HDMI-1"; })
                 haiqin-change-audio
               ];
             };
