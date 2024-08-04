@@ -108,22 +108,24 @@ in
         font-5 = "Noto Sans CJK KR:style=Regular:size=22;4";
         font-6 = "Noto Sans CJK TC:style=Regular:size=22;4";
         font-7 = "Noto Sans CJK HK:style=Regular:size=22;4";
+        modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
+      } // (if !specialArgs.sys.monitor then {
         tray-position = "right";
         tray-padding = "1";
         tray-background = shades.shade1;
         tray-maxsize = "32";
-        modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
-      };
+      } else { });
       "bar/monitor" = {
         "inherit" = "bar/base";
         monitor = "HDMI-1";
-        # tray-position = "right";
-        # tray-padding = "1";
-        # tray-background = shades.shade1;
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
         modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
-      };
+      } // (if specialArgs.sys.monitor then {
+        tray-position = "right";
+        tray-padding = "1";
+        tray-background = shades.shade1;
+      } else { });
       "bar/neptune" = {
         "inherit" = "bar/base";
         height = "48";
