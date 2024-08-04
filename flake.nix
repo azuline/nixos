@@ -198,6 +198,7 @@
             custom = { pkgs, ... }: {
               home.packages = with pkgs; [
                 monitor-switch
+                exif-mtime-sync
                 haiqin-change-audio
               ];
             };

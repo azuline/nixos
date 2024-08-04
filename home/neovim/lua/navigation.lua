@@ -21,6 +21,21 @@ do -- Telescope
   local actions = require("telescope.actions")
   local telescope = require("telescope")
   local builtin = require("telescope.builtin")
+
+  -- Opens marked items in a quickfix list.
+  -- if there are no marked items, it opens all items in a quickfix list.
+  local smart_send_to_qflist = function(prompt_bufnr)
+    local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+    local multi = picker:get_multi_selection()
+
+    if not vim.tbl_isempty(multi) then
+      actions.send_selected_to_qflist(prompt_bufnr)
+    else
+      actions.send_to_qflist(prompt_bufnr)
+    end
+    actions.open_qflist(prompt_bufnr)
+  end
+
   telescope.setup({
     defaults = {
       mappings = {
@@ -29,6 +44,10 @@ do -- Telescope
           ["<ESC>"] = actions.close,
           -- Allow ctrl+u to clear the prompt in insert mode.
           ["<C-u>"] = false,
+          ["<C-q>"] = smart_send_to_qflist,
+        },
+        n = {
+          ["<C-q>"] = smart_send_to_qflist,
         },
       },
     },
@@ -74,10 +93,10 @@ do -- Telescope
 
   -- Disable the nvim-cmp prompt in Telescope.
   vim.cmd([[
-		autocmd FileType TelescopePrompt lua require'cmp'.setup.buffer {
-		\   completion = { autocomplete = false }
-		\ }
-	]])
+    autocmd FileType TelescopePrompt lua require'cmp'.setup.buffer {
+    \   completion = { autocomplete = false }
+    \ }
+  ]])
 
   vim.api.nvim_set_keymap("n", "<Leader>.", "<Cmd>lua _G.project_files()<CR>", { noremap = true })
   vim.api.nvim_set_keymap("n", "<Leader>g", "<Cmd>lua _G.root_grep()<CR>", { noremap = true })

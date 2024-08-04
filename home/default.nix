@@ -143,6 +143,7 @@
       node2nix
       nodePackages.bash-language-server
       nodePackages.eslint
+      uv
       nodePackages.pnpm
       nodePackages.prettier
       nodePackages.typescript-language-server
@@ -163,6 +164,7 @@
       rustup
       selene
       semgrep
+      tailwindcss-language-server
       shellcheck
       sqlint
       stack

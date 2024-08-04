@@ -5,24 +5,24 @@ writeShellScriptBin "monitor-switch" ''
 
   function monitorOn() {
     # Monitor on
-    xrandr --output DP-2 --auto
-    xrandr --output DP-2 --right-of eDP-1
-    xrandr --output DP-2 --primary
+    xrandr --output HDMI-1 --auto
+    xrandr --output HDMI-1 --right-of eDP-1
+    xrandr --output HDMI-1 --primary
     sleep 1
-    xwallpaper --output DP-2 --focus ~/backgrounds/right.png --output eDP-1 --focus ~/backgrounds/left.png
+    xwallpaper --output HDMI-1 --focus ~/backgrounds/right.png --output eDP-1 --focus ~/backgrounds/left.png
     home-manager switch --flake /etc/nixos/#haiqin-monitor
     systemctl --user restart polybar
   }
 
   function monitorOff() {
     # Monitor off
-    xrandr --output DP-2 --off
+    xrandr --output HDMI-1 --off
     sleep 1
     home-manager switch --flake /etc/nixos/#haiqin
     systemctl --user restart polybar
   }
 
-  cond="$(xrandr --listmonitors | { grep DP-2 || true; })"
+  cond="$(xrandr --query | { grep "HDMI-1 connected" || true; })"
   if [[ -n "$cond" ]]; then
     monitorOn
   else

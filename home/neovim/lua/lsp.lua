@@ -185,6 +185,16 @@ lspconfig.biome.setup({
   on_attach = on_attach,
 })
 
+lspconfig.tailwindcss.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    tailwindCSS = {
+      classAttributes = { "class", "className", "tw" },
+    },
+  },
+})
+
 lspconfig.lua_ls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
