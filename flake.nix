@@ -197,7 +197,7 @@
             ];
             custom = { pkgs, ... }: {
               home.packages = with pkgs; [
-                monitor-switch
+                (monitor-switch.override { monitor = "HDMI-1"; })
                 exif-mtime-sync
                 haiqin-change-audio
               ];
@@ -218,6 +218,7 @@
             custom = { pkgs, ... }: {
               home.packages = with pkgs; [
                 (monitor-switch.override { monitor = "HDMI-1"; })
+                exif-mtime-sync
                 haiqin-change-audio
               ];
             };

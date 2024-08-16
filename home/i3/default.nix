@@ -22,7 +22,7 @@ let
       workspace 8 output HDMI-0
       workspace 9 output HDMI-0
       workspace 10 output HDMI-0
-    '' else if specialArgs.sys.monitor then configBase + ''
+    '' else if specialArgs.sys.monitor != null then configBase + ''
       # Font
       font pango: roboto 11
 

@@ -2,7 +2,7 @@
 
 let
   config =
-    if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor then
+    if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then
       builtins.readFile ./kitty.conf + ''
         font_size 15.0
         window_padding_width 8
