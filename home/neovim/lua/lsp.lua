@@ -171,13 +171,15 @@ end
 
 lspconfig.eslint.setup({
   capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-    on_attach(client, bufnr)
-  end,
+  on_attach = on_attach,
+  settings = {
+    quiet = true,
+    format = false,
+    codeActionOnSave = {
+      enable = true,
+      mode = "all",
+    },
+  },
 })
 
 lspconfig.biome.setup({
