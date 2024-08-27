@@ -92,6 +92,7 @@
       pinentry-curses
       powertop
       lshw
+      restic
       tomb
       vim
       wget
@@ -104,15 +105,20 @@
 
   services.tlp = {
     enable = true;
+    # Switch to powersave when necessary.
     settings = {
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
+      # CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
       PLATFORM_PROFILE_ON_AC = "performance";
-      PLATFORM_PROFILE_ON_BAT = "balanced";
+      PLATFORM_PROFILE_ON_BAT = "performance";
+      # PLATFORM_PROFILE_ON_BAT = "balanced";
       CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
+      CPU_BOOST_ON_BAT = 1;
+      # CPU_BOOST_ON_BAT = 0;
       CPU_HWP_DYN_BOOST_ON_AC = 1;
-      CPU_HWP_DYN_BOOST_ON_BAT = 0;
+      CPU_HWP_DYN_BOOST_ON_BAT = 1;
+      # CPU_HWP_DYN_BOOST_ON_BAT = 0;
       START_CHARGE_THRESH_BAT0 = 90;
       STOP_CHARGE_THRESH_BAT0 = 95;
     };
