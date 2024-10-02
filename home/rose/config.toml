@@ -211,7 +211,7 @@ releases_released_on.release = """
 """
 artists.release = """
 [{{ releasetype | releasetypefmt }}]{% if new %}^{% endif %}
-{% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% else %}0000.{% endif %}
+{% if releasedate or originaldate %}{{ (originaldate or releasedate) }}.{% else %}0000-00-00.{% endif %}
 {{ releaseartists | artistsfmt }} -
 {{ releasetitle }}
 {% if edition %}({{ edition }}){% endif %}

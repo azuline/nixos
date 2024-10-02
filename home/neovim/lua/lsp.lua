@@ -72,10 +72,16 @@ lspconfig.ruff.setup({
     end
     local callback = function()
       if vim.bo.ft == "python" then
-        vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true, async = true })
+        -- pcall here so that errors do not spam the ex line with a bunch of shit and block editing for 5 seconds
+        local success, _ = pcall(function()
+          vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
+        end)
+        if success then
+          vim.cmd("write")
+        end
       end
     end
-    vim.api.nvim_create_autocmd("BufWritePre", { callback = callback })
+    vim.api.nvim_create_autocmd("BufWritePost", { callback = callback })
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
