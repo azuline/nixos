@@ -373,6 +373,9 @@ actions = ["replace:K-Pop"]
 [[stored_metadata_rules]]
 matcher = "genre:^K-POP$"
 actions = ["replace:K-Pop"]
+[[stored_metadata_rules]]
+matcher = "genre:^jpop$:i"
+actions = ["replace:J-Pop"]
 
 # Label normalization heuristics.
 [[stored_metadata_rules]]
@@ -401,6 +404,7 @@ matcher = "label://"
 actions = ["split://"]
 ignore = [
     "label:^I/AM/ME$",
+    "label:^CBS/Sony$",
 ]
 
 # Artist normalization.
