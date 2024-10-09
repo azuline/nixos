@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-stable, pkgs-latest, presage-pin, ... }:
+{ pkgs, pin, ... }:
 
 let
   mdadmConf = ''
@@ -131,7 +131,7 @@ in
       curl
       git
       jq
-      presage-pin
+      pin.presage
       neovim
       pinentry-curses
       smartmontools

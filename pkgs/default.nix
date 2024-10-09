@@ -28,6 +28,7 @@ import nixpkgs {
       python = prev.callPackage ./python { };
       signal = prev.callPackage ./signal { };
       tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };
+      transmission_4 = prev.callPackage ./transmission { original = prev.transmission_4; };
       win-switch = prev.callPackage ./win-switch { };
       zathura = prev.callPackage ./zathura { inherit srcs; original = prev.zathura; };
       splendor-change-audio = prev.callPackage ./splendor-change-audio { };

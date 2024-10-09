@@ -142,6 +142,9 @@
         nixosConfigurations = {
           splendor = nixpkgs.lib.nixosSystem {
             inherit system;
+            specialArgs = {
+              pin = { transmission_4 = pkgs.transmission_4; };
+            };
             modules = [ ./os/splendor/configuration.nix ];
           };
           haiqin = nixpkgs.lib.nixosSystem {
@@ -155,8 +158,7 @@
           frieren = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              inherit pkgs-latest pkgs-stable;
-              presage-pin = pkgs.presage;
+              pin = { presage = pkgs.presage; };
             };
             modules = [ ./os/frieren/configuration.nix ];
           };
