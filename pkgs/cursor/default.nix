@@ -6,7 +6,7 @@ let
   src = pkgs.fetchurl {
     # WARNING: Not pointed to a pinned version.
     url = "https://downloader.cursor.sh/linux/appImage/x64";
-    hash = "sha256-qF9vqfvGRGDJ4dZxYzvRFdIKxt6ieiQXupPiOzkF4us=";
+    hash = "sha256-WtfyiNGnUn8g1HR0TQPyn3SMJmjqe+otAYeyokMIO+w=";
   };
   appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
 in
