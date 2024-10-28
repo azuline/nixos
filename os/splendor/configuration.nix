@@ -1,4 +1,4 @@
-{ pkgs, pin, ... }:
+{ pkgs, ... }:
 
 {
   system.stateVersion = "22.11";
@@ -20,7 +20,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     initrd.luks.devices.root = {
-      device = "/dev/nvme0n1p2";
+      device = "/dev/disk/by-partuuid/4136449e-c6b2-4de6-962c-8672f7c80e25";
       preLVM = true;
     };
     # True by default; creates a warning when other parameters are unset. So we
