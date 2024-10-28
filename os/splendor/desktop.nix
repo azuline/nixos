@@ -67,7 +67,6 @@
   };
 
   hardware.bluetooth.enable = true;
-  sound.enable = true;
 
   services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
@@ -84,42 +83,49 @@
 
   services.samba = {
     enable = true;
-    configText = ''
-      [global]
-          # Browsing/Identification
-          workgroup = WORKGROUP
-          # Networking
-          bind interfaces only = yes
-          interfaces = lo virbr0 192.168.0.0/16
-          # Debugging/Accounting
-          log file = /var/log/samba/log.%m
-          max log size = 1000
-          logging = file
-          panic action = /usr/share/samba/panic-action %d
-          # Authentication
-          server role = standalone server
-          obey pam restrictions = yes
-      [downloads]
-          comment = downloads dir
-          path = /home/blissful/downloads
-          guest ok = no
-          browseable = yes
-          read only = no
-          valid users = blissful
-      [winshare]
-          comment = general share
-          path = /home/blissful/winshare
-          guest ok = no
-          browseable = yes
-          read only = no
-          valid users = blissful
-      [elements]
-          comment = elements drive
-          path = /mnt/elements
-          guest ok = no
-          browseable = yes
-          read only = yes
-          valid users = blissful
-    '';
+    settings = {
+      global = {
+        # Browsing/Identification
+        workgroup = "WORKGROUP";
+        # Networking
+        "bind interfaces only" = true;
+        interfaces = [ "lo" "virbr0" "192.168.0.0/16" ];
+        # Debugging/Accounting
+        "log file" = "/var/log/samba/log.%m";
+        "max log size" = 1000;
+        logging = "file";
+        "panic action" = "/usr/share/samba/panic-action %d";
+        # Authentication
+        "server role" = "standalone server";
+        "obey pam restrictions" = true;
+      };
+      downloads = {
+        # Downloads share configuration
+        comment = "downloads dir";
+        path = "/home/blissful/downloads";
+        "guest ok" = "no";
+        browseable = "yes";
+        "read only" = "no";
+        "valid users" = [ "blissful" ];
+      };
+      winshare = {
+        # General share configuration
+        comment = "general share";
+        path = "/home/blissful/winshare";
+        "guest ok" = "no";
+        browseable = "yes";
+        "read only" = "no";
+        "valid users" = [ "blissful" ];
+      };
+      elements = {
+        # Elements drive configuration
+        comment = "elements drive";
+        path = "/mnt/elements";
+        "guest ok" = "no";
+        browseable = "yes";
+        "read only" = "yes";
+        "valid users" = [ "blissful" ];
+      };
+    };
   };
 }
