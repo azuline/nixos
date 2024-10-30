@@ -44,6 +44,7 @@
       imagemagick
       intel-gpu-tools
       jq
+      llm
       mediainfo
       mkcert
       mktorrent
