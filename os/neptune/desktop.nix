@@ -57,7 +57,6 @@
   };
 
   hardware.bluetooth.enable = true;
-  sound.enable = true;
 
   services.mullvad-vpn.enable = true;
   services.gvfs.enable = true;

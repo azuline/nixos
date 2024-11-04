@@ -198,7 +198,7 @@
       arandr
       brightnessctl
       chromium
-      cursor
+      code-cursor
       firefox
       gimp
       libnotify

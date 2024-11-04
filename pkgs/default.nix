@@ -10,7 +10,6 @@ import nixpkgs {
       bar-now-playing = prev.callPackage ./bar-now-playing { };
       bar-loadavg = prev.callPackage ./bar-loadavg { };
       bar-vpn = prev.callPackage ./bar-vpn { };
-      cursor = prev.callPackage ./cursor { };
       decrypt-frieren = prev.callPackage ./decrypt-frieren { };
       discord = prev.callPackage ./discord { inherit srcs; original = prev.discord; };
       exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
