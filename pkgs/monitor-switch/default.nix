@@ -11,7 +11,7 @@ writeShellScriptBin "monitor-switch" ''
     xwallpaper --output ${monitor} --focus ~/backgrounds/monitor.png
     home-manager switch --flake /etc/nixos/#haiqin-monitor
     systemctl --user restart polybar
-    sed -i 's/"layout.css.devPixelsPerPx", "1"/"layout.css.devPixelsPerPx", "1.5"/' /home/blissful/.mozilla/firefox/ags1n97b.default-1691722184231/prefs.js
+    sed -i 's/"layout.css.devPixelsPerPx", "1"/"layout.css.devPixelsPerPx", "0.75"/' /home/blissful/.mozilla/firefox/ags1n97b.default-1691722184231/prefs.js
     if pkill firefox; then
       firefox &
       disown
@@ -26,13 +26,14 @@ writeShellScriptBin "monitor-switch" ''
     xwallpaper --output eDP-1 --focus ~/backgrounds/bg.png
     home-manager switch --flake /etc/nixos/#haiqin
     systemctl --user restart polybar
-    sed -i 's/"layout.css.devPixelsPerPx", "1.5"/"layout.css.devPixelsPerPx", "1"/' /home/blissful/.mozilla/firefox/ags1n97b.default-1691722184231/prefs.js
+    sed -i 's/"layout.css.devPixelsPerPx", "0.75"/"layout.css.devPixelsPerPx", "1"/' /home/blissful/.mozilla/firefox/ags1n97b.default-1691722184231/prefs.js
     if pkill firefox; then
       firefox &
       disown
     fi
   }
 
+  pkill monitor-switch || true
   cond="$(xrandr --query | { grep "${monitor} connected" || true; })"
   if [[ -n "$cond" ]]; then
     monitorOn

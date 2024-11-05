@@ -50,9 +50,9 @@ writeShellScriptBin "i3-change-audio" ''
   if [[ "$new_sink" == "$wired_headphones_sink" ]]; then
     notify-send "Switched audio to Wired Output."
   elif [[ "$new_sink" == "$desktop_speaker_sink" ]]; then
-    notify-send "Switched audio to LSX II Speakers."
+    notify-send "Switched audio to Desk Speakers."
   elif [[ "$new_sink" == "$bt_headphones_sink" ]]; then
-    notify-send "Switched audio to Sony WH-1000XM3."
+    notify-send "Switched audio to Bluetooth Headphones."
   fi
 
   # Update pulseaudio's default sink.

@@ -14,6 +14,7 @@
     ];
 
     home.packages = with pkgs; [
+      # flexget  # Failing in unstable; I don't use it rn so I don't care.
       autossh
       bat
       bc
@@ -23,13 +24,13 @@
       curl
       dasel
       decrypt-frieren
+      decrypt-pdf
       dnsutils
       edit-toc
       exiftool
       fd
       ffmpeg
       file
-      # flexget  # Failing in unstable; I don't use it rn so I don't care.
       file-uploader
       findutils
       fx
@@ -54,6 +55,7 @@
       nix-search-cli
       nmap
       ocrmypdf
+      openssl
       optipng
       opusTools
       p7zip
@@ -61,19 +63,20 @@
       pass
       pdfgrep
       pdftk
-      pngquant
       pinentry
+      pngquant
       poetry
       poppler_utils
       procps
+      pstree
       python
       qpdf
-      sox
       rclone
       rename
       ripgrep
       rsync
       socat
+      sox
       speedtest-cli
       sqlite-interactive
       sshfs
