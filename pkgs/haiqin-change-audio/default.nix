@@ -3,7 +3,7 @@
 writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
-  wired_headphones_sink="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink"
+  laptop_speakers_sink="$(pactl list sinks | grep Name | cut -d: -f2 | grep "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink" | xargs)"
   wireless_earbuds_sink="bluez_output.80_99_E7_1D_0C_B2.1"
   bt_headphones_sink="bluez_output.CC_98_8B_E3_18_BC.1"
 
@@ -19,7 +19,7 @@ writeShellScriptBin "i3-change-audio" ''
   # 2. Bluetooth headphones
   # Kind of lazy and bash is hard, so I just expanded the rotation into conditionals.
   new_sink=
-  if [[ "$default_sink" == "$wired_headphones_sink" ]]; then
+  if [[ "$default_sink" == "$laptop_speakers_sink" ]]; then
     if sink_exists "$wireless_earbuds_sink"; then
       new_sink="$wireless_earbuds_sink"
     elif sink_exists "$bt_headphones_sink"; then
@@ -28,17 +28,17 @@ writeShellScriptBin "i3-change-audio" ''
   elif [[ "$default_sink" == "$wireless_earbuds_sink" ]]; then
     if sink_exists "$bt_headphones_sink"; then
       new_sink="$bt_headphones_sink"
-    elif sink_exists "$wired_headphones_sink"; then
-      new_sink="$wired_headphones_sink"
+    elif sink_exists "$laptop_speakers_sink"; then
+      new_sink="$laptop_speakers_sink"
     fi
   elif [[ "$default_sink" == "$bt_headphones_sink" ]]; then
-    if sink_exists "$wired_headphones_sink"; then
-      new_sink="$wired_headphones_sink"
+    if sink_exists "$laptop_speakers_sink"; then
+      new_sink="$laptop_speakers_sink"
     elif sink_exists "$wireless_earbuds_sink"; then
       new_sink="$wireless_earbuds_sink"
     fi
   else
-    new_sink="$wired_headphones_sink"
+    new_sink="$laptop_speakers_sink"
   fi
 
   if [[ -z "$new_sink" ]]; then
@@ -47,8 +47,8 @@ writeShellScriptBin "i3-change-audio" ''
   fi
 
   # Notify the user.
-  if [[ "$new_sink" == "$wired_headphones_sink" ]]; then
-    notify-send "Switched audio to Builtin Output."
+  if [[ "$new_sink" == "$laptop_speakers_sink" ]]; then
+    notify-send "Switched audio to Laptop Speakers."
   elif [[ "$new_sink" == "$wireless_earbuds_sink" ]]; then
     notify-send "Switched audio to True Wireless Earbuds."
   elif [[ "$new_sink" == "$bt_headphones_sink" ]]; then
