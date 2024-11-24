@@ -9,6 +9,7 @@
       key = "953ACFC5F8F3E2E7";
       signByDefault = true;
     };
+    lfs.enable = true;
     extraConfig = {
       core.editor = "nvim";
       core.pager = "delta";
@@ -34,9 +35,11 @@
       diff.submodule = "log";
       submodule.recurse = true;
       # Avoid data corruption:
-      transfer.fsckobjects = true;
-      fetch.fsckobjects = true;
+      transfer.fsckObjects = true;
+      fetch.fsckObjects = true;
       receive.fsckObjects = true;
+      # Be more lax with LFS.
+      lfs.allowIncompletePush = true;
     };
   };
 }

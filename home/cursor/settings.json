@@ -1,0 +1,77 @@
+{
+    "python.defaultInterpreterPath": "/home/blissful/.cache/pypoetry/virtualenvs/dotproduct-backend-qOu5cLvc-py3.12",
+    // Recommended by https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss.
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "files.exclude": {
+        ".coverage": true,
+        ".next": true,
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "node_modules": true
+    },
+    "cursor.chat.showSuggestedFiles": true,
+    "cursor.cmdk.useThemedDiffBackground": true,
+    "editor.bracketPairColorization.enabled": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "editor.codeActionsOnSave": [
+        "source.fixAll.biome",
+        "source.fixAll.eslint",
+        "source.organizeImports.biome",
+    ],
+    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace",
+    // Recommended by https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss.
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "diffEditor.experimental.showMoves": true,
+    "editor.minimap.autohide": true,
+    "editor.minimap.enabled": true,
+    "editor.lineNumbers": "relative",
+    "window.newWindowProfile": "Default",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vscode-neovim.ctrlKeysForNormalMode": [
+        "a",
+        "c",
+        "d",
+        "e",
+        "f",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "o",
+        "r",
+        "t",
+        "u",
+        "v",
+        "x",
+        "y",
+        "z",
+        "/",
+        "]",
+        "right",
+        "left",
+        "up",
+        "down",
+        "backspace",
+        "delete"
+    ],
+    "explorer.confirmDragAndDrop": false
+}

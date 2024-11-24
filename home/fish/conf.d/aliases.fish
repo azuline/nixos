@@ -71,6 +71,9 @@ abbr --add --global gm 'git merge'
 abbr --add --global gma 'git merge --abort'
 
 function speedrun
+    git add "$(git rev-parse --show-toplevel)"
+    git commit -m "$argv[1]"
+    git push
     set pr_out (gh prc -l bypass --title "$argv[1]" --body "")
     echo "$pr_out"
     echo "$pr_out" | rg -o "\d+" | xargs gh prm

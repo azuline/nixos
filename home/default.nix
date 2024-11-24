@@ -106,7 +106,7 @@
   devBundle = { pkgs, ... }: {
     imports = [
       ./direnv
-      ./figma-agent
+      # ./figma-agent  # Broken.
       ./gh
       ./ghc
     ];
@@ -135,6 +135,7 @@
       haskellPackages.implicit-hie
       isort
       jdk11
+      just
       kind
       kube-linter
       kubectl
@@ -187,6 +188,7 @@
   # TODO: Split this up into X11 and GUI apps.
   guiBundle = { pkgs, specialArgs, ... }: {
     imports = [
+      ./cursor
       ./kitty
       ./mimetypes
       ./mpv
@@ -235,6 +237,7 @@
       discord
       puddletag
       signal
+      mkchromecast
       nicotine-plus
       tdesktop
       tremotesf
