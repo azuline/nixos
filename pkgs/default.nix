@@ -23,10 +23,12 @@ import nixpkgs {
       i3-screenshot = prev.callPackage ./i3-screenshot { };
       i3-yy = prev.callPackage ./i3-yy { };
       file-uploader = prev.callPackage ./file-uploader { };
+      mkchromecast = prev.libsForQt5.callPackage ./mkchromecast { };
       neovim = prev.callPackage ./neovim { };
       nsxiv = prev.callPackage ./nsxiv { inherit srcs; original = prev.nsxiv; };
       python = prev.callPackage ./python { };
       signal = prev.callPackage ./signal { };
+      tailnet-switch = prev.callPackage ./tailnet-switch { };
       tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };
       transmission_4 = prev.callPackage ./transmission { original = prev.transmission_4; };
       win-switch = prev.callPackage ./win-switch { };

@@ -175,7 +175,9 @@ bindsym Pause exec i3-change-audio
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 # Monitor on
-bindsym $mod+grave exec monitor-switch
+# 67=F1 68=F2
+bindcode $mod+67 exec monitor-switch
+bindcode $mod+68 exec tailnet-switch
 
 ### Screen Locker
 # Auto lock

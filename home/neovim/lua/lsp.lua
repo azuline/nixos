@@ -64,7 +64,7 @@ lspconfig.pyright.setup({
 })
 
 lspconfig.ruff.setup({
-  cmd = { "/home/blissful/.nix-profile/bin/ruff", "server", "--preview" },
+  cmd = { "ruff", "server", "--preview" },
   on_attach = function(client, bufnr)
     -- Defer to Pyright's hover.
     if client.name == "ruff" then

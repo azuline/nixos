@@ -164,8 +164,7 @@
       protobuf
       protoc-gen-go
       pyright
-      ruff
-      ruff-lsp
+      # ruff
       rustup
       selene
       semgrep
@@ -239,6 +238,7 @@
       signal
       mkchromecast
       nicotine-plus
+      tailnet-switch
       tdesktop
       tremotesf
       zotero

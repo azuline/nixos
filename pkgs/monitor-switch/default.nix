@@ -34,7 +34,7 @@ writeShellScriptBin "monitor-switch" ''
   }
 
   # Kill other instances.
-  kill $(pgrep -f "monitor-switch" | grep -vw $$) 2>/dev/null
+  # kill $(pgrep -f "monitor-switch" | grep -vw $$) 2>/dev/null
 
   cond="$(xrandr --query | { grep "${monitor} connected" || true; })"
   if [[ -n "$cond" ]]; then
