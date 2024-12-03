@@ -17,7 +17,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     initrd.luks.devices.root = {
-      device = "/dev/nvme0n1p2";
+      device = "/dev/disk/by-partuuid/d64584d6-6d18-42fb-b7b1-16c2a241122e";
       preLVM = true;
     };
     # True by default; creates a warning when other parameters are unset. So we
@@ -46,7 +46,7 @@
   # https://github.com/NixOS/nixpkgs/issues/195777#issuecomment-1324378856
   system.activationScripts.restart-udev = "${pkgs.systemd}/bin/systemctl restart systemd-udev-trigger.service";
 
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i32b";
