@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   system.stateVersion = "22.11";
@@ -36,6 +36,11 @@
       ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
+      interfaces.enp0s31f6 = {
+        allowedTCPPorts = [
+          32400 # plex
+        ];
+      };
       interfaces.tailscale0 = {
         allowedTCPPorts = [
           22 # ssh
@@ -56,13 +61,34 @@
     useXkbConfig = true;
   };
 
-  users.users.blissful = {
-    createHome = true;
-    home = "/home/blissful";
-    uid = 1000;
-    shell = pkgs.fish;
-    isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
+  users = {
+    users = {
+      blissful = {
+        createHome = true;
+        home = "/home/blissful";
+        uid = 1000;
+        shell = pkgs.fish;
+        isNormalUser = true;
+        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
+      };
+      plex = {
+        createHome = false;
+        uid = lib.mkForce 1001;
+        isNormalUser = true;
+      };
+    };
+    groups = {
+      media.gid = 1001;
+    };
+  };
+
+  services.plex = {
+    enable = true;
+    dataDir = "/data/plex";
+    user = "plex";
+    group = "media";
+    # Manually exposed on the local network; public plex is security nightmware.
+    openFirewall = false;
   };
 
   environment = {

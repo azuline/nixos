@@ -164,7 +164,7 @@
       protobuf
       protoc-gen-go
       pyright
-      # ruff
+      ruff
       rustup
       selene
       semgrep
@@ -242,6 +242,7 @@
       tdesktop
       tremotesf
       zotero
+      plex
       plexamp
     ];
   };

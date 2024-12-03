@@ -12,7 +12,6 @@
     ./hardware-configuration.nix
     ./torrents.nix
     ./desktop.nix
-    ./plex.nix
     ./vm.nix
   ];
 

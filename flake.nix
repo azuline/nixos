@@ -232,6 +232,7 @@
             username = "blissful";
             chooseBundles = b: [
               b.cliBundle
+              b.devBundle
               b.guiBundle
               b.personalMachineBundle
               b.i3Bundle
