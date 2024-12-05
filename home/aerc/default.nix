@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
-{
+# On Mac (work), just use builtin mail.
+lib.mkIf pkgs.stdenv.isLinux {
   # Runtime dependencies for HTML/image filters.
   home.packages = with pkgs; [ dante w3m pandoc catimg ];
 

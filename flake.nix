@@ -10,6 +10,11 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs?rev=a7d87b7f9b63f97c43269fa902eb89851b379687";
     # Most up to date nixpkgs, for specific bug fixes.
     nixpkgs-latest.url = "github:nixos/nixpkgs/master";
+    # For MacOS.
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Flake sources.
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -64,6 +69,7 @@
     , nixpkgs
     , nixpkgs-stable
     , nixpkgs-latest
+    , nix-darwin
     , flake-utils
     , nix-search-cli-src
     , presage-src
@@ -117,11 +123,11 @@
             # Automatically set some environment variables that will ease usage
             # of software installed with nix on non-NixOS linux (fixing local
             # issues, settings XDG_DATA_DIRS, etc).
-            targets.genericLinux.enable = true;
+            targets.genericLinux.enable = pkgs.stdenv.isLinux;
             # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
             nixpkgs.config.allowUnfreePredicate = (pkg: true);
             home.username = "${username}";
-            home.homeDirectory = "/home/${username}";
+            home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
             home.stateVersion = "22.11";
           }] ++ [ custom ];
         };
@@ -164,6 +170,11 @@
             modules = [ ./os/frieren/configuration.nix ];
           };
         };
+        darwinConfigurations = {
+          sunrise = nix-darwin.lib.darwinSystem {
+            modules = [ ./os/sunrise/configuration.nix ];
+          };
+        };
         homeConfigurations = {
           splendor = makeHomeConfiguration {
             host = "splendor";
@@ -173,6 +184,7 @@
               b.cliBundle
               b.devBundle
               b.guiBundle
+              b.linuxGuiBundle
               b.personalMachineBundle
               b.i3Bundle
             ];
@@ -186,6 +198,16 @@
               ];
             };
           };
+          sunrise = makeHomeConfiguration {
+            host = "sunrise";
+            nixDir = "/etc/nixos";
+            username = "mdong";
+            chooseBundles = b: [
+              b.cliBundle
+              b.devBundle
+              b.guiBundle
+            ];
+          };
           haiqin = makeHomeConfiguration {
             host = "haiqin";
             nixDir = "/etc/nixos";
@@ -195,6 +217,7 @@
               b.cliBundle
               b.devBundle
               b.guiBundle
+              b.linuxGuiBundle
               b.personalMachineBundle
               b.i3Bundle
             ];
@@ -215,6 +238,7 @@
               b.cliBundle
               b.devBundle
               b.guiBundle
+              b.linuxGuiBundle
               b.personalMachineBundle
               b.i3Bundle
             ];
@@ -234,6 +258,7 @@
               b.cliBundle
               b.devBundle
               b.guiBundle
+              b.linuxGuiBundle
               b.personalMachineBundle
               b.i3Bundle
             ];

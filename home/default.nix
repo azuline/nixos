@@ -7,9 +7,10 @@
       ./git
       ./gpg
       ./neovim
-      ./nnn
+      # ./nnn  # TODO(revive)
       ./readline
       ./ssh
+      ./syncthing
       ./tmux
     ];
 
@@ -18,7 +19,6 @@
       autossh
       bat
       bc
-      beets
       cmake
       coreutils
       curl
@@ -43,7 +43,6 @@
       graphviz
       htop
       imagemagick
-      intel-gpu-tools
       jq
       llm
       mediainfo
@@ -63,7 +62,6 @@
       pass
       pdfgrep
       pdftk
-      pinentry
       pngquant
       poetry
       poppler_utils
@@ -96,6 +94,7 @@
       wl-clipboard
       woff2
       xclip
+      pinentry-curses
       xsv
       yq-go
       yt-dlp
@@ -123,7 +122,7 @@
       dotnet-sdk_8
       dprint
       dune_3
-      gdb
+      # gdb  # TODO(revive)
       gitAndTools.delta
       go
       gofumpt
@@ -184,42 +183,48 @@
     ];
   };
 
-  # TODO: Split this up into X11 and GUI apps.
   guiBundle = { pkgs, specialArgs, ... }: {
     imports = [
-      ./cursor
       ./kitty
-      ./mimetypes
       ./mpv
+    ];
+
+    home.packages = with pkgs; [
+      term-pass
+    ];
+  };
+
+  linuxGuiBundle = { pkgs, specialArgs, ... }: {
+    imports = [
+      ./cursor
+      ./mimetypes
       ./nsxiv
       ./user-dirs
       ./zathura
     ];
 
     home.packages = with pkgs; [
-      adoptopenjdk-icedtea-web # Run jlnp files.
-      anki
       arandr
       brightnessctl
-      chromium
-      code-cursor
-      firefox
+      discord
       gimp
       libnotify
       maim
       paprefs
       pavucontrol
+      chromium
+      firefox
       peek
       pulseaudio # for pactl
       simplescreenrecorder
-      slack
       speechd
       tor-browser-bundle-bin
-      vscode
       xbindkeys
       xdotool # For VimTex's forward search.
       xorg.xkill
       xwallpaper
+      slack
+      vscode
       zoom-us
     ];
   };
@@ -227,13 +232,13 @@
   personalMachineBundle = { pkgs, ... }: {
     imports = [
       ./atelier
-      ./syncthing
       ./rose
     ];
 
     home.packages = with pkgs; [
+      anki
+      beets
       calibre
-      discord
       puddletag
       signal
       mkchromecast
@@ -267,7 +272,6 @@
       bar-vpn
       i3-clear-clipboard
       i3-lock
-      i3-pass
       i3-screenshot
     ];
   };

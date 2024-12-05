@@ -19,7 +19,7 @@ import nixpkgs {
       i3-atelier-opener = prev.callPackage ./i3-atelier-opener { };
       i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };
       i3-lock = prev.callPackage ./i3-lock { };
-      i3-pass = prev.callPackage ./i3-pass { };
+      term-pass = prev.callPackage ./term-pass { };
       i3-screenshot = prev.callPackage ./i3-screenshot { };
       i3-yy = prev.callPackage ./i3-yy { };
       file-uploader = prev.callPackage ./file-uploader { };

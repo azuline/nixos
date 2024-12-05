@@ -30,12 +30,11 @@ let
         export NNN_COLORS=4532
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TMPFILE=$XDG_RUNTIME_DIR/nnn-lastd
-        export NNN_PREVIEWDIR=/home/blissful/.cache/nsxiv
-        export NNN_ORDER="V:/home/blissful/music/1. Releases - Added On;V:/home/blissful/music/1. Releases - Released On"
+        export NNN_ORDER="V:$HOME/music/1. Releases - Added On;V:$HOME/music/1. Releases - Released On"
         # Dynamically set an order for every subdirectory in the following directories:
-        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/images/ -mindepth 1 -maxdepth 1 -type d -printf 't:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
-        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/studies/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
-        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find /home/blissful/books/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
+        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find $HOME/images/ -mindepth 1 -maxdepth 1 -type d -printf 't:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
+        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find $HOME/studies/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
+        export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find $HOME/books/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
       EOF
       # And now echo the final program call but with evaluation (so that $out gets evaluated).
       cat - >> $out/bin/nnn <<EOF
@@ -78,7 +77,6 @@ in
     ];
     plugins = {
       mappings = {
-        ";" = "preview-tui";
         c = "copy-highlighted";
         f = "fzopen";
         i = "imgview";

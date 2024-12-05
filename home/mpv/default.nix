@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   # We want some mimetypes to launch in full screen, so we add a custom desktop
@@ -31,7 +31,7 @@ let
   };
 in
 {
-  home.packages = [ fullscreenDesktopItem ];
+  home.packages = lib.mkIf pkgs.stdenv.isLinux [ fullscreenDesktopItem ];
   programs.mpv = {
     enable = true;
     config = {
