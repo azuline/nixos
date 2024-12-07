@@ -11,6 +11,8 @@
   imports = [
     ./hardware-configuration.nix
     ./desktop.nix
+    ./torrents.nix
+    ./zfs.nix
   ];
 
   boot = {
@@ -27,9 +29,14 @@
 
   networking = {
     hostName = "neptune";
-    networkmanager.enable = true;
+    hostId = "b5b16f96"; # head -c4 /dev/urandom | od -A none -t x4
     extraHosts = ''
     '';
+    # Static LAN IP so that we can port forward and deterministically bind to it and shit.
+    useDHCP = false;
+    interfaces.enp60s0u1.ipv4.addresses = [{ address = "192.168.1.207"; prefixLength = 24; }];
+    defaultGateway = "192.168.1.1";
+    # Cos I love firewalling.
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing
@@ -39,11 +46,23 @@
       interfaces.enp0s31f6 = {
         allowedTCPPorts = [
           32400 # plex
+          3005 # plex
+          8324 # plex
+          32469 # plex
+        ];
+        allowedUDPPorts = [
+          1900 # plex
+          5353 # plex
+          32410 # plex
+          32412 # plex
+          32413 # plex
+          32414 # plex
         ];
       };
       interfaces.tailscale0 = {
         allowedTCPPorts = [
           22 # ssh
+          12834 # transmission
         ];
       };
     };
@@ -117,6 +136,7 @@
       nftables
       pinentry-curses
       powertop
+      smartmontools
       tomb
       vim
       wget

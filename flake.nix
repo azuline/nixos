@@ -160,6 +160,9 @@
           };
           neptune = nixpkgs.lib.nixosSystem {
             inherit system;
+            specialArgs = {
+              pin = { transmission_4 = pkgs.transmission_4; };
+            };
             modules = [ ./os/neptune/configuration.nix ];
           };
           frieren = nixpkgs.lib.nixosSystem {

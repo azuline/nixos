@@ -35,7 +35,7 @@
       };
     };
   };
-  
+
   # Always on; home server.
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
