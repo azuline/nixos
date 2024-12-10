@@ -43,7 +43,7 @@
       ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
-      interfaces.enp0s31f6 = {
+      interfaces.enp60s0u1 = {
         allowedTCPPorts = [
           32400 # plex
           3005 # plex
@@ -88,7 +88,7 @@
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
+        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" ];
       };
       plex = {
         createHome = false;
@@ -151,15 +151,17 @@
     enable = true;
     settings = {
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
       PLATFORM_PROFILE_ON_AC = "performance";
-      PLATFORM_PROFILE_ON_BAT = "balanced";
       CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
       CPU_HWP_DYN_BOOST_ON_AC = 1;
-      CPU_HWP_DYN_BOOST_ON_BAT = 0;
-      START_CHARGE_THRESH_BAT0 = 90;
-      STOP_CHARGE_THRESH_BAT0 = 95;
+
+      # CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+      # PLATFORM_PROFILE_ON_BAT = "balanced";
+      # CPU_BOOST_ON_BAT = 0;
+      # CPU_HWP_DYN_BOOST_ON_BAT = 0;
+
+      START_CHARGE_THRESH_BAT0 = 80;
+      STOP_CHARGE_THRESH_BAT0 = 85;
     };
   };
 }

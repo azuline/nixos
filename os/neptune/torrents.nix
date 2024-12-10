@@ -22,7 +22,7 @@
       cache-size-mb = 4;
       download-limit-enabled = false;
       dht-enabled = false;
-      download-dir = "/galatea/staging";
+      download-dir = "/torrents/incomplete";
       download-queue-enabled = true;
       download-queue-size = 20;
       encryption = 1;
@@ -32,14 +32,14 @@
       message-level = 2;
       peer-congestion-algorithm = "";
       peer-id-ttl-hours = 6;
-      peer-limit-global = 500;
-      peer-limit-per-torrent = 50;
+      peer-limit-global = 300;
+      peer-limit-per-torrent = 20;
       peer-port = 56001;
       pex-enabled = false;
       preallocation = 1;
       prefetch-enabled = true;
       queue-stalled-enabled = true;
-      queue-stalled-minutes = 10;
+      queue-stalled-minutes = 2;
       ratio-limit-enabled = false;
       rename-partial-files = true;
       scrape-paused-torrents-enabled = false;
@@ -50,9 +50,9 @@
       script-torrent-done-seeding-enabled = false;
       script-torrent-done-seeding-filename = null;
       seed-queue-enabled = false;
-      speed-limit-down = 80000;
+      speed-limit-down = 60000;
       speed-limit-down-enabled = true;
-      speed-limit-up = 40000;
+      speed-limit-up = 30000;
       speed-limit-up-enabled = true;
       start-added-torrents = true;
       tcp-enabled = true;
@@ -62,7 +62,7 @@
       upload-limit-enabled = false;
       upload-slots-per-torrent = 15;
       utp-enabled = true;
-      watch-dir = "/home/blissful/downloads/torrents";
+      watch-dir = "/torrents/watch";
       watch-dir-enabled = true;
     };
   };
@@ -71,6 +71,7 @@
   # BindPaths.
   systemd.services.transmission.serviceConfig.BindPaths = [
     "/galatea"
-    "/home/blissful/downloads/torrents"
+    "/torrents/incomplete"
+    "/torrents/watch"
   ];
 }
