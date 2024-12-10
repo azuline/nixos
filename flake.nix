@@ -94,6 +94,7 @@
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
         code-cursor = pkgs-latest.code-cursor;
+        dotnet-sdk_9 = pkgs-latest.dotnet-sdk_9;
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
