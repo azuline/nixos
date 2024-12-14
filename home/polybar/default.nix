@@ -42,8 +42,7 @@ in
       if specialArgs.sys.host == "splendor" then
         ''
           # Only start if i3 socketpath succeeds.
-          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar splendor-left &
-          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar splendor-right &
+          ${pkgs.i3-gaps}/bin/i3 --get-socketpath && polybar splendor &
         ''
       else if specialArgs.sys.host == "haiqin" then
         ''
@@ -80,21 +79,14 @@ in
         cursor-click = "pointer";
         cursor-scroll = "ns-resize";
       };
-      "bar/splendor-left" = {
+      "bar/splendor" = {
         "inherit" = "bar/base";
-        monitor = "DP-0";
+        monitor = "HDMI-0";
         tray-position = "right";
         tray-padding = "1";
         tray-background = shades.shade1;
         modules-left = "pad1 date pad1 left1 cpu gpu pad2 left2 memory pad3 left3 now-playing pad4 left4";
         modules-right = "right4 pad4 i3 right3 pad3 pulseaudio right2 pad2 vpn right1";
-      };
-      "bar/splendor-right" = {
-        "inherit" = "bar/base";
-        monitor = "HDMI-0";
-        tray-position = "none";
-        modules-left = "pad1 date pad1 left1 cpu gpu pad2 left2 memory pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio right2 pad2 vpn pad2";
       };
       "bar/haiqin" = {
         "inherit" = "bar/base";
