@@ -187,6 +187,7 @@
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
+              b.musicBundle
               b.guiBundle
               b.linuxGuiBundle
               b.personalMachineBundle
@@ -209,6 +210,7 @@
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
+              b.musicBundle
               b.guiBundle
             ];
           };
@@ -220,6 +222,7 @@
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
+              b.musicBundle
               b.guiBundle
               b.linuxGuiBundle
               b.personalMachineBundle
@@ -261,18 +264,11 @@
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
+              b.musicBundle
               b.guiBundle
               b.linuxGuiBundle
               b.personalMachineBundle
               b.i3Bundle
-            ];
-          };
-          frieren = makeHomeConfiguration {
-            host = "frieren";
-            nixDir = "/etc/nixos";
-            username = "blissful";
-            chooseBundles = b: [
-              b.cliBundle
             ];
           };
         };

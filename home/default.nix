@@ -7,7 +7,7 @@
       ./git
       ./gpg
       ./neovim
-      # ./nnn  # TODO(revive)
+      ./nnn
       ./readline
       ./ssh
       ./syncthing
@@ -45,10 +45,8 @@
       imagemagick
       jq
       llm
-      mediainfo
       mkcert
       mktorrent
-      mkvtoolnix
       moreutils
       neofetch
       nix-search-cli
@@ -56,7 +54,6 @@
       ocrmypdf
       openssl
       optipng
-      opusTools
       p7zip
       (lib.hiPrio parallel-full) # parallel is also part of moreutils
       pass
@@ -78,6 +75,7 @@
       speedtest-cli
       sqlite-interactive
       sshfs
+      tailnet-switch
       tcpdump
       tectonic
       termdown
@@ -97,7 +95,6 @@
       pinentry-curses
       xsv
       yq-go
-      yt-dlp
       zip
     ];
   };
@@ -163,7 +160,7 @@
       protobuf
       protoc-gen-go
       pyright
-      ruff
+      # ruff
       rustup
       selene
       semgrep
@@ -177,16 +174,34 @@
       universal-ctags
       vscode-langservers-extracted
       watchman # Needed for tsserver
+      wrangler
       yarn
       zig
       zls
     ];
   };
 
+  musicBundle = { pkgs, lib, ... }: {
+    imports = [
+      ./rose
+      ./mpv
+    ];
+
+    home.packages = with pkgs; [
+      mediainfo
+      mkvtoolnix
+      opusTools
+      yt-dlp
+    ] ++ (if pkgs.stdenv.isLinux then [
+      beets
+      plexamp
+      puddletag
+    ] else [ ]);
+  };
+
   guiBundle = { pkgs, specialArgs, ... }: {
     imports = [
       ./kitty
-      ./mpv
     ];
 
     home.packages = with pkgs; [
@@ -232,23 +247,18 @@
   personalMachineBundle = { pkgs, ... }: {
     imports = [
       ./atelier
-      ./rose
     ];
 
     home.packages = with pkgs; [
       anki
-      beets
       calibre
-      puddletag
       signal
       mkchromecast
       nicotine-plus
-      tailnet-switch
       tdesktop
       tremotesf
-      zotero
       plex
-      plexamp
+      zotero
     ];
   };
 

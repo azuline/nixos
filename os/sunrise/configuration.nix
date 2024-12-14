@@ -24,7 +24,6 @@
     shells = [ pkgs.fish ];
     variables = {
       EDITOR = "nvim";
-      XDG_RUNTIME_DIR = "/run/users/501";
     };
   };
 
