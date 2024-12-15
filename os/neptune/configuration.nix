@@ -45,6 +45,7 @@
       checkReversePath = "loose";
       interfaces.enp60s0u1 = {
         allowedTCPPorts = [
+          22 # ssh
           32400 # plex
           3005 # plex
           8324 # plex
@@ -143,8 +144,10 @@
       wireguard-tools
     ];
   };
+
   virtualisation.docker.enable = true;
   services.tailscale.enable = true;
+  services.openssh.enable = true;
   programs.fish.enable = true;
 
   services.tlp = {
