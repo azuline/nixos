@@ -60,6 +60,10 @@
   networking = {
     hostName = "splendor";
     networkmanager.enable = true;
+    # Static LAN IP so that we can port forward and deterministically bind to it and shit.
+    useDHCP = false;
+    interfaces.enp6s0.ipv4.addresses = [{ address = "192.168.1.160"; prefixLength = 24; }];
+    defaultGateway = "192.168.1.1";
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing
@@ -83,7 +87,7 @@
   # https://github.com/NixOS/nixpkgs/issues/195777#issuecomment-1324378856
   system.activationScripts.restart-udev = "${pkgs.systemd}/bin/systemctl restart systemd-udev-trigger.service";
 
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i32b";
@@ -99,13 +103,15 @@
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" "libvirtd" ];
+        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" "libvirtd" "i2c" ];
       };
     };
     groups = {
       media.gid = 1001;
     };
   };
+
+  hardware.i2c.enable = true;
 
   # Allow this command to use sudo without password. This allows us to avoid
   # asking for sudo throughout the backup script.
@@ -130,6 +136,7 @@
     systemPackages = with pkgs; [
       borgbackup
       curl
+      ddcutil
       git
       jq
       neovim
