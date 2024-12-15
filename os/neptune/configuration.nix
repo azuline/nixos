@@ -168,4 +168,8 @@
       STOP_CHARGE_THRESH_BAT0 = 85;
     };
   };
+
+  # Keeps on killing everything every five minutes due to ZFS and some weird
+  # RAM spike. Everything runs fine with it off.
+  systemd.oomd.enable = false;
 }
