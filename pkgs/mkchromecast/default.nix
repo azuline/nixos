@@ -17,6 +17,7 @@
 , gst_all_1
 , enableSonos ? true
 , qtwayland
+, yt-dlp
 }:
 let
   packages = [
@@ -28,6 +29,7 @@ let
     gst_all_1.gstreamer
     nodejs
     ffmpeg
+    yt-dlp
   ] ++ lib.optionals stdenv.hostPlatform.isLinux [ pulseaudio ];
 
 in

@@ -132,6 +132,7 @@ in
       git
       jq
       pin.presage
+      pin.mkchromecast
       neovim
       pinentry-curses
       smartmontools

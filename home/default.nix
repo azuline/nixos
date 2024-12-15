@@ -253,7 +253,6 @@
       anki
       calibre
       signal
-      mkchromecast
       nicotine-plus
       tdesktop
       tremotesf

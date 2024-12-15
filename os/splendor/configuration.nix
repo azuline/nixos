@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pin, ... }:
 
 {
   system.stateVersion = "22.11";
@@ -134,6 +134,7 @@
       PASSWORD_STORE_DIR = "/home/blissful/.passwarbles";
     };
     systemPackages = with pkgs; [
+      pin.mkchromecast
       borgbackup
       curl
       ddcutil

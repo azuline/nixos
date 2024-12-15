@@ -151,25 +151,28 @@
           splendor = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = { transmission_4 = pkgs.transmission_4; };
+              pin = { transmission_4 = pkgs.transmission_4; mkchromecast = pkgs.mkchromecast; };
             };
             modules = [ ./os/splendor/configuration.nix ];
           };
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
+            specialArgs = {
+              pin = { mkchromecast = pkgs.mkchromecast; };
+            };
             modules = [ ./os/haiqin/configuration.nix ];
           };
           neptune = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = { transmission_4 = pkgs.transmission_4; };
+              pin = { transmission_4 = pkgs.transmission_4; mkchromecast = pkgs.mkchromecast; };
             };
             modules = [ ./os/neptune/configuration.nix ];
           };
           frieren = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = { presage = pkgs.presage; };
+              pin = { presage = pkgs.presage; mkchromecast = pkgs.mkchromecast; };
             };
             modules = [ ./os/frieren/configuration.nix ];
           };

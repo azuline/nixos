@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pin, ... }:
 
 {
   system.stateVersion = "22.11";
@@ -89,6 +89,7 @@
     };
     systemPackages = with pkgs; [
       curl
+      pin.mkchromecast
       git
       glxinfo
       intel-gpu-tools
