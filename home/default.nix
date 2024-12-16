@@ -256,7 +256,6 @@
       nicotine-plus
       tdesktop
       tremotesf
-      plex-desktop
       zotero
     ];
   };
