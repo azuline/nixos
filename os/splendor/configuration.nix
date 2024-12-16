@@ -69,6 +69,14 @@
         22000 # syncthing
         56002 # nicotine
       ];
+      interfaces.enp6s0 = {
+        allowedTCPPorts = [
+          5000 # mkchromecast
+        ];
+        allowedUDPPorts = [
+          5353 # mDNS (for mkchromecast)
+        ];
+      };
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
       interfaces.tailscale0 = {
