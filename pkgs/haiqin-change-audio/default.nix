@@ -3,58 +3,50 @@
 writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
-  laptop_speakers_sink="$(pactl list sinks | grep Name | cut -d: -f2 | grep "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink" | xargs)"
-  mkchromecast_sink="Mkchromecast"
-  wireless_earbuds_sink="bluez_output.80_99_E7_1D_0C_B2.1"
-  bt_headphones_sink="bluez_output.CC_98_8B_E3_18_BC.1"
+  declare -A sinks=(
+    ["Laptop Speakers"]="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink"
+    ["Laptop Headphones"]="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink"
+    ["Google Cast"]="Mkchromecast"
+    ["True Wireless Earbuds"]="bluez_output.80_99_E7_1D_0C_B2.1"
+    ["Bluetooth Headphones"]="bluez_output.CC_98_8B_E3_18_BC.1"
+    ["Bose Mini II SE SoundLink"]="bluez_output.78_2B_64_5C_F4_AA.1"
+  )
 
+  # Ordered list of sink names that we use to cycle through. Also, only the
+  # sinks in here are active; inactive ones are not omitted.
+  sink_names=(
+    "Google Cast"
+    "True Wireless Earbuds"
+    "Bluetooth Headphones"
+    "Bose Mini II SE SoundLink"
+  )
   default_sink="$(pactl get-default-sink)"
 
   function sink_exists() {
     pactl list sinks | grep "$1"
   }
 
-  # Compute the new sink. We cycle through the configured sinks in the order of:
-  # 1. Wired headphones
-  # 2. Bluetooth speaker
-  # 2. Bluetooth headphones
-  # Kind of lazy and bash is hard, so I just expanded the rotation into conditionals.
-  new_sink=
-  if [[ "$default_sink" == "$laptop_speakers_sink" ]]; then
-    if sink_exists "$mkchromecast_sink"; then
-      new_sink="$mkchromecast_sink"
-    elif sink_exists "$wireless_earbuds_sink"; then
-      new_sink="$wireless_earbuds_sink"
-    elif sink_exists "$bt_headphones_sink"; then
-      new_sink="$bt_headphones_sink"
+  # Find the index of the current default sink in the sink names array.
+  current_index=-1
+  for i in "''${!sink_names[@]}"; do
+    if [[ "$default_sink" == "''${sinks[''${sink_names[i]}]}" ]]; then
+      current_index="$i"
+      break
     fi
-  elif [[ "$default_sink" == "$mkchromecast_sink" ]]; then
-    if sink_exists "$wireless_earbuds_sink"; then
-      new_sink="$wireless_earbuds_sink"
-    elif sink_exists "$bt_headphones_sink"; then
-      new_sink="$bt_headphones_sink"
-    elif sink_exists "$laptop_speakers_sink"; then
-      new_sink="$laptop_speakers_sink"
+  done
+
+  new_sink=""
+  new_sink_name=""
+  for ((i = 1; i <= ''${#sink_names[@]}; i++)); do
+    next_index=$(( (current_index + i) % ''${#sink_names[@]} ))
+    next_name="''${sink_names[next_index]}"
+    next_sink="''${sinks[$next_name]}"
+    if sink_exists "$next_sink"; then
+      new_sink="$next_sink"
+      new_sink_name="$next_name"
+      break
     fi
-  elif [[ "$default_sink" == "$wireless_earbuds_sink" ]]; then
-    if sink_exists "$bt_headphones_sink"; then
-      new_sink="$bt_headphones_sink"
-    elif sink_exists "$laptop_speakers_sink"; then
-      new_sink="$laptop_speakers_sink"
-    elif sink_exists "$mkchromecast_sink"; then
-      new_sink="$mkchromecast_sink"
-    fi
-  elif [[ "$default_sink" == "$bt_headphones_sink" ]]; then
-    if sink_exists "$laptop_speakers_sink"; then
-      new_sink="$laptop_speakers_sink"
-    elif sink_exists "$mkchromecast_sink"; then
-      new_sink="$mkchromecast_sink"
-    elif sink_exists "$wireless_earbuds_sink"; then
-      new_sink="$wireless_earbuds_sink"
-    fi
-  else
-    new_sink="$laptop_speakers_sink"
-  fi
+  done
 
   if [[ -z "$new_sink" ]]; then
     notify-send "No other audio sinks connected."
@@ -62,15 +54,7 @@ writeShellScriptBin "i3-change-audio" ''
   fi
 
   # Notify the user.
-  if [[ "$new_sink" == "$laptop_speakers_sink" ]]; then
-    notify-send "Switched audio to Laptop Speakers."
-  elif [[ "$new_sink" == "$mkchromecast_sink" ]]; then
-    notify-send "Switched audio to Google Cast."
-  elif [[ "$new_sink" == "$wireless_earbuds_sink" ]]; then
-    notify-send "Switched audio to True Wireless Earbuds."
-  elif [[ "$new_sink" == "$bt_headphones_sink" ]]; then
-    notify-send "Switched audio to Bluetooth Headphones."
-  fi
+  notify-send "Switched audio to $new_sink_name."
 
   # Update pulseaudio's default sink.
   echo "new_sink=$new_sink"
