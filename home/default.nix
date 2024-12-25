@@ -188,6 +188,7 @@
     ];
 
     home.packages = with pkgs; [
+      flac
       mediainfo
       mkvtoolnix
       opusTools
