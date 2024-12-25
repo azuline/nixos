@@ -61,6 +61,14 @@
       url = "github:lilyball/nix-env.fish";
       flake = false;
     };
+    plex-hama = {
+      url = "github:ZeroQI/Hama.bundle";
+      flake = false;
+    };
+    plex-ass = {
+      url = "github:ZeroQI/Absolute-Series-Scanner";
+      flake = false;
+    };
   };
 
   outputs =
@@ -82,6 +90,8 @@
     , zathura-pdf-mupdf-src
     , fish-plugin-wd
     , fish-plugin-nix-env
+    , plex-hama
+    , plex-ass
     }: (flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs-stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };
@@ -151,28 +161,28 @@
           splendor = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = { transmission_4 = pkgs.transmission_4; mkchromecast = pkgs.mkchromecast; };
+              pin = with pkgs; { inherit transmission_4 mkchromecast; };
             };
             modules = [ ./os/splendor/configuration.nix ];
           };
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = { mkchromecast = pkgs.mkchromecast; };
+              pin = with pkgs; { inherit mkchromecast; };
             };
             modules = [ ./os/haiqin/configuration.nix ];
           };
           neptune = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = { transmission_4 = pkgs.transmission_4; mkchromecast = pkgs.mkchromecast; };
+              pin = with pkgs; { inherit transmission_4 mkchromecast plex-ass plex-hama; };
             };
             modules = [ ./os/neptune/configuration.nix ];
           };
           frieren = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = { presage = pkgs.presage; mkchromecast = pkgs.mkchromecast; };
+              pin = with pkgs; { inherit presage mkchromecast; };
             };
             modules = [ ./os/frieren/configuration.nix ];
           };

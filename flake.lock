@@ -357,6 +357,38 @@
         "type": "github"
       }
     },
+    "plex-ass": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731317684,
+        "narHash": "sha256-dqcAGAFPps0Hd18j54FTPGVH8KK0iYBfpI4Q3qRT+H0=",
+        "owner": "ZeroQI",
+        "repo": "Absolute-Series-Scanner",
+        "rev": "33ce1de7199918371eff75e894d35d52bb9a6f30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ZeroQI",
+        "repo": "Absolute-Series-Scanner",
+        "type": "github"
+      }
+    },
+    "plex-hama": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731364742,
+        "narHash": "sha256-6xFYCg4wP1ZARKgOPxMZQlt4yHei9FwvqXI1fVHg1NA=",
+        "owner": "ZeroQI",
+        "repo": "Hama.bundle",
+        "rev": "fb6a5689359c6630c0fcfec58f8e3533497fd977",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ZeroQI",
+        "repo": "Hama.bundle",
+        "type": "github"
+      }
+    },
     "presage-src": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -393,6 +425,8 @@
         "nnn-src": "nnn-src",
         "nsxiv-src": "nsxiv-src",
         "pgmigrate-src": "pgmigrate-src",
+        "plex-ass": "plex-ass",
+        "plex-hama": "plex-hama",
         "presage-src": "presage-src",
         "rose-src": "rose-src",
         "zathura-pdf-mupdf-src": "zathura-pdf-mupdf-src"

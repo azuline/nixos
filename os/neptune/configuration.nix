@@ -109,6 +109,8 @@
     group = "media";
     # Manually exposed on the local network; public plex is security nightmware.
     openFirewall = false;
+    extraPlugins = [ (builtins.path { name = "Hama.bundle"; path = pin.plex-hama; }) ];
+    extraScanners = [ pin.plex-ass ];
   };
 
   environment = {
