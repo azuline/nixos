@@ -43,8 +43,23 @@
   };
 
   system.defaults = {
+    dock = {
+      autohide = true;
+      mru-spaces = false;
+      orientation = "left";
+      show-recents = false;
+    };
     NSGlobalDomain = {
+      AppleInterfaceStyle = "Dark";
+      ApplePressAndHoldEnabled = false;
+      AppleShowAllExtensions = true;
       NSWindowShouldDragOnGesture = true;
+      NSAutomaticCapitalizationEnabled = false;
+      NSAutomaticDashSubstitutionEnabled = true;
+      NSAutomaticInlinePredictionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticQuoteSubstitutionEnabled = true;
+      NSAutomaticSpellingCorrectionEnabled = false;
     };
   };
 
