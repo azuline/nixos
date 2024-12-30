@@ -17,6 +17,7 @@
       aerospace
       colima
       curl
+      jankyborders
       jq
       vim
     ];
@@ -32,13 +33,27 @@
 
   homebrew = {
     enable = true;
-    taps = [
-      "FelixKratz/formulae"
-    ];
     casks = [
-    ];
-    brews = [
-      "FelixKratz/formulae/borders"
+      "1password"
+      "bazecor"
+      "chatgpt"
+      "cursor"
+      "discord"
+      "figma"
+      "firefox"
+      "google-chrome"
+      "karabiner-elements"
+      "notion"
+      "notion-calendar"
+      "plex"
+      "plexamp"
+      "popsql"
+      "raycast"
+      "signal"
+      "skim"
+      "slack"
+      "telegram"
+      "whatsapp"
     ];
   };
 
