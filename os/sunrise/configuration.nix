@@ -15,6 +15,7 @@
   environment = {
     systemPackages = with pkgs; [
       aerospace
+      autoraise
       colima
       curl
       jankyborders
