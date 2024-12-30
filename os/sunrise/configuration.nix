@@ -16,14 +16,35 @@
     systemPackages = with pkgs; [
       aerospace
       colima
-      vim
       curl
-      rectangle
       jq
+      vim
     ];
     shells = [ pkgs.fish ];
     variables = {
       EDITOR = "nvim";
+    };
+    extraInit = ''
+      export PATH="/opt/homebrew/bin:$PATH"
+      export HOMEBREW_PREFIX="/opt/homebrew"
+    '';
+  };
+
+  homebrew = {
+    enable = true;
+    taps = [
+      "FelixKratz/formulae"
+    ];
+    casks = [
+    ];
+    brews = [
+      "FelixKratz/formulae/borders"
+    ];
+  };
+
+  system.defaults = {
+    NSGlobalDomain = {
+      NSWindowShouldDragOnGesture = true;
     };
   };
 

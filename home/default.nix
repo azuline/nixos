@@ -245,6 +245,10 @@
     ];
   };
 
+  macGuiBundle = { pkgs, specialArgs, ... }: {
+    imports = [ ./aerospace ];
+  };
+
   personalMachineBundle = { pkgs, ... }: {
     imports = [
       ./atelier

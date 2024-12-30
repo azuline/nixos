@@ -1,0 +1,87 @@
+start-at-login = true
+enable-normalization-flatten-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = true
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = true
+
+after-startup-command = [
+  'exec-and-forget borders active_color=0xFFFFFFFF inactive_color=0x00000000 width=8 style=round'
+]
+
+[[on-window-detected]]
+if.window-title-regex-substring = '^password-selector$'
+run = 'layout floating'
+
+[gaps]
+inner.horizontal = 12
+inner.vertical   = 12
+outer.left       = 12
+outer.bottom     = 12
+outer.top        = 12
+outer.right      = 12
+
+[mode.main.binding]
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+alt-cmd-h = 'move left'
+alt-cmd-j = 'move down'
+alt-cmd-k = 'move up'
+alt-cmd-l = 'move right'
+
+alt-e = 'layout tiles horizontal vertical'
+alt-w = 'layout h_accordion'
+alt-s = 'layout v_accordion'
+
+alt-b = 'split horizontal'
+alt-v = 'split vertical'
+
+alt-cmd-minus = 'resize smart -50'
+alt-cmd-equal = 'resize smart +50'
+
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+alt-0 = 'workspace 10'
+
+alt-cmd-1 = 'move-node-to-workspace 1'
+alt-cmd-2 = 'move-node-to-workspace 2'
+alt-cmd-3 = 'move-node-to-workspace 3'
+alt-cmd-4 = 'move-node-to-workspace 4'
+alt-cmd-5 = 'move-node-to-workspace 5'
+alt-cmd-6 = 'move-node-to-workspace 6'
+alt-cmd-7 = 'move-node-to-workspace 7'
+alt-cmd-8 = 'move-node-to-workspace 8'
+alt-cmd-9 = 'move-node-to-workspace 9'
+alt-cmd-0 = 'move-node-to-workspace 10'
+
+alt-q = 'close'
+alt-f = 'fullscreen --no-outer-gaps'
+alt-cmd-o = 'layout floating tiling'
+
+alt-enter = 'exec-and-forget open -na kitty'
+alt-p = 'exec-and-forget open -na kitty --args --override initial_window_width=800 --override initial_window_height=500 --title password-selector bash -ic term-pass'
+
+[workspace-to-monitor-force-assignment]
+
+1 = 'main'
+2 = 'main'
+3 = 'main'
+4 = 'main'
+5 = 'main'
+6 = 'main'
+7 = 'main'
+8 = 'main'
+9 = 'secondary'
+10 = 'secondary'

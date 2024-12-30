@@ -225,6 +225,7 @@
               b.devBundle
               b.musicBundle
               b.guiBundle
+              b.macGuiBundle
             ];
           };
           haiqin = makeHomeConfiguration {
