@@ -79,7 +79,7 @@ alt-o = 'layout floating tiling'
 
 cmd-enter = 'exec-and-forget open -na kitty'
 alt-enter = 'exec-and-forget open -na kitty'
-alt-n = 'exec-and-forget open -na kitty --args nnn'
+alt-n = 'exec-and-forget open -na kitty --args fish -c nnn'  # for the PATH
 alt-p = 'exec-and-forget open -na kitty --args --override initial_window_width=800 --override initial_window_height=500 --title password-selector bash -ic term-pass'
 
 # Consume all extra keys--we have no use for the "option" ligatures right now
