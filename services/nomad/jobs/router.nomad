@@ -1,5 +1,5 @@
 job "router" {
-  datacenters = ["frieren"]
+  datacenters = ["neptune"]
   type        = "service"
   group "router" {
     count = 1

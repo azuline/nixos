@@ -1,5 +1,5 @@
 job "ingress" {
-  datacenters = ["frieren"]
+  datacenters = ["neptune"]
   type        = "service"
   group "ingress" {
     count = 1
@@ -60,7 +60,7 @@ worker_processes auto;
 error_log  /var/log/nginx/error.log notice;
 pid        /var/run/nginx.pid;
 events {
-    worker_connections  1024;
+  worker_connections  1024;
 }
 http {
   log_format main '$remote_addr - $remote_user [$time_local] "$request" '

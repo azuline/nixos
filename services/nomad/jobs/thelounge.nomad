@@ -1,5 +1,5 @@
 job "thelounge" {
-  datacenters = ["frieren"]
+  datacenters = ["neptune"]
   type = "service"
   group "thelounge" {
     count = 1

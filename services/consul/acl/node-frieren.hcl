@@ -1,7 +1,7 @@
 agent_prefix "" {
   policy = "read"
 }
-node_prefix "frieren" {
+node_prefix "neptune" {
   policy = "write"
 }
 service_prefix "" {

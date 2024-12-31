@@ -1,5 +1,5 @@
 job "presage" {
-  datacenters = ["frieren"]
+  datacenters = ["neptune"]
   type        = "batch"
   periodic {
     cron             = "0 0 * * *"

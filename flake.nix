@@ -175,7 +175,7 @@
           neptune = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = with pkgs; { inherit transmission_4 mkchromecast plex-ass plex-hama; };
+              pin = with pkgs; { inherit pkgs-stable presage transmission_4 mkchromecast plex-ass plex-hama; };
             };
             modules = [ ./os/neptune/configuration.nix ];
           };

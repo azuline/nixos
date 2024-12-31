@@ -1,5 +1,5 @@
 job "umami" {
-  datacenters = ["frieren"]
+  datacenters = ["neptune"]
   type        = "service"
   group "umami" {
     count = 1

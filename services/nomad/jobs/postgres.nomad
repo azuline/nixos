@@ -1,5 +1,5 @@
 job "postgres" {
-  datacenters = ["frieren"]
+  datacenters = ["neptune"]
   type        = "service"
   group "postgres" {
     count = 1
