@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    userName = "blissful";
+    userName = "acid angel from asia";
     userEmail = "blissful@sunsetglow.net";
     signing = {
       key = "953ACFC5F8F3E2E7";

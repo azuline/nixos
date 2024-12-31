@@ -34,6 +34,9 @@
 
   homebrew = {
     enable = true;
+    brews = [
+      "gnu-sed" # Installed as gsed, for nnn.
+    ];
     casks = [
       "1password"
       "bazecor"
@@ -53,6 +56,7 @@
       "signal"
       "skim"
       "slack"
+      "steam"
       "telegram"
       "whatsapp"
     ];

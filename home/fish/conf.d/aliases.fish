@@ -7,8 +7,13 @@ alias ls='ls -h --group-directories-first --color'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
 
-alias xc='xclip -sel c'
-alias xp='xclip -sel c -o'
+if test (uname) = 'Darwin'
+  alias xc='pbcopy'
+  alias xp='pbpaste'
+else
+  alias xc='xclip -sel c'
+  alias xp='xclip -sel c -o'
+end
 
 # Minor conveniences.
 abbr --add --global v 'vim'

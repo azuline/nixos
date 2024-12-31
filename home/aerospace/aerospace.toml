@@ -14,7 +14,9 @@ after-startup-command = [
 [[on-window-detected]]
 if.window-title-regex-substring = '^password-selector$'
 run = 'layout floating'
-
+[[on-window-detected]]
+if.window-title-regex-substring = '^playmusic-mpv$'
+run = 'layout floating'
 [[on-window-detected]]
 if.window-title-regex-substring = '^Karabiner-Elements Settings$'
 run = 'layout floating'
@@ -75,6 +77,7 @@ alt-f = 'fullscreen --no-outer-gaps'
 alt-shift-f = 'macos-native-fullscreen'
 alt-o = 'layout floating tiling'
 
+cmd-enter = 'exec-and-forget open -na kitty'
 alt-enter = 'exec-and-forget open -na kitty'
 alt-p = 'exec-and-forget open -na kitty --args --override initial_window_width=800 --override initial_window_height=500 --title password-selector bash -ic term-pass'
 
