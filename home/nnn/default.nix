@@ -30,7 +30,7 @@ let
         export NNN_COLORS=4532
         export NNN_FCOLORS=0a0b04010f07060c05030d09
         export NNN_TMPFILE="''${XDG_RUNTIME_DIR:=$HOME/.run}/nnn-lastd"
-        export NNN_ORDER="V:$HOME/music/1. Releases - Added On;V:$HOME/music/1. Releases - Released On"
+        export NNN_ORDER="V:$HOME/tunes/1. Releases - Added On;V:$HOME/tunes/1. Releases - Released On"
         # Dynamically set an order for every subdirectory in the following directories:
         export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find $HOME/images/ -mindepth 1 -maxdepth 1 -type d -printf 't:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
         export NNN_ORDER="$NNN_ORDER;$(${pkgs.findutils}/bin/find $HOME/studies/ -type d -printf 'v:%p;' | ${pkgs.gnused}/bin/sed 's/;$//')"
@@ -87,15 +87,15 @@ in
     };
     bookmarks = {
       b = "~/books";
-      c = "~/music/3. Genres/Classical Music";
+      c = "~/tunes/3. Genres/Classical Music";
       d = "~/downloads";
       e = "/mnt/elements";
       i = "~/images";
-      k = "~/music/3. Genres/K-Pop";
+      k = "~/tunes/3. Genres/K-Pop";
       K = "~/kpop";
-      m = "~/music";
+      m = "~/tunes";
       M = "~/.music-source";
-      p = "~/music/7. Playlists";
+      p = "~/tunes/7. Playlists";
       s = "~/studies";
     };
   };

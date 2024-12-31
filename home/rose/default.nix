@@ -29,9 +29,11 @@
     config = {
       Label = "net.sunsetglow.rose";
       Program = "${pkgs.rose-cli}/bin/rose";
-      ProgramArguments = [ "fs" "mount" "--foreground" ];
+      ProgramArguments = [ "${pkgs.rose-cli}/bin/rose" "fs" "mount" "--foreground" ];
       KeepAlive = true;
       RunAtLoad = true;
+      StandardOutPath = "/tmp/net.sunsetglow.rose.out.log";
+      StandardErrorPath = "/tmp/net.sunsetglow.rose.err.log";
     };
   };
 }
