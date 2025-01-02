@@ -9,7 +9,7 @@ artist_aliases = [
     { artist = "EXO", aliases = ["EXO-K", "EXO-CBX"] },
     { artist = "LE SSERAFIM", aliases = ["Huh Yunjin"] },
     { artist = "NewJeans", aliases = ["HANNI", "HAERIN", "MINJI", "DANIELLE", "HYEIN"] },
-    { artist = "tripleS", aliases = ["EVOLution", "LOVElution", "+(KR)ystal Eyes", "Acid Angel from Asia", "Acid Eyes", "Aria", "NXT", "Glow"] },
+    { artist = "tripleS", aliases = ["EVOLution", "LOVElution", "+(KR)ystal Eyes", "Acid Angel from Asia", "Acid Eyes", "Aria", "NXT", "Glow", "Vision@ry Vision"] },
     { artist = "Brown Eyed Girls", aliases = ["Gain"] },
     # Aliases
     { artist = "Akasha System", aliases = ["DJ Panthr"] },

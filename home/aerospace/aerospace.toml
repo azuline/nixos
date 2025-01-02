@@ -15,11 +15,11 @@ after-startup-command = [
 if.window-title-regex-substring = '^password-selector$'
 run = 'layout floating'
 [[on-window-detected]]
-if.window-title-regex-substring = '^playmusic-mpv$'
-run = 'layout floating'
-[[on-window-detected]]
 if.window-title-regex-substring = '^Karabiner-Elements Settings$'
 run = 'layout floating'
+# [[on-window-detected]]
+# if.window-title-regex-substring = '^playmusic-mpv$'
+# run = 'layout floating'
 
 [gaps]
 inner.horizontal = 12

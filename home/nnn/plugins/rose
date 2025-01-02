@@ -39,7 +39,8 @@ get_tracklist() {
 
 # Truncate the "$1" path until the remaining $2 "virtual parts" remain.
 truncate_virtual_parts() {
-    vpath="${1##$HOME/music}"
+    vpath="${1##"$HOME/tunes"}"
+    vpath="${vpath##"$HOME/Tunes"}"  # Support both cases for my diff OS.
     num_parts="$(echo "$vpath" | tr -cd '/' | wc -c)"
     realpath="$1"
     num_to_truncate=$((num_parts - $2))
@@ -53,7 +54,8 @@ truncate_virtual_parts() {
 # Get the path to the selected release. Handles truncating potential filepaths
 # included after the release.
 get_selected_release() {
-    vpath="${1##$HOME/music}"
+    vpath="${1##"$HOME/tunes"}"
+    vpath="${vpath##"$HOME/Tunes"}"  # Support both cases for my diff OS.
     case "$vpath" in
     "/1. Releases"*)
         truncate_virtual_parts "$1" 2
@@ -69,13 +71,15 @@ get_selected_release() {
 
 # Get the path to the selected collage.
 get_selected_collage() {
-    vpath="${1##$HOME/music}"
+    vpath="${1##"$HOME/tunes"}"
+    vpath="${vpath##"$HOME/Tunes"}"  # Support both cases for my diff OS.
     [[ "$vpath" == "/6. Collages"* ]] && basename "$(truncate_virtual_parts "$1" 2)"
 }
 
 # Get the path to the selected playlist.
 get_selected_playlist() {
-    vpath="${1##$HOME/music}"
+    vpath="${1##"$HOME/tunes"}"
+    vpath="${vpath##"$HOME/Tunes"}"  # Support both cases for my diff OS.
     [[ "$vpath" == "/7. Playlists"* ]] && basename "$(truncate_virtual_parts "$1" 2)"
 }
 
