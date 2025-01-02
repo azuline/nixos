@@ -16,7 +16,7 @@ if.window-title-regex-substring = '^password-selector$'
 run = 'layout floating'
 [[on-window-detected]]
 if.window-title-regex-substring = '^Karabiner-Elements Settings$'
-run = 'layout floating'
+run = 'layout tiling'
 # [[on-window-detected]]
 # if.window-title-regex-substring = '^playmusic-mpv$'
 # run = 'layout floating'
