@@ -44,6 +44,7 @@
       "discord"
       "figma"
       "firefox"
+      "ghostty"
       "google-chrome"
       "karabiner-elements"
       "notion"

@@ -77,10 +77,12 @@ alt-f = 'fullscreen --no-outer-gaps'
 alt-shift-f = 'macos-native-fullscreen'
 alt-o = 'layout floating tiling'
 
-cmd-enter = 'exec-and-forget open -na kitty'
-alt-enter = 'exec-and-forget open -na kitty'
-alt-n = 'exec-and-forget open -na kitty --args fish -c nnn'  # for the PATH
+cmd-enter = 'exec-and-forget open -na ghostty'
+alt-enter = 'exec-and-forget open -na ghostty'
+alt-n = 'exec-and-forget open -na ghostty --args --command="bash -ic nnn"'  # for the PATH
 alt-p = 'exec-and-forget open -na kitty --args --override initial_window_width=800 --override initial_window_height=500 --title password-selector bash -ic term-pass'
+# The Ghostty version doesn't work with the on-window-open event; I think the window title is set after open.
+# alt-p = 'exec-and-forget open -na ghostty --args --window-width=64 --window-height=20 --title=password-selector --command="bash -ic term-pass"'
 
 # Consume all extra keys--we have no use for the "option" ligatures right now
 # and we've rebound all cmd-letter keys to option.

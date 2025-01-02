@@ -9,7 +9,7 @@ let
       ''
     else if specialArgs.sys.host == "sunrise" then
       builtins.readFile ./kitty.conf + ''
-        font_size 15.0
+        font_size 14.0
         window_padding_width 8
       ''
     else if specialArgs.sys.host == "haiqin" then

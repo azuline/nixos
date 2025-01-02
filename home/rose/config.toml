@@ -252,7 +252,7 @@ genres.release = """
 {% endif %}
 """
 labels.release = """
-{% if context.label in ["Regelbau"] %}
+{% if context.label in ["Regelbau", "Basic Channel"] %}
     [{{ catalognumber }}]{% if new %}^{% endif %}
     {{ releaseartists | artistsfmt }} -
     {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
