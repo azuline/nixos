@@ -33,7 +33,7 @@ artist_aliases = [
 ]
 
 [vfs]
-mount_dir = "~/Tunes"
+mount_dir = "~/tunes"
 
 hide_genres_with_only_new_releases = true
 hide_descriptors_with_only_new_releases = true
