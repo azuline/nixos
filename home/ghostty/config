@@ -1,0 +1,41 @@
+macos-titlebar-style = hidden
+window-padding-x = 8
+window-padding-y = 8
+font-family = Source Code Pro
+font-size = 14
+confirm-close-surface = false
+quit-after-last-window-closed = true
+quit-after-last-window-closed-delay = 1s
+shell-integration = fish
+window-save-state = never
+macos-option-as-alt = true
+
+# Colors (Pale Night)
+
+palette = 0=#30384c
+palette = 1=#f77669
+palette = 2=#8bd649
+palette = 3=#ffcb6b
+palette = 4=#7986e7
+palette = 5=#c792ea
+palette = 6=#82b1ff
+palette = 7=#d9f5dd
+palette = 8=#3e465b
+palette = 9=#ff5370
+palette = 10=#c3e88d
+palette = 11=#f1e655
+palette = 12=#8eace3
+palette = 13=#939ede
+palette = 14=#89ddff
+palette = 15=#eeffff
+# background = #090910
+background = #040405
+foreground = #eeffff
+selection-background = #232344
+selection-foreground = #bbbbbb
+cursor-invert-fg-bg = true
+
+# Blur
+
+background-opacity = .92
+background-blur-radius = 14

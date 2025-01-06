@@ -37,7 +37,6 @@
       "gnu-sed" # Installed as gsed, for nnn.
     ];
     casks = [
-      "1password"
       "bazecor"
       "chatgpt"
       "cursor"

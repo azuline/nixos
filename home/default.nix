@@ -248,6 +248,7 @@
   macGuiBundle = { pkgs, specialArgs, ... }: {
     imports = [
       ./aerospace
+      ./ghostty
       ./karabiner
     ];
   };
