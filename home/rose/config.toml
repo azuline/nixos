@@ -1,6 +1,7 @@
 music_source_dir = "~/.music-source"
 ignore_release_directories = [ ".stversions" ]
 rename_source_files = true
+write_parent_genres = true
 
 artist_aliases = [
     # Parents
