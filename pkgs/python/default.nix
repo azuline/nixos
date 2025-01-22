@@ -1,6 +1,6 @@
-{ rose, python311 }:
+{ rose, python312 }:
 
-python311.withPackages (ps: with ps; [
+python312.withPackages (ps: with ps; [
   # Python Tooling
   pip
   pipx

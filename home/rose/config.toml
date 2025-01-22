@@ -60,7 +60,6 @@ artists_blacklist = [
     "Alceo Galliera",
     "Alice Sara Ott",
     "Andrea Marcon",
-    "André Previn",
     "Anne Sofie Von Otter",
     "Anthony Rolfe-Johnson",
     "Barbara Bonney",
@@ -236,8 +235,8 @@ genres.release = """
         {{ releasetitle }}
         by {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }}
     {% else %}
+        {% if compositiondate %}{{ compositiondate.year }}{% endif %}
         {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
-        {% if releasetype == "single" %}x{% endif %}{% if compositiondate %}{{ compositiondate.year }}.{% endif %}
         {{ releasetitle }} -
         {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
         {% if releasedate or originaldate %}({{ (originaldate or releasedate).year }}){% endif %}
