@@ -14,9 +14,10 @@ writeShellScriptBin "win-switch" ''
 
   function windowsOff() {
     # XRandr
-    xrandr --output HDMI-0 --auto
-    xrandr --output HDMI-0 --right-of DP-0
-    xrandr --output DP-0 --primary
+    # xrandr --output HDMI-0 --auto
+    # xrandr --output HDMI-0 --right-of DP-0
+    # xrandr --output DP-0 --primary
+    xrandr --output HDMI-0 --primary
 
     # Polybar
     systemctl restart --user polybar
