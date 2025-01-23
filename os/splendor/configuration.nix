@@ -10,7 +10,6 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./torrents.nix
     ./desktop.nix
     ./vm.nix
   ];
