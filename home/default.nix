@@ -284,6 +284,7 @@
 
     home.packages = with pkgs; [
       bar-gpu
+      bar-ddcutil
       bar-loadavg
       bar-now-playing
       bar-vpn
