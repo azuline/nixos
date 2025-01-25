@@ -28,6 +28,8 @@
       "net.ipv6.conf.all.forwarding" = 1;
     };
     kernelModules = [
+      # == For external monitor control ==
+      "ddcci"
       # == For qemu-kvm ==
       "vfio"
       "vfio_iommu_type1"
