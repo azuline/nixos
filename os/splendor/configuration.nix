@@ -47,17 +47,6 @@
     ];
   };
 
-  fileSystems = {
-    "/mnt/elements" = {
-      device = "/dev/disk/by-uuid/01822c0a-0963-47b4-8f3c-a9765ea53093";
-      fsType = "ext4";
-    };
-    # "/mnt/backup" = {
-    #   device = "/dev/disk/by-uuid/09ca7108-e0de-4fc8-9cbf-86fee575bba3";
-    #   fsType = "ext4";
-    # };
-  };
-
   networking = {
     hostName = "splendor";
     networkmanager.enable = true;
