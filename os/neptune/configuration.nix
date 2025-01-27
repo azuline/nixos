@@ -12,7 +12,7 @@
     ./hardware-configuration.nix
     ./desktop.nix
     ./torrents.nix
-    ./services.nix
+    # ./services.nix
     ./zfs.nix
   ];
 
