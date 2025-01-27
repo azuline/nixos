@@ -65,7 +65,6 @@
 
   hardware.bluetooth.enable = true;
 
-  services.mullvad-vpn.enable = true;
   services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.upower.enable = true;
