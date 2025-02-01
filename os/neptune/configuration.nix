@@ -12,7 +12,7 @@
     ./hardware-configuration.nix
     ./desktop.nix
     ./torrents.nix
-    # ./services.nix
+    ./services.nix
     ./zfs.nix
   ];
 
@@ -64,6 +64,9 @@
       interfaces.tailscale0 = {
         allowedTCPPorts = [
           22 # ssh
+          4646 # nomad
+          8500 # consul
+          9001 # thelounge
           12834 # transmission
         ];
       };
