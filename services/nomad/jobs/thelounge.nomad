@@ -6,8 +6,9 @@ job "thelounge" {
     network {
       mode = "bridge"
       port "http" {
-        static = 9001
-        to     = 9000
+        static       = 9001
+        to           = 9000
+        host_network = "tailscale"
       }
     }
     volume "config" {

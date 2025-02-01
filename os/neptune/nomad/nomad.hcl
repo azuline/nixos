@@ -13,8 +13,9 @@ client {
     # https://github.com/hashicorp/nomad/issues/18721
     disable_filesystem_isolation = true
   }
-  host_network "default" {
-    cidr = "100.104.105.144/32"
+  host_network "tailscale" {
+    cidr      = "100.104.105.144/32"
+    interface = "tailscale0"
   }
   host_network "public" {
     cidr           = "192.168.1.207/32"
