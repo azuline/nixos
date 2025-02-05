@@ -50,23 +50,12 @@
   networking = {
     hostName = "splendor";
     networkmanager.enable = true;
-    # Static LAN IP so that we can port forward and deterministically bind to it and shit.
-    useDHCP = false;
-    interfaces.enp6s0.ipv4.addresses = [{ address = "192.168.1.160"; prefixLength = 24; }];
     defaultGateway = "192.168.1.1";
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing
         56002 # nicotine
       ];
-      interfaces.enp6s0 = {
-        allowedTCPPorts = [
-          5000 # mkchromecast
-        ];
-        allowedUDPPorts = [
-          5353 # mDNS (for mkchromecast)
-        ];
-      };
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
       interfaces.tailscale0 = {
