@@ -15,7 +15,6 @@
   environment = {
     systemPackages = with pkgs; [
       aerospace
-      colima
       curl
       jankyborders
       jq
@@ -34,6 +33,7 @@
   homebrew = {
     enable = true;
     brews = [
+      "colima"
       "gnu-sed" # Installed as gsed, for nnn.
     ];
     casks = [

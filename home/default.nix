@@ -131,6 +131,7 @@
       haskellPackages.implicit-hie
       isort
       jdk11
+      jujutsu
       just
       kind
       kube-linter

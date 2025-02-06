@@ -303,6 +303,14 @@
                         "description": "Option+Click -> Move",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.figma\\.Desktop$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": ["option"],

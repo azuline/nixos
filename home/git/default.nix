@@ -9,7 +9,7 @@
       key = "953ACFC5F8F3E2E7";
       signByDefault = true;
     };
-    lfs.enable = true;
+    # lfs.enable = true;
     extraConfig = {
       core.editor = "nvim";
       core.pager = "delta";
