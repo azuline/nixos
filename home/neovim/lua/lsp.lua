@@ -64,7 +64,6 @@ lspconfig.pyright.setup({
 })
 
 lspconfig.ruff.setup({
-  cmd = { "ruff", "server", "--preview" },
   on_attach = function(client, bufnr)
     -- Defer to Pyright's hover.
     if client.name == "ruff" then
@@ -108,23 +107,6 @@ lspconfig.bashls.setup({
   capabilities = capabilities,
 })
 
--- To avoid react.d.ts definitions from opening on jump to definition.
--- https://github.com/typescript-language-server/typescript-language-server/issues/216#issuecomment-1005272952
-local function filter(arr, fn)
-  if type(arr) ~= "table" then
-    return arr
-  end
-
-  local filtered = {}
-  for k, v in pairs(arr) do
-    if fn(v, k, arr) then
-      table.insert(filtered, v)
-    end
-  end
-
-  return filtered
-end
-
 if vim.fn.executable("tsc") then
   require("typescript-tools").setup({
     settings = {
@@ -145,6 +127,7 @@ if vim.fn.executable("tsc") then
       },
     },
     on_attach = function(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = false
       buf_map(bufnr, "n", "<Leader>i", ":TSToolsAddMissingImports<CR>")
       -- vim.api.nvim_create_autocmd("BufWritePre", {
       --   buffer = bufnr,
@@ -153,25 +136,6 @@ if vim.fn.executable("tsc") then
       on_attach(client, bufnr)
     end,
     capabilities = capabilities,
-    -- TODO: Unknown if this is still an issue with typescript-tools. Uncomment if it is.
-    -- handlers = {
-    --   ["textDocument/definition"] = function(err, result, method)
-    --     -- https://github.com/typescript-language-server/typescript-language-server/issues/216
-    --     local function filterDTS(value)
-    --       if value.targetUri ~= nil then
-    --         return string.match(value.targetUri, "%.d.ts") == nil
-    --       end
-    --       return string.match(value.uri, "%.d.ts") == nil
-    --     end
-
-    --     if vim.tbl_islist(result) and #result > 1 then
-    --       local filtered_result = filter(result, filterDTS)
-    --       return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method)
-    --     end
-
-    --     vim.lsp.handlers["textDocument/definition"](err, result, method)
-    --   end,
-    -- },
   })
 end
 
@@ -186,11 +150,6 @@ lspconfig.eslint.setup({
       mode = "all",
     },
   },
-})
-
-lspconfig.biome.setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
 })
 
 lspconfig.tailwindcss.setup({
@@ -245,14 +204,12 @@ end
 local sources = {
   -- Lua
   null_ls.builtins.formatting.stylua,
-  -- Python
-  -- null_ls.builtins.formatting.black,
-  -- null_ls.builtins.formatting.isort,
-  -- null_ls.builtins.diagnostics.mypy,
   -- Golang
   null_ls.builtins.formatting.gofumpt,
   -- null_ls.builtins.diagnostics.golangci_lint,
   -- null_ls.builtins.diagnostics.revive,
+  -- JavaScript
+  null_ls.builtins.formatting.biome,
   -- Nix
   null_ls.builtins.formatting.nixpkgs_fmt,
 }
