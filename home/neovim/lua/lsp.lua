@@ -194,6 +194,11 @@ lspconfig.nil_ls.setup({
   on_attach = on_attach,
 })
 
+lspconfig.biome.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
 if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") == 1 then
   lspconfig.dprint.setup({
     capabilities = capabilities,
@@ -208,8 +213,6 @@ local sources = {
   null_ls.builtins.formatting.gofumpt,
   -- null_ls.builtins.diagnostics.golangci_lint,
   -- null_ls.builtins.diagnostics.revive,
-  -- JavaScript
-  null_ls.builtins.formatting.biome,
   -- Nix
   null_ls.builtins.formatting.nixpkgs_fmt,
 }
