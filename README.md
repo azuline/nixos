@@ -188,3 +188,10 @@ $ nixos-install --root /mnt --max-jobs 40
 # And we're done!
 $ reboot
 ```
+
+## Nomad & Consul
+
+- global management keys
+- acls
+- node access tokens
+- consul intentions
