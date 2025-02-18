@@ -69,6 +69,7 @@ cabbrev wqa Z
 " Custom overrides
 au BufReadPost,BufNewFile *.rkt set filetype=racket
 au filetype racket set lisp
+au BufReadPost,BufNewFile *.mdx set filetype=markdown
 au BufReadPost,BufNewFile *.sqlx set filetype=sql
 au BufReadPost,BufNewFile *.nomad set filetype=hcl
 au BufReadPost,BufNewFile *.html.jinja set filetype=html
@@ -142,7 +143,7 @@ nnoremap <Leader>r= <Cmd>resize +10<CR>
 nnoremap <Leader>r, <Cmd>vertical resize -10<CR>
 nnoremap <Leader>r. <Cmd>vertical resize +10<CR>
 
-nnoremap <C-M> <Cmd>cprevious<CR>
+nnoremap <C-,> <Cmd>cprevious<CR>
 nnoremap <C-m> <Cmd>cnext<CR>
 
 " <C-r> in visual mode to S&R selected text.

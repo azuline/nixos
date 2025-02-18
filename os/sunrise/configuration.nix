@@ -46,6 +46,7 @@
       "ghostty"
       "google-chrome"
       "karabiner-elements"
+      "linear-linear"
       "notion"
       "notion-calendar"
       "plex"
