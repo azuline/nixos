@@ -87,6 +87,7 @@ in
     };
     bookmarks = {
       b = "~/books";
+      B = "~/books/theology/buddhism";
       c = "~/tunes/3. Genres/Classical Music";
       d = "~/downloads";
       e = "/mnt/elements";

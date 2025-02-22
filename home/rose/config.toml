@@ -407,6 +407,9 @@ actions = ["sed: CG$:"]
 matcher = "label: Entertainment$"
 actions = ["sed: Entertainment$:"]
 [[stored_metadata_rules]]
+matcher = "label: Group"
+actions = ["sed: Group$:"]
+[[stored_metadata_rules]]
 matcher = "label: Record"
 actions = ["sed: Record(ing)?s?$:"]
 [[stored_metadata_rules]]
