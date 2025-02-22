@@ -93,7 +93,7 @@
       woff2
       xclip
       pinentry-curses
-      xsv
+      xan
       yq-go
       zip
     ];
