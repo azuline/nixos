@@ -89,6 +89,7 @@ in
       b = "~/books";
       B = "~/books/theology/buddhism";
       c = "~/tunes/3. Genres/Classical Music";
+      C = "~/tunes/3. Genres/City Pop";
       d = "~/downloads";
       e = "/mnt/elements";
       i = "~/images";
