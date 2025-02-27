@@ -69,18 +69,19 @@ lspconfig.ruff.setup({
     if client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
     end
-    -- local callback = function()
-    --   if vim.bo.ft == "python" then
-    --     -- pcall here so that errors do not spam the ex line with a bunch of shit and block editing for 5 seconds
-    --     local success, _ = pcall(function()
-    --       vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" } }, apply = true })
-    --     end)
-    --     if success then
-    --       vim.cmd("write")
-    --     end
-    --   end
-    -- end
-    -- vim.api.nvim_create_autocmd("BufWritePost", { callback = callback })
+    local callback = function()
+      if vim.bo.ft == "python" then
+        -- pcall here so that errors do not spam the ex line with a bunch of shit and block editing for 5 seconds
+        local success, _ = pcall(function()
+          vim.lsp.buf.code_action({ context = { only = { "source.fixAll.ruff" }, diagnostics = {} }, apply = true })
+          vim.lsp.buf.format({ async = false })
+        end)
+        if success then
+          vim.cmd("write")
+        end
+      end
+    end
+    vim.api.nvim_create_autocmd("BufWritePost", { callback = callback })
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
@@ -209,6 +210,8 @@ end
 local sources = {
   -- Lua
   null_ls.builtins.formatting.stylua,
+  -- JavaScript
+  null_ls.builtins.formatting.biome,
   -- Golang
   null_ls.builtins.formatting.gofumpt,
   -- null_ls.builtins.diagnostics.golangci_lint,
