@@ -116,7 +116,6 @@
       clang-tools
       docker
       docker-compose
-      dprint
       dotnet-sdk_9
       dune_3
       # gdb  # TODO(revive)
