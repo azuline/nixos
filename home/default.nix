@@ -139,6 +139,7 @@
       luajitPackages.luacheck
       minikube
       mypy
+      namespace-cli
       nil
       nixpkgs-fmt
       node2nix
