@@ -5,10 +5,20 @@ job "router" {
     count = 1
     network {
       mode = "bridge"
+      port "http" {
+        static       = 80
+        to           = 80
+        host_network = "public"
+      }
+      port "https" {
+        static       = 443
+        to           = 443
+        host_network = "public"
+      }
     }
     service {
       name = "router"
-      port = "443"
+      port = "https"
       connect {
         sidecar_service {
           proxy {
@@ -35,7 +45,7 @@ job "router" {
         name            = "root check"
         type            = "http"
         protocol        = "https"
-        address_mode    = "alloc"
+        port            = "https"
         path            = "/"
         tls_skip_verify = true
         interval        = "10s"
@@ -119,6 +129,13 @@ job "router" {
         data          = <<EOF
 # sunsetglow.net - root page
 server {
+  listen 80;
+  listen [::]:80;
+  http2 on;
+  server_name sunsetglow.net;
+  return 301 https://$host$request_uri;
+}
+server {
   listen 443 ssl;
   listen [::]:443 ssl;
   http2 on;
@@ -133,6 +150,13 @@ server {
 
 # ozu.sunsetglow.net - umami
 server {
+  listen 80;
+  listen [::]:80;
+  http2 on;
+  server_name ozu.sunsetglow.net;
+  return 301 https://$host$request_uri;
+}
+server {
   listen 443 ssl;
   listen [::]:443 ssl;
   http2 on;
@@ -146,6 +170,13 @@ server {
 }
 
 # u.sunsetglow.net - image host
+server {
+  listen 80;
+  listen [::]:80;
+  http2 on;
+  server_name u.sunsetglow.net;
+  return 301 https://$host$request_uri;
+}
 server {
   listen 443 ssl;
   listen [::]:443 ssl;
@@ -163,6 +194,13 @@ server {
 
 # celestial.sunsetglow.net - design system ladle
 server {
+  listen 80;
+  listen [::]:80;
+  http2 on;
+  server_name celestial.sunsetglow.net;
+  return 301 https://$host$request_uri;
+}
+server {
   listen 443 ssl;
   listen [::]:443 ssl;
   http2 on;
@@ -176,6 +214,13 @@ server {
 }
 
 # f.sunsetglow.net - files
+server {
+  listen 80;
+  listen [::]:80;
+  http2 on;
+  server_name f.sunsetglow.net;
+  return 301 https://$host$request_uri;
+}
 server {
   listen 443 ssl;
   listen [::]:443 ssl;
