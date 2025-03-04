@@ -127,14 +127,14 @@ job "router" {
       }
       template {
         data          = <<EOF
-# sunsetglow.net - root page
 server {
   listen 80;
   listen [::]:80;
-  http2 on;
-  server_name sunsetglow.net;
+  server_name _;
   return 301 https://$host$request_uri;
 }
+
+# sunsetglow.net - root page
 server {
   listen 443 ssl;
   listen [::]:443 ssl;
@@ -150,13 +150,6 @@ server {
 
 # ozu.sunsetglow.net - umami
 server {
-  listen 80;
-  listen [::]:80;
-  http2 on;
-  server_name ozu.sunsetglow.net;
-  return 301 https://$host$request_uri;
-}
-server {
   listen 443 ssl;
   listen [::]:443 ssl;
   http2 on;
@@ -170,13 +163,6 @@ server {
 }
 
 # u.sunsetglow.net - image host
-server {
-  listen 80;
-  listen [::]:80;
-  http2 on;
-  server_name u.sunsetglow.net;
-  return 301 https://$host$request_uri;
-}
 server {
   listen 443 ssl;
   listen [::]:443 ssl;
@@ -194,13 +180,6 @@ server {
 
 # celestial.sunsetglow.net - design system ladle
 server {
-  listen 80;
-  listen [::]:80;
-  http2 on;
-  server_name celestial.sunsetglow.net;
-  return 301 https://$host$request_uri;
-}
-server {
   listen 443 ssl;
   listen [::]:443 ssl;
   http2 on;
@@ -214,13 +193,6 @@ server {
 }
 
 # f.sunsetglow.net - files
-server {
-  listen 80;
-  listen [::]:80;
-  http2 on;
-  server_name f.sunsetglow.net;
-  return 301 https://$host$request_uri;
-}
 server {
   listen 443 ssl;
   listen [::]:443 ssl;
@@ -288,15 +260,5 @@ EOF
         change_signal = "SIGHUP"
       }
     }
-  }
-  update {
-    max_parallel      = 1
-    health_check      = "checks"
-    min_healthy_time  = "10s"
-    healthy_deadline  = "1m"
-    progress_deadline = "10m"
-    auto_revert       = true
-    auto_promote      = true
-    canary            = 1
   }
 }
