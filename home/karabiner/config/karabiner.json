@@ -4,6 +4,48 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Ctrl+Shift+v -> Command+v",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": {
+                                        "mandatory": ["control", "shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Ctrl+Shift+Click -> Command+Click",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": ["control", "shift"],
+                                        "optional": ["any"]
+                                    },
+                                    "pointing_button": "button1"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": ["command"],
+                                        "pointing_button": "button1"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Modifier Cycle Cmd<->Ctrl Reversions",
                         "manipulators": [
                             {
@@ -355,16 +397,16 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "escape",
                                     "modifiers": {
-                                        "mandatory": ["left_shift"],
+                                        "mandatory": ["control", "shift"],
                                         "optional": ["any"]
-                                    }
+                                    },
+                                    "pointing_button": "button1"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "caps_lock",
-                                        "modifiers": []
+                                        "modifiers": ["command"],
+                                        "pointing_button": "button1"
                                     }
                                 ],
                                 "type": "basic"
