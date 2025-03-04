@@ -43,7 +43,7 @@
       # 16GB with the default size of 2048kB size hugepages. For the virtual machine.
       # It should be 8600 but it seems to be a smidge too small after 20240612
       # (IDK why it started failing!), so instead we are going 8888 for good luck.
-      # "hugepages=8888"
+      "hugepages=8888"
     ];
   };
 
@@ -90,7 +90,7 @@
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" "libvirtd" "i2c" ];
+        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" "libvirtd" "kvm" "i2c" ];
       };
     };
     groups = {

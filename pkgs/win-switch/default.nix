@@ -3,10 +3,10 @@
 writeShellScriptBin "win-switch" ''
   function windowsOn() {
     # XRandr
-    xrandr --output HDMI-0 --off
+    # xrandr --output HDMI-0 --off
 
     # Polybar
-    pkill -f 'polybar splendor-right'
+    # pkill -f 'polybar splendor-right'
 
     synergy &
     disown
@@ -17,10 +17,10 @@ writeShellScriptBin "win-switch" ''
     # xrandr --output HDMI-0 --auto
     # xrandr --output HDMI-0 --right-of DP-0
     # xrandr --output DP-0 --primary
-    xrandr --output HDMI-0 --primary
+    # xrandr --output HDMI-0 --primary
 
     # Polybar
-    systemctl restart --user polybar
+    # systemctl restart --user polybar
 
     pkill synergy
   }
