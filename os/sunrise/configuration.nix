@@ -10,6 +10,9 @@
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = 5;
 
+  # Conflicts with determinate systems.
+  nix.enable = false;
+
   security.pam.enableSudoTouchIdAuth = true;
 
   environment = {
@@ -49,6 +52,7 @@
       "linear-linear"
       "notion"
       "notion-calendar"
+      "notunes"
       "plex"
       "plexamp"
       "popsql"
