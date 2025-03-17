@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  nix.settings.experimental-features = "nix-command flakes";
+  # Conflicts with determinate systems.
+  nix.enable = false;
+  # nix.settings.experimental-features = "nix-command flakes";
+
   networking = {
     hostName = "sunrise";
     computerName = "sunrise";
@@ -9,9 +12,6 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = 5;
-
-  # Conflicts with determinate systems.
-  nix.enable = false;
 
   security.pam.enableSudoTouchIdAuth = true;
 
@@ -38,6 +38,7 @@
     brews = [
       "colima"
       "gnu-sed" # Installed as gsed, for nnn.
+      "syncthing" # Keeps resetting its config after reboots in Home-Manager?
     ];
     casks = [
       "bazecor"
