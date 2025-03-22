@@ -224,6 +224,7 @@
       arandr
       brightnessctl
       discord
+      evince
       gimp
       libnotify
       maim
