@@ -7,20 +7,20 @@ function find_test_functions
         return 1
     end
 
-    grep -E "^\s*def test_" $filename | while read -l line
-        set name (echo $line | string replace "def " "" | string split '(' | head -n 1)
+    rg '^\s*(async )?def test_' $filename | while read -l line
+        set name (echo $line | sed 's/(async )?def //' | string split '(' | head -n 1)
         echo $name
     end
 end
 
 function pytest_complete_k -d "Complete pytest tests"
-    for file in (find . -name '*_test.py' -o -name 'test_*.py')
+    for file in (fd '.*_test.py')
         find_test_functions $file
     end
 end
 
 function pytest_complete_path
-    for file in (find . -name '*_test.py' -o -name 'test_*.py')
+    for file in (fd '.*_test.py')
         set relative_path (string replace "./" "" -- $file)
         echo $relative_path
         find_test_functions $file | while read -l test_name
