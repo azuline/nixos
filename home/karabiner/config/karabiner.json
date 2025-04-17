@@ -41,8 +41,24 @@
                         ]
                     },
                     {
-                        "description": "Ctrl+Shift+v -> Command+v",
+                        "description": "Ctrl+Shift+{c,v} -> Command+{c,v} ",
                         "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": ["control", "shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
                             {
                                 "from": {
                                     "key_code": "v",

@@ -41,6 +41,7 @@
       gnumake
       gnused
       graphviz
+      hexyl
       htop
       imagemagick
       jq
