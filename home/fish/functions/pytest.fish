@@ -8,7 +8,7 @@ function find_test_functions
     end
 
     rg '^\s*(async )?def test_' $filename | while read -l line
-        set name (echo $line | sed 's/(async )?def //' | string split '(' | head -n 1)
+        set name (echo $line | perl -pe 's/^\s*(async )?def //' | string split '(' | head -n 1)
         echo $name
     end
 end

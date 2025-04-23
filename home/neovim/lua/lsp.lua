@@ -116,6 +116,11 @@ if vim.fn.executable("tsc") then
         importModuleSpecifierPreference = "non-relative",
         importModuleSpecifierEnding = "minimal",
         autoImportFileExcludePatterns = {
+          -- These are primitive libraries which have been abstracted behind my system/wrappers.
+          "**/react-aria-components/**",
+          "**/@radix-ui/**",
+          "**/sonner/**",
+          "**/wouter/**",
           -- This reexports every React hook.. absurd.
           "**/@storybook/addons/**",
           -- This exports a `t`.
