@@ -20,7 +20,7 @@ I currently have four hosts, all on NixOS:
 - `neptune`: (NixOS) My secondary laptop, a Thinkpad X1 Carbon 5th Gen.
 - `frieren`: (NixOS) An OVH server.
 
-# Directory Structure
+## Notes on Content
 
 This repository is organized into the following directories:
 
@@ -36,20 +36,6 @@ This repository is organized into the following directories:
 `flake.nix` is the entrypoint for the Nix code in `home`, `os`, and `pkgs`; it
 exports the Home Manager and NixOS configurations.
 
-# Screenshots
-
-_TODO_
-
-# Philosophy
-
-- I favor running local software over SaaS and self-hosted software. I
-  synchronize state between computers with Syncthing.
-- My workflows and tools generally follow the Unix philosophy. For example, my
-  music system is the combination of three focused tools: [rose](https://github.com/azuline/rose), [nnn](https://github.com/jarun/nnn), and [mpv](https://github.com/mpv-player/mpv).
-- I like immutability, reproducibility, yada yada. Hence NixOS.
-
-# Personal Tools
-
 Some of the little tools I wrote for my workflow are kept in this repository's
 `pkgs` directory instead of spun out into their own repositories. They are:
 
@@ -59,29 +45,21 @@ Some of the little tools I wrote for my workflow are kept in this repository's
 - [EXIF & Last Modified Syncer](./pkgs/exif-mtime-sync/): Sync an image's EXIF
   Created Date and filesystem Last Modified time.
 
-# Networking
-
 All hosts are connected to each other via Tailscale VPN. There is an ACL,
 defined [here](./tailscale.policy.json).
 
 The ACL is applied via GitOps; see the [GitHub Action](./.github/workflows/tailscale.yml) for the instructions.
 
-# File Synchronization
-
 Machines synchronize files and application state with each other using
 Syncthing.
-
-# Backgrounds
 
 I maintain a directory of desktop backgrounds in `~/backgrounds`, which I
 periodically cycle through. Backgrounds are configured using `xwallpaper`.
 
-# Fonts
-
 I maintain a separate repository of fonts for system usage and design projects
 in `~/fonts`. This repository is symlinked to `~/.local/share/fonts/collection`.
 
-# Bootstrapping
+## Bootstrapping
 
 The following commands bootstrap a new laptop. These should be run after
 booting into a minimal NixOS installation media.
