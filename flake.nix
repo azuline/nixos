@@ -179,13 +179,6 @@
             };
             modules = [ ./os/neptune/configuration.nix ];
           };
-          frieren = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              pin = with pkgs; { inherit presage mkchromecast; };
-            };
-            modules = [ ./os/frieren/configuration.nix ];
-          };
         };
         darwinConfigurations = {
           sunrise = nix-darwin.lib.darwinSystem {

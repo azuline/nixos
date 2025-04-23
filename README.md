@@ -13,12 +13,11 @@ $ home-manager switch --flake /etc/nixos/#host        # To activate Home Manager
 $ sudo nixos-rebuild switch --flake /etc/nixos/#host  # To activate NixOS.
 ```
 
-I currently have four hosts, all on NixOS:
+I currently have three hosts:
 
 - `splendor`: (NixOS) My [custom built desktop](https://pcpartpicker.com/user/meowihaveagrape/saved/wKxRK8).
 - `haiqin`: (NixOS) My primary laptop, a Thinkpad X1 Carbon 9th Gen.
 - `neptune`: (NixOS) My secondary laptop, a Thinkpad X1 Carbon 5th Gen.
-- `frieren`: (NixOS) An OVH server.
 
 ## Notes on Content
 
@@ -134,8 +133,8 @@ $ mdadm --zero-superblock /dev/nvme0n1p1
 $ mdadm --zero-superblock /dev/nvme0n1p2
 $ mdadm --zero-superblock /dev/nvme1n1p1
 $ mdadm --zero-superblock /dev/nvme1n1p2
-$ mdadm --create --run --verbose /dev/md/boot --level=1 --raid-devices=2 --homehost=frieren --name=boot /dev/nvme0n1p2 /dev/nvme1n1p2 --metadata=0.90
-$ mdadm --create --run --verbose /dev/md/root --level=1 --raid-devices=2 --homehost=frieren --name=root /dev/nvme0n1p3 /dev/nvme1n1p3
+$ mdadm --create --run --verbose /dev/md/boot --level=1 --raid-devices=2 --homehost=$HOST --name=boot /dev/nvme0n1p2 /dev/nvme1n1p2 --metadata=0.90
+$ mdadm --create --run --verbose /dev/md/root --level=1 --raid-devices=2 --homehost=$HOST --name=root /dev/nvme0n1p3 /dev/nvme1n1p3
 # Wipe filesystem signatures that might be on the RAID from some possibly
 # existing older use of the disks (RAID creation does not do that).
 # See https://serverfault.com/questions/911370/why-does-mdadm-zero-superblock-preserve-file-system-information
