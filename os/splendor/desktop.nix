@@ -52,7 +52,10 @@
       ibus
       ibus-engines.libpinyin
     ];
-    variables = {
+    sessionVariables = {
+      GTK_IM_MODULE = "ibus";
+      QT_IM_MODULE = "ibus";
+      XMODIFIERS = "@im=ibus";
       # Make ibus work with Kitty.
       GLFW_IM_MODULE = "ibus";
     };
