@@ -15,7 +15,7 @@
     ];
 
     home.packages = with pkgs; [
-      # flexget  # Failing in unstable; I don't use it rn so I don't care.
+      flexget
       autossh
       bat
       bc
@@ -257,9 +257,7 @@
   };
 
   personalMachineBundle = { pkgs, ... }: {
-    imports = [
-      ./atelier
-    ];
+    imports = [ ];
 
     home.packages = with pkgs; [
       anki

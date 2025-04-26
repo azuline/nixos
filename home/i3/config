@@ -162,7 +162,6 @@ bindsym $mod+n exec $term nnn
 bindsym $mod+c exec i3-clear-clipboard
 bindsym $mod+p exec $term --title pass bash -ic term-pass
 bindsym $mod+y exec $term --title yy i3-yy
-bindsym $mod+Shift+y exec $term --title yy-id i3-atelier-identifier
 # Screenshots
 bindsym --release Print exec i3-screenshot select
 bindsym --release Shift+Print exec i3-screenshot screen

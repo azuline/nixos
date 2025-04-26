@@ -16,8 +16,6 @@ import nixpkgs {
       discord = prev.callPackage ./discord { inherit srcs; original = prev.discord; };
       exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
       edit-toc = prev.callPackage ./edit-toc { };
-      i3-atelier-identifier = prev.callPackage ./i3-atelier-identifier { };
-      i3-atelier-opener = prev.callPackage ./i3-atelier-opener { };
       i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };
       i3-lock = prev.callPackage ./i3-lock { };
       term-pass = prev.callPackage ./term-pass { };
