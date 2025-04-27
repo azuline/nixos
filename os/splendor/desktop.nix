@@ -61,6 +61,13 @@
     };
   };
 
+  # https://github.com/NixOS/nixpkgs/issues/401891
+  programs.i3lock = {
+    enable = true;
+    package = pkgs.i3lock-color;
+  };
+  security.pam.services.i3lock-color.enable = true;
+
   fonts.fontconfig.defaultFonts = {
     serif = [ "EB Garamond" "Noto Serif CJK SC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Serif CJK TC" "Noto Serif CJK HK" ];
     sansSerif = [ "Roboto" "Noto Sans CJK SC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Sans CJK TC" "Noto Sans CJK HK" ];

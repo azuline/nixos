@@ -62,6 +62,13 @@
     GLFW_IM_MODULE = "ibus";
   };
 
+  # https://github.com/NixOS/nixpkgs/issues/401891
+  programs.i3lock = {
+    enable = true;
+    package = pkgs.i3lock-color;
+  };
+  security.pam.services.i3lock-color.enable = true;
+
   qt = {
     enable = true;
     platformTheme = "gtk2";

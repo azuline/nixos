@@ -103,8 +103,8 @@
         rose-cli = rose-src.packages.${system}.rose-cli;
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
-        code-cursor = pkgs-latest.code-cursor;
-        wrangler = pkgs-stable.wrangler;
+        code-cursor = pkgs-latest.code-cursor; # They update a lot.
+        wrangler = pkgs-stable.wrangler; # Latest version doesn't work.
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
