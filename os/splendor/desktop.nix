@@ -94,6 +94,7 @@
 
   programs.dconf.enable = true;
   programs.seahorse.enable = true;
+  programs.bazecor.enable = true;
 
   services.samba = {
     enable = true;
