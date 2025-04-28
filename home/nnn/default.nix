@@ -81,6 +81,7 @@ in
         f = "fzopen";
         i = "imgview";
         r = "rose";
+        ";" = "preview-tui";
       };
       # We vendor plugins in order to be able to add our own.
       src = ./plugins;
