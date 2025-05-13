@@ -224,26 +224,27 @@
     home.packages = with pkgs; [
       arandr
       brightnessctl
+      chromium
       discord
       evince
+      firefox
       gimp
       libnotify
       maim
+      nautilus
       paprefs
       pavucontrol
-      chromium
-      firefox
       peek
       pulseaudio # for pactl
       simplescreenrecorder
+      slack
       speechd
       tor-browser-bundle-bin
+      vscode
       xbindkeys
       xdotool # For VimTex's forward search.
       xorg.xkill
       xwallpaper
-      slack
-      vscode
       zoom-us
     ];
   };
