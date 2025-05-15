@@ -1,0 +1,11 @@
+{
+  "vim_mode": true,
+  "ui_font_size": 20,
+  "buffer_font_size": 17,
+  "buffer_font_family": "Source Code Pro",
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Dark",
+    "dark": "One Dark"
+  }
+}

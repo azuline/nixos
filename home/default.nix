@@ -219,6 +219,7 @@
       ./nsxiv
       ./user-dirs
       ./zathura
+      ./zed
     ];
 
     home.packages = with pkgs; [
@@ -245,7 +246,6 @@
       xdotool # For VimTex's forward search.
       xorg.xkill
       xwallpaper
-      zed-editor
       zoom-us
     ];
   };
