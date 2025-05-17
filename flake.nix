@@ -251,6 +251,7 @@
             chooseBundles = b: [
               b.cliBundle
               b.devBundle
+              b.musicBundle
               b.guiBundle
               b.linuxGuiBundle
               b.personalMachineBundle

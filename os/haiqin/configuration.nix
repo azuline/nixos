@@ -28,8 +28,8 @@
   networking = {
     hostName = "haiqin";
     networkmanager.enable = true;
-    extraHosts = ''
-    '';
+    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    extraHosts = "";
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing
@@ -54,7 +54,7 @@
   # https://github.com/NixOS/nixpkgs/issues/195777#issuecomment-1324378856
   system.activationScripts.restart-udev = "${pkgs.systemd}/bin/systemctl restart systemd-udev-trigger.service";
 
-  time.timeZone = "America/Los_Angeles";
+  services.automatic-timezoned.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i32b";
