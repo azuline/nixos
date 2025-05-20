@@ -1,7 +1,6 @@
-{ pin, ... }:
+{ pkgs-stable, ... }:
 
 let
-  pkgs-stable = pin.pkgs-stable;
   nomad = pkgs-stable.nomad;
   consul = pkgs-stable.consul;
   envoy = pkgs-stable.envoy;

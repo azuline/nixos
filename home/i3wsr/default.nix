@@ -2,7 +2,7 @@
 
 {
   home.packages = [ pkgs.i3wsr ];
-
+  xdg.configFile."i3wsr/config.toml".source = ./config.toml;
   systemd.user.services = {
     i3wsr = {
       Install = {

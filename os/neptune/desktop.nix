@@ -6,10 +6,7 @@
       enable = true;
       desktopManager.xterm.enable = false;
       dpi = 132;
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
-      };
+      windowManager.i3.enable = true;
       videoDrivers = [ "modesetting" ];
       deviceSection = ''
         Option "DRI" "3"

@@ -5,10 +5,7 @@
     xserver = {
       enable = true;
       desktopManager.xterm.enable = false;
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
-      };
+      windowManager.i3.enable = true;
       # screenSection = ''
       #   Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
       # '';

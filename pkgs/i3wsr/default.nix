@@ -1,5 +1,5 @@
 { original, srcs }:
 
 original.overrideAttrs (_: {
-  src = srcs.discord-src;
+  src = srcs.i3wsr-src;
 })

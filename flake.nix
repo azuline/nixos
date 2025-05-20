@@ -37,12 +37,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-flake sources.
+    discord-src = {
+      url = "https://dl.discordapp.net/apps/linux/0.0.33/discord-0.0.33.tar.gz";
+      flake = false;
+    };
     nnn-src = {
       url = "github:azuline/nnn";
       flake = false;
     };
-    discord = {
-      url = "https://dl.discordapp.net/apps/linux/0.0.33/discord-0.0.33.tar.gz";
+    i3wsr-src = {
+      url = "github:azuline/i3wsr";
       flake = false;
     };
     nsxiv-src = {
@@ -84,8 +88,9 @@
     , pgmigrate-src
     , rose-src
       # Non-Nix sources
+    , discord-src
     , nnn-src
-    , discord
+    , i3wsr-src
     , nsxiv-src
     , zathura-pdf-mupdf-src
     , fish-plugin-wd
@@ -96,15 +101,15 @@
     let
       pkgs-stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };
       pkgs-latest = import nixpkgs-latest { inherit system; config.allowUnfree = true; };
-      srcs = { inherit discord nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env zathura-pdf-mupdf-src; };
+      srcs = { inherit discord-src i3wsr-src nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env zathura-pdf-mupdf-src; };
       pins = {
         nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
         rose = rose-src.packages.${system}.rose-py;
         rose-cli = rose-src.packages.${system}.rose-cli;
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
-        code-cursor = pkgs-latest.code-cursor; # They update a lot.
         wrangler = pkgs-stable.wrangler; # Latest version doesn't work.
+        zed-editor = pkgs-latest.zed-editor; # Keep me on the latest and greatest AI.
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
@@ -161,13 +166,14 @@
           splendor = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = with pkgs; { inherit transmission_4 mkchromecast; };
+              pin = with pkgs; { inherit pkgs-stable transmission_4 mkchromecast; };
             };
             modules = [ ./os/splendor/configuration.nix ];
           };
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
+              inherit pkgs-stable;
               pin = with pkgs; { inherit mkchromecast; };
             };
             modules = [ ./os/haiqin/configuration.nix ];
@@ -175,7 +181,8 @@
           neptune = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              pin = with pkgs; { inherit pkgs-stable presage transmission_4 mkchromecast plex-ass plex-hama; };
+              inherit pkgs-stable;
+              pin = with pkgs; { inherit presage transmission_4 mkchromecast plex-ass plex-hama; };
             };
             modules = [ ./os/neptune/configuration.nix ];
           };

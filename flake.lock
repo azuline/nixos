@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "discord": {
+    "discord-src": {
       "flake": false,
       "locked": {
         "lastModified": 1698769854,
@@ -178,6 +178,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "i3wsr-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747714794,
+        "narHash": "sha256-t10YL4zGaNo5BAfZGEOSa1LWP+S9nKxHij47UgQxZJc=",
+        "owner": "azuline",
+        "repo": "i3wsr",
+        "rev": "953b4fe45589d829bc223b038b82385c19d96279",
+        "type": "github"
+      },
+      "original": {
+        "owner": "azuline",
+        "repo": "i3wsr",
         "type": "github"
       }
     },
@@ -412,11 +428,12 @@
     },
     "root": {
       "inputs": {
-        "discord": "discord",
+        "discord-src": "discord-src",
         "fish-plugin-nix-env": "fish-plugin-nix-env",
         "fish-plugin-wd": "fish-plugin-wd",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "i3wsr-src": "i3wsr-src",
         "nix-darwin": "nix-darwin",
         "nix-search-cli-src": "nix-search-cli-src",
         "nixpkgs": "nixpkgs",

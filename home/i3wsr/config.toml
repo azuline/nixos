@@ -1,0 +1,7 @@
+[general]
+
+[options]
+remove_duplicates = true
+
+[aliases.class]
+"^zed.editor.Editor" = "zed"
