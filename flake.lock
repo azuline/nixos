@@ -184,15 +184,15 @@
     "i3wsr-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1747714794,
-        "narHash": "sha256-t10YL4zGaNo5BAfZGEOSa1LWP+S9nKxHij47UgQxZJc=",
-        "owner": "azuline",
+        "lastModified": 1747875290,
+        "narHash": "sha256-+wuu0y12tNezUTrwyw+WHC3mclegOLNU/jPvjevrXCk=",
+        "owner": "roosta",
         "repo": "i3wsr",
-        "rev": "953b4fe45589d829bc223b038b82385c19d96279",
+        "rev": "6d6ebdae756ec12261d53929803a8c0f029aa9a4",
         "type": "github"
       },
       "original": {
-        "owner": "azuline",
+        "owner": "roosta",
         "repo": "i3wsr",
         "type": "github"
       }
@@ -466,7 +466,6 @@
       },
       "original": {
         "owner": "azuline",
-        "ref": "master",
         "repo": "rose",
         "type": "github"
       }

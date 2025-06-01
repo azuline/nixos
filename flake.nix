@@ -33,7 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rose-src = {
-      url = "github:azuline/rose/master";
+      url = "github:azuline/rose";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-flake sources.
@@ -46,7 +46,7 @@
       flake = false;
     };
     i3wsr-src = {
-      url = "github:azuline/i3wsr";
+      url = "github:roosta/i3wsr";
       flake = false;
     };
     nsxiv-src = {
