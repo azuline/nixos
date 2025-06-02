@@ -12,6 +12,7 @@ artist_aliases = [
     { artist = "LE SSERAFIM", aliases = ["Huh Yunjin"] },
     { artist = "NewJeans", aliases = ["HANNI", "HAERIN", "MINJI", "DANIELLE", "HYEIN"] },
     { artist = "tripleS", aliases = ["EVOLution", "LOVElution", "+(KR)ystal Eyes", "Acid Angel from Asia", "Acid Eyes", "Aria", "NXT", "Glow", "Vision@ry Vision"] },
+    { artist = "Red Velvet", aliases = ["Irene & Seulgi"] },
     # Aliases
     { artist = "Akasha System", aliases = ["DJ Panthr"] },
     { artist = "Basic Channel", aliases = ["Cyrus", "Maurizio", "Phylyps", "Quadrant", "Rhythm & Sound", "Round One", "Round Two", "Round Three", "Round Four", "Round Five"] },
@@ -399,6 +400,7 @@ ignore = [
     "artist:^Camo & Krooked$",
     "artist:^Drumsound & Bassline Smith$",
     "artist:^Benedictine Monks Of The Abbey Of St. Maurice & St. Maur, Clervaux$",
+    "artist:^Irene & Seulgi$",
 ]
 [[stored_metadata_rules]]
 matcher = "artist:\\\\"
