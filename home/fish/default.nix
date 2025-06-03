@@ -20,6 +20,12 @@
         then "sudo nixos-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}"
         else "darwin-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";
     };
+    shellInit = ''
+      set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+      if not string match -q -- $PNPM_HOME $PATH
+        set -gx PATH "$PNPM_HOME" $PATH
+      end
+    '';
   };
 
   xdg.configFile."fish/completions/gh.fish".source = ./completions/gh.fish;

@@ -36,7 +36,7 @@
       fx
       fzf
       gawk
-      gcc
+      (lib.setPrio 15 gcc) # it conflicts with clang
       ghostscript
       gnumake
       gnused
@@ -114,6 +114,7 @@
       black
       cabal-install
       ccls
+      clang
       clang-tools
       docker
       docker-compose
@@ -241,7 +242,7 @@
       slack
       speechd
       tor-browser-bundle-bin
-      vscode
+      vscode.fhs
       xbindkeys
       xdotool # For VimTex's forward search.
       xorg.xkill

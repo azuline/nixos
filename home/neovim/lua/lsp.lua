@@ -95,6 +95,14 @@ lspconfig.hls.setup({
   },
 })
 
+lspconfig.clangd.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  handlers = {
+    ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
+  },
+})
+
 lspconfig.zls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
