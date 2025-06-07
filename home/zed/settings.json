@@ -2,6 +2,7 @@
   "vim_mode": true,
   "ui_font_size": 20,
   "buffer_font_size": 17,
+  "relative_line_numbers": true,
   "buffer_font_family": "Source Code Pro",
   "theme": {
     "mode": "system",
