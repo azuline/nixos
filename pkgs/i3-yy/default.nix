@@ -1,7 +1,7 @@
 { writeShellScriptBin }:
 
 writeShellScriptBin "i3-yy" ''
-  book_files="$(find "$HOME/books" -type f \( -name '*.pdf' -o -name '*.epub' -o -name '*.azw3' \) -printf '%P\n' | sed 's/^/books\//')"
+  book_files="$(find "$HOME/books" -type f \( -name '*.pdf' -o -name '*.epub' -o -name '*.azw3' \) -printf '%P\n' | grep -v "\.raws/" | sed 's/^/books\//')"
   study_notes_pdfs="$(find "$HOME/studies/notes" -type f -name '*.pdf' -printf '%P\n' | sed 's/^/studies\/notes\//')"
 
   files="$book_files\n$study_notes_pdfs"
