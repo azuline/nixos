@@ -74,7 +74,7 @@ writeShellScriptBin "bar-now-playing" ''
 
   max_len=80
   if [ "$(hostname)" = "splendor" ]; then
-    max_len=140
+    max_len=120
   fi
 
   get_property path | xargs -d'\n' rose tracks print | now_playing | trim "$max_len"
