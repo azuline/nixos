@@ -111,6 +111,7 @@
     home.packages = with pkgs; [
       act
       bfg-repo-cleaner
+      biome
       black
       cabal-install
       ccls
@@ -126,11 +127,8 @@
       gofumpt
       golangci-lint
       gopls
-      biome
       haskell-language-server
-      ngrok
       haskellPackages.implicit-hie
-      isort
       jdk11
       jujutsu
       just
@@ -140,6 +138,7 @@
       levant
       luajitPackages.luacheck
       minikube
+      mise
       mypy
       namespace-cli
       nil
@@ -147,7 +146,6 @@
       node2nix
       nodePackages.bash-language-server
       nodePackages.eslint
-      uv
       nodePackages.pnpm
       nodePackages.prettier
       nodePackages.typescript-language-server
@@ -163,18 +161,19 @@
       protobuf
       protoc-gen-go
       pyright
-      # ruff
+      ruff
       rustup
       selene
       semgrep
-      tailwindcss-language-server
       shellcheck
       sqlint
       stack
       stylua
       sumneko-lua-language-server
+      tailwindcss-language-server
       tokei
       universal-ctags
+      uv
       vscode-langservers-extracted
       watchman # Needed for tsserver
       wrangler
