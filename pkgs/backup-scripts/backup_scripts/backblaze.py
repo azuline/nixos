@@ -45,7 +45,7 @@ restic backup \
     "$HOME/books" \
     "$HOME/documents/contents" \
     "$HOME/fonts" \
-    "$HOME/images" --exclude "$HOME/backups/images/Camera" --exclude "$HOME/backups/images/Screenshots" \
+    "$HOME/images" --exclude "$HOME/images/Camera" --exclude "$HOME/images/Screenshots" \
     "$HOME/kpop" \
     "$HOME/manga" \
     "$HOME/.music-source" \
