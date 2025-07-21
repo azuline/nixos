@@ -23,7 +23,6 @@ import nixpkgs {
       i3-screenshot = prev.callPackage ./i3-screenshot { };
       i3-yy = prev.callPackage ./i3-yy { };
       i3wsr = prev.callPackage ./i3wsr { inherit srcs; original = prev.i3wsr; };
-      mkchromecast = prev.libsForQt5.callPackage ./mkchromecast { };
       monitor-switch = prev.callPackage ./monitor-switch { };
       neovim = prev.callPackage ./neovim { };
       nsxiv = prev.callPackage ./nsxiv { inherit srcs; original = prev.nsxiv; };

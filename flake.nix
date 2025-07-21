@@ -108,8 +108,6 @@
         rose-cli = rose-src.packages.${system}.rose-cli;
         presage = presage-src.defaultPackage.${system};
         pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
-        wrangler = pkgs-stable.wrangler; # Latest version doesn't work.
-        zed-editor = pkgs-latest.zed-editor; # Keep me on the latest and greatest AI.
       };
       pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
       makeHomeConfiguration =
@@ -165,24 +163,19 @@
         nixosConfigurations = {
           splendor = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = {
-              pin = with pkgs; { inherit pkgs-stable transmission_4 mkchromecast; };
-            };
+            specialArgs = { pin = { inherit pkgs-stable; }; };
             modules = [ ./os/splendor/configuration.nix ];
           };
           haiqin = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = {
-              inherit pkgs-stable;
-              pin = with pkgs; { inherit mkchromecast; };
-            };
+            specialArgs = { inherit pkgs-stable; };
             modules = [ ./os/haiqin/configuration.nix ];
           };
           neptune = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
               inherit pkgs-stable;
-              pin = with pkgs; { inherit presage transmission_4 mkchromecast plex-ass plex-hama; };
+              pin = with pkgs; { inherit presage transmission_4 plex-ass plex-hama; };
             };
             modules = [ ./os/neptune/configuration.nix ];
           };

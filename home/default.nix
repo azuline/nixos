@@ -156,7 +156,7 @@
       pgformatter
       pgmigrate
       php83
-      php83Packages.composer
+      # php83Packages.composer  # Temporary because LICENSE was erroneously added here and in prettier so they conflict paths.
       postgresql_13
       protobuf
       protoc-gen-go
@@ -176,7 +176,7 @@
       uv
       vscode-langservers-extracted
       watchman # Needed for tsserver
-      wrangler
+      # wrangler  # Temporary because LICENSE was erroneously added here and in prettier so they conflict paths.
       yarn
       zig
       zls

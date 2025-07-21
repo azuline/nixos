@@ -52,13 +52,16 @@ lspconfig.gopls.setup({
 lspconfig.pyright.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern("pyproject.toml"),
   settings = {
     pyright = {
       disableOrganizeImports = true, -- Using Ruff's import organizer
       diagnosticMode = "workspace", -- Otherwise the LSP does not autocomplete in unimported files.
     },
     python = {
-      analysis = {},
+      analysis = {
+        autoImportCompletions = true,
+      },
     },
   },
 })

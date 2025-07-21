@@ -133,7 +133,6 @@
     };
     systemPackages = with pkgs; [
       curl
-      pin.mkchromecast
       git
       glxinfo
       intel-gpu-tools

@@ -36,14 +36,6 @@
       ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
       checkReversePath = "loose";
-      interfaces.wlp0s20f3 = {
-        allowedTCPPorts = [
-          5000 # mkchromecast
-        ];
-        allowedUDPPorts = [
-          5353 # mDNS (for mkchromecast)
-        ];
-      };
       interfaces.tailscale0 = {
         allowedTCPPorts = [
           22 # ssh

@@ -120,7 +120,6 @@
       PASSWORD_STORE_DIR = "/home/blissful/.passwarbles";
     };
     systemPackages = with pkgs; [
-      pin.mkchromecast
       borgbackup
       curl
       ddcutil
