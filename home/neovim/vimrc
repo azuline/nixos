@@ -143,8 +143,8 @@ nnoremap <Leader>r= <Cmd>resize +10<CR>
 nnoremap <Leader>r, <Cmd>vertical resize -10<CR>
 nnoremap <Leader>r. <Cmd>vertical resize +10<CR>
 
-nnoremap <C-,> <Cmd>cprevious<CR>
-nnoremap <C-m> <Cmd>cnext<CR>
+nnoremap <C-=> <Cmd>cnext<CR>
+nnoremap <C--> <Cmd>cprevious<CR>
 
 " <C-r> in visual mode to S&R selected text.
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>

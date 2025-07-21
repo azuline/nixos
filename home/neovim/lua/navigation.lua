@@ -30,10 +30,12 @@ do -- Telescope
 
     if not vim.tbl_isempty(multi) then
       actions.send_selected_to_qflist(prompt_bufnr)
+      actions.open_qflist(prompt_bufnr)
     else
       actions.send_to_qflist(prompt_bufnr)
+      actions.open_qflist(prompt_bufnr)
+      vim.cmd("cfirst")
     end
-    actions.open_qflist(prompt_bufnr)
   end
 
   telescope.setup({

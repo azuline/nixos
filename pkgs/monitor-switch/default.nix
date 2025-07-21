@@ -10,6 +10,11 @@ writeShellScriptBin "monitor-switch" ''
     xwallpaper --output ${monitor} --focus ~/backgrounds/monitor.png --output eDP-1 --focus ~/backgrounds/bg.png
     home-manager switch --flake /etc/nixos/#haiqin-monitor
     systemctl --user restart polybar
+    sed -i 's/"layout.css.devPixelsPerPx", "1"/"layout.css.devPixelsPerPx", "0.75"/' /home/blissful/.mozilla/firefox/ags1n97b.default-1691722184231/user.js
+    if pkill firefox; then
+      firefox &
+      disown
+    fi
   }
 
   function monitorOff() {
@@ -20,6 +25,11 @@ writeShellScriptBin "monitor-switch" ''
     xwallpaper --output eDP-1 --focus ~/backgrounds/bg.png
     home-manager switch --flake /etc/nixos/#haiqin
     systemctl --user restart polybar
+    sed -i 's/"layout.css.devPixelsPerPx", "0.75"/"layout.css.devPixelsPerPx", "1"/' /home/blissful/.mozilla/firefox/ags1n97b.default-1691722184231/user.js
+    if pkill firefox; then
+      firefox &
+      disown
+    fi
   }
 
   # Kill other instances.

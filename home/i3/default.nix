@@ -31,16 +31,16 @@ let
       gaps outer 2
 
       # Configure workspace monitor split.
-      workspace 1 output eDP-1
-      workspace 2 output eDP-1
-      workspace 3 output eDP-1
-      workspace 4 output eDP-1
-      workspace 5 output eDP-1
-      workspace 6 output ${specialArgs.sys.monitor}
-      workspace 7 output ${specialArgs.sys.monitor}
-      workspace 8 output ${specialArgs.sys.monitor}
-      workspace 9 output ${specialArgs.sys.monitor}
-      workspace 10 output ${specialArgs.sys.monitor}
+      workspace 1 output ${specialArgs.sys.monitor}
+      workspace 2 output ${specialArgs.sys.monitor}
+      workspace 3 output ${specialArgs.sys.monitor}
+      workspace 4 output ${specialArgs.sys.monitor}
+      workspace 5 output ${specialArgs.sys.monitor}
+      workspace 6 output eDP-1
+      workspace 7 output eDP-1
+      workspace 8 output eDP-1
+      workspace 9 output eDP-1
+      workspace 10 output eDP-1
     '' else if specialArgs.sys.host == "haiqin" then configBase + ''
       # Font
       font pango: roboto 11
