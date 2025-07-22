@@ -56,15 +56,22 @@ lspconfig.pyright.setup({
   settings = {
     pyright = {
       disableOrganizeImports = true, -- Using Ruff's import organizer
-      diagnosticMode = "workspace", -- Otherwise the LSP does not autocomplete in unimported files.
     },
     python = {
       analysis = {
+        autoSearchPaths = true,
         autoImportCompletions = true,
+        diagnosticMode = "workspace", -- Otherwise the LSP does not autocomplete in unimported files.
       },
     },
   },
 })
+
+local ruff_capabilities = {}
+for k, v in pairs(capabilities) do
+  ruff_capabilities[k] = v
+end
+ruff_capabilities.extra = "value"
 
 lspconfig.ruff.setup({
   on_attach = function(client, bufnr)
@@ -87,7 +94,7 @@ lspconfig.ruff.setup({
     vim.api.nvim_create_autocmd("BufWritePost", { callback = callback })
     on_attach(client, bufnr)
   end,
-  capabilities = capabilities,
+  capabilities = ruff_capabilities,
 })
 
 lspconfig.hls.setup({
