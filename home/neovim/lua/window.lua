@@ -1,162 +1,96 @@
-do -- Treesitter Configuration
-  require("nvim-treesitter.configs").setup({
-    -- We install most parsers through Nix, but a few are erroring, probably
-    -- due to some version mismatch. We install those here instead.
-    -- https://github.com/nvim-treesitter/nvim-treesitter/issues/1019#issuecomment-811658387
-    highlight = {
-      enable = true, -- false will disable the whole extension
-      disable = {}, -- list of language that will be disabled
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-      additional_vim_regex_highlighting = true,
-    },
-    indent = {
-      -- Trying this again...
-      enable = true,
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        -- Automatically jump forward to textobj, similar to targets.vim
-        lookahead = true,
-        keymaps = {
-          ia = "@assignment.inner",
-          aa = "@assignment.outer",
-          iq = "@assignment.lhs",
-          ie = "@assignment.rhs",
-          ic = "@call.inner",
-          ac = "@call.outer",
-          ii = "@conditional.inner",
-          ai = "@conditional.outer",
-          ["if"] = "@function.inner",
-          af = "@function.outer",
-          il = "@loop.inner",
-          al = "@loop.outer",
-          ir = "@return.inner",
-          ar = "@return.outer",
-          as = "@statement.outer",
-        },
-        selection_modes = {
-          ["@assignment.inner"] = "v",
-          ["@assignment.outer"] = "V",
-          ["@assignment.lhs"] = "v",
-          ["@assignment.rhs"] = "v",
-          ["@call.inner"] = "v",
-          ["@call.outer"] = "v",
-          ["@comment.inner"] = "v",
-          ["@comment.outer"] = "V",
-          ["@conditional.inner"] = "V",
-          ["@conditional.outer"] = "V",
-          ["@function.inner"] = "V",
-          ["@function.outer"] = "V",
-          ["@loop.inner"] = "V",
-          ["@loop.outer"] = "V",
-          ["@return.inner"] = "v",
-          ["@return.outer"] = "V",
-          ["@statement.outer"] = "V",
-        },
-      },
-    },
-    modules = {},
-    ensure_installed = {},
-    ignore_install = {},
-    sync_install = false,
-    auto_install = false,
-  })
-end
-
 do -- LaTeX syntax stuffs
-  -- Configure some LaTeX behaviors.
-  vim.g.tex_flavor = "latex"
-  vim.g.vimtex_quickfix_mode = 0
-  vim.g.vimtex_view_method = "general"
-  vim.g.vimtex_view_general_viewer = "zathura"
-  vim.g.vimtex_view_enabled = 1
-  -- Open the local subfile instead of the main file.
-  vim.g.vimtex_subfile_start_local = true
-  -- For conceal.
-  vim.opt.conceallevel = 2
-  vim.g.vimtex_syntax_conceal = {
-    accents = true,
-    ligatures = true,
-    cites = true,
-    fancy = true,
-    spacing = true,
-    greek = true,
-    math_bounds = true,
-    math_delimiters = true,
-    math_fracs = true,
-    math_super_sub = true,
-    math_symbols = true,
-    sections = true,
-    styles = true,
-  }
-  vim.g.vimtex_syntax_custom_cmds = {
-    { name = "ti", conceal = true, opt = false, argstyle = "ital" },
-    { name = "tb", conceal = true, opt = false, argstyle = "bold" },
-    { name = "tc", conceal = true, opt = false },
-    { name = "fc", conceal = true, opt = false },
-  }
-  vim.g.vimtex_syntax_custom_cmds_with_concealed_delims = {
-    { name = "fn", nargs = 1, cchar_open = "(", cchar_close = ")", argstyle = "ital" },
-    { name = "hl", nargs = 2, cchar_open = "[", cchar_mid = "|", cchar_close = "]" },
-  }
+	-- Configure some LaTeX behaviors.
+	vim.g.tex_flavor = "latex"
+	vim.g.vimtex_quickfix_mode = 0
+	vim.g.vimtex_view_method = "general"
+	vim.g.vimtex_view_general_viewer = "zathura"
+	vim.g.vimtex_view_enabled = 1
+	-- Open the local subfile instead of the main file.
+	vim.g.vimtex_subfile_start_local = true
+	-- For conceal.
+	vim.opt.conceallevel = 2
+	vim.g.vimtex_syntax_conceal = {
+		accents = true,
+		ligatures = true,
+		cites = true,
+		fancy = true,
+		spacing = true,
+		greek = true,
+		math_bounds = true,
+		math_delimiters = true,
+		math_fracs = true,
+		math_super_sub = true,
+		math_symbols = true,
+		sections = true,
+		styles = true,
+	}
+	vim.g.vimtex_syntax_custom_cmds = {
+		{ name = "ti", conceal = true, opt = false, argstyle = "ital" },
+		{ name = "tb", conceal = true, opt = false, argstyle = "bold" },
+		{ name = "tc", conceal = true, opt = false },
+		{ name = "fc", conceal = true, opt = false },
+	}
+	vim.g.vimtex_syntax_custom_cmds_with_concealed_delims = {
+		{ name = "fn", nargs = 1, cchar_open = "(", cchar_close = ")", argstyle = "ital" },
+		{ name = "hl", nargs = 2, cchar_open = "[", cchar_mid = "|",   cchar_close = "]" },
+	}
 end
 
 do -- Configure the statusbar.
-  vim.opt.laststatus = 2
-  vim.opt.showmode = false
+	vim.opt.laststatus = 2
+	vim.opt.showmode = false
 
-  vim.g["lightline"] = {
-    colorscheme = "palenight",
-    separator = {
-      left = "",
-      right = "",
-    },
-    subseparator = {
-      left = "",
-      right = "",
-    },
-    tabline = {
-      left = { { "buffers" } },
-    },
-    component_expand = {
-      linter_hints = "lightline#lsp#hints",
-      linter_infos = "lightline#lsp#infos",
-      linter_warnings = "lightline#lsp#warnings",
-      linter_errors = "lightline#lsp#errors",
-      linter_ok = "lightline#lsp#ok",
-      buffers = "lightline#bufferline#buffers",
-    },
-    component_type = {
-      linter_checking = "right",
-      linter_infos = "right",
-      linter_warnings = "warning",
-      linter_errors = "error",
-      linter_ok = "right",
-      buffers = "tabsel",
-    },
-    active = {
-      left = {
-        { "mode", "paste" },
-        { "readonly", "filename", "modified", "helloworld" },
-      },
-      right = {
-        { "lineinfo" },
-        { "percent" },
-        { "linter_checking", "linter_errors", "linter_warnings", "linter_infos", "linter_ok" },
-        { "fileformat", "fileencoding", "filetype" },
-      },
-    },
-  }
+	vim.g["lightline"] = {
+		colorscheme = "palenight",
+		separator = {
+			left = "",
+			right = "",
+		},
+		subseparator = {
+			left = "",
+			right = "",
+		},
+		tabline = {
+			left = { { "buffers" } },
+		},
+		component_expand = {
+			linter_hints = "lightline#lsp#hints",
+			linter_infos = "lightline#lsp#infos",
+			linter_warnings = "lightline#lsp#warnings",
+			linter_errors = "lightline#lsp#errors",
+			linter_ok = "lightline#lsp#ok",
+			buffers = "lightline#bufferline#buffers",
+		},
+		component_type = {
+			linter_checking = "right",
+			linter_infos = "right",
+			linter_warnings = "warning",
+			linter_errors = "error",
+			linter_ok = "right",
+			buffers = "tabsel",
+		},
+		active = {
+			left = {
+				{ "mode",     "paste" },
+				{ "readonly", "filename", "modified", "helloworld" },
+			},
+			right = {
+				{ "lineinfo" },
+				{ "percent" },
+				{ "linter_checking", "linter_errors", "linter_warnings", "linter_infos", "linter_ok" },
+				{ "fileformat",      "fileencoding",  "filetype" },
+			},
+		},
+	}
 end
 
 do -- Multiple Cursors
-  -- The vim multi cursors are invisible in default theme.
-  vim.g.VM_theme = "nord"
+	-- The vim multi cursors are invisible in default theme.
+	vim.g.VM_theme = "nord"
 end
 
 do -- Highlight on Yank
-  vim.cmd([[
+	vim.cmd([[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
@@ -165,8 +99,8 @@ do -- Highlight on Yank
 end
 
 do -- Set up Palenight theme
-  -- Theme Fixes
-  vim.cmd([[
+	-- Theme Fixes
+	vim.cmd([[
     if exists("+termguicolors")
       let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
       let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
@@ -174,34 +108,34 @@ do -- Set up Palenight theme
     endif
   ]])
 
-  -- Italics for my favorite color scheme
-  vim.g.palenight_terminal_italics = 1
+	-- Italics for my favorite color scheme
+	vim.g.palenight_terminal_italics = 1
 
-  -- The grays in palenight are too dark.
-  vim.g.palenight_color_overrides = {
-    gutter_fg_grey = {
-      gui = "#657291",
-      cterm = "245",
-      cterm16 = "15",
-    },
-    comment_grey = {
-      gui = "#7272a8",
-      cterm = "247",
-      cterm16 = "15",
-    },
-  }
+	-- The grays in palenight are too dark.
+	vim.g.palenight_color_overrides = {
+		gutter_fg_grey = {
+			gui = "#657291",
+			cterm = "245",
+			cterm16 = "15",
+		},
+		comment_grey = {
+			gui = "#7272a8",
+			cterm = "247",
+			cterm16 = "15",
+		},
+	}
 
-  -- Set the background.
-  vim.opt.background = "dark"
-  vim.cmd("colorscheme palenight")
-  vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+	-- Set the background.
+	vim.opt.background = "dark"
+	vim.cmd("colorscheme palenight")
+	vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
 end
 
 do -- Git Gutter
-  -- Always keep signcolumn on.
-  vim.opt.signcolumn = "yes"
-  -- Modify signify delete color.
-  vim.cmd("highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE")
+	-- Always keep signcolumn on.
+	vim.opt.signcolumn = "yes"
+	-- Modify signify delete color.
+	vim.cmd("highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE")
 end
 
 -- Support JSON with comments.

@@ -1,4 +1,8 @@
-{ pkgs, config, specialArgs, ... }:
+{ pkgs
+, config
+, specialArgs
+, ...
+}:
 
 let
   nvimDir = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim";
@@ -9,7 +13,6 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     withPython3 = true;
-    plugins = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
     extraConfig = ''
       source ${nvimDir}/vimrc
       luafile ${nvimDir}/init.lua
