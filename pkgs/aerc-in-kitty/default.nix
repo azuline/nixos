@@ -1,4 +1,10 @@
-{ kitty, tmux, coreutils, ripgrep, writeShellScriptBin }:
+{
+  kitty,
+  tmux,
+  coreutils,
+  ripgrep,
+  writeShellScriptBin,
+}:
 
 writeShellScriptBin "aerc-in-kitty" ''
   exists="$(${tmux}/bin/tmux ls | ${coreutils}/bin/cut -d: -f1 | ${ripgrep}/bin/rg aerc)"

@@ -60,7 +60,13 @@ in
   };
 
   systemd.services.nomad = {
-    path = [ nomad consul iproute iptables cni-plugins ];
+    path = [
+      nomad
+      consul
+      iproute
+      iptables
+      cni-plugins
+    ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -81,7 +87,13 @@ in
   };
 
   systemd.services.consul = {
-    path = [ consul envoy iproute iptables cni-plugins ];
+    path = [
+      consul
+      envoy
+      iproute
+      iptables
+      cni-plugins
+    ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];

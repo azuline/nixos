@@ -16,9 +16,10 @@
     shellAbbrs = {
       hs = "home-manager switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";
       ns =
-        if pkgs.stdenv.isLinux
-        then "sudo nixos-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}"
-        else "darwin-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";
+        if pkgs.stdenv.isLinux then
+          "sudo nixos-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}"
+        else
+          "darwin-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";
     };
     shellInit = ''
       set -gx PNPM_HOME "$HOME/.local/share/pnpm"

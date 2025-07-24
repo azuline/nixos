@@ -1,4 +1,9 @@
-{ writeShellScriptBin, jq, coreutils, wireguard-tools }:
+{
+  writeShellScriptBin,
+  jq,
+  coreutils,
+  wireguard-tools,
+}:
 
 writeShellScriptBin "bar-vpn" ''
   # To lookup tailscale.

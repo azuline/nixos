@@ -1,4 +1,11 @@
-{ writeShellScriptBin, coreutils, gnused, socat, jq, bc }:
+{
+  writeShellScriptBin,
+  coreutils,
+  gnused,
+  socat,
+  jq,
+  bc,
+}:
 
 writeShellScriptBin "bar-now-playing" ''
   export PATH="${bc}/bin:${jq}/bin:${gnused}/bin:${socat}/bin:${coreutils}/bin:$HOME/.nix-profile/bin:/run/current-system/sw/bin:$PATH"

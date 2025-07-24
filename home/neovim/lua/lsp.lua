@@ -215,6 +215,11 @@ lspconfig.lua_ls.setup({
 lspconfig.nil_ls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
+  settings = {
+    formatting = {
+      command = { "nixfmt " },
+    },
+  },
 })
 
 lspconfig.biome.setup({

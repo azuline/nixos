@@ -1,4 +1,8 @@
-{ writeShellScriptBin, coreutils, gawk }:
+{
+  writeShellScriptBin,
+  coreutils,
+  gawk,
+}:
 
 writeShellScriptBin "bar-loadavg" ''
   ${coreutils}/bin/cat /proc/loadavg \

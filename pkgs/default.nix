@@ -1,4 +1,9 @@
-{ system, nixpkgs, srcs, pins }:
+{
+  system,
+  nixpkgs,
+  srcs,
+  pins,
+}:
 
 import nixpkgs {
   inherit system;
@@ -13,7 +18,10 @@ import nixpkgs {
       bar-vpn = prev.callPackage ./bar-vpn { };
       decrypt-frieren = prev.callPackage ./decrypt-frieren { };
       decrypt-pdf = prev.callPackage ./decrypt-pdf { };
-      discord = prev.callPackage ./discord { inherit srcs; original = prev.discord; };
+      discord = prev.callPackage ./discord {
+        inherit srcs;
+        original = prev.discord;
+      };
       edit-toc = prev.callPackage ./edit-toc { };
       exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
       file-uploader = prev.callPackage ./file-uploader { };
@@ -22,10 +30,16 @@ import nixpkgs {
       i3-lock = prev.callPackage ./i3-lock { };
       i3-screenshot = prev.callPackage ./i3-screenshot { };
       i3-yy = prev.callPackage ./i3-yy { };
-      i3wsr = prev.callPackage ./i3wsr { inherit srcs; original = prev.i3wsr; };
+      i3wsr = prev.callPackage ./i3wsr {
+        inherit srcs;
+        original = prev.i3wsr;
+      };
       monitor-switch = prev.callPackage ./monitor-switch { };
       neovim = prev.callPackage ./neovim { };
-      nsxiv = prev.callPackage ./nsxiv { inherit srcs; original = prev.nsxiv; };
+      nsxiv = prev.callPackage ./nsxiv {
+        inherit srcs;
+        original = prev.nsxiv;
+      };
       python = prev.callPackage ./python { };
       signal = prev.callPackage ./signal { };
       splendor-change-audio = prev.callPackage ./splendor-change-audio { };
@@ -34,7 +48,10 @@ import nixpkgs {
       transmission_4 = prev.callPackage ./transmission { original = prev.transmission_4; };
       tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };
       win-switch = prev.callPackage ./win-switch { };
-      zathura = prev.callPackage ./zathura { inherit srcs; original = prev.zathura; };
+      zathura = prev.callPackage ./zathura {
+        inherit srcs;
+        original = prev.zathura;
+      };
     })
     (final: prev: prev // pins)
   ];

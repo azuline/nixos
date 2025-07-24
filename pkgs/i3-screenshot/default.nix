@@ -1,4 +1,9 @@
-{ writeShellScriptBin, coreutils, maim, xclip }:
+{
+  writeShellScriptBin,
+  coreutils,
+  maim,
+  xclip,
+}:
 
 writeShellScriptBin "i3-screenshot" ''
   ${coreutils}/bin/mkdir -p "$HOME/images/Screenshots"

@@ -3,7 +3,12 @@
 # On Mac (work), just use builtin mail.
 lib.mkIf pkgs.stdenv.isLinux {
   # Runtime dependencies for HTML/image filters.
-  home.packages = with pkgs; [ dante w3m pandoc catimg ];
+  home.packages = with pkgs; [
+    dante
+    w3m
+    pandoc
+    catimg
+  ];
 
   xdg.configFile."aerc/colorize.awk".source = ./colorize.awk;
 

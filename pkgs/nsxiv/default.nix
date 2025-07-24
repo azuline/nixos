@@ -1,4 +1,8 @@
-{ original, fetchFromGitHub, srcs }:
+{
+  original,
+  fetchFromGitHub,
+  srcs,
+}:
 
 original.overrideAttrs (_: {
   src = srcs.nsxiv-src;

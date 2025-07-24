@@ -1,4 +1,8 @@
-{ python, restic, util-linux }:
+{
+  python,
+  restic,
+  util-linux,
+}:
 
 python.pkgs.buildPythonPackage {
   pname = "backup-scripts";

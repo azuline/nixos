@@ -1,13 +1,21 @@
-{ pkgs, lib, config, specialArgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  specialArgs,
+  ...
+}:
 
 {
   home.packages = [ pkgs.rose-cli ];
 
   xdg.configFile = lib.mkIf pkgs.stdenv.isLinux {
-    "rose/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
+    "rose/config.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
   };
   home.file = lib.mkIf pkgs.stdenv.isDarwin {
-    "Library/Application Support/rose/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
+    "Library/Application Support/rose/config.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
   };
 
   # Ensure the Home Manager systemd services are enabled
@@ -29,7 +37,12 @@
     config = {
       Label = "net.sunsetglow.rose";
       Program = "${pkgs.rose-cli}/bin/rose";
-      ProgramArguments = [ "${pkgs.rose-cli}/bin/rose" "fs" "mount" "--foreground" ];
+      ProgramArguments = [
+        "${pkgs.rose-cli}/bin/rose"
+        "fs"
+        "mount"
+        "--foreground"
+      ];
       KeepAlive = true;
       RunAtLoad = true;
       StandardOutPath = "/tmp/net.sunsetglow.rose.out.log";

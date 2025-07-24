@@ -22,14 +22,22 @@
         word_wrap = true;
         frame_width = 3;
         frame_color = "#213e68";
-      } // (
-        if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then {
-          offset = "10x10";
-        } else if specialArgs.sys.host == "haiqin" then {
-          offset = "5x5";
-        } else if specialArgs.sys.host == "neptune" then {
-          offset = "10x10";
-        } else throw "Unsupported host in dunst."
+      }
+      // (
+        if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then
+          {
+            offset = "10x10";
+          }
+        else if specialArgs.sys.host == "haiqin" then
+          {
+            offset = "5x5";
+          }
+        else if specialArgs.sys.host == "neptune" then
+          {
+            offset = "10x10";
+          }
+        else
+          throw "Unsupported host in dunst."
       );
       urgency_low = {
         background = "#090910";

@@ -1,4 +1,7 @@
-{ writeShellScriptBin, monitor ? "HDMI-1" }:
+{
+  writeShellScriptBin,
+  monitor ? "HDMI-1",
+}:
 
 writeShellScriptBin "monitor-switch" ''
   set -euo pipefail

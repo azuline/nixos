@@ -2,7 +2,10 @@
 
 {
   system.stateVersion = "22.11";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.max-jobs = 8;
   nixpkgs.config.allowUnfree = true;
   # Doesn't work in Flakes.
@@ -28,7 +31,10 @@
   networking = {
     hostName = "haiqin";
     networkmanager.enable = true;
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
     extraHosts = "";
     firewall = {
       allowedTCPPorts = [
@@ -62,7 +68,14 @@
     uid = 1000;
     shell = pkgs.fish;
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "video"
+      "audio"
+      "disk"
+      "networkmanager"
+      "docker"
+    ];
   };
 
   environment = {

@@ -46,10 +46,14 @@ let
       children: [ "prompt", "textbox-prompt-colon", "entry" ];
     }
     ${
-      if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then splendorSpacingTheme
-      else if specialArgs.sys.host == "haiqin" then haiqinSpacingTheme
-      else if specialArgs.sys.host == "neptune" then neptuneSpacingTheme
-      else throw "Unsupported host in rofi."
+      if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then
+        splendorSpacingTheme
+      else if specialArgs.sys.host == "haiqin" then
+        haiqinSpacingTheme
+      else if specialArgs.sys.host == "neptune" then
+        neptuneSpacingTheme
+      else
+        throw "Unsupported host in rofi."
     }
   '';
 in
@@ -65,10 +69,14 @@ in
       icon-theme = "Papirus-Dark";
       display-drun = "Launch";
       font = (
-        if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then "Roboto 14"
-        else if specialArgs.sys.host == "haiqin" then "Roboto 18"
-        else if specialArgs.sys.host == "neptune" then "Roboto 14"
-        else throw "Unsupported host in rofi."
+        if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then
+          "Roboto 14"
+        else if specialArgs.sys.host == "haiqin" then
+          "Roboto 18"
+        else if specialArgs.sys.host == "neptune" then
+          "Roboto 14"
+        else
+          throw "Unsupported host in rofi."
       );
     };
     theme = "${theme}";

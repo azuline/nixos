@@ -2,7 +2,10 @@
 
 {
   system.stateVersion = "22.11";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.max-jobs = 12;
   nixpkgs.config.allowUnfree = true;
   # Doesn't work in Flakes.
@@ -65,8 +68,18 @@
       };
       # Virtual machine. Allow all ports.
       interfaces.virbr0 = {
-        allowedTCPPortRanges = [{ from = 1; to = 65535; }];
-        allowedUDPPortRanges = [{ from = 1; to = 65535; }];
+        allowedTCPPortRanges = [
+          {
+            from = 1;
+            to = 65535;
+          }
+        ];
+        allowedUDPPortRanges = [
+          {
+            from = 1;
+            to = 65535;
+          }
+        ];
       };
     };
   };
@@ -89,7 +102,18 @@
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" "libvirtd" "kvm" "i2c" ];
+        extraGroups = [
+          "wheel"
+          "video"
+          "audio"
+          "disk"
+          "networkmanager"
+          "docker"
+          "media"
+          "libvirtd"
+          "kvm"
+          "i2c"
+        ];
       };
     };
     groups = {

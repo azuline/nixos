@@ -1,4 +1,10 @@
-{ python, coreutils, findutils, fd, exiftool }:
+{
+  python,
+  coreutils,
+  findutils,
+  fd,
+  exiftool,
+}:
 
 python.pkgs.buildPythonPackage {
   pname = "exif-mtime-sync";

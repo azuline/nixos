@@ -1,8 +1,8 @@
-{ writeShellScriptBin
-, ddcutil
-, gawk
-, gnugrep
-,
+{
+  writeShellScriptBin,
+  ddcutil,
+  gawk,
+  gnugrep,
 }:
 
 writeShellScriptBin "bar-ddcutil" ''

@@ -20,7 +20,13 @@ let
       # enable in i3 config for that window title.
       exec = "mpv --force-window --player-operation-mode=pseudo-gui --title=mpv-fullscreen -- %U";
       icon = "mpv";
-      categories = [ "AudioVideo" "Audio" "Video" "Player" "TV" ];
+      categories = [
+        "AudioVideo"
+        "Audio"
+        "Video"
+        "Player"
+        "TV"
+      ];
       startupWMClass = "mpv";
       terminal = false;
     };

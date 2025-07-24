@@ -35,11 +35,12 @@ pkgs.appimageTools.wrapType2 {
   # vscode likes to kill the parent so that the
   # gui application isn't attached to the terminal session
   dieWithParent = false;
-  extraPkgs = pkgs: with pkgs; [
-    unzip
-    autoPatchelfHook
-    asar
-    # override doesn't preserve splicing https://github.com/NixOS/nixpkgs/issues/132651
-    (buildPackages.wrapGAppsHook.override { inherit (buildPackages) makeWrapper; })
-  ];
+  extraPkgs =
+    pkgs: with pkgs; [
+      unzip
+      autoPatchelfHook
+      asar
+      # override doesn't preserve splicing https://github.com/NixOS/nixpkgs/issues/132651
+      (buildPackages.wrapGAppsHook.override { inherit (buildPackages) makeWrapper; })
+    ];
 }

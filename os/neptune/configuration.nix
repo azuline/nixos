@@ -1,8 +1,16 @@
-{ lib, pkgs, pin, ... }:
+{
+  lib,
+  pkgs,
+  pin,
+  ...
+}:
 
 {
   system.stateVersion = "22.11";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.max-jobs = 8;
   nixpkgs.config.allowUnfree = true;
   # Doesn't work in Flakes.
@@ -31,11 +39,15 @@
   networking = {
     hostName = "neptune";
     hostId = "b5b16f96"; # head -c4 /dev/urandom | od -A none -t x4
-    extraHosts = ''
-    '';
+    extraHosts = '''';
     # Static LAN IP so that we can port forward and deterministically bind to it and shit.
     useDHCP = false;
-    interfaces.enp60s0u1.ipv4.addresses = [{ address = "192.168.1.207"; prefixLength = 24; }];
+    interfaces.enp60s0u1.ipv4.addresses = [
+      {
+        address = "192.168.1.207";
+        prefixLength = 24;
+      }
+    ];
     defaultGateway = "192.168.1.1";
     # Cos I love firewalling.
     firewall = {
@@ -93,7 +105,15 @@
         uid = 1000;
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "media" ];
+        extraGroups = [
+          "wheel"
+          "video"
+          "audio"
+          "disk"
+          "networkmanager"
+          "docker"
+          "media"
+        ];
       };
       plex = {
         createHome = false;
@@ -113,7 +133,12 @@
     group = "media";
     # Manually exposed on the local network; public plex is security nightmware.
     openFirewall = false;
-    extraPlugins = [ (builtins.path { name = "Hama.bundle"; path = pin.plex-hama; }) ];
+    extraPlugins = [
+      (builtins.path {
+        name = "Hama.bundle";
+        path = pin.plex-hama;
+      })
+    ];
     extraScanners = [ pin.plex-ass ];
   };
 

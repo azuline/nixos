@@ -76,28 +76,28 @@
   };
 
   outputs =
-    { self
-    , home-manager
-    , nixpkgs
-    , nixpkgs-stable
-    , nixpkgs-latest
-    , nix-darwin
-    , flake-utils
-    , nix-search-cli-src
-    , presage-src
-    , pgmigrate-src
-    , rose-src
-    , # Non-Nix sources
-      discord-src
-    , nnn-src
-    , i3wsr-src
-    , nsxiv-src
-    , zathura-pdf-mupdf-src
-    , fish-plugin-wd
-    , fish-plugin-nix-env
-    , plex-hama
-    , plex-ass
-    ,
+    {
+      self,
+      home-manager,
+      nixpkgs,
+      nixpkgs-stable,
+      nixpkgs-latest,
+      nix-darwin,
+      flake-utils,
+      nix-search-cli-src,
+      presage-src,
+      pgmigrate-src,
+      rose-src,
+      # Non-Nix sources
+      discord-src,
+      nnn-src,
+      i3wsr-src,
+      nsxiv-src,
+      zathura-pdf-mupdf-src,
+      fish-plugin-wd,
+      fish-plugin-nix-env,
+      plex-hama,
+      plex-ass,
     }:
     (flake-utils.lib.eachDefaultSystem (
       system:
@@ -140,18 +140,17 @@
         makeHomeConfiguration =
           {
             # This enables per-host configurations, typically screen size differences.
-            host
-          , # Location of Nix directory.
-            nixDir
-          , # Whether we are connected to an external monitor (laptop only). The monitor name.
-            monitor ? null
-          , # Username for home-manager configuration.
-            username
-          , # A function that takes post-parametrized bundles of packages and returns a subset.
-            chooseBundles
-          , # Custom per-host module code.
-            custom ? { ... }: { }
-          ,
+            host,
+            # Location of Nix directory.
+            nixDir,
+            # Whether we are connected to an external monitor (laptop only). The monitor name.
+            monitor ? null,
+            # Username for home-manager configuration.
+            username,
+            # A function that takes post-parametrized bundles of packages and returns a subset.
+            chooseBundles,
+            # Custom per-host module code.
+            custom ? { ... }: { },
           }:
           let
             sys = { inherit host nixDir monitor; };

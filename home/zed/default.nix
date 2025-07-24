@@ -1,4 +1,9 @@
-{ pkgs, config, specialArgs, ... }:
+{
+  pkgs,
+  config,
+  specialArgs,
+  ...
+}:
 
 let
   zedDir = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/zed";
