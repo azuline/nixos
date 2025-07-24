@@ -87,8 +87,8 @@
     , presage-src
     , pgmigrate-src
     , rose-src
-      # Non-Nix sources
-    , discord-src
+    , # Non-Nix sources
+      discord-src
     , nnn-src
     , i3wsr-src
     , nsxiv-src
@@ -97,189 +97,238 @@
     , fish-plugin-nix-env
     , plex-hama
     , plex-ass
-    }: (flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs-stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };
-      pkgs-latest = import nixpkgs-latest { inherit system; config.allowUnfree = true; };
-      srcs = { inherit discord-src i3wsr-src nnn-src nsxiv-src fish-plugin-wd fish-plugin-nix-env zathura-pdf-mupdf-src; };
-      pins = {
-        nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
-        rose = rose-src.packages.${system}.rose-py;
-        rose-cli = rose-src.packages.${system}.rose-cli;
-        presage = presage-src.defaultPackage.${system};
-        pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
-      };
-      pkgs = import ./pkgs { inherit system nixpkgs srcs pins; };
-      makeHomeConfiguration =
-        {
-          # This enables per-host configurations, typically screen size differences.
-          host
-          # Location of Nix directory.
-        , nixDir
-          # Whether we are connected to an external monitor (laptop only). The monitor name.
-        , monitor ? null
-          # Username for home-manager configuration.
-        , username
-          # A function that takes post-parametrized bundles of packages and returns a subset.
-        , chooseBundles
-          # Custom per-host module code.
-        , custom ? { ... }: { }
-        }:
-        let
-          sys = { inherit host nixDir monitor; };
-          bundles = import ./home;
-        in
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit sys srcs; };
-          modules = chooseBundles bundles ++ [{
-            programs.home-manager.enable = true;
-            # Automatically set some environment variables that will ease usage
-            # of software installed with nix on non-NixOS linux (fixing local
-            # issues, settings XDG_DATA_DIRS, etc).
-            targets.genericLinux.enable = pkgs.stdenv.isLinux;
-            # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
-            nixpkgs.config.allowUnfreePredicate = (pkg: true);
-            home.username = "${username}";
-            home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
-            home.stateVersion = "22.11";
-          }] ++ [ custom ];
+    ,
+    }:
+    (flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs-stable = import nixpkgs-stable {
+          inherit system;
+          config.allowUnfree = true;
         };
-    in
-    {
-      devShells = {
-        default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            python
-            ruff
-            mypy
-            python.pkgs.aiohttp
-            python.pkgs.pyperclip
-            python.pkgs.python-dotenv
-          ];
+        pkgs-latest = import nixpkgs-latest {
+          inherit system;
+          config.allowUnfree = true;
         };
-      };
-      packages = {
-        nixosConfigurations = {
-          splendor = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = { pin = { inherit pkgs-stable; }; };
-            modules = [ ./os/splendor/configuration.nix ];
-          };
-          haiqin = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = { inherit pkgs-stable; };
-            modules = [ ./os/haiqin/configuration.nix ];
-          };
-          neptune = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              inherit pkgs-stable;
-              pin = with pkgs; { inherit presage transmission_4 plex-ass plex-hama; };
-            };
-            modules = [ ./os/neptune/configuration.nix ];
-          };
+        srcs = {
+          inherit
+            discord-src
+            i3wsr-src
+            nnn-src
+            nsxiv-src
+            fish-plugin-wd
+            fish-plugin-nix-env
+            zathura-pdf-mupdf-src
+            ;
         };
-        darwinConfigurations = {
-          sunrise = nix-darwin.lib.darwinSystem {
-            modules = [ ./os/sunrise/configuration.nix ];
-          };
+        pins = {
+          nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
+          rose = rose-src.packages.${system}.rose-py;
+          rose-cli = rose-src.packages.${system}.rose-cli;
+          presage = presage-src.defaultPackage.${system};
+          pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
+          zoom-us = pkgs-stable.zoom-us;
         };
-        homeConfigurations = {
-          splendor = makeHomeConfiguration {
-            host = "splendor";
-            nixDir = "/etc/nixos";
-            username = "blissful";
-            chooseBundles = b: [
-              b.cliBundle
-              b.devBundle
-              b.musicBundle
-              b.guiBundle
-              b.linuxGuiBundle
-              b.personalMachineBundle
-              b.i3Bundle
+        pkgs = import ./pkgs {
+          inherit
+            system
+            nixpkgs
+            srcs
+            pins
+            ;
+        };
+        makeHomeConfiguration =
+          {
+            # This enables per-host configurations, typically screen size differences.
+            host
+          , # Location of Nix directory.
+            nixDir
+          , # Whether we are connected to an external monitor (laptop only). The monitor name.
+            monitor ? null
+          , # Username for home-manager configuration.
+            username
+          , # A function that takes post-parametrized bundles of packages and returns a subset.
+            chooseBundles
+          , # Custom per-host module code.
+            custom ? { ... }: { }
+          ,
+          }:
+          let
+            sys = { inherit host nixDir monitor; };
+            bundles = import ./home;
+          in
+          home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = { inherit sys srcs; };
+            modules =
+              chooseBundles bundles
+              ++ [
+                {
+                  programs.home-manager.enable = true;
+                  # Automatically set some environment variables that will ease usage
+                  # of software installed with nix on non-NixOS linux (fixing local
+                  # issues, settings XDG_DATA_DIRS, etc).
+                  targets.genericLinux.enable = pkgs.stdenv.isLinux;
+                  # Workaround for flakes https://github.com/nix-community/home-manager/issues/2942.
+                  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+                  home.username = "${username}";
+                  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+                  home.stateVersion = "22.11";
+                }
+              ]
+              ++ [ custom ];
+          };
+      in
+      {
+        devShells = {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              python
+              ruff
+              mypy
+              python.pkgs.aiohttp
+              python.pkgs.pyperclip
+              python.pkgs.python-dotenv
             ];
-            custom = { pkgs, ... }: {
-              imports = [ ./home/cdrama-rss ];
-              home.packages = with pkgs; [
-                backup-scripts
-                exif-mtime-sync
-                win-switch
-                splendor-change-audio
+          };
+        };
+        packages = {
+          nixosConfigurations = {
+            splendor = nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = {
+                pin = { inherit pkgs-stable; };
+              };
+              modules = [ ./os/splendor/configuration.nix ];
+            };
+            haiqin = nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = { inherit pkgs-stable; };
+              modules = [ ./os/haiqin/configuration.nix ];
+            };
+            neptune = nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = {
+                inherit pkgs-stable;
+                pin = with pkgs; {
+                  inherit
+                    presage
+                    transmission_4
+                    plex-ass
+                    plex-hama
+                    ;
+                };
+              };
+              modules = [ ./os/neptune/configuration.nix ];
+            };
+          };
+          darwinConfigurations = {
+            sunrise = nix-darwin.lib.darwinSystem {
+              modules = [ ./os/sunrise/configuration.nix ];
+            };
+          };
+          homeConfigurations = {
+            splendor = makeHomeConfiguration {
+              host = "splendor";
+              nixDir = "/etc/nixos";
+              username = "blissful";
+              chooseBundles = b: [
+                b.cliBundle
+                b.devBundle
+                b.musicBundle
+                b.guiBundle
+                b.linuxGuiBundle
+                b.personalMachineBundle
+                b.i3Bundle
+              ];
+              custom =
+                { pkgs, ... }:
+                {
+                  imports = [ ./home/cdrama-rss ];
+                  home.packages = with pkgs; [
+                    backup-scripts
+                    exif-mtime-sync
+                    win-switch
+                    splendor-change-audio
+                  ];
+                };
+            };
+            sunrise = makeHomeConfiguration {
+              host = "sunrise";
+              nixDir = "/etc/nixos";
+              username = "mdong";
+              chooseBundles = b: [
+                b.cliBundle
+                b.devBundle
+                b.musicBundle
+                b.guiBundle
+                b.macGuiBundle
+              ];
+            };
+            haiqin = makeHomeConfiguration {
+              host = "haiqin";
+              nixDir = "/etc/nixos";
+              username = "blissful";
+              monitor = null;
+              chooseBundles = b: [
+                b.cliBundle
+                b.devBundle
+                b.musicBundle
+                b.guiBundle
+                b.linuxGuiBundle
+                b.personalMachineBundle
+                b.i3Bundle
+              ];
+              custom =
+                { pkgs, ... }:
+                {
+                  home.packages = with pkgs; [
+                    (monitor-switch.override { monitor = "HDMI-1"; })
+                    exif-mtime-sync
+                    haiqin-change-audio
+                  ];
+                };
+            };
+            haiqin-monitor = makeHomeConfiguration {
+              host = "haiqin";
+              nixDir = "/etc/nixos";
+              username = "blissful";
+              monitor = "HDMI-1";
+              chooseBundles = b: [
+                b.cliBundle
+                b.devBundle
+                b.musicBundle
+                b.guiBundle
+                b.linuxGuiBundle
+                b.personalMachineBundle
+                b.i3Bundle
+              ];
+              custom =
+                { pkgs, ... }:
+                {
+                  home.packages = with pkgs; [
+                    (monitor-switch.override { monitor = "HDMI-1"; })
+                    exif-mtime-sync
+                    haiqin-change-audio
+                  ];
+                };
+            };
+            neptune = makeHomeConfiguration {
+              host = "neptune";
+              nixDir = "/etc/nixos";
+              username = "blissful";
+              chooseBundles = b: [
+                b.cliBundle
+                b.devBundle
+                b.musicBundle
+                b.guiBundle
+                b.linuxGuiBundle
+                b.personalMachineBundle
+                b.i3Bundle
               ];
             };
           };
-          sunrise = makeHomeConfiguration {
-            host = "sunrise";
-            nixDir = "/etc/nixos";
-            username = "mdong";
-            chooseBundles = b: [
-              b.cliBundle
-              b.devBundle
-              b.musicBundle
-              b.guiBundle
-              b.macGuiBundle
-            ];
-          };
-          haiqin = makeHomeConfiguration {
-            host = "haiqin";
-            nixDir = "/etc/nixos";
-            username = "blissful";
-            monitor = null;
-            chooseBundles = b: [
-              b.cliBundle
-              b.devBundle
-              b.musicBundle
-              b.guiBundle
-              b.linuxGuiBundle
-              b.personalMachineBundle
-              b.i3Bundle
-            ];
-            custom = { pkgs, ... }: {
-              home.packages = with pkgs; [
-                (monitor-switch.override { monitor = "HDMI-1"; })
-                exif-mtime-sync
-                haiqin-change-audio
-              ];
-            };
-          };
-          haiqin-monitor = makeHomeConfiguration {
-            host = "haiqin";
-            nixDir = "/etc/nixos";
-            username = "blissful";
-            monitor = "HDMI-1";
-            chooseBundles = b: [
-              b.cliBundle
-              b.devBundle
-              b.musicBundle
-              b.guiBundle
-              b.linuxGuiBundle
-              b.personalMachineBundle
-              b.i3Bundle
-            ];
-            custom = { pkgs, ... }: {
-              home.packages = with pkgs; [
-                (monitor-switch.override { monitor = "HDMI-1"; })
-                exif-mtime-sync
-                haiqin-change-audio
-              ];
-            };
-          };
-          neptune = makeHomeConfiguration {
-            host = "neptune";
-            nixDir = "/etc/nixos";
-            username = "blissful";
-            chooseBundles = b: [
-              b.cliBundle
-              b.devBundle
-              b.musicBundle
-              b.guiBundle
-              b.linuxGuiBundle
-              b.personalMachineBundle
-              b.i3Bundle
-            ];
-          };
         };
-      };
-    }));
+      }
+    ));
 }

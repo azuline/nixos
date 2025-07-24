@@ -1,10 +1,8 @@
 # /etc/nixos
 
-This repository contains my system configs. I use [Nix](https://nixos.org/) to
-manage my systems, with NixOS whenever possible, and Home Manager otherwise.
+This repository contains my system configs. I use [Nix](https://nixos.org/) to manage my systems, with NixOS whenever possible, and Home Manager otherwise.
 
-I use [Nix Flakes](https://nixos.wiki/wiki/Flakes). All NixOS and Home Manager
-configurations are specified as outputs in the `flake.nix` file.
+I use [Nix Flakes](https://nixos.wiki/wiki/Flakes). All NixOS and Home Manager configurations are specified as outputs in the `flake.nix` file.
 
 The system configurations can be activated with the following commands:
 
@@ -23,45 +21,32 @@ I currently have three hosts:
 
 This repository is organized into the following directories:
 
-- `home` contains bundles of configurations for Home Manager. Each host
-  selects the bundles that apply to it
+- `home` contains bundles of configurations for Home Manager. Each host selects the bundles that apply to it.
 - `os` contains NixOS configurations for each host on NixOS. 
-- `pkgs` contains an overlaid `nixpkgs` that's shared between all configs.
-  My patches to `nixpkgs` are applied here, and my custom software is
-  stored here.
-- `services` contains some of general Nomad & Consul specs that are not tied to
-  another project of mine.
+- `pkgs` contains an overlaid `nixpkgs` that's shared between all configs. My patches to `nixpkgs` are applied here, and my custom software is stored here.
+- `services` contains some of general Nomad & Consul specs that are not tied to another project of mine.
 
-`flake.nix` is the entrypoint for the Nix code in `home`, `os`, and `pkgs`; it
-exports the Home Manager and NixOS configurations.
+`flake.nix` is the entrypoint for the Nix code in `home`, `os`, and `pkgs`; it exports the Home Manager and NixOS configurations.
 
-Some of the little tools I wrote for my workflow are kept in this repository's
-`pkgs` directory instead of spun out into their own repositories. They are:
+Some of the little tools I wrote for my workflow are kept in this repository's `pkgs` directory instead of spun out into their own repositories. They are:
 
 - [Backup Scripts](./pkgs/backup-scripts): Manage my local and remote backups.
-- [File Uploader](./pkgs/file-uploader): Upload files to various image and file
-  hosting services.
-- [EXIF & Last Modified Syncer](./pkgs/exif-mtime-sync/): Sync an image's EXIF
-  Created Date and filesystem Last Modified time.
+- [File Uploader](./pkgs/file-uploader): Upload files to various image and file hosting services.
+- [EXIF & Last Modified Syncer](./pkgs/exif-mtime-sync/): Sync an image's EXIF Created Date and filesystem Last Modified time.
 
-All hosts are connected to each other via Tailscale VPN. There is an ACL,
-defined [here](./tailscale.policy.json).
+All hosts are connected to each other via Tailscale VPN. There is an ACL, defined [here](./tailscale.policy.json).
 
 The ACL is applied via GitOps; see the [GitHub Action](./.github/workflows/tailscale.yml) for the instructions.
 
-Machines synchronize files and application state with each other using
-Syncthing.
+Machines synchronize files and application state with each other using Syncthing.
 
-I maintain a directory of desktop backgrounds in `~/backgrounds`, which I
-periodically cycle through. Backgrounds are configured using `xwallpaper`.
+I maintain a directory of desktop backgrounds in `~/backgrounds`, which I periodically cycle through. Backgrounds are configured using `xwallpaper`.
 
-I maintain a separate repository of fonts for system usage and design projects
-in `~/fonts`. This repository is symlinked to `~/.local/share/fonts/collection`.
+I maintain a separate repository of fonts for system usage and design projects in `~/fonts`. This repository is symlinked to `~/.local/share/fonts/collection`.
 
 ## Bootstrapping
 
-The following commands bootstrap a new laptop. These should be run after
-booting into a minimal NixOS installation media.
+The following commands bootstrap a new laptop. These should be run after booting into a minimal NixOS installation media.
 
 ```bash
 # Partition the drive into boot and primary.
@@ -119,8 +104,7 @@ $ nixos-rebuild switch --flake /etc/nixos/#host
 $ reboot
 ```
 
-The following commands bootstrap an OVH server. These should be run after
-booting into a minimal NixOS installation media.
+The following commands bootstrap an OVH server. These should be run after booting into a minimal NixOS installation media.
 
 ```bash
 # Partition the drives into boot and primary.

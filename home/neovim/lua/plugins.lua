@@ -37,17 +37,11 @@ do -- Load the plugins.
     Plug("itchyny/lightline.vim")
     Plug("spywhere/lightline-lsp")
     Plug("mengelbrecht/lightline-bufferline")
-    -- Git gutter
-    Plug("mhinz/vim-signify")
   end
 
   do -- Navigation
     -- Fuzzy finder
-    Plug("nvim-telescope/telescope.nvim")
-    Plug(
-      "nvim-telescope/telescope-fzf-native.nvim",
-      { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" }
-    )
+    Plug("ibhagwan/fzf-lua")
     -- File tree
     Plug("luukvbaal/nnn.nvim")
   end

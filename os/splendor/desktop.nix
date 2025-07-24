@@ -6,6 +6,7 @@
       enable = true;
       desktopManager.xterm.enable = false;
       windowManager.i3.enable = true;
+      windowManager.i3.extraSessionCommands = "xset r rate 250 25";
       # screenSection = ''
       #   Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
       # '';
@@ -42,7 +43,12 @@
   i18n.inputMethod = {
     enable = true;
     type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [ table table-others libpinyin anthy ];
+    ibus.engines = with pkgs.ibus-engines; [
+      table
+      table-others
+      libpinyin
+      anthy
+    ];
   };
   environment = {
     systemPackages = with pkgs; [
@@ -66,8 +72,22 @@
   security.pam.services.i3lock-color.enable = true;
 
   fonts.fontconfig.defaultFonts = {
-    serif = [ "EB Garamond" "Noto Serif CJK SC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Serif CJK TC" "Noto Serif CJK HK" ];
-    sansSerif = [ "Roboto" "Noto Sans CJK SC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Sans CJK TC" "Noto Sans CJK HK" ];
+    serif = [
+      "EB Garamond"
+      "Noto Serif CJK SC"
+      "Noto Serif CJK JP"
+      "Noto Serif CJK KR"
+      "Noto Serif CJK TC"
+      "Noto Serif CJK HK"
+    ];
+    sansSerif = [
+      "Roboto"
+      "Noto Sans CJK SC"
+      "Noto Sans CJK JP"
+      "Noto Sans CJK KR"
+      "Noto Sans CJK TC"
+      "Noto Sans CJK HK"
+    ];
     monospace = [ "Source Code Pro" ];
   };
 
@@ -101,7 +121,11 @@
         workgroup = "WORKGROUP";
         # Networking
         "bind interfaces only" = true;
-        interfaces = [ "lo" "virbr0" "192.168.0.0/16" ];
+        interfaces = [
+          "lo"
+          "virbr0"
+          "192.168.0.0/16"
+        ];
         # Debugging/Accounting
         "log file" = "/var/log/samba/log.%m";
         "max log size" = 1000;

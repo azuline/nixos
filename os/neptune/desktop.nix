@@ -7,6 +7,7 @@
       desktopManager.xterm.enable = false;
       dpi = 132;
       windowManager.i3.enable = true;
+      windowManager.i3.extraSessionCommands = "xset r rate 250 25";
       videoDrivers = [ "modesetting" ];
       deviceSection = ''
         Option "DRI" "3"

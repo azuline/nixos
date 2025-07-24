@@ -7,6 +7,7 @@
       desktopManager.xterm.enable = false;
       dpi = 172;
       windowManager.i3.enable = true;
+      windowManager.i3.extraSessionCommands = "xset r rate 250 25";
       videoDrivers = [ "modesetting" ];
       deviceSection = ''
         Option "DRI" "3"
@@ -65,8 +66,22 @@
   };
 
   fonts.fontconfig.defaultFonts = {
-    serif = [ "EB Garamond" "Noto Serif CJK SC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Serif CJK TC" "Noto Serif CJK HK" ];
-    sansSerif = [ "Roboto" "Noto Sans CJK SC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Sans CJK TC" "Noto Sans CJK HK" ];
+    serif = [
+      "EB Garamond"
+      "Noto Serif CJK SC"
+      "Noto Serif CJK JP"
+      "Noto Serif CJK KR"
+      "Noto Serif CJK TC"
+      "Noto Serif CJK HK"
+    ];
+    sansSerif = [
+      "Roboto"
+      "Noto Sans CJK SC"
+      "Noto Sans CJK JP"
+      "Noto Sans CJK KR"
+      "Noto Sans CJK TC"
+      "Noto Sans CJK HK"
+    ];
     monospace = [ "Source Code Pro" ];
   };
 
