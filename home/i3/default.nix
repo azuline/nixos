@@ -41,10 +41,10 @@ let
         workspace 3 output ${specialArgs.sys.monitor}
         workspace 4 output ${specialArgs.sys.monitor}
         workspace 5 output ${specialArgs.sys.monitor}
-        workspace 6 output eDP-1
-        workspace 7 output eDP-1
-        workspace 8 output eDP-1
-        workspace 9 output eDP-1
+        workspace 6 output DP-3
+        workspace 7 output DP-3
+        workspace 8 output DP-3
+        workspace 9 output DP-3
         workspace 10 output eDP-1
       ''
     else if specialArgs.sys.host == "haiqin" then
