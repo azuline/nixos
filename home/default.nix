@@ -141,6 +141,7 @@
         kubectl
         levant
         luajitPackages.luacheck
+        mcp-language-server
         minikube
         mise
         mypy

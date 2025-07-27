@@ -27,6 +27,7 @@ import nixpkgs {
       file-uploader = prev.callPackage ./file-uploader { };
       haiqin-change-audio = prev.callPackage ./haiqin-change-audio { };
       i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };
+      mcp-language-server = prev.callPackage ./mcp-language-server { };
       i3-lock = prev.callPackage ./i3-lock { };
       i3-screenshot = prev.callPackage ./i3-screenshot { };
       i3-yy = prev.callPackage ./i3-yy { };
