@@ -31,6 +31,7 @@
 
   xdg.configFile."fish/completions/gh.fish".source = ./completions/gh.fish;
   xdg.configFile."fish/completions/password-store.fish".source = ./completions/password-store.fish;
+  xdg.configFile."fish/completions/terraform.fish".source = ./completions/terraform.fish;
   xdg.configFile."fish/functions/fish_prompt.fish".source = ./functions/fish_prompt.fish;
   xdg.configFile."fish/functions/pytest.fish".source = ./functions/pytest.fish;
   xdg.configFile."fish/conf.d/aliases.fish".source = ./conf.d/aliases.fish;

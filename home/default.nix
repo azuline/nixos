@@ -117,10 +117,12 @@
         bfg-repo-cleaner
         biome
         black
+        buf
         cabal-install
         ccls
         clang
         clang-tools
+        devenv
         docker
         docker-compose
         dotnet-sdk_9
