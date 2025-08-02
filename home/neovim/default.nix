@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  specialArgs,
-  ...
-}:
+{ config, specialArgs, ... }:
 
 let
   nvimDir = config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/neovim";

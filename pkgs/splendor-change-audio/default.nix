@@ -3,43 +3,49 @@
 writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
-  wired_headphones_sink="alsa_output.pci-0000_0d_00.4.iec958-stereo"
-  desktop_speaker_sink="bluez_output.0A_11_75_33_AD_49.1"
-  bt_headphones_sink="bluez_output.CC_98_8B_E3_18_BC.1"
+  # ["Desktop Speakers"]="desktop_speaker_sink="bluez_output.0A_11_75_33_AD_49.1"
+  declare -A sinks=(
+    ["Wired Speakers"]="alsa_output.pci-0000_0d_00.4.iec958-stereo"
+    ["True Wireless Earbuds"]="bluez_output.80_99_E7_1D_0C_B2.1"
+    ["Bluetooth Headphones"]="bluez_output.CC_98_8B_E3_18_BC.1"
+    ["Bose Mini II SE SoundLink"]="bluez_output.78_2B_64_5C_F4_AA.1"
+  )
 
+  # Ordered list of sink names that we use to cycle through. Also, only the
+  # sinks in here are active; inactive ones are not omitted.
+  sink_names=(
+    "Wired Speakers"
+    "True Wireless Earbuds"
+    "Bluetooth Headphones"
+    "Bose Mini II SE SoundLink"
+  )
   default_sink="$(pactl get-default-sink)"
 
   function sink_exists() {
     pactl list sinks | grep "$1"
   }
 
-  # Compute the new sink. We cycle through the configured sinks in the order of:
-  # 1. Wired headphones
-  # 2. Bluetooth speaker
-  # 2. Bluetooth headphones
-  # Kind of lazy and bash is hard, so I just expanded the rotation into conditionals.
-  new_sink=
-  if [[ "$default_sink" == "$wired_headphones_sink" ]]; then
-    if sink_exists "$desktop_speaker_sink"; then
-      new_sink="$desktop_speaker_sink"
-    elif sink_exists "$bt_headphones_sink"; then
-      new_sink="$bt_headphones_sink"
+  # Find the index of the current default sink in the sink names array.
+  current_index=-1
+  for i in "''${!sink_names[@]}"; do
+    if [[ "$default_sink" == "''${sinks[''${sink_names[i]}]}" ]]; then
+      current_index="$i"
+      break
     fi
-  elif [[ "$default_sink" == "$desktop_speaker_sink" ]]; then
-    if sink_exists "$bt_headphones_sink"; then
-      new_sink="$bt_headphones_sink"
-    elif sink_exists "$wired_headphones_sink"; then
-      new_sink="$wired_headphones_sink"
+  done
+
+  new_sink=""
+  new_sink_name=""
+  for ((i = 1; i <= ''${#sink_names[@]}; i++)); do
+    next_index=$(( (current_index + i) % ''${#sink_names[@]} ))
+    next_name="''${sink_names[next_index]}"
+    next_sink="''${sinks[$next_name]}"
+    if sink_exists "$next_sink"; then
+      new_sink="$next_sink"
+      new_sink_name="$next_name"
+      break
     fi
-  elif [[ "$default_sink" == "$bt_headphones_sink" ]]; then
-    if sink_exists "$desktop_speaker_sink"; then
-      new_sink="$desktop_speaker_sink"
-    fi
-    # Don't transition from BT headphones to wired headphones; if we have BT
-    # headphones connected, we will _always_ want that over wired headphones.
-  else
-    new_sink="$wired_headphones_sink"
-  fi
+  done
 
   if [[ -z "$new_sink" ]]; then
     notify-send "No other audio sinks connected."
@@ -47,13 +53,7 @@ writeShellScriptBin "i3-change-audio" ''
   fi
 
   # Notify the user.
-  if [[ "$new_sink" == "$wired_headphones_sink" ]]; then
-    notify-send "Switched audio to Wired Output."
-  elif [[ "$new_sink" == "$desktop_speaker_sink" ]]; then
-    notify-send "Switched audio to Desk Speakers."
-  elif [[ "$new_sink" == "$bt_headphones_sink" ]]; then
-    notify-send "Switched audio to Bluetooth Headphones."
-  fi
+  notify-send "Switched audio to $new_sink_name."
 
   # Update pulseaudio's default sink.
   echo "new_sink=$new_sink"

@@ -1,3 +1,5 @@
+vim.treesitter = nil
+
 require("plugins")
 require("window")
 require("navigation")
