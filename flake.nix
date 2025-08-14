@@ -45,10 +45,6 @@
       url = "github:azuline/nnn";
       flake = false;
     };
-    i3wsr-src = {
-      url = "github:roosta/i3wsr";
-      flake = false;
-    };
     nsxiv-src = {
       url = "github:azuline/nsxiv";
       flake = false;
@@ -91,7 +87,6 @@
       # Non-Nix sources
       discord-src,
       nnn-src,
-      i3wsr-src,
       nsxiv-src,
       zathura-pdf-mupdf-src,
       fish-plugin-wd,
@@ -113,7 +108,6 @@
         srcs = {
           inherit
             discord-src
-            i3wsr-src
             nnn-src
             nsxiv-src
             fish-plugin-wd

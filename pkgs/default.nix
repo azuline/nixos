@@ -31,10 +31,6 @@ import nixpkgs {
       i3-lock = prev.callPackage ./i3-lock { };
       i3-screenshot = prev.callPackage ./i3-screenshot { };
       i3-yy = prev.callPackage ./i3-yy { };
-      i3wsr = prev.callPackage ./i3wsr {
-        inherit srcs;
-        original = prev.i3wsr;
-      };
       monitor-switch = prev.callPackage ./monitor-switch { };
       neovim = prev.callPackage ./neovim { };
       nsxiv = prev.callPackage ./nsxiv {
