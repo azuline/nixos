@@ -294,6 +294,7 @@
         nicotine-plus
         tdesktop
         tremotesf
+        typst
         zotero
       ];
     };
