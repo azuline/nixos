@@ -181,22 +181,6 @@
         "type": "github"
       }
     },
-    "i3wsr-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1754830109,
-        "narHash": "sha256-2RyO9gqf+K+f193HLDm8yWP/PSiQjWh/ELejaKXo/TY=",
-        "owner": "roosta",
-        "repo": "i3wsr",
-        "rev": "ab3c7d2f270d5231ab4e304061da0e9c1768eb36",
-        "type": "github"
-      },
-      "original": {
-        "owner": "roosta",
-        "repo": "i3wsr",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -433,7 +417,6 @@
         "fish-plugin-wd": "fish-plugin-wd",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "i3wsr-src": "i3wsr-src",
         "nix-darwin": "nix-darwin",
         "nix-search-cli-src": "nix-search-cli-src",
         "nixpkgs": "nixpkgs",

@@ -14,7 +14,7 @@
   imports = [
     ./hardware-configuration.nix
     ./desktop.nix
-    ./vm.nix
+    # ./vm.nix
   ];
 
   boot = {
