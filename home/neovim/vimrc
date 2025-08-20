@@ -44,6 +44,9 @@ set wildmenu
 " Auto-reload files modified outside of vim.
 set autoread
 
+" Wrap overflowing lines on word boundaries.
+set linebreak
+
 " Automatic comment continuation.
 set formatoptions+=r
 

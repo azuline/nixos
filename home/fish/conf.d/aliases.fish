@@ -75,7 +75,7 @@ abbr --add --global gres 'git restore --staged'
 abbr --add --global gm 'git merge'
 abbr --add --global gma 'git merge --abort'
 abbr --add --global gmc 'git diff --name-only --diff-filter=U'
-abbr --add --global gsync 'git reset --hard master'
+abbr --add --global gsync 'git fetch origin main && git reset --hard origin/main'
 
 function speedrun
     git add "$(git rev-parse --show-toplevel)"
