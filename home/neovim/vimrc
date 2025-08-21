@@ -113,7 +113,7 @@ au BufEnter *.hcl,*.nomad set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.txt set textwidth=100
 au BufEnter *.md,*.mkd,*.markdown set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.rst set textwidth=100
-au BufEnter *.tex,*.sty,*.cls set textwidth=100 | set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+au BufEnter *.tex,*.sty,*.cls set set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 au BufEnter *.bib set textwidth=0
 
 " Soft wrap in Markdown (to make LLM life easier).
