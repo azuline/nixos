@@ -164,6 +164,7 @@
       vim
       wget
       wireguard-tools
+      neofetch # Enable/disable this to force a minor rebuild.
     ];
   };
 
