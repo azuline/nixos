@@ -237,7 +237,6 @@
               custom =
                 { pkgs, ... }:
                 {
-                  imports = [ ./home/cdrama-rss ];
                   home.packages = with pkgs; [
                     backup-scripts
                     exif-mtime-sync
@@ -319,6 +318,9 @@
                 b.personalMachineBundle
                 b.i3Bundle
               ];
+              custom = { ... }: {
+                imports = [ ./home/cdrama-rss ];
+              };
             };
           };
         };
