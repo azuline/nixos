@@ -304,11 +304,9 @@ artists.release = """
 {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
 """
 genres.release = """
-{% if new %}^{% endif %}
-{% if context.genre not in genres + parentgenres %}
-    ~
-{% endif %}
 {% if context.genre in ["Classical Music", "Western Classical Music"] %}
+    {% if new %}^{% endif %}
+    {% if context.genre not in genres + parentgenres %}~{% endif %}
     {% if releaseartists.composer | length == 0 %}
         [Z]
         {{ releaseartists | artistsfmt }} -
@@ -328,8 +326,8 @@ genres.release = """
         {% if releasedate or originaldate %}({{ (originaldate or releasedate).year }}){% endif %}
     {% endif %}
 {% else %}
-    {{ releaseartists | artistsfmt }} -
-    {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
+    {% if releasedate or originaldate %}{{ (originaldate or releasedate) }}{% endif %}
+    {% if new %}^{% endif %}{{ releaseartists | artistsfmt }} -
     {{ releasetitle }}
     {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
     {% if edition %}({{ edition }}){% endif %}

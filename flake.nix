@@ -318,9 +318,11 @@
                 b.personalMachineBundle
                 b.i3Bundle
               ];
-              custom = { ... }: {
-                imports = [ ./home/cdrama-rss ];
-              };
+              custom =
+                { ... }:
+                {
+                  imports = [ ./home/cdrama-rss ];
+                };
             };
           };
         };

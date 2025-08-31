@@ -126,7 +126,7 @@
   # Allow this command to use sudo without password. This allows us to avoid
   # asking for sudo throughout the backup script.
   security.sudo.configFile = ''
-    blissful ALL=(ALL:ALL) NOPASSWD: ${pkgs.tomb}/bin/tomb
+    blissful ALL=(ALL:ALL) NOPASSWD: ${pin.pkgs-stable.tomb}/bin/tomb
   '';
 
   environment = {
@@ -160,7 +160,7 @@
       synergy
       restic
       smartmontools
-      tomb
+      pin.pkgs-stable.tomb
       vim
       wget
       wireguard-tools
