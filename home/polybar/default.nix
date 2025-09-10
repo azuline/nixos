@@ -50,7 +50,10 @@ in
         ''
         + (
           if specialArgs.sys.monitor != null then
-            ''${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor &''
+            ''
+              ${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor &
+              ${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor2 &
+            ''
           else
             ""
         )
@@ -143,6 +146,12 @@ in
         else
           { }
       );
+      "bar/monitor2" = {
+        "inherit" = "bar/base";
+        monitor = "DP-3";
+        modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
+      };
       "bar/neptune" = {
         "inherit" = "bar/base";
         height = "48";
