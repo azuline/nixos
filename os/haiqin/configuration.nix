@@ -1,4 +1,4 @@
-{ pkgs, pin, ... }:
+{ pkgs, ... }:
 
 {
   system.stateVersion = "22.11";
@@ -52,7 +52,7 @@
   # https://github.com/NixOS/nixpkgs/issues/195777#issuecomment-1324378856
   system.activationScripts.restart-udev = "${pkgs.systemd}/bin/systemctl restart systemd-udev-trigger.service";
 
-  services.automatic-timezoned.enable = true;
+  time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i32b";
@@ -94,7 +94,6 @@
     };
     systemPackages = with pkgs; [
       curl
-      pin.mkchromecast
       git
       glxinfo
       intel-gpu-tools
@@ -126,14 +125,14 @@
       CPU_BOOST_ON_AC = 1;
       CPU_HWP_DYN_BOOST_ON_AC = 1;
 
-      # CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
-      # PLATFORM_PROFILE_ON_BAT = "balanced";
-      # CPU_BOOST_ON_BAT = 0;
-      # CPU_HWP_DYN_BOOST_ON_BAT = 0;
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
-      PLATFORM_PROFILE_ON_BAT = "performance";
-      CPU_BOOST_ON_BAT = 1;
-      CPU_HWP_DYN_BOOST_ON_BAT = 1;
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+      PLATFORM_PROFILE_ON_BAT = "balanced";
+      CPU_BOOST_ON_BAT = 0;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
+      # CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
+      # PLATFORM_PROFILE_ON_BAT = "performance";
+      # CPU_BOOST_ON_BAT = 1;
+      # CPU_HWP_DYN_BOOST_ON_BAT = 1;
 
       START_CHARGE_THRESH_BAT0 = 90;
       STOP_CHARGE_THRESH_BAT0 = 95;

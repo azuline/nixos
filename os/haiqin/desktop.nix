@@ -95,6 +95,20 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    wireplumber = {
+      enable = true;
+      extraConfig."10-bluez" = {
+        "monitor.bluez.properties" = {
+          # Only A2DP roles (no headset roles). Use laptop mic.
+          "bluez5.roles" = [
+            "a2dp_sink"
+            "a2dp_source"
+          ];
+          # Make sure HFP backends are off so it can't fall back
+          "bluez5.hfphsp-backend" = "none";
+        };
+      };
+    };
   };
 
   programs.dconf.enable = true;
