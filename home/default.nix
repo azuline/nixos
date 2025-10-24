@@ -145,7 +145,6 @@
         luajitPackages.luacheck
         mcp-language-server
         minikube
-        mise
         mypy
         namespace-cli
         nil

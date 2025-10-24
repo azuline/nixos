@@ -22,7 +22,7 @@ artist_aliases = [
     { artist = "Luke Vibert", aliases = ["Plug"] },
     { artist = "Matthew Dear", aliases = ["Audion"] },
     { artist = "ODD EYE CIRCLE", aliases = ["LOONA ODD EYE CIRCLE"] },
-    { artist = "Yumi Matsutoya", aliases = ["Yumi Arai"] },
+    { artist = "Yumi Matsutoya", aliases = ["Yumi Arai", "Yuming"] },
     { artist = "Skee Mask", aliases = ["SCNTST"] },
     # Collaborations
     { artist = "Kanye West", aliases = ["¥$"] },

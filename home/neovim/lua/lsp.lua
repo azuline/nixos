@@ -1,4 +1,4 @@
-local lspconfig = require("lspconfig")
+local lsputil = require("lspconfig.util")
 local null_ls = require("null-ls")
 
 local buf_map = function(bufnr, mode, lhs, rhs, opts)
@@ -37,7 +37,7 @@ end
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.gopls.setup({
+vim.lsp.config("gopls", {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -48,10 +48,10 @@ lspconfig.gopls.setup({
   },
 })
 
-lspconfig.pyright.setup({
+vim.lsp.config("pyright", {
   on_attach = on_attach,
   capabilities = capabilities,
-  root_dir = lspconfig.util.root_pattern("pyproject.toml"),
+  root_dir = lsputil.root_pattern("pyproject.toml"),
   settings = {
     pyright = {
       disableOrganizeImports = true, -- Using Ruff's import organizer
@@ -72,7 +72,7 @@ for k, v in pairs(capabilities) do
 end
 ruff_capabilities.extra = "value"
 
-lspconfig.ruff.setup({
+vim.lsp.config("ruff", {
   on_attach = function(client, bufnr)
     -- Defer to Pyright's hover.
     if client.name == "ruff" then
@@ -96,7 +96,7 @@ lspconfig.ruff.setup({
   capabilities = ruff_capabilities,
 })
 
-lspconfig.hls.setup({
+vim.lsp.config("hls", {
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
@@ -104,7 +104,7 @@ lspconfig.hls.setup({
   },
 })
 
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
@@ -112,7 +112,7 @@ lspconfig.clangd.setup({
   },
 })
 
-lspconfig.zls.setup({
+vim.lsp.config("zls", {
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = {
@@ -120,7 +120,7 @@ lspconfig.zls.setup({
   },
 })
 
-lspconfig.bashls.setup({
+vim.lsp.config("bashls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
@@ -162,7 +162,7 @@ if vim.fn.executable("tsc") then
   })
 end
 
-lspconfig.eslint.setup({
+vim.lsp.config("eslint", {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -175,7 +175,7 @@ lspconfig.eslint.setup({
   },
 })
 
-lspconfig.tailwindcss.setup({
+vim.lsp.config("tailwindcss", {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -185,7 +185,7 @@ lspconfig.tailwindcss.setup({
   },
 })
 
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -212,7 +212,7 @@ lspconfig.lua_ls.setup({
   },
 })
 
-lspconfig.nil_ls.setup({
+vim.lsp.config("nil_ls", {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -222,13 +222,13 @@ lspconfig.nil_ls.setup({
   },
 })
 
-lspconfig.biome.setup({
+vim.lsp.config("biome", {
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
 if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") == 1 then
-  lspconfig.dprint.setup({
+  vim.lsp.config("dprint", {
     capabilities = capabilities,
     on_attach = on_attach,
   })
@@ -300,7 +300,7 @@ then
 end
 
 null_ls.setup({
-  root_dir = lspconfig.util.root_pattern(
+  root_dir = lsputil.root_pattern(
     ".null-ls-root",
     "Makefile",
     "tsconfig.json",
