@@ -6,8 +6,8 @@
     # Rolling unstable nixpkgs, updated frequently. If setting manually, pick a
     # commit built in Hydra: https://hydra.nixos.org/jobset/nixos/trunk-combined
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # Whatever pin makes my server happy... https://hydra.nixos.org/jobset/nixos/release-24.05
-    nixpkgs-stable.url = "github:nixos/nixpkgs?rev=a7d87b7f9b63f97c43269fa902eb89851b379687";
+    # Whatever pin makes my server happy... https://hydra.nixos.org/jobset/nixos/release-25.05
+    nixpkgs-stable.url = "github:nixos/nixpkgs?rev=c8aa8cc00a5cb57fada0851a038d35c08a36a2bb";
     # Most up to date nixpkgs, for specific bug fixes.
     nixpkgs-latest.url = "github:nixos/nixpkgs/master";
     # For MacOS.
