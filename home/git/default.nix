@@ -3,14 +3,14 @@
 {
   programs.git = {
     enable = true;
-    userName = "acid angel from asia";
-    userEmail = "blissful@sunsetglow.net";
     signing = {
       key = "953ACFC5F8F3E2E7";
       signByDefault = true;
     };
     # lfs.enable = true;
-    extraConfig = {
+    settings = {
+      user.name = "acid angel from asia";
+      user.email = "blissful@sunsetglow.net";
       core.editor = "nvim";
       core.pager = "delta";
       init.defaultBranch = "master";

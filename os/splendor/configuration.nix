@@ -6,7 +6,7 @@
     "nix-command"
     "flakes"
   ];
-  nix.settings.max-jobs = 12;
+  nix.settings.max-jobs = 8;
   nixpkgs.config.allowUnfree = true;
   # Doesn't work in Flakes.
   programs.command-not-found.enable = false;
