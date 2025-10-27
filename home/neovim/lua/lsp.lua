@@ -47,11 +47,11 @@ vim.lsp.config("gopls", {
     },
   },
 })
+vim.lsp.enable("gopls")
 
 vim.lsp.config("pyright", {
   on_attach = on_attach,
   capabilities = capabilities,
-  root_dir = lsputil.root_pattern("pyproject.toml"),
   settings = {
     pyright = {
       disableOrganizeImports = true, -- Using Ruff's import organizer
@@ -65,6 +65,7 @@ vim.lsp.config("pyright", {
     },
   },
 })
+vim.lsp.enable("pyright")
 
 local ruff_capabilities = {}
 for k, v in pairs(capabilities) do
@@ -95,6 +96,7 @@ vim.lsp.config("ruff", {
   end,
   capabilities = ruff_capabilities,
 })
+vim.lsp.enable("ruff")
 
 vim.lsp.config("hls", {
   on_attach = on_attach,
@@ -103,6 +105,7 @@ vim.lsp.config("hls", {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
 })
+vim.lsp.enable("hls")
 
 vim.lsp.config("clangd", {
   on_attach = on_attach,
@@ -111,6 +114,7 @@ vim.lsp.config("clangd", {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
 })
+vim.lsp.enable("clangd")
 
 vim.lsp.config("zls", {
   on_attach = on_attach,
@@ -119,11 +123,13 @@ vim.lsp.config("zls", {
     ["textDocument/definition"] = vim.lsp.handlers["textDocument/definition"],
   },
 })
+vim.lsp.enable("zls")
 
 vim.lsp.config("bashls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
+vim.lsp.enable("bashls")
 
 if vim.fn.executable("tsc") then
   require("typescript-tools").setup({
@@ -174,6 +180,7 @@ vim.lsp.config("eslint", {
     },
   },
 })
+vim.lsp.enable("eslint")
 
 vim.lsp.config("tailwindcss", {
   capabilities = capabilities,
@@ -184,6 +191,7 @@ vim.lsp.config("tailwindcss", {
     },
   },
 })
+vim.lsp.enable("tailwindcss")
 
 vim.lsp.config("lua_ls", {
   capabilities = capabilities,
@@ -211,6 +219,7 @@ vim.lsp.config("lua_ls", {
     },
   },
 })
+vim.lsp.enable("lua_ls")
 
 vim.lsp.config("nil_ls", {
   capabilities = capabilities,
@@ -221,18 +230,13 @@ vim.lsp.config("nil_ls", {
     },
   },
 })
+vim.lsp.enable("nil_ls")
 
 vim.lsp.config("biome", {
   capabilities = capabilities,
   on_attach = on_attach,
 })
-
-if vim.fn.filereadable(vim.fn.getcwd() .. "/dprint.json") == 1 then
-  vim.lsp.config("dprint", {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  })
-end
+vim.lsp.enable("biome")
 
 local sources = {
   -- Lua
