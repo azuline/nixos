@@ -39,6 +39,7 @@
   xdg.configFile."fish/conf.d/colors.fish".source = ./conf.d/colors.fish;
   xdg.configFile."fish/conf.d/env.fish".source = ./conf.d/env.fish;
   xdg.configFile."fish/conf.d/events.fish".source = ./conf.d/events.fish;
+  xdg.configFile."fish/conf.d/fzf.fish".source = ./conf.d/fzf.fish;
   xdg.configFile."fish/conf.d/pytest.fish".source = ./conf.d/pytest.fish;
   xdg.configFile."fish/conf.d/venv.fish".source = ./conf.d/venv.fish;
 }
