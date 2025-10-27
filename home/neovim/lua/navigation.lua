@@ -23,9 +23,6 @@ do -- Telescope
     winopts = {
       height = 0.5,
       backdrop = 0,
-      treesitter = {
-        enabled = false,
-      },
     },
     grep = {
       multiline = 1,
