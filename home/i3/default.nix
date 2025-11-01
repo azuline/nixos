@@ -1,7 +1,42 @@
-{ specialArgs, ... }:
+{ specialArgs, themeColors, ... }:
 
 let
-  configBase = builtins.readFile ./config;
+  # Generate color definitions from themeColors
+  colorDefs = ''
+    ### Colors
+    # Background/Foreground/Cursor
+    set $color_fg    ${themeColors.ui.foreground}
+    set $color_bg    ${themeColors.ui.background}
+    # Border
+    set $color_br    ${themeColors.primary.shade4}
+    # Black
+    set $color0      ${themeColors.terminal.color0}
+    set $color8      ${themeColors.terminal.color8}
+    # Red
+    set $color1      ${themeColors.terminal.color1}
+    set $color9      ${themeColors.terminal.color9}
+    # Green
+    set $color2      ${themeColors.terminal.color2}
+    set $color10     ${themeColors.terminal.color10}
+    # Yellow
+    set $color3      ${themeColors.terminal.color3}
+    set $color11     ${themeColors.terminal.color11}
+    # Blue
+    set $color4      ${themeColors.terminal.color4}
+    set $color12     ${themeColors.terminal.color12}
+    # Magenta
+    set $color5      ${themeColors.terminal.color5}
+    set $color13     ${themeColors.terminal.color13}
+    # Cyan
+    set $color6      ${themeColors.terminal.color6}
+    set $color14     ${themeColors.terminal.color14}
+    # White
+    set $color7      ${themeColors.terminal.color7}
+    set $color15     ${themeColors.terminal.color15}
+
+  '';
+
+  configBase = colorDefs + builtins.readFile ./config;
   config = (
     if specialArgs.sys.host == "splendor" then
       configBase
