@@ -8,7 +8,7 @@ let
     set $color_fg    ${themeColors.ui.foreground}
     set $color_bg    ${themeColors.ui.background}
     # Border
-    set $color_br    ${themeColors.primary.shade4}
+    set $color_br    ${themeColors.ui.border}
     # Black
     set $color0      ${themeColors.terminal.color0}
     set $color8      ${themeColors.terminal.color8}

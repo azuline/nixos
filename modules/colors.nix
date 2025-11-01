@@ -49,6 +49,7 @@ let
       background = "#090910";
       foreground = "#eeffff";
       alert = "#ff5370";
+      border = "#376181";  # Blue border (shade4)
     };
   };
 
@@ -98,6 +99,7 @@ let
       background = "#1a0f08";
       foreground = "#fef9f0";
       alert = "#e67350";
+      border = "#5e3020";  # Darker, more muted border (shade3)
     };
   };
 

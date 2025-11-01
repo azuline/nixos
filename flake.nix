@@ -149,7 +149,14 @@
             custom ? { ... }: { },
           }:
           let
-            sys = { inherit host nixDir monitor theme; };
+            sys = {
+              inherit
+                host
+                nixDir
+                monitor
+                theme
+                ;
+            };
             bundles = import ./home;
           in
           home-manager.lib.homeManagerConfiguration {
@@ -227,7 +234,7 @@
               host = "splendor";
               nixDir = "/etc/nixos";
               username = "blissful";
-              theme = "cool";
+              theme = "warm";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle
