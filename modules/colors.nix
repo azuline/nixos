@@ -49,7 +49,7 @@ let
       background = "#090910";
       foreground = "#eeffff";
       alert = "#ff5370";
-      border = "#376181";  # Blue border (shade4)
+      border = "#265476";  # Blue border (shade5 - lighter, more visible)
     };
   };
 
@@ -99,7 +99,7 @@ let
       background = "#1b1009";
       foreground = "#fef9f0";
       alert = "#e67350";
-      border = "#5e3020";  # Darker, more muted border (shade3)
+      border = "#7a3e28";  # Warm border (shade5 - lighter, more visible)
     };
   };
 

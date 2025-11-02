@@ -29,8 +29,9 @@ do -- Load the plugins.
 	end
 
 	do -- Window visuals
-		-- Theme
+		-- Themes
 		Plug("azuline/palenight.vim")
+		Plug("morhetz/gruvbox")
 		-- Statusline
 		Plug("itchyny/lightline.vim")
 		Plug("spywhere/lightline-lsp")

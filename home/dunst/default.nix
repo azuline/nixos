@@ -21,7 +21,7 @@
         vertical_alignment = "top";
         word_wrap = true;
         frame_width = 3;
-        frame_color = themeColors.primary.shade5;
+        frame_color = themeColors.ui.border;
       }
       // (
         if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then

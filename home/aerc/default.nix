@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, specialArgs, ... }:
 
+let
+  theme = specialArgs.sys.theme or "cool";
+in
 # On Mac (work), just use builtin mail.
 lib.mkIf pkgs.stdenv.isLinux {
   # Runtime dependencies for HTML/image filters.
@@ -15,8 +18,19 @@ lib.mkIf pkgs.stdenv.isLinux {
   programs.aerc = {
     enable = true;
     extraBinds = builtins.readFile ./binds.conf;
-    extraConfig = builtins.readFile ./aerc.conf;
-    stylesets.palenight = builtins.readFile ./stylesets/palenight;
+    extraConfig =
+      let
+        aercConfig = builtins.readFile ./aerc.conf;
+        styleset = if theme == "warm" then "gruvbox" else "palenight";
+      in
+        builtins.replaceStrings
+          [ "styleset-name=palenight" ]
+          [ "styleset-name=${styleset}" ]
+          aercConfig;
+    stylesets = {
+      palenight = builtins.readFile ./stylesets/palenight;
+      gruvbox = builtins.readFile ./stylesets/gruvbox;
+    };
   };
 
   # Make a desktop file.

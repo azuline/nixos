@@ -41,8 +41,14 @@ do -- Configure the statusbar.
   vim.opt.laststatus = 2
   vim.opt.showmode = false
 
+  -- Load theme configuration from generated file
+  package.path = vim.fn.stdpath('config') .. '/lua-generated/?.lua;' .. package.path
+  require('theme')
+  local theme = vim.g.current_theme
+  local lightline_theme = theme == "gruvbox" and "gruvbox" or "palenight"
+
   vim.g["lightline"] = {
-    colorscheme = "palenight",
+    colorscheme = lightline_theme,
     separator = {
       left = "",
       right = "",
@@ -99,7 +105,7 @@ do -- Highlight on Yank
 ]])
 end
 
-do -- Set up Palenight theme
+do -- Set up theme
   -- Theme Fixes
   vim.cmd([[
     if exists("+termguicolors")
@@ -109,34 +115,64 @@ do -- Set up Palenight theme
     endif
   ]])
 
-  -- Italics for my favorite color scheme
-  vim.g.palenight_terminal_italics = 1
+  -- Load theme configuration from generated file
+  package.path = vim.fn.stdpath('config') .. '/lua-generated/?.lua;' .. package.path
+  require('theme')
+  local theme = vim.g.current_theme
 
-  -- The grays in palenight are too dark.
-  vim.g.palenight_color_overrides = {
-    gutter_fg_grey = {
-      gui = "#657291",
-      cterm = "245",
-      cterm16 = "15",
-    },
-    comment_grey = {
-      gui = "#7272a8",
-      cterm = "247",
-      cterm16 = "15",
-    },
-  }
+  if theme == "palenight" then
+    -- Italics for palenight
+    vim.g.palenight_terminal_italics = 1
+
+    -- The grays in palenight are too dark.
+    vim.g.palenight_color_overrides = {
+      gutter_fg_grey = {
+        gui = "#657291",
+        cterm = "245",
+        cterm16 = "15",
+      },
+      comment_grey = {
+        gui = "#7272a8",
+        cterm = "247",
+        cterm16 = "15",
+      },
+    }
+  elseif theme == "gruvbox" then
+    -- Gruvbox configuration (must be set BEFORE colorscheme)
+    vim.g.gruvbox_italic = 1
+    vim.g.gruvbox_contrast_dark = "medium"
+    vim.g.gruvbox_invert_selection = 0
+    vim.g.gruvbox_sign_column = 'bg0'
+  end
 
   -- Set the background.
   vim.opt.background = "dark"
-  vim.cmd("colorscheme palenight")
+  vim.cmd("colorscheme " .. theme)
   vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+
+  -- Fix gutter background for gruvbox
+  if theme == "gruvbox" then
+    vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
+    vim.cmd("highlight LineNr guibg=NONE ctermbg=NONE")
+    vim.cmd("highlight CursorLineNr guibg=NONE ctermbg=NONE")
+  end
 end
 
 do -- Git Gutter
+  -- Load theme to set appropriate colors
+  package.path = vim.fn.stdpath('config') .. '/lua-generated/?.lua;' .. package.path
+  require('theme')
+  local theme = vim.g.current_theme
+
   -- Always keep signcolumn on.
   vim.opt.signcolumn = "yes"
-  -- Modify signify delete color.
-  vim.cmd("highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE")
+
+  -- Modify signify delete color based on theme.
+  if theme == "gruvbox" then
+    vim.cmd("highlight SignifySignDelete ctermfg=167 guifg=#fb4934 cterm=NONE gui=NONE")
+  else
+    vim.cmd("highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE")
+  end
 end
 
 -- Support JSON with comments.
