@@ -130,6 +130,13 @@ do -- Set up theme
   vim.cmd("colorscheme " .. vim.g.theme_name)
   vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
   vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
+
+  -- Workaround for statusline in Gruvbox: https://github.com/morhetz/gruvbox/issues/465.
+  vim.cmd([[
+		hi statusline cterm=NONE gui=NONE
+		hi tabline cterm=NONE gui=NONE
+		hi winbar cterm=NONE gui=NONE
+	]])
 end
 
 -- Support JSON with comments.
