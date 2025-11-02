@@ -42,8 +42,8 @@ do -- Configure the statusbar.
   vim.opt.showmode = false
 
   -- Load theme configuration from generated file
-  package.path = vim.fn.stdpath('config') .. '/lua-generated/?.lua;' .. package.path
-  require('theme')
+  package.path = vim.fn.stdpath("config") .. "/lua-generated/?.lua;" .. package.path
+  require("theme")
   local theme = vim.g.current_theme
   local lightline_theme = theme == "gruvbox" and "gruvbox" or "palenight"
 
@@ -116,8 +116,8 @@ do -- Set up theme
   ]])
 
   -- Load theme configuration from generated file
-  package.path = vim.fn.stdpath('config') .. '/lua-generated/?.lua;' .. package.path
-  require('theme')
+  package.path = vim.fn.stdpath("config") .. "/lua-generated/?.lua;" .. package.path
+  require("theme")
   local theme = vim.g.current_theme
 
   if theme == "palenight" then
@@ -142,7 +142,7 @@ do -- Set up theme
     vim.g.gruvbox_italic = 1
     vim.g.gruvbox_contrast_dark = "medium"
     vim.g.gruvbox_invert_selection = 0
-    vim.g.gruvbox_sign_column = 'bg0'
+    vim.g.gruvbox_sign_column = "bg0"
   end
 
   -- Set the background.
@@ -160,8 +160,8 @@ end
 
 do -- Git Gutter
   -- Load theme to set appropriate colors
-  package.path = vim.fn.stdpath('config') .. '/lua-generated/?.lua;' .. package.path
-  require('theme')
+  package.path = vim.fn.stdpath("config") .. "/lua-generated/?.lua;" .. package.path
+  require("theme")
   local theme = vim.g.current_theme
 
   -- Always keep signcolumn on.
