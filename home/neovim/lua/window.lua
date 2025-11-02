@@ -129,6 +129,7 @@ do -- Set up theme
   vim.opt.background = "dark"
   vim.cmd("colorscheme " .. vim.g.theme_name)
   vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+  vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
 end
 
 -- Support JSON with comments.

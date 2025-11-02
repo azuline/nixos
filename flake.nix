@@ -139,7 +139,7 @@
             nixDir,
             # Whether we are connected to an external monitor (laptop only). The monitor name.
             monitor ? null,
-            # Theme selection: "cool" (blue) or "warm" (burnt orange/brown)
+            # Theme selection: "cool" or "warm"
             theme,
             # Username for home-manager configuration.
             username,
