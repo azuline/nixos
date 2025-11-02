@@ -68,9 +68,9 @@ let
       # Yellow - warm gold/amber
       color3 = "#e0a04e";
       color11 = "#ffb865";
-      # Blue - warm ocean blue (vibrant deep sea)
-      color4 = "#4a8fb0";
-      color12 = "#5dbad8";
+      # Blue - muted dusty blue-grey (same hue, increased lightness)
+      color4 = "#7a8a9d";
+      color12 = "#adc0d5";
       # Magenta - warm mauve/rose
       color5 = "#d4896e";
       color13 = "#ff9d88";
@@ -96,7 +96,7 @@ let
 
     # Common UI colors
     ui = {
-      background = "#1d110a";
+      background = "#1b1009";
       foreground = "#fef9f0";
       alert = "#e67350";
       border = "#5e3020";  # Darker, more muted border (shade3)

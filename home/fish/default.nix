@@ -39,7 +39,7 @@
   xdg.configFile."fish/conf.d/colors.fish".text = ''
     set fish_color_autosuggestion "888888"
     set fish_color_cancel "\x2dr"
-    set fish_color_command "${themeColors.terminal.color14}"
+    set fish_color_command "${themeColors.terminal.color12}"
     set fish_color_comment "${themeColors.terminal.color11}"
     set fish_color_cwd "${themeColors.terminal.color11}"
     set fish_color_cwd_root "${themeColors.terminal.color9}"
@@ -53,7 +53,7 @@
     set fish_color_match "\x2d\x2dbackground\x3d${themeColors.terminal.color12}"
     set fish_color_normal "normal"
     set fish_color_operator "${themeColors.terminal.color14}"
-    set fish_color_param "${themeColors.terminal.color12}"
+    set fish_color_param "${themeColors.terminal.color4}"
     set fish_color_quote "${themeColors.terminal.color10}"
     set fish_color_redirection "${themeColors.terminal.color10}"
     set fish_color_search_match "${themeColors.terminal.color11}\x1e\x2d\x2dbackground\x3d${themeColors.terminal.color8}"
