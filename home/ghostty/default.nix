@@ -1,4 +1,9 @@
-{ config, specialArgs, themeColors, ... }:
+{
+  config,
+  specialArgs,
+  themeColors,
+  ...
+}:
 
 let
   ghosttyConfig = ''

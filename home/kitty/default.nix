@@ -1,4 +1,9 @@
-{ pkgs, specialArgs, themeColors, ... }:
+{
+  pkgs,
+  specialArgs,
+  themeColors,
+  ...
+}:
 
 let
   colors = ''

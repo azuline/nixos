@@ -1,7 +1,13 @@
-{ pkgs, lib, specialArgs, ... }:
+{
+  pkgs,
+  lib,
+  specialArgs,
+  ...
+}:
 
 let
-  theme = specialArgs.sys.theme or "cool";
+  theme = specialArgs.sys.theme;
+  styleset = if theme == "warm" then "gruvbox" else "palenight";
 in
 # On Mac (work), just use builtin mail.
 lib.mkIf pkgs.stdenv.isLinux {
@@ -17,20 +23,14 @@ lib.mkIf pkgs.stdenv.isLinux {
 
   programs.aerc = {
     enable = true;
-    extraBinds = builtins.readFile ./binds.conf;
-    extraConfig =
-      let
-        aercConfig = builtins.readFile ./aerc.conf;
-        styleset = if theme == "warm" then "gruvbox" else "palenight";
-      in
-        builtins.replaceStrings
-          [ "styleset-name=palenight" ]
-          [ "styleset-name=${styleset}" ]
-          aercConfig;
     stylesets = {
       palenight = builtins.readFile ./stylesets/palenight;
       gruvbox = builtins.readFile ./stylesets/gruvbox;
     };
+    extraBinds = builtins.readFile ./binds.conf;
+    extraConfig = builtins.replaceStrings [ "THEME_STYLESET" ] [ styleset ] (
+      builtins.readFile ./aerc.conf
+    );
   };
 
   # Make a desktop file.

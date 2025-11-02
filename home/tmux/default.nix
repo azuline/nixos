@@ -22,20 +22,21 @@ let
   colors = if theme == "warm" then gruvboxColors else palenightColors;
 
   tmuxConfig = builtins.readFile ./tmux.conf;
-  tmuxConfigWithColors = builtins.replaceStrings
-    [
-      "set -gq @black '#292D3E'"
-      "set -gq @gray '#3E4452'"
-      "set -gq @commentgray '#9197BC'"
-      "set -gq @purple '#C792EA'"
-    ]
-    [
-      "set -gq @black '${colors.black}'"
-      "set -gq @gray '${colors.gray}'"
-      "set -gq @commentgray '${colors.commentgray}'"
-      "set -gq @purple '${colors.purple}'"
-    ]
-    tmuxConfig;
+  tmuxConfigWithColors =
+    builtins.replaceStrings
+      [
+        "set -gq @black '#292D3E'"
+        "set -gq @gray '#3E4452'"
+        "set -gq @commentgray '#9197BC'"
+        "set -gq @purple '#C792EA'"
+      ]
+      [
+        "set -gq @black '${colors.black}'"
+        "set -gq @gray '${colors.gray}'"
+        "set -gq @commentgray '${colors.commentgray}'"
+        "set -gq @purple '${colors.purple}'"
+      ]
+      tmuxConfig;
 in
 {
   programs.tmux = {

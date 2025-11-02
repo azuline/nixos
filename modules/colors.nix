@@ -34,14 +34,14 @@ let
 
     # Primary color palette (blue shades: darkest -> lightest)
     primary = {
-      shade1 = "#182130";   # Darkest - Very dark blue-grey
-      shade2 = "#213148";   # Dark blue-grey
-      shade3 = "#213e68";   # Medium-dark blue
-      shade4 = "#376181";   # Base blue (main accent)
-      shade5 = "#265476";   # Medium blue
-      shade6 = "#8eace3";   # Light blue
-      shade7 = "#82b1ff";   # Lighter blue
-      shade8 = "#89ddff";   # Lightest - Lightest cyan-blue
+      shade1 = "#182130"; # Darkest - Very dark blue-grey
+      shade2 = "#213148"; # Dark blue-grey
+      shade3 = "#213e68"; # Medium-dark blue
+      shade4 = "#376181"; # Base blue (main accent)
+      shade5 = "#265476"; # Medium blue
+      shade6 = "#8eace3"; # Light blue
+      shade7 = "#82b1ff"; # Lighter blue
+      shade8 = "#89ddff"; # Lightest - Lightest cyan-blue
     };
 
     # Common UI colors
@@ -49,7 +49,7 @@ let
       background = "#090910";
       foreground = "#eeffff";
       alert = "#ff5370";
-      border = "#265476";  # Blue border (shade5 - lighter, more visible)
+      border = "#265476"; # Blue border (shade5 - lighter, more visible)
     };
   };
 
@@ -84,14 +84,14 @@ let
 
     # Primary color palette (rust/brown shades: darkest -> lightest)
     primary = {
-      shade1 = "#2d1810";   # Darkest - Very dark brown
-      shade2 = "#442418";   # Dark brown
-      shade3 = "#5e3020";   # Medium-dark rust-brown
-      shade4 = "#c85a3e";   # Base rust/burnt orange (main accent)
-      shade5 = "#7a3e28";   # Medium brown-rust
-      shade6 = "#d87555";   # Light rust-orange
-      shade7 = "#c89068";   # Lighter warm tan
-      shade8 = "#d7a67d";   # Lightest - Lightest warm beige
+      shade1 = "#2d1810"; # Darkest - Very dark brown
+      shade2 = "#442418"; # Dark brown
+      shade3 = "#5e3020"; # Medium-dark rust-brown
+      shade4 = "#c85a3e"; # Base rust/burnt orange (main accent)
+      shade5 = "#7a3e28"; # Medium brown-rust
+      shade6 = "#d87555"; # Light rust-orange
+      shade7 = "#c89068"; # Lighter warm tan
+      shade8 = "#d7a67d"; # Lightest - Lightest warm beige
     };
 
     # Common UI colors
@@ -99,7 +99,7 @@ let
       background = "#1b1009";
       foreground = "#fef9f0";
       alert = "#e67350";
-      border = "#7a3e28";  # Warm border (shade5 - lighter, more visible)
+      border = "#7a3e28"; # Warm border (shade5 - lighter, more visible)
     };
   };
 
