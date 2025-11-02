@@ -54,29 +54,29 @@ let
   };
 
   warmColors = {
-    # 16 base terminal colors (ANSI) - warm tones
+    # 16 base terminal colors (ANSI) - warm tones with increased contrast
     terminal = {
       # Black
       color0 = "#3d2820";
-      color8 = "#543a2e";
-      # Red
+      color8 = "#5a4438";
+      # Red - keep as actual red
       color1 = "#d96446";
-      color9 = "#e67350";
-      # Green
-      color2 = "#a4a859";
-      color10 = "#c5c76b";
-      # Yellow
+      color9 = "#ff6b4a";
+      # Green - warm olive/moss green
+      color2 = "#a8b565";
+      color10 = "#d4dc6b";
+      # Yellow - warm gold/amber
       color3 = "#e0a04e";
-      color11 = "#f0b560";
-      # Blue (actually warm rust/orange - primary theme color)
-      color4 = "#c85a3e";
-      color12 = "#d87555";
-      # Magenta
-      color5 = "#b8745f";
-      color13 = "#c98770";
-      # Cyan
-      color6 = "#c89068";
-      color14 = "#d7a67d";
+      color11 = "#ffb865";
+      # Blue - warm ocean blue (vibrant deep sea)
+      color4 = "#4a8fb0";
+      color12 = "#5dbad8";
+      # Magenta - warm mauve/rose
+      color5 = "#d4896e";
+      color13 = "#ff9d88";
+      # Cyan - warm rust/orange/brown (primary theme color)
+      color6 = "#c85a3e";
+      color14 = "#ff8866";
       # White
       color7 = "#e8d3b8";
       color15 = "#fef9f0";
@@ -96,7 +96,7 @@ let
 
     # Common UI colors
     ui = {
-      background = "#1a0f08";
+      background = "#1d110a";
       foreground = "#fef9f0";
       alert = "#e67350";
       border = "#5e3020";  # Darker, more muted border (shade3)

@@ -1,4 +1,4 @@
-{ pkgs, specialArgs, ... }:
+{ pkgs, specialArgs, themeColors, ... }:
 
 {
   services.dunst = {
@@ -21,7 +21,7 @@
         vertical_alignment = "top";
         word_wrap = true;
         frame_width = 3;
-        frame_color = "#213e68";
+        frame_color = themeColors.primary.shade5;
       }
       // (
         if specialArgs.sys.host == "splendor" || specialArgs.sys.monitor != null then
@@ -40,8 +40,8 @@
           throw "Unsupported host in dunst."
       );
       urgency_low = {
-        background = "#090910";
-        foreground = "#eeffff";
+        background = themeColors.ui.background;
+        foreground = themeColors.ui.foreground;
       };
       urgency_normal = urgency_low;
       urgency_critical = urgency_low;
