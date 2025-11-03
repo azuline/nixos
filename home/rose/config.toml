@@ -196,7 +196,7 @@ default.release = """
     {{ releaseartists | artistsfmt }} -
     {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
     {{ releasetitle }}
-    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if releasetype == "single" oreleasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
     {% if edition %}({{ edition }}){% endif %}
     {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 {% endif %}
@@ -210,6 +210,7 @@ default.track = """
 # Avoid too much churn in source directory names, so only include relatively
 # stable identifiers.
 source.release = """
+{% if releasetype == "loosetrack" %} {{ "{" }}z{{ "}" }}{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if compositionyear %}{{ compositionyear }}.{% endif %}
