@@ -36,7 +36,7 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = [ pkgs.mesa.drivers ];
+    extraPackages = [ pkgs.mesa ];
   };
 
   i18n.inputMethod = {

@@ -67,11 +67,15 @@
     };
   };
 
-  # The NixOS systemd service restricts writes to the explicitly configured
-  # BindPaths.
-  systemd.services.transmission.serviceConfig.BindPaths = [
-    "/galatea"
-    "/torrents/incomplete"
-    "/torrents/watch"
-  ];
+  systemd.services.transmission.serviceConfig = {
+    # It takes a while now.
+    TimeoutStartSec = "10min";
+    # The NixOS systemd service restricts writes to the explicitly configured
+    # BindPaths.
+    BindPaths = [
+      "/galatea"
+      "/torrents/incomplete"
+      "/torrents/watch"
+    ];
+  };
 }
