@@ -196,7 +196,7 @@ default.release = """
     {{ releaseartists | artistsfmt }} -
     {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
     {{ releasetitle }}
-    {% if releasetype == "single" oreleasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
     {% if edition %}({{ edition }}){% endif %}
     {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
 {% endif %}
