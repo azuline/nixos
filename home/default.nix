@@ -310,6 +310,7 @@
         ./polybar
         ./rofi
         ./theme
+        ../modules/colors.nix
         ./xbindkeys
       ];
 

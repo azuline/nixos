@@ -1,0 +1,68 @@
+# vim: ft=dosini
+
+# Gruvbox colors:
+# ---
+# red=#fb4934
+# yellow=#fabd2f
+# green=#b8bb26
+# gray=#665c54
+# black=#282828
+# orange=#fe8019
+# purple=#d3869b
+# blue=#83a598
+# white=#ebdbb2
+# lightgray=#928374
+# ---
+
+# Defaults
+*.default=true
+*.normal=true
+*.selected.bg=#665c54
+
+# General
+*error.bold=true
+error.fg=#fb4934
+warning.fg=#fabd2f
+success.fg=#b8bb26
+border.fg=#282828
+
+# Tab bar
+tab.fg=#d3869b
+tab.bg=#282828
+tab.selected.fg=#ffffff
+tab.selected.bg=#665c54
+
+# Status line
+statusline_default.fg=#ebdbb2
+statusline_default.bg=#282828
+statusline_error.fg=#fb4934
+statusline_error.bg=#282828
+
+# Side bar - directory list
+dirlist_unread.fg=#d3869b
+dirlist_*.selected.bg=#665c54
+dirlist_*.selected.fg=#ffffff
+
+# Main window - message list
+msglist_default.fg=#928374
+msglist_unread.fg=#ffffff
+msglist_flagged.fg=#fabd2f
+msglist_deleted.fg=#665c54
+msglist_marked.bg=#282828
+msglist_*.selected.fg=#ffffff
+msglist_*.selected.bg=#665c54
+
+# Completion
+
+completion_default.bg=#665c54
+completion_default.fg=#ffffff
+
+# Loading
+
+spinner.fg=#665c54
+
+# Selectors (used in setting configs)
+
+selector_focused.fg=#282828
+selector_focused.bg=#ebdbb2
+selector_chooser.bg=#665c54

@@ -1,4 +1,9 @@
-{ pkgs, specialArgs, ... }:
+{
+  pkgs,
+  specialArgs,
+  themeColors,
+  ...
+}:
 
 let
   "glyph" = {
@@ -6,19 +11,15 @@ let
     gright = "    %{T3}%{T-}";
   };
   colors = {
-    background = "#d9090910";
-    background-alt = "#bfc7d5";
-    foreground = "#eeffff";
-    foreground-alt = "#3e3e3e";
-    primary = "#376181";
-    secondary = "#8eace3";
-    alert = "#ff5370";
+    background = "#d9${builtins.substring 1 6 themeColors.ui.background}";
+    foreground = themeColors.ui.foreground;
+    alert = themeColors.ui.alert;
   };
   shades = {
-    shade1 = "#182130";
-    shade2 = "#213148";
-    shade3 = "#213e68";
-    shade4 = "#265476";
+    shade1 = themeColors.primary.shade1;
+    shade2 = themeColors.primary.shade2;
+    shade3 = themeColors.primary.shade3;
+    shade4 = themeColors.primary.shade5;
   };
 in
 {
