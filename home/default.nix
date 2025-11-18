@@ -258,6 +258,7 @@
         pavucontrol
         peek
         pulseaudio # for pactl
+        remmina
         simplescreenrecorder
         slack
         speechd

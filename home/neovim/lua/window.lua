@@ -109,6 +109,9 @@ do -- Set up theme
     endif
   ]])
 
+  -- Always keep sign column on to avoid layout shift.
+  vim.opt.signcolumn = "yes"
+
   if vim.g.theme_name == "palenight" then
     -- Italics for palenight
     vim.g.palenight_terminal_italics = 1
