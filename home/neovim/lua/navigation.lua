@@ -5,7 +5,6 @@ do -- File browser
       fullscreen = false,
     },
     auto_close = true,
-    replace_netrw = "picker",
     windownav = {
       left = "<C-h>",
       right = "<C-l>",
