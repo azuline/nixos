@@ -139,6 +139,8 @@
             nixDir,
             # Whether we are connected to an external monitor (laptop only). The monitor name.
             monitor ? null,
+            # Theme selection: "cool" or "warm"
+            theme,
             # Username for home-manager configuration.
             username,
             # A function that takes post-parametrized bundles of packages and returns a subset.
@@ -147,7 +149,14 @@
             custom ? { ... }: { },
           }:
           let
-            sys = { inherit host nixDir monitor; };
+            sys = {
+              inherit
+                host
+                nixDir
+                monitor
+                theme
+                ;
+            };
             bundles = import ./home;
           in
           home-manager.lib.homeManagerConfiguration {
@@ -225,6 +234,7 @@
               host = "splendor";
               nixDir = "/etc/nixos";
               username = "blissful";
+              theme = "warm";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle
@@ -249,6 +259,7 @@
               host = "sunrise";
               nixDir = "/etc/nixos";
               username = "mdong";
+              theme = "cool";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle
@@ -262,6 +273,7 @@
               nixDir = "/etc/nixos";
               username = "blissful";
               monitor = null;
+              theme = "cool";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle
@@ -286,6 +298,7 @@
               nixDir = "/etc/nixos";
               username = "blissful";
               monitor = "HDMI-1";
+              theme = "cool";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle
@@ -309,6 +322,7 @@
               host = "neptune";
               nixDir = "/etc/nixos";
               username = "blissful";
+              theme = "cool";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle

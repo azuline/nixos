@@ -42,7 +42,7 @@ do -- Configure the statusbar.
   vim.opt.showmode = false
 
   vim.g["lightline"] = {
-    colorscheme = "palenight",
+    colorscheme = vim.g.theme_name,
     separator = {
       left = "",
       right = "",
@@ -99,7 +99,7 @@ do -- Highlight on Yank
 ]])
 end
 
-do -- Set up Palenight theme
+do -- Set up theme
   -- Theme Fixes
   vim.cmd([[
     if exists("+termguicolors")
@@ -109,34 +109,34 @@ do -- Set up Palenight theme
     endif
   ]])
 
-  -- Italics for my favorite color scheme
-  vim.g.palenight_terminal_italics = 1
-
-  -- The grays in palenight are too dark.
-  vim.g.palenight_color_overrides = {
-    gutter_fg_grey = {
-      gui = "#657291",
-      cterm = "245",
-      cterm16 = "15",
-    },
-    comment_grey = {
-      gui = "#7272a8",
-      cterm = "247",
-      cterm16 = "15",
-    },
-  }
+  if vim.g.theme_name == "palenight" then
+    -- Italics for palenight
+    vim.g.palenight_terminal_italics = 1
+    -- The grays in palenight are too dark.
+    vim.g.palenight_color_overrides = {
+      gutter_fg_grey = { gui = "#657291", cterm = "245", cterm16 = "15" },
+      comment_grey = { gui = "#7272a8", cterm = "247", cterm16 = "15" },
+    }
+  elseif vim.g.theme_name == "gruvbox" then
+    -- Gruvbox configuration
+    vim.g.gruvbox_italic = 1
+    vim.g.gruvbox_contrast_dark = "medium"
+    vim.g.gruvbox_invert_selection = 0
+    vim.g.gruvbox_sign_column = "bg0"
+  end
 
   -- Set the background.
   vim.opt.background = "dark"
-  vim.cmd("colorscheme palenight")
+  vim.cmd("colorscheme " .. vim.g.theme_name)
   vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
-end
+  vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
 
-do -- Git Gutter
-  -- Always keep signcolumn on.
-  vim.opt.signcolumn = "yes"
-  -- Modify signify delete color.
-  vim.cmd("highlight SignifySignDelete ctermfg=204 guifg=#ff869a cterm=NONE gui=NONE")
+  -- Workaround for statusline in Gruvbox: https://github.com/morhetz/gruvbox/issues/465.
+  vim.cmd([[
+		hi statusline cterm=NONE gui=NONE
+		hi tabline cterm=NONE gui=NONE
+		hi winbar cterm=NONE gui=NONE
+	]])
 end
 
 -- Support JSON with comments.
