@@ -45,18 +45,17 @@ restic backup \
     "$HOME/books" \
     "$HOME/documents/contents" \
     "$HOME/fonts" \
-    "$HOME/images" --exclude "$HOME/images/Camera" --exclude "$HOME/images/Screenshots" \
+    "$HOME/images" \
     "$HOME/kpop" \
     "$HOME/manga" \
     "$HOME/.music-source" \
-    "$HOME/resume" \
     "$HOME/scripts" \
     "$HOME/studies" \
     "$HOME/.passwarbles" \
     "$HOME/.gnupg/pubring.kbx" \
     "$HOME/.gnupg/private-keys-v1.d" \
     "$HOME/.ssh"
-"""  # noqa: E501
+"""
 
 
 def backup_backblaze() -> None:

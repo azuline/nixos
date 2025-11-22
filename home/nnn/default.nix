@@ -90,7 +90,7 @@ in
     };
     bookmarks = {
       b = "~/books";
-      B = "~/books/theology/buddhism";
+      B = "~/books/buddhism";
       c = "~/tunes/3. Genres/Classical Music";
       C = "~/tunes/3. Genres/City Pop";
       d = "~/downloads";
