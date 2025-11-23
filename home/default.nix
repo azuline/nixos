@@ -64,7 +64,7 @@
         pdftk
         pngquant
         poetry
-        poppler_utils
+        poppler-utils
         procps
         pstree
         python
@@ -128,7 +128,7 @@
         dotnet-sdk_9
         dune_3
         # gdb  # TODO(revive)
-        gitAndTools.delta
+        delta
         go
         gofumpt
         golangci-lint
@@ -176,7 +176,7 @@
         sqlint
         stack
         stylua
-        sumneko-lua-language-server
+        lua-language-server
         tailwindcss-language-server
         tokei
         universal-ctags
@@ -264,7 +264,7 @@
         simplescreenrecorder
         slack
         speechd
-        tor-browser-bundle-bin
+        tor-browser
         vscode.fhs
         xbindkeys
         xdotool # For VimTex's forward search.
@@ -294,7 +294,7 @@
         calibre
         signal
         nicotine-plus
-        tdesktop
+        telegram-desktop
         tremotesf
         typst
         zotero

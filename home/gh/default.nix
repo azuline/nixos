@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.gitAndTools.gh ];
+  home.packages = [ pkgs.gh ];
   xdg.configFile."gh/config.yml".text = ''
     # What protocol to use when performing git operations. Supported values: ssh, https
     git_protocol: ssh
