@@ -273,7 +273,7 @@
               nixDir = "/etc/nixos";
               username = "blissful";
               monitor = null;
-              theme = "cool";
+              theme = "warm";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle
