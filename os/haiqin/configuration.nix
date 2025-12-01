@@ -125,14 +125,14 @@
       CPU_BOOST_ON_AC = 1;
       CPU_HWP_DYN_BOOST_ON_AC = 1;
 
-      # CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
-      # PLATFORM_PROFILE_ON_BAT = "balanced";
-      # CPU_BOOST_ON_BAT = 0;
-      # CPU_HWP_DYN_BOOST_ON_BAT = 0;
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
-      PLATFORM_PROFILE_ON_BAT = "performance";
-      CPU_BOOST_ON_BAT = 1;
-      CPU_HWP_DYN_BOOST_ON_BAT = 1;
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+      PLATFORM_PROFILE_ON_BAT = "balanced";
+      CPU_BOOST_ON_BAT = 0;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
+      # CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
+      # PLATFORM_PROFILE_ON_BAT = "performance";
+      # CPU_BOOST_ON_BAT = 1;
+      # CPU_HWP_DYN_BOOST_ON_BAT = 1;
 
       START_CHARGE_THRESH_BAT0 = 90;
       STOP_CHARGE_THRESH_BAT0 = 95;

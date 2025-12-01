@@ -298,7 +298,7 @@
               nixDir = "/etc/nixos";
               username = "blissful";
               monitor = "HDMI-1";
-              theme = "cool";
+              theme = "warm";
               chooseBundles = b: [
                 b.cliBundle
                 b.devBundle
