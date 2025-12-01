@@ -161,6 +161,18 @@
         "type": "github"
       }
     },
+    "handy-src": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-ET1IdBm+yM5s+zw+Ysr5zrQfSzXTBiZdGaZJrdaVcM0=",
+        "type": "file",
+        "url": "https://github.com/cjpais/Handy/releases/download/v0.6.4/Handy_0.6.4_amd64.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/cjpais/Handy/releases/download/v0.6.4/Handy_0.6.4_amd64.AppImage"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -416,6 +428,7 @@
         "fish-plugin-nix-env": "fish-plugin-nix-env",
         "fish-plugin-wd": "fish-plugin-wd",
         "flake-utils": "flake-utils",
+        "handy-src": "handy-src",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nix-search-cli-src": "nix-search-cli-src",

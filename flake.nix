@@ -69,6 +69,10 @@
       url = "github:ZeroQI/Absolute-Series-Scanner";
       flake = false;
     };
+    handy-src = {
+      url = "https://github.com/cjpais/Handy/releases/download/v0.6.4/Handy_0.6.4_amd64.AppImage";
+      flake = false;
+    };
   };
 
   outputs =
@@ -93,6 +97,7 @@
       fish-plugin-nix-env,
       plex-hama,
       plex-ass,
+      handy-src,
     }:
     (flake-utils.lib.eachDefaultSystem (
       system:
@@ -113,6 +118,7 @@
             fish-plugin-wd
             fish-plugin-nix-env
             zathura-pdf-mupdf-src
+            handy-src
             ;
         };
         pins = {

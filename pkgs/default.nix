@@ -25,6 +25,7 @@ import nixpkgs {
       edit-toc = prev.callPackage ./edit-toc { };
       exif-mtime-sync = prev.callPackage ./exif-mtime-sync { };
       file-uploader = prev.callPackage ./file-uploader { };
+      handy = prev.callPackage ./handy { inherit srcs; };
       haiqin-change-audio = prev.callPackage ./haiqin-change-audio { };
       i3-clear-clipboard = prev.callPackage ./i3-clear-clipboard { };
       mcp-language-server = prev.callPackage ./mcp-language-server { };

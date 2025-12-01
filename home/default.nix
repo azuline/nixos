@@ -245,12 +245,14 @@
 
       home.packages = with pkgs; [
         arandr
+        appimage-run
         brightnessctl
         chromium
         discord
         evince
         firefox
         gimp
+        handy
         libnotify
         maim
         nautilus
