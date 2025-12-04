@@ -20,7 +20,9 @@ class Bookmark:
         """Convert to user-friendly format: page number + indented title"""
         lines = []
         indent = " " * indent_level
-        lines.append(f"{indent}{self.pageno} {self.title}")
+        # Escape newlines in title as \n
+        escaped_title = self.title.replace("\n", "\\n")
+        lines.append(f"{indent}{self.pageno} {escaped_title}")
         for child in self.children:
             lines.extend(child.to_user_format(indent_level + 1).split("\n"))
         return "\n".join(lines)
@@ -38,18 +40,47 @@ def parse_from_pdftk(content: str) -> list[Bookmark]:
     bookmark_stack = []
     while i < len(bookmark_lines):
         line = bookmark_lines[i].strip()
-        # Read the next three lines for title, level, and page
+        # Skip empty lines
+        if not line:
+            i += 1
+            continue
+        # Read the bookmark fields, handling multi-line titles
         if line != "BookmarkBegin":
             i += 1
             continue
-        assert i + 3 < len(bookmark_lines)
-        title_line = bookmark_lines[i + 1].strip()
-        level_line = bookmark_lines[i + 2].strip()
-        page_line = bookmark_lines[i + 3].strip()
-        assert title_line.startswith("BookmarkTitle:") and level_line.startswith("BookmarkLevel:") and page_line.startswith("BookmarkPageNumber:"), bookmark_lines[i : i + 4]
-        title = title_line.split("BookmarkTitle:", 1)[1].strip()
-        level = int(level_line.split("BookmarkLevel:", 1)[1].strip())
-        page = int(page_line.split("BookmarkPageNumber:", 1)[1].strip())
+
+        i += 1
+        # Skip empty lines
+        while i < len(bookmark_lines) and not bookmark_lines[i].strip():
+            i += 1
+
+        # Parse title (may span multiple lines)
+        assert i < len(bookmark_lines) and bookmark_lines[i].startswith("BookmarkTitle:")
+        title_parts = [bookmark_lines[i].split("BookmarkTitle:", 1)[1]]
+        i += 1
+
+        # Continue reading lines until we hit BookmarkLevel (skip empty lines but preserve non-empty ones in title)
+        while i < len(bookmark_lines) and not bookmark_lines[i].startswith("BookmarkLevel:"):
+            if bookmark_lines[i].strip():  # Non-empty line that's part of the title
+                title_parts.append(bookmark_lines[i])
+            i += 1
+
+        title = "\n".join(title_parts)
+
+        # Parse level
+        assert i < len(bookmark_lines) and bookmark_lines[i].startswith("BookmarkLevel:")
+        level = int(bookmark_lines[i].split("BookmarkLevel:", 1)[1].strip())
+        i += 1
+
+        # Skip empty lines
+        while i < len(bookmark_lines) and not bookmark_lines[i].strip():
+            i += 1
+
+        # Parse page number
+        assert i < len(bookmark_lines) and bookmark_lines[i].startswith("BookmarkPageNumber:")
+        page = int(bookmark_lines[i].split("BookmarkPageNumber:", 1)[1].strip())
+        i += 1
+
         bookmark = Bookmark(title=title, pageno=page, level=level, children=[])
 
         while bookmark_stack and bookmark_stack[-1].level >= level:
@@ -59,8 +90,6 @@ def parse_from_pdftk(content: str) -> list[Bookmark]:
         else:
             bookmarks.append(bookmark)
         bookmark_stack.append(bookmark)
-
-        i += 4
 
     return bookmarks
 
@@ -78,7 +107,8 @@ def parse_from_editable(content: str) -> list[Bookmark]:
         parts = content_part.split(" ", 1)
         assert len(parts) == 2
         page = int(parts[0])
-        title = parts[1]
+        # Unescape \n back to actual newlines
+        title = parts[1].replace("\\n", "\n")
 
         bookmark = Bookmark(title=title, pageno=page, level=level + 1, children=[])
 
