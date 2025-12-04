@@ -128,6 +128,8 @@
           presage = presage-src.defaultPackage.${system};
           pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
           zoom-us = pkgs-stable.zoom-us;
+          # Weird bug with most recent mpv that breaks with rose.
+          mpv = pkgs-stable.mpv;
         };
         pkgs = import ./pkgs {
           inherit

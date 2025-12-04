@@ -8,5 +8,5 @@ vim.g.barbaric_default = "xkb:us::eng"
 -- Spell check.
 vim.opt.spellfile = vim.fn.expand("$HOME/.config/nvim/spell/en.utf-8.add")
 vim.cmd([[
-	au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt setlocal spell | setlocal spellcapcheck=
+	au BufEnter *.md,*.mkd,*.markdown,*.rst,*.tex,*.txt,*.typ setlocal spell | setlocal spellcapcheck=
 ]])
