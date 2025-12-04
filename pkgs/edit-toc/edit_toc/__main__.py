@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 import subprocess
 import tempfile
 from dataclasses import dataclass
@@ -30,56 +31,32 @@ class Bookmark:
 
 def parse_from_pdftk(content: str) -> list[Bookmark]:
     """Parse pdftk output into bookmark datastructures"""
-    lines = content.split("\n")
-    start_idx = next(i for i, line in enumerate(lines) if line.startswith("NumberOfPages:"))
-    end_idx = next(i for i, line in enumerate(lines) if line.startswith("PageMediaBegin"))
-    bookmark_lines = lines[start_idx:end_idx]
+    # Use regex to find all bookmark entries, handling multi-line titles
+    # Pattern explanation:
+    # - BookmarkBegin followed by any whitespace
+    # - BookmarkTitle: followed by content (captured as title)
+    # - Everything until BookmarkLevel: is part of the title
+    # - BookmarkLevel: followed by the level number
+    # - BookmarkPageNumber: followed by the page number
+    pattern = re.compile(
+        r'BookmarkBegin\s+'
+        r'BookmarkTitle:\s*(.*?)\s*'
+        r'BookmarkLevel:\s*(\d+)\s+'
+        r'BookmarkPageNumber:\s*(\d+)',
+        re.DOTALL | re.MULTILINE
+    )
 
-    i = 0
+    matches = pattern.findall(content)
+
     bookmarks = []
     bookmark_stack = []
-    while i < len(bookmark_lines):
-        line = bookmark_lines[i].strip()
-        # Skip empty lines
-        if not line:
-            i += 1
-            continue
-        # Read the bookmark fields, handling multi-line titles
-        if line != "BookmarkBegin":
-            i += 1
-            continue
 
-        i += 1
-        # Skip empty lines
-        while i < len(bookmark_lines) and not bookmark_lines[i].strip():
-            i += 1
-
-        # Parse title (may span multiple lines)
-        assert i < len(bookmark_lines) and bookmark_lines[i].startswith("BookmarkTitle:")
-        title_parts = [bookmark_lines[i].split("BookmarkTitle:", 1)[1]]
-        i += 1
-
-        # Continue reading lines until we hit BookmarkLevel (skip empty lines but preserve non-empty ones in title)
-        while i < len(bookmark_lines) and not bookmark_lines[i].startswith("BookmarkLevel:"):
-            if bookmark_lines[i].strip():  # Non-empty line that's part of the title
-                title_parts.append(bookmark_lines[i])
-            i += 1
-
-        title = "\n".join(title_parts)
-
-        # Parse level
-        assert i < len(bookmark_lines) and bookmark_lines[i].startswith("BookmarkLevel:")
-        level = int(bookmark_lines[i].split("BookmarkLevel:", 1)[1].strip())
-        i += 1
-
-        # Skip empty lines
-        while i < len(bookmark_lines) and not bookmark_lines[i].strip():
-            i += 1
-
-        # Parse page number
-        assert i < len(bookmark_lines) and bookmark_lines[i].startswith("BookmarkPageNumber:")
-        page = int(bookmark_lines[i].split("BookmarkPageNumber:", 1)[1].strip())
-        i += 1
+    for title, level_str, page_str in matches:
+        # Clean up the title: remove leading/trailing whitespace from each line
+        # and join with newlines, but strip overall trailing/leading whitespace
+        title = title.strip()
+        level = int(level_str)
+        page = int(page_str)
 
         bookmark = Bookmark(title=title, pageno=page, level=level, children=[])
 
