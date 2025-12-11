@@ -7,11 +7,8 @@
       desktopManager.xterm.enable = false;
       windowManager.i3.enable = true;
       windowManager.i3.extraSessionCommands = "xset r rate 250 25";
-      # screenSection = ''
-      #   Option "metamodes" "DP-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, HDMI-0: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
-      # '';
       screenSection = ''
-        Option "metamodes" "HDMI-0: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }"
+        Option "metamodes" "DP-2: 3840x2160 +0+0 { ForceFullCompositionPipeline = On }, DP-4: 3840x2160 +3840+0 { ForceFullCompositionPipeline = On }"
       '';
       videoDrivers = [ "nvidia" ];
       xkb = {
