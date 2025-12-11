@@ -10,11 +10,11 @@ writeShellScriptBin "bar-ddcutil" ''
   set -euo pipefail
 
   VCP_CODE=10
-  BUS=11
+  BUS="$1"
 
   current="$(ddcutil getvcp $VCP_CODE --bus $BUS | grep 'Brightness' | awk '{print $9}' | grep -o '[0-9]*')"
 
-  case "$1" in
+  case "$2" in
     get)
       echo "$current"
       ;;

@@ -105,7 +105,12 @@ abbr --add --global ta 'tmux attach -t'
 abbr --add --global tl 'tmux ls'
 
 # Display (desktop)
-abbr --add --global br 'ddcutil --bus 11 setvcp 10'
+function set_brightness
+    for i in 6 7
+        ddcutil --bus "$i" setvcp 10 $argv[1]
+    end
+end
+abbr --add --global sbr set_brightness
 
 # Image Uploading
 alias lastscrot='command ls -d1t ~/images/Screenshots/* | head -n1'
