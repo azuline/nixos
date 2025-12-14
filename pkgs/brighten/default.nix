@@ -1,12 +1,13 @@
 {
   writeShellScriptBin,
+  coreutils,
   ddcutil,
   gawk,
   gnugrep,
 }:
 
 writeShellScriptBin "brighten" ''
-  export PATH="${ddcutil}/bin:${gnugrep}/bin:${gawk}/bin:$PATH"
+  export PATH="${coreutils}/bin:${ddcutil}/bin:${gnugrep}/bin:${gawk}/bin:$PATH"
   set -euo pipefail
 
   VCP_CODE=10

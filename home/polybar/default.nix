@@ -283,7 +283,7 @@ in
         type = "custom/script";
         exec = "~/.nix-profile/bin/brighten get 6";
         label = "   %output%%";
-        interval = "5";
+        interval = "1";
         format-background = shades.shade3;
         scroll-up = "~/.nix-profile/bin/brighten inc 6";
         scroll-down = "~/.nix-profile/bin/brighten dec 6";
@@ -292,7 +292,7 @@ in
         type = "custom/script";
         exec = "~/.nix-profile/bin/brighten get 7";
         label = "   %output%%";
-        interval = "5";
+        interval = "1";
         format-background = shades.shade3;
         scroll-up = "~/.nix-profile/bin/brighten inc 7";
         scroll-down = "~/.nix-profile/bin/brighten dec 7";
