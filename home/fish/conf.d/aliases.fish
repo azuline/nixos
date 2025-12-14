@@ -106,9 +106,9 @@ abbr --add --global tl 'tmux ls'
 
 # Display (desktop)
 function set_brightness
-    for i in 6 7
-        brighten set "$i" $argv[1]
-    end
+    brighten set 6 $argv[1] &
+    brighten set 7 $argv[1] &
+    wait
 end
 abbr --add --global sbr set_brightness
 
