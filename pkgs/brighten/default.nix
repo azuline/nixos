@@ -14,20 +14,19 @@ writeShellScriptBin "brighten" ''
   BUS="$2"
 
   CACHEDIR="$HOME/.cache/brighten"
-  CACHEFILE="$CACHEDIR/$BUS"
   mkdir -p "$CACHEDIR"
 
+  CACHEFILE="$CACHEDIR/$BUS"
   update_cachefile() {
     echo "$(ddcutil getvcp $VCP_CODE --bus $BUS | grep 'Brightness' | awk '{print $9}' | grep -o '[0-9]*')" > "$CACHEFILE"
   }
 
-  if [ ! -f "$CACHEFILE" ]; then
-    update_cachefile
-  fi
+  if [ ! -f "$CACHEFILE" ]; then update_cachefile; fi
+  current="$(cat "$CACHEFILE")"
 
   case "$1" in
     get)
-      cat "$CACHEFILE"
+      echo "$current"
       ;;
     set)
       ddcutil setvcp $VCP_CODE "$3" --bus $BUS
@@ -42,7 +41,7 @@ writeShellScriptBin "brighten" ''
       update_cachefile
       ;;
     *)
-      echo "Usage: $0 {get|inc|dec}"
+      echo "Usage: $0 {get|set|inc|dec}" BUS [BRIGHTNESS]
       ;;
   esac
 ''
