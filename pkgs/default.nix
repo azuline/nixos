@@ -11,7 +11,7 @@ import nixpkgs {
     (final: prev: {
       aerc-in-kitty = prev.callPackage ./aerc-in-kitty { };
       backup-scripts = prev.callPackage ./backup-scripts { };
-      bar-ddcutil = prev.callPackage ./bar-ddcutil { };
+      brighten = prev.callPackage ./brighten { };
       bar-gpu = prev.callPackage ./bar-gpu { };
       bar-loadavg = prev.callPackage ./bar-loadavg { };
       bar-now-playing = prev.callPackage ./bar-now-playing { };

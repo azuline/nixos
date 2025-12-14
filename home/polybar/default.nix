@@ -281,21 +281,21 @@ in
       };
       "module/ddcutil-6" = {
         type = "custom/script";
-        exec = "~/.nix-profile/bin/bar-ddcutil 6 get";
+        exec = "~/.nix-profile/bin/brighten get 6";
         label = "   %output%%";
         interval = "5";
         format-background = shades.shade3;
-        scroll-up = "~/.nix-profile/bin/bar-ddcutil 6 inc";
-        scroll-down = "~/.nix-profile/bin/bar-ddcutil 6 dec";
+        scroll-up = "~/.nix-profile/bin/brighten inc 6";
+        scroll-down = "~/.nix-profile/bin/brighten dec 6";
       };
       "module/ddcutil-7" = {
         type = "custom/script";
-        exec = "~/.nix-profile/bin/bar-ddcutil 7 get";
+        exec = "~/.nix-profile/bin/brighten get 7";
         label = "   %output%%";
         interval = "5";
         format-background = shades.shade3;
-        scroll-up = "~/.nix-profile/bin/bar-ddcutil 7 inc";
-        scroll-down = "~/.nix-profile/bin/bar-ddcutil 7 dec";
+        scroll-up = "~/.nix-profile/bin/brighten inc 7";
+        scroll-down = "~/.nix-profile/bin/brighten dec 7";
       };
       "module/title" = {
         type = "internal/xwindow";

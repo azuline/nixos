@@ -319,10 +319,10 @@
 
       home.packages = with pkgs; [
         bar-gpu
-        bar-ddcutil
         bar-loadavg
         bar-now-playing
         bar-vpn
+        brighten
         i3-clear-clipboard
         i3-lock
         i3-screenshot
