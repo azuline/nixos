@@ -6,7 +6,7 @@
     "nix-command"
     "flakes"
   ];
-  nix.settings.max-jobs = 8;
+  nix.settings.max-jobs = 4;
   nixpkgs.config.allowUnfree = true;
   # Doesn't work in Flakes.
   programs.command-not-found.enable = false;
@@ -95,7 +95,7 @@
     systemPackages = with pkgs; [
       curl
       git
-      glxinfo
+      mesa-demos
       intel-gpu-tools
       jq
       mesa

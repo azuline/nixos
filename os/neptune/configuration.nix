@@ -159,7 +159,7 @@
     systemPackages = with pkgs; [
       curl
       git
-      glxinfo
+      mesa-demos
       intel-gpu-tools
       jq
       mesa
