@@ -83,7 +83,7 @@ get_selected_playlist() {
     [[ "$vpath" == "/8. Playlists"* ]] && basename "$(truncate_virtual_parts "$1" 2)"
 }
 
-read -N1 -r -p "(p)lay (s)huffle (o)netrack toggle(n)ew (e)dit: " action
+read -N1 -r -p "(p)lay (s)huffle (o)netrack toggle(n)ew toggle(f)av (e)dit: " action
 
 case "$action" in 
     p) # Play a directory in order.
@@ -111,6 +111,11 @@ case "$action" in
         release="$(get_selected_release "$node")"
         [ -z "$release" ] && exit 1
         rose releases toggle-new -- "$release"
+        ;;
+    f) # Toggle the favorite-ness of a release.
+        release="$(get_selected_release "$node")"
+        [ -z "$release" ] && exit 1
+        rose releases toggle-favorite -- "$release"
         ;;
     e) # Edit a release/collage/playlist's metadata.
         edit() {

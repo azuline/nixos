@@ -7,10 +7,13 @@
       desktopManager.xterm.enable = false;
       windowManager.i3.enable = true;
       windowManager.i3.extraSessionCommands = "xset r rate 250 25";
-      displayManager.setupCommands = ''
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-2 --mode 3840x2160 --rate 120.00
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --mode 3840x2160 --rate 120.00
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --right-of DP-2
+      screenSection = ''
+        # 1. Stop the driver from cutting power to the port during sleep
+        Option "HardDPMS" "false"
+        # 2. Allow 120Hz even if EDID handshake is strict
+        Option "ModeValidation" "AllowNonEdidModes, NoMaxPClkCheck, NoEdidMaxPClkCheck, NoHorizSyncCheck, NoVertRefreshCheck"
+        # 3. Force 120Hz + Sync for Stutter Fix
+        Option "metamodes" "DP-2: 3840x2160_120 +0+0 { ForceFullCompositionPipeline = On }, DP-4: 3840x2160_120 +3840+0 { ForceFullCompositionPipeline = On }"
       '';
       videoDrivers = [ "nvidia" ];
       xkb = {

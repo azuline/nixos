@@ -226,7 +226,7 @@ source.release = """
 {% endif %}
 """
 releases.release = """
-{% if new %}^{% endif %}
+{% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -245,6 +245,24 @@ releases.release = """
 {% endif %}
 """
 releases_new.release = """
+{% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
+    {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
+    {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
+    {{ releasetitle }} -
+    {{ releaseartists | artistsfmt(omit=["composer", "guest"]) }}
+    {% if releasedate or originaldate %}({{ originaldate or releasedate }}){% endif %}
+    {% if genres %}[{{ genres | select("ne", "Classical Music") | arrayfmt }}]{% endif %}
+{% else %}
+    {{ releaseartists | artistsfmt }} -
+    {% if releasedate or originaldate %}{{ originaldate or releasedate }}.{% endif %}
+    {{ releasetitle }}
+    {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
+    {% if edition %}({{ edition }}){% endif %}
+    {% if genres %}[{{ genres | arrayfmt }}]{% endif %}
+    {% if labels %}{{ '{' }}{{ labels | arrayfmt }}{{ '}' }}{% endif %}
+{% endif %}
+"""
+releases_favorite.release = """
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
