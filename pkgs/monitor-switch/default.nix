@@ -11,7 +11,8 @@ writeShellScriptBin "monitor-switch" ''
     xrandr --output DP-3 --auto --primary --above eDP-1
     xrandr --output ${monitor} --auto --left-of DP-3
     sleep 1
-    xwallpaper --output eDP-1 --focus ~/backgrounds/bg.png --output ${monitor} --focus ~/backgrounds/monitor.png --output DP-3 --focus ~/backgrounds/monitor.png
+    /home/blissful/backgrounds/apply.sh
+    /home/blissful/backgrounds/gen_lock.sh
     home-manager switch --flake /etc/nixos/#haiqin-monitor
     systemctl --user restart polybar
     i3-msg reload
@@ -28,7 +29,8 @@ writeShellScriptBin "monitor-switch" ''
     xrandr --output ${monitor} --off
     xrandr --output DP-3 --off
     sleep 1
-    xwallpaper --output eDP-1 --focus ~/backgrounds/bg.png
+    /home/blissful/backgrounds/apply.sh
+    /home/blissful/backgrounds/gen_lock.sh
     home-manager switch --flake /etc/nixos/#haiqin
     systemctl --user restart polybar
     i3-msg reload
