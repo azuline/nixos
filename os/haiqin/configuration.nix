@@ -52,7 +52,7 @@
   # https://github.com/NixOS/nixpkgs/issues/195777#issuecomment-1324378856
   system.activationScripts.restart-udev = "${pkgs.systemd}/bin/systemctl restart systemd-udev-trigger.service";
 
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i32b";

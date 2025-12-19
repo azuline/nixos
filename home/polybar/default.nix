@@ -21,8 +21,14 @@ let
     shade3 = themeColors.primary.shade3;
     shade4 = themeColors.primary.shade5;
   };
+  anki-counter = pkgs.writeShellScriptBin "anki-counter" ''
+    curr="$(${pkgs.sqlite}/bin/sqlite3 "/home/blissful/.local/share/Anki2/User 1/collection.anki2" "SELECT count(*) FROM cards WHERE did = 1752445901992;")"
+    echo "$curr/1000"
+  '';
 in
 {
+  home.packages = [ anki-counter ];
+
   # The tray service doesn't already exist; need to define it.
   systemd.user.targets.tray = {
     Install = {
@@ -124,7 +130,7 @@ in
         font-6 = "Noto Sans CJK TC:style=Regular:size=22;4";
         font-7 = "Noto Sans CJK HK:style=Regular:size=22;4";
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
       }
       // (
         if specialArgs.sys.monitor == null then
@@ -142,7 +148,7 @@ in
         # TODO: Dummy because null is not ok.
         monitor = if specialArgs.sys.monitor != null then specialArgs.sys.monitor else "HDMI-1";
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
       }
       // (
         if specialArgs.sys.monitor != null then
@@ -158,7 +164,7 @@ in
         "inherit" = "bar/base";
         monitor = "DP-3";
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
       };
       "bar/neptune" = {
         "inherit" = "bar/base";
@@ -311,6 +317,13 @@ in
         label = "   %output%";
         interval = "1";
         format-background = shades.shade4;
+      };
+      "module/anki-counter" = {
+        type = "custom/script";
+        exec = "~/.nix-profile/bin/anki-counter";
+        label = "   %output%";
+        interval = "1";
+        format-background = shades.shade3;
       };
       "global/wm" = {
         margin-top = "0";
