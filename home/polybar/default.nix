@@ -322,7 +322,7 @@ in
         type = "custom/script";
         exec = "~/.nix-profile/bin/anki-counter";
         label = "   %output%";
-        interval = "1";
+        interval = "5";
         format-background = shades.shade3;
       };
       "global/wm" = {
