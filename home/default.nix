@@ -292,8 +292,9 @@
       home.packages = with pkgs; [
         anki
         calibre
-        signal
+        deluge
         nicotine-plus
+        signal
         telegram-desktop
         tremotesf
         typst
