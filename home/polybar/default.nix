@@ -22,7 +22,7 @@ let
     shade4 = themeColors.primary.shade5;
   };
   anki-counter = pkgs.writeShellScriptBin "anki-counter" ''
-    curr="$(${pkgs.sqlite}/bin/sqlite3 "/home/blissful/.local/share/Anki2/User 1/collection.anki2" "SELECT count(*) FROM cards WHERE did = 1752445901992;")"
+    curr="$(${pkgs.sqlite}/bin/sqlite3 "file:/home/blissful/.local/share/Anki2/User 1/collection.anki2?mode=ro&immutable=1" "SELECT count(*) FROM cards WHERE did = 1752445901992;")"
     echo "$curr/1000"
   '';
 in
