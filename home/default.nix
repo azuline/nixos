@@ -10,6 +10,7 @@
         ./gpg
         ./neovim
         ./nnn
+        ./pomodoro
         ./readline
         ./ssh
         ./syncthing
@@ -160,6 +161,7 @@
         nodejs
         ocamlPackages.utop
         ocamlformat
+        opencode
         pgformatter
         pgmigrate
         php83
@@ -298,7 +300,6 @@
         telegram-desktop
         tremotesf
         typst
-        zotero
       ];
     };
 

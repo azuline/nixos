@@ -36,6 +36,10 @@
       url = "github:azuline/rose";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opencode-src = {
+      url = "github:anomalyco/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Non-flake sources.
     discord-src = {
       url = "https://dl.discordapp.net/apps/linux/0.0.111/discord-0.0.111.tar.gz";
@@ -88,6 +92,7 @@
       presage-src,
       pgmigrate-src,
       rose-src,
+      opencode-src,
       # Non-Nix sources
       discord-src,
       nnn-src,
@@ -127,6 +132,7 @@
           rose-cli = rose-src.packages.${system}.rose-cli;
           presage = presage-src.defaultPackage.${system};
           pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
+          opencode = opencode-src.packages.${system}.default;
           zoom-us = pkgs-stable.zoom-us;
           # Weird bug with most recent mpv that breaks with rose.
           mpv = pkgs-stable.mpv;
