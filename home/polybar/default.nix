@@ -23,7 +23,9 @@ let
   };
   anki-counter = pkgs.writeShellScriptBin "anki-counter" ''
     curr="$(${pkgs.sqlite}/bin/sqlite3 "file:/home/blissful/.local/share/Anki2/User 1/collection.anki2?mode=ro&immutable=1" "SELECT count(*) FROM cards WHERE did = 1752445901992;")"
-    echo "$curr/1000"
+    new="$(${pkgs.sqlite}/bin/sqlite3 "file:/home/blissful/.local/share/Anki2/User 1/collection.anki2?mode=ro&immutable=1" "SELECT count(*) FROM cards WHERE did = 1752445901992 AND queue = 0;")"
+    target=1000
+    echo "$curr/$new/$target"
   '';
 in
 {
@@ -130,7 +132,7 @@ in
         font-6 = "Noto Sans CJK TC:style=Regular:size=22;4";
         font-7 = "Noto Sans CJK HK:style=Regular:size=22;4";
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter pad3 pomodoro right2 pad2 vpn right1";
       }
       // (
         if specialArgs.sys.monitor == null then
@@ -148,7 +150,7 @@ in
         # TODO: Dummy because null is not ok.
         monitor = if specialArgs.sys.monitor != null then specialArgs.sys.monitor else "HDMI-1";
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter pad3 pomodoro right2 pad2 vpn right1";
       }
       // (
         if specialArgs.sys.monitor != null then
@@ -164,7 +166,7 @@ in
         "inherit" = "bar/base";
         monitor = "DP-3";
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter pad3 pomodoro right2 pad2 vpn right1";
       };
       "bar/neptune" = {
         "inherit" = "bar/base";
@@ -323,6 +325,13 @@ in
         exec = "~/.nix-profile/bin/anki-counter";
         label = "   %output%";
         interval = "5";
+        format-background = shades.shade3;
+      };
+      "module/pomodoro" = {
+        type = "custom/script";
+        exec = "~/.nix-profile/bin/pomodoro status";
+        label = "%output%";
+        interval = "1";
         format-background = shades.shade3;
       };
       "global/wm" = {

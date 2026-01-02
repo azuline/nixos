@@ -346,6 +346,26 @@
         "type": "github"
       }
     },
+    "opencode-src": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767383740,
+        "narHash": "sha256-UTY4ARKwv8XKV95Ha9RWzOny0vcrQxVBzx1d8/xlvQA=",
+        "owner": "anomalyco",
+        "repo": "opencode",
+        "rev": "66bc046503190622e9d652bbed6a940b003aeb77",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anomalyco",
+        "repo": "opencode",
+        "type": "github"
+      }
+    },
     "pgmigrate-src": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -437,6 +457,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nnn-src": "nnn-src",
         "nsxiv-src": "nsxiv-src",
+        "opencode-src": "opencode-src",
         "pgmigrate-src": "pgmigrate-src",
         "plex-ass": "plex-ass",
         "plex-hama": "plex-hama",

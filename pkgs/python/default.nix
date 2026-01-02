@@ -15,6 +15,7 @@ python312.withPackages (
     flake8
     fonttools
     rose
+    sh
     shodan
     # Data Science
     graphviz

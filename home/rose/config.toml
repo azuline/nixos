@@ -335,9 +335,8 @@ genres.release = """
 {% if context.genre in ["Classical Music", "Western Classical Music"] %}
     {% if context.genre not in genres + parentgenres %}[SEC]{% endif %}
     {% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
-    {{ releaseartists | artistsfmt }} -
     {% if releaseartists.composer | length == 0 %}
-        [Z]
+        {% if not new %}[Z]{% endif %}
         {{ releaseartists | artistsfmt }} -
         {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
         {{ releasetitle }}
@@ -403,7 +402,7 @@ collages.release = """
 {% endif %}
 """
 playlists = """
-{% if context.playlist.startswith("+") and (originaldate or releasedate) %}
+{% if context.playlist.startswith("genre_") and (originaldate or releasedate) %}
     [{{ originaldate or releasedate }}]
 {% else %}
     {{ position }}.
