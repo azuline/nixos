@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, ... }:
+{ pkgs, ... }:
 
 {
   services = {
@@ -91,7 +91,15 @@
   services.gnome.gnome-keyring.enable = true;
   services.upower.enable = true;
   services.blueman.enable = true;
+
+  # Printing.
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
