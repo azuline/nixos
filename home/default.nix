@@ -111,6 +111,7 @@
         # ./figma-agent  # Broken.
         ./gh
         ./ghc
+        ./opencode
       ];
 
       home.packages = with pkgs; [
@@ -161,7 +162,6 @@
         nodejs
         ocamlPackages.utop
         ocamlformat
-        opencode
         pgformatter
         pgmigrate
         php83

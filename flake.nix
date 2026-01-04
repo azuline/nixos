@@ -6,10 +6,12 @@
     # Rolling unstable nixpkgs, updated frequently. If setting manually, pick a
     # commit built in Hydra: https://hydra.nixos.org/jobset/nixos/trunk-combined
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # Whatever pin makes my server happy... https://hydra.nixos.org/jobset/nixos/release-25.05
-    nixpkgs-stable.url = "github:nixos/nixpkgs?rev=c8aa8cc00a5cb57fada0851a038d35c08a36a2bb";
+    # Whatever pin makes my server happy... https://hydra.nixos.org/jobset/nixos/release-25.11
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.11";
     # Most up to date nixpkgs, for specific bug fixes.
     nixpkgs-latest.url = "github:nixos/nixpkgs/master";
+    # Old nixpkgs.
+    nixpkgs-old.url = "github:nixos/nixpkgs?rev=a7d87b7f9b63f97c43269fa902eb89851b379687";
     # For MacOS.
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -86,6 +88,7 @@
       nixpkgs,
       nixpkgs-stable,
       nixpkgs-latest,
+      nixpkgs-old,
       nix-darwin,
       flake-utils,
       nix-search-cli-src,
@@ -115,6 +118,10 @@
           inherit system;
           config.allowUnfree = true;
         };
+        pkgs-old = import nixpkgs-old {
+          inherit system;
+          config.allowUnfree = true;
+        };
         srcs = {
           inherit
             discord-src
@@ -134,8 +141,9 @@
           pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
           opencode = opencode-src.packages.${system}.default;
           zoom-us = pkgs-stable.zoom-us;
+          chromium = pkgs-old.chromium;
           # Weird bug with most recent mpv that breaks with rose.
-          mpv = pkgs-stable.mpv;
+          mpv = pkgs-old.mpv;
         };
         pkgs = import ./pkgs {
           inherit

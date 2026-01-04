@@ -7,8 +7,9 @@ for_window [title="^nsxiv$"] floating enable
 for_window [title="^Volume Control$"] floating enable
 for_window [title="^Bluetooth Devices$"] floating enable
 for_window [class="^Anki$"] floating enable
-for_window [title="^User 1 - Anki$"] floating disable
 for_window [title="^mpv-fullscreen$"] fullscreen enable
+# Used for Playwright and always pops in and out of my screen when AI is managing it.
+for_window [class="^Chromium-browser$"] move to workspace number 9
 # Move the music player from the center of the screen to the bottom right.
 # Calibrated at a standard 4K resolution. Since we don't know the size of mpv,
 # we must first force it to 720x720 before we apply movements. Since

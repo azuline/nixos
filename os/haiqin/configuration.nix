@@ -138,12 +138,4 @@
       STOP_CHARGE_THRESH_BAT0 = 95;
     };
   };
-
-  # Printing.
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
 }

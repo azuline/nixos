@@ -1,6 +1,6 @@
-{ rose, python312 }:
+{ rose, python313 }:
 
-python312.withPackages (
+python313.withPackages (
   ps: with ps; [
     # Python Tooling
     pip
@@ -10,18 +10,9 @@ python312.withPackages (
     aiohttp
     passlib
     pid
-    requests
     # CLI Tools
-    flake8
-    fonttools
     rose
     sh
     shodan
-    # Data Science
-    graphviz
-    jupyter
-    matplotlib
-    numpy
-    torch
   ]
 )
