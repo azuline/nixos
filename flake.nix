@@ -142,8 +142,6 @@
           opencode = opencode-src.packages.${system}.default;
           zoom-us = pkgs-stable.zoom-us;
           chromium = pkgs-old.chromium;
-          # Weird bug with most recent mpv that breaks with rose.
-          mpv = pkgs-old.mpv;
         };
         pkgs = import ./pkgs {
           inherit
