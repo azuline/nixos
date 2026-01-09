@@ -10,7 +10,6 @@
         ./gpg
         ./neovim
         ./nnn
-        ./pomodoro
         ./readline
         ./ssh
         ./syncthing
