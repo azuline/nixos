@@ -163,7 +163,7 @@ in
       );
       "bar/monitor2" = {
         "inherit" = "bar/base";
-        monitor = "DP-3";
+        monitor = "DP-2-1-5";
         modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
         modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
       };

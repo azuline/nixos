@@ -8,8 +8,8 @@ writeShellScriptBin "monitor-switch" ''
 
   function monitorOn() {
     # Monitor on
-    xrandr --output DP-3 --auto --primary --above eDP-1
-    xrandr --output ${monitor} --auto --left-of DP-3
+    xrandr --output DP-2-1-5 --auto --primary --above eDP-1
+    xrandr --output ${monitor} --auto --left-of DP-2-1-5
     sleep 1
     /home/blissful/backgrounds/apply.sh
     /home/blissful/backgrounds/gen_lock.sh
@@ -27,7 +27,7 @@ writeShellScriptBin "monitor-switch" ''
     # Monitor off
     xrandr --output eDP-1 --auto --primary
     xrandr --output ${monitor} --off
-    xrandr --output DP-3 --off
+    xrandr --output DP-2-1-5 --off
     sleep 1
     /home/blissful/backgrounds/apply.sh
     /home/blissful/backgrounds/gen_lock.sh

@@ -142,7 +142,6 @@
           opencode = opencode-src.packages.${system}.default;
           zoom-us = pkgs-stable.zoom-us;
           chromium = pkgs-old.chromium;
-          mpv = pkgs-old.mpv;
         };
         pkgs = import ./pkgs {
           inherit
@@ -308,7 +307,7 @@
                 { pkgs, ... }:
                 {
                   home.packages = with pkgs; [
-                    (monitor-switch.override { monitor = "HDMI-1"; })
+                    (monitor-switch.override { monitor = "DP-2-1-6"; })
                     exif-mtime-sync
                     haiqin-change-audio
                   ];
@@ -318,7 +317,7 @@
               host = "haiqin";
               nixDir = "/etc/nixos";
               username = "blissful";
-              monitor = "HDMI-1";
+              monitor = "DP-2-1-6";
               theme = "warm";
               chooseBundles = b: [
                 b.cliBundle
@@ -333,7 +332,7 @@
                 { pkgs, ... }:
                 {
                   home.packages = with pkgs; [
-                    (monitor-switch.override { monitor = "HDMI-1"; })
+                    (monitor-switch.override { monitor = "DP-2-1-6"; })
                     exif-mtime-sync
                     haiqin-change-audio
                   ];

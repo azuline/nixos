@@ -40,6 +40,7 @@ in
   home.packages = lib.mkIf pkgs.stdenv.isLinux [ fullscreenDesktopItem ];
   programs.mpv = {
     enable = true;
+    package = pkgs.mpv;
     config = {
       demuxer-thread = "yes";
       demuxer-readahead-secs = "360";
