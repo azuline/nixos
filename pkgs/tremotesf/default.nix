@@ -1,10 +1,10 @@
 {
   original,
   makeDesktopItem,
+  symlinkJoin,
 }:
 
-# I can't type tremotesf. Too hard.
-original.overrideAttrs (old: {
+let
   desktopItem = makeDesktopItem {
     name = "tremotesf";
     desktopName = "Transmission UI";
@@ -25,8 +25,12 @@ original.overrideAttrs (old: {
       "x-scheme-handler/magnet"
     ];
   };
-  postInstall = ''
+in
+symlinkJoin {
+  name = "tremotesf-with-desktop";
+  paths = [ original ];
+  postBuild = ''
     mkdir -p "$out/share/applications"
-    cp "$desktopItem/share/applications/tremotesf.desktop" "$out/share/applications/tremotesf.desktop"
+    cp "${desktopItem}/share/applications/tremotesf.desktop" "$out/share/applications/tremotesf.desktop"
   '';
-})
+}

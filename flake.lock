@@ -552,11 +552,11 @@
     "zathura-pdf-mupdf-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1749337251,
-        "narHash": "sha256-OkgguhBRCc3cA3bf6kt+emQPQuVTaz4CU9YpCrhvgUg=",
+        "lastModified": 1768096632,
+        "narHash": "sha256-2HePFMleKhj0QMuhCzi4ixPUQ1BcKV8ZoHy939Z9W0g=",
         "owner": "azuline",
         "repo": "zathura-pdf-mupdf",
-        "rev": "c76a613de725f0fa8827e3ceeeabd06e8ba4ea08",
+        "rev": "e3e486ecf69ff580e7d46399cc88d5f0fb386891",
         "type": "github"
       },
       "original": {
