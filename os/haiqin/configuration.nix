@@ -105,6 +105,7 @@
       pinentry-curses
       powertop
       lshw
+      lm_sensors
       restic
       tomb
       vim
@@ -122,8 +123,9 @@
     settings = {
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
       PLATFORM_PROFILE_ON_AC = "performance";
-      CPU_BOOST_ON_AC = 1;
-      CPU_HWP_DYN_BOOST_ON_AC = 1;
+      # Overheating with boost.
+      CPU_BOOST_ON_AC = 0;
+      CPU_HWP_DYN_BOOST_ON_AC = 0;
 
       CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
       PLATFORM_PROFILE_ON_BAT = "balanced";

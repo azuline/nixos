@@ -308,7 +308,7 @@
                 { pkgs, ... }:
                 {
                   home.packages = with pkgs; [
-                    (monitor-switch.override { monitor = "DP-2-1-6"; })
+                    monitor-switch
                     exif-mtime-sync
                     haiqin-change-audio
                   ];
@@ -318,7 +318,7 @@
               host = "haiqin";
               nixDir = "/etc/nixos";
               username = "blissful";
-              monitor = "DP-2-1-6";
+              monitor = "DP-2-1-5";
               theme = "warm";
               chooseBundles = b: [
                 b.cliBundle
@@ -333,7 +333,7 @@
                 { pkgs, ... }:
                 {
                   home.packages = with pkgs; [
-                    (monitor-switch.override { monitor = "DP-2-1-6"; })
+                    monitor-switch
                     exif-mtime-sync
                     haiqin-change-audio
                   ];

@@ -71,16 +71,16 @@ let
         gaps outer 2
 
         # Configure workspace monitor split.
-        workspace 1 output ${specialArgs.sys.monitor}
-        workspace 2 output ${specialArgs.sys.monitor}
-        workspace 3 output ${specialArgs.sys.monitor}
-        workspace 4 output ${specialArgs.sys.monitor}
-        workspace 5 output ${specialArgs.sys.monitor}
+        workspace 1 output DP-2-1-6
+        workspace 2 output HDMI-1
+        workspace 3 output DP-2-1-5
+        workspace 4 output DP-2-1-5
+        workspace 5 output DP-2-1-5
         workspace 6 output DP-2-1-5
         workspace 7 output DP-2-1-5
         workspace 8 output DP-2-1-5
         workspace 9 output DP-2-1-5
-        workspace 10 output eDP-1
+        workspace 10 output DP-2-1-5
       ''
     else if specialArgs.sys.host == "haiqin" then
       configBase

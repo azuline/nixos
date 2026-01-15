@@ -26,9 +26,20 @@ let
     new="$(${pkgs.sqlite}/bin/sqlite3 "file:/home/blissful/.local/share/Anki2/User 1/collection.anki2?mode=ro&immutable=1" "SELECT count(*) FROM cards WHERE did = 1752445901992 AND queue = 0;")"
     echo "$curr/$new"
   '';
+  coretemp = pkgs.writeShellScriptBin "bar-coretemp" ''
+    temp=$(${pkgs.lm_sensors}/bin/sensors -f -j 2>/dev/null | ${pkgs.jq}/bin/jq -r '."coretemp-isa-0000"."Package id 0".temp1_input // "N/A"')
+    if [ "$temp" != "N/A" ]; then
+      printf "%.0f°F" "$temp"
+    else
+      echo "N/A"
+    fi
+  '';
 in
 {
-  home.packages = [ anki-counter ];
+  home.packages = [
+    anki-counter
+    coretemp
+  ];
 
   # The tray service doesn't already exist; need to define it.
   systemd.user.targets.tray = {
@@ -53,19 +64,17 @@ in
           ${pkgs.i3}/bin/i3 --get-socketpath && polybar splendor-right &
         ''
       else if specialArgs.sys.host == "haiqin" then
-        ''
-          # Only start if i3 socketpath succeeds.
-          ${pkgs.i3}/bin/i3 --get-socketpath && polybar haiqin &
-        ''
-        + (
-          if specialArgs.sys.monitor != null then
-            ''
-              ${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor &
-              ${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor2 &
-            ''
-          else
-            ""
-        )
+        if specialArgs.sys.monitor != null then
+          ''
+            ${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor &
+            ${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor2 &
+            ${pkgs.i3}/bin/i3 --get-socketpath && polybar monitor3 &
+          ''
+        else
+          ''
+            # Only start if i3 socketpath succeeds.
+            ${pkgs.i3}/bin/i3 --get-socketpath && polybar haiqin &
+          ''
       else if specialArgs.sys.host == "neptune" then
         ''
           # Only start if i3 socketpath succeeds.
@@ -130,7 +139,7 @@ in
         font-5 = "Noto Sans CJK KR:style=Regular:size=22;4";
         font-6 = "Noto Sans CJK TC:style=Regular:size=22;4";
         font-7 = "Noto Sans CJK HK:style=Regular:size=22;4";
-        modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
+        modules-left = "pad1 date pad1 left1 cpu coretemp pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
         modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
       }
       // (
@@ -148,7 +157,7 @@ in
         "inherit" = "bar/base";
         # TODO: Dummy because null is not ok.
         monitor = if specialArgs.sys.monitor != null then specialArgs.sys.monitor else "HDMI-1";
-        modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
+        modules-left = "pad1 date pad1 left1 cpu coretemp pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
         modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
       }
       // (
@@ -163,9 +172,15 @@ in
       );
       "bar/monitor2" = {
         "inherit" = "bar/base";
-        monitor = "DP-2-1-5";
-        modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness pad3 anki-counter right2 pad2 vpn right1";
+        monitor = "DP-2-1-6";
+        modules-left = "pad1 date pad1 left1 cpu coretemp pad2 left2 memory pad3 battery pad3 left3";
+        modules-right = "right4 pad4 i3 right3";
+      };
+      "bar/monitor3" = {
+        "inherit" = "bar/base";
+        monitor = "HDMI-1";
+        modules-left = "pad1 date pad1 left1 cpu coretemp pad2 left2 memory pad3 battery pad3 left3";
+        modules-right = "right4 pad4 i3 right3";
       };
       "bar/neptune" = {
         "inherit" = "bar/base";
@@ -182,7 +197,7 @@ in
         tray-padding = "1";
         tray-background = shades.shade1;
         tray-maxsize = "24";
-        modules-left = "pad1 date pad1 left1 cpu pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
+        modules-left = "pad1 date pad1 left1 cpu coretemp pad2 left2 memory pad3 battery pad3 left3 now-playing pad4 left4";
         modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 brightness right2 pad2 vpn right1";
       };
       "module/i3" = {
@@ -218,6 +233,13 @@ in
         type = "custom/script";
         exec = "~/.nix-profile/bin/bar-loadavg";
         label = "   %output%";
+        interval = "2";
+        format-background = shades.shade2;
+      };
+      "module/coretemp" = {
+        type = "custom/script";
+        exec = "~/.nix-profile/bin/bar-coretemp";
+        label = "   ·   %output%";
         interval = "2";
         format-background = shades.shade2;
       };

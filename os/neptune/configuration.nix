@@ -162,6 +162,7 @@
       mesa-demos
       intel-gpu-tools
       jq
+      lm_sensors
       mesa
       neovim
       networkmanagerapplet

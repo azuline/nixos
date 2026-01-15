@@ -1,7 +1,4 @@
-{
-  writeShellScriptBin,
-  monitor ? "HDMI-1",
-}:
+{ writeShellScriptBin }:
 
 writeShellScriptBin "monitor-switch" ''
   set -euo pipefail
@@ -9,7 +6,9 @@ writeShellScriptBin "monitor-switch" ''
   function monitorOn() {
     # Monitor on
     xrandr --output DP-2-1-5 --auto --primary --above eDP-1
-    xrandr --output ${monitor} --auto --left-of DP-2-1-5
+    xrandr --output HDMI-1 --auto --rotate left --left-of DP-2-1-5
+    xrandr --output DP-2-1-6 --auto --rotate left --left-of HDMI-1
+    xrandr --output eDP-1 --off
     sleep 1
     /home/blissful/backgrounds/apply.sh
     /home/blissful/backgrounds/gen_lock.sh
@@ -26,8 +25,9 @@ writeShellScriptBin "monitor-switch" ''
   function monitorOff() {
     # Monitor off
     xrandr --output eDP-1 --auto --primary
-    xrandr --output ${monitor} --off
+    xrandr --output DP-2-1-6 --off
     xrandr --output DP-2-1-5 --off
+    xrandr --output HDMI-1 --off
     sleep 1
     /home/blissful/backgrounds/apply.sh
     /home/blissful/backgrounds/gen_lock.sh
@@ -44,7 +44,7 @@ writeShellScriptBin "monitor-switch" ''
   # Kill other instances.
   # kill $(pgrep -f "monitor-switch" | grep -vw $$) 2>/dev/null
 
-  cond="$(xrandr --query | { grep "${monitor} connected" || true; })"
+  cond="$(xrandr --query | { grep "DP-2-1-6 connected" || true; })"
   if [[ -n "$cond" ]]; then
     monitorOn
   else
