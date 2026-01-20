@@ -142,7 +142,6 @@
           opencode = opencode-src.packages.${system}.default;
           zoom-us = pkgs-stable.zoom-us;
           chromium = pkgs-old.chromium;
-          mpv = pkgs-old.mpv;
         };
         pkgs = import ./pkgs {
           inherit
