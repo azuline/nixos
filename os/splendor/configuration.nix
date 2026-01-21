@@ -37,17 +37,29 @@
       "vfio"
       "vfio_iommu_type1"
       "vfio_pci"
+      "vfio_virqfd"
       "vhost-net"
     ];
     kernelParams = [
       # == For qemu-kvm ==
-      "intel_iommu=on"
+      "amd_iommu=on"
+      "iommu=pt"
       "vfio-pci.ids=10de:2184,10de:1aeb,10de:1aec,10de:1aed"
       # 16GB with the default size of 2048kB size hugepages. For the virtual machine.
       # It should be 8600 but it seems to be a smidge too small after 240612
       # (IDK why it started failing!), so instead we are going higher for good luck.
       "hugepages=12400"
     ];
+    # == For qemu-kvm ==
+    extraModprobeConfig = ''
+      softdep nvidia pre: vfio-pci
+    '';
+    initrd.preDeviceCommands = ''
+      DEVS="0000:0b:00.0 0000:0b:00.1 0000:0b:00.2 0000:0b:00.3"
+      for DEV in $DEVS; do
+        echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
+      done
+    '';
   };
 
   networking = {

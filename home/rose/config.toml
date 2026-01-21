@@ -232,7 +232,7 @@ source.release = """
 {% endif %}
 """
 releases.release = """
-{% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+{% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -288,7 +288,7 @@ releases_favorite.release = """
 """
 releases_added_on.release = """
 [{{ added_at[:10] }}.{{ added_at[11:13] }}]
-{% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+{% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -308,7 +308,7 @@ releases_added_on.release = """
 """
 releases_released_on.release = """
 [{{ originaldate or releasedate or "0000" }}]
-{% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+{% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if compositionyear %}{{ compositionyear }}.{% endif %}
@@ -324,7 +324,7 @@ releases_released_on.release = """
 """
 artists.release = """
 [{{ releasetype | releasetypefmt }}]
-{% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+{% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
 {% if releasedate or originaldate %}{{ (originaldate or releasedate) }}.{% else %}0000-00-00.{% endif %}
 {{ releaseartists | artistsfmt }} -
 {{ releasetitle }}
@@ -334,7 +334,7 @@ artists.release = """
 genres.release = """
 {% if context.genre in ["Classical Music", "Western Classical Music"] %}
     {% if context.genre not in genres + parentgenres %}[SEC]{% endif %}
-    {% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+    {% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
     {% if releaseartists.composer | length == 0 %}
         {% if not new %}[Z]{% endif %}
         {{ releaseartists | artistsfmt }} -
@@ -355,7 +355,7 @@ genres.release = """
     {% endif %}
 {% else %}
     {% if releasedate or originaldate %}{{ (originaldate or releasedate) }}{% endif %}
-    {% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+    {% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
     {{ releaseartists | artistsfmt }} -
     {{ releasetitle }}
     {% if releasetype == "single" or (releasetype == "ep" and not releasetitle.endswith("EP")) %}- {{ releasetype | releasetypefmt }}{% endif %}
@@ -367,7 +367,7 @@ genres.release = """
 labels.release = """
 {% if context.label in ["Regelbau", "Basic Channel", "Ilian Tape"] %}
     [{{ catalognumber }}]
-    {% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+    {% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
     {{ releaseartists | artistsfmt }} -
     {% if releasedate or originaldate %}{{ (originaldate or releasedate).year }}.{% endif %}
     {{ releasetitle }}
@@ -383,7 +383,7 @@ labels.release = """
 """
 collages.release = """
 {{ position }}.
-{% if new %}[1 NEW]{% elif not favorite %}[2 MAY]{% else %}[3 FAV]{% endif %}
+{% if new %}⚪{% elif not favorite %}☺️{% else %}✴️{% endif %}
 {% if "Classical Music" in genres + parentgenres and releaseartists.composer | length > 0 %}
     {{ releaseartists.composer | map(attribute='name') | map('lastname') | arrayfmt }} -
     {% if releasetype == "single" %}x{% endif %}{% if compositionyear %}{{ compositionyear }}.{% endif %}
