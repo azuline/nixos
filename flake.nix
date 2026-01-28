@@ -135,7 +135,7 @@
         };
         pins = {
           nix-search-cli = nix-search-cli-src.packages.${system}.nix-search;
-          rose = rose-src.packages.${system}.rose-py;
+          rose-py = rose-src.packages.${system}.rose-py;
           rose-cli = rose-src.packages.${system}.rose-cli;
           presage = presage-src.defaultPackage.${system};
           pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;

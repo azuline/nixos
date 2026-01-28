@@ -46,6 +46,7 @@
         hexyl
         htop
         imagemagick
+        inotify-tools
         jq
         llm
         mkcert

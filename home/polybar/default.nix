@@ -119,13 +119,13 @@ in
         tray-padding = "1";
         tray-background = shades.shade1;
         modules-left = "pad1 date pad1 left1 cpu gpu pad2 left2 memory pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 ddcutil-6 pad3 anki-counter right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 ddcutil-5 pad3 anki-counter right2 pad2 vpn right1";
       };
       "bar/splendor-right" = {
         "inherit" = "bar/base";
         monitor = "DP-4";
         modules-left = "pad1 date pad1 left1 cpu gpu pad2 left2 memory pad3 left3 now-playing pad4 left4";
-        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 ddcutil-7 pad3 anki-counter right2 pad2 vpn right1";
+        modules-right = "right4 pad4 i3 right3 pad3 pulseaudio pad3 ddcutil-6 pad3 anki-counter right2 pad2 vpn right1";
       };
       "bar/haiqin" = {
         "inherit" = "bar/base";
@@ -308,23 +308,23 @@ in
         label = "   %percentage%%";
         label-foreground = colors.foreground;
       };
+      "module/ddcutil-5" = {
+        type = "custom/script";
+        exec = "~/.nix-profile/bin/brighten get 5";
+        label = "   %output%%";
+        interval = "1";
+        format-background = shades.shade3;
+        scroll-up = "~/.nix-profile/bin/brighten inc 5";
+        scroll-down = "~/.nix-profile/bin/brighten dec 5";
+      };
       "module/ddcutil-6" = {
         type = "custom/script";
         exec = "~/.nix-profile/bin/brighten get 6";
         label = "   %output%%";
         interval = "1";
         format-background = shades.shade3;
-        scroll-up = "~/.nix-profile/bin/brighten inc 6";
-        scroll-down = "~/.nix-profile/bin/brighten dec 6";
-      };
-      "module/ddcutil-7" = {
-        type = "custom/script";
-        exec = "~/.nix-profile/bin/brighten get 7";
-        label = "   %output%%";
-        interval = "1";
-        format-background = shades.shade3;
-        scroll-up = "~/.nix-profile/bin/brighten inc 7";
-        scroll-down = "~/.nix-profile/bin/brighten dec 7";
+        scroll-up = "~/.nix-profile/bin/brighten inc 5";
+        scroll-down = "~/.nix-profile/bin/brighten dec 5";
       };
       "module/title" = {
         type = "internal/xwindow";

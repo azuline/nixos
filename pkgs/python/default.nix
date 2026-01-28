@@ -1,4 +1,4 @@
-{ rose, python313 }:
+{ rose-py, python313 }:
 
 python313.withPackages (
   ps: with ps; [
@@ -10,8 +10,8 @@ python313.withPackages (
     aiohttp
     passlib
     pid
+    rose-py
     # CLI Tools
-    rose
     sh
     shodan
   ]

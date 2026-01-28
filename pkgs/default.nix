@@ -38,7 +38,7 @@ import nixpkgs {
         inherit srcs;
         original = prev.nsxiv;
       };
-      python = prev.callPackage ./python { };
+      python = final.callPackage ./python { };
       signal = prev.callPackage ./signal { };
       splendor-change-audio = prev.callPackage ./splendor-change-audio { };
       tailnet-switch = prev.callPackage ./tailnet-switch { };
