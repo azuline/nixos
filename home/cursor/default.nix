@@ -10,7 +10,7 @@ let
 in
 {
   # TODO(revive)
-  # home.packages = [ pkgs.code-cursor ];
+  home.packages = [ pkgs.code-cursor ];
   # For some reason, cursor can't read the Nix store?
   # xdg.configFile."Cursor/User/settings.json".source = settings;
 }
