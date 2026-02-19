@@ -44,7 +44,7 @@ writeShellScriptBin "monitor-switch" ''
   # Kill other instances.
   # kill $(pgrep -f "monitor-switch" | grep -vw $$) 2>/dev/null
 
-  cond="$(xrandr --query | { grep "DP-2-1-6 connected" || true; })"
+  cond="$(xrandr --query | { grep "DP-2-1-5 connected" || true; })"
   if [[ -n "$cond" ]]; then
     monitorOn
   else

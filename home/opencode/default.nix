@@ -26,6 +26,17 @@
                 "context": 1000000,
                 "output": 64000
               }
+            },
+            "claude-opus-4-6[1M]": {
+              "id": "claude-opus-4-6",
+              "name": "Claude Opus 4.6 [1M]",
+              "headers": {
+                "anthropic-beta": "context-1m-2025-08-07"
+              },
+              "limit": {
+                "context": 1000000,
+                "output": 64000
+              }
             }
           }
         }
