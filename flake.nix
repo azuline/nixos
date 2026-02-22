@@ -42,9 +42,6 @@
       url = "github:anomalyco/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-openclaw = {
-      url = "github:openclaw/nix-openclaw";
-    };
     # Non-flake sources.
     discord-src = {
       url = "https://dl.discordapp.net/apps/linux/0.0.111/discord-0.0.111.tar.gz";
@@ -99,7 +96,6 @@
       pgmigrate-src,
       rose-src,
       opencode-src,
-      nix-openclaw,
       # Non-Nix sources
       discord-src,
       nnn-src,
@@ -187,12 +183,10 @@
             inherit pkgs;
             extraSpecialArgs = {
               inherit sys srcs;
-              openclaw-packages = nix-openclaw.packages.${system};
             };
             modules =
               chooseBundles bundles
               ++ [
-                nix-openclaw.homeManagerModules.openclaw
                 {
                   programs.home-manager.enable = true;
                   # Automatically set some environment variables that will ease usage
@@ -275,7 +269,6 @@
               custom =
                 { pkgs, ... }:
                 {
-                  imports = [ ./home/openclaw ];
                   home.packages = with pkgs; [
                     backup-scripts
                     exif-mtime-sync
