@@ -121,11 +121,11 @@
     enable = true;
     # Switch to powersave when necessary.
     settings = {
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      PLATFORM_PROFILE_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+      PLATFORM_PROFILE_ON_AC = "balanced";
       # Overheating with boost; turn off if megaprogramming on laptop.
-      CPU_BOOST_ON_AC = 1;
-      CPU_HWP_DYN_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_AC = 0;
+      CPU_HWP_DYN_BOOST_ON_AC = 0;
 
       # CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
       # PLATFORM_PROFILE_ON_BAT = "balanced";
