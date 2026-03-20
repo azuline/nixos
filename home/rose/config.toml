@@ -1,4 +1,4 @@
-music_source_dir = "~/.music-source"
+music_source_dir = "/galatea/music/library"
 ignore_release_directories = [ ".stversions" ]
 rename_source_files = true
 write_parent_genres = true

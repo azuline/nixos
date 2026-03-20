@@ -6,7 +6,7 @@ let
   envoy = pkgs-stable.envoy;
   opentelemetry-collector-contrib = pkgs-stable.opentelemetry-collector-contrib;
   cni-plugins = pkgs-stable.cni-plugins;
-  iproute = pkgs-stable.iproute;
+  iproute = pkgs-stable.iproute2;
   iptables = pkgs-stable.iptables;
 
   nomadConfig = "/etc/nixos/os/neptune/nomad";
