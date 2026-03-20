@@ -3,14 +3,14 @@
     "discord-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1758558321,
-        "narHash": "sha256-U5t7rEbLAc2Iy0hj0gAw6IPKVdUyiHZ6KmzP9PBMjpg=",
+        "lastModified": 1773686323,
+        "narHash": "sha256-cQp6D5ZkGweC8GuOUoykvg+4txjQhrTtnu+/nvT2SxA=",
         "type": "tarball",
-        "url": "https://dl.discordapp.net/apps/linux/0.0.111/discord-0.0.111.tar.gz"
+        "url": "https://dl.discordapp.net/apps/linux/0.0.129/discord-0.0.129.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://dl.discordapp.net/apps/linux/0.0.111/discord-0.0.111.tar.gz"
+        "url": "https://dl.discordapp.net/apps/linux/0.0.129/discord-0.0.129.tar.gz"
       }
     },
     "fish-plugin-nix-env": {
@@ -491,11 +491,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769144609,
-        "narHash": "sha256-nlAjVCW7UnIViaGpvlAZeKrUG1D+ihXQWF/M+syKxbI=",
+        "lastModified": 1773984349,
+        "narHash": "sha256-ZMAn4RQ+p5+izYeCSdiorY14iw1N91TObRuQWXomw5U=",
         "owner": "azuline",
         "repo": "rose",
-        "rev": "1844a5c4391b0c9fbe0451f6b69995251bc62e83",
+        "rev": "843cc6d162b177e0782c07e0785fcbe9437b2938",
         "type": "github"
       },
       "original": {

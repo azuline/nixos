@@ -44,7 +44,7 @@
     };
     # Non-flake sources.
     discord-src = {
-      url = "https://dl.discordapp.net/apps/linux/0.0.111/discord-0.0.111.tar.gz";
+      url = "https://dl.discordapp.net/apps/linux/0.0.129/discord-0.0.129.tar.gz";
       flake = false;
     };
     nnn-src = {
