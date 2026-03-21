@@ -48,7 +48,8 @@
       # 16GB with the default size of 2048kB size hugepages. For the virtual machine.
       # It should be 8600 but it seems to be a smidge too small after 240612
       # (IDK why it started failing!), so instead we are going higher for good luck.
-      "hugepages=12400"
+      # UPDATE: one of my ram sticks isnt loading so drop it down.
+      "hugepages=4200"
     ];
     # == For qemu-kvm ==
     extraModprobeConfig = ''
