@@ -127,7 +127,7 @@
         devenv
         docker
         docker-compose
-        dotnet-sdk_9
+        dotnet-sdk_10
         dune_3
         # gdb  # TODO(revive)
         delta
