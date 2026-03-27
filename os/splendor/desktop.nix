@@ -109,6 +109,37 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    extraConfig.pipewire."99-force-sample-rate" = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.allowed-rates" = [ 48000 ];
+      };
+    };
+    extraConfig.pipewire."99-disable-suspend" = {
+      "context.modules" = [
+        {
+          name = "libpipewire-module-rt";
+          flags = [
+            "ifexists"
+            "nofail"
+          ];
+        }
+      ];
+      "monitor.alsa.rules" = [
+        {
+          matches = [ { "node.name" = "~alsa_output.*"; } ];
+          actions.update-props = {
+            "session.suspend-timeout-seconds" = 0;
+          };
+        }
+        {
+          matches = [ { "node.name" = "~alsa_input.*"; } ];
+          actions.update-props = {
+            "session.suspend-timeout-seconds" = 0;
+          };
+        }
+      ];
+    };
   };
 
   programs.dconf.enable = true;
