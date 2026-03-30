@@ -61,6 +61,7 @@ vim.lsp.config("pyright", {
         autoSearchPaths = true,
         autoImportCompletions = true,
         diagnosticMode = "workspace", -- Otherwise the LSP does not autocomplete in unimported files.
+        typeCheckingMode = "off", -- Using ty for type diagnostics.
       },
     },
   },
@@ -72,6 +73,18 @@ for k, v in pairs(capabilities) do
   ruff_capabilities[k] = v
 end
 ruff_capabilities.extra = "value"
+
+vim.lsp.config("ty", {
+  on_attach = function(client, bufnr)
+    -- Defer to Pyright's hover.
+    if client.name == "ty" then
+      client.server_capabilities.hoverProvider = false
+    end
+    on_attach(client, bufnr)
+  end,
+  capabilities = capabilities,
+})
+vim.lsp.enable("ty")
 
 vim.lsp.config("ruff", {
   on_attach = function(client, bufnr)
