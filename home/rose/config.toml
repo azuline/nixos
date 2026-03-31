@@ -25,7 +25,7 @@ artist_aliases = [
     { artist = "Yumi Matsutoya", aliases = ["Yumi Arai", "Yuming"] },
     { artist = "Skee Mask", aliases = ["SCNTST"] },
     # Collaborations
-    { artist = "Kanye West", aliases = ["¥$"] },
+    { artist = "Kanye West", aliases = ["¥$", "Ye"] },
     { artist = "Ty Dolla $ign", aliases = ["¥$"] },
     # Thank you BlockBerryCreative!
     { artist = "LOONA", aliases = ["LOONA 1/3", "LOONA ODD EYE CIRCLE", "LOONA yyxy", "ARTMS", "Loossemble"] },
