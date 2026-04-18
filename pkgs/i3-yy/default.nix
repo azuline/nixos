@@ -2,7 +2,7 @@
 
 writeShellScriptBin "i3-yy" ''
   book_files="$(find "$HOME/books" -type f \( -name '*.pdf' -o -name '*.epub' -o -name '*.azw3' \) -printf '%P\n' | grep -v "\.raws/" | sed 's/^/books\//')"
-  study_notes_pdfs="$(find "$HOME/studies/notes/notes" -type f -name '*.pdf' -printf '%P\n' | sed 's/^/studies\/notes\/notes\//')"
+  study_notes_pdfs="$(find "$HOME/studies/notes/build" -type f -name '*.pdf' -printf '%P\n' | sed 's/^/studies\/notes\/build\//')"
 
   files="$book_files\n$study_notes_pdfs"
   selected=$(printf '%s' "$files" | fzf --layout=reverse --with-nth 1.. --delimiter '/')
