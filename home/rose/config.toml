@@ -446,6 +446,7 @@ ignore = [
     "artist:^Drumsound & Bassline Smith$",
     "artist:^Benedictine Monks Of The Abbey Of St. Maurice & St. Maur, Clervaux$",
     "artist:^Irene & Seulgi$",
+    "artist:^Bread & Butter$",
 ]
 [[stored_metadata_rules]]
 matcher = "artist:\\\\"
