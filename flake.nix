@@ -40,6 +40,7 @@
     };
     opencode-src = {
       url = "github:anomalyco/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-flake sources.
     discord-src = {

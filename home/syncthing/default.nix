@@ -1,10 +1,5 @@
-{
-  lib,
-  pkgs,
-  specialArgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 
-lib.mkIf (!pkgs.stdenv.isDarwin && specialArgs.sys.host != "haiqin") {
+lib.mkIf (!pkgs.stdenv.isDarwin) {
   services.syncthing.enable = true;
 }
