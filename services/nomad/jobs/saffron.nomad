@@ -5,20 +5,21 @@ job "saffron" {
     count = 1
     network {
       mode = "bridge"
+      port "http" {
+        static = 29001
+        to     = 80
+      }
     }
     service {
-      name = "saffron"
-      port = "80"
-      connect {
-        sidecar_service {}
-      }
+      name     = "saffron"
+      port     = "http"
+      provider = "nomad"
       check {
-        address_mode = "alloc"
-        name         = "http check"
-        type         = "http"
-        path         = "/login"
-        interval     = "10s"
-        timeout      = "2s"
+        name     = "http check"
+        type     = "http"
+        path     = "/login"
+        interval = "10s"
+        timeout  = "2s"
       }
     }
     volume "data" {

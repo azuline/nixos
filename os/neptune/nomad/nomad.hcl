@@ -37,6 +37,10 @@ client {
     path      = "/www"
     read_only = true
   }
+  host_volume "galatea" {
+    path = "/galatea"
+    read_only = true
+  }
   host_volume "presage-data" {
     path = "/data/presage"
   }
@@ -53,11 +57,6 @@ client {
 
 ui {
   enabled = true
-}
-
-consul {
-  address      = "100.104.105.144:8500"
-  grpc_address = "100.104.105.144:8502"
 }
 
 acl {

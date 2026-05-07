@@ -5,26 +5,20 @@ job "umami" {
     count = 1
     network {
       mode = "bridge"
+      port "http" {
+        static = 29004
+        to     = 3000
+      }
     }
     service {
-      name = "umami"
-      port = "3000"
-      connect {
-        sidecar_service {
-          proxy {
-            upstreams {
-              destination_name = "postgres"
-              local_bind_port  = 5432
-            }
-          }
-        }
-      }
+      name     = "umami"
+      port     = "http"
+      provider = "nomad"
       check {
-        address_mode   = "alloc"
-        type           = "http"
-        path           = "/api/heartbeat"
-        interval       = "10s"
-        timeout        = "2s"
+        type     = "http"
+        path     = "/api/heartbeat"
+        interval = "10s"
+        timeout  = "2s"
       }
     }
     task "umami" {
@@ -32,8 +26,12 @@ job "umami" {
       config {
         image = "ghcr.io/umami-software/umami:3.0.2"
       }
-      env {
-        DATABASE_URL = "postgresql://umami:umami@${NOMAD_UPSTREAM_ADDR_postgres}/umami"
+      template {
+        data        = <<EOF
+DATABASE_URL=postgresql://umami:umami@{{ env "attr.unique.network.ip-address" }}:29005/umami
+EOF
+        destination = "secrets/env"
+        env         = true
       }
       resources {
         cpu    = 100
@@ -52,4 +50,3 @@ job "umami" {
     canary            = 1
   }
 }
-

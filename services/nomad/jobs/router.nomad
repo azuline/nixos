@@ -17,30 +17,9 @@ job "router" {
       }
     }
     service {
-      name = "router"
-      port = "https"
-      connect {
-        sidecar_service {
-          proxy {
-            upstreams {
-              destination_name = "saffron"
-              local_bind_port  = 29001
-            }
-            upstreams {
-              destination_name = "blossom-ladle"
-              local_bind_port  = 29002
-            }
-            upstreams {
-              destination_name = "sunsetglow-site"
-              local_bind_port  = 29003
-            }
-            upstreams {
-              destination_name = "umami"
-              local_bind_port  = 29004
-            }
-          }
-        }
-      }
+      name     = "router"
+      port     = "https"
+      provider = "nomad"
       check {
         name            = "root check"
         type            = "http"
@@ -52,7 +31,7 @@ job "router" {
         timeout         = "2s"
         header {
           Host       = ["sunsetglow.net"]
-          User-Agent = ["Consul Healthcheck"]
+          User-Agent = ["Nomad Healthcheck"]
         }
       }
       check {
@@ -66,7 +45,7 @@ job "router" {
         timeout         = "2s"
         header {
           Host       = ["celestial.sunsetglow.net"]
-          User-Agent = ["Consul Healthcheck"]
+          User-Agent = ["Nomad Healthcheck"]
         }
       }
       check {
@@ -80,7 +59,7 @@ job "router" {
         timeout         = "2s"
         header {
           Host       = ["u.sunsetglow.net"]
-          User-Agent = ["Consul Healthcheck"]
+          User-Agent = ["Nomad Healthcheck"]
         }
       }
       check {
@@ -94,7 +73,7 @@ job "router" {
         timeout         = "2s"
         header {
           Host       = ["ozu.sunsetglow.net"]
-          User-Agent = ["Consul Healthcheck"]
+          User-Agent = ["Nomad Healthcheck"]
         }
       }
     }
@@ -106,6 +85,11 @@ job "router" {
     volume "site" {
       type      = "host"
       source    = "sunsetglow-site"
+      read_only = true
+    }
+    volume "galatea" {
+      type      = "host"
+      source    = "galatea"
       read_only = true
     }
     task "router" {
@@ -124,6 +108,10 @@ job "router" {
       volume_mount {
         volume      = "site"
         destination = "/www"
+      }
+      volume_mount {
+        volume      = "galatea"
+        destination = "/galatea"
       }
       template {
         data          = <<EOF
@@ -144,7 +132,7 @@ server {
   server_name sunsetglow.net;
   location ~ {
     include snippets/proxy-params.conf;
-    proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_sunsetglow-site" }};
+    proxy_pass http://{{ env "attr.unique.network.ip-address" }}:29003;
   }
 }
 
@@ -158,7 +146,7 @@ server {
   server_name ozu.sunsetglow.net;
   location ~ {
     include snippets/proxy-params.conf;
-    proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_umami" }};
+    proxy_pass http://{{ env "attr.unique.network.ip-address" }}:29004;
   }
 }
 
@@ -174,7 +162,7 @@ server {
   underscores_in_headers on;
   location ~ {
     include snippets/proxy-params.conf;
-    proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_saffron" }};
+    proxy_pass http://{{ env "attr.unique.network.ip-address" }}:29001;
   }
 }
 
@@ -188,7 +176,7 @@ server {
   server_name celestial.sunsetglow.net;
   location ~ {
     include snippets/proxy-params.conf;
-    proxy_pass http://{{ env "NOMAD_UPSTREAM_ADDR_blossom-ladle" }};
+    proxy_pass http://{{ env "attr.unique.network.ip-address" }}:29002;
   }
 }
 

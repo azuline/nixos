@@ -2,21 +2,16 @@
 
 let
   nomad = pkgs-stable.nomad;
-  consul = pkgs-stable.consul;
-  envoy = pkgs-stable.envoy;
   opentelemetry-collector-contrib = pkgs-stable.opentelemetry-collector-contrib;
   cni-plugins = pkgs-stable.cni-plugins;
   iproute = pkgs-stable.iproute2;
   iptables = pkgs-stable.iptables;
 
   nomadConfig = "/etc/nixos/os/neptune/nomad";
-  consulConfig = "/etc/nixos/os/neptune/consul";
 in
 {
   environment.systemPackages = [
     nomad
-    consul
-    envoy
     opentelemetry-collector-contrib
   ];
 
@@ -29,16 +24,10 @@ in
 
   environment.variables = {
     NOMAD_ADDR = "http://100.104.105.144:4646";
-    CONSUL_HTTP_ADDR = "http://100.104.105.144:8500";
   };
 
   users = {
     users = {
-      consul = {
-        isSystemUser = true;
-        group = "consul";
-        uid = 1002;
-      };
       otel = {
         isSystemUser = true;
         group = "otel";
@@ -46,13 +35,11 @@ in
       };
     };
     groups = {
-      consul.gid = 1002;
       otel.gid = 1003;
     };
   };
 
-  # Need to configure network namespace for Consul.
-  # https://developer.hashicorp.com/nomad/docs/integrations/consul-connect#cni-plugins
+  # CNI bridge networking still needs these sysctls for Nomad bridge mode.
   boot.kernel.sysctl = {
     "net.bridge.bridge-nf-call-arptables" = 1;
     "net.bridge.bridge-nf-call-ip6tables" = 1;
@@ -62,7 +49,6 @@ in
   systemd.services.nomad = {
     path = [
       nomad
-      consul
       iproute
       iptables
       cni-plugins
@@ -82,31 +68,6 @@ in
       Restart = "on-failure";
       RestartSec = 2;
       TasksMax = "infinity";
-      OOMScoreAdjust = -1000;
-    };
-  };
-
-  systemd.services.consul = {
-    path = [
-      consul
-      envoy
-      iproute
-      iptables
-      cni-plugins
-    ];
-    wants = [ "network-online.target" ];
-    after = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      User = "consul";
-      Group = "consul";
-      ExecReload = "/bin/kill -HUP $MAINPID";
-      ExecStart = "@${consul}/bin/consul consul agent -config-dir=${consulConfig}";
-      KillMode = "process";
-      KillSignal = "SIGTERM";
-      LimitNOFILE = 65536;
-      Restart = "on-failure";
-      RestartSec = 2;
       OOMScoreAdjust = -1000;
     };
   };

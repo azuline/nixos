@@ -5,21 +5,21 @@ job "postgres" {
     count = 1
     network {
       mode = "bridge"
+      port "db" {
+        static = 29005
+        to     = 5432
+      }
     }
     service {
-      name = "postgres"
-      port = "5432"
-      connect {
-        sidecar_service {}
-      }
+      name     = "postgres"
+      port     = "db"
+      provider = "nomad"
       check {
         name     = "pg_isready"
-        type     = "script"
-        command  = "/bin/sh"
-        args     = ["-c", "pg_isready -h 127.0.0.1 -p 5432"]
+        type     = "tcp"
+        port     = "db"
         interval = "10s"
         timeout  = "2s"
-        task     = "postgres"
       }
     }
     volume "data" {
