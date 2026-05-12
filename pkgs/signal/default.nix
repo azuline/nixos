@@ -1,8 +1,15 @@
-{ signal-desktop-bin }:
+{
+  signal-desktop,
+  symlinkJoin,
+  makeWrapper,
+}:
 
-signal-desktop-bin.overrideAttrs (old: {
-  preFixup = old.preFixup + ''
-    substituteInPlace $out/share/applications/signal.desktop \
-      --replace bin/signal-desktop 'bin/signal-desktop --use-tray-icon'
+symlinkJoin {
+  name = "signal-desktop-${signal-desktop.version}";
+  paths = [ signal-desktop ];
+  buildInputs = [ makeWrapper ];
+  postBuild = ''
+    wrapProgram $out/bin/signal-desktop \
+      --add-flags "--use-tray-icon"
   '';
-})
+}

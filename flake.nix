@@ -40,6 +40,7 @@
     };
     opencode-src = {
       url = "github:anomalyco/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # Non-flake sources.
     discord-src = {
@@ -140,7 +141,8 @@
           pgmigrate = pgmigrate-src.packages.${system}.pgmigrate;
           opencode = opencode-src.packages.${system}.default;
           zoom-us = pkgs-stable.zoom-us;
-          chromium = pkgs-old.chromium;
+          chromium = pkgs-stable.chromium;
+          signal-desktop = pkgs-latest.signal-desktop;
         };
         pkgs = import ./pkgs {
           inherit
