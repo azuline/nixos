@@ -1,0 +1,15 @@
+{
+	"cl": {
+		"prefix": ["cl"],
+		"body": [
+			"console.log(\"$CLIPBOARD\", $CLIPBOARD);",
+			"$0"
+		]
+	},
+	"el": {
+		"prefix": ["el"],
+		"body": [
+			"// eslint-disable-next-line $1"
+		]
+	}
+}

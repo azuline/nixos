@@ -49,9 +49,8 @@ do -- Setup nvim-cmp.
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      -- Snippets keep on firing on the most random characters. Extremely
-      -- unhelpful. I never call them from autocomplete anyways, I ctrl-j them.
-      -- { name = "vsnip" },
+      -- Snippets are intentionally not a cmp source: they fire on random
+      -- characters and are unhelpful in the menu. Expand them with <C-j>.
     }, {
       {
         name = "buffer",
@@ -70,9 +69,8 @@ do -- Setup nvim-cmp.
         menu = {
           buffer = "[buf]",
           nvim_lsp = "[lsp]",
-          vsnip = "[snip]",
           path = "[path]",
-          latex_symbols = "[tex]",
+          cmdline = "[cmd]",
         },
       }),
     },
@@ -119,18 +117,8 @@ do -- Set up snippets
   -- Snippet movement hotkeys
   vim.api.nvim_set_keymap("i", "<C-l>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>'", { expr = true })
   vim.api.nvim_set_keymap("s", "<C-l>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>'", { expr = true })
-  vim.api.nvim_set_keymap(
-    "i",
-    "<C-h>",
-    "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev-next)' : '<C-h>'",
-    { expr = true }
-  )
-  vim.api.nvim_set_keymap(
-    "x",
-    "<C-h>",
-    "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev-next)' : '<C-h>'",
-    { expr = true }
-  )
+  vim.api.nvim_set_keymap("i", "<C-h>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-h>'", { expr = true })
+  vim.api.nvim_set_keymap("s", "<C-h>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-h>'", { expr = true })
 
   -- Snippets for multiple filetypes.
   vim.g.vsnip_filetypes = {

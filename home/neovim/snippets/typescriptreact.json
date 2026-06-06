@@ -1,0 +1,63 @@
+{
+	"nc": {
+		"prefix": ["nc"],
+		"body": [
+			"const $1: React.FC = () => {",
+			"  return ($0",
+			"    <div>",
+			"      Children",
+			"    </div>",
+			"  );",
+			"};"
+		]
+	},
+	"nce": {
+		"prefix": ["nce"],
+		"body": [
+			"export const $1: React.FC = () => {",
+			"  return ($0",
+			"    <div>",
+			"      Children",
+			"    </div>",
+			"  );",
+			"};"
+		]
+	},
+	"ncp": {
+		"prefix": ["ncp"],
+		"body": [
+			"type I${1:Component}Props = {",
+			"};",
+			"",
+			"const $1: React.FC<I${1:Component}Props> = (props) => {",
+			"  return ($0",
+			"    <div>",
+			"      Children",
+			"    </div>",
+			"  );",
+			"};"
+		]
+	},
+	"ncep": {
+		"prefix": ["ncep"],
+		"body": [
+			"type I${1:Component}Props = {",
+			"};",
+			"",
+			"export const $1: React.FC<I${1:Component}Props> = (props) => {",
+			"  return ($0",
+			"    <div>",
+			"      Children",
+			"    </div>",
+			"  );",
+			"};"
+		]
+	},
+	"cl": {
+		"prefix": ["cl"],
+		"body": [
+			"console.log(\"$CLIPBOARD\", $CLIPBOARD);",
+			"$0"
+		]
+	}
+}

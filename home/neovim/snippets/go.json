@@ -1,0 +1,37 @@
+{
+	"en": {
+		"prefix": ["en"],
+		"body": [
+			"if err != nil {",
+			"\t$1",
+			"}",
+			"$0"
+		]
+	},
+	"enr": {
+		"prefix": ["enr"],
+		"body": [
+			"if err != nil {",
+			"\treturn err",
+			"}",
+			"$0"
+		]
+	},
+	"ennr": {
+		"prefix": ["ennr"],
+		"body": [
+			"if err != nil {",
+			"\treturn nil, err",
+			"}",
+			"$0"
+		]
+	},
+	"tr": {
+		"prefix": ["tr"],
+		"body": [
+			"t.Run(\"${1:Name}\", func(t *testing.T) {",
+			"\t$0",
+			"})"
+		]
+	}
+}

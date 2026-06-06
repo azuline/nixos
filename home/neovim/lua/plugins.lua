@@ -69,8 +69,7 @@ do -- Load the plugins.
     Plug("hrsh7th/cmp-cmdline")
     Plug("hrsh7th/nvim-cmp")
     Plug("onsails/lspkind.nvim")
-    -- Snippets
-    Plug("hrsh7th/cmp-vsnip")
+    -- Snippets (expanded manually via <C-j>, not surfaced in the cmp menu).
     Plug("hrsh7th/vim-vsnip")
   end
 
