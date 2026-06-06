@@ -549,6 +549,9 @@ actions = ["sed: Record(ing)?s?$:"]
 [[stored_metadata_rules]]
 matcher = "label: Music$"
 actions = ["sed: Music$:"]
+ignore = [
+    "label:^Techno is the Devil's Music",
+]
 [[stored_metadata_rules]]
 matcher = "label: MUSIC$"
 actions = ["sed: MUSIC$:"]
