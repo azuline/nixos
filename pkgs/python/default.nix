@@ -11,6 +11,7 @@ python313.withPackages (
     passlib
     pid
     rose-py
+    z3-solver
     # CLI Tools
     sh
     shodan
