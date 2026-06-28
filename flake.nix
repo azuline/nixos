@@ -76,7 +76,7 @@
       flake = false;
     };
     handy-src = {
-      url = "https://github.com/cjpais/Handy/releases/download/v0.6.4/Handy_0.6.4_amd64.AppImage";
+      url = "https://github.com/cjpais/Handy/releases/download/v0.8.3/Handy_0.8.3_amd64.AppImage";
       flake = false;
     };
   };

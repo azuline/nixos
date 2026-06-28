@@ -164,13 +164,13 @@
     "handy-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-ET1IdBm+yM5s+zw+Ysr5zrQfSzXTBiZdGaZJrdaVcM0=",
+        "narHash": "sha256-ACaUyAJLew/q9YgV6l3O36Zjrf9zuJAvufPFLIuw0qU=",
         "type": "file",
-        "url": "https://github.com/cjpais/Handy/releases/download/v0.6.4/Handy_0.6.4_amd64.AppImage"
+        "url": "https://github.com/cjpais/Handy/releases/download/v0.8.3/Handy_0.8.3_amd64.AppImage"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/cjpais/Handy/releases/download/v0.6.4/Handy_0.6.4_amd64.AppImage"
+        "url": "https://github.com/cjpais/Handy/releases/download/v0.8.3/Handy_0.8.3_amd64.AppImage"
       }
     },
     "home-manager": {
@@ -330,6 +330,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1778580735,
+        "narHash": "sha256-t+8AVV8ExvOmslz2sLIgw/hJBKlyl65rJvxjvvjHgpE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "48d91f2c0ce7b9e589f967d4f685153dd765dcdd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nnn-src": {
       "flake": false,
       "locked": {
@@ -364,9 +380,7 @@
     },
     "opencode-src": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1767383740,
