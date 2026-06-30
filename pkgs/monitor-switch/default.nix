@@ -5,9 +5,7 @@ writeShellScriptBin "monitor-switch" ''
 
   function monitorOn() {
     # Monitor on
-    xrandr --output DP-2-1-5 --auto --primary --above eDP-1
-    xrandr --output HDMI-1 --auto --rotate left --left-of DP-2-1-5
-    xrandr --output DP-2-1-6 --auto --rotate left --left-of HDMI-1
+    xrandr --output HDMI-1 --auto --primary --above eDP-1
     xrandr --output eDP-1 --off
     sleep 1
     /home/blissful/backgrounds/apply.sh
@@ -25,8 +23,6 @@ writeShellScriptBin "monitor-switch" ''
   function monitorOff() {
     # Monitor off
     xrandr --output eDP-1 --auto --primary
-    xrandr --output DP-2-1-6 --off
-    xrandr --output DP-2-1-5 --off
     xrandr --output HDMI-1 --off
     sleep 1
     /home/blissful/backgrounds/apply.sh
@@ -44,7 +40,7 @@ writeShellScriptBin "monitor-switch" ''
   # Kill other instances.
   # kill $(pgrep -f "monitor-switch" | grep -vw $$) 2>/dev/null
 
-  cond="$(xrandr --query | { grep "DP-2-1-5 connected" || true; })"
+  cond="$(xrandr --query | { grep "HDMI-1 connected" || true; })"
   if [[ -n "$cond" ]]; then
     monitorOn
   else

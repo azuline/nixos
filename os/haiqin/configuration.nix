@@ -52,7 +52,7 @@
   # https://github.com/NixOS/nixpkgs/issues/195777#issuecomment-1324378856
   system.activationScripts.restart-udev = "${pkgs.systemd}/bin/systemctl restart systemd-udev-trigger.service";
 
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i32b";
@@ -121,20 +121,20 @@
     enable = true;
     # Switch to powersave when necessary.
     settings = {
-      CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
-      PLATFORM_PROFILE_ON_AC = "balanced";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      PLATFORM_PROFILE_ON_AC = "performance";
       # Overheating with boost; turn off if megaprogramming on laptop.
-      CPU_BOOST_ON_AC = 0;
-      CPU_HWP_DYN_BOOST_ON_AC = 0;
+      CPU_BOOST_ON_AC = 1;
+      CPU_HWP_DYN_BOOST_ON_AC = 1;
 
       # CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
       # PLATFORM_PROFILE_ON_BAT = "balanced";
       # CPU_BOOST_ON_BAT = 0;
       # CPU_HWP_DYN_BOOST_ON_BAT = 0;
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
-      PLATFORM_PROFILE_ON_BAT = "performance";
-      CPU_BOOST_ON_BAT = 1;
-      CPU_HWP_DYN_BOOST_ON_BAT = 1;
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+      PLATFORM_PROFILE_ON_BAT = "balanced";
+      CPU_BOOST_ON_BAT = 0;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
 
       START_CHARGE_THRESH_BAT0 = 90;
       STOP_CHARGE_THRESH_BAT0 = 95;
