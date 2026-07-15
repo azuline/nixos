@@ -82,7 +82,10 @@ def parse_from_editable(content: str) -> list[Bookmark]:
         content_part = line.lstrip(" ")
 
         parts = content_part.split(" ", 1)
-        assert len(parts) == 2
+        if len(parts) != 2 or not parts[0].isdigit():
+            raise ValueError(
+                f"Malformed TOC line, expected '<page number> <title>': {line!r}"
+            )
         page = int(parts[0])
         # Unescape \n back to actual newlines
         title = parts[1].replace("\\n", "\n")

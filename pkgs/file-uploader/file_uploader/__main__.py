@@ -8,7 +8,7 @@ import aiohttp
 import pyperclip
 from dotenv import load_dotenv
 
-from file_uploader.hosts import HOSTS, MissingCredentialsError, UploadFunction
+from file_uploader.hosts import HOSTS, MissingCredentialsError, UploadError, UploadFunction
 
 # fmt: off
 parser = argparse.ArgumentParser("file-uploader", description="Upload a file to a filehost.")
@@ -23,6 +23,9 @@ async def coro(uploader: UploadFunction, file: Path) -> str:
             return await uploader(session, file)
         except FileNotFoundError:
             print(f"{file} does not exist.")
+            exit(1)
+        except UploadError as e:
+            print(str(e))
             exit(1)
 
 

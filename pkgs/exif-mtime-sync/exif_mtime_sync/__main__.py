@@ -45,14 +45,19 @@ def main() -> None:
     directory = args.directory
 
     result = subprocess.run(
-        f"fd -e jpg -e jpeg -e png -e gif -e heic -e webp . {quote(directory)} | xargs -d'\n' exiftool -filepath -FileModifyDate -DateTimeOriginal -createdate -T | sort",  # noqa: E501
+        # `set -o pipefail` (bash) ensures a failure in `fd` or `exiftool` is
+        # propagated instead of being masked by the exit status of `sort`.
+        f"set -o pipefail; fd -e jpg -e jpeg -e png -e gif -e heic -e webp . {quote(directory)} | xargs -d'\n' exiftool -filepath -FileModifyDate -DateTimeOriginal -createdate -T | sort",  # noqa: E501
         shell=True,
         check=True,
         stdout=subprocess.PIPE,
+        executable="/bin/bash",
     )
     files = [line.strip().split("\t") for line in result.stdout.decode().splitlines()]
 
     for row in files:
+        if len(row) != 4:
+            raise ValueError(f"Unexpected exiftool output, expected 4 tab-separated columns: {row}")
         filepath = row[0]
         mtime = row[1]
         datetimeoriginal = row[2]
