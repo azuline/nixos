@@ -2,8 +2,9 @@
 Execute a backup onto the Backblaze B2 cloud storage via Restic.
 """
 
-import os
 import subprocess
+
+from backup_scripts.common import open_documents
 
 RESTIC_SCRIPT = """
 source /etc/nixos/pkgs/backup-scripts/.env.restic
@@ -59,8 +60,5 @@ restic backup \
 
 
 def backup_backblaze() -> None:
-    try:
-        subprocess.run([os.environ["HOME"] + "/documents/open.sh"], check=True)
+    with open_documents():
         subprocess.run(["bash", "-c", RESTIC_SCRIPT], check=True)
-    finally:
-        subprocess.run([os.environ["HOME"] + "/documents/close.sh"], check=True)

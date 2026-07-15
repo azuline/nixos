@@ -36,14 +36,39 @@ def _read_credential(key: str) -> str:
         ) from e
 
 
-async def _extract_from_json_response(
-    resp: aiohttp.ClientResponse,
-    accessor: Callable[[Any], str],
+async def _upload_file(
+    session: aiohttp.ClientSession,
+    url: str,
+    filepath: Path,
+    *,
+    file_field: str,
+    data: dict[str, Any] | None = None,
+    headers: dict[str, str] | None = None,
+    accessor: Callable[[Any], str] | None = None,
 ) -> str:
-    j = await resp.json()
-    rv = accessor(j)
-    assert isinstance(rv, str)
-    return rv
+    """POST a file to a filehost and return the resulting URL.
+
+    The file is sent as multipart form data under ``file_field``, alongside any additional
+    ``data`` fields. If ``accessor`` is provided, the response is parsed as JSON and the
+    accessor extracts the URL; otherwise the raw response body is returned.
+    """
+    request_headers = {"User-Agent": USER_AGENT}
+    if accessor is not None:
+        request_headers["Accept"] = "application/json"
+    if headers:
+        request_headers.update(headers)
+
+    with filepath.open("rb") as fp:
+        resp = await session.post(
+            url,
+            data={**(data or {}), file_field: fp},
+            headers=request_headers,
+        )
+        if accessor is None:
+            return await resp.text()
+        rv = accessor(await resp.json())
+        assert isinstance(rv, str)
+        return rv
 
 
 # Uploaders
@@ -51,86 +76,75 @@ async def _extract_from_json_response(
 
 async def sunsetglow_upload(session: aiohttp.ClientSession, filepath: Path) -> str:
     token = _read_credential("SUNSETGLOW_KEY")
-    with filepath.open("rb") as fp:
-        resp = await session.post(
-            "https://u.sunsetglow.net/upload",
-            data={"upload": fp},
-            headers={
-                "User-Agent": USER_AGENT,
-                "Accept": "application/json",
-                "Authorization": f"Token {token}",
-            },
-        )
-        return await _extract_from_json_response(resp, lambda d: d["image_url"])
+    return await _upload_file(
+        session,
+        "https://u.sunsetglow.net/upload",
+        filepath,
+        file_field="upload",
+        headers={"Authorization": f"Token {token}"},
+        accessor=lambda d: d["image_url"],
+    )
 
 
 async def vgy_upload(session: aiohttp.ClientSession, filepath: Path) -> str:
     _enforce_extensions(filepath, ["jpg", "jpeg", "png", "gif"])
     userkey = _read_credential("VGY_KEY")
-    with filepath.open("rb") as fp:
-        resp = await session.post(
-            "https://vgy.me/upload",
-            data={"userkey": userkey, "file": fp},
-            headers={
-                "User-Agent": USER_AGENT,
-                "Accept": "application/json",
-            },
-        )
-        return await _extract_from_json_response(resp, lambda d: d["image"])
+    return await _upload_file(
+        session,
+        "https://vgy.me/upload",
+        filepath,
+        file_field="file",
+        data={"userkey": userkey},
+        accessor=lambda d: d["image"],
+    )
 
 
 async def imgur_upload(session: aiohttp.ClientSession, filepath: Path) -> str:
     _enforce_extensions(filepath, ["jpg", "jpeg", "png", "gif", "mp4", "webm", "mkv"])
     client_id = _read_credential("IMGUR_CLIENT_ID")
-    with filepath.open("rb") as fp:
-        resp = await session.post(
-            "https://api.imgur.com/3/image",
-            data={"album_id": "", "title": "", "description": "", "image": fp},
-            headers={
-                "User-Agent": USER_AGENT,
-                "Accept": "application/json",
-                "Authorization": f"Client-ID {client_id}",
-            },
-        )
-        return await _extract_from_json_response(resp, lambda d: d["data"]["link"])
+    return await _upload_file(
+        session,
+        "https://api.imgur.com/3/image",
+        filepath,
+        file_field="image",
+        data={"album_id": "", "title": "", "description": ""},
+        headers={"Authorization": f"Client-ID {client_id}"},
+        accessor=lambda d: d["data"]["link"],
+    )
 
 
 async def catbox_upload(session: aiohttp.ClientSession, filepath: Path) -> str:
-    with filepath.open("rb") as fp:
-        resp = await session.post(
-            "https://catbox.moe/user/api.php",
-            data={"reqtype": "fileupload", "fileToUpload": fp},
-            headers={"User-Agent": USER_AGENT},
-        )
-        return await resp.text()
+    return await _upload_file(
+        session,
+        "https://catbox.moe/user/api.php",
+        filepath,
+        file_field="fileToUpload",
+        data={"reqtype": "fileupload"},
+    )
 
 
 async def litterbox_upload(session: aiohttp.ClientSession, filepath: Path) -> str:
-    with filepath.open("rb") as fp:
-        resp = await session.post(
-            "https://litterbox.catbox.moe/resources/internals/api.php",
-            data={"time": "24h", "reqtype": "fileupload", "fileToUpload": fp},
-            headers={"User-Agent": USER_AGENT},
-        )
-        return await resp.text()
+    return await _upload_file(
+        session,
+        "https://litterbox.catbox.moe/resources/internals/api.php",
+        filepath,
+        file_field="fileToUpload",
+        data={"time": "24h", "reqtype": "fileupload"},
+    )
 
 
 async def ptpimg_upload(session: aiohttp.ClientSession, filepath: Path) -> str:
     _enforce_extensions(filepath, ["jpg", "jpeg", "png", "gif"])
     apikey = _read_credential("PTPIMG_KEY")
-    with filepath.open("rb") as fp:
-        resp = await session.post(
-            "https://ptpimg.me/upload.php",
-            data={"api_key": apikey, "file-upload[0]": fp},
-            headers={
-                "referer": "https://ptpimg.me/index.php",
-                "User-Agent": USER_AGENT,
-                "Accept": "application/json",
-            },
-        )
-        return await _extract_from_json_response(
-            resp, lambda d: f"https://ptpimg.me/{d[0]['code']}.{d[0]['ext']}"
-        )
+    return await _upload_file(
+        session,
+        "https://ptpimg.me/upload.php",
+        filepath,
+        file_field="file-upload[0]",
+        data={"api_key": apikey},
+        headers={"referer": "https://ptpimg.me/index.php"},
+        accessor=lambda d: f"https://ptpimg.me/{d[0]['code']}.{d[0]['ext']}",
+    )
 
 
 HOSTS: dict[str, UploadFunction] = {
