@@ -184,5 +184,8 @@
 
   virtualisation.docker.enable = true;
   programs.fish.enable = true;
+  services.cron.systemCronJobs = [
+    "0 4 * * * blissful ${pin.exif-mtime-sync}/bin/exif-mtime-sync /home/blissful/images"
+  ];
   services.tailscale.enable = true;
 }

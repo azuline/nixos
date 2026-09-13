@@ -6,7 +6,10 @@
       enable = true;
       desktopManager.xterm.enable = false;
       windowManager.i3.enable = true;
-      windowManager.i3.extraSessionCommands = "xset r rate 250 25";
+      # Set this on the X server rather than once at i3 startup so it remains
+      # the default when keyboards are reattached or the machine resumes.
+      autoRepeatDelay = 250;
+      autoRepeatInterval = 40; # 25 repeats per second.
       screenSection = ''
         # 1. Stop the driver from cutting power to the port during sleep
         Option "HardDPMS" "false"

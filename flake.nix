@@ -222,7 +222,10 @@
             splendor = nixpkgs.lib.nixosSystem {
               inherit system;
               specialArgs = {
-                pin = { inherit pkgs-stable; };
+                pin = {
+                  inherit pkgs-stable;
+                  inherit (pkgs) exif-mtime-sync;
+                };
               };
               modules = [ ./os/splendor/configuration.nix ];
             };
