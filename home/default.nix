@@ -21,6 +21,7 @@
         autossh
         bat
         bc
+        bubblewrap
         cmake
         coreutils
         curl
@@ -297,6 +298,7 @@
         deluge
         nicotine-plus
         signal
+        spotify
         telegram-desktop
         tremotesf
         typst

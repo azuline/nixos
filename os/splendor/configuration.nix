@@ -70,6 +70,7 @@
     firewall = {
       allowedTCPPorts = [
         22000 # syncthing
+        24800 # synergy
         56002 # nicotine
       ];
       # For tailscale https://github.com/tailscale/tailscale/issues/4432.
