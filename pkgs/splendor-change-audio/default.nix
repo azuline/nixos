@@ -3,9 +3,8 @@
 writeShellScriptBin "i3-change-audio" ''
   set -euo pipefail
 
-  # ["Desktop Speakers"]="desktop_speaker_sink="bluez_output.0A_11_75_33_AD_49.1"
   declare -A sinks=(
-    ["Wired Speakers"]="alsa_output.pci-0000_0d_00.4.iec958-stereo"
+    ["Desktop Speakers"]="bluez_output.84_17_15_04_BB_EC.1"
     ["True Wireless Earbuds"]="bluez_output.80_99_E7_1D_0C_B2.1"
     ["Bluetooth Headphones"]="bluez_output.CC_98_8B_E3_18_BC.1"
     ["Bose Mini II SE SoundLink"]="bluez_output.78_2B_64_5C_F4_AA.1"
@@ -14,7 +13,7 @@ writeShellScriptBin "i3-change-audio" ''
   # Ordered list of sink names that we use to cycle through. Also, only the
   # sinks in here are active; inactive ones are not omitted.
   sink_names=(
-    "Wired Speakers"
+    "Desktop Speakers"
     "True Wireless Earbuds"
     "Bluetooth Headphones"
     "Bose Mini II SE SoundLink"

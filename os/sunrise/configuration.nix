@@ -12,8 +12,9 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = 5;
+  system.primaryUser = "mdong";
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   environment = {
     systemPackages = with pkgs; [

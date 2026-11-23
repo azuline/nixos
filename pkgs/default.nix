@@ -3,6 +3,7 @@
   nixpkgs,
   srcs,
   pins,
+  python313,
 }:
 
 import nixpkgs {
@@ -38,12 +39,11 @@ import nixpkgs {
         inherit srcs;
         original = prev.nsxiv;
       };
-      python = final.callPackage ./python { };
+      python = final.callPackage ./python { inherit python313; };
       signal = prev.callPackage ./signal { };
       splendor-change-audio = prev.callPackage ./splendor-change-audio { };
       tailnet-switch = prev.callPackage ./tailnet-switch { };
       term-pass = prev.callPackage ./term-pass { };
-      transmission_4 = prev.callPackage ./transmission { original = prev.transmission_4; };
       tremotesf = prev.callPackage ./tremotesf { original = prev.tremotesf; };
       win-switch = prev.callPackage ./win-switch { };
       zathura = prev.callPackage ./zathura {

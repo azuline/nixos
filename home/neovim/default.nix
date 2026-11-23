@@ -11,6 +11,7 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     withPython3 = true;
+    withRuby = true;
     extraConfig = ''
       let g:theme_name = "${colorscheme}"
       source ${nvimDir}/vimrc

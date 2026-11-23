@@ -21,7 +21,6 @@
         autossh
         bat
         bc
-        bubblewrap
         cmake
         coreutils
         curl
@@ -47,13 +46,12 @@
         hexyl
         htop
         imagemagick
-        inotify-tools
         jq
         llm
         mkcert
         mktorrent
         moreutils
-        neofetch
+        fastfetch
         nix-search-cli
         nmap
         ocrmypdf
@@ -94,13 +92,16 @@
         wget
         whois
         wireguard-tools
-        wl-clipboard
         woff2
         xclip
         pinentry-curses
         xan
         yq-go
         zip
+      ] ++ lib.optionals stdenv.hostPlatform.isLinux [
+        bubblewrap
+        inotify-tools
+        wl-clipboard
       ];
     };
 
@@ -147,19 +148,18 @@
         levant
         luajitPackages.luacheck
         mcp-language-server
-        minikube
+        (lib.lowPrio minikube) # Prefer the standalone kubectl.
         mypy
         namespace-cli
         nil
         nixfmt
         nixfmt-tree
-        node2nix
-        nodePackages.bash-language-server
-        nodePackages.eslint
-        nodePackages.pnpm
-        nodePackages.prettier
-        nodePackages.typescript-language-server
-        nodePackages.vscode-langservers-extracted
+        bash-language-server
+        eslint
+        pnpm
+        prettier
+        typescript-language-server
+        vscode-langservers-extracted
         nodejs
         ocamlPackages.utop
         ocamlformat
@@ -167,7 +167,7 @@
         pgmigrate
         php83
         # php83Packages.composer  # Temporary because LICENSE was erroneously added here and in prettier so they conflict paths.
-        postgresql_13
+        postgresql_17
         protobuf
         protoc-gen-go
         pyright
@@ -184,7 +184,6 @@
         tokei
         universal-ctags
         uv
-        vscode-langservers-extracted
         watchman # Needed for tsserver
         # wrangler  # Temporary because LICENSE was erroneously added here and in prettier so they conflict paths.
         yarn
@@ -207,11 +206,11 @@
           flac
           mediainfo
           mkvtoolnix
-          opusTools
+          opus-tools
           yt-dlp
         ]
         ++ (
-          if pkgs.stdenv.isLinux then
+          if pkgs.stdenv.hostPlatform.isLinux then
             [
               beets
               plexamp
@@ -271,7 +270,7 @@
         vscode.fhs
         xbindkeys
         xdotool # For VimTex's forward search.
-        xorg.xkill
+        xkill
         xwallpaper
         zoom-us
       ];
@@ -317,7 +316,6 @@
         ./polybar
         ./rofi
         ./theme
-        ../modules/colors.nix
         ./xbindkeys
       ];
 

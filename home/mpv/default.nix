@@ -37,7 +37,7 @@ let
   };
 in
 {
-  home.packages = lib.mkIf pkgs.stdenv.isLinux [ fullscreenDesktopItem ];
+  home.packages = lib.mkIf pkgs.stdenv.hostPlatform.isLinux [ fullscreenDesktopItem ];
   programs.mpv = {
     enable = true;
     package = pkgs.mpv;

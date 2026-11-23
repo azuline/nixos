@@ -13,7 +13,7 @@
         # Ensure that i3wsr can call i3 to get the socket path.
         ExecStart = "${pkgs.i3wsr}/bin/i3wsr";
         Environment = "PATH=${pkgs.i3}/bin:$PATH";
-        Type = "forking";
+        Type = "exec";
       };
       Unit = {
         After = "graphical-session-pre.target";

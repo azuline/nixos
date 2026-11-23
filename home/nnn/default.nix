@@ -7,6 +7,15 @@ let
     }).overrideAttrs
       (old: {
         src = srcs.nnn-src;
+        # Our fork uses #if defined rather than #ifdef in this block.
+        patches = builtins.filter (
+          patch: builtins.baseNameOf patch != "darwin-fix-file-mime-opts.patch"
+        ) (old.patches or [ ]);
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace src/nnn.c --replace-fail \
+            $'#if defined(__APPLE__)\n#define FILE_MIME_OPTS "-bIL"\n#elif !defined(__sun)' \
+            '#if !defined(__sun)'
+        '';
         # Apply the:
         # - `cd on quit` logic
         # - configuration envvars

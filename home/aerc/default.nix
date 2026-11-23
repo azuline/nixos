@@ -10,7 +10,7 @@ let
   styleset = if theme == "warm" then "gruvbox" else "palenight";
 in
 # On Mac (work), just use builtin mail.
-lib.mkIf pkgs.stdenv.isLinux {
+lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
   # Runtime dependencies for HTML/image filters.
   home.packages = with pkgs; [
     dante

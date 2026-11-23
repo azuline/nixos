@@ -22,7 +22,7 @@
       hs = "home-manager switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";
       hsm = "home-manager switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}-monitor";
       ns =
-        if pkgs.stdenv.isLinux then
+        if pkgs.stdenv.hostPlatform.isLinux then
           "sudo nixos-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}"
         else
           "darwin-rebuild switch --flake ${specialArgs.sys.nixDir}/#${specialArgs.sys.host}";

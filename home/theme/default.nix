@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   gtk = {
@@ -21,12 +21,14 @@
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
+    gtk4.theme = config.gtk.theme;
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
   };
 
   home.pointerCursor = {
+    enable = true;
     size = 56;
     name = "Nordzy-cursors";
     package = pkgs.nordzy-cursor-theme;

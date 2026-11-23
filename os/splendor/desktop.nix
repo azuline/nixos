@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   services = {
@@ -43,6 +43,8 @@
     nvidiaSettings = true;
     # The open source drivers don't work with the 1080Ti.
     open = false;
+    # Pascal GPUs require the 580 legacy branch.
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 
   i18n.inputMethod = {
@@ -98,8 +100,8 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
+    platformTheme = "gnome";
+    style = "adwaita-dark";
   };
 
   hardware.bluetooth.enable = true;

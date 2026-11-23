@@ -9,11 +9,11 @@
 {
   home.packages = [ pkgs.rose-cli ];
 
-  xdg.configFile = lib.mkIf pkgs.stdenv.isLinux {
+  xdg.configFile = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     "rose/config.toml".source =
       config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
   };
-  home.file = lib.mkIf pkgs.stdenv.isDarwin {
+  home.file = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     "Library/Application Support/rose/config.toml".source =
       config.lib.file.mkOutOfStoreSymlink "${specialArgs.sys.nixDir}/home/rose/config.toml";
   };

@@ -1,3 +1,5 @@
 result
 .luarc.json
 .direnv
+__pycache__/
+*.py[cod]

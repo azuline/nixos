@@ -138,7 +138,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    extraConfig = {
+    settings = {
       modi = "window,run,ssh,drun";
       show-icons = true;
       cycle = false;

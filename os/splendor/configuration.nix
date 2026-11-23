@@ -22,7 +22,6 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.luks.devices.root = {
       device = "/dev/disk/by-partuuid/4136449e-c6b2-4de6-962c-8672f7c80e25";
-      preLVM = true;
     };
     # True by default; creates a warning when other parameters are unset. So we
     # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.
@@ -55,12 +54,20 @@
     extraModprobeConfig = ''
       softdep nvidia pre: vfio-pci
     '';
-    initrd.preDeviceCommands = ''
-      DEVS="0000:0b:00.0 0000:0b:00.1 0000:0b:00.2 0000:0b:00.3"
-      for DEV in $DEVS; do
-        echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
-      done
-    '';
+    initrd.systemd.services.vfio-driver-override = {
+      description = "Reserve VM PCI devices for VFIO";
+      wantedBy = [ "sysinit.target" ];
+      before = [ "systemd-udev-trigger.service" ];
+      after = [ "systemd-udevd.service" ];
+      unitConfig.DefaultDependencies = false;
+      serviceConfig.Type = "oneshot";
+      script = ''
+        DEVS="0000:0b:00.0 0000:0b:00.1 0000:0b:00.2 0000:0b:00.3"
+        for DEV in $DEVS; do
+          echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
+        done
+      '';
+    };
   };
 
   networking = {
@@ -178,7 +185,7 @@
       vim
       wget
       wireguard-tools
-      neofetch # Enable/disable this to force a minor rebuild.
+      fastfetch # Enable/disable this to force a minor rebuild.
     ];
   };
 

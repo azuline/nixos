@@ -1,10 +1,10 @@
-{ pin, ... }:
+{ pkgs, ... }:
 
 {
   users.users.transmission = { };
   services.transmission = {
     enable = true;
-    package = pin.transmission_4;
+    package = pkgs.transmission_4;
     user = "transmission";
     group = "media";
     home = "/var/lib/transmission";

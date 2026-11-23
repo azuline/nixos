@@ -21,7 +21,6 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.luks.devices.root = {
       device = "/dev/disk/by-partuuid/7bfe45cf-c7c9-459f-a604-615fa4691fa0";
-      preLVM = true;
     };
     # True by default; creates a warning when other parameters are unset. So we
     # disable it. See https://github.com/NixOS/nixpkgs/issues/254807.

@@ -20,7 +20,7 @@
         pre: pr edit
         prw: pr view --web
         prm: pr merge --auto --squash --delete-branch
-    browser: ${if pkgs.stdenv.isDarwin then "open -a firefox" else "firefox"}
+    browser: ${if pkgs.stdenv.hostPlatform.isDarwin then "open -a firefox" else "firefox"}
     version: "1"
   '';
 }
